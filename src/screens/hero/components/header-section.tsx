@@ -46,7 +46,7 @@ export const HeaderSection = () => {
             icon={socialMedia.icon}
           />
         ))}
-        <AboutMeAvatar />
+        {/* <AboutMeAvatar /> */}
         <ThemeSwitch
           checked={darkMode}
           onChange={(e) => setDarkMode(e.target.checked)}
