@@ -6,9 +6,12 @@ import {
   SocialMediaLinksInterface,
 } from "@/config";
 import { SubTitleAnimation } from "./sub-title-animation";
-import { AboutMeAvatar } from ".";
+import { AboutMeAvatar } from "@/screens";
+import { ThemeSwitch } from "@/components/ui/theme-switch";
+import { useThemeStore } from "@/stores";
 
 export const HeaderSection = () => {
+  const { setDarkMode, darkMode } = useThemeStore();
   return (
     <>
       <div>
@@ -44,6 +47,10 @@ export const HeaderSection = () => {
           />
         ))}
         <AboutMeAvatar />
+        <ThemeSwitch
+          checked={darkMode}
+          onChange={(e) => setDarkMode(e.target.checked)}
+        />
       </ul>
     </>
   );
