@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface ThemeStoreInterface {
   darkMode: boolean;
   toggleDarkMode: () => void;
+  setDarkMode: (value: boolean) => void;
 }
 
 const useThemeStore = create<ThemeStoreInterface>((set) => {
@@ -13,6 +14,7 @@ const useThemeStore = create<ThemeStoreInterface>((set) => {
   return {
     darkMode: prefersDarkMode,
     toggleDarkMode: () => set((state) => ({ darkMode: !state.darkMode })),
+    setDarkMode: (value: boolean) => set(() => ({ darkMode: value })),
   };
 });
 

@@ -1,5 +1,3 @@
-interface NotFoundInterface {}
-
-export const NotFound = (props: NotFoundInterface) => {
-  return <div>NotFound</div>;
+export const NotFound = () => {
+  return <div>404 Page Not Found</div>;
 };
