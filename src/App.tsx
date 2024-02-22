@@ -1,17 +1,14 @@
-import { Button } from "./components/ui/button";
-import { useThemeStore } from "./stores";
+import { AppRoutes } from "../routes";
+import { GlobalHelmet } from "./components";
+import { MainContainerProvider } from "./providers";
 
 function App() {
-  const { toggleDarkMode, darkMode } = useThemeStore();
-
-  const toggleDarkModeHandler = () => {
-    console.log(darkMode);
-    toggleDarkMode();
-  };
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button onClick={toggleDarkModeHandler}>test</Button>
+      <GlobalHelmet />
+      <MainContainerProvider>
+        <AppRoutes />
+      </MainContainerProvider>
     </>
   );
 }
