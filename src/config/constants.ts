@@ -38,3 +38,11 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
     url: "https://www.facebook.com/gennette29",
   },
 ] 
+
+export const TYPE_ROLES: string[] = [
+  "Full-Stack Developer",
+  "React TypeScript Developer",
+  "Spring Boot Developer",
+  "UI/UX Advocate",
+  "UI Library Enthusiasts"
+]

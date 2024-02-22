@@ -2,7 +2,7 @@ import { SocialMediaLinksInterface } from "@/config";
 import { Icon } from "@iconify/react";
 import { BounceText } from "../animation";
 
-const SocialButton = (props: SocialMediaLinksInterface) => {
+export const SocialButton = (props: SocialMediaLinksInterface) => {
   const { icon, title, url } = props;
   return (
     <a
@@ -19,5 +19,3 @@ const SocialButton = (props: SocialMediaLinksInterface) => {
     </a>
   );
 };
-
-export default SocialButton;

@@ -1,11 +1,11 @@
-import { BounceText, NavLinks } from "@/components";
-import SocialButton from "@/components/ui/social-button";
+import { BounceText, NavLinks, SocialButton } from "@/components";
 import {
   NAV_LINKS,
   NavLinkInterface,
   SOCIAL_MEDIA_LINKS,
   SocialMediaLinksInterface,
 } from "@/config";
+import { SubTitleAnimation } from "./sub-title-animation";
 
 export const HeaderSection = () => {
   return (
@@ -14,11 +14,12 @@ export const HeaderSection = () => {
         <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
           <BounceText text="Gene Paul Mar Javier" />
         </h1>
-        <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
-          Software Developer
-        </h2>
-        <p className="mt-4 max-w-xs leading-normal text-white">
-          I build pixel-perfect, engaging, and accessible digital experiences.
+        <SubTitleAnimation />
+        <p className="mt-4 leading-normal text-white">
+          As a Fullstack Developer, I'm Committed to Crafting Exceptional
+          Digital Experiences: Building Pixel-Perfect, Engaging, and Accessible
+          Websites with Precision and Care, Leveraging Robust APIs for Seamless
+          Functionality
         </p>
         <nav className="nav hidden lg:block" aria-label="Navigation Links">
           <ul className="mt-16 w-max">
