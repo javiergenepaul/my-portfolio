@@ -11,11 +11,11 @@ export const SocialButton = (props: SocialMediaLinksInterface) => {
       rel="noreferrer"
       className="flex flex-row gap-2 items-center text-white transition duration-150"
     >
-      <Icon icon={icon as any} width="26" height="26" />
+      <Icon icon={icon as any} width="32" height="32" />
       <span>
         <BounceText text={title} />
       </span>
-      <Icon icon="fa6-solid:arrow-up-right-from-square" />
+      {/* <Icon icon="fa6-solid:arrow-up-right-from-square" /> */}
     </a>
   );
 };

@@ -26,23 +26,17 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
     url: "https://github.com/javiergenepaul",
   },
   {
-    key: "linkIn",
-    icon: "mdi:linkedin",
-    title: "LinkIn",
+    key: "linkedIn",
+    icon: "entypo-social:linkedin-with-circle",
+    title: "LinkedIn",
     url: "https://www.linkedin.com/in/gene-paul-mar-javier-500b93245",
   },
-  {
-    key: "facebook",
-    icon: "ic:baseline-facebook",
-    title: "Facebook",
-    url: "https://www.facebook.com/gennette29",
-  },
-] 
+];
 
 export const TYPE_ROLES: string[] = [
   "Full-Stack Developer",
   "React TypeScript Developer",
   "Spring Boot Developer",
   "UI/UX Advocate",
-  "UI Library Enthusiasts"
-]
+  "UI Library Enthusiasts",
+];

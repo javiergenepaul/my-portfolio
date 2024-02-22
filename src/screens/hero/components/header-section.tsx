@@ -6,6 +6,7 @@ import {
   SocialMediaLinksInterface,
 } from "@/config";
 import { SubTitleAnimation } from "./sub-title-animation";
+import { AboutMeAvatar } from ".";
 
 export const HeaderSection = () => {
   return (
@@ -29,6 +30,7 @@ export const HeaderSection = () => {
           </ul>
         </nav>
       </div>
+
       <ul
         className="ml-1 mt-8 gap-3 flex items-center"
         aria-label="Social Media"
@@ -41,6 +43,7 @@ export const HeaderSection = () => {
             icon={socialMedia.icon}
           />
         ))}
+        <AboutMeAvatar />
       </ul>
     </>
   );

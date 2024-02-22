@@ -1,20 +1,13 @@
-import { usePageTitleStore, useThemeStore } from "@/stores";
+import { usePageTitleStore } from "@/stores";
 import { useEffect } from "react";
-import { HeaderSection } from ".";
+import { HeaderSection } from "./components";
 
 export const Hero = () => {
   const { setTitle } = usePageTitleStore();
-  const { setDarkMode, darkMode } = useThemeStore();
 
   useEffect(() => {
-    console.log("trigger");
-    setDarkMode(true);
     setTitle("Home Page");
   }, []);
-
-  useEffect(() => {
-    console.log(darkMode);
-  }, [darkMode]);
 
   return (
     <div className="lg:flex lg:justify-between lg:gap-4">

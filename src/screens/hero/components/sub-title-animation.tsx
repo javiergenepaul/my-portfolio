@@ -8,7 +8,7 @@ export const SubTitleAnimation = () => {
       sequence={TYPE_ROLES.reduce<(string | number)[]>((acc, role, index) => {
         acc.push(role);
         if (index < TYPE_ROLES.length - 1) {
-          acc.push(secondsToMilliseconds(2));
+          acc.push(secondsToMilliseconds(3));
         }
         return acc;
       }, [])}
