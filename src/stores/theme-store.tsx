@@ -1,12 +1,11 @@
-// useThemeStore.ts
-import create from "zustand";
+import { create } from "zustand";
 
-interface ThemeStoreState {
+interface ThemeStoreInterface {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
 
-const useThemeStore = create<ThemeStoreState>((set) => {
+const useThemeStore = create<ThemeStoreInterface>((set) => {
   const prefersDarkMode = window.matchMedia(
     "(prefers-color-scheme: dark)"
   ).matches;
@@ -17,4 +16,5 @@ const useThemeStore = create<ThemeStoreState>((set) => {
   };
 });
 
-export default useThemeStore;
+export { useThemeStore };
+export type { ThemeStoreInterface };
