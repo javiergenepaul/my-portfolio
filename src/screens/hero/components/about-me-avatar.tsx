@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage, BounceText } from "@/components";
 import { PATH } from "@/config";
 import { Link } from "react-router-dom";
+import ProfileAvater from "../../../assets/avatar-profile.jpg";
 
 export const AboutMeAvatar = () => {
   return (
@@ -9,11 +10,11 @@ export const AboutMeAvatar = () => {
       className="flex gap-2 justify-center items-center cursor-pointer"
     >
       <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
+        <AvatarImage src={ProfileAvater} />
         <AvatarFallback>PJ</AvatarFallback>
       </Avatar>
       <span className="text-white">
-        <BounceText text="Me"/>
+        <BounceText text="Me" />
       </span>
     </Link>
   );
