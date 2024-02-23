@@ -15,7 +15,6 @@ export const SocialButton = (props: SocialMediaLinksInterface) => {
       <span>
         <BounceText text={title} />
       </span>
-      {/* <Icon icon="fa6-solid:arrow-up-right-from-square" /> */}
     </a>
   );
 };
