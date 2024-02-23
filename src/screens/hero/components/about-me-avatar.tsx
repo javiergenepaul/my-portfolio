@@ -10,7 +10,7 @@ export const AboutMeAvatar = () => {
     >
       <Avatar>
         <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarFallback>PJ</AvatarFallback>
       </Avatar>
       <span className="text-white">
         <BounceText text="Me"/>

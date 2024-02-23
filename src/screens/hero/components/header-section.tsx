@@ -1,4 +1,4 @@
-import { BounceText, NavLinks, SocialButton } from "@/components";
+import { BounceText, NavLinks, SocialButton, ThemeSwitch } from "@/components";
 import {
   NAV_LINKS,
   NavLinkInterface,
@@ -6,9 +6,8 @@ import {
   SocialMediaLinksInterface,
 } from "@/config";
 import { SubTitleAnimation } from "./sub-title-animation";
-import { AboutMeAvatar } from "@/screens";
-import { ThemeSwitch } from "@/components/ui/theme-switch";
 import { useThemeStore } from "@/stores";
+import { AboutMeAvatar } from "@/screens";
 
 export const HeaderSection = () => {
   const { setDarkMode, darkMode } = useThemeStore();
@@ -46,7 +45,7 @@ export const HeaderSection = () => {
             icon={socialMedia.icon}
           />
         ))}
-        {/* <AboutMeAvatar /> */}
+        <AboutMeAvatar />
         <ThemeSwitch
           checked={darkMode}
           onChange={(e) => setDarkMode(e.target.checked)}
