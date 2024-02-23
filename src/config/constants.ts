@@ -2,19 +2,22 @@ import { NavLinkInterface, SocialMediaLinksInterface } from "./types";
 
 export const NAV_LINKS: NavLinkInterface[] = [
   {
-    key: "SERVICES",
+    key: "services",
     name: "services",
     path: "#services",
+    selectedId: "services"
   },
   {
-    key: "PROJECTS",
+    key: "projects",
     name: "projects",
     path: "#projects",
+    selectedId: "projects"
   },
   {
-    key: "CONTACTS",
+    key: "contacts",
     name: "contacts",
     path: "#contacts",
+    selectedId: "contacts"
   },
 ];
 

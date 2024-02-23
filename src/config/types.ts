@@ -1,7 +1,10 @@
+import { SelectedNavLink } from "@/stores/nav-link-store";
+
 export interface NavLinkInterface {
-  key: string;
+  key: SelectedNavLink;
   name: string;
   path: string;
+  selectedId: SelectedNavLink;
 }
 
 export interface SocialMediaLinksInterface {

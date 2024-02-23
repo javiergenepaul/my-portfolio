@@ -8,6 +8,7 @@ import {
 import { SubTitleAnimation } from "./sub-title-animation";
 import { useThemeStore } from "@/stores";
 import { AboutMeAvatar } from "@/screens";
+import React from "react";
 
 export const HeaderSection = () => {
   const { setDarkMode, darkMode } = useThemeStore();
@@ -27,7 +28,14 @@ export const HeaderSection = () => {
         <nav className="nav hidden lg:block" aria-label="Navigation Links">
           <ul className="mt-16 w-max">
             {NAV_LINKS.map((nav: NavLinkInterface) => (
-              <NavLinks key={nav.key} name={nav.name} path={nav.path} />
+              <React.Fragment key={nav.key}>
+                <NavLinks
+                  key={nav.key}
+                  name={nav.name}
+                  path={nav.path}
+                  selectedId={nav.selectedId}
+                />
+              </React.Fragment>
             ))}
           </ul>
         </nav>
