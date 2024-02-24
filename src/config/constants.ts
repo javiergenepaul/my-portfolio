@@ -24,15 +24,21 @@ export const NAV_LINKS: NavLinkInterface[] = [
 export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
   {
     key: "github",
-    icon: "mdi:github",
+    icon: "fa6-brands:square-github",
     title: "Github",
     url: "https://github.com/javiergenepaul",
   },
   {
     key: "linkedIn",
-    icon: "entypo-social:linkedin-with-circle",
+    icon: "fa6-brands:linkedin",
     title: "LinkedIn",
     url: "https://www.linkedin.com/in/gene-paul-mar-javier-500b93245",
+  },
+  {
+    key: "linkedIn",
+    icon: "fa6-brands:upwork",
+    title: "Upwork",
+    url: "https://www.upwork.com/freelancers/~0146c967e12a6bff87",
   },
 ];
 

@@ -39,7 +39,6 @@ export const HeaderSection = () => {
           </ul>
         </nav>
       </section>
-
       <ul
         className="flex items-center gap-3 mt-8 ml-1"
         aria-label="Social Media"

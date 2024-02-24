@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage, BounceText } from "@/components";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components";
 import { PATH } from "@/config";
 import { Link } from "react-router-dom";
 import ProfileAvater from "../../../assets/avatar-profile.jpg";
@@ -13,9 +13,6 @@ export const AboutMeAvatar = () => {
         <AvatarImage src={ProfileAvater} />
         <AvatarFallback>PJ</AvatarFallback>
       </Avatar>
-      <span className="text-white">
-        <BounceText text="Me" />
-      </span>
     </Link>
   );
 };
