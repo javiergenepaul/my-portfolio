@@ -1,10 +1,43 @@
 {
-    "header": {
-        "name": "Gene Paul Mar Javier",
-        "description": "Bilang isang Fullstack Developer, Ako ay Naka-commit sa Pagbuo ng Pambihirang Mga Digital na Karanasan: Pagbuo ng Pixel-Perfect, Engaging, at Accessible na Mga Website nang may Precision at Care, Gamit ang Matibay na mga API para sa Magaan na Paggana",
-        "ariaLabel": {
-            "navigationLinks": "Mga Link sa Navigasyon",
-            "socialMedia": "Social Media"
-        }
+  "header": {
+    "name": "Gene Paul Mar Javier",
+    "shortName": "PJ",
+    "description": "Bilang isang Fullstack Developer, Ako ay may Commitment sa paglikha ng mga Lubos na Digital na Karanasan: Pagbuo ng mga Pixel-Perfect, Engaging, at Accessible na mga Website na may Kaliwanagan at Malasakit, Paggamit ng Matatag na mga API para sa Maginhawang Pag-andar",
+    "ariaLabel": {
+      "navigationLinks": "Mga Link sa Navigasyon",
+      "socialMedia": "Social Media",
+      "themeSwitch": "Pagpapalit ng Tema",
+      "serviceSection": "Bahagi ng Serbisyo"
+    },
+    "navLinks": {
+      "services": "Mga Serbisyo",
+      "projects": "Mga Proyekto",
+      "contacts": "Mga Kontakto"
+    },
+    "socialMediaLinks": {
+      "github": "Github",
+      "linkedIn": "LinkedIn",
+      "upwork": "Upwork"
+    },
+    "typeRole": {
+      "fullStack": "Full-Stack Developer",
+      "reactTypescript": "React TypeScript Developer",
+      "springBoot": "Spring Boot Developer",
+      "uiuxAdvocate": "Advocate ng UI/UX",
+      "uiLibraryEnthusiasts": "Tagahanga ng UI Library"
     }
+  },
+  "footer": {
+    "content_one": "Isinasakatuparan na may inspirasyon mula kay",
+    "creditsOwner": "Brittany Chiang's",
+    "content_two": "sa layout ni ",
+    "figma": "Figma",
+    "content_three": "at isinasakatuparan nang may pag-aalaga gamit ang",
+    "visualStudioCode": "Visual Studio Code",
+    "content_four": "ng iyong lingkod. Binuo gamit ang",
+    "vite": "Vite,",
+    "react": "React,",
+    "tailwind": "Tailwind CSS",
+    "content_five": "upang tiyakin ang isang magaan at epektibong karanasan sa pagpapaunlad."
+  }
 }
