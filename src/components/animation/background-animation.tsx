@@ -7,7 +7,7 @@ export const BackgroundAnimation = () => {
   return (
     <div
       id="background"
-      className="absolute top-0 left-0 h-full w-full overflow-hidden"
+      className="absolute top-0 left-0 h-full w-full overflow-hidden hidden"
     >
       <motion.div
         transition={{

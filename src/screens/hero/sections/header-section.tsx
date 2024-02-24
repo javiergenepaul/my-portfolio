@@ -5,16 +5,15 @@ import {
   SOCIAL_MEDIA_LINKS,
   SocialMediaLinksInterface,
 } from "@/config";
-import { SubTitleAnimation } from "./sub-title-animation";
 import { useThemeStore } from "@/stores";
-import { AboutMeAvatar } from "@/screens";
+import { AboutMeAvatar, SubTitleAnimation } from "@/screens";
 import React from "react";
 
 export const HeaderSection = () => {
   const { setDarkMode, darkMode } = useThemeStore();
   return (
     <>
-      <div>
+      <section>
         <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
           <BounceText text="Gene Paul Mar Javier" />
         </h1>
@@ -39,7 +38,7 @@ export const HeaderSection = () => {
             ))}
           </ul>
         </nav>
-      </div>
+      </section>
 
       <ul
         className="ml-1 mt-8 gap-3 flex items-center"
