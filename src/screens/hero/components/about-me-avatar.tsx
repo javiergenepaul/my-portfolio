@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components";
 import { PATH } from "@/config";
 import { Link } from "react-router-dom";
 import ProfileAvater from "../../../assets/avatar-profile.jpg";
+import { translate } from "@/i18n";
 
 export const AboutMeAvatar = () => {
   return (
@@ -11,7 +12,7 @@ export const AboutMeAvatar = () => {
     >
       <Avatar>
         <AvatarImage src={ProfileAvater} />
-        <AvatarFallback>PJ</AvatarFallback>
+        <AvatarFallback>{translate("header.shortName")}</AvatarFallback>
       </Avatar>
     </Link>
   );

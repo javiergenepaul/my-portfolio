@@ -9,7 +9,7 @@ export const NavLinks = (props: NavLinkInterface) => {
   const selectedClass = (): { lineClass: string; nameClass: string } => {
     return {
       lineClass: isActive ? "w-16 bg-white" : "bg-slate-400",
-      nameClass: isActive ? "text-slate-200 text-slate-200 text-white" : "text-slate-400",
+      nameClass: isActive ? "text-slate-200 text-primary" : "text-slate-400",
     };
   };
 
