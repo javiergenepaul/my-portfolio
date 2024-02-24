@@ -14,7 +14,7 @@ export const SubTitleAnimation = () => {
       }, [])}
       wrapper="h2"
       speed={50}
-      className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl"
+      className="mt-3 text-lg font-medium tracking-tight sm:text-xl"
       repeat={Infinity}
     />
   );

@@ -5,26 +5,26 @@ import {
   SOCIAL_MEDIA_LINKS,
   SocialMediaLinksInterface,
 } from "@/config";
-import { useThemeStore } from "@/stores";
 import { AboutMeAvatar, SubTitleAnimation } from "@/screens";
+import { useThemeStore } from "@/stores";
 import React from "react";
 
 export const HeaderSection = () => {
-  const { setDarkMode, darkMode } = useThemeStore();
+  const { getTheme, toggleTheme } = useThemeStore();
   return (
     <>
       <section>
-        <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           <BounceText text="Gene Paul Mar Javier" />
         </h1>
         <SubTitleAnimation />
-        <p className="mt-4 leading-normal text-white">
+        <p className="mt-4 leading-normal">
           As a Fullstack Developer, I'm Committed to Crafting Exceptional
           Digital Experiences: Building Pixel-Perfect, Engaging, and Accessible
           Websites with Precision and Care, Leveraging Robust APIs for Seamless
           Functionality
         </p>
-        <nav className="nav hidden lg:block" aria-label="Navigation Links">
+        <nav className="hidden nav lg:block" aria-label="Navigation Links">
           <ul className="mt-16 w-max">
             {NAV_LINKS.map((nav: NavLinkInterface) => (
               <React.Fragment key={nav.key}>
@@ -41,7 +41,7 @@ export const HeaderSection = () => {
       </section>
 
       <ul
-        className="ml-1 mt-8 gap-3 flex items-center"
+        className="flex items-center gap-3 mt-8 ml-1"
         aria-label="Social Media"
       >
         {SOCIAL_MEDIA_LINKS.map((socialMedia: SocialMediaLinksInterface) => (
@@ -54,8 +54,8 @@ export const HeaderSection = () => {
         ))}
         <AboutMeAvatar />
         <ThemeSwitch
-          checked={darkMode}
-          onChange={(e) => setDarkMode(e.target.checked)}
+          checked={getTheme()}
+          onChange={(e) => toggleTheme(e.target.checked)}
         />
       </ul>
     </>
