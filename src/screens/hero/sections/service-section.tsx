@@ -1,3 +1,5 @@
+import { translate } from "@/i18n";
+
 export const ServiceSection = () => {
   return (
     <section
@@ -5,7 +7,8 @@ export const ServiceSection = () => {
       id="services"
       aria-label="Services"
     >
-      <span className="text-white">Service Section</span>
+      <span className="">{translate("hello")}</span>
+      {/* <span className="">Service Section</span> */}
     </section>
   );
 };

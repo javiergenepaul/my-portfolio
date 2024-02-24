@@ -2,6 +2,7 @@ import { AppRoutes } from "../routes";
 import { GlobalHelmet } from "./components";
 import { MainContainerProvider } from "./providers";
 
+
 function App() {
   return (
     <>
