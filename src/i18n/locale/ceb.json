@@ -1,10 +1,43 @@
 {
-    "header": {
-        "name": "Gene Paul Mar Javier",
-        "description": "Isip usa ka Fullstack Developer, Ako gipasalig sa Paghimo sa Pambihira nga Mga Digital nga mga Kinabuhi: Paghimo sa Pixel-Perfect, Engaging, ug Accessible nga mga Website nga may Precision ug Care, Paggamit sa Matibay nga mga API alang sa Hapsay nga Paggana",
-        "ariaLabel": {
-            "navigationLinks": "Mga Link sa Navigasyon",
-            "socialMedia": "Mga Social Media"
-        }
+  "header": {
+    "name": "Gene Paul Mar Javier",
+    "shortName": "PJ",
+    "description": "Bilang usa ka Fullstack Developer, Ako adunay Commit sa pagbuhat sa mga Labaw nga Mga Digital nga Kinabuhi: Pagtukod sa Piksel-Saay, Engaging, ug Accessible nga mga Website nga May Presisyon ug Kalingawan, Paggamit sa Matibay nga mga API alang sa walay Diborsyo nga Pagpangita",
+    "ariaLabel": {
+      "navigationLinks": "Mga Link sa Navigasyon",
+      "socialMedia": "Social Media",
+      "themeSwitch": "Pagpalit sa Tema",
+      "serviceSection": "Seksyon sa Serbisyo"
+    },
+    "navLinks": {
+      "services": "Mga Serbisyo",
+      "projects": "Mga Proyekto",
+      "contacts": "Mga Kontakto"
+    },
+    "socialMediaLinks": {
+      "github": "Github",
+      "linkedIn": "LinkedIn",
+      "upwork": "Upwork"
+    },
+    "typeRole": {
+      "fullStack": "Full-Stack Developer",
+      "reactTypescript": "React TypeScript Developer",
+      "springBoot": "Spring Boot Developer",
+      "uiuxAdvocate": "Advocate UI/UX",
+      "uiLibraryEnthusiasts": "Mga Estudyante sa UI Library"
     }
+  },
+  "footer": {
+    "content_one": "Gidesinyo sa inspirasyon gikan sa",
+    "creditsOwner": "Brittany Chiang's",
+    "content_two": "sa layout ni ",
+    "figma": "Figma",
+    "content_three": "ug gipanday uban sa kahigalaan sa",
+    "visualStudioCode": "Visual Studio Code",
+    "content_four": "sakoa. Gipatukod gamit ang",
+    "vite": "Vite,",
+    "react": "React,",
+    "tailwind": "Tailwind CSS",
+    "content_five": "nga nagseguro og usa ka walay diborsyo ug epektibo nga eksperyensya sa pagpalambo."
+  }
 }

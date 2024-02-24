@@ -1,10 +1,30 @@
 {
   "header": {
-      "name": "ジーン ポール マー ジャビエル",
-      "description": "ふるすたっくかいはつしゃとして、すぐれたでじたるたいけんをそうぞうすることにこみっとしています。ぴくせるぱーふぇくとでみりょくてきであくせすぶるなうぇぶさいとをせいすうとちゅういをもってこうちくし、こうぼうなAPIをかつようしてシームレスなきのうをていきょうします。",
-      "ariaLabel": {
-          "navigationLinks": "なびげーしょんりんく",
-          "socialMedia": "そーしゃるめでぃあ"
-      }
+    "name": "ジーン ポール マー ジャビエル", 
+    "shortName": "ピ",
+    "description": "フルスタック開発者として、私は卓越したデジタルエクスペリエンスを創造することにコミットしています：ピクセルパーフェクトで魅力的かつアクセス可能なウェブサイトを精密かつ丁寧に構築し、堅牢なAPIを活用してシームレスな機能を提供します。",
+    "ariaLabel": {
+      "navigationLinks": "ナビゲーションリンク",
+      "socialMedia": "ソーシャルメディア",
+      "themeSwitch": "テーマ切り替え",
+      "serviceSection": "サービスセクション"
+    },
+    "navLinks": {
+      "services": "サービス",
+      "projects": "プロジェクト",
+      "contacts": "コンタクト"
+    },
+    "socialMediaLinks": {
+      "github": "ギットハブ",
+      "linkedIn": "リンクトイン",
+      "upwork": "アップワーク"
+    },
+    "typeRole": {
+      "fullStack": "フルスタック開発者",
+      "reactTypescript": "React TypeScript 開発者",
+      "springBoot": "Spring Boot 開発者",
+      "uiuxAdvocate": "UI/UX アドボケイト",
+      "uiLibraryEnthusiasts": "UI ライブラリの愛好家"
+    }
   }
 }
