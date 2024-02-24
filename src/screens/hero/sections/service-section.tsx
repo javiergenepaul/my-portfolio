@@ -5,10 +5,9 @@ export const ServiceSection = () => {
     <section
       className="h-screen bg-blue-800"
       id="services"
-      aria-label="Services"
+      aria-label={translate("header.ariaLabel.serviceSection")}
     >
-      <span className="">{translate("hello")}</span>
-      {/* <span className="">Service Section</span> */}
+      <span className="">Service Section</span>
     </section>
   );
 };

@@ -1,26 +1,36 @@
-import { Button } from "@/components";
+import * as url from "@/config";
+import { translate } from "@/i18n";
 
 export const FooterSection = () => {
   return (
     <footer className="self-center max-w-lg py-10 text-center">
       <p className="p-2 text-sm transition-all duration-300 bg-background">
-        Designed with inspiration from
+        {translate("footer.content_one")}
         {
           <HighlightText
-            text="Brittany Chiang's"
-            url="https://brittanychiang.com/"
+            text={translate("footer.creditsOwner")}
+            url={url.CREDITS_OWNER_URL}
           />
         }
-        layout in {<HighlightText text="Figma" url="https://www.figma.com/" />}
-        and crafted with care in
+        {translate("footer.content_two")}
+        {<HighlightText text={translate("footer.figma")} url={url.FIGMA_URL} />}
+        {translate("footer.content_three")}
         {
           <HighlightText
-            text="Visual Studio Code"
-            url="https://code.visualstudio.com/"
+            text={translate("footer.visualStudioCode")}
+            url={url.VSCODE_URL}
           />
         }
-        by yours truly. Constructed using Vite React JS and Tailwind CSS,
-        ensuring a seamless and efficient development experience.
+        {translate("footer.content_four")}
+        {<HighlightText text={translate("footer.vite")} url={url.VITE_URL} />}
+        {<HighlightText text={translate("footer.react")} url={url.REACT_URL} />}
+        {
+          <HighlightText
+            text={translate("footer.tailwind")}
+            url={url.TAILWIND_URL}
+          />
+        }
+        {translate("footer.content_five")}
       </p>
     </footer>
   );
@@ -33,11 +43,10 @@ const HighlightText = (props: { url: string; text: string }) => {
       href={url}
       target="_blank"
       rel="noreferrer"
-      className="font-bold transition-all duration-300 cursor-pointer"
+      className="font-bold transition-all duration-300 cursor-pointer hover:text-primary"
     >
       {" "}
       {text}{" "}
-      <Button variant={"default"}>Test</Button>
     </a>
   );
 };

@@ -1,23 +1,25 @@
+import { translate } from "@/i18n";
 import { NavLinkInterface, SocialMediaLinksInterface } from "./types";
+import * as url from "./url";
 
 export const NAV_LINKS: NavLinkInterface[] = [
   {
     key: "services",
-    name: "services",
+    name: translate("header.navLinks.services"),
     path: "#services",
-    selectedId: "services"
+    selectedId: "services",
   },
   {
     key: "projects",
-    name: "projects",
+    name: translate("header.navLinks.projects"),
     path: "#projects",
-    selectedId: "projects"
+    selectedId: "projects",
   },
   {
     key: "contacts",
-    name: "contacts",
+    name: translate("header.navLinks.contacts"),
     path: "#contacts",
-    selectedId: "contacts"
+    selectedId: "contacts",
   },
 ];
 
@@ -25,27 +27,27 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
   {
     key: "github",
     icon: "fa6-brands:square-github",
-    title: "Github",
-    url: "https://github.com/javiergenepaul",
+    title: translate("header.socialMediaLinks.github"),
+    url: url.GITHUB_URL,
   },
   {
     key: "linkedIn",
     icon: "fa6-brands:linkedin",
-    title: "LinkedIn",
-    url: "https://www.linkedin.com/in/gene-paul-mar-javier-500b93245",
+    title: translate("header.socialMediaLinks.linkedIn"),
+    url: url.LINKED_IN_URL,
   },
   {
     key: "upwork",
     icon: "fa6-brands:upwork",
-    title: "Upwork",
-    url: "https://www.upwork.com/freelancers/~0146c967e12a6bff87",
+    title: translate("header.socialMediaLinks.upwork"),
+    url: url.UPWORK_URL,
   },
 ];
 
 export const TYPE_ROLES: string[] = [
-  "Full-Stack Developer",
-  "React TypeScript Developer",
-  "Spring Boot Developer",
-  "UI/UX Advocate",
-  "UI Library Enthusiasts",
+  translate("header.typeRole.fullStack"),
+  translate("header.typeRole.reactTypescript"),
+  translate("header.typeRole.springBoot"),
+  translate("header.typeRole.uiuxAdvocate"),
+  translate("header.typeRole.uiLibraryEnthusiasts"),
 ];

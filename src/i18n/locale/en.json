@@ -1,10 +1,43 @@
 {
     "header": {
         "name": "Gene Paul Mar Javier",
+        "shortName": "PJ",
         "description": "As a Fullstack Developer, I'm Committed to Crafting Exceptional Digital Experiences: Building Pixel-Perfect, Engaging, and Accessible Websites with Precision and Care, Leveraging Robust APIs for Seamless Functionality",
         "ariaLabel": {
             "navigationLinks": "Navigation Links",
-            "socialMedia": "Social Media"
+            "socialMedia": "Social Media",
+            "themeSwitch": "Theme Switch",
+            "serviceSection": "Service Section"
+        },
+        "navLinks": {
+            "services": "Services",
+            "projects": "Projects",
+            "contacts": "Contacts"
+        },
+        "socialMediaLinks": {
+            "github": "Github",
+            "linkedIn": "LinkedIn",
+            "upwork": "Upwork"
+        },
+        "typeRole": {
+            "fullStack": "Full-Stack Developer",
+            "reactTypescript": "React TypeScript Developer",
+            "springBoot": "Spring Boot Developer",
+            "uiuxAdvocate": "UI/UX Advocate",
+            "uiLibraryEnthusiasts": "UI Library Enthusiasts"
         }
+    },
+    "footer": {
+        "content_one": "Designed with inspiration from",
+        "creditsOwner": "Brittany Chiang's",
+        "content_two": "layout in",
+        "figma": "Figma",
+        "content_three": "and crafted with care in",
+        "visualStudioCode": "Visual Studio Code",
+        "content_four": "by yours truly. Constructed using",
+        "vite": "Vite,",
+        "react": "React,",
+        "tailwind": "Tailwind CSS",
+        "content_five": "ensuring a seamless and efficient development experience."
     }
 }

@@ -1,3 +1,4 @@
+import { translate } from "@/i18n";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React, { forwardRef } from "react";
 
@@ -6,7 +7,7 @@ export const ThemeSwitch = forwardRef<
   React.InputHTMLAttributes<HTMLInputElement>
 >((props, ref) => {
   return (
-    <label className="cursor-pointer">
+    <label className="cursor-pointer" aria-label={translate("header.ariaLabel.themeSwitch")}>
       <input type="checkbox" className="hidden" ref={ref} {...props} />
       <div
         className={`w-17 px-2 py-1.5 rounded-full ${
