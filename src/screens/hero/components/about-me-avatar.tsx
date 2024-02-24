@@ -7,7 +7,7 @@ export const AboutMeAvatar = () => {
   return (
     <Link
       to={PATH.ABOUT.path}
-      className="flex gap-2 justify-center items-center cursor-pointer"
+      className="flex items-center justify-center gap-2 cursor-pointer"
     >
       <Avatar>
         <AvatarImage src={ProfileAvater} />

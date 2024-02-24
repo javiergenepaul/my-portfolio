@@ -2,8 +2,8 @@ import { Button } from "@/components";
 
 export const FooterSection = () => {
   return (
-    <footer className="py-10 text-center max-w-lg self-center">
-      <p className="text-sm p-2 bg-background transition-all duration-300">
+    <footer className="self-center max-w-lg py-10 text-center">
+      <p className="p-2 text-sm transition-all duration-300 bg-background">
         Designed with inspiration from
         {
           <HighlightText
@@ -33,7 +33,7 @@ const HighlightText = (props: { url: string; text: string }) => {
       href={url}
       target="_blank"
       rel="noreferrer"
-      className="font-bold cursor-pointer transition-all duration-300"
+      className="font-bold transition-all duration-300 cursor-pointer"
     >
       {" "}
       {text}{" "}

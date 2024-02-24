@@ -20,7 +20,7 @@ export const NavLinks = (props: NavLinkInterface) => {
       onClick={() => setSelectedNav(selectedId)}
     >
       <a
-        className="group flex items-center py-3 outline-none focus:outline-none"
+        className="flex items-center py-3 outline-none group focus:outline-none"
         href={path}
       >
         <span

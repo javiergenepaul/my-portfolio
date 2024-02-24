@@ -9,7 +9,7 @@ export const SocialButton = (props: SocialMediaLinksInterface) => {
       href={url}
       target="_blank"
       rel="noreferrer"
-      className="flex flex-row gap-2 items-center text-white transition duration-150"
+      className="flex flex-row items-center gap-2 text-white transition duration-150"
     >
       <Icon icon={icon as any} width="32" height="32" />
       <span>

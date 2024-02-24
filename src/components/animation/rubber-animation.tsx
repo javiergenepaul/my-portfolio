@@ -18,7 +18,7 @@ export const RubberAnimation = (props: RubberAnimationInterface) => {
         "scale3d(1, 1, 1)",
       ],
       transition: {
-        // ease: "easeOut"
+        ease: "easeOut",
         times: [0, 0.4, 0.6, 0.7, 0.8, 0.9],
         duration: 1,
       },
