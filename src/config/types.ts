@@ -13,3 +13,16 @@ export interface SocialMediaLinksInterface {
   title: string;
   url: string;
 }
+
+interface TechStackInterface {
+  name: string;
+  icon: string;
+}
+
+export interface ServiceOfferInterface {
+  key: string;
+  title: string;
+  description: string;
+  subDetails?: string[];
+  stack?: TechStackInterface[];
+}
