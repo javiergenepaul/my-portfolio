@@ -1,5 +1,6 @@
 import * as url from "@/config";
 import { translate } from "@/i18n";
+import { HighlightText } from "../components";
 
 export const FooterSection = () => {
   return (
@@ -33,20 +34,5 @@ export const FooterSection = () => {
         {translate("footer.content_five")}
       </p>
     </footer>
-  );
-};
-
-const HighlightText = (props: { url: string; text: string }) => {
-  const { url, text } = props;
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noreferrer"
-      className="font-bold transition-all duration-300 cursor-pointer hover:text-primary"
-    >
-      {" "}
-      {text}{" "}
-    </a>
   );
 };
