@@ -1,4 +1,13 @@
 {
+  "appName": "Portfolio ni Javz - {{title}}",
+  "path": {
+    "pageNotFound": "Wala mahimong pahina",
+    "home": "Home",
+    "about": "Tungkol nako",
+    "project": "Akong mga Proyekto",
+    "skills": "Akong mga Abilidad",
+    "contacts": "Kontaka ko"
+  },
   "header": {
     "name": "Gene Paul Mar Javier",
     "shortName": "PJ",

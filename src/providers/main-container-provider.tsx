@@ -9,8 +9,7 @@ interface MainContainerProviderInterface {
 
 const MainContainerProvider = (props: MainContainerProviderInterface) => {
   const { children } = props;
-  console.log(DEV_MODE);
-  console.log(import.meta.env.VITE_DEV_MODE);
+
   return (
     <ThemeProvider>
       <main
