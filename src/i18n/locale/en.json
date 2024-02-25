@@ -1,4 +1,13 @@
 {
+  "appName": "Javz Portfolio - {{title}}",
+  "path": {
+    "pageNotFound": "page not found",
+    "home": "Home",
+    "about": "About",
+    "project": "Project",
+    "skills": "Skills",
+    "contacts": "Contacts"
+  },
   "header": {
     "name": "Gene Paul Mar Javier",
     "shortName": "PJ",

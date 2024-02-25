@@ -1,22 +1,24 @@
+import { translate } from "@/i18n";
+
 export const PATH = {
   HOME: {
-    name: "Home",
+    name: translate("path.home"),
     path: "/",
   },
   ABOUT: {
-    name: "about",
+    name: translate("path.about"),
     path: "/about",
   },
   PROJECTS: {
-    name: "projects",
+    name: translate("path.project"),
     path: "/projects",
   },
   SKILLS: {
-    name: "skills",
+    name: translate("path.skills"),
     path: "/skills",
   },
   CONTACTS: {
-    name: "contacts",
+    name: translate("path.contacts"),
     path: "/contacts",
   },
 };
