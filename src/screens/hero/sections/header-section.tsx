@@ -5,10 +5,10 @@ import {
   SOCIAL_MEDIA_LINKS,
   SocialMediaLinksInterface,
 } from "@/config";
+import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import React from "react";
 import { AboutMeAvatar, SubTitleAnimation } from "../components";
-import { translate } from "@/i18n";
 
 export const HeaderSection = () => {
   const { getTheme, toggleTheme } = useThemeStore();
@@ -19,10 +19,11 @@ export const HeaderSection = () => {
           <BounceText text={translate("header.name")} />
         </h1>
         <SubTitleAnimation />
-        <p className="mt-4 leading-normal">
-          {translate("header.description")}
-        </p>
-        <nav className="hidden nav lg:block" aria-label={translate("header.ariaLabel.navigationLinks")}>
+        <p className="mt-4 leading-normal">{translate("header.description")}</p>
+        <nav
+          className="hidden nav lg:block"
+          aria-label={translate("header.ariaLabel.navigationLinks")}
+        >
           <ul className="mt-16 w-max">
             {NAV_LINKS.map((nav: NavLinkInterface) => (
               <React.Fragment key={nav.key}>
