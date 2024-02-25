@@ -36,10 +36,24 @@
       "uiLibraryEnthusiasts": "Mga Estudyante sa UI Library"
     }
   },
+  "services": {
+    "fullStack": {
+      "title": "Sulotion sa Pag-develop sa Full Stack",
+      "description": "Sa akong mga sulotion sa pag-develop sa full stack, akong giluwatan ang matag bahin sa imong proyekto, gikan sa frontend ngadto sa backend. Pinaagi sa paggamit sa mga teknolohiya sama sa React uban sa TypeScript alang sa frontend development ug Spring Boot uban sa MySQL alang sa backend, sigurohon ko ang mahimong tinuod nga integrasyon ug mapuslanon nga kahibaloan. Kon kinahanglan nimo ang usa ka web application, pag-develop sa API, o pagdumala sa database, ang akong kahibalo sa full stack development nagtanyag og kumprehensibo nga mga sulotion nga gipamutos sa imong mga panginahanglanon."
+    },
+    "webApp": {
+      "title": "Custom Web Application Development",
+      "description": "Sa akong serbisyo sa pag-develop sa custom web application, akong gipatagbaw ang imong pangandoy ngadto sa usa ka hugpong nga bug-os nga digital nga produkto. Gikan sa konsepto ngadto sa deployment, akong malampuson nga nagtrabaho uban kanimo aron masabtan ang imong mga panginahanglanon ug paghatag og mga patas nga sulotion. Pinaagi sa paggamit sa pinakaulahing mga frontend frameworks sama sa React ug backend technologies sama sa Spring Boot, ako nagmugna og mga mabungahong, responsibo, ug user-friendly nga web applications nga nagtanyag og kusog sa imong negosyo ug nagdala sa imong audience."
+    },
+    "designImplementation": {
+      "title": "Pag-integrar ug Pag-implementar sa Disenyo sa UI/UX",
+      "description": "Ang akong serbisyo sa pag-integrar ug pag-implementar sa disenyo sa UI/UX nagtakdo sa kadautan tali sa disenyo ug development, sigurohon ang mapuslanon nga pagpatuman sa imong pangandoy. Akong gikuptan ang imong gipanghatag nga mga disenyo ug giluwat kini ngadto sa pixel-perfect, responsibo nga mga user interfaces. Pinaagi sa paghiusa sa akong kahibalo sa frontend uban sa epektibong mga teknik sa pag-integrar sa disenyo, ako nagtanyag og intuitibo ug makapukaw sa panan-aw nga mga eksperyensya sa tanang mga kagamitan. Kon aduna ka'y custom nga mga disenyo o nag-gamit og mga UI libraries, ako sigurohon nga ang imong digital nga produkto nagbaylo sa imong brand identity ug nagdumot sa imong mga users."
+    }
+  },
   "footer": {
-    "content_one": "Gidesinyo sa inspirasyon gikan sa",
+    "content_one": "Gidesinyo sa inspirasyon gikan kay",
     "creditsOwner": "Brittany Chiang's",
-    "content_two": "sa layout ni ",
+    "content_two": "nga layout sa",
     "figma": "Figma",
     "content_three": "ug gipanday uban sa kahigalaan sa",
     "visualStudioCode": "Visual Studio Code",

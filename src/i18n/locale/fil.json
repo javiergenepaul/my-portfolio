@@ -36,17 +36,31 @@
       "uiLibraryEnthusiasts": "Tagahanga ng UI Library"
     }
   },
+  "services": {
+    "fullStack": {
+      "title": "FullStack Development",
+      "description": "Sa aking mga solusyon sa buong stack ng pagpapaunlad, sinusunod ko ang bawat aspeto ng iyong proyekto, mula sa frontend hanggang sa backend. Gamit ang mga teknolohiyang tulad ng React na may TypeScript para sa pagpapaunlad ng frontend at Spring Boot na may MySQL para sa backend, tiyakin kong walang putol na integrasyon at matatag na kakayahan. Maging kailangan mo ng isang web application, pagpapaunlad ng API, o pamamahala ng database, ang aking kasanayan sa buong stack ng pagpapaunlad ay nagbibigay ng kumpletong solusyon na naaangkop sa iyong mga pangangailangan."
+    },
+    "webApp": {
+      "title": "Pamamahalang Pantalang Pang-Web Development",
+      "description": "Sa aking serbisyong pantalang pang-web na pagpapaunlad, binabago ko ang iyong pangitain tungo sa isang ganap na gumagana na digital na produkto. Mula sa konsepto hanggang sa paglunsad, malapit akong makipagtulungan sa iyo upang maunawaan ang iyong mga kinakailangan at magbigay ng mga naaangkop na solusyon. Sa paggamit ng mga pinakabagong framework ng frontend tulad ng React at mga teknolohiyang backend tulad ng Spring Boot, lumilikha ako ng mga maigsing responsive, at user-friendly na web applications na nagpapalakas sa iyong negosyo at nakakabighani sa iyong audience."
+    },
+    "designImplementation": {
+      "title": "Pagpapatupad at Implementasyon ng Disenyo ng UI/UX",
+      "description": "Ang aking serbisyong pagpapatupad at implementasyon ng disenyo ng UI/UX ay nagtutugma sa pagitan ng disenyo at pagpapaunlad, tiyakin ang walang putol na pagpapatupad ng iyong pangitain. Kinukuha ko ang iyong ibinigay na mga disenyo at isinasalin ang mga ito sa mga perfectong piksel, responsive na mga user interfaces. Sa pamamagitan ng pagkombina ng aking kasanayan sa frontend at mga mabisang pamamaraan sa pagpapatupad ng disenyo, nagbibigay ako ng mga intuwitibong at nakakabighaning mga karanasan sa lahat ng mga aparato. Maging mayroon ka mang mga disenyo o gumagamit ng mga UI libraries, tiyakin ko na ang iyong digital na produkto ay sumasalamin sa iyong pagkakakilanlan ng tatak at nagpapaligaya sa iyong mga tagagamit."
+    }
+  },
   "footer": {
-    "content_one": "Isinasakatuparan na may inspirasyon mula kay",
+    "content_one": "Binuo na may inspirasyon mula kay",
     "creditsOwner": "Brittany Chiang's",
-    "content_two": "sa layout ni ",
+    "content_two": "layout sa",
     "figma": "Figma",
-    "content_three": "at isinasakatuparan nang may pag-aalaga gamit ang",
+    "content_three": "at ginawa nang may pag-aalaga sa",
     "visualStudioCode": "Visual Studio Code",
-    "content_four": "ng iyong lingkod. Binuo gamit ang",
+    "content_four": "ng iyong tunay. Binuo gamit ang",
     "vite": "Vite,",
     "react": "React,",
     "tailwind": "Tailwind CSS",
-    "content_five": "upang tiyakin ang isang magaan at epektibong karanasan sa pagpapaunlad."
+    "content_five": "tiyaking isang walang putol at mabisang karanasan sa pagpapaunlad."
   }
 }

@@ -36,6 +36,20 @@
       "uiLibraryEnthusiasts": "UI Library Enthusiasts"
     }
   },
+  "services": {
+    "fullStack": {
+      "title": "Full Stack Development Solutions",
+      "description": "With my full stack development solutions, I cover every aspect of your project, from frontend to backend. Leveraging technologies such as React with TypeScript for frontend development and Spring Boot with MySQL for backend, I ensure seamless integration and robust functionality. Whether you need a web application, API development, or database management, my expertise in full stack development delivers comprehensive solutions tailored to your needs."
+    },
+    "webApp": {
+      "title": "Custom Web Application Development",
+      "description": "With my custom web application development service, I transform your vision into a fully functional digital product. From concept to deployment, I work closely with you to understand your requirements and deliver tailored solutions. Utilizing the latest frontend frameworks like React and backend technologies such as Spring Boot, I create scalable, responsive, and user-friendly web applications that empower your business and engage your audience."
+    },
+    "designImplementation": {
+      "title": "UI/UX Design Integration and Implementation",
+      "description": "My UI/UX design integration and implementation service bridges the gap between design and development, ensuring seamless execution of your vision. I take your provided designs and translate them into pixel-perfect, responsive user interfaces. By combining my frontend expertise with efficient design integration techniques, I deliver intuitive and visually appealing experiences across all devices. Whether you have custom designs or utilize UI libraries, I ensure your digital product reflects your brand identity and delights your users."
+    }
+  },
   "footer": {
     "content_one": "Designed with inspiration from",
     "creditsOwner": "Brittany Chiang's",

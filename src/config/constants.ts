@@ -1,5 +1,9 @@
 import { translate } from "@/i18n";
-import { NavLinkInterface, SocialMediaLinksInterface } from "./types";
+import {
+  NavLinkInterface,
+  ServiceOfferInterface,
+  SocialMediaLinksInterface,
+} from "./types";
 import * as url from "./url";
 
 export const NAV_LINKS: NavLinkInterface[] = [
@@ -41,6 +45,24 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
     icon: "fa6-brands:upwork",
     title: translate("header.socialMediaLinks.upwork"),
     url: url.UPWORK_URL,
+  },
+];
+
+export const SERVICE_OFFER: ServiceOfferInterface[] = [
+  {
+    key: "fullStack",
+    title: translate("services.fullStack.title"),
+    description: translate("services.fullStack.description"),
+  },
+  {
+    key: "webApp",
+    title: translate("services.webApp.title"),
+    description: translate("services.webApp.description"),
+  },
+  {
+    key: "designImplementation",
+    title: translate("services.designImplementation.title"),
+    description: translate("services.designImplementation.description"),
   },
 ];
 
