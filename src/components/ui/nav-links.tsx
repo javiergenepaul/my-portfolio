@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 export const NavLinks = (props: NavLinkInterface) => {
   const { key, name, path, selectedId } = props;
-  const { selectedNav, setSelectedNav } = useNavLinkStore();
+  const { selectedNav } = useNavLinkStore();
   const isActive: boolean = selectedNav === selectedId;
 
   const selectedClass = (): { lineClass: string; nameClass: string } => {
@@ -15,11 +15,7 @@ export const NavLinks = (props: NavLinkInterface) => {
   };
 
   return (
-    <li
-      className="border-none"
-      key={key}
-      onClick={() => setSelectedNav(selectedId)}
-    >
+    <li className="border-none" key={key}>
       <a
         className="flex items-center py-3 outline-none group focus:outline-none"
         href={path}
