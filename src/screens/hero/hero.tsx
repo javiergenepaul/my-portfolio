@@ -1,4 +1,4 @@
-import { SelectedNavLink, useNavLinkStore, usePageTitleStore } from "@/stores";
+import { SelectedNavLink, useNavLinkStore } from "@/stores";
 import { useEffect } from "react";
 import {
   ContactSection,
@@ -9,7 +9,6 @@ import {
 } from "./sections";
 
 export const Hero = () => {
-  const { setTitle } = usePageTitleStore();
   const { setSelectedNav, setOnScrollNav } = useNavLinkStore();
 
   useEffect(() => {
@@ -17,7 +16,6 @@ export const Hero = () => {
   }, []);
 
   useEffect(() => {
-    setTitle("Home Page");
     setSelectedNav("services");
   }, []);
 
