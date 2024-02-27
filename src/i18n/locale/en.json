@@ -34,7 +34,8 @@
       "springBoot": "Spring Boot Developer",
       "uiuxAdvocate": "UI/UX Advocate",
       "uiLibraryEnthusiasts": "UI Library Enthusiasts"
-    }
+    },
+    "aboutMe": "About Me"
   },
   "services": {
     "fullStack": {
