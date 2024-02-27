@@ -13,6 +13,10 @@
     "skills": "Skills",
     "contacts": "Contacts"
   },
+  "more": {
+    "show": "Show More",
+    "hide": "Show Less"
+  },
   "header": {
     "name": "Gene Paul Mar Javier",
     "shortName": "PJ",
@@ -43,17 +47,66 @@
     "aboutMe": "About Me"
   },
   "services": {
-    "fullStack": {
-      "title": "Full Stack Development Solutions",
-      "description": "With my full stack development solutions, I cover every aspect of your project, from frontend to backend. Leveraging technologies such as React with TypeScript for frontend development and Spring Boot with MySQL for backend, I ensure seamless integration and robust functionality. Whether you need a web application, API development, or database management, my expertise in full stack development delivers comprehensive solutions tailored to your needs."
+    "frontend": {
+      "title": "Front-end Development",
+      "description": "In my front-end development service, I utilize React with TypeScript and various libraries like Tailwind CSS, ShadCN, NextUI, and custom CSS to craft engaging user interfaces. I specialize in integrating APIs for dynamic content and emphasize building reusable components. Additionally, I conduct thorough code reviews, ensuring adherence to coding standards and promoting clean, maintainable code. This approach facilitates smoother collaboration and enhances the overall quality of your projects."
     },
-    "webApp": {
-      "title": "Custom Web Application Development",
-      "description": "With my custom web application development service, I transform your vision into a fully functional digital product. From concept to deployment, I work closely with you to understand your requirements and deliver tailored solutions. Utilizing the latest frontend frameworks like React and backend technologies such as Spring Boot, I create scalable, responsive, and user-friendly web applications that empower your business and engage your audience."
+    "backend": {
+      "title": "Back-end Development",
+      "description": "In my backend development service, I implement Spring Boot Java Microservices to craft APIs, providing a robust solution for your backend infrastructure's reliability, scalability, and security needs. Additionally, I integrate Spring Security JWT for authentication, and by comprehensively understanding the project's flow, I can adeptly create Entity-Relationship Diagrams (ERDs) and efficiently manage MySQL databases. This comprehensive approach ensures a seamless and secure backend environment for your applications."
     },
     "designImplementation": {
       "title": "UI/UX Design Integration and Implementation",
-      "description": "My UI/UX design integration and implementation service bridges the gap between design and development, ensuring seamless execution of your vision. I take your provided designs and translate them into pixel-perfect, responsive user interfaces. By combining my frontend expertise with efficient design integration techniques, I deliver intuitive and visually appealing experiences across all devices. Whether you have custom designs or utilize UI libraries, I ensure your digital product reflects your brand identity and delights your users."
+      "description": "My UI/UX design integration and implementation service is dedicated to seamlessly translating design concepts into functional and captivating frontend experiences. I specialize in implementing Figma designs with precision, ensuring pixel-perfect accuracy in the final product. By meticulously adhering to design specifications, I bring your vision to life on the web, creating seamless transitions and interactions that elevate user engagement. My focus is on delivering an intuitive and visually cohesive experience that resonates with your audience and enhances your brand identity."
+    },
+    "stack": {
+      "vite": "Vite",
+      "react": "React",
+      "typescript": "Typecript",
+      "javascript": "Javascript",
+      "zustand": "Zustand",
+      "mobx": "Mobx",
+      "html": "html",
+      "css": "CSS",
+      "tailwind": "Tailwind CSS",
+      "shadCn": "ShadCN",
+      "mui": "Material UI",
+      "chakraUi": "Chakra UI",
+      "antDesign": "Ant-Design",
+      "nextUi": "NextUI",
+      "chartJs": "ChartJS",
+      "npm": "npm",
+      "pnpm": "pnpm",
+      "yarn": "yarn",
+      "gsap": "GSAP",
+      "threeJs": "ThreeJS",
+      "framerMotion": "framerMotion",
+      "jest": "Jest",
+      "enzyme": "Enzyme",
+      "cypress": "Cypress",
+      "i18n": "i18Next",
+
+      "springBoot": "Spring Boot",
+      "java": "Java",
+      "mySQL": "MySql",
+      "junit": "JUnit",
+      "mockito": "Mockito",
+      "postman": "Postman",
+
+      "linux": "Linux",
+      "azure": "Azure",
+      "aws": "Amazon Web Services",
+      "azurePipelineAgent": "Azure Pipeline Agent",
+      "firebase": "Firebase",
+      "git": "Git",
+      "nginx": "Nginx",
+      "centOS": "CentOS",
+      "cicd": "CI/CD",
+      "netlify": "Netlify",
+      "heroku": "Heroku",
+
+      "figma": "Figma",
+      "frontend": "Front-End"
     }
   },
   "footer": {
