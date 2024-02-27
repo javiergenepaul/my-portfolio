@@ -12,9 +12,13 @@ export const StackContent = (stack: TechStackInterface) => {
     <HoverCard>
       <HoverCardTrigger>
         <Badge>
-          <a href={stack.url} target="_blank" rel="noreferrer">
-            {stack.name}
-          </a>
+          {stack.url ? (
+            <a href={stack.url} target="_blank" rel="noreferrer">
+              {stack.name}
+            </a>
+          ) : (
+            stack.name
+          )}
         </Badge>
       </HoverCardTrigger>
       <HoverCardContent side="top">

@@ -105,7 +105,8 @@
       "netlify": "Netlify",
       "heroku": "Heroku",
 
-      "figma": "Figma"
+      "figma": "Figma",
+      "frontend": "Front-End"
     }
   },
   "footer": {

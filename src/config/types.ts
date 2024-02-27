@@ -17,7 +17,7 @@ export interface SocialMediaLinksInterface {
 export interface TechStackInterface {
   name: string;
   icon?: string;
-  url: string;
+  url: string | undefined;
   isFavorite: boolean;
 }
 

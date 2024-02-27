@@ -277,8 +277,13 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         name: translate("services.stack.figma"),
         isFavorite: true,
         url: url.FIGMA_URL,
-      }
-    ]
+      },
+      {
+        name: translate("services.stack.frontend"),
+        isFavorite: false,
+        url: undefined,
+      },
+    ],
   },
 ];
 
