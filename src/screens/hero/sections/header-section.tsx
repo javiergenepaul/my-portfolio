@@ -1,4 +1,4 @@
-import { BounceText, ThemeSwitch } from "@/components";
+import { BounceText } from "@/components";
 import {
   NAV_LINKS,
   NavLinkInterface,
@@ -14,6 +14,7 @@ import {
   NavLinks,
   SocialButton,
   SubTitleAnimation,
+  ThemeSwitch,
 } from "../components";
 import { Link } from "react-router-dom";
 
