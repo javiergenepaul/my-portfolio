@@ -23,7 +23,7 @@ export const ServiceCard = (props: ServiceCardInterface) => {
   };
 
   return (
-    <Card className="select-none">
+    <Card className="bg-transparent border-transparent select-none hover:bg-white/[5%] hover:backdrop-blur-sm hover:drop-shadow-lg">
       <CardHeader className="pb-2">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
