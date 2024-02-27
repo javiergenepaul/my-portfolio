@@ -1,4 +1,9 @@
 {
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System"
+  },
   "appName": "Javz Portfolio - {{title}}",
   "path": {
     "pageNotFound": "page not found",
