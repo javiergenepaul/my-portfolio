@@ -1,4 +1,4 @@
-import { BounceText, NavLinks, SocialButton, ThemeSwitch } from "@/components";
+import { BounceText, ThemeSwitch } from "@/components";
 import {
   NAV_LINKS,
   NavLinkInterface,
@@ -9,11 +9,17 @@ import {
 import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import React from "react";
-import { AboutMeAvatar, SubTitleAnimation } from "../components";
+import {
+  AboutMeAvatar,
+  NavLinks,
+  SocialButton,
+  SubTitleAnimation,
+} from "../components";
 import { Link } from "react-router-dom";
 
 export const HeaderSection = () => {
   const { getTheme, toggleTheme } = useThemeStore();
+
   return (
     <>
       <section>
