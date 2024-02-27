@@ -15,6 +15,10 @@ export const ThemeSwitch = forwardRef<
 >((props, ref) => {
   const { theme } = useThemeStore();
 
+  /**
+   * Retrieves the theme string based on the current theme.
+   * @returns {string} The theme string.
+   */
   const getThemeString = (): string => {
     switch (theme) {
       case "dark":
@@ -25,6 +29,7 @@ export const ThemeSwitch = forwardRef<
         return translate("theme.system");
     }
   };
+
   return (
     <TooltipProvider>
       <Tooltip>
