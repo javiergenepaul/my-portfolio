@@ -17,7 +17,7 @@ export const NavLinks = (props: NavLinkInterface) => {
   return (
     <li className="border-none" key={key}>
       <a
-        className="flex items-center py-3 outline-none group focus:outline-none"
+        className="flex items-center py-3 outline-none select-none group focus:outline-none"
         href={path}
       >
         <span

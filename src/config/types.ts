@@ -14,13 +14,15 @@ export interface SocialMediaLinksInterface {
   url: string;
 }
 
-interface TechStackInterface {
+export interface TechStackInterface {
   name: string;
-  icon: string;
+  icon?: string;
+  url: string | undefined;
+  isFavorite: boolean;
 }
 
 export interface ServiceOfferInterface {
-  key: string;
+  key?: string;
   title: string;
   description: string;
   subDetails?: string[];

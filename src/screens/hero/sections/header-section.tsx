@@ -1,4 +1,4 @@
-import { BounceText, NavLinks, SocialButton, ThemeSwitch } from "@/components";
+import { BounceText } from "@/components";
 import {
   NAV_LINKS,
   NavLinkInterface,
@@ -9,21 +9,28 @@ import {
 import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import React from "react";
-import { AboutMeAvatar, SubTitleAnimation } from "../components";
+import {
+  AboutMeAvatar,
+  NavLinks,
+  SocialButton,
+  SubTitleAnimation,
+  ThemeSwitch,
+} from "../components";
 import { Link } from "react-router-dom";
 
 export const HeaderSection = () => {
   const { getTheme, toggleTheme } = useThemeStore();
+
   return (
     <>
       <section>
         <Link to={PATH.ABOUT.path}>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
             <BounceText text={translate("header.name")} />
           </h1>
         </Link>
         <SubTitleAnimation />
-        <p className="mt-4 leading-normal">{translate("header.description")}</p>
+        <p className="mt-4 leading-normal select-none">{translate("header.description")}</p>
         <nav
           className="hidden nav lg:block"
           aria-label={translate("header.ariaLabel.navigationLinks")}
