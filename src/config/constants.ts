@@ -50,19 +50,235 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
 
 export const SERVICE_OFFER: ServiceOfferInterface[] = [
   {
-    key: "fullStack",
-    title: translate("services.fullStack.title"),
-    description: translate("services.fullStack.description"),
+    key: "frontend",
+    title: translate("services.frontend.title"),
+    description: translate("services.frontend.description"),
+    stack: [
+      {
+        name: translate("services.stack.vite"),
+        isFavorite: true,
+        url: url.VITE_URL,
+      },
+      {
+        name: translate("services.stack.react"),
+        isFavorite: true,
+        url: url.REACT_URL,
+      },
+      {
+        name: translate("services.stack.typescript"),
+        isFavorite: true,
+        url: url.TYPESCRIPT_URL,
+      },
+      {
+        name: translate("services.stack.javascript"),
+        isFavorite: true,
+        url: url.JAVASCRIPT_URL,
+      },
+      {
+        name: translate("services.stack.html"),
+        isFavorite: false,
+        url: url.HTML_URL,
+      },
+      {
+        name: translate("services.stack.css"),
+        isFavorite: false,
+        url: url.CSS_URL,
+      },
+      {
+        name: translate("services.stack.tailwind"),
+        isFavorite: true,
+        url: url.TAILWIND_URL,
+      },
+      {
+        name: translate("services.stack.shadCn"),
+        isFavorite: true,
+        url: url.SHAD_CN_URL,
+      },
+      {
+        name: translate("services.stack.mui"),
+        isFavorite: false,
+        url: url.MUI_URL,
+      },
+      {
+        name: translate("services.stack.chakraUi"),
+        isFavorite: false,
+        url: url.CHAKRA_URL,
+      },
+      {
+        name: translate("services.stack.antDesign"),
+        isFavorite: false,
+        url: url.ANT_DESIGN_URL,
+      },
+      {
+        name: translate("services.stack.nextUi"),
+        isFavorite: false,
+        url: url.NEXT_UI_URL,
+      },
+      {
+        name: translate("services.stack.zustand"),
+        isFavorite: true,
+        url: url.ZUSTAND_URL,
+      },
+      {
+        name: translate("services.stack.mobx"),
+        isFavorite: false,
+        url: url.MOBX_URL,
+      },
+      {
+        name: translate("services.stack.chartJs"),
+        isFavorite: false,
+        url: url.CHART_JS,
+      },
+      {
+        name: translate("services.stack.npm"),
+        isFavorite: false,
+        url: url.NPM_URL,
+      },
+      {
+        name: translate("services.stack.pnpm"),
+        isFavorite: true,
+        url: url.PNPM_URL,
+      },
+      {
+        name: translate("services.stack.yarn"),
+        isFavorite: true,
+        url: url.YARN_URL,
+      },
+      {
+        name: translate("services.stack.gsap"),
+        isFavorite: true,
+        url: url.GSAP_URL,
+      },
+      {
+        name: translate("services.stack.threeJs"),
+        isFavorite: true,
+        url: url.THREE_JS_URL,
+      },
+      {
+        name: translate("services.stack.framerMotion"),
+        isFavorite: true,
+        url: url.FRAMER_MOTION_URL,
+      },
+      {
+        name: translate("services.stack.jest"),
+        isFavorite: true,
+        url: url.JEST_URL,
+      },
+      {
+        name: translate("services.stack.enzyme"),
+        isFavorite: true,
+        url: url.ENZYME_URL,
+      },
+      {
+        name: translate("services.stack.cypress"),
+        isFavorite: true,
+        url: url.CYPRESS_URL,
+      },
+      {
+        name: translate("services.stack.i18n"),
+        isFavorite: true,
+        url: url.I18NEXT_URL,
+      },
+    ],
   },
   {
-    key: "webApp",
-    title: translate("services.webApp.title"),
-    description: translate("services.webApp.description"),
+    key: "backend",
+    title: translate("services.backend.title"),
+    description: translate("services.backend.description"),
+    stack: [
+      {
+        name: translate("services.stack.springBoot"),
+        isFavorite: true,
+        url: url.SPRING_BOOT_URL,
+      },
+      {
+        name: translate("services.stack.java"),
+        isFavorite: true,
+        url: url.JAVA_URL,
+      },
+      {
+        name: translate("services.stack.mySQL"),
+        isFavorite: true,
+        url: url.MYSQL_URL,
+      },
+      {
+        name: translate("services.stack.junit"),
+        isFavorite: false,
+        url: url.JUNIT_URL,
+      },
+      {
+        name: translate("services.stack.mockito"),
+        isFavorite: false,
+        url: url.MOCKITO_URL,
+      },
+      {
+        name: translate("services.stack.postman"),
+        isFavorite: false,
+        url: url.POSTMAN_URL,
+      },
+      {
+        name: translate("services.stack.linux"),
+        isFavorite: false,
+        url: url.LINUX_URL,
+      },
+      {
+        name: translate("services.stack.azure"),
+        isFavorite: false,
+        url: url.AZURE_URL,
+      },
+      {
+        name: translate("services.stack.aws"),
+        isFavorite: false,
+        url: url.AWS_URL,
+      },
+      {
+        name: translate("services.stack.azurePipelineAgent"),
+        isFavorite: false,
+        url: url.AZURE_PIPELINE_AGENT_URL,
+      },
+      {
+        name: translate("services.stack.firebase"),
+        isFavorite: false,
+        url: url.FIREBASE_URL,
+      },
+      {
+        name: translate("services.stack.git"),
+        isFavorite: false,
+        url: url.GIT_URL,
+      },
+      {
+        name: translate("services.stack.nginx"),
+        isFavorite: false,
+        url: url.NGINX_URL,
+      },
+      {
+        name: translate("services.stack.centOS"),
+        isFavorite: false,
+        url: url.CENT_OS_URL,
+      },
+      {
+        name: translate("services.stack.netlify"),
+        isFavorite: false,
+        url: url.NETLIFY_URL,
+      },
+      {
+        name: translate("services.stack.heroku"),
+        isFavorite: false,
+        url: url.HEROKU_URL,
+      },
+    ],
   },
   {
-    key: "designImplementation",
+    key: "ui",
     title: translate("services.designImplementation.title"),
     description: translate("services.designImplementation.description"),
+    stack: [
+      {
+        name: translate("services.stack.figma"),
+        isFavorite: true,
+        url: url.FIGMA_URL,
+      }
+    ]
   },
 ];
 

@@ -25,12 +25,12 @@ export const HeaderSection = () => {
     <>
       <section>
         <Link to={PATH.ABOUT.path}>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
             <BounceText text={translate("header.name")} />
           </h1>
         </Link>
         <SubTitleAnimation />
-        <p className="mt-4 leading-normal">{translate("header.description")}</p>
+        <p className="mt-4 leading-normal select-none">{translate("header.description")}</p>
         <nav
           className="hidden nav lg:block"
           aria-label={translate("header.ariaLabel.navigationLinks")}
