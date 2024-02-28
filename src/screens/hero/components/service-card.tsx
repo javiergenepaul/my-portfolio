@@ -14,7 +14,7 @@ export const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;
 
   return (
-    <Card className="border-transparent select-none bg-white/[5%] backdrop-blur-sm drop-shadow-lg">
+    <Card>
       <CardHeader className="pb-2">
         <CardTitle>
           <BounceText className="cursor-default" text={title} />
