@@ -179,6 +179,16 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         isFavorite: true,
         url: url.I18NEXT_URL,
       },
+      {
+        name: translate("services.stack.axios"),
+        isFavorite: true,
+        url: url.AXIOS_URL
+      },
+      {
+        name: translate("services.stack.reactQuery"),
+        isFavorite: true,
+        url: url.REACT_QUERY_URL
+      }
     ],
   },
   {

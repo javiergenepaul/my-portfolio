@@ -29,6 +29,8 @@ export const JEST_URL: string = "https://jestjs.io/";
 export const ENZYME_URL: string = "https://airbnb.io/projects/enzyme/";
 export const CYPRESS_URL: string = "https://www.cypress.io/";
 export const I18NEXT_URL: string = "https://www.cypress.io/";
+export const AXIOS_URL: string = "https://axios-http.com/";
+export const REACT_QUERY_URL: string = "https://tanstack.com/query/latest";
 
 // back end url
 export const SPRING_BOOT_URL: string = "https://spring.io/projects/spring-boot";
