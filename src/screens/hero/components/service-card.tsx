@@ -1,34 +1,38 @@
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardDescription,
   CardFooter,
-  Button,
+  CardHeader,
+  CardTitle,
 } from "@/components";
 import { ServiceOfferInterface, TechStackInterface } from "@/config";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { translate } from "@/i18n";
+// import { useState } from "react";
+// import { motion } from "framer-motion";
+// import { translate } from "@/i18n";
 import { StackContent } from "./stack-content";
 
 interface ServiceCardInterface extends ServiceOfferInterface {}
 
 export const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;
-  const [showStack, setShowStack] = useState<boolean>(false);
+  // const [showStack, setShowStack] = useState<boolean>(false);
 
-  const toggleVisibility = () => {
-    setShowStack(!showStack);
-  };
+  // const toggleVisibility = () => {
+  //   setShowStack(!showStack);
+  // };
 
   return (
-    <Card className="bg-transparent border-transparent select-none hover:bg-white/[5%] hover:backdrop-blur-sm hover:drop-shadow-lg">
+    <Card className="border-transparent select-none bg-white/[5%] backdrop-blur-sm drop-shadow-lg">
       <CardHeader className="pb-2">
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      {stack && stack?.length > 10 ? (
+      <CardFooter className="flex flex-wrap gap-2">
+        {stack?.map((stack: TechStackInterface) => {
+          return <StackContent {...stack} />;
+        })}
+      </CardFooter>
+      {/* {stack && stack?.length > 10 ? (
         <CardFooter className="flex flex-wrap gap-2">
           <motion.div
             className={"flex flex-wrap gap-x-1.5 gap-y-0.5 items-center"}
@@ -56,7 +60,7 @@ export const ServiceCard = (props: ServiceCardInterface) => {
             return <StackContent {...stack} />;
           })}
         </CardFooter>
-      )}
+      )} */}
     </Card>
   );
 };
