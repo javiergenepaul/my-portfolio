@@ -9,8 +9,8 @@ import {
 } from "@/components";
 import { PATH } from "@/config";
 import { Link } from "react-router-dom";
-import ProfileAvater from "../../../assets/avatar-profile.jpg";
 import { translate } from "@/i18n";
+import { AvatarProfile } from "../../../assets";
 
 export const AboutMeAvatar = () => {
   return (
@@ -22,7 +22,7 @@ export const AboutMeAvatar = () => {
             className="flex items-center justify-center gap-2 cursor-pointer select-none"
           >
             <Avatar>
-              <AvatarImage src={ProfileAvater} />
+              <AvatarImage src={AvatarProfile} />
               <AvatarFallback>{translate("header.shortName")}</AvatarFallback>
             </Avatar>
           </Link>
