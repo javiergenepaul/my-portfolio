@@ -11,7 +11,7 @@ export const StackContent = (stack: TechStackInterface) => {
   return (
     <HoverCard>
       <HoverCardTrigger>
-        <Badge>
+        <Badge className="cursor-pointer">
           {stack.url ? (
             <a href={stack.url} target="_blank" rel="noreferrer">
               {stack.name}

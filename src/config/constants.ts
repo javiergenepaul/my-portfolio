@@ -130,21 +130,6 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         url: url.CHART_JS,
       },
       {
-        name: translate("services.stack.npm"),
-        isFavorite: false,
-        url: url.NPM_URL,
-      },
-      {
-        name: translate("services.stack.pnpm"),
-        isFavorite: true,
-        url: url.PNPM_URL,
-      },
-      {
-        name: translate("services.stack.yarn"),
-        isFavorite: true,
-        url: url.YARN_URL,
-      },
-      {
         name: translate("services.stack.gsap"),
         isFavorite: true,
         url: url.GSAP_URL,
@@ -182,13 +167,28 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
       {
         name: translate("services.stack.axios"),
         isFavorite: true,
-        url: url.AXIOS_URL
+        url: url.AXIOS_URL,
       },
       {
         name: translate("services.stack.reactQuery"),
         isFavorite: true,
-        url: url.REACT_QUERY_URL
-      }
+        url: url.REACT_QUERY_URL,
+      },
+      {
+        name: translate("services.stack.npm"),
+        isFavorite: false,
+        url: url.NPM_URL,
+      },
+      {
+        name: translate("services.stack.pnpm"),
+        isFavorite: true,
+        url: url.PNPM_URL,
+      },
+      {
+        name: translate("services.stack.yarn"),
+        isFavorite: true,
+        url: url.YARN_URL,
+      },
     ],
   },
   {
@@ -200,6 +200,31 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         name: translate("services.stack.springBoot"),
         isFavorite: true,
         url: url.SPRING_BOOT_URL,
+      },
+      {
+        name: translate("services.stack.springSecurity"),
+        isFavorite: true,
+        url: url.SPRING_SECURITY_URL,
+      },
+      {
+        name: translate("services.stack.springSecurityOAuth"),
+        isFavorite: true,
+        url: url.SPRING_SECURITY_OAUTH_URL,
+      },
+      {
+        name: translate("services.stack.springJDBC"),
+        isFavorite: true,
+        url: url.SPRING_JDBC_URL,
+      },
+      {
+        name: translate("services.stack.api"),
+        isFavorite: true,
+        url: url.SPRING_REST_URL,
+      },
+      {
+        name: translate("services.stack.jwt"),
+        isFavorite: true,
+        url: url.JWT_URL,
       },
       {
         name: translate("services.stack.java"),
@@ -221,6 +246,7 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         isFavorite: false,
         url: url.MOCKITO_URL,
       },
+
       {
         name: translate("services.stack.postman"),
         isFavorite: false,
