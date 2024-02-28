@@ -51,17 +51,17 @@
     "aboutMe": "About Me"
   },
   "services": {
-    "frontend": {
-      "title": "Front-end Development",
-      "description": "In my front-end development service, I utilize React with TypeScript and various libraries like Tailwind CSS, ShadCN, NextUI, and custom CSS to craft engaging user interfaces. I specialize in integrating APIs for dynamic content and emphasize building reusable components. Additionally, I conduct thorough code reviews, ensuring adherence to coding standards and promoting clean, maintainable code. This approach facilitates smoother collaboration and enhances the overall quality of your projects."
-    },
     "backend": {
       "title": "Back-end Development",
-      "description": "In my backend development service, I implement Spring Boot Java Microservices to craft APIs, providing a robust solution for your backend infrastructure's reliability, scalability, and security needs. Additionally, I integrate Spring Security JWT for authentication, and by comprehensively understanding the project's flow, I can adeptly create Entity-Relationship Diagrams (ERDs) and efficiently manage MySQL databases. This comprehensive approach ensures a seamless and secure backend environment for your applications."
+      "description": "In my backend development service, I specialize in implementing Spring Boot Java Microservices to craft robust APIs, ensuring the reliability, scalability, and security of your backend infrastructure. By seamlessly integrating Spring Security JWT for authentication and proficiently managing MySQL databases, I establish a secure environment for your applications. Furthermore, my comprehensive understanding of project flows enables me to adeptly create Entity-Relationship Diagrams (ERDs), facilitating efficient database management. This holistic approach ensures the delivery of APIs tailored to your backend infrastructure needs, guaranteeing reliability, scalability, and security. Ultimately, these efforts enhance the overall performance and security of your applications, providing a seamless user experience."
+    },
+    "frontend": {
+      "title": "Front-end Development",
+      "description": "In my front-end development service, I specialize in crafting engaging user interfaces using React with TypeScript and various libraries like Tailwind CSS, ShadCN, NextUI, and custom CSS. I integrate APIs for dynamic content and prioritize building reusable components. Thorough code reviews ensure adherence to coding standards and promote clean, maintainable code, facilitating smoother collaboration and enhancing project quality. My goal is to deliver front-end solutions that seamlessly integrate dynamic content, provide engaging user experiences, and maintain high coding standards to elevate the overall quality of your projects. With a focus on accessibility, I ensure that the interfaces I create are usable by all users, regardless of their abilities."
     },
     "designImplementation": {
-      "title": "Pixel-Perfect Figma Design Implementation: Transforming Concepts into Engaging Websites",
-      "description": "In my Figma design implementation service, I specialize in seamlessly translating design concepts into captivating and fully functional websites with meticulous attention to detail. My expertise lies in precisely implementing provided Figma designs to bring your vision to life on the web. I focus on adhering to design specifications to create seamless transitions and interactions that elevate user engagement, aiming to deliver an intuitive and visually cohesive experience that enhances your brand identity."
+      "title": "From Figma to Web: Crafting Engaging Designs",
+      "description": "In my service for implementing Figma designs, I excel in seamlessly transforming design concepts into captivating and fully operational websites, prioritizing meticulous attention to detail throughout the process. Utilizing my specialized expertise, I accurately execute provided Figma designs, ensuring that your envisioned website is brought to fruition with exactness. I prioritize strict adherence to design specifications, guaranteeing smooth transitions and interactions that significantly enhance user engagement. Ultimately, my objective is to furnish an intuitive and visually unified experience that not only meets but exceeds your expectations, effectively boosting your brand identity's effectiveness. Through careful execution and a commitment to excellence, I deliver results that resonate with your audience and elevate your online presence."
     },
     "stack": {
       "vite": "Vite",
