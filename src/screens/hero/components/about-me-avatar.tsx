@@ -19,7 +19,7 @@ export const AboutMeAvatar = () => {
         <TooltipTrigger>
           <Link
             to={PATH.ABOUT.path}
-            className="flex items-center justify-center gap-2 cursor-pointer"
+            className="flex items-center justify-center gap-2 cursor-pointer select-none"
           >
             <Avatar>
               <AvatarImage src={ProfileAvater} />

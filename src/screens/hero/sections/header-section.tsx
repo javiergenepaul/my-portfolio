@@ -1,9 +1,5 @@
-import { BounceText } from "@/components";
-import {
-  NAV_LINKS,
-  PATH,
-  SOCIAL_MEDIA_LINKS,
-} from "@/config";
+import { BounceText, Button } from "@/components";
+import { NAV_LINKS, PATH, SOCIAL_MEDIA_LINKS } from "@/config";
 import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import React from "react";
@@ -17,6 +13,7 @@ import {
   ThemeSwitch,
 } from "../components";
 import { Link } from "react-router-dom";
+import resume from "../../../assets/resume.pdf";
 
 export const HeaderSection = () => {
   const { getTheme, toggleTheme } = useThemeStore();
@@ -26,16 +23,34 @@ export const HeaderSection = () => {
       <section>
         <Link className="focus:outline-none" to={PATH.ABOUT.path}>
           <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
-            <BounceText className="outline-none ring-0 focus:outline-none" text={translate("header.name")} />
+            <BounceText
+              className="outline-none ring-0 focus:outline-none"
+              text={translate("header.name")}
+            />
           </h1>
         </Link>
         <SubTitleAnimation />
-        <p className="mt-4 leading-normal select-none">{translate("header.description")}</p>
+        <p className="mt-4 leading-normal select-none">
+          {translate("header.description")}
+        </p>
+        <div className="flex gap-4 mt-8 select-none">
+          <Button
+            variant={"default"}
+            onClick={() => {
+              window.open(resume, "_blank");
+            }}
+          >
+            {translate("resume.btnName")}
+          </Button>
+          <Link to={PATH.ABOUT.path}>
+            <Button variant={"outline"}>{translate("moreInfo")}</Button>
+          </Link>
+        </div>
         <nav
           className="hidden nav lg:block"
           aria-label={translate("header.ariaLabel.navigationLinks")}
         >
-          <ul className="mt-16 w-max">
+          <ul className="mt-12 w-max">
             {NAV_LINKS.map((nav: NavLinkInterface) => (
               <React.Fragment key={nav.key}>
                 <NavLinks
