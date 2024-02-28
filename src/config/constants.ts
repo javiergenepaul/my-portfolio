@@ -1,10 +1,7 @@
 import { translate } from "@/i18n";
-import {
-  NavLinkInterface,
-  ServiceOfferInterface,
-  SocialMediaLinksInterface,
-} from "./types";
+import { ServiceOfferInterface } from "./types";
 import * as url from "./url";
+import { NavLinkInterface, SocialMediaLinksInterface } from "@/screens";
 
 export const NAV_LINKS: NavLinkInterface[] = [
   {
@@ -50,148 +47,6 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
 
 export const SERVICE_OFFER: ServiceOfferInterface[] = [
   {
-    key: "frontend",
-    title: translate("services.frontend.title"),
-    description: translate("services.frontend.description"),
-    stack: [
-      {
-        name: translate("services.stack.vite"),
-        isFavorite: true,
-        url: url.VITE_URL,
-      },
-      {
-        name: translate("services.stack.react"),
-        isFavorite: true,
-        url: url.REACT_URL,
-      },
-      {
-        name: translate("services.stack.typescript"),
-        isFavorite: true,
-        url: url.TYPESCRIPT_URL,
-      },
-      {
-        name: translate("services.stack.javascript"),
-        isFavorite: true,
-        url: url.JAVASCRIPT_URL,
-      },
-      {
-        name: translate("services.stack.html"),
-        isFavorite: false,
-        url: url.HTML_URL,
-      },
-      {
-        name: translate("services.stack.css"),
-        isFavorite: false,
-        url: url.CSS_URL,
-      },
-      {
-        name: translate("services.stack.tailwind"),
-        isFavorite: true,
-        url: url.TAILWIND_URL,
-      },
-      {
-        name: translate("services.stack.shadCn"),
-        isFavorite: true,
-        url: url.SHAD_CN_URL,
-      },
-      {
-        name: translate("services.stack.mui"),
-        isFavorite: false,
-        url: url.MUI_URL,
-      },
-      {
-        name: translate("services.stack.chakraUi"),
-        isFavorite: false,
-        url: url.CHAKRA_URL,
-      },
-      {
-        name: translate("services.stack.antDesign"),
-        isFavorite: false,
-        url: url.ANT_DESIGN_URL,
-      },
-      {
-        name: translate("services.stack.nextUi"),
-        isFavorite: false,
-        url: url.NEXT_UI_URL,
-      },
-      {
-        name: translate("services.stack.zustand"),
-        isFavorite: true,
-        url: url.ZUSTAND_URL,
-      },
-      {
-        name: translate("services.stack.mobx"),
-        isFavorite: false,
-        url: url.MOBX_URL,
-      },
-      {
-        name: translate("services.stack.chartJs"),
-        isFavorite: false,
-        url: url.CHART_JS,
-      },
-      {
-        name: translate("services.stack.npm"),
-        isFavorite: false,
-        url: url.NPM_URL,
-      },
-      {
-        name: translate("services.stack.pnpm"),
-        isFavorite: true,
-        url: url.PNPM_URL,
-      },
-      {
-        name: translate("services.stack.yarn"),
-        isFavorite: true,
-        url: url.YARN_URL,
-      },
-      {
-        name: translate("services.stack.gsap"),
-        isFavorite: true,
-        url: url.GSAP_URL,
-      },
-      {
-        name: translate("services.stack.threeJs"),
-        isFavorite: true,
-        url: url.THREE_JS_URL,
-      },
-      {
-        name: translate("services.stack.framerMotion"),
-        isFavorite: true,
-        url: url.FRAMER_MOTION_URL,
-      },
-      {
-        name: translate("services.stack.jest"),
-        isFavorite: true,
-        url: url.JEST_URL,
-      },
-      {
-        name: translate("services.stack.enzyme"),
-        isFavorite: true,
-        url: url.ENZYME_URL,
-      },
-      {
-        name: translate("services.stack.cypress"),
-        isFavorite: true,
-        url: url.CYPRESS_URL,
-      },
-      {
-        name: translate("services.stack.i18n"),
-        isFavorite: true,
-        url: url.I18NEXT_URL,
-      },
-      {
-        name: translate("services.stack.axios"),
-        isFavorite: true,
-        url: url.AXIOS_URL
-      },
-      {
-        name: translate("services.stack.reactQuery"),
-        isFavorite: true,
-        url: url.REACT_QUERY_URL
-      }
-    ],
-  },
-  {
     key: "backend",
     title: translate("services.backend.title"),
     description: translate("services.backend.description"),
@@ -200,6 +55,31 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         name: translate("services.stack.springBoot"),
         isFavorite: true,
         url: url.SPRING_BOOT_URL,
+      },
+      {
+        name: translate("services.stack.springSecurity"),
+        isFavorite: true,
+        url: url.SPRING_SECURITY_URL,
+      },
+      {
+        name: translate("services.stack.springSecurityOAuth"),
+        isFavorite: true,
+        url: url.SPRING_SECURITY_OAUTH_URL,
+      },
+      {
+        name: translate("services.stack.springJDBC"),
+        isFavorite: true,
+        url: url.SPRING_JDBC_URL,
+      },
+      {
+        name: translate("services.stack.api"),
+        isFavorite: true,
+        url: url.SPRING_REST_URL,
+      },
+      {
+        name: translate("services.stack.jwt"),
+        isFavorite: true,
+        url: url.JWT_URL,
       },
       {
         name: translate("services.stack.java"),
@@ -221,6 +101,7 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         isFavorite: false,
         url: url.MOCKITO_URL,
       },
+
       {
         name: translate("services.stack.postman"),
         isFavorite: false,
@@ -279,6 +160,159 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
     ],
   },
   {
+    key: "frontend",
+    title: translate("services.frontend.title"),
+    description: translate("services.frontend.description"),
+    stack: [
+      {
+        name: translate("services.stack.vite"),
+        isFavorite: true,
+        url: url.VITE_URL,
+      },
+      {
+        name: translate("services.stack.react"),
+        isFavorite: true,
+        url: url.REACT_URL,
+      },
+      {
+        name: translate("services.stack.typescript"),
+        isFavorite: true,
+        url: url.TYPESCRIPT_URL,
+      },
+      {
+        name: translate("services.stack.javascript"),
+        isFavorite: true,
+        url: url.JAVASCRIPT_URL,
+      },
+      {
+        name: translate("services.stack.html"),
+        isFavorite: false,
+        url: url.HTML_URL,
+      },
+      {
+        name: translate("services.stack.css"),
+        isFavorite: false,
+        url: url.CSS_URL,
+      },
+      {
+        name: translate("services.stack.jquery"),
+        isFavorite: false,
+        url: url.JQUERY_URL,
+      },
+      {
+        name: translate("services.stack.blade"),
+        isFavorite: false,
+        url: url.BLADE_URL,
+      },
+      {
+        name: translate("services.stack.tailwind"),
+        isFavorite: true,
+        url: url.TAILWIND_URL,
+      },
+      {
+        name: translate("services.stack.shadCn"),
+        isFavorite: true,
+        url: url.SHAD_CN_URL,
+      },
+      {
+        name: translate("services.stack.mui"),
+        isFavorite: false,
+        url: url.MUI_URL,
+      },
+      {
+        name: translate("services.stack.chakraUi"),
+        isFavorite: false,
+        url: url.CHAKRA_URL,
+      },
+      {
+        name: translate("services.stack.antDesign"),
+        isFavorite: false,
+        url: url.ANT_DESIGN_URL,
+      },
+      {
+        name: translate("services.stack.nextUi"),
+        isFavorite: false,
+        url: url.NEXT_UI_URL,
+      },
+      {
+        name: translate("services.stack.zustand"),
+        isFavorite: true,
+        url: url.ZUSTAND_URL,
+      },
+      {
+        name: translate("services.stack.mobx"),
+        isFavorite: false,
+        url: url.MOBX_URL,
+      },
+      {
+        name: translate("services.stack.chartJs"),
+        isFavorite: false,
+        url: url.CHART_JS,
+      },
+      {
+        name: translate("services.stack.gsap"),
+        isFavorite: true,
+        url: url.GSAP_URL,
+      },
+      {
+        name: translate("services.stack.threeJs"),
+        isFavorite: true,
+        url: url.THREE_JS_URL,
+      },
+      {
+        name: translate("services.stack.framerMotion"),
+        isFavorite: true,
+        url: url.FRAMER_MOTION_URL,
+      },
+      {
+        name: translate("services.stack.jest"),
+        isFavorite: true,
+        url: url.JEST_URL,
+      },
+      {
+        name: translate("services.stack.enzyme"),
+        isFavorite: true,
+        url: url.ENZYME_URL,
+      },
+      {
+        name: translate("services.stack.cypress"),
+        isFavorite: true,
+        url: url.CYPRESS_URL,
+      },
+      {
+        name: translate("services.stack.i18n"),
+        isFavorite: true,
+        url: url.I18NEXT_URL,
+      },
+      {
+        name: translate("services.stack.axios"),
+        isFavorite: true,
+        url: url.AXIOS_URL,
+      },
+      {
+        name: translate("services.stack.reactQuery"),
+        isFavorite: true,
+        url: url.REACT_QUERY_URL,
+      },
+      {
+        name: translate("services.stack.npm"),
+        isFavorite: false,
+        url: url.NPM_URL,
+      },
+      {
+        name: translate("services.stack.pnpm"),
+        isFavorite: true,
+        url: url.PNPM_URL,
+      },
+      {
+        name: translate("services.stack.yarn"),
+        isFavorite: true,
+        url: url.YARN_URL,
+      },
+    ],
+  },
+
+  {
     key: "ui",
     title: translate("services.designImplementation.title"),
     description: translate("services.designImplementation.description"),
@@ -290,6 +324,26 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
       },
       {
         name: translate("services.stack.frontend"),
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Figma to HTML",
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Figma to React",
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Attention to Details",
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Pixel Perfect",
         isFavorite: false,
         url: undefined,
       },

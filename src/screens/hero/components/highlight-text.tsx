@@ -1,7 +1,4 @@
-export interface HighlightTextInterface {
-  url: string;
-  text: string;
-}
+import { HighlightTextInterface } from "./component-props";
 
 export const HighlightText = (props: HighlightTextInterface) => {
   const { url, text } = props;
