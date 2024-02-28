@@ -34,6 +34,11 @@ export const REACT_QUERY_URL: string = "https://tanstack.com/query/latest";
 
 // back end url
 export const SPRING_BOOT_URL: string = "https://spring.io/projects/spring-boot";
+export const SPRING_SECURITY_URL: string = "https://spring.io/projects/spring-security";
+export const SPRING_SECURITY_OAUTH_URL: string = "https://spring.io/projects/spring-security-oauth";
+export const SPRING_JDBC_URL: string = "https://spring.io/projects/spring-data-jdbc";
+export const SPRING_REST_URL: string = "https://spring.io/guides/tutorials/rest";
+export const JWT_URL: string = "https://jwt.io/";
 export const JAVA_URL: string = "https://www.learnjavaonline.org/";
 export const MYSQL_URL: string = "https://www.mysql.com/    ";
 export const JUNIT_URL: string = "https://junit.org/";
