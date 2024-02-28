@@ -3,7 +3,7 @@ import { RubberAnimation } from "./rubber-animation";
 import { BounceTextInterface } from "./animation-props";
 
 export const BounceText = (props: BounceTextInterface) => {
-  const { text, path, openInNewTab, isUnderline } = props;
+  const { text, path, openInNewTab, className } = props;
   const textSplit = text.split("");
 
   return (
@@ -16,7 +16,7 @@ export const BounceText = (props: BounceTextInterface) => {
         >
           {textSplit.map((letter, index) => {
             return (
-              <RubberAnimation isUnderline={isUnderline} key={index}>
+              <RubberAnimation className={className} key={index}>
                 {letter === " " ? "\u00A0" : letter}
               </RubberAnimation>
             );
@@ -25,7 +25,7 @@ export const BounceText = (props: BounceTextInterface) => {
       ) : (
         textSplit.map((letter, index) => {
           return (
-            <RubberAnimation isUnderline={isUnderline} key={index}>
+            <RubberAnimation className={className} key={index}>
               {letter === " " ? "\u00A0" : letter}
             </RubberAnimation>
           );

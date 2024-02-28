@@ -1,18 +1,18 @@
 import { BounceText } from "@/components";
 import {
   NAV_LINKS,
-  NavLinkInterface,
   PATH,
   SOCIAL_MEDIA_LINKS,
-  SocialMediaLinksInterface,
 } from "@/config";
 import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import React from "react";
 import {
   AboutMeAvatar,
+  NavLinkInterface,
   NavLinks,
   SocialButton,
+  SocialMediaLinksInterface,
   SubTitleAnimation,
   ThemeSwitch,
 } from "../components";
@@ -24,9 +24,9 @@ export const HeaderSection = () => {
   return (
     <>
       <section>
-        <Link to={PATH.ABOUT.path}>
+        <Link className="focus:outline-none" to={PATH.ABOUT.path}>
           <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
-            <BounceText text={translate("header.name")} />
+            <BounceText className="outline-none ring-0 focus:outline-none" text={translate("header.name")} />
           </h1>
         </Link>
         <SubTitleAnimation />

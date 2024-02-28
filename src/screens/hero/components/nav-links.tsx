@@ -1,6 +1,7 @@
 import { useNavLinkStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
 import { NavLinkInterface } from "./component-props";
+import { BounceText } from "@/components";
 
 export const NavLinks = (props: NavLinkInterface) => {
   const { key, name, path, selectedId } = props;
@@ -32,7 +33,7 @@ export const NavLinks = (props: NavLinkInterface) => {
             selectedClass().nameClass
           )}
         >
-          {name}
+          <BounceText text={name} />
         </span>
       </a>
     </li>

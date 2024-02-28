@@ -1,9 +1,10 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useState } from "react";
 import { RubberAnimationInterface } from "./animation-props";
+import { twMerge } from "tailwind-merge";
 
 export const RubberAnimation = (props: RubberAnimationInterface) => {
-  const { children, isUnderline } = props;
+  const { children, className } = props;
   const controls = useAnimationControls();
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -28,9 +29,13 @@ export const RubberAnimation = (props: RubberAnimationInterface) => {
 
   return (
     <motion.span
-      className={`inline-block cursor-pointer hover:text-primary ${
-        isUnderline && "underline"
-      }`}
+      className={twMerge(
+        "inline-block cursor-pointer hover:text-primar",
+        className
+      )}
+      // className={`inline-block cursor-pointer hover:text-primary ${
+      //   isUnderline && "underline"
+      // }`}
       animate={controls}
       onMouseOver={() => !isPlaying && rubberBand()}
       onAnimationComplete={() => setIsPlaying(false)}
