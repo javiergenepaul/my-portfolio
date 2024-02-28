@@ -1,4 +1,5 @@
 import {
+  BounceText,
   Card,
   CardDescription,
   CardFooter,
@@ -15,7 +16,9 @@ export const ServiceCard = (props: ServiceCardInterface) => {
   return (
     <Card className="border-transparent select-none bg-white/[5%] backdrop-blur-sm drop-shadow-lg">
       <CardHeader className="pb-2">
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>
+          <BounceText className="cursor-default" text={title} />
+        </CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter className="flex flex-wrap gap-2">

@@ -4,8 +4,8 @@ export interface BounceTextInterface {
   text: string;
   path?: string;
   openInNewTab?: boolean;
-  isUnderline?: boolean;
   cursor?: "none";
+  className?: string;
 }
 
 export interface FadeAnimationProps {
@@ -13,6 +13,7 @@ export interface FadeAnimationProps {
 }
 
 export interface RubberAnimationInterface {
-  isUnderline?: boolean;
+  // isUnderline?: boolean;
+  className?: string;
   children: ReactNode;
 }
