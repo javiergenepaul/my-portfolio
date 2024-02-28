@@ -1,10 +1,9 @@
 import { translate } from "@/i18n";
 import {
-  NavLinkInterface,
   ServiceOfferInterface,
-  SocialMediaLinksInterface,
 } from "./types";
 import * as url from "./url";
+import { NavLinkInterface, SocialMediaLinksInterface } from "@/screens";
 
 export const NAV_LINKS: NavLinkInterface[] = [
   {
@@ -83,6 +82,16 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         name: translate("services.stack.css"),
         isFavorite: false,
         url: url.CSS_URL,
+      },
+      {
+        name: translate("services.stack.jquery"),
+        isFavorite: false,
+        url: url.JQUERY_URL,
+      },
+      {
+        name: translate("services.stack.blade"),
+        isFavorite: false,
+        url: url.BLADE_URL,
       },
       {
         name: translate("services.stack.tailwind"),
@@ -316,6 +325,26 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
       },
       {
         name: translate("services.stack.frontend"),
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Figma to HTML",
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Figma to React",
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Attention to Details",
+        isFavorite: false,
+        url: undefined,
+      },
+      {
+        name: "Pixel Perfect",
         isFavorite: false,
         url: undefined,
       },

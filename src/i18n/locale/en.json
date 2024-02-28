@@ -4,6 +4,10 @@
     "dark": "Dark Mode",
     "system": "System"
   },
+  "resume": {
+    "btnName": "Download Resume"
+  },
+  "moreInfo": "More Info",
   "appName": "Javz Portfolio - {{title}}",
   "path": {
     "pageNotFound": "page not found",
@@ -56,8 +60,8 @@
       "description": "In my backend development service, I implement Spring Boot Java Microservices to craft APIs, providing a robust solution for your backend infrastructure's reliability, scalability, and security needs. Additionally, I integrate Spring Security JWT for authentication, and by comprehensively understanding the project's flow, I can adeptly create Entity-Relationship Diagrams (ERDs) and efficiently manage MySQL databases. This comprehensive approach ensures a seamless and secure backend environment for your applications."
     },
     "designImplementation": {
-      "title": "UI/UX Design Integration and Implementation",
-      "description": "My UI/UX design integration and implementation service is dedicated to seamlessly translating design concepts into functional and captivating frontend experiences. I specialize in implementing Figma designs with precision, ensuring pixel-perfect accuracy in the final product. By meticulously adhering to design specifications, I bring your vision to life on the web, creating seamless transitions and interactions that elevate user engagement. My focus is on delivering an intuitive and visually cohesive experience that resonates with your audience and enhances your brand identity."
+      "title": "Pixel-Perfect Figma Design Implementation: Transforming Concepts into Engaging Websites",
+      "description": "In my Figma design implementation service, I specialize in seamlessly translating design concepts into captivating and fully functional websites with meticulous attention to detail. My expertise lies in precisely implementing provided Figma designs to bring your vision to life on the web. I focus on adhering to design specifications to create seamless transitions and interactions that elevate user engagement, aiming to deliver an intuitive and visually cohesive experience that enhances your brand identity."
     },
     "stack": {
       "vite": "Vite",
@@ -67,6 +71,8 @@
       "zustand": "Zustand",
       "mobx": "Mobx",
       "html": "HTML",
+      "jquery": "jQuery",
+      "blade": "Blade",
       "css": "CSS",
       "tailwind": "Tailwind CSS",
       "shadCn": "ShadCN",
