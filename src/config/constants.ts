@@ -1,7 +1,5 @@
 import { translate } from "@/i18n";
-import {
-  ServiceOfferInterface,
-} from "./types";
+import { ServiceOfferInterface } from "./types";
 import * as url from "./url";
 import { NavLinkInterface, SocialMediaLinksInterface } from "@/screens";
 
@@ -48,6 +46,119 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
 ];
 
 export const SERVICE_OFFER: ServiceOfferInterface[] = [
+  {
+    key: "backend",
+    title: translate("services.backend.title"),
+    description: translate("services.backend.description"),
+    stack: [
+      {
+        name: translate("services.stack.springBoot"),
+        isFavorite: true,
+        url: url.SPRING_BOOT_URL,
+      },
+      {
+        name: translate("services.stack.springSecurity"),
+        isFavorite: true,
+        url: url.SPRING_SECURITY_URL,
+      },
+      {
+        name: translate("services.stack.springSecurityOAuth"),
+        isFavorite: true,
+        url: url.SPRING_SECURITY_OAUTH_URL,
+      },
+      {
+        name: translate("services.stack.springJDBC"),
+        isFavorite: true,
+        url: url.SPRING_JDBC_URL,
+      },
+      {
+        name: translate("services.stack.api"),
+        isFavorite: true,
+        url: url.SPRING_REST_URL,
+      },
+      {
+        name: translate("services.stack.jwt"),
+        isFavorite: true,
+        url: url.JWT_URL,
+      },
+      {
+        name: translate("services.stack.java"),
+        isFavorite: true,
+        url: url.JAVA_URL,
+      },
+      {
+        name: translate("services.stack.mySQL"),
+        isFavorite: true,
+        url: url.MYSQL_URL,
+      },
+      {
+        name: translate("services.stack.junit"),
+        isFavorite: false,
+        url: url.JUNIT_URL,
+      },
+      {
+        name: translate("services.stack.mockito"),
+        isFavorite: false,
+        url: url.MOCKITO_URL,
+      },
+
+      {
+        name: translate("services.stack.postman"),
+        isFavorite: false,
+        url: url.POSTMAN_URL,
+      },
+      {
+        name: translate("services.stack.linux"),
+        isFavorite: false,
+        url: url.LINUX_URL,
+      },
+      {
+        name: translate("services.stack.azure"),
+        isFavorite: false,
+        url: url.AZURE_URL,
+      },
+      {
+        name: translate("services.stack.aws"),
+        isFavorite: false,
+        url: url.AWS_URL,
+      },
+      {
+        name: translate("services.stack.azurePipelineAgent"),
+        isFavorite: false,
+        url: url.AZURE_PIPELINE_AGENT_URL,
+      },
+      {
+        name: translate("services.stack.firebase"),
+        isFavorite: false,
+        url: url.FIREBASE_URL,
+      },
+      {
+        name: translate("services.stack.git"),
+        isFavorite: false,
+        url: url.GIT_URL,
+      },
+      {
+        name: translate("services.stack.nginx"),
+        isFavorite: false,
+        url: url.NGINX_URL,
+      },
+      {
+        name: translate("services.stack.centOS"),
+        isFavorite: false,
+        url: url.CENT_OS_URL,
+      },
+      {
+        name: translate("services.stack.netlify"),
+        isFavorite: false,
+        url: url.NETLIFY_URL,
+      },
+      {
+        name: translate("services.stack.heroku"),
+        isFavorite: false,
+        url: url.HEROKU_URL,
+      },
+    ],
+  },
   {
     key: "frontend",
     title: translate("services.frontend.title"),
@@ -200,119 +311,7 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
       },
     ],
   },
-  {
-    key: "backend",
-    title: translate("services.backend.title"),
-    description: translate("services.backend.description"),
-    stack: [
-      {
-        name: translate("services.stack.springBoot"),
-        isFavorite: true,
-        url: url.SPRING_BOOT_URL,
-      },
-      {
-        name: translate("services.stack.springSecurity"),
-        isFavorite: true,
-        url: url.SPRING_SECURITY_URL,
-      },
-      {
-        name: translate("services.stack.springSecurityOAuth"),
-        isFavorite: true,
-        url: url.SPRING_SECURITY_OAUTH_URL,
-      },
-      {
-        name: translate("services.stack.springJDBC"),
-        isFavorite: true,
-        url: url.SPRING_JDBC_URL,
-      },
-      {
-        name: translate("services.stack.api"),
-        isFavorite: true,
-        url: url.SPRING_REST_URL,
-      },
-      {
-        name: translate("services.stack.jwt"),
-        isFavorite: true,
-        url: url.JWT_URL,
-      },
-      {
-        name: translate("services.stack.java"),
-        isFavorite: true,
-        url: url.JAVA_URL,
-      },
-      {
-        name: translate("services.stack.mySQL"),
-        isFavorite: true,
-        url: url.MYSQL_URL,
-      },
-      {
-        name: translate("services.stack.junit"),
-        isFavorite: false,
-        url: url.JUNIT_URL,
-      },
-      {
-        name: translate("services.stack.mockito"),
-        isFavorite: false,
-        url: url.MOCKITO_URL,
-      },
 
-      {
-        name: translate("services.stack.postman"),
-        isFavorite: false,
-        url: url.POSTMAN_URL,
-      },
-      {
-        name: translate("services.stack.linux"),
-        isFavorite: false,
-        url: url.LINUX_URL,
-      },
-      {
-        name: translate("services.stack.azure"),
-        isFavorite: false,
-        url: url.AZURE_URL,
-      },
-      {
-        name: translate("services.stack.aws"),
-        isFavorite: false,
-        url: url.AWS_URL,
-      },
-      {
-        name: translate("services.stack.azurePipelineAgent"),
-        isFavorite: false,
-        url: url.AZURE_PIPELINE_AGENT_URL,
-      },
-      {
-        name: translate("services.stack.firebase"),
-        isFavorite: false,
-        url: url.FIREBASE_URL,
-      },
-      {
-        name: translate("services.stack.git"),
-        isFavorite: false,
-        url: url.GIT_URL,
-      },
-      {
-        name: translate("services.stack.nginx"),
-        isFavorite: false,
-        url: url.NGINX_URL,
-      },
-      {
-        name: translate("services.stack.centOS"),
-        isFavorite: false,
-        url: url.CENT_OS_URL,
-      },
-      {
-        name: translate("services.stack.netlify"),
-        isFavorite: false,
-        url: url.NETLIFY_URL,
-      },
-      {
-        name: translate("services.stack.heroku"),
-        isFavorite: false,
-        url: url.HEROKU_URL,
-      },
-    ],
-  },
   {
     key: "ui",
     title: translate("services.designImplementation.title"),
