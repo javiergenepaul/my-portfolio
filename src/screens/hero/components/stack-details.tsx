@@ -1,6 +1,4 @@
-import { TechStackInterface } from "@/config";
-
-interface StackDetailsProps extends TechStackInterface {}
+import { StackDetailsProps } from "./component-props";
 
 export const StackDetails = (props: StackDetailsProps) => {
   const { name, isFavorite, icon } = props;

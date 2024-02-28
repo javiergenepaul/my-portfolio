@@ -1,6 +1,6 @@
-import { NavLinkInterface } from "@/config";
 import { useNavLinkStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
+import { NavLinkInterface } from "./component-props";
 
 export const NavLinks = (props: NavLinkInterface) => {
   const { key, name, path, selectedId } = props;
