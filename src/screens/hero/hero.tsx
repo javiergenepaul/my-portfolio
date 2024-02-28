@@ -70,7 +70,7 @@ export const Hero = () => {
       </header>
       <main className="flex flex-col lg:w-3/5 lg:min-h-screen snap-y">
         <ServiceSection />
-        <ProjectSection />
+        {/* <ProjectSection /> */}
         <ContactSection />
         <FooterSection />
       </main>

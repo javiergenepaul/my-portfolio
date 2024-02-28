@@ -7,6 +7,11 @@
   "resume": {
     "btnName": "Download Resume"
   },
+  "errorMessages": {
+    "required": "This field is required. Please provide a value.",
+    "invalidEmail": "Please enter a valid email address.",
+    "maximumCharacter": "Maximum character limit exceeded. Please limit your input to {{count}} characters or fewer."
+  },
   "moreInfo": "More Info",
   "appName": "Javz Portfolio - {{title}}",
   "path": {
@@ -120,6 +125,27 @@
 
       "figma": "Figma",
       "frontend": "Front-End"
+    }
+  },
+  "contact": {
+    "keepInTouch": "Let's Keep in touch",
+    "placeHolder": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "button": {
+      "submit": "Submit"
+    },
+    "toast": {
+      "success": {
+        "title": "Email Submission Successful",
+        "description": "Thank you for submitting your email! Your message has been received successfully."
+      },
+      "error": {
+        "title": "Email Submission Error!!!",
+        "description": "Oops! There was an error submitting your email. Please try again later."
+      }
     }
   },
   "footer": {
