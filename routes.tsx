@@ -35,6 +35,10 @@ export const AppRoutes = () => {
           path={PATH.CONTACTS.path}
           element={<AppScreen component={<Screens.Contact />} />}
         />
+        <Route
+          path={PATH.CONFIDENTIAL.path}
+          element={<AppScreen component={<Screens.Confidential />} />}
+        />
       </Routes>
     </BrowserRouter>
   );

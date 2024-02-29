@@ -4,3 +4,4 @@ export * from "./hero";
 export * from "./not-found";
 export * from "./project";
 export * from "./skills";
+export * from "./confidential";

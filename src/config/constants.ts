@@ -1,5 +1,5 @@
 import { translate } from "@/i18n";
-import { ServiceOfferInterface } from "./types";
+import { ProjectInterface, ServiceOfferInterface } from "./types";
 import * as url from "./url";
 import { NavLinkInterface, SocialMediaLinksInterface } from "@/screens";
 
@@ -346,6 +346,83 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
         name: "Pixel Perfect",
         isFavorite: false,
         url: undefined,
+      },
+    ],
+  },
+];
+
+export const PROJECTS: ProjectInterface[] = [
+  {
+    title: "YooPH",
+    company: "Mach 95 Software Developer Inc.",
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "confidential",
+    stack: [
+      {
+        name: "laravel",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "Sirius webPOS - Headquarter",
+    company: "Alliance Software",
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "confidential",
+    stack: [
+      {
+        name: "Sprint Boot",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "React",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Typescript",
+        url: "",
+        isFavorite: true,
+      },
+    ],
+  },
+  {
+    title: "Unified Youth",
+    company: "Triad Software Digital Solutions",
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "client",
+    stack: [
+      {
+        name: "Spring Boot",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "CountryScape",
+    company: "Triad Software Digital Solutions",
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "personal",
+    stack: [
+      {
+        name: "Spring Boot",
+        url: "",
+        isFavorite: false,
       },
     ],
   },
