@@ -1,11 +1,34 @@
+import { PROJECTS, ProjectInterface } from "@/config";
+import { ProjectCard } from "../components/project-card";
+
+interface Data {
+  type: "confidential" | "client" | "personal";
+}
+
 export const ProjectSection = () => {
+  const priorityOrder: { [key in Data["type"]]: number } = {
+    personal: 1,
+    client: 2,
+    confidential: 3,
+  };
+
+  const sortedProjectsHandler = (): ProjectInterface[] => {
+    return PROJECTS.sort((a, b) => {
+      return priorityOrder[a.type] - priorityOrder[b.type];
+    });
+  };
+
   return (
     <section
       id="projects"
-      className="h-screen py-16 bg-green-400 section snap-start lg:py-24"
+      className="pt-16 h-fit section snap-start lg:pt-24 lg:px-4"
       aria-label="Projects"
     >
-      <span className="text-white">Project Section</span>
+      <div className="flex flex-col gap-4">
+        {sortedProjectsHandler().map((project: ProjectInterface) => {
+          return <ProjectCard {...project} />;
+        })}
+      </div>
     </section>
   );
 };
