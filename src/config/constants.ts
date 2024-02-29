@@ -449,6 +449,64 @@ export const PROJECTS: ProjectInterface[] = [
     description: "test description",
     category: ["delivery app", "ecommerce", "admin dashboard"],
     url: "https://www.yoo.ph/login",
+    type: "confidential",
+    stack: [
+      {
+        name: "HTML",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Tailwind",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Figma",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "Pawfectly Yours",
+    company: undefined,
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "personal",
+    stack: [
+      {
+        name: "Spring Boot",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "Doctrack",
+    company: undefined,
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "client",
+    stack: [
+      {
+        name: "Spring Boot",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "Tower of Hanoi",
+    company: undefined,
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
     type: "personal",
     stack: [
       {
