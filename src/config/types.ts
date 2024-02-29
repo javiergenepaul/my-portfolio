@@ -18,12 +18,9 @@ export interface ProjectInterface {
   description: string;
   date: Date;
   keyContribution?: string[];
-  company:
-    | "Alliance Software Inc."
-    | "Triad Software Digital Solutions"
-    | "personal"
-    | "Mach95 Software Developer Corp."
-    | undefined;
+  image64: string,
+  imageName: string,
+  company: string | undefined;
   category: string[];
   url?: string | undefined;
   type: "confidential" | "client" | "personal" | "tutorial";
