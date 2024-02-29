@@ -17,9 +17,14 @@ export interface ProjectInterface {
   title: string;
   description: string;
   date: Date;
-  company: string;
+  company:
+    | "Alliance Software Inc."
+    | "Triad Software Digital Solutions"
+    | "personal"
+    | "Mach95 Software Developer Corp."
+    | undefined;
   category: string[];
   url?: string | undefined;
-  type: "confidential" | "client" | "personal";
+  type: "confidential" | "client" | "personal" | "tutorial";
   stack?: TechStackInterface[];
 }

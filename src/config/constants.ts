@@ -354,7 +354,7 @@ export const SERVICE_OFFER: ServiceOfferInterface[] = [
 export const PROJECTS: ProjectInterface[] = [
   {
     title: "YooPH",
-    company: "Mach 95 Software Developer Inc.",
+    company: "Mach95 Software Developer Corp.",
     date: new Date(),
     description: "test description",
     category: ["delivery app", "ecommerce", "admin dashboard"],
@@ -370,7 +370,7 @@ export const PROJECTS: ProjectInterface[] = [
   },
   {
     title: "Sirius webPOS - Headquarter",
-    company: "Alliance Software",
+    company: "Alliance Software Inc.",
     date: new Date(),
     description: "test description",
     category: ["delivery app", "ecommerce", "admin dashboard"],
@@ -413,6 +413,38 @@ export const PROJECTS: ProjectInterface[] = [
   {
     title: "CountryScape",
     company: "Triad Software Digital Solutions",
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "personal",
+    stack: [
+      {
+        name: "Spring Boot",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "Hoobank",
+    company: "Mach95 Software Developer Corp.",
+    date: new Date(),
+    description: "test description",
+    category: ["delivery app", "ecommerce", "admin dashboard"],
+    url: "https://www.yoo.ph/login",
+    type: "tutorial",
+    stack: [
+      {
+        name: "Tailwind ",
+        url: "",
+        isFavorite: false,
+      },
+    ],
+  },
+  {
+    title: "IQMK",
+    company: "Mach95 Software Developer Corp.",
     date: new Date(),
     description: "test description",
     category: ["delivery app", "ecommerce", "admin dashboard"],
