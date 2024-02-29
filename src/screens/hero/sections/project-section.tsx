@@ -2,7 +2,7 @@ import { PROJECTS, ProjectInterface } from "@/config";
 import { ProjectCard } from "../components/project-card";
 
 interface Data {
-  type: "confidential" | "client" | "personal";
+  type: "confidential" | "client" | "personal" | "tutorial";
 }
 
 export const ProjectSection = () => {
@@ -10,6 +10,7 @@ export const ProjectSection = () => {
     personal: 1,
     client: 2,
     confidential: 3,
+    tutorial: 4,
   };
 
   const sortedProjectsHandler = (): ProjectInterface[] => {
