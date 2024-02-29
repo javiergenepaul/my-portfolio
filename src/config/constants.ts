@@ -366,6 +366,36 @@ export const PROJECTS: ProjectInterface[] = [
         url: "",
         isFavorite: false,
       },
+      {
+        name: "PHP",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Blade",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "BootStrap",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Jquery",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Javascript",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "MVC",
+        url: "",
+        isFavorite: false,
+      },
     ],
   },
   {
@@ -373,12 +403,22 @@ export const PROJECTS: ProjectInterface[] = [
     company: "Alliance Software Inc.",
     date: new Date(),
     description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
-    url: "https://www.yoo.ph/login",
+    category: ["delivery app", "webPOS", "admin dashboard"],
+    url: "",
     type: "confidential",
     stack: [
       {
         name: "Sprint Boot",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Java",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "JWT(Json Web Token)",
         url: "",
         isFavorite: false,
       },
@@ -389,6 +429,26 @@ export const PROJECTS: ProjectInterface[] = [
       },
       {
         name: "Typescript",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Mobx",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Electron",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Kafka",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Pushy",
         url: "",
         isFavorite: true,
       },
@@ -406,7 +466,57 @@ export const PROJECTS: ProjectInterface[] = [
       {
         name: "Spring Boot",
         url: "",
-        isFavorite: false,
+        isFavorite: true,
+      },
+      {
+        name: "Java",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Microservices",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Vite",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "React",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Typescript",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "ShadCN",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "React Query",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Vitest",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "i18next",
+        url: "",
+        isFavorite: true,
+      },
+      {
+        name: "Figma",
+        url: "",
+        isFavorite: true,
       },
     ],
   },
@@ -420,7 +530,42 @@ export const PROJECTS: ProjectInterface[] = [
     type: "personal",
     stack: [
       {
-        name: "Spring Boot",
+        name: "React",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Typescript",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "ShadCN",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Figma",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Landing Page",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Tailwind",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Responsive",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Netlify",
         url: "",
         isFavorite: false,
       },
@@ -431,12 +576,32 @@ export const PROJECTS: ProjectInterface[] = [
     company: "Mach95 Software Developer Corp.",
     date: new Date(),
     description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
-    url: "https://www.yoo.ph/login",
+    category: [],
+    url: "",
     type: "tutorial",
     stack: [
       {
-        name: "Tailwind ",
+        name: "Vite",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "React",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Tailwind",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Youtube",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Netlify",
         url: "",
         isFavorite: false,
       },
@@ -466,6 +631,11 @@ export const PROJECTS: ProjectInterface[] = [
         url: "",
         isFavorite: false,
       },
+      {
+        name: "Jquery",
+        url: "",
+        isFavorite: false,
+      },
     ],
   },
   {
@@ -482,6 +652,36 @@ export const PROJECTS: ProjectInterface[] = [
         url: "",
         isFavorite: false,
       },
+      {
+        name: "Spring Security",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "OAuth",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "JWT(Json Web Token)",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "React",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Typescript",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Next UI",
+        url: "",
+        isFavorite: false,
+      },
     ],
   },
   {
@@ -494,7 +694,17 @@ export const PROJECTS: ProjectInterface[] = [
     type: "client",
     stack: [
       {
-        name: "Spring Boot",
+        name: "React Native",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Firebase",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Native Wind",
         url: "",
         isFavorite: false,
       },
@@ -505,12 +715,37 @@ export const PROJECTS: ProjectInterface[] = [
     company: undefined,
     date: new Date(),
     description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
-    url: "https://www.yoo.ph/login",
+    category: ["game", "3D"],
+    url: "",
     type: "personal",
     stack: [
       {
-        name: "Spring Boot",
+        name: "Three JS",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Typescript",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "GSAP",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "React",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "WebGL",
+        url: "",
+        isFavorite: false,
+      },
+      {
+        name: "Blender",
         url: "",
         isFavorite: false,
       },
