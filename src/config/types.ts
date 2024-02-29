@@ -17,6 +17,7 @@ export interface ProjectInterface {
   title: string;
   description: string;
   date: Date;
+  keyContribution?: string[];
   company:
     | "Alliance Software Inc."
     | "Triad Software Digital Solutions"

@@ -54,9 +54,14 @@ export const ProjectCard = (props: ProjectCardInterface) => {
     <Card className="relative overflow-hidden select-none group">
       {showTag()}
       <div className="flex h-full">
-        <div className="flex items-center justify-center w-60 bg-slate-400">
-          test
+        <div className="flex items-center justify-center w-60 ">
+          <img
+            className="h-full"
+            src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?"
+            alt="Place Holder"
+          />
         </div>
+
         <div className="flex flex-col">
           <CardHeader>
             <CardTitle className="group-hover:text-primary">{title}</CardTitle>
