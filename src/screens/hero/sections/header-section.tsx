@@ -13,10 +13,19 @@ import {
   ThemeSwitch,
 } from "../components";
 import { Link } from "react-router-dom";
-import resume from "../../../assets/resume.pdf";
+import { ResumeDark, ResumeLight } from "../../../assets";
 
 export const HeaderSection = () => {
   const { getTheme, toggleTheme } = useThemeStore();
+
+  const downloadResumeHandler = () => {
+    getTheme;
+    if (getTheme()) {
+      window.open(ResumeDark, "_blank");
+    } else {
+      window.open(ResumeLight, "_blank");
+    }
+  };
 
   return (
     <>
@@ -34,16 +43,11 @@ export const HeaderSection = () => {
           {translate("header.description")}
         </p>
         <div className="flex gap-4 mt-8 select-none">
-          <Button
-            variant={"default"}
-            onClick={() => {
-              window.open(resume, "_blank");
-            }}
-          >
+          <Button variant={"default"} onClick={downloadResumeHandler}>
             {translate("resume.btnName")}
           </Button>
           <Link to={PATH.ABOUT.path}>
-            <Button variant={"outline"}>{translate("moreInfo")}</Button>
+            <Button variant={"link"}>{translate("moreInfo")}</Button>
           </Link>
         </div>
         <nav

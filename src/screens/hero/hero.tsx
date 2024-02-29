@@ -9,7 +9,11 @@ import {
 } from "./sections";
 
 export const Hero = () => {
-  const { setSelectedNav, setOnScrollNav } = useNavLinkStore();
+  const { setSelectedNav, setOnScrollNav, selectedNav } = useNavLinkStore();
+
+  useEffect(() => {
+    console.log(selectedNav);
+  }, [selectedNav]);
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -25,7 +29,7 @@ export const Hero = () => {
   }): boolean => {
     const { sectionTop, sectionBottom } = data;
     const sectionHeight = sectionBottom - sectionTop;
-    const margin = sectionHeight * 0.2;
+    const margin = sectionHeight * 0.5;
 
     const inside: boolean =
       sectionTop + margin < scrollY && sectionBottom + margin > scrollY;

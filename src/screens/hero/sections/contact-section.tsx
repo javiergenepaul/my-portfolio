@@ -1,11 +1,28 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components";
+import { translate } from "@/i18n";
+import { ContactForm } from "../components/contact-form";
+import ContactLogo from "../../../assets/contact-logo.svg";
+
 export const ContactSection = () => {
   return (
     <section
       id="contacts"
-      className="h-screen bg-red-400 section snap-start"
+      className="pt-16 lg:px-4 lg:pt-24 h-fit section snap-start"
       aria-label="Contacts"
     >
-      Contact Section
+      <Card className="py-8">
+        <CardHeader className="gap-10 pb-10">
+          <img
+            src={ContactLogo}
+            alt="jav-logo.svg"
+            className="w-[74px] h-[74px]"
+          />
+          <CardTitle>{translate("contact.keepInTouch")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ContactForm />
+        </CardContent>
+      </Card>
     </section>
   );
 };

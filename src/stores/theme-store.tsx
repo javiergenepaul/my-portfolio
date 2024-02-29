@@ -12,7 +12,7 @@ type ThemeStore = {
 
 export const useThemeStore = create<ThemeStore>((set, get) => ({
   theme: undefined,
-  getTheme: () => {
+  getTheme: (): boolean => {
     const currentTheme = get().theme;
     if (currentTheme === "system") {
       return get().getSystemTheme() !== "light";

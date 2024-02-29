@@ -7,6 +7,11 @@
   "resume": {
     "btnName": "Download Resume"
   },
+  "errorMessages": {
+    "required": "This field is required. Please provide a value.",
+    "invalidEmail": "Please enter a valid email address.",
+    "maximumCharacter": "Maximum character limit exceeded. Please limit your input to {{count}} characters or fewer."
+  },
   "moreInfo": "More Info",
   "appName": "Javz Portfolio - {{title}}",
   "path": {
@@ -120,6 +125,104 @@
 
       "figma": "Figma",
       "frontend": "Front-End"
+    }
+  },
+  "projects": {
+    "tag": {
+      "confidential": "Confidential",
+      "personal": "Personal",
+      "client": "Client",
+      "tutorial": "Tutorial"
+    },
+    "button": {
+      "preview": "Preview",
+      "viewCode": "viewCode"
+    },
+    "yoo": {
+      "title": "YooPH",
+      "company": "Mach95 Software Developer Corp",
+      "description": "testDescription",
+      "imageName": "Yoo PH Preview",
+      "category": {
+        "deliveryApp": "Delivery Application",
+        "ecommerce": "ecommerce",
+        "admin": "Admin Dashboard"
+      }
+    },
+    "siriusWebpos": {
+      "title": "Sirius WebPOS - Headquarter",
+      "company": "Alliance Software Inc.",
+      "description": "testDescription",
+      "category": {
+        "webPos": "WebPOS",
+        "admin": "Admin Dashboard"
+      },
+      "imageName": "WebPOS Preview"
+    },
+    "unifiedYouth": {
+      "title": "Unified Youth",
+      "company": "Triad Software Digital Solutions",
+      "description": "testDescription",
+      "imageName": "Unified Youth Preview",
+      "category": {
+        "admin": "Admin Dashboard"
+      }
+    },
+    "countryScape": {
+      "title": "CountryScape",
+      "company": "Triad Software Digital Solutions",
+      "description": "testDescription",
+      "imageName": "Country Scape Preview",
+      "category": {
+        "booking": "Hotel Booking"
+      }
+    },
+    "hoobank": {
+      "title": "Hoobank",
+      "description": "testDescription",
+      "imageName": "Country",
+      "category": {
+        "landing": "Landing Page"
+      }
+    },
+    "iqmk": {
+      "title": "IQMK",
+      "company": "Mach95 Software Developer Corp.",
+      "description": "testDescription",
+      "imageName": "IQMK Preview",
+      "category": {
+        "landing": "Landing Page"
+      }
+    },
+    "pawfectlyYours": {
+      "title": "Pawfecly Your",
+      "description": "testDescription",
+      "imageName": "IQMK Preview",
+      "category": {
+        "ecommerce": "ecommerce",
+        "landing": "Landing Page"
+      }
+    }
+  },
+  "contact": {
+    "keepInTouch": "Let's Keep in touch",
+    "placeHolder": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "button": {
+      "submit": "Submit"
+    },
+    "toast": {
+      "success": {
+        "title": "Email Submission Successful",
+        "description": "Thank you for submitting your email! Your message has been received successfully."
+      },
+      "error": {
+        "title": "Email Submission Error!!!",
+        "description": "Oops! There was an error submitting your email. Please try again later."
+      }
     }
   },
   "footer": {

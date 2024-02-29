@@ -12,3 +12,17 @@ export interface ServiceOfferInterface {
   subDetails?: string[];
   stack?: TechStackInterface[];
 }
+
+export interface ProjectInterface {
+  title: string;
+  description: string;
+  date: Date;
+  keyContribution?: string[];
+  image64: string,
+  imageName: string,
+  company: string | undefined;
+  category: string[];
+  url?: string | undefined;
+  type: "confidential" | "client" | "personal" | "tutorial";
+  stack?: TechStackInterface[];
+}
