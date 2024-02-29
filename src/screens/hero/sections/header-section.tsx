@@ -47,7 +47,7 @@ export const HeaderSection = () => {
             {translate("resume.btnName")}
           </Button>
           <Link to={PATH.ABOUT.path}>
-            <Button variant={"outline"}>{translate("moreInfo")}</Button>
+            <Button variant={"link"}>{translate("moreInfo")}</Button>
           </Link>
         </div>
         <nav
