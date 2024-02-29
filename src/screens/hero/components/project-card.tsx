@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components";
-import { PATH, ProjectInterface, TechStackInterface } from "@/config";
+import { ProjectInterface, TechStackInterface } from "@/config";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
