@@ -9,11 +9,12 @@ import {
   CardTitle,
 } from "@/components";
 import { ProjectInterface, TechStackInterface } from "@/config";
+import { translate } from "@/i18n";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
 export const ProjectCard = (props: ProjectCardInterface) => {
-  const { title, description, stack, type, url } = props;
+  const { title, description, stack, type, url, image64, imageName } = props;
 
   const onClickViewDemoHadndler = () => {
     window.open(url, "_blank");
@@ -24,25 +25,25 @@ export const ProjectCard = (props: ProjectCardInterface) => {
       case "confidential":
         return (
           <div className="absolute right-[-40px] w-40 px-4 py-1 text-xs text-center rotate-45 top-[28px] select-none bg-destructive">
-            Confidential
+            {translate("projects.tag.confidential")}
           </div>
         );
       case "personal":
         return (
           <div className="absolute right-[-40px] w-40 px-4 py-1 text-xs text-center rotate-45 top-[28px] select-none bg-primary">
-            Personal
+            {translate("projects.tag.personal")}
           </div>
         );
       case "client":
         return (
           <div className="absolute right-[-40px] w-40 px-4 py-1 text-xs text-center rotate-45 top-[28px] select-none bg-yellow-700">
-            Client
+            {translate("projects.tag.client")}
           </div>
         );
       case "tutorial":
         return (
           <div className="absolute right-[-40px] w-40 px-4 py-1 text-xs text-center rotate-45 top-[28px] select-none bg-slate-500">
-            Tutorial
+            {translate("projects.tag.tutorial")}
           </div>
         );
       default:
@@ -54,15 +55,10 @@ export const ProjectCard = (props: ProjectCardInterface) => {
     <Card className="relative overflow-hidden select-none group">
       {showTag()}
       <div className="flex h-full">
-        <div className="flex items-center justify-center w-60 ">
-          <img
-            className="h-full"
-            src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?"
-            alt="Place Holder"
-          />
+        <div className="flex items-center justify-center basis-1/3">
+          <img className="h-full" src={image64} alt={imageName} />
         </div>
-
-        <div className="flex flex-col">
+        <div className="flex flex-col basis-2/3">
           <CardHeader>
             <CardTitle className="group-hover:text-primary">{title}</CardTitle>
             <CardDescription>{description}</CardDescription>
@@ -88,14 +84,14 @@ export const ProjectCard = (props: ProjectCardInterface) => {
               size={"sm"}
               onClick={onClickViewDemoHadndler}
             >
-              Preview
+              {translate("projects.button.preview")}
             </Button>
             <Button
               disabled={type === "confidential" || type === "client"}
               variant={"default"}
               size={"sm"}
             >
-              View Code
+              {translate("projects.button.viewCode")}
             </Button>
           </CardFooter>
         </div>

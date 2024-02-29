@@ -360,6 +360,8 @@ export const PROJECTS: ProjectInterface[] = [
     category: ["delivery app", "ecommerce", "admin dashboard"],
     url: "https://www.yoo.ph/login",
     type: "confidential",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: "Yoo PH Preview",
     stack: [
       {
         name: "laravel",
@@ -399,13 +401,18 @@ export const PROJECTS: ProjectInterface[] = [
     ],
   },
   {
-    title: "Sirius webPOS - Headquarter",
-    company: "Alliance Software Inc.",
+    title: translate("projects.siriusWebpos.title"),
+    company: translate("projects.siriusWebpos.company"),
     date: new Date(),
-    description: "test description",
-    category: ["delivery app", "webPOS", "admin dashboard"],
+    description: translate("projects.siriusWebpos.description"),
+    category: [
+      translate("projects.siriusWebpos.category.admin"),
+      translate("projects.siriusWebpos.category.webPos"),
+    ],
     url: "",
     type: "confidential",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: translate("projects.siriusWebpos.imageName"),
     stack: [
       {
         name: "Sprint Boot",
@@ -455,13 +462,15 @@ export const PROJECTS: ProjectInterface[] = [
     ],
   },
   {
-    title: "Unified Youth",
-    company: "Triad Software Digital Solutions",
+    title: translate("projects.unifiedYouth.title"),
+    company: translate("projects.unifiedYouth.company"),
     date: new Date(),
-    description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
+    description: translate("projects.unifiedYouth.description"),
+    category: [translate("projects.unifiedYouth.category.admin")],
     url: "https://www.yoo.ph/login",
     type: "client",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: translate("projects.unifiedYouth.imageName"),
     stack: [
       {
         name: "Spring Boot",
@@ -521,13 +530,15 @@ export const PROJECTS: ProjectInterface[] = [
     ],
   },
   {
-    title: "CountryScape",
-    company: "Triad Software Digital Solutions",
+    title: translate("projects.countryScape.title"),
+    company: translate("projects.countryScape.company"),
     date: new Date(),
-    description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
-    url: "https://www.yoo.ph/login",
+    description: translate("projects.countryScape.description"),
+    category: [translate("projects.countryScape.category.booking")],
+    url: "",
     type: "personal",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: translate("projects.countryScape.imageName"),
     stack: [
       {
         name: "React",
@@ -572,13 +583,15 @@ export const PROJECTS: ProjectInterface[] = [
     ],
   },
   {
-    title: "Hoobank",
-    company: "Mach95 Software Developer Corp.",
+    title: translate("projects.hoobank.title"),
+    company: undefined,
     date: new Date(),
-    description: "test description",
-    category: [],
+    description: translate("projects.hoobank.description"),
+    category: [translate("projects.hoobank.category.landing")],
     url: "",
     type: "tutorial",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: translate("projects.hoobank.imageName"),
     stack: [
       {
         name: "Vite",
@@ -608,13 +621,15 @@ export const PROJECTS: ProjectInterface[] = [
     ],
   },
   {
-    title: "IQMK",
-    company: "Mach95 Software Developer Corp.",
+    title: translate("projects.iqmk.title"),
+    company: translate("projects.iqmk.company"),
     date: new Date(),
-    description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
+    description: translate("projects.iqmk.description"),
+    category: [translate("projects.iqmk.category.landing")],
     url: "https://www.yoo.ph/login",
     type: "confidential",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: translate("projects.iqmk.imageName"),
     stack: [
       {
         name: "HTML",
@@ -639,13 +654,18 @@ export const PROJECTS: ProjectInterface[] = [
     ],
   },
   {
-    title: "Pawfectly Yours",
+    title: translate("projects.pawfectlyYours.title"),
     company: undefined,
     date: new Date(),
-    description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
+    description: translate("projects.pawfectlyYours.description"),
+    category: [
+      translate("projects.pawfectlyYours.category.ecommerce"),
+      translate("projects.pawfectlyYours.category.landing"),
+    ],
     url: "https://www.yoo.ph/login",
     type: "personal",
+    image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+    imageName: translate("projects.pawfectlyYours.imageName"),
     stack: [
       {
         name: "Spring Boot",
@@ -684,73 +704,77 @@ export const PROJECTS: ProjectInterface[] = [
       },
     ],
   },
-  {
-    title: "Doctrack",
-    company: undefined,
-    date: new Date(),
-    description: "test description",
-    category: ["delivery app", "ecommerce", "admin dashboard"],
-    url: "https://www.yoo.ph/login",
-    type: "client",
-    stack: [
-      {
-        name: "React Native",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "Firebase",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "Native Wind",
-        url: "",
-        isFavorite: false,
-      },
-    ],
-  },
-  {
-    title: "Tower of Hanoi",
-    company: undefined,
-    date: new Date(),
-    description: "test description",
-    category: ["game", "3D"],
-    url: "",
-    type: "personal",
-    stack: [
-      {
-        name: "Three JS",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "Typescript",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "GSAP",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "React",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "WebGL",
-        url: "",
-        isFavorite: false,
-      },
-      {
-        name: "Blender",
-        url: "",
-        isFavorite: false,
-      },
-    ],
-  },
+  // {
+  //   title: "Doctrack",
+  //   company: undefined,
+  //   date: new Date(),
+  //   description: "test description",
+  //   category: ["delivery app", "ecommerce", "admin dashboard"],
+  //   url: "https://www.yoo.ph/login",
+  //   type: "client",
+  //   image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+  //   imageName: "Doctrack Preview",
+  //   stack: [
+  //     {
+  //       name: "React Native",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "Firebase",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "Native Wind",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Tower of Hanoi",
+  //   company: undefined,
+  //   date: new Date(),
+  //   description: "test description",
+  //   category: ["game", "3D"],
+  //   url: "",
+  //   type: "personal",
+  //   image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+  //   imageName: "Tower of Hanoi Preview",
+  //   stack: [
+  //     {
+  //       name: "Three JS",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "Typescript",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "GSAP",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "React",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "WebGL",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //     {
+  //       name: "Blender",
+  //       url: "",
+  //       isFavorite: false,
+  //     },
+  //   ],
+  // },
 ];
 
 export const TYPE_ROLES: string[] = [
