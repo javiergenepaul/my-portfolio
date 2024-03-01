@@ -9,6 +9,7 @@ import {
 import { TechStackInterface } from "@/config";
 import { StackContent } from "./stack-content";
 import { ServiceCardInterface } from "./component-props";
+import React from "react";
 
 export const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;
@@ -22,8 +23,12 @@ export const ServiceCard = (props: ServiceCardInterface) => {
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter className="flex flex-wrap gap-2">
-        {stack?.map((stack: TechStackInterface) => {
-          return <StackContent {...stack} />;
+        {stack?.map((stack: TechStackInterface, index: React.Key) => {
+          return (
+            <React.Fragment key={index}>
+              <StackContent {...stack} />
+            </React.Fragment>
+          );
         })}
       </CardFooter>
     </Card>

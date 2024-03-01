@@ -6,7 +6,6 @@ export interface TechStackInterface {
 }
 
 export interface ServiceOfferInterface {
-  key?: string;
   title: string;
   description: string;
   subDetails?: string[];

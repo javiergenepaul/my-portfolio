@@ -9,7 +9,6 @@ export interface HighlightTextInterface {
 }
 
 export interface NavLinkInterface {
-  key: SelectedNavLink;
   name: string;
   path: string;
   selectedId: SelectedNavLink;
