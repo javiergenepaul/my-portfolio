@@ -10,7 +10,11 @@ import {
 import { ProjectInterface, TechStackInterface } from "@/config";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { CodeIndicator, KeyContributionIndicator } from "./indicator";
+import {
+  CodeIndicator,
+  DemoIndicator,
+  KeyContributionIndicator,
+} from "./indicator";
 import { ShowTag } from "./show-tag";
 import { Eye, EyeOff } from "lucide-react";
 import { translate } from "@/i18n";
@@ -48,10 +52,10 @@ export const ProjectCard = (props: ProjectCardInterface) => {
   return (
     <Card className="relative p-0 overflow-hidden">
       <ShowTag type={type} />
-      <div className="flex px-8 py-6 h-fit">
+      <div className="flex flex-col gap-4 px-4 py-6 xl:flex-row md:px-8 h-fit">
         <div
           className={twMerge(
-            "items-center lg:relative hidden justify-center overflow-hidden rounded-lg cursor-not-allowed select-none basis-2/5",
+            "items-center relative justify-center overflow-hidden rounded-lg cursor-not-allowed select-none md:basis-2/5",
             previewUrl ? "cursor-pointer" : ""
           )}
           onMouseEnter={onMouseEnterPreviewHandler}
@@ -76,8 +80,8 @@ export const ProjectCard = (props: ProjectCardInterface) => {
           </div>
           <img className="flex h-full" src={image64} alt={imageName} />
         </div>
-        <div className="flex flex-col lg:basis-3/5">
-          <CardHeader>
+        <div className="flex flex-col md:basis-3/5">
+          <CardHeader className="px-0 pt-0">
             <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
               <h3 className="font-bold">
                 <BounceText className="cursor-default" text={title} />
@@ -85,6 +89,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
             </CardTitle>
             <div className="flex gap-4">
               <KeyContributionIndicator contributions={["test"]} />
+              <DemoIndicator title={title} previewUrl={previewUrl} />
               <CodeIndicator title={title} codeUrl={codeUrl} />
             </div>
             <CardDescription className="flex flex-col gap-2 select-none">
@@ -94,7 +99,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
               {description}
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-wrap gap-2">
+          <CardContent className="flex flex-wrap gap-2 px-0 pb-0">
             {stack?.map((stack: TechStackInterface, index: React.Key) => {
               return (
                 <Badge key={index} className="cursor-pointer">

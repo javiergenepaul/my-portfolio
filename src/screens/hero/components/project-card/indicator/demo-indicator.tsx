@@ -6,6 +6,7 @@ import {
 } from "@/components";
 import { translate } from "@/i18n";
 import { Eye } from "lucide-react";
+import { IndicatorContainer } from "./indicator-container";
 
 interface DemoIndicatorInterface {
   title: string;
@@ -23,14 +24,14 @@ export const DemoIndicator = (props: DemoIndicatorInterface) => {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <div className="w-[40px] h-[40px] flex items-center justify-center">
+            <IndicatorContainer>
               <Eye
-                className="hover:text-primary"
+                className="block hover:text-primary md:hidden"
                 onClick={onClickDemoHandler}
                 width="1.2rem"
                 height="1.2rem"
               />
-            </div>
+            </IndicatorContainer>
           </TooltipTrigger>
           <TooltipContent>
             <span>
