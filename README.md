@@ -11,13 +11,13 @@ Welcome to my portfolio! 🚀 Here, I showcase my journey, projects, and experti
 Clone the project
 
 ```bash
-  git clone https://github.com/javiergenepaul/paul-javier.git
+  git clone https://github.com/javiergenepaul/my-portfolio.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd paul-javier
+  cd my-portfolio
 ```
 
 Install dependencies
