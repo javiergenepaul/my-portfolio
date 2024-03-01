@@ -4,18 +4,20 @@ import { FadeAnimationProps } from "./animation-props";
 export const FadeAnimation = (props: FadeAnimationProps) => {
   const { children } = props;
 
+  const duration: number = 1;
+
   const fadeVariants: Variants = {
     initial: {
       opacity: 0,
       transition: {
-        duration: 0.75,
+        duration: duration,
         ease: "easeOut",
       },
     },
     animate: {
       opacity: 1,
       transition: {
-        duration: 0.75,
+        duration: duration,
         ease: "easeOut",
       },
     },

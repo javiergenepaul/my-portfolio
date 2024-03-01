@@ -135,8 +135,9 @@
       "tutorial": "Tutorial"
     },
     "button": {
-      "preview": "Preview",
-      "viewCode": "viewCode"
+      "demo": "Demo",
+      "sourceCode": "Source Code",
+      "viewFullArchive": "View Full Project Archive"
     },
     "yoo": {
       "title": "YooPH",

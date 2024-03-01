@@ -1,3 +1,9 @@
+import { FadeAnimation } from "@/components";
+
 export const Project = () => {
-  return <div>Projects</div>;
+  return (
+    <FadeAnimation>
+      <div>Projects</div>
+    </FadeAnimation>
+  );
 };

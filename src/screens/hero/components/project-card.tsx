@@ -10,14 +10,28 @@ import {
 } from "@/components";
 import { ProjectInterface, TechStackInterface } from "@/config";
 import { translate } from "@/i18n";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
 export const ProjectCard = (props: ProjectCardInterface) => {
-  const { title, description, stack, type, url, image64, imageName } = props;
+  const {
+    title,
+    description,
+    stack,
+    type,
+    previewUrl,
+    codeUrl,
+    image64,
+    imageName,
+  } = props;
 
-  const onClickViewDemoHadndler = () => {
-    window.open(url, "_blank");
+  const onClickViewDemoHandler = () => {
+    window.open(previewUrl, "_blank");
+  };
+
+  const onClickSourceCodeHandler = () => {
+    window.open(codeUrl, "_blank");
   };
 
   const showTag = (): React.ReactNode => {
@@ -80,18 +94,28 @@ export const ProjectCard = (props: ProjectCardInterface) => {
           </CardContent>
           <CardFooter className="gap-4">
             <Button
+              className="flex justify-center gap-2 align-center"
               variant={"secondary"}
               size={"sm"}
-              onClick={onClickViewDemoHadndler}
+              onClick={onClickViewDemoHandler}
+              disabled={!previewUrl}
             >
-              {translate("projects.button.preview")}
+              {translate("projects.button.demo")}
+              {previewUrl ? (
+                <Icon icon="mdi:eye" width="1rem" height="1rem" />
+              ) : (
+                <Icon icon="mdi:eye-off" width="1rem" height="1rem" />
+              )}
             </Button>
             <Button
-              disabled={type === "confidential" || type === "client"}
+              className="flex justify-center gap-2 align-center"
+              disabled={type === "confidential" || !codeUrl}
               variant={"default"}
               size={"sm"}
+              onClick={onClickSourceCodeHandler}
             >
-              {translate("projects.button.viewCode")}
+              {translate("projects.button.sourceCode")}
+              <Icon icon="entypo:code" width="1rem" height="1rem" />
             </Button>
           </CardFooter>
         </div>
