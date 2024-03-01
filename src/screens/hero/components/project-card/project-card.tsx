@@ -76,9 +76,10 @@ export const ProjectCard = (props: ProjectCardInterface) => {
   const onClickPreviewUrl = () => {
     if (previewUrl) {
       window.open(previewUrl, "_blank");
-    } else {
-      navigate(PATH.CONFIDENTIAL.path);
-    }
+    } 
+    // else {
+    //   navigate(PATH.CONFIDENTIAL.path);
+    // }
   };
 
   return (

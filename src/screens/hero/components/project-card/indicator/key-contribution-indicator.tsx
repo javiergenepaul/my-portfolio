@@ -16,8 +16,8 @@ export const KeyContributionIndicator = (
           <Icon
             className="cursor-default"
             icon="ooui:user-contributions-ltr"
-            width="1rem"
-            height="1rem"
+            width="1.2rem"
+            height="1.2rem"
           />
         </HoverCardTrigger>
         <HoverCardContent side="right">
