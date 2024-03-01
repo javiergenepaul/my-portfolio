@@ -8,17 +8,17 @@ import { TechStackInterface } from "@/config";
 import { StackDetails } from ".";
 
 export const StackContent = (stack: TechStackInterface) => {
+  const { name, url } = stack;
+
+  const onClickBadgeHandler = () => {
+    window.open(url, "_blank");
+  };
+  
   return (
     <HoverCard>
       <HoverCardTrigger>
-        <Badge className="cursor-pointer">
-          {stack.url ? (
-            <a href={stack.url} target="_blank" rel="noreferrer">
-              {stack.name}
-            </a>
-          ) : (
-            stack.name
-          )}
+        <Badge className="cursor-pointer" onClick={onClickBadgeHandler}>
+          {name}
         </Badge>
       </HoverCardTrigger>
       <HoverCardContent side="top">

@@ -7,13 +7,10 @@ import {
   ProjectSection,
   ServiceSection,
 } from "./sections";
+import { FadeAnimation } from "@/components";
 
 export const Hero = () => {
-  const { setSelectedNav, setOnScrollNav, selectedNav } = useNavLinkStore();
-
-  useEffect(() => {
-    console.log(selectedNav);
-  }, [selectedNav]);
+  const { setSelectedNav, setOnScrollNav } = useNavLinkStore();
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -23,25 +20,24 @@ export const Hero = () => {
     setSelectedNav("services");
   }, []);
 
-  const isSectionPartiallyInView = (data: {
-    sectionTop: number;
-    sectionBottom: number;
-  }): boolean => {
-    const { sectionTop, sectionBottom } = data;
-    const sectionHeight = sectionBottom - sectionTop;
-    const margin = sectionHeight * 0.5;
-
-    const inside: boolean =
-      sectionTop + margin < scrollY && sectionBottom + margin > scrollY;
-
-    return inside;
-  };
-
   useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>(".section");
+
     const handleScroll = (): void => {
-      const sections = document.querySelectorAll<HTMLElement>(".section");
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const middleScrollPosition = scrollY + viewportHeight / 2;
+
       sections.forEach((section: HTMLElement) => {
-        if (isInViewport(section)) {
+        const rect = section.getBoundingClientRect();
+        const scrollTop =
+          window.scrollY ||
+          window.pageYOffset ||
+          document.documentElement.scrollTop;
+        const top = rect.top + scrollTop;
+        const bottom = rect.bottom + scrollTop;
+
+        if (top < middleScrollPosition && bottom > middleScrollPosition) {
           setOnScrollNav(section.id as SelectedNavLink);
         }
       });
@@ -54,26 +50,19 @@ export const Hero = () => {
     };
   }, []);
 
-  const isInViewport = (element: HTMLElement): boolean => {
-    const rect = element.getBoundingClientRect();
-
-    return isSectionPartiallyInView({
-      sectionTop: rect.top,
-      sectionBottom: rect.bottom,
-    });
-  };
-
   return (
-    <div className="lg:flex lg:justify-between lg:gap-4">
-      <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-2/5 lg:flex-col lg:justify-between lg:py-24">
-        <HeaderSection />
-      </header>
-      <main className="flex flex-col lg:w-3/5 lg:min-h-screen snap-y">
-        <ServiceSection />
-        <ProjectSection />
-        <ContactSection />
-        <FooterSection />
-      </main>
-    </div>
+    <FadeAnimation>
+      <div className="lg:flex lg:justify-between lg:gap-4">
+        <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-2/5 lg:flex-col lg:justify-between lg:py-24">
+          <HeaderSection />
+        </header>
+        <main className="flex flex-col lg:w-3/5 lg:min-h-screen snap-y">
+          <ServiceSection />
+          <ProjectSection />
+          <ContactSection />
+          <FooterSection />
+        </main>
+      </div>
+    </FadeAnimation>
   );
 };

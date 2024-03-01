@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from "@/components";
 import { Icon } from "@iconify/react";
-import { SocialMediaLinksInterface } from "./component-props";
+import { SocialMediaLinksInterface } from "../component-props";
 
 export const SocialButton = (props: SocialMediaLinksInterface) => {
   const { icon, title, url } = props;

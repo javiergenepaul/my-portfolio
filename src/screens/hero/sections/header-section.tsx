@@ -33,7 +33,7 @@ export const HeaderSection = () => {
         <Link className="focus:outline-none" to={PATH.ABOUT.path}>
           <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
             <BounceText
-              className="outline-none ring-0 focus:outline-none"
+              className="font-bold outline-none ring-0 focus:outline-none"
               text={translate("header.name")}
             />
           </h1>
@@ -55,15 +55,13 @@ export const HeaderSection = () => {
           aria-label={translate("header.ariaLabel.navigationLinks")}
         >
           <ul className="mt-12 w-max">
-            {NAV_LINKS.map((nav: NavLinkInterface) => (
-              <React.Fragment key={nav.key}>
-                <NavLinks
-                  key={nav.key}
-                  name={nav.name}
-                  path={nav.path}
-                  selectedId={nav.selectedId}
-                />
-              </React.Fragment>
+            {NAV_LINKS.map((nav: NavLinkInterface, index: React.Key) => (
+              <NavLinks
+                key={index}
+                name={nav.name}
+                path={nav.path}
+                selectedId={nav.selectedId}
+              />
             ))}
           </ul>
         </nav>

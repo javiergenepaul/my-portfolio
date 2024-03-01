@@ -30,7 +30,7 @@ export const RubberAnimation = (props: RubberAnimationInterface) => {
   return (
     <motion.span
       className={twMerge(
-        "inline-block cursor-pointer hover:text-primar",
+        "inline-block cursor-pointer hover:text-primary",
         className
       )}
       // className={`inline-block cursor-pointer hover:text-primary ${

@@ -77,7 +77,6 @@
       "mobx": "Mobx",
       "html": "HTML",
       "jquery": "jQuery",
-      "blade": "Blade",
       "css": "CSS",
       "tailwind": "Tailwind CSS",
       "shadCn": "ShadCN",
@@ -98,7 +97,6 @@
       "i18n": "i18Next",
       "axios": "Axios",
       "reactQuery": "React Query",
-
       "springBoot": "Spring Boot",
       "springSecurity": "Spring Security",
       "springSecurityOAuth": "Spring Security OAuth",
@@ -110,7 +108,11 @@
       "mockito": "Mockito",
       "postman": "Postman",
       "jwt": "Json Web Token (JWT)",
-
+      "laravel": "Laravel",
+      "php": "PHP",
+      "blade": "Blade",
+      "bootstrap": "Bootstrap",
+      "mvc": "MVC",
       "linux": "Linux",
       "azure": "Azure",
       "aws": "Amazon Web Services",
@@ -122,9 +124,15 @@
       "cicd": "CI/CD",
       "netlify": "Netlify",
       "heroku": "Heroku",
-
+      "vitest": "Vitest",
+      "microservices": "Microservices",
       "figma": "Figma",
-      "frontend": "Front-End"
+      "frontend": "Front-End",
+      "figmaToHTML": "Figma to HTML",
+      "figmaToReact": "Figma to React",
+      "attentionToDetails": "Attention to Details",
+      "pixelPerfect": "Pixel Perfect",
+      "landingPage": "Landing Page"
     }
   },
   "projects": {
@@ -135,13 +143,22 @@
       "tutorial": "Tutorial"
     },
     "button": {
-      "preview": "Preview",
-      "viewCode": "viewCode"
+      "sourceCode": "Code on GitHub",
+      "viewFullArchive": "View Full Project Archive"
+    },
+    "indicator": {
+      "description": "Description",
+      "viewDemo": "View Demo",
+      "sourceCode": "Source Code",
+      "contribution": "Contributions",
+      "demoUnavailable": "Demo Unavailable",
+      "demoAvailable": "{{title}} - Demo Available",
+      "codeAvaialble": "{{title}} - Github Code Available"
     },
     "yoo": {
       "title": "YooPH",
       "company": "Mach95 Software Developer Corp",
-      "description": "testDescription",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageName": "Yoo PH Preview",
       "category": {
         "deliveryApp": "Delivery Application",
@@ -152,7 +169,7 @@
     "siriusWebpos": {
       "title": "Sirius WebPOS - Headquarter",
       "company": "Alliance Software Inc.",
-      "description": "testDescription",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "category": {
         "webPos": "WebPOS",
         "admin": "Admin Dashboard"
@@ -162,7 +179,7 @@
     "unifiedYouth": {
       "title": "Unified Youth",
       "company": "Triad Software Digital Solutions",
-      "description": "testDescription",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageName": "Unified Youth Preview",
       "category": {
         "admin": "Admin Dashboard"
@@ -171,7 +188,7 @@
     "countryScape": {
       "title": "CountryScape",
       "company": "Triad Software Digital Solutions",
-      "description": "testDescription",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageName": "Country Scape Preview",
       "category": {
         "booking": "Hotel Booking"
@@ -179,7 +196,7 @@
     },
     "hoobank": {
       "title": "Hoobank",
-      "description": "testDescription",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageName": "Country",
       "category": {
         "landing": "Landing Page"
@@ -188,15 +205,15 @@
     "iqmk": {
       "title": "IQMK",
       "company": "Mach95 Software Developer Corp.",
-      "description": "testDescription",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
       }
     },
     "pawfectlyYours": {
-      "title": "Pawfecly Your",
-      "description": "testDescription",
+      "title": "Pawfecly Yours",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "imageName": "IQMK Preview",
       "category": {
         "ecommerce": "ecommerce",

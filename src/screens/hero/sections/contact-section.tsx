@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components";
 import { translate } from "@/i18n";
-import { ContactForm } from "../components/contact-form";
+import { ContactForm } from "../components/contact";
 import ContactLogo from "../../../assets/contact-logo.svg";
 
 export const ContactSection = () => {
@@ -11,8 +11,8 @@ export const ContactSection = () => {
       aria-label="Contacts"
     >
       <Card className="py-8">
-        <CardHeader className="gap-10 pb-10">
-          <img
+        <CardHeader className="gap-10 pb-10 select-none">
+          <img 
             src={ContactLogo}
             alt="jav-logo.svg"
             className="w-[74px] h-[74px]"

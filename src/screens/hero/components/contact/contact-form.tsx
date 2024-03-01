@@ -123,7 +123,7 @@ export const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button className="mt-8" type="submit">
+        <Button className="mt-8 select-none" type="submit">
           {translate("contact.button.submit")}
         </Button>
       </form>

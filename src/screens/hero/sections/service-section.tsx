@@ -9,10 +9,12 @@ export const ServiceSection = () => {
       id="services"
       aria-label={translate("header.ariaLabel.serviceSection")}
     >
-      <div className="flex flex-col gap-4">
-        {SERVICE_OFFER.map((service: ServiceOfferInterface) => {
-          return <ServiceCard {...service} />;
-        })}
+      <div className="flex flex-col gap-8">
+        {SERVICE_OFFER.map(
+          (service: ServiceOfferInterface, index: React.Key) => {
+            return <ServiceCard key={index} {...service} />;
+          }
+        )}
       </div>
     </section>
   );

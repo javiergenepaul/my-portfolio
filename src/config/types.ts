@@ -6,7 +6,6 @@ export interface TechStackInterface {
 }
 
 export interface ServiceOfferInterface {
-  key?: string;
   title: string;
   description: string;
   subDetails?: string[];
@@ -18,11 +17,14 @@ export interface ProjectInterface {
   description: string;
   date: Date;
   keyContribution?: string[];
-  image64: string,
-  imageName: string,
+  image64: string;
+  imageName: string;
   company: string | undefined;
   category: string[];
-  url?: string | undefined;
-  type: "confidential" | "client" | "personal" | "tutorial";
+  previewUrl?: string | undefined;
+  codeUrl?: string | undefined;
+  type: ProjectType;
   stack?: TechStackInterface[];
 }
+
+export type ProjectType = "confidential" | "client" | "personal" | "tutorial";

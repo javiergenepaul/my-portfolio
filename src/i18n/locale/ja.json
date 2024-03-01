@@ -1,27 +1,45 @@
 {
-  "appName": "ジャヴズポートフォリオ - {{title}}",
+  "theme": {
+    "light": "ライトモード",
+    "dark": "ダークモード",
+    "system": "システム"
+  },
+  "resume": {
+    "btnName": "履歴書のダウンロード"
+  },
+  "errorMessages": {
+    "required": "この項目は必須です。",
+    "invalidEmail": "有効なメールアドレスを入力してください。",
+    "maximumCharacter": "最大文字数制限を超えました。 {{count}} 文字以下。"
+  },
+  "moreInfo": "より詳しい情報",
+  "appName": "Javz ポートフォリオ - {{title}}",
   "path": {
     "pageNotFound": "ページが見つかりません",
-    "home": "ホーム",
-    "about": "自己紹介",
+    "home": "家",
+    "about": "について",
     "project": "プロジェクト",
     "skills": "スキル",
     "contacts": "連絡先"
   },
+  "more": {
+    "show": "もっと見せる",
+    "hide": "表示を減らす"
+  },
   "header": {
-    "name": "ジーン ポール マー ジャビエル",
-    "shortName": "ピ",
-    "description": "フルスタック開発者として、私は卓越したデジタルエクスペリエンスを創造することにコミットしています：ピクセルパーフェクトで魅力的かつアクセス可能なウェブサイトを精密かつ丁寧に構築し、堅牢なAPIを活用してシームレスな機能を提供します。",
+    "name": "ジーン・ポール・マー・ハビエル",
+    "shortName": "パジャマ",
+    "description": "Fullstack 開発者として、私は卓越したデジタル エクスペリエンスを作成することに尽力しています。シームレスな機能のための堅牢な API を活用して、ピクセルに完璧で魅力的でアクセスしやすい Web サイトを精度と注意をもって構築します。",
     "ariaLabel": {
       "navigationLinks": "ナビゲーションリンク",
       "socialMedia": "ソーシャルメディア",
-      "themeSwitch": "テーマ切り替え",
+      "themeSwitch": "テーマスイッチ",
       "serviceSection": "サービスセクション"
     },
     "navLinks": {
       "services": "サービス",
       "projects": "プロジェクト",
-      "contacts": "コンタクト"
+      "contacts": "連絡先"
     },
     "socialMediaLinks": {
       "github": "ギットハブ",
@@ -31,36 +49,210 @@
     "typeRole": {
       "fullStack": "フルスタック開発者",
       "reactTypescript": "React TypeScript 開発者",
-      "springBoot": "Spring Boot 開発者",
-      "uiuxAdvocate": "UI/UX アドボケイト",
+      "springBoot": "スプリングブート開発者",
+      "uiuxAdvocate": "UI/UX アドボケート",
       "uiLibraryEnthusiasts": "UI ライブラリの愛好家"
-    }
+    },
+    "aboutMe": "私について"
   },
   "services": {
-    "fullStack": {
-      "title": "フルスタック開発ソリューション",
-      "description": "フルスタック開発ソリューションを提供し、フロントエンドからバックエンドまでプロジェクトのすべての側面をカバーします。ReactとTypeScriptを使用したフロントエンド開発、およびSpring BootとMySQLを使用したバックエンドで、シームレスな統合と堅牢な機能性を確保します。Webアプリケーション、API開発、またはデータベース管理が必要かどうかにかかわらず、フルスタック開発の専門知識により、ニーズに合わせた包括的なソリューションを提供します。"
+    "backend": {
+      "title": "バックエンド開発",
+      "description": "私のバックエンド開発サービスでは、Spring Boot Java マイクロサービスを実装して堅牢な API を作成し、バックエンド インフラストラクチャの信頼性、スケーラビリティ、セキュリティを確保することに特化しています。 "
     },
-    "webApp": {
-      "title": "カスタムWebアプリケーション開発",
-      "description": "カスタムWebアプリケーション開発サービスでは、お客様のビジョンを完全なデジタル製品に変換します。コンセプトから展開まで、お客様の要件を詳細に把握し、カスタマイズされたソリューションを提供します。Reactなどの最新のフロントエンドフレームワークとSpring Bootなどのバックエンド技術を活用して、スケーラブルでレスポンシブでユーザーフレンドリーなWebアプリケーションを作成します。"
+    "frontend": {
+      "title": "フロントエンド開発",
+      "description": "私のフロントエンド開発サービスでは、TypeScript と、Tailwind CSS、ShadCN、NextUI、カスタム CSS などのさまざまなライブラリを使用して React を使用して、魅力的なユーザー インターフェイスを作成することに特化しています。"
     },
     "designImplementation": {
-      "title": "UI/UXデザインの統合と実装",
-      "description": "UI/UXデザインの統合と実装サービスは、デザインと開発の間のギャップを埋め、お客様のビジョンをシームレスに実行します。提供されたデザインを取り、ピクセルパーフェクトでレスポンシブなユーザーインターフェースに変換します。フロントエンドの専門知識と効率的なデザイン統合技術を組み合わせることで、すべてのデバイスで直感的で視覚的に魅力的なエクスペリエンスを提供します。"
+      "title": "Figma から Web へ: 魅力的なデザインを作成する",
+      "description": "Figma デザインの実装サービスでは、プロセス全体を通して細部への細心の注意を優先し、デザイン コンセプトを魅力的で完全に動作する Web サイトにシームレスに変換することに優れています。"
+    },
+    "stack": {
+      "vite": "ヴィーテ",
+      "react": "反応する",
+      "typescript": "タイプスクリプト",
+      "javascript": "JavaScript",
+      "zustand": "ズスタンド",
+      "mobx": "モブエックス",
+      "html": "HTML",
+      "jquery": "jQuery",
+      "css": "CSS",
+      "tailwind": "追い風CSS",
+      "shadCn": "シャッドCN",
+      "mui": "マテリアルUI",
+      "chakraUi": "チャクラUI",
+      "antDesign": "アリデザイン",
+      "nextUi": "次のUI",
+      "chartJs": "チャートJS",
+      "npm": "故宮",
+      "pnpm": "PNPM",
+      "yarn": "糸",
+      "gsap": "GSAP",
+      "threeJs": "三JS",
+      "framerMotion": "フレーマーモーション",
+      "jest": "冗談",
+      "enzyme": "酵素",
+      "cypress": "ヒノキ",
+      "i18n": "i18次へ",
+      "axios": "アクシオス",
+      "reactQuery": "クエリに反応する",
+      "springBoot": "スプリングブーツ",
+      "springSecurity": "スプリングセキュリティ",
+      "springSecurityOAuth": "Spring Security OAuth",
+      "springJDBC": "Spring を使用した JDBC",
+      "api": "API",
+      "java": "ジャワ",
+      "mySQL": "MySQL",
+      "junit": "JUnit",
+      "mockito": "モキト",
+      "postman": "郵便屋さん",
+      "jwt": "Json Web トークン (JWT)",
+      "laravel": "ララベル",
+      "php": "PHP",
+      "blade": "刃",
+      "bootstrap": "ブートストラップ",
+      "mvc": "MVC",
+      "linux": "Linux",
+      "azure": "アズール",
+      "aws": "アマゾン ウェブ サービス",
+      "azurePipelineAgent": "Azure パイプライン エージェント",
+      "firebase": "ファイアベース",
+      "git": "ギット",
+      "nginx": "Nginx",
+      "centOS": "CentOS",
+      "cicd": "CI/CD",
+      "netlify": "ネットリファイ",
+      "heroku": "Heroku",
+      "vitest": "ヴィテスト",
+      "microservices": "マイクロサービス",
+      "figma": "フィグマ",
+      "frontend": "フロントエンド",
+      "figmaToHTML": "Figma から HTML へ",
+      "figmaToReact": "リアクションするフィグマ",
+      "attentionToDetails": "細部へのこだわり",
+      "pixelPerfect": "ピクセルパーフェクト",
+      "landingPage": "ランディングページ"
+    }
+  },
+  "projects": {
+    "tag": {
+      "confidential": "機密",
+      "personal": "個人的",
+      "client": "クライアント",
+      "tutorial": "チュートリアル"
+    },
+    "button": {
+      "sourceCode": "GitHub 上のコード",
+      "viewFullArchive": "プロジェクトのアーカイブ全体を表示"
+    },
+    "indicator": {
+      "description": "説明",
+      "viewDemo": "デモを見る",
+      "sourceCode": "ソースコード",
+      "contribution": "貢献",
+      "demoUnavailable": "デモは利用できません",
+      "demoAvailable": "{{title}} - デモが利用可能",
+      "codeAvaialble": "{{title}} - Github コードが利用可能"
+    },
+    "yoo": {
+      "title": "よーPH",
+      "company": "Mach95 ソフトウェア デベロッパー コーポレーション",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "imageName": "ユ PH プレビュー",
+      "category": {
+        "deliveryApp": "配送申請",
+        "ecommerce": "eコマース",
+        "admin": "管理者ダッシュボード"
+      }
+    },
+    "siriusWebpos": {
+      "title": "シリウス WebPOS - 本社",
+      "company": "アライアンスソフトウェア株式会社",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
+      "category": {
+        "webPos": "WebPOS",
+        "admin": "管理者ダッシュボード"
+      },
+      "imageName": "WebPOS プレビュー"
+    },
+    "unifiedYouth": {
+      "title": "統一青少年",
+      "company": "トライアド ソフトウェア デジタル ソリューション",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "imageName": "統一青少年プレビュー",
+      "category": {
+        "admin": "管理者ダッシュボード"
+      }
+    },
+    "countryScape": {
+      "title": "田舎の風景",
+      "company": "トライアド ソフトウェア デジタル ソリューション",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
+      "imageName": "カントリースケーププレビュー",
+      "category": {
+        "booking": "ホテルの予約"
+      }
+    },
+    "hoobank": {
+      "title": "フーバンク",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "imageName": "国",
+      "category": {
+        "landing": "ランディングページ"
+      }
+    },
+    "iqmk": {
+      "title": "IQMK",
+      "company": "Mach95 ソフトウェア デベロッパー コーポレーション",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "imageName": "IQMK プレビュー",
+      "category": {
+        "landing": "ランディングページ"
+      }
+    },
+    "pawfectlyYours": {
+      "title": "素敵にあなたのもの",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
+      "imageName": "IQMK プレビュー",
+      "category": {
+        "ecommerce": "eコマース",
+        "landing": "ランディングページ"
+      }
+    }
+  },
+  "contact": {
+    "keepInTouch": "これからも連絡取り合おうね",
+    "placeHolder": {
+      "name": "名前",
+      "email": "Eメール",
+      "message": "メッセージ"
+    },
+    "button": {
+      "submit": "提出する"
+    },
+    "toast": {
+      "success": {
+        "title": "電子メールの送信が成功しました",
+        "description": "メールを送信していただきありがとうございます。"
+      },
+      "error": {
+        "title": "メール送信エラー!!!",
+        "description": "おっとっと！"
+      }
     }
   },
   "footer": {
-    "content_one": "以下のインスピレーションを受けてデザインされました",
-    "creditsOwner": "ブリタニー・チャンの",
-    "content_two": "レイアウトを",
-    "figma": "Figma",
-    "content_three": "で作成し、",
-    "visualStudioCode": "Visual Studio Code",
-    "content_four": "で手作りしました。構築には",
-    "vite": "Vite、",
-    "react": "React、",
-    "tailwind": "Tailwind CSS",
-    "content_five": "を使用し、シームレスで効率的な開発体験を提供します。"
+    "content_one": "～からインスピレーションを得てデザインされました",
+    "creditsOwner": "ブリタニー・チャンさん",
+    "content_two": "のレイアウト",
+    "figma": "フィグマ",
+    "content_three": "丁寧に作られています",
+    "visualStudioCode": "Visual Studio コード",
+    "content_four": "本当にあなたによって。",
+    "vite": "ヴィテ、",
+    "react": "反応して、",
+    "tailwind": "追い風CSS",
+    "content_five": "シームレスで効率的な開発エクスペリエンスを保証します。"
   }
 }
