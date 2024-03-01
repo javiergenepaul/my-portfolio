@@ -2,13 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PATH } from "./src/config";
 import * as Screens from "./src/screens";
 import { HeaderTitleProvider } from "@/providers";
+import SideBarLayout from "@/layout/sidebar-layout";
 
 const AppScreen = (props: { component: React.ReactNode }) => {
   const { component } = props;
 
   return (
     <HeaderTitleProvider>
-      {component}
+      <SideBarLayout>{component}</SideBarLayout>
     </HeaderTitleProvider>
   );
 };

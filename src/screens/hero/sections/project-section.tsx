@@ -2,7 +2,7 @@ import { PATH, PROJECTS, ProjectInterface } from "@/config";
 import { Button } from "@/components";
 import { useNavigate } from "react-router-dom";
 import { translate } from "@/i18n";
-import { ProjectCard } from "../components";
+import { ProjectCard } from "@/screens";
 
 interface Data {
   type: "confidential" | "client" | "personal" | "tutorial";

@@ -1,17 +1,18 @@
 import React from "react";
-import { ThemeProvider } from "./ThemeProvider";
+import ContactLogo from "../assets/contact-logo.svg";
+import { translate } from "@/i18n";
+import { BackgroundAnimation, SideBar } from "@/components";
+import { DEV_MODE } from "@/config";
 
-interface MainContainerProviderInterface {
+interface SideBarLayoutInterface {
   children: React.ReactNode;
 }
 
-const MainContainerProvider = (props: MainContainerProviderInterface) => {
+const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
-
   return (
-    <ThemeProvider>
-      {children}
-      {/* <nav className="w-full h-fit py-2.5 px-6 bg-primary/60 backdrop-blur-xl z-[60] text-white sticky top-0">
+    <>
+      <nav className="block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-4">
             <img
@@ -31,10 +32,9 @@ const MainContainerProvider = (props: MainContainerProviderInterface) => {
       >
         <BackgroundAnimation />
         {children}
-      </main> */}
-    </ThemeProvider>
+      </main>
+    </>
   );
 };
 
-export { MainContainerProvider };
-export type { MainContainerProviderInterface };
+export default SideBarLayout;
