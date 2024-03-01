@@ -1,27 +1,45 @@
 {
-  "appName": "Portfolio ni Javz - {{title}}",
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "Sistema"
+  },
+  "resume": {
+    "btnName": "I-download ang Resume"
+  },
+  "errorMessages": {
+    "required": "Kinakailangan ang field na ito. ",
+    "invalidEmail": "Mangyaring magpasok ng wastong email address.",
+    "maximumCharacter": "Lumampas sa maximum na limitasyon ng character.  {{count}} mga character o mas kaunti."
+  },
+  "moreInfo": "Karagdagang impormasyon",
+  "appName": "Javz Portfolio - {{title}}",
   "path": {
-    "pageNotFound": "Hindi mahanap ang pahina",
-    "home": "Home",
-    "about": "Tungkol",
-    "project": "Mga Proyekto Ko",
-    "skills": "Aking mga Kakayahan",
-    "contacts": "Makipag-ugnayan sa Akin"
+    "pageNotFound": "hindi natagpuan ang pahina",
+    "home": "Bahay",
+    "about": "Tungkol sa",
+    "project": "Proyekto",
+    "skills": "Mga kasanayan",
+    "contacts": "Mga contact"
+  },
+  "more": {
+    "show": "Ipakita ang Higit Pa",
+    "hide": "Magpakita ng Mas Kaunti"
   },
   "header": {
     "name": "Gene Paul Mar Javier",
     "shortName": "PJ",
-    "description": "Bilang isang Fullstack Developer, Ako ay may Commitment sa paglikha ng mga Lubos na Digital na Karanasan: Pagbuo ng mga Pixel-Perfect, Engaging, at Accessible na mga Website na may Kaliwanagan at Malasakit, Paggamit ng Matatag na mga API para sa Maginhawang Pag-andar",
+    "description": "Bilang Fullstack Developer, Nakatuon Ako sa Paggawa ng Mga Pambihirang Digital na Karanasan: Pagbuo ng Pixel-Perfect, Nakakaengganyo, at Naa-access na mga Website nang may Katumpakan at Pangangalaga, Paggamit ng Matatag na mga API para sa Seamless Functionality.",
     "ariaLabel": {
-      "navigationLinks": "Mga Link sa Navigasyon",
+      "navigationLinks": "Mga Link sa Nabigasyon",
       "socialMedia": "Social Media",
-      "themeSwitch": "Pagpapalit ng Tema",
-      "serviceSection": "Bahagi ng Serbisyo"
+      "themeSwitch": "Lumipat ng Tema",
+      "serviceSection": "Seksyon ng Serbisyo"
     },
     "navLinks": {
-      "services": "Mga Serbisyo",
-      "projects": "Mga Proyekto",
-      "contacts": "Mga Kontakto"
+      "services": "Mga serbisyo",
+      "projects": "Mga proyekto",
+      "contacts": "Mga contact"
     },
     "socialMediaLinks": {
       "github": "Github",
@@ -31,36 +49,210 @@
     "typeRole": {
       "fullStack": "Full-Stack Developer",
       "reactTypescript": "React TypeScript Developer",
-      "springBoot": "Spring Boot Developer",
-      "uiuxAdvocate": "Advocate ng UI/UX",
-      "uiLibraryEnthusiasts": "Tagahanga ng UI Library"
-    }
+      "springBoot": "Developer ng Spring Boot",
+      "uiuxAdvocate": "Tagapagtaguyod ng UI/UX",
+      "uiLibraryEnthusiasts": "Mga Mahilig sa UI Library"
+    },
+    "aboutMe": "Tungkol sa Akin"
   },
   "services": {
-    "fullStack": {
-      "title": "FullStack Development",
-      "description": "Sa aking mga solusyon sa buong stack ng pagpapaunlad, sinusunod ko ang bawat aspeto ng iyong proyekto, mula sa frontend hanggang sa backend. Gamit ang mga teknolohiyang tulad ng React na may TypeScript para sa pagpapaunlad ng frontend at Spring Boot na may MySQL para sa backend, tiyakin kong walang putol na integrasyon at matatag na kakayahan. Maging kailangan mo ng isang web application, pagpapaunlad ng API, o pamamahala ng database, ang aking kasanayan sa buong stack ng pagpapaunlad ay nagbibigay ng kumpletong solusyon na naaangkop sa iyong mga pangangailangan."
+    "backend": {
+      "title": "Back-end Development",
+      "description": "Sa aking serbisyo sa pag-develop ng backend, dalubhasa ako sa pagpapatupad ng Spring Boot Java Microservices upang gumawa ng mga matatag na API, na tinitiyak ang pagiging maaasahan, scalability, at seguridad ng iyong imprastraktura sa backend. "
     },
-    "webApp": {
-      "title": "Pamamahalang Pantalang Pang-Web Development",
-      "description": "Sa aking serbisyong pantalang pang-web na pagpapaunlad, binabago ko ang iyong pangitain tungo sa isang ganap na gumagana na digital na produkto. Mula sa konsepto hanggang sa paglunsad, malapit akong makipagtulungan sa iyo upang maunawaan ang iyong mga kinakailangan at magbigay ng mga naaangkop na solusyon. Sa paggamit ng mga pinakabagong framework ng frontend tulad ng React at mga teknolohiyang backend tulad ng Spring Boot, lumilikha ako ng mga maigsing responsive, at user-friendly na web applications na nagpapalakas sa iyong negosyo at nakakabighani sa iyong audience."
+    "frontend": {
+      "title": "Front-end Development",
+      "description": "Sa aking front-end na serbisyo sa pagpapaunlad, dalubhasa ako sa paggawa ng mga nakakaengganyong user interface gamit ang React with TypeScript at iba't ibang library tulad ng Tailwind CSS, ShadCN, NextUI, at custom na CSS. "
     },
     "designImplementation": {
-      "title": "Pagpapatupad at Implementasyon ng Disenyo ng UI/UX",
-      "description": "Ang aking serbisyong pagpapatupad at implementasyon ng disenyo ng UI/UX ay nagtutugma sa pagitan ng disenyo at pagpapaunlad, tiyakin ang walang putol na pagpapatupad ng iyong pangitain. Kinukuha ko ang iyong ibinigay na mga disenyo at isinasalin ang mga ito sa mga perfectong piksel, responsive na mga user interfaces. Sa pamamagitan ng pagkombina ng aking kasanayan sa frontend at mga mabisang pamamaraan sa pagpapatupad ng disenyo, nagbibigay ako ng mga intuwitibong at nakakabighaning mga karanasan sa lahat ng mga aparato. Maging mayroon ka mang mga disenyo o gumagamit ng mga UI libraries, tiyakin ko na ang iyong digital na produkto ay sumasalamin sa iyong pagkakakilanlan ng tatak at nagpapaligaya sa iyong mga tagagamit."
+      "title": "Mula sa Figma hanggang sa Web: Paggawa ng Mga Makatawag-pansin na Disenyo",
+      "description": "Sa aking serbisyo para sa pagpapatupad ng mga disenyo ng Figma, mahusay ako sa walang putol na pagbabago ng mga konsepto ng disenyo sa mga website na mapang-akit at ganap na gumagana, na inuuna ang masusing atensyon sa detalye sa buong proseso. "
+    },
+    "stack": {
+      "vite": "Vite",
+      "react": "React",
+      "typescript": "Typescript",
+      "javascript": "JavaScript",
+      "zustand": "Zustand",
+      "mobx": "Mobx",
+      "html": "HTML",
+      "jquery": "jQuery",
+      "css": "CSS",
+      "tailwind": "Tailwind CSS",
+      "shadCn": "ShadCN",
+      "mui": "Materyal na UI",
+      "chakraUi": "Chakra UI",
+      "antDesign": "Ant-Design",
+      "nextUi": "Next UI",
+      "chartJs": "ChartJS",
+      "npm": "NPM",
+      "pnpm": "PNPM",
+      "yarn": "sinulid",
+      "gsap": "GSAP",
+      "threeJs": "ThreeJS",
+      "framerMotion": "Framer Motion",
+      "jest": "Jest",
+      "enzyme": "Enzyme",
+      "cypress": "Cypress",
+      "i18n": "i18next",
+      "axios": "Axios",
+      "reactQuery": "React Query",
+      "springBoot": "Spring Boot",
+      "springSecurity": "Seguridad sa tagsibol",
+      "springSecurityOAuth": "Spring Security OAuth",
+      "springJDBC": "JDBC kasama si Spring",
+      "api": "API",
+      "java": "Java",
+      "mySQL": "MySql",
+      "junit": "JUnit",
+      "mockito": "Mockito",
+      "postman": "Postman",
+      "jwt": "Json Web Token (JWT)",
+      "laravel": "Laravel",
+      "php": "PHP",
+      "blade": "Talim",
+      "bootstrap": "Bootstrap",
+      "mvc": "MVC",
+      "linux": "Linux",
+      "azure": "Azure",
+      "aws": "Amazon Web Services",
+      "azurePipelineAgent": "Azure Agent Pipeline",
+      "firebase": "Firebase",
+      "git": "Git",
+      "nginx": "Nginx",
+      "centOS": "CentOS",
+      "cicd": "CI/CD",
+      "netlify": "Netlify",
+      "heroku": "Heroku",
+      "vitest": "Vitest",
+      "microservices": "Mga microservice",
+      "figma": "Figma",
+      "frontend": "Front-End",
+      "figmaToHTML": "Figma sa HTML",
+      "figmaToReact": "Figma to React",
+      "attentionToDetails": "Atensyon sa mga detalye",
+      "pixelPerfect": "Pixel Perfect",
+      "landingPage": "Landing Page"
+    }
+  },
+  "projects": {
+    "tag": {
+      "confidential": "Kumpidensyal",
+      "personal": "Personal",
+      "client": "Kliyente",
+      "tutorial": "Pagtuturo"
+    },
+    "button": {
+      "sourceCode": "Code sa GitHub",
+      "viewFullArchive": "Tingnan ang Buong Project Archive"
+    },
+    "indicator": {
+      "description": "Paglalarawan",
+      "viewDemo": "Tingnan ang Demo",
+      "sourceCode": "Source Code",
+      "contribution": "Mga kontribusyon",
+      "demoUnavailable": "Hindi Available ang Demo",
+      "demoAvailable": "{{title}} - Magagamit ang Demo",
+      "codeAvaialble": "{{title}} - Magagamit ang Github Code"
+    },
+    "yoo": {
+      "title": "YooPH",
+      "company": "Ang Mach95 Software Developer Corp",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "imageName": "Preview ng Yoo PH",
+      "category": {
+        "deliveryApp": "Application sa Paghahatid",
+        "ecommerce": "ecommerce",
+        "admin": "Admin Dashboard"
+      }
+    },
+    "siriusWebpos": {
+      "title": "Sirius WebPOS - Punong-tanggapan",
+      "company": "Alliance Software Inc.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "category": {
+        "webPos": "WebPOS",
+        "admin": "Admin Dashboard"
+      },
+      "imageName": "Preview ng WebPOS"
+    },
+    "unifiedYouth": {
+      "title": "Unified Youth",
+      "company": "Triad Software Digital Solutions",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "imageName": "Unified Youth",
+      "category": {
+        "admin": "Admin Dashboard"
+      }
+    },
+    "countryScape": {
+      "title": "CountryScape",
+      "company": "Triad Software Digital Solutions",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "imageName": "Preview ng Scape ng Bansa",
+      "category": {
+        "booking": "Pagbu-book ng Hotel"
+      }
+    },
+    "hoobank": {
+      "title": "Hoobank",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "imageName": "Bansa",
+      "category": {
+        "landing": "Landing Page"
+      }
+    },
+    "iqmk": {
+      "title": "IQMK",
+      "company": "Ang Mach95 Software Developer Corp.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "imageName": "IQMK Preview",
+      "category": {
+        "landing": "Landing Page"
+      }
+    },
+    "pawfectlyYours": {
+      "title": "Pawfecly Yours",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "imageName": "IQMK Preview",
+      "category": {
+        "ecommerce": "ecommerce",
+        "landing": "Landing Page"
+      }
+    }
+  },
+  "contact": {
+    "keepInTouch": "Let's Keep in touch",
+    "placeHolder": {
+      "name": "Pangalan",
+      "email": "Email",
+      "message": "Mensahe"
+    },
+    "button": {
+      "submit": "Ipasa"
+    },
+    "toast": {
+      "success": {
+        "title": "Matagumpay ang Pagsusumite ng Email",
+        "description": "Salamat sa pagsusumite ng iyong email! "
+      },
+      "error": {
+        "title": "Error sa Pagsusumite ng Email!!!",
+        "description": "Oops! "
+      }
     }
   },
   "footer": {
-    "content_one": "Binuo na may inspirasyon mula kay",
-    "creditsOwner": "Brittany Chiang's",
+    "content_one": "Dinisenyo na may inspirasyon mula sa",
+    "creditsOwner": "kay Brittany Chiang",
     "content_two": "layout sa",
     "figma": "Figma",
-    "content_three": "at ginawa nang may pag-aalaga sa",
+    "content_three": "at ginawa nang may pag-iingat",
     "visualStudioCode": "Visual Studio Code",
-    "content_four": "ng iyong tunay. Binuo gamit ang",
+    "content_four": "sa pamamagitan ng iyong tunay. ",
     "vite": "Vite,",
     "react": "React,",
     "tailwind": "Tailwind CSS",
-    "content_five": "tiyaking isang walang putol at mabisang karanasan sa pagpapaunlad."
+    "content_five": "pagtiyak ng tuluy-tuloy at mahusay na karanasan sa pag-unlad."
   }
 }

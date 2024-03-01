@@ -149,7 +149,9 @@
     "indicator": {
       "description": "Description",
       "viewDemo": "View Demo",
-      "demoUnavailable": "demoUnavailable",
+      "sourceCode": "Source Code",
+      "contribution": "Contributions",
+      "demoUnavailable": "Demo Unavailable",
       "demoAvailable": "{{title}} - Demo Available",
       "codeAvaialble": "{{title}} - Github Code Available"
     },

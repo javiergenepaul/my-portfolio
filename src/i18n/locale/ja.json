@@ -147,6 +147,11 @@
       "viewFullArchive": "プロジェクトのアーカイブ全体を表示"
     },
     "indicator": {
+      "description": "説明",
+      "viewDemo": "デモを見る",
+      "sourceCode": "ソースコード",
+      "contribution": "貢献",
+      "demoUnavailable": "デモは利用できません",
       "demoAvailable": "{{title}} - デモが利用可能",
       "codeAvaialble": "{{title}} - Github コードが利用可能"
     },
@@ -164,7 +169,7 @@
     "siriusWebpos": {
       "title": "シリウス WebPOS - 本社",
       "company": "アライアンスソフトウェア株式会社",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
       "category": {
         "webPos": "WebPOS",
         "admin": "管理者ダッシュボード"
@@ -183,7 +188,7 @@
     "countryScape": {
       "title": "田舎の風景",
       "company": "トライアド ソフトウェア デジタル ソリューション",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
       "imageName": "カントリースケーププレビュー",
       "category": {
         "booking": "ホテルの予約"
@@ -238,16 +243,16 @@
     }
   },
   "footer": {
+    "content_one": "～からインスピレーションを得てデザインされました",
     "creditsOwner": "ブリタニー・チャンさん",
     "content_two": "のレイアウト",
     "figma": "フィグマ",
     "content_three": "丁寧に作られています",
-    "visualStudioCode": "Visual Studioコード",
+    "visualStudioCode": "Visual Studio コード",
     "content_four": "本当にあなたによって。",
     "vite": "ヴィテ、",
     "react": "反応して、",
     "tailwind": "追い風CSS",
-    "content_five": "シームレスで効率的な開発エクスペリエンスを保証します。",
-    "content_other": "～からインスピレーションを得てデザインされました"
+    "content_five": "シームレスで効率的な開発エクスペリエンスを保証します。"
   }
 }

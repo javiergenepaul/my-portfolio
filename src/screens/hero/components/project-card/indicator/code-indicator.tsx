@@ -27,7 +27,9 @@ export const CodeIndicator = (props: CodeIndicatorInterface) => {
           <TooltipTrigger>
             <IndicatorContainer onClick={onClickCodeHandler}>
               <Code className="group-hover:text-primary" />
-              <p className="group-hover:text-primary">{"Source Code"}</p>
+              <p className="group-hover:text-primary">
+                {translate("projects.indicator.sourceCode")}
+              </p>
             </IndicatorContainer>
           </TooltipTrigger>
           <TooltipContent>
