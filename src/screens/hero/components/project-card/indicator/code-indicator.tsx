@@ -27,8 +27,8 @@ export const CodeIndicator = (props: CodeIndicatorInterface) => {
               onClick={onClickCodeHandler}
               className="hover:text-primary"
               icon="entypo:code"
-              width="1rem"
-              height="1rem"
+              width="1.2rem"
+              height="1.2rem"
             />
           </TooltipTrigger>
           <TooltipContent>  
