@@ -25,7 +25,7 @@ export const ShowTag = (props: ShowTagInterface) => {
     case "client":
       return (
         <ProjectCardTag className={"bg-yellow-700"}>
-          {translate("projects.tag.personal")}
+          {translate("projects.tag.client")}
         </ProjectCardTag>
       );
     case "tutorial":

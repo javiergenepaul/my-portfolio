@@ -146,6 +146,10 @@
       "sourceCode": "Code on GitHub",
       "viewFullArchive": "View Full Project Archive"
     },
+    "indicator": {
+      "demoAvailable": "{{title}} - Demo Available",
+      "codeAvaialble": "{{title}} - Github Code Available"
+    },
     "yoo": {
       "title": "YooPH",
       "company": "Mach95 Software Developer Corp",

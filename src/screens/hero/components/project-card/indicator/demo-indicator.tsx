@@ -4,7 +4,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { translate } from "@/i18n";
+import { Eye } from "lucide-react";
 
 interface DemoIndicatorInterface {
   title: string;
@@ -23,17 +24,18 @@ export const DemoIndicator = (props: DemoIndicatorInterface) => {
         <Tooltip>
           <TooltipTrigger>
             <div className="w-[40px] h-[40px] flex items-center justify-center">
-              <Icon
+              <Eye
                 className="hover:text-primary"
                 onClick={onClickDemoHandler}
-                icon="icon-park-outline:preview-open"
                 width="1.2rem"
                 height="1.2rem"
               />
             </div>
           </TooltipTrigger>
           <TooltipContent>
-            <span>{title} - Demo Available</span>
+            <span>
+              {translate("projects.indicator.demoAvailable", { title: title })}
+            </span>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

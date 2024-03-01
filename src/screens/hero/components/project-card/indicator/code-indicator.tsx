@@ -6,6 +6,7 @@ import {
 } from "@/components";
 import { IndicatorContainer } from "./indicator-container";
 import { Code } from "lucide-react";
+import { translate } from "@/i18n";
 
 interface CodeIndicatorInterface {
   title: string;
@@ -30,7 +31,9 @@ export const CodeIndicator = (props: CodeIndicatorInterface) => {
             </IndicatorContainer>
           </TooltipTrigger>
           <TooltipContent>
-            <span>{title} - Github Code Available</span>
+            <span>
+              {translate("projects.indicator.codeAvaialble", { title: title })}
+            </span>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
