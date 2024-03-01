@@ -14,6 +14,7 @@
   },
   "moreInfo": "More Info",
   "appName": "Javz Portfolio - {{title}}",
+  "navName": "Javz Portfolio",
   "path": {
     "pageNotFound": "page not found",
     "home": "Home",
