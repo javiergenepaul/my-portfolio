@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components";
 import { ProjectInterface, TechStackInterface } from "@/config";
-import { translate } from "@/i18n";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import {
@@ -15,7 +14,7 @@ import {
   DemoIndicator,
   KeyContributionIndicator,
 } from "./indicator";
-import { ProjectCardTag } from ".";
+import { ShowTag } from "./show-tag";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -30,36 +29,6 @@ export const ProjectCard = (props: ProjectCardInterface) => {
     image64,
     imageName,
   } = props;
-  const showTag = (): React.ReactNode => {
-    switch (type) {
-      case "confidential":
-        return (
-          <ProjectCardTag className={"bg-destructive"}>
-            {translate("projects.tag.confidential")}
-          </ProjectCardTag>
-        );
-      case "personal":
-        return (
-          <ProjectCardTag className={"bg-primary"}>
-            {translate("projects.tag.personal")}
-          </ProjectCardTag>
-        );
-      case "client":
-        return (
-          <ProjectCardTag className={"bg-yellow-700"}>
-            {translate("projects.tag.personal")}
-          </ProjectCardTag>
-        );
-      case "tutorial":
-        return (
-          <ProjectCardTag className={"bg-slate-500"}>
-            {translate("projects.tag.tutorial")}
-          </ProjectCardTag>
-        );
-      default:
-        return null;
-    }
-  };
 
   const [isPreviewHovered, setIsPreviewHovered] = useState<boolean>(false);
 
@@ -79,7 +48,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
 
   return (
     <Card className="relative overflow-hidden">
-      {showTag()}
+      <ShowTag type={type} />
       <div className="flex h-full">
         <div
           className="relative items-center justify-center cursor-not-allowed select-none basis-1/3"
@@ -107,7 +76,9 @@ export const ProjectCard = (props: ProjectCardInterface) => {
               <KeyContributionIndicator contributions={["test"]} />
               <DemoIndicator previewUrl={previewUrl} title={title} />
             </div>
-            <CardDescription className="select-none">{description}</CardDescription>
+            <CardDescription className="select-none">
+              {description}
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
             {stack?.map((stack: TechStackInterface, index: React.Key) => {

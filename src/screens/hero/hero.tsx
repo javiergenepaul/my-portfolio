@@ -10,11 +10,7 @@ import {
 import { FadeAnimation } from "@/components";
 
 export const Hero = () => {
-  const { setSelectedNav, setOnScrollNav, selectedNav } = useNavLinkStore();
-
-  useEffect(() => {
-    console.log(selectedNav);
-  }, [selectedNav]);
+  const { setSelectedNav, setOnScrollNav } = useNavLinkStore();
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
