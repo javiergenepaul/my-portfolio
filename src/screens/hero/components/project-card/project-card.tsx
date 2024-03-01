@@ -82,7 +82,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
       {showTag()}
       <div className="flex h-full">
         <div
-          className="relative items-center justify-center cursor-not-allowed basis-1/3"
+          className="relative items-center justify-center cursor-not-allowed select-none basis-1/3"
           onMouseEnter={onMouseEnterPreviewHandler}
           onMouseLeave={onMouseLeavePreviewHandler}
         >
@@ -99,7 +99,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
         </div>
         <div className="flex flex-col basis-2/3">
           <CardHeader>
-            <CardTitle className="flex items-center gap-4 group-hover:text-primary">
+            <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
               {title}
             </CardTitle>
             <div className="flex gap-2">
@@ -107,7 +107,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
               <KeyContributionIndicator contributions={["test"]} />
               <DemoIndicator previewUrl={previewUrl} title={title} />
             </div>
-            <CardDescription>{description}</CardDescription>
+            <CardDescription className="select-none">{description}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
             {stack?.map((stack: TechStackInterface, index: React.Key) => {

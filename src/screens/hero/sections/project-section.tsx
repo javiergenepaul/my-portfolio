@@ -39,6 +39,7 @@ export const ProjectSection = () => {
       </div>
       <div className="flex justify-end w-full pt-8">
         <Button
+         className="select-none"
           variant={"link"}
           onClick={() => {
             navigate(PATH.PROJECTS.path);
