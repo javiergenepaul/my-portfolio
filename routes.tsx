@@ -4,7 +4,13 @@ import * as Screens from "./src/screens";
 import { HeaderTitleProvider } from "@/providers";
 
 const AppScreen = (props: { component: React.ReactNode }) => {
-  return <HeaderTitleProvider>{props.component}</HeaderTitleProvider>;
+  const { component } = props;
+
+  return (
+    <HeaderTitleProvider>
+      {component}
+    </HeaderTitleProvider>
+  );
 };
 
 export const AppRoutes = () => {

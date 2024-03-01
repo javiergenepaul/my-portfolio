@@ -1,11 +1,16 @@
-import { PROJECTS, ProjectInterface } from "@/config";
 import { ProjectCard } from "../components/project-card";
+import { PATH, PROJECTS, ProjectInterface } from "@/config";
+import { Button } from "@/components";
+import { useNavigate } from "react-router-dom";
+import { translate } from "@/i18n";
 
 interface Data {
   type: "confidential" | "client" | "personal" | "tutorial";
 }
 
 export const ProjectSection = () => {
+  const navigate = useNavigate();
+
   const priorityOrder: { [key in Data["type"]]: number } = {
     personal: 1,
     client: 2,
@@ -29,6 +34,16 @@ export const ProjectSection = () => {
         {sortedProjectsHandler().map((project: ProjectInterface) => {
           return <ProjectCard {...project} />;
         })}
+      </div>
+      <div className="flex justify-end w-full pt-8">
+        <Button
+          variant={"link"}
+          onClick={() => {
+            navigate(PATH.PROJECTS.path);
+          }}
+        >
+          {translate("projects.button.viewFullArchive")}
+        </Button>
       </div>
     </section>
   );

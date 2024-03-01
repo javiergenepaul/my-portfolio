@@ -22,7 +22,8 @@ export interface ProjectInterface {
   imageName: string,
   company: string | undefined;
   category: string[];
-  url?: string | undefined;
+  previewUrl?: string | undefined;
+  codeUrl?: string | undefined;
   type: "confidential" | "client" | "personal" | "tutorial";
   stack?: TechStackInterface[];
 }
