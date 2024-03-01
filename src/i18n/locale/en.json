@@ -77,7 +77,6 @@
       "mobx": "Mobx",
       "html": "HTML",
       "jquery": "jQuery",
-      "blade": "Blade",
       "css": "CSS",
       "tailwind": "Tailwind CSS",
       "shadCn": "ShadCN",
@@ -98,7 +97,6 @@
       "i18n": "i18Next",
       "axios": "Axios",
       "reactQuery": "React Query",
-
       "springBoot": "Spring Boot",
       "springSecurity": "Spring Security",
       "springSecurityOAuth": "Spring Security OAuth",
@@ -110,7 +108,11 @@
       "mockito": "Mockito",
       "postman": "Postman",
       "jwt": "Json Web Token (JWT)",
-
+      "laravel": "Laravel",
+      "php": "PHP",
+      "blade": "Blade",
+      "bootstrap": "Bootstrap",
+      "mvc": "MVC",
       "linux": "Linux",
       "azure": "Azure",
       "aws": "Amazon Web Services",
@@ -122,9 +124,15 @@
       "cicd": "CI/CD",
       "netlify": "Netlify",
       "heroku": "Heroku",
-
+      "vitest": "Vitest",
+      "microservices": "Microservices",
       "figma": "Figma",
-      "frontend": "Front-End"
+      "frontend": "Front-End",
+      "figmaToHTML": "Figma to HTML",
+      "figmaToReact": "Figma to React",
+      "attentionToDetails": "Attention to Details",
+      "pixelPerfect": "Pixel Perfect",
+      "landingPage": "Landing Page"
     }
   },
   "projects": {
@@ -195,7 +203,7 @@
       }
     },
     "pawfectlyYours": {
-      "title": "Pawfecly Your",
+      "title": "Pawfecly Yours",
       "description": "testDescription",
       "imageName": "IQMK Preview",
       "category": {

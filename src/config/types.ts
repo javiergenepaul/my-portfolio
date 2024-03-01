@@ -17,12 +17,14 @@ export interface ProjectInterface {
   description: string;
   date: Date;
   keyContribution?: string[];
-  image64: string,
-  imageName: string,
+  image64: string;
+  imageName: string;
   company: string | undefined;
   category: string[];
   previewUrl?: string | undefined;
   codeUrl?: string | undefined;
-  type: "confidential" | "client" | "personal" | "tutorial";
+  type: ProjectType;
   stack?: TechStackInterface[];
 }
+
+export type ProjectType = "confidential" | "client" | "personal" | "tutorial";
