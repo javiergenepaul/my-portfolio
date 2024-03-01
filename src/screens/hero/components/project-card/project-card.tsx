@@ -51,7 +51,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
       <div className="flex px-8 py-6 h-fit">
         <div
           className={twMerge(
-            "relative items-center justify-center overflow-hidden rounded-lg cursor-not-allowed select-none basis-2/5",
+            "items-center lg:relative hidden justify-center overflow-hidden rounded-lg cursor-not-allowed select-none basis-2/5",
             previewUrl ? "cursor-pointer" : ""
           )}
           onMouseEnter={onMouseEnterPreviewHandler}
@@ -76,7 +76,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
           </div>
           <img className="flex h-full" src={image64} alt={imageName} />
         </div>
-        <div className="flex flex-col basis-3/5">
+        <div className="flex flex-col lg:basis-3/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
               <h3 className="font-bold">

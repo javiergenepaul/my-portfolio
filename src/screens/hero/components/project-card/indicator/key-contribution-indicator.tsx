@@ -17,7 +17,7 @@ export const KeyContributionIndicator = (
         <HoverCardTrigger>
           <IndicatorContainer>
             <Layers className="group-hover:text-primary" />
-            <p className="group-hover:text-primary">
+            <p className="hidden md:block group-hover:text-primary">
               {translate("projects.indicator.contribution")}
             </p>
           </IndicatorContainer>

@@ -37,7 +37,7 @@ export const ProjectSection = () => {
           }
         )}
       </div>
-      <div className="flex justify-end w-full pt-8">
+      <div className="flex justify-end pt-8 w-fulls">
         <Button
           className="select-none"
           variant={"link"}

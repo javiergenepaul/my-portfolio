@@ -52,13 +52,8 @@ export const ThemeSwitch = forwardRef<
                 }  h-7 w-7 rounded-full duration-300`}
               />
               <div className="flex gap-4">
-                <Moon width={"24px"} height={"24px"} />
-                {/* <Icon
-                  icon="heroicons:moon-solid"
-                  width={"24px"}
-                  height={"24px"}
-                /> */}
                 <Sun width={"24px"} height={"24px"} />
+                <Moon width={"24px"} height={"24px"} />
               </div>
             </div>
           </label>
