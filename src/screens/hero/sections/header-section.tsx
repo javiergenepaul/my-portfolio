@@ -33,7 +33,7 @@ export const HeaderSection = () => {
         <Link className="focus:outline-none" to={PATH.ABOUT.path}>
           <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
             <BounceText
-              className="outline-none ring-0 focus:outline-none"
+              className="font-bold outline-none ring-0 focus:outline-none"
               text={translate("header.name")}
             />
           </h1>

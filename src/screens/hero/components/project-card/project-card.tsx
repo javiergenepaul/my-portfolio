@@ -1,5 +1,6 @@
 import {
   Badge,
+  BounceText,
   Card,
   CardContent,
   CardDescription,
@@ -76,8 +77,10 @@ export const ProjectCard = (props: ProjectCardInterface) => {
         </div>
         <div className="flex flex-col basis-3/5">
           <CardHeader>
-            <CardTitle className="flex items-center gap-4 font-bold select-none group-hover:text-primary">
-              {title}
+            <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
+              <h3 className="font-bold">
+                <BounceText className="cursor-default" text={title} />
+              </h3>
             </CardTitle>
             <div className="flex gap-4">
               <KeyContributionIndicator contributions={["test"]} />
