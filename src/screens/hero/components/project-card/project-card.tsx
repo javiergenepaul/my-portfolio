@@ -15,6 +15,7 @@ import {
   KeyContributionIndicator,
 } from "./indicator";
 import { ShowTag } from "./show-tag";
+import { Eye, EyeOff } from "lucide-react";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -47,36 +48,49 @@ export const ProjectCard = (props: ProjectCardInterface) => {
   };
 
   return (
-    <Card className="relative overflow-hidden">
+    <Card className="relative p-0 overflow-hidden">
       <ShowTag type={type} />
-      <div className="flex h-full">
+      <div className="flex px-8 py-6 h-fit">
         <div
-          className="relative items-center justify-center cursor-not-allowed select-none basis-1/3"
+          className={twMerge(
+            "relative items-center justify-center overflow-hidden rounded-lg cursor-not-allowed select-none basis-2/5",
+            previewUrl ? "cursor-pointer" : ""
+          )}
           onMouseEnter={onMouseEnterPreviewHandler}
           onMouseLeave={onMouseLeavePreviewHandler}
         >
           <div
             onClick={onClickPreviewUrl}
             className={twMerge(
-              "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm cursor-not-allowed hover:flex duration-300 select-none",
-              `${isPreviewHovered ? "flex" : ""}`
+              "absolute z-20 hidden items-center justify-center w-full h-full rounded-lg bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none",
+              `${isPreviewHovered ? "flex gap-2" : ""}`
             )}
           >
-            {previewUrl ? "Demo Preview" : "Demo Unavailable"}
+            {previewUrl ? (
+              <>
+                <Eye /> {"View Demo"}
+              </>
+            ) : (
+              <>
+                <EyeOff /> {"Demo Unavailable"}
+              </>
+            )}
           </div>
-          <img className="z-10 h-full" src={image64} alt={imageName} />
+          <img className="flex h-full" src={image64} alt={imageName} />
         </div>
-        <div className="flex flex-col basis-2/3">
+        <div className="flex flex-col basis-3/5">
           <CardHeader>
-            <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
+            <CardTitle className="flex items-center gap-4 font-bold select-none group-hover:text-primary">
               {title}
             </CardTitle>
-            <div className="flex gap-2">
-              <CodeIndicator title={title} codeUrl={codeUrl} />
+            <div className="flex gap-4">
               <KeyContributionIndicator contributions={["test"]} />
-              <DemoIndicator previewUrl={previewUrl} title={title} />
+              <CodeIndicator title={title} codeUrl={codeUrl} />
             </div>
-            <CardDescription className="select-none">
+            <CardDescription className="flex flex-col gap-2 select-none">
+              <span className="text-sm font-medium text-white Description">
+                Description
+              </span>
               {description}
             </CardDescription>
           </CardHeader>

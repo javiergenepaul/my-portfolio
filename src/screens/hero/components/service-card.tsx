@@ -16,11 +16,11 @@ export const ServiceCard = (props: ServiceCardInterface) => {
 
   return (
     <Card>
-      <CardHeader className="pb-2">
+      <CardHeader className="gap-4 px-8 py-6 pb-8 space-y-0">
         <CardTitle>
           <BounceText className="cursor-default select-none" text={title} />
         </CardTitle>
-        <CardDescription className="select-none">{description}</CardDescription>
+        <CardDescription className="mt-0 select-none">{description}</CardDescription>
       </CardHeader>
       <CardFooter className="flex flex-wrap gap-2">
         {stack?.map((stack: TechStackInterface, index: React.Key) => {

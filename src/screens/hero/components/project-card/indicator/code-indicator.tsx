@@ -4,7 +4,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { IndicatorContainer } from "./indicator-container";
+import { Code } from "lucide-react";
 
 interface CodeIndicatorInterface {
   title: string;
@@ -23,15 +24,12 @@ export const CodeIndicator = (props: CodeIndicatorInterface) => {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <Icon
-              onClick={onClickCodeHandler}
-              className="hover:text-primary"
-              icon="entypo:code"
-              width="1.2rem"
-              height="1.2rem"
-            />
+            <IndicatorContainer onClick={onClickCodeHandler}>
+              <Code className="group-hover:text-primary" />
+              <p className="group-hover:text-primary">{"Source Code"}</p>
+            </IndicatorContainer>
           </TooltipTrigger>
-          <TooltipContent>  
+          <TooltipContent>
             <span>{title} - Github Code Available</span>
           </TooltipContent>
         </Tooltip>

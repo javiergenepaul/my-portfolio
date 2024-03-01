@@ -1,5 +1,6 @@
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import { IndicatorContainer } from "./indicator-container";
+import { Layers } from "lucide-react";
 
 interface KeyContributionIndicatorInterface {
   contributions: string[];
@@ -13,12 +14,10 @@ export const KeyContributionIndicator = (
     contributions && (
       <HoverCard>
         <HoverCardTrigger>
-          <Icon
-            className="cursor-default"
-            icon="ooui:user-contributions-ltr"
-            width="1.2rem"
-            height="1.2rem"
-          />
+          <IndicatorContainer>
+            <Layers className="group-hover:text-primary" />
+            <p className="group-hover:text-primary">{"Contributions"}</p>
+          </IndicatorContainer>
         </HoverCardTrigger>
         <HoverCardContent side="right">
           {contributions.map((contribute: string) => {

@@ -123,7 +123,7 @@ export const PROJECTS: ProjectInterface[] = [
     title: "YooPH",
     company: "Mach95 Software Developer Corp.",
     date: new Date(),
-    description: "test description",
+    description: translate("projects.yoo.description"),
     category: ["delivery app", "ecommerce", "admin dashboard"],
     previewUrl: "https://www.yoo.ph/login",
     codeUrl: undefined,
@@ -250,7 +250,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.VITEST_STACK,
       Stack.TAILWIND_STACK,
       Stack.NETLIFY_STACK,
-      Stack.LANDING_PAGE_STACK
+      Stack.LANDING_PAGE_STACK,
     ],
   },
   {
