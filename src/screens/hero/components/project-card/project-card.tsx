@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components";
-import { PATH, ProjectInterface, TechStackInterface } from "@/config";
+import { ProjectInterface, TechStackInterface } from "@/config";
 import { translate } from "@/i18n";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -16,7 +16,6 @@ import {
   KeyContributionIndicator,
 } from "./indicator";
 import { ProjectCardTag } from ".";
-import { useNavigate } from "react-router-dom";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -31,7 +30,6 @@ export const ProjectCard = (props: ProjectCardInterface) => {
     image64,
     imageName,
   } = props;
-  const navigate = useNavigate();
   const showTag = (): React.ReactNode => {
     switch (type) {
       case "confidential":
@@ -76,10 +74,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
   const onClickPreviewUrl = () => {
     if (previewUrl) {
       window.open(previewUrl, "_blank");
-    } 
-    // else {
-    //   navigate(PATH.CONFIDENTIAL.path);
-    // }
+    }
   };
 
   return (
