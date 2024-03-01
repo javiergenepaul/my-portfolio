@@ -12,7 +12,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   return (
     <>
-      <nav className="w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0">
+      <nav className="block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-4">
             <img
