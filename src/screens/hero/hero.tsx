@@ -20,25 +20,24 @@ export const Hero = () => {
     setSelectedNav("services");
   }, []);
 
-  const isSectionPartiallyInView = (data: {
-    sectionTop: number;
-    sectionBottom: number;
-  }): boolean => {
-    const { sectionTop, sectionBottom } = data;
-    const sectionHeight = sectionBottom - sectionTop;
-    const margin = sectionHeight * 0.5;
-
-    const inside: boolean =
-      sectionTop + margin < scrollY && sectionBottom + margin > scrollY;
-
-    return inside;
-  };
-
   useEffect(() => {
+    const sections = document.querySelectorAll<HTMLElement>(".section");
+
     const handleScroll = (): void => {
-      const sections = document.querySelectorAll<HTMLElement>(".section");
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const middleScrollPosition = scrollY + viewportHeight / 2;
+
       sections.forEach((section: HTMLElement) => {
-        if (isInViewport(section)) {
+        const rect = section.getBoundingClientRect();
+        const scrollTop =
+          window.scrollY ||
+          window.pageYOffset ||
+          document.documentElement.scrollTop;
+        const top = rect.top + scrollTop;
+        const bottom = rect.bottom + scrollTop;
+
+        if (top < middleScrollPosition && bottom > middleScrollPosition) {
           setOnScrollNav(section.id as SelectedNavLink);
         }
       });
@@ -50,15 +49,6 @@ export const Hero = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const isInViewport = (element: HTMLElement): boolean => {
-    const rect = element.getBoundingClientRect();
-
-    return isSectionPartiallyInView({
-      sectionTop: rect.top,
-      sectionBottom: rect.bottom,
-    });
-  };
 
   return (
     <FadeAnimation>

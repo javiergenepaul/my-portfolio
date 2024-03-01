@@ -13,6 +13,7 @@ import { twMerge } from "tailwind-merge";
 import { CodeIndicator, KeyContributionIndicator } from "./indicator";
 import { ShowTag } from "./show-tag";
 import { Eye, EyeOff } from "lucide-react";
+import { translate } from "@/i18n";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -65,11 +66,11 @@ export const ProjectCard = (props: ProjectCardInterface) => {
           >
             {previewUrl ? (
               <>
-                <Eye /> {"View Demo"}
+                <Eye /> {translate("projects.indicator.viewDemo")}
               </>
             ) : (
               <>
-                <EyeOff /> {"Demo Unavailable"}
+                <EyeOff /> {translate("projects.indicator.demoUnavailable")}
               </>
             )}
           </div>
@@ -87,8 +88,8 @@ export const ProjectCard = (props: ProjectCardInterface) => {
               <CodeIndicator title={title} codeUrl={codeUrl} />
             </div>
             <CardDescription className="flex flex-col gap-2 select-none">
-              <span className="text-sm font-medium text-white Description">
-                Description
+              <span className="text-sm font-medium dark:text-white Description">
+                {translate("projects.indicator.description")}
               </span>
               {description}
             </CardDescription>

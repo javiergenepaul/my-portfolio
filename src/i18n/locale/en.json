@@ -147,6 +147,9 @@
       "viewFullArchive": "View Full Project Archive"
     },
     "indicator": {
+      "description": "Description",
+      "viewDemo": "View Demo",
+      "demoUnavailable": "demoUnavailable",
       "demoAvailable": "{{title}} - Demo Available",
       "codeAvaialble": "{{title}} - Github Code Available"
     },
