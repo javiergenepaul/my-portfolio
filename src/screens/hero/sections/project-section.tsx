@@ -30,7 +30,7 @@ export const ProjectSection = () => {
       className="pt-16 h-fit section snap-start lg:pt-24 lg:px-4"
       aria-label="Projects"
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-8">
         {sortedProjectsHandler().map(
           (project: ProjectInterface, index: React.Key) => {
             return <ProjectCard key={index} {...project} />;
@@ -39,7 +39,7 @@ export const ProjectSection = () => {
       </div>
       <div className="flex justify-end w-full pt-8">
         <Button
-         className="select-none"
+          className="select-none"
           variant={"link"}
           onClick={() => {
             navigate(PATH.PROJECTS.path);

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components";
 import { translate } from "@/i18n";
-import { ContactForm } from "../components/contact-form";
+import { ContactForm } from "../components/contact";
 import ContactLogo from "../../../assets/contact-logo.svg";
 
 export const ContactSection = () => {

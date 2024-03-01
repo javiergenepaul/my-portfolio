@@ -1,7 +1,7 @@
 import { useNavLinkStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
-import { NavLinkInterface } from "./component-props";
 import { BounceText } from "@/components";
+import { NavLinkInterface } from "../component-props";
 
 export const NavLinks = (props: NavLinkInterface) => {
   const { name, path, selectedId } = props;

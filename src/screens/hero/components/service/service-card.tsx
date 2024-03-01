@@ -18,11 +18,16 @@ export const ServiceCard = (props: ServiceCardInterface) => {
     <Card>
       <CardHeader className="gap-4 px-8 py-6 pb-8 space-y-0">
         <CardTitle>
-          <BounceText className="font-bold cursor-default select-none" text={title} />
+          <BounceText
+            className="font-bold cursor-default select-none"
+            text={title}
+          />
         </CardTitle>
-        <CardDescription className="mt-0 select-none">{description}</CardDescription>
+        <CardDescription className="mt-0 select-none">
+          {description}
+        </CardDescription>
       </CardHeader>
-      <CardFooter className="flex flex-wrap gap-2">
+      <CardFooter className="flex flex-wrap gap-2 px-8">
         {stack?.map((stack: TechStackInterface, index: React.Key) => {
           return (
             <React.Fragment key={index}>

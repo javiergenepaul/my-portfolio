@@ -10,7 +10,7 @@ import {
 import { PATH } from "@/config";
 import { Link } from "react-router-dom";
 import { translate } from "@/i18n";
-import { AvatarProfile } from "../../../assets";
+import { AvatarProfile } from "@/assets";
 
 export const AboutMeAvatar = () => {
   return (
