@@ -4,8 +4,8 @@ import { HighlightText } from "../components";
 
 export const FooterSection = () => {
   return (
-    <footer className="self-center max-w-lg py-10 text-center select-none">
-      <p className="p-2 text-sm transition-all duration-300 bg-background">
+    <footer className="self-center max-w-lg pt-10 pb-0 text-center select-none lg:pb-10">
+      <p className="text-sm transition-all duration-300 bg-background">
         {translate("footer.content_one")}
         {
           <HighlightText
