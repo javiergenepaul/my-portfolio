@@ -1,8 +1,12 @@
 import { translate } from "@/i18n";
 import { ServiceCard } from "..";
-import { SERVICE_OFFER, ServiceOfferInterface } from "@/config";
+import { PATH, SERVICE_OFFER, ServiceOfferInterface } from "@/config";
+import { Button } from "@/components";
+import { useNavigate } from "react-router-dom";
 
 export const ServiceSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section
       className="pt-16 h-fit lg:px-4 lg:pt-24 section snap-start "
