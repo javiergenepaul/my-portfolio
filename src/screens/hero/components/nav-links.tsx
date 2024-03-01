@@ -4,7 +4,7 @@ import { NavLinkInterface } from "./component-props";
 import { BounceText } from "@/components";
 
 export const NavLinks = (props: NavLinkInterface) => {
-  const { key, name, path, selectedId } = props;
+  const { name, path, selectedId } = props;
   const { selectedNav } = useNavLinkStore();
   const isActive: boolean = selectedNav === selectedId;
 
@@ -16,7 +16,7 @@ export const NavLinks = (props: NavLinkInterface) => {
   };
 
   return (
-    <li className="border-none" key={key}>
+    <li className="border-none">
       <a
         className="flex items-center py-3 outline-none select-none group focus:outline-none"
         href={path}

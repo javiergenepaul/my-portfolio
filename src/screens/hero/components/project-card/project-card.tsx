@@ -86,15 +86,15 @@ export const ProjectCard = (props: ProjectCardInterface) => {
       {showTag()}
       <div className="flex h-full">
         <div
-          className="relative items-center justify-center basis-1/3"
+          className="relative items-center justify-center cursor-not-allowed basis-1/3"
           onMouseEnter={onMouseEnterPreviewHandler}
           onMouseLeave={onMouseLeavePreviewHandler}
         >
           <div
             onClick={onClickPreviewUrl}
             className={twMerge(
-              "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm cursor-pointer hover:flex duration-300 select-none",
-              isPreviewHovered ? "flex" : ""
+              "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm cursor-not-allowed hover:flex duration-300 select-none",
+              `${isPreviewHovered ? "flex" : ""}`
             )}
           >
             {previewUrl ? "Demo Preview" : "Demo Unavailable"}
@@ -114,9 +114,9 @@ export const ProjectCard = (props: ProjectCardInterface) => {
             <CardDescription>{description}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
-            {stack?.map((stack: TechStackInterface) => {
+            {stack?.map((stack: TechStackInterface, index: React.Key) => {
               return (
-                <Badge className="cursor-pointer">
+                <Badge key={index} className="cursor-pointer">
                   {stack.url ? (
                     <a href={stack.url} target="_blank" rel="noreferrer">
                       {stack.name}

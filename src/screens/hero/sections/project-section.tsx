@@ -31,9 +31,11 @@ export const ProjectSection = () => {
       aria-label="Projects"
     >
       <div className="flex flex-col gap-4">
-        {sortedProjectsHandler().map((project: ProjectInterface) => {
-          return <ProjectCard {...project} />;
-        })}
+        {sortedProjectsHandler().map(
+          (project: ProjectInterface, index: React.Key) => {
+            return <ProjectCard key={index} {...project} />;
+          }
+        )}
       </div>
       <div className="flex justify-end w-full pt-8">
         <Button
