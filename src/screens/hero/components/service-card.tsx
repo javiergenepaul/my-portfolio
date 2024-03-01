@@ -18,9 +18,9 @@ export const ServiceCard = (props: ServiceCardInterface) => {
     <Card>
       <CardHeader className="pb-2">
         <CardTitle>
-          <BounceText className="cursor-default" text={title} />
+          <BounceText className="cursor-default select-none" text={title} />
         </CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="select-none">{description}</CardDescription>
       </CardHeader>
       <CardFooter className="flex flex-wrap gap-2">
         {stack?.map((stack: TechStackInterface, index: React.Key) => {
