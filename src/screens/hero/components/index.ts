@@ -8,3 +8,4 @@ export * from "./service-card";
 export * from "./stack-details";
 export * from "./stack-content";
 export * from "./component-props";
+export * from "./project-card";
