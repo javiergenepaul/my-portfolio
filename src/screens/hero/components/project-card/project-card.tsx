@@ -9,11 +9,7 @@ import {
 import { ProjectInterface, TechStackInterface } from "@/config";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import {
-  CodeIndicator,
-  DemoIndicator,
-  KeyContributionIndicator,
-} from "./indicator";
+import { CodeIndicator, KeyContributionIndicator } from "./indicator";
 import { ShowTag } from "./show-tag";
 import { Eye, EyeOff } from "lucide-react";
 
