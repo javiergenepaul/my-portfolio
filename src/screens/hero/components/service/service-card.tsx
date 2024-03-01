@@ -8,8 +8,8 @@ import {
 } from "@/components";
 import { TechStackInterface } from "@/config";
 import { StackContent } from "./stack-content";
-import { ServiceCardInterface } from "./component-props";
 import React from "react";
+import { ServiceCardInterface } from "../component-props";
 
 export const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;

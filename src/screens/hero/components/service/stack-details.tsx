@@ -1,4 +1,4 @@
-import { StackDetailsProps } from "./component-props";
+import { StackDetailsProps } from "../component-props";
 
 export const StackDetails = (props: StackDetailsProps) => {
   const { name, isFavorite, icon } = props;

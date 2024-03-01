@@ -7,9 +7,9 @@ import {
   CardTitle,
 } from "@/components";
 import { TechStackInterface } from "@/config";
-import { StackContent } from "./stack-content";
 import { ServiceCardInterface } from "./component-props";
 import React from "react";
+import { StackContent } from "./service";
 
 export const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;
