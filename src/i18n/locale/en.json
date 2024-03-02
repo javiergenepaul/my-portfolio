@@ -46,6 +46,7 @@
   },
   "header": {
     "name": "Gene Paul Mar Javier",
+    "nickName": "Paul Javier",
     "shortName": "PJ",
     "description": "As a Fullstack Developer, I'm Committed to Crafting Exceptional Digital Experiences: Building Pixel-Perfect, Engaging, and Accessible Websites with Precision and Care, Leveraging Robust APIs for Seamless Functionality.",
     "ariaLabel": {
@@ -154,6 +155,8 @@
     }
   },
   "projects": {
+    "title": "Projects",
+    "description": "test projects description",
     "tag": {
       "confidential": "Confidential",
       "personal": "Personal",
@@ -240,6 +243,8 @@
     }
   },
   "contact": {
+    "title": "Contact",
+    "description": "test contact description",
     "keepInTouch": "Let's Keep in touch",
     "placeHolder": {
       "name": "Name",
@@ -274,6 +279,10 @@
     "content_five": "ensuring a seamless and efficient development experience."
   },
   "settings": {
+    "header": {
+      "appearance": "Appearance Settings",
+      "general": "General Settings"
+    },
     "settings": "Settings",
     "description": "Manage settings",
     "nav": {
@@ -306,5 +315,14 @@
         "update": "Update Settings"
       }
     }
-  }
+  },
+  "about": {
+    "title": "About Me",
+    "description": "test about me description"
+  },
+  "skills": {
+    "title": "Skills",
+    "description": "test skills description"
+  },
+  "availableSoon": "Available Soon"
 }
