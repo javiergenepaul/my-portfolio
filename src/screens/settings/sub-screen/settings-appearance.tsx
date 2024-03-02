@@ -16,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components";
+import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon } from "lucide-react";
@@ -69,7 +70,7 @@ export const SettingsAppearance = () => {
           name="font"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Font</FormLabel>
+              <FormLabel>{translate("settings.font.font")}</FormLabel>
               <div className="relative w-max">
                 <FormControl>
                   <Select {...field}>
@@ -78,8 +79,12 @@ export const SettingsAppearance = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="inter">Inter</SelectItem>
+                        <SelectItem value="inter">
+                          {translate("settings.font.type.inter")}
+                        </SelectItem>
+                        {/* TODO:: change later */}
                         <SelectItem value="manrope">Manrope</SelectItem>
+                        {/* TODO:: change later */}
                         <SelectItem value="system">System</SelectItem>
                       </SelectGroup>
                     </SelectContent>
@@ -87,7 +92,9 @@ export const SettingsAppearance = () => {
                 </FormControl>
                 <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
               </div>
-              <FormDescription>Set the font you like.</FormDescription>
+              <FormDescription>
+                {translate("settings.font.instruction")}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -97,8 +104,10 @@ export const SettingsAppearance = () => {
           name="theme"
           render={({ field }) => (
             <FormItem className="space-y-1">
-              <FormLabel>Theme</FormLabel>
-              <FormDescription>Select the theme you like.</FormDescription>
+              <FormLabel>{translate("settings.theme.theme")}</FormLabel>
+              <FormDescription>
+                {translate("settings.theme.formDescription")}
+              </FormDescription>
               <FormMessage />
               <RadioGroup
                 onValueChange={field.onChange}
@@ -128,7 +137,7 @@ export const SettingsAppearance = () => {
                       </div>
                     </div>
                     <span className="block w-full p-2 font-normal text-center">
-                      System
+                      {translate("settings.theme.mode.system")}
                     </span>
                   </FormLabel>
                 </FormItem>
@@ -155,7 +164,7 @@ export const SettingsAppearance = () => {
                       </div>
                     </div>
                     <span className="block w-full p-2 font-normal text-center">
-                      Light
+                      {translate("settings.theme.mode.light")}
                     </span>
                   </FormLabel>
                 </FormItem>
@@ -182,7 +191,7 @@ export const SettingsAppearance = () => {
                       </div>
                     </div>
                     <span className="block w-full p-2 font-normal text-center">
-                      Dark
+                      {translate("settings.theme.mode.dark")}
                     </span>
                   </FormLabel>
                 </FormItem>
@@ -190,9 +199,9 @@ export const SettingsAppearance = () => {
             </FormItem>
           )}
         />
-
-        {/* Add other fields as needed */}
-        <Button type="submit">Update preferences</Button>
+        <Button type="submit">
+          {translate("settings.theme.button.update")}
+        </Button>
       </form>
     </FormProvider>
   );

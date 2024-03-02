@@ -272,5 +272,39 @@
     "react": "React,",
     "tailwind": "Tailwind CSS",
     "content_five": "ensuring a seamless and efficient development experience."
+  },
+  "settings": {
+    "settings": "Settings",
+    "description": "Manage settings",
+    "nav": {
+      "general": "General",
+      "appearance": "Appearance"
+    },
+    "font": {
+      "font": "Font",
+      "instruction": "Set the font you like.",
+      "type": {
+        "inter": "Inter"
+      }
+    },
+    "theme": {
+      "theme": "Theme",
+      "formDescription": "Select the theme you like.",
+      "mode": {
+        "system": "System Mode",
+        "light": "Light Mode",
+        "dark": "Dark Mode"
+      },
+      "button": {
+        "update": "Update preferences"
+      }
+    },
+    "lang": {
+      "lang": "Language",
+      "formDescription": "Select the language you like.",
+      "btn": {
+        "update": "Update Settings"
+      }
+    }
   }
 }

@@ -19,3 +19,4 @@ export * from "./select";
 export * from "./toggle-group";
 export * from "./toggle";
 export * from "./radio-group";
+export * from "./page-title";
