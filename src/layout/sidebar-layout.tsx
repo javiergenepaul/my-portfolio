@@ -5,7 +5,7 @@ import { BackgroundAnimation, SideBar } from "@/components";
 import { DEV_MODE, PATH } from "@/config";
 import { useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
-import { useSiderStore } from "@/stores";
+import { useSiderStore, useThemeStore } from "@/stores";
 
 interface SideBarLayoutInterface {
   children: React.ReactNode;
@@ -15,11 +15,25 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   const navigate = useNavigate();
   const { setIsOpen } = useSiderStore();
+  const { font } = useThemeStore();
 
   const handlers = useSwipeable({
     onSwipedLeft: () => setIsOpen(true),
     onSwipedRight: () => setIsOpen(false),
   });
+
+  const fontSelected = (): string => {
+    switch (font) {
+      case "inter":
+        return "font-inter";
+      case "work-sans":
+        return "font-work-sans";
+      case "poppins":
+        return "font-poppins";
+      default:
+        return "font-inter";
+    }
+  };
 
   return (
     <>
@@ -41,7 +55,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
       </nav>
       <main
         {...handlers}
-        className={`relative w-full h-full min-h-screen px-6 py-12 mx-auto font-sans min-w-screen-xl lg:px-24 lg:py-0 ${
+        className={`${fontSelected()} relative w-full h-full min-h-screen px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 ${
           DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
         }`}
       >

@@ -3,6 +3,9 @@ import { AppRoutes } from "../routes";
 import { GlobalHelmet, Toaster } from "./components";
 import { MainContainerProvider } from "./providers";
 import { i18n } from "./i18n";
+import "typeface-inter";
+import "typeface-work-sans";
+import 'typeface-poppins';
 
 function App() {
   return (
