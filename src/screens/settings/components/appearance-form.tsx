@@ -23,7 +23,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { useThemeStore } from "@/stores";
 
 const appearanceFormSchema = z.object({
-  font: z.enum(["inter", "manrope", "system"], {
+  font: z.enum(["inter", "poppins", "work-sans"], {
     invalid_type_error: "Select a font",
     required_error: "Please select a font.",
   }),
