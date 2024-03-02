@@ -27,4 +27,10 @@ export interface ProjectInterface {
   stack?: TechStackInterface[];
 }
 
+export interface SideMenuInterface {
+  name: string;
+  path: string;
+  icon: React.ReactNode;
+}
+
 export type ProjectType = "confidential" | "client" | "personal" | "tutorial";
