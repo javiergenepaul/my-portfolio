@@ -16,7 +16,7 @@ export interface NavLinkInterface {
 
 export interface SocialMediaLinksInterface {
   key: string;
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   url: string;
 }

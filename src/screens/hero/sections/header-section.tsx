@@ -1,5 +1,18 @@
-import { BounceText, Button } from "@/components";
-import { NAV_LINKS, PATH, SOCIAL_MEDIA_LINKS } from "@/config";
+import {
+  BounceText,
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components";
+import {
+  GITHUB_URL,
+  LINKED_IN_URL,
+  NAV_LINKS,
+  PATH,
+  UPWORK_URL,
+} from "@/config";
 import { translate } from "@/i18n";
 import { useThemeStore } from "@/stores";
 import React from "react";
@@ -10,14 +23,19 @@ import {
   SocialButton,
   SocialMediaLinksInterface,
   SubTitleAnimation,
-  ThemeSwitch,
 } from "../components";
 import { Link } from "react-router-dom";
 import { ResumeDark, ResumeLight } from "../../../assets";
 import { useTranslation } from "react-i18next";
+import { Settings } from "lucide-react";
+import {
+  FaceIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 
 export const HeaderSection = () => {
-  const { getTheme, toggleTheme } = useThemeStore();
+  const { getTheme } = useThemeStore();
   const {} = useTranslation();
 
   const downloadResumeHandler = () => {
@@ -28,6 +46,27 @@ export const HeaderSection = () => {
       window.open(ResumeLight, "_blank");
     }
   };
+
+  const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
+    {
+      key: "github",
+      icon: <GitHubLogoIcon width={"24px"} height={"24px"} />,
+      title: translate("header.socialMediaLinks.github"),
+      url: GITHUB_URL,
+    },
+    {
+      key: "linkedIn",
+      icon: <LinkedInLogoIcon width={"24px"} height={"24px"} />,
+      title: translate("header.socialMediaLinks.linkedIn"),
+      url: LINKED_IN_URL,
+    },
+    {
+      key: "upwork",
+      icon: <FaceIcon width={"24px"} height={"24px"} />,
+      title: translate("header.socialMediaLinks.upwork"),
+      url: UPWORK_URL,
+    },
+  ];
 
   return (
     <>
@@ -67,7 +106,11 @@ export const HeaderSection = () => {
         </nav>
         <div>
           <div className="flex flex-col gap-4 mt-8 select-none md:flex-rol">
-            <Button className="w-fit" variant={"default"} onClick={downloadResumeHandler}>
+            <Button
+              className="w-fit"
+              variant={"default"}
+              onClick={downloadResumeHandler}
+            >
               {translate("resume.btnName")}
             </Button>
             <Link to={PATH.ABOUT.path}>
@@ -88,11 +131,25 @@ export const HeaderSection = () => {
                 />
               )
             )}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Link to={PATH.SETTINGS.path}>
+                    <Settings />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>{translate("settings.settings")}</span>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
             <AboutMeAvatar />
-            <ThemeSwitch
+            {/* TODO:: might use later */}
+            {/* <ThemeSwitch
               checked={getTheme()}
               onChange={(e) => toggleTheme(e.target.checked)}
-            />
+            /> */}
           </ul>
         </div>
       </section>
