@@ -1,9 +1,8 @@
 import React from "react";
 import { PATH, SideMenuInterface } from "@/config";
 import { PersonIcon } from "@radix-ui/react-icons";
-import { HomeIcon, PieChart, Contact, Code } from "lucide-react";
+import { HomeIcon, PieChart, Contact, Code, Settings } from "lucide-react";
 import { Drawer } from "vaul";
-import { SidebarLangOptionGroup } from "./sidebar-lang-option-group";
 import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";
 
@@ -42,6 +41,11 @@ export const SidebarContent = (props: SidebarContentInterface) => {
       path: PATH.SKILLS.path,
       icon: <Code width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
     },
+    {
+      name: "settings",
+      path: PATH.SETTINGS.path,
+      icon: <Settings width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
+    },
   ];
 
   return (
@@ -57,7 +61,6 @@ export const SidebarContent = (props: SidebarContentInterface) => {
                 </React.Fragment>
               ))}
             </div>
-            <SidebarLangOptionGroup />
           </div>
         </div>
       </div>
