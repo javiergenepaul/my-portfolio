@@ -1,9 +1,12 @@
 import { create } from "zustand";
 
 export type Theme = "dark" | "light" | "system" | undefined;
+type FontType = "inter" | "manrope" | "system";
 
 type ThemeStore = {
   theme: Theme;
+  font: FontType;
+  setFont: (font: FontType) => void;
   setTheme: (theme: Theme) => void;
   getSystemTheme: () => string;
   getTheme: () => boolean;
@@ -12,6 +15,8 @@ type ThemeStore = {
 
 export const useThemeStore = create<ThemeStore>((set, get) => ({
   theme: undefined,
+  font: "inter",
+  setFont: (font: FontType) => set({ font }),
   getTheme: (): boolean => {
     const currentTheme = get().theme;
     if (currentTheme === "system") {
