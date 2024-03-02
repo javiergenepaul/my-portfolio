@@ -3,7 +3,7 @@ import { PATH, SideMenuInterface } from "@/config";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { HomeIcon, PieChart, Contact, Code } from "lucide-react";
 import { Drawer } from "vaul";
-import { SidebarLangBtn } from "./sidebar-lang-btn";
+import { SidebarLangOptionGroup } from "./sidebar-lang-option-group";
 import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";
 
@@ -57,7 +57,7 @@ export const SidebarContent = (props: SidebarContentInterface) => {
                 </React.Fragment>
               ))}
             </div>
-            <SidebarLangBtn />
+            <SidebarLangOptionGroup />
           </div>
         </div>
       </div>

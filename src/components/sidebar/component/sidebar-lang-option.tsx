@@ -2,7 +2,7 @@ import { LanguageType } from "@/stores";
 import { Label } from "@radix-ui/react-label";
 import { RadioGroupItem } from "@radix-ui/react-radio-group";
 
-interface SidebarLangOptions {
+export interface SidebarLangOptions {
   value: LanguageType;
   name: string;
   icon: React.ReactNode;
