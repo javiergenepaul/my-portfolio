@@ -14,9 +14,12 @@ type ThemeStore = {
 };
 
 export const useThemeStore = create<ThemeStore>((set, get) => ({
-  theme: undefined,
-  font: "inter",
-  setFont: (font: FontType) => set({ font }),
+  theme: localStorage.getItem("vite-ui-theme") as Theme | undefined,
+  font: localStorage.getItem("vite-ui-font") as FontType | "inter",
+  setFont: (font: FontType) => {
+    localStorage.setItem("vite-ui-font", font);
+    set({ font });
+  },
   getTheme: (): boolean => {
     const currentTheme = get().theme;
     if (currentTheme === "system") {
@@ -36,12 +39,15 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
         .matches
         ? "dark"
         : "light";
+
+      console.log("get system theme");
+      console.log(systemTheme);
       return systemTheme;
     }
     return get().theme as string;
   },
   setTheme: (theme: Theme) => {
-    localStorage.setItem("vite-ui-theme", get().getSystemTheme());
+    localStorage.setItem("vite-ui-theme", theme as string);
     set({ theme });
   },
 }));
