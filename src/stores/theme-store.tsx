@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export type Theme = "dark" | "light" | "system" | undefined;
-type FontType = "inter" | "manrope" | "system";
+type FontType = "inter" | "work-sans" | "poppins";
 
 type ThemeStore = {
   theme: Theme;

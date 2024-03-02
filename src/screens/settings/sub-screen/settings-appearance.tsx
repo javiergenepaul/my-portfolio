@@ -24,7 +24,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
 
 const appearanceFormSchema = z.object({
-  font: z.enum(["inter", "manrope", "system"], {
+  font: z.enum(["inter", "work-sans", "poppins"], {
     invalid_type_error: "Select a font",
     required_error: "Please select a font.",
   }),
@@ -37,12 +37,11 @@ type Theme = "dark" | "light" | "system";
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
 export const SettingsAppearance = () => {
-  const { setTheme, setFont, getSystemTheme } = useThemeStore();
+  const { setTheme, setFont, getSystemTheme, font } = useThemeStore();
   const { toast } = useToast();
-  console.log(getSystemTheme());
 
   const defaultValue: z.infer<typeof appearanceFormSchema> = {
-    font: "inter",
+    font: font,
     theme: getSystemTheme() as Theme,
   };
 
@@ -75,19 +74,27 @@ export const SettingsAppearance = () => {
               <FormLabel>{translate("settings.font.font")}</FormLabel>
               <div className="relative w-max">
                 <FormControl>
-                  <Select {...field}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <SelectTrigger className="w-[180px]">
                       <SelectValue placeholder="Select a Font" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="inter">
+                        <SelectItem value="inter" className="font-inter">
                           {translate("settings.font.type.inter")}
                         </SelectItem>
-                        {/* TODO:: change later */}
-                        <SelectItem value="manrope">Manrope</SelectItem>
-                        {/* TODO:: change later */}
-                        <SelectItem value="system">System</SelectItem>
+                        <SelectItem
+                          value="work-sans"
+                          className="font-work-sans"
+                        >
+                          Work Sans
+                        </SelectItem>
+                        <SelectItem value="poppins" className="font-poppins">
+                          Poppins
+                        </SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>

@@ -105,7 +105,7 @@ export const HeaderSection = () => {
           </ul>
         </nav>
         <div>
-          <div className="flex flex-col gap-4 mt-8 select-none md:flex-rol">
+          <div className="flex flex-col gap-4 mt-8 select-none lg:flex-row">
             <Button
               className="w-fit"
               variant={"default"}

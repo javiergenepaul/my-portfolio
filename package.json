@@ -46,6 +46,9 @@
     "react-type-animation": "^3.2.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "typeface-inter": "^3.18.1",
+    "typeface-poppins": "^1.1.13",
+    "typeface-work-sans": "^1.1.13",
     "vaul": "^0.9.0",
     "zod": "^3.22.4",
     "zustand": "^4.5.1"

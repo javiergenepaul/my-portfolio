@@ -23,7 +23,7 @@ export const PageTitle = (props: PageTitleInterface) => {
           }
           {translate("header.nickName")}
         </Link>
-        <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           {pageName}
         </h1>
         <p className="text-muted-foreground">{description}</p>
