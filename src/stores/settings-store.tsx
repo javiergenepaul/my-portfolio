@@ -13,8 +13,13 @@ interface SettingsInterface {
 const useSettingsStore = create<SettingsInterface>((set) => ({
   theme: undefined,
   setTheme: (theme: Theme) => set({ theme }),
-  font: "inter",
-  setFont: (font: FontType) => set({ font }),
+  font: localStorage.getItem("vite-ui-font") as FontType | "inter",
+  setFont: (font: FontType) => {
+    console.log(font);
+
+    localStorage.setItem("vite-ui-font", font);
+    set({ font });
+  },
 }));
 
 export { useSettingsStore };

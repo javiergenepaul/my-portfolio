@@ -33,15 +33,17 @@ const appearanceFormSchema = z.object({
   }),
 });
 
+type Theme = "dark" | "light" | "system";
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
 export const SettingsAppearance = () => {
-  const { setTheme, setFont } = useThemeStore();
+  const { setTheme, setFont, getSystemTheme } = useThemeStore();
   const { toast } = useToast();
+  console.log(getSystemTheme());
 
   const defaultValue: z.infer<typeof appearanceFormSchema> = {
     font: "inter",
-    theme: "system",
+    theme: getSystemTheme() as Theme,
   };
 
   const { handleSubmit, control } = useForm<AppearanceFormValues>({
