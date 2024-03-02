@@ -22,7 +22,7 @@ export const PATH = {
     path: "/contacts",
   },
   SETTINGS: {
-    name: "Settings",
+    name: translate("settings.settings"),
     path: "/settings",
   },
   CONFIDENTIAL: {

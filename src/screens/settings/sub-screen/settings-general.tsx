@@ -81,7 +81,7 @@ export const SettingsGeneral = () => {
           name="lang"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>{translate("sidebar.changeLanguage")}</FormLabel>
+              <FormLabel>{translate("settings.lang.lang")}</FormLabel>
               <FormDescription>Select the language you like.</FormDescription>
               <FormMessage />
               <RadioGroup
@@ -98,7 +98,7 @@ export const SettingsGeneral = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Update Settings</Button>
+        <Button type="submit">{translate("settings.lang.btn.update")}</Button>
       </form>
     </FormProvider>
   );
