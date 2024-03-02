@@ -14,9 +14,11 @@ import {
 } from "../components";
 import { Link } from "react-router-dom";
 import { ResumeDark, ResumeLight } from "../../../assets";
+import { useTranslation } from "react-i18next";
 
 export const HeaderSection = () => {
   const { getTheme, toggleTheme } = useThemeStore();
+  const {} = useTranslation();
 
   const downloadResumeHandler = () => {
     getTheme;
@@ -29,27 +31,22 @@ export const HeaderSection = () => {
 
   return (
     <>
-      <section>
-        <Link className="focus:outline-none" to={PATH.ABOUT.path}>
-          <h1 className="text-4xl font-bold tracking-tight select-none sm:text-5xl">
-            <BounceText
-              className="font-bold outline-none ring-0 focus:outline-none"
-              text={translate("header.name")}
-            />
-          </h1>
-        </Link>
-        <SubTitleAnimation />
-        <p className="mt-4 leading-normal select-none">
-          {translate("header.description")}
-        </p>
-        <div className="flex gap-4 mt-8 select-none">
-          <Button variant={"default"} onClick={downloadResumeHandler}>
-            {translate("resume.btnName")}
-          </Button>
-          <Link to={PATH.ABOUT.path}>
-            <Button variant={"link"}>{translate("moreInfo")}</Button>
+      <section className="flex flex-col justify-between h-full">
+        <div>
+          <Link className="focus:outline-none" to={PATH.ABOUT.path}>
+            <h1 className="text-3xl font-bold tracking-tight select-none md:text-4xl sm:text-5xl">
+              <BounceText
+                className="font-bold outline-none ring-0 focus:outline-none"
+                text={translate("header.name")}
+              />
+            </h1>
           </Link>
+          <SubTitleAnimation />
+          <p className="mt-4 leading-normal select-none">
+            {translate("header.description")}
+          </p>
         </div>
+
         <nav
           className="hidden nav lg:block"
           aria-label={translate("header.ariaLabel.navigationLinks")}
@@ -65,25 +62,37 @@ export const HeaderSection = () => {
             ))}
           </ul>
         </nav>
+        <div>
+          <div className="flex gap-4 mt-8 select-none">
+            <Button variant={"default"} onClick={downloadResumeHandler}>
+              {translate("resume.btnName")}
+            </Button>
+            <Link to={PATH.ABOUT.path}>
+              <Button variant={"link"}>{translate("moreInfo")}</Button>
+            </Link>
+          </div>
+          <ul
+            className="flex items-center gap-3 mt-8 ml-1"
+            aria-label={translate("header.ariaLabel.socialMedia")}
+          >
+            {SOCIAL_MEDIA_LINKS.map(
+              (socialMedia: SocialMediaLinksInterface) => (
+                <SocialButton
+                  key={socialMedia.key}
+                  title={socialMedia.title}
+                  url={socialMedia.url}
+                  icon={socialMedia.icon}
+                />
+              )
+            )}
+            <AboutMeAvatar />
+            <ThemeSwitch
+              checked={getTheme()}
+              onChange={(e) => toggleTheme(e.target.checked)}
+            />
+          </ul>
+        </div>
       </section>
-      <ul
-        className="flex items-center gap-3 mt-8 ml-1"
-        aria-label={translate("header.ariaLabel.socialMedia")}
-      >
-        {SOCIAL_MEDIA_LINKS.map((socialMedia: SocialMediaLinksInterface) => (
-          <SocialButton
-            key={socialMedia.key}
-            title={socialMedia.title}
-            url={socialMedia.url}
-            icon={socialMedia.icon}
-          />
-        ))}
-        <AboutMeAvatar />
-        <ThemeSwitch
-          checked={getTheme()}
-          onChange={(e) => toggleTheme(e.target.checked)}
-        />
-      </ul>
     </>
   );
 };
