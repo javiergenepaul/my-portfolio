@@ -4,6 +4,8 @@ import { translate } from "@/i18n";
 import { BackgroundAnimation, SideBar } from "@/components";
 import { DEV_MODE, PATH } from "@/config";
 import { useNavigate } from "react-router-dom";
+import { useSwipeable } from "react-swipeable";
+import { useSiderStore } from "@/stores";
 
 interface SideBarLayoutInterface {
   children: React.ReactNode;
@@ -12,6 +14,12 @@ interface SideBarLayoutInterface {
 const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   const navigate = useNavigate();
+  const { setIsOpen } = useSiderStore();
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setIsOpen(true),
+    onSwipedRight: () => setIsOpen(false),
+  });
 
   return (
     <>
@@ -32,6 +40,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
         </div>
       </nav>
       <main
+        {...handlers}
         className={`relative w-full h-full min-h-screen px-6 py-12 pt-4 md:pt-0 mx-auto font-sans min-w-screen-xl md:px-12 md:py-20 lg:px-24 lg:py-0 ${
           DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
         }`}

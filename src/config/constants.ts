@@ -250,7 +250,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.VITEST_STACK,
       Stack.TAILWIND_STACK,
       Stack.NETLIFY_STACK,
-      Stack.LANDING_PAGE_STACK
+      Stack.LANDING_PAGE_STACK,
     ],
   },
   {

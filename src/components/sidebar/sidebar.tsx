@@ -1,18 +1,16 @@
-import { HamburgerMenuIcon, PersonIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon, HomeIcon, PersonIcon } from "@radix-ui/react-icons";
 import { Drawer } from "vaul";
 import { Button, Separator } from "../ui";
-import { PATH } from "@/config";
-import { Code, Contact, HomeIcon, PieChart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-
-interface SideMenuInterface {
-  name: string;
-  path: string;
-  icon: React.ReactNode;
-}
+import { useSiderStore } from "@/stores";
+import { PATH, SideMenuInterface } from "@/config";
+import { PieChart, Contact, Code } from "lucide-react";
+import React from "react";
+import { useSwipeable } from "react-swipeable";
 
 export const SideBar = () => {
+  const { isOpen, setIsOpen } = useSiderStore();
+
   const SIDE_MENU: SideMenuInterface[] = [
     {
       name: "Home",
@@ -41,40 +39,52 @@ export const SideBar = () => {
     },
   ];
 
-  const [open, setOpen] = useState<boolean>(false);
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setIsOpen(true),
+    onSwipedRight: () => setIsOpen(false),
+  });
 
   return (
-    <Drawer.Root direction="right" open={open} onClose={() => setOpen(false)}>
+    <Drawer.Root
+      direction="right"
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
+    >
       <Drawer.Trigger asChild>
-        <Button variant={"ghost"} size={"icon"} onClick={() => setOpen(!open)}>
+        <Button
+          variant={"ghost"}
+          size={"icon"}
+          onClick={() => setIsOpen(!open)}
+        >
           <HamburgerMenuIcon width={"30px"} height={"30px"} />
         </Button>
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay
-          onClick={() => setOpen(false)}
+          {...handlers}
+          onClick={() => setIsOpen(false)}
           className="fixed inset-0 bg-black/10 dark:bg-white/10 backdrop-blur-sm"
         />
         <Drawer.Content className="bg-foreground flex flex-col rounded-t-[10px] h-full w-[275px] z-[70] mt-24 fixed bottom-0 right-0">
           <div className="flex-1 h-full p-4 bg-background">
             <div className="max-w-md mx-auto">
-              <Drawer.Title className="mb-4 font-medium">
-                My Portfolio
+              <Drawer.Title className="px-2 mb-4 font-medium">
+                Menu
               </Drawer.Title>
-              <div className="p-4 px-2 ">
+              <div className="px-2 py-4 ">
                 {SIDE_MENU.map((menu: SideMenuInterface, index: React.Key) => (
-                  <div>
+                  <React.Fragment key={index}>
                     <Link
                       to={menu.path}
                       key={index}
                       className="flex items-center gap-4 py-1.5"
-                      onClick={() => setOpen(false)}
+                      onClick={() => setIsOpen(false)}
                     >
                       {menu.icon}
                       {menu.name}
                     </Link>
                     <Separator className="my-2" />
-                  </div>
+                  </React.Fragment>
                 ))}
               </div>
             </div>
