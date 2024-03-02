@@ -1,4 +1,21 @@
 {
+  "sidebar": {
+    "menu": "Menu",
+    "changeLanguage": "Baguhin ang Wika",
+    "languageOption": {
+      "cebuano": "Cebuano",
+      "japanese": "Hapon",
+      "tagalog": "Tagalog",
+      "english": "Ingles"
+    },
+    "sideBarMenu": {
+      "home": "Bahay",
+      "aboutMe": "Tungkol sa Akin",
+      "projects": "Mga proyekto",
+      "contact": "Mga contact",
+      "skills": "Mga kasanayan"
+    }
+  },
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
@@ -14,6 +31,7 @@
   },
   "moreInfo": "Karagdagang impormasyon",
   "appName": "Javz Portfolio - {{title}}",
+  "navName": "Portfolio ng Javz",
   "path": {
     "pageNotFound": "hindi natagpuan ang pahina",
     "home": "Bahay",
@@ -57,7 +75,7 @@
   },
   "services": {
     "backend": {
-      "title": "Back-end Development",
+      "title": "Pag-unlad ng Back-end",
       "description": "Sa aking serbisyo sa pag-develop ng backend, dalubhasa ako sa pagpapatupad ng Spring Boot Java Microservices upang gumawa ng mga matatag na API, na tinitiyak ang pagiging maaasahan, scalability, at seguridad ng iyong imprastraktura sa backend. "
     },
     "frontend": {
@@ -70,7 +88,7 @@
     },
     "stack": {
       "vite": "Vite",
-      "react": "React",
+      "react": "Magreact",
       "typescript": "Typescript",
       "javascript": "JavaScript",
       "zustand": "Zustand",
@@ -82,8 +100,8 @@
       "shadCn": "ShadCN",
       "mui": "Materyal na UI",
       "chakraUi": "Chakra UI",
-      "antDesign": "Ant-Design",
-      "nextUi": "Next UI",
+      "antDesign": "Disenyo ng Langgam",
+      "nextUi": "Susunod na UI",
       "chartJs": "ChartJS",
       "npm": "NPM",
       "pnpm": "PNPM",
@@ -94,10 +112,10 @@
       "jest": "Jest",
       "enzyme": "Enzyme",
       "cypress": "Cypress",
-      "i18n": "i18next",
+      "i18n": "i18Susunod",
       "axios": "Axios",
       "reactQuery": "React Query",
-      "springBoot": "Spring Boot",
+      "springBoot": "Boot ng tagsibol",
       "springSecurity": "Seguridad sa tagsibol",
       "springSecurityOAuth": "Spring Security OAuth",
       "springJDBC": "JDBC kasama si Spring",
@@ -116,7 +134,7 @@
       "linux": "Linux",
       "azure": "Azure",
       "aws": "Amazon Web Services",
-      "azurePipelineAgent": "Azure Agent Pipeline",
+      "azurePipelineAgent": "Ahente ng Azure Pipeline",
       "firebase": "Firebase",
       "git": "Git",
       "nginx": "Nginx",
@@ -177,10 +195,10 @@
       "imageName": "Preview ng WebPOS"
     },
     "unifiedYouth": {
-      "title": "Unified Youth",
+      "title": "Pinag-isang Kabataan",
       "company": "Triad Software Digital Solutions",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      "imageName": "Unified Youth",
+      "imageName": "Preview ng Pinag-isang Kabataan",
       "category": {
         "admin": "Admin Dashboard"
       }

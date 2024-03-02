@@ -1,4 +1,21 @@
 {
+  "sidebar": {
+    "menu": "Menu",
+    "changeLanguage": "Change Language",
+    "languageOption": {
+      "cebuano": "Cebuano",
+      "japanese": "Japanese",
+      "tagalog": "Tagalog",
+      "english": "English"
+    },
+    "sideBarMenu": {
+      "home": "Home",
+      "aboutMe": "About Me",
+      "projects": "Projects",
+      "contact": "Contacts",
+      "skills": "Skills"
+    }
+  },
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
