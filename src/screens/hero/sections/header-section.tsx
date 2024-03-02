@@ -34,7 +34,10 @@ export const HeaderSection = () => {
       <section className="flex flex-col justify-between h-full">
         <div>
           <Link className="focus:outline-none" to={PATH.ABOUT.path}>
-            <h1 className="text-3xl font-bold tracking-tight select-none md:text-4xl sm:text-5xl">
+            <h1 className="block text-5xl font-bold tracking-tight lg:hidden selec-none">
+              {translate("header.name")}
+            </h1>
+            <h1 className="hidden font-bold tracking-tight select-none md:text-5xl lg:block">
               <BounceText
                 className="font-bold outline-none ring-0 focus:outline-none"
                 text={translate("header.name")}
@@ -63,8 +66,8 @@ export const HeaderSection = () => {
           </ul>
         </nav>
         <div>
-          <div className="flex gap-4 mt-8 select-none">
-            <Button variant={"default"} onClick={downloadResumeHandler}>
+          <div className="flex flex-col gap-4 mt-8 select-none md:flex-rol">
+            <Button className="w-fit" variant={"default"} onClick={downloadResumeHandler}>
               {translate("resume.btnName")}
             </Button>
             <Link to={PATH.ABOUT.path}>
