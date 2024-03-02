@@ -1,4 +1,21 @@
 {
+  "sidebar": {
+    "menu": "Menu",
+    "changeLanguage": "Usba ang Pinulongan",
+    "languageOption": {
+      "cebuano": "Cebuano",
+      "japanese": "Hapon",
+      "tagalog": "Tagalog",
+      "english": "English"
+    },
+    "sideBarMenu": {
+      "home": "Balay",
+      "aboutMe": "Mahitungod Kanako",
+      "projects": "Mga proyekto",
+      "contact": "Mga kontak",
+      "skills": "Mga kahanas"
+    }
+  },
   "theme": {
     "light": "Kahayag nga Mode",
     "dark": "Dark Mode",
@@ -14,8 +31,9 @@
   },
   "moreInfo": "Dugang Impormasyon",
   "appName": "Javz Portfolio - {{title}}",
+  "navName": "Portfolio sa Javz",
   "path": {
-    "pageNotFound": "wala makit-an ang panid",
+    "pageNotFound": "panid wala makit-an",
     "home": "Balay",
     "about": "Mahitungod sa",
     "project": "Proyekto",
@@ -51,7 +69,7 @@
       "reactTypescript": "React TypeScript Developer",
       "springBoot": "Developer sa Spring Boot",
       "uiuxAdvocate": "UI/UX Advocate",
-      "uiLibraryEnthusiasts": "Mga Mahiligon sa UI Library"
+      "uiLibraryEnthusiasts": "Mga Mahiligon sa Library sa UI"
     },
     "aboutMe": "Mahitungod Kanako"
   },
@@ -125,7 +143,7 @@
       "netlify": "Netlify",
       "heroku": "Heroku",
       "vitest": "Vitest",
-      "microservices": "Mga microservice",
+      "microservices": "Microservices",
       "figma": "Ang Figma",
       "frontend": "Front-End",
       "figmaToHTML": "Figma sa HTML",
@@ -153,7 +171,7 @@
       "contribution": "Mga kontribusyon",
       "demoUnavailable": "Demo Dili Magamit",
       "demoAvailable": "{{title}} - Magamit ang Demo",
-      "codeAvaialble": "{{title}} - Magamit ang Github Code"
+      "codeAvaialble": "{{title}} - Github Code Anaa"
     },
     "yoo": {
       "title": "YooPH",
