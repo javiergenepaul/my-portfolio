@@ -2,7 +2,7 @@ import { i18n, translate } from "@/i18n";
 import { GeneralLangOption, GeneralLangOptions } from "../components";
 import { JPFlag, PHFlag, USFlag } from "@/assets";
 import { LanguageType, useLanguageStore } from "@/stores";
-import { RadioGroup, useToast } from "@/components";
+import { Label, RadioGroup, useToast } from "@/components";
 
 export const SettingsGeneral = () => {
   const { setLanguage, language } = useLanguageStore();
@@ -62,6 +62,7 @@ export const SettingsGeneral = () => {
 
   return (
     <>
+      <Label>{translate("settings.lang.lang")}</Label>  
       <RadioGroup
         value={language}
         defaultValue="en"
@@ -72,6 +73,9 @@ export const SettingsGeneral = () => {
           return <GeneralLangOption key={index} {...lang} />;
         })}
       </RadioGroup>
+      <p className="mt-2 text-sm text-muted-foreground">
+        {translate("settings.lang.formDescription")}
+      </p>
     </>
   );
 };
