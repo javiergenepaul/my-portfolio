@@ -1,6 +1,6 @@
 import { i18n, translate } from "@/i18n";
 import { GeneralLangOption, GeneralLangOptions } from "../components";
-import { JPFlag, PHFlag, USFlag } from "@/assets";
+import { PHFlag, USFlag } from "@/assets";
 import { LanguageType, useLanguageStore } from "@/stores";
 import { Label, RadioGroup, useToast } from "@/components";
 
@@ -17,7 +17,7 @@ export const SettingsGeneral = () => {
     {
       value: "ja",
       name: translate("sidebar.languageOption.japanese"),
-      icon: <img width={"170px"} height={"80px"} src={JPFlag} />,
+      icon: <img width={"170px"} height={"80px"} src={USFlag} />,
     },
     {
       value: "fil",
@@ -62,7 +62,7 @@ export const SettingsGeneral = () => {
 
   return (
     <>
-      <Label>{translate("settings.lang.lang")}</Label>  
+      <Label>{translate("settings.lang.lang")}</Label>
       <RadioGroup
         value={language}
         defaultValue="en"
