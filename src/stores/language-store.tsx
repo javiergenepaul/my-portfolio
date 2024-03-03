@@ -10,7 +10,8 @@ interface LanguageStoreInterface {
 const DEFAULT_LANGUAGE: LanguageType = "en";
 
 const useLanguageStore = create<LanguageStoreInterface>((set) => ({
-  language: DEFAULT_LANGUAGE,
+  language:
+    (localStorage.getItem("i18nextLng") as LanguageType) || DEFAULT_LANGUAGE,
   setLanguage: (language: LanguageType) => set({ language }),
 }));
 
