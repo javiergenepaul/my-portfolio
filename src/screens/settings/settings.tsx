@@ -23,7 +23,7 @@ export const Settings = () => {
 
   return (
     <FadeAnimation>
-      <div className="space-y-6 lg:py-16">
+      <div className="space-y-6 select-none lg:py-16">
         <PageTitle
           pageName={translate("settings.settings")}
           path={PATH.HOME.path}
