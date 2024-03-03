@@ -134,16 +134,15 @@ export const HeaderSection = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Link to={PATH.SETTINGS.path}>
+                  <Link className="hidden lg:block" to={PATH.SETTINGS.path}>
                     <Settings />
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="hidden lg:block">
                   <span>{translate("settings.settings")}</span>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-
             <AboutMeAvatar />
             {/* TODO:: might use later */}
             {/* <ThemeSwitch

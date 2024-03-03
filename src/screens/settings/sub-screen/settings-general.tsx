@@ -1,32 +1,11 @@
 import { i18n, translate } from "@/i18n";
 import { GeneralLangOption, GeneralLangOptions } from "../components";
 import { JPFlag, PHFlag, USFlag } from "@/assets";
-import { DEFAULT_LANGUAGE, useLanguageStore } from "@/stores";
-import {
-  Button,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  RadioGroup,
-  useToast,
-} from "@/components";
-import { FormProvider, useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-const generalSettingsFormSchema = z.object({
-  lang: z.enum(["en", "ja", "fil", "ceb"], {
-    invalid_type_error: "Select a font",
-    required_error: "Please select a font.",
-  }),
-});
-
-type GeneralSettingsFormValues = z.infer<typeof generalSettingsFormSchema>;
+import { LanguageType, useLanguageStore } from "@/stores";
+import { RadioGroup, useToast } from "@/components";
 
 export const SettingsGeneral = () => {
-  const { setLanguage } = useLanguageStore();
+  const { setLanguage, language } = useLanguageStore();
   const { toast } = useToast();
 
   const LANGUAGE_OPTIONS: GeneralLangOptions[] = [
@@ -52,54 +31,47 @@ export const SettingsGeneral = () => {
     },
   ];
 
-  const defaultValue: z.infer<typeof generalSettingsFormSchema> = {
-    lang: DEFAULT_LANGUAGE,
-  };
+  const onChangeLangHanlder = (value: LanguageType) => {
+    setLanguage(value);
+    i18n.changeLanguage(value);
 
-  const { handleSubmit, control } = useForm<GeneralSettingsFormValues>({
-    resolver: zodResolver(generalSettingsFormSchema),
-    defaultValues: defaultValue,
-  });
-
-  const onSubmitForm = (data: GeneralSettingsFormValues) => {
-    setLanguage(data.lang);
-    i18n.changeLanguage(data.lang);
     toast({
       variant: "success",
       duration: 3000,
       title: "Settings Updated",
-      description: "General Settings Successfully Updated",
+      description: translate("settings.lang.toast.success.general", {
+        language: getLanguageName(value),
+      }),
     });
   };
 
-  const methods = useForm();
+  const getLanguageName = (lang: LanguageType): string => {
+    switch (lang) {
+      case "en":
+        return "English";
+      case "ja":
+        return "Japanese";
+      case "fil":
+        return "Tagalog";
+      case "ceb":
+        return "Cebuano";
+      default:
+        return "English";
+    }
+  };
+
   return (
-    <FormProvider {...methods}>
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmitForm)}>
-        <FormField
-          control={control}
-          name="lang"
-          render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel>{translate("settings.lang.lang")}</FormLabel>
-              <FormDescription>Select the language you like.</FormDescription>
-              <FormMessage />
-              <RadioGroup
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                className="grid grid-cols-4 gap-4"
-              >
-                {LANGUAGE_OPTIONS.map(
-                  (lang: GeneralLangOptions, index: React.Key) => {
-                    return <GeneralLangOption key={index} {...lang} />;
-                  }
-                )}
-              </RadioGroup>
-            </FormItem>
-          )}
-        />
-        <Button type="submit">{translate("settings.lang.btn.update")}</Button>
-      </form>
-    </FormProvider>
+    <>
+      <RadioGroup
+        value={language}
+        defaultValue="en"
+        onValueChange={onChangeLangHanlder}
+        className="grid grid-cols-4 gap-4"
+      >
+        {LANGUAGE_OPTIONS.map((lang: GeneralLangOptions, index: React.Key) => {
+          return <GeneralLangOption key={index} {...lang} />;
+        })}
+      </RadioGroup>
+    </>
   );
 };

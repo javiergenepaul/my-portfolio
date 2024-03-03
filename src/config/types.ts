@@ -31,6 +31,7 @@ export interface SideMenuInterface {
   name: string;
   path: string;
   icon: React.ReactNode;
+  href?: string;
 }
 
 export type ProjectType = "confidential" | "client" | "personal" | "tutorial";

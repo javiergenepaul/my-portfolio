@@ -42,7 +42,7 @@ export const SidebarContent = (props: SidebarContentInterface) => {
       icon: <Code width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
     },
     {
-      name: "settings",
+      name: translate("settings.settings"),
       path: PATH.SETTINGS.path,
       icon: <Settings width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
     },
