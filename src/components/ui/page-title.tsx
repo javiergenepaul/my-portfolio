@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Separator } from ".";
 import { translate } from "@/i18n";
+import { useTranslation } from "react-i18next";
 
 interface PageTitleInterface {
   pageName: string;
@@ -11,6 +12,7 @@ interface PageTitleInterface {
 
 export const PageTitle = (props: PageTitleInterface) => {
   const { path, pageName, description } = props;
+  const {} = useTranslation();
   return (
     <>
       <div className="space-y-0.5">

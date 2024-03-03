@@ -4,7 +4,7 @@ import {
   GeneralLangOptions,
   InpuptFieldGroup,
 } from "../components";
-import { PHFlag, USFlag } from "@/assets";
+import { JPFlag, PHFlag, USFlag } from "@/assets";
 import { LanguageType, useLanguageStore } from "@/stores";
 import { RadioGroup, useToast } from "@/components";
 
@@ -21,7 +21,7 @@ export const SettingsGeneral = () => {
     {
       value: "ja",
       name: translate("sidebar.languageOption.japanese"),
-      icon: <img width={"170px"} height={"80px"} src={USFlag} />,
+      icon: <img width={"170px"} height={"80px"} src={JPFlag} />,
     },
     {
       value: "fil",

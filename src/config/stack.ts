@@ -130,7 +130,7 @@ export const HEROKU_STACK = {
 };
 
 export const LARAVEL_STACK = {
-  name: translate("services.stack.heroku"),
+  name: translate("services.stack.laravel"),
   isFavorite: false,
   url: url.LARAVEL_URL,
 };

@@ -87,7 +87,7 @@ export const ProjectCard = (props: ProjectCardInterface) => {
                 <BounceText className="cursor-default" text={title} />
               </h3>
             </CardTitle>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <KeyContributionIndicator contributions={["test"]} />
               <DemoIndicator title={title} previewUrl={previewUrl} />
               <CodeIndicator title={title} codeUrl={codeUrl} />

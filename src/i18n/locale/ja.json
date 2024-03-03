@@ -46,8 +46,9 @@
   },
   "header": {
     "name": "ジーン・ポール・マー・ハビエル",
+    "nickName": "ポール・ハビエル",
     "shortName": "パジャマ",
-    "description": "フルスタック開発者として、私は卓越したデジタル エクスペリエンスを構築することに尽力しています。シームレスな機能のための堅牢な API を活用して、ピクセルに完璧で魅力的でアクセスしやすい Web サイトを精度と注意をもって構築します。",
+    "description": "Fullstack 開発者として、私は卓越したデジタル エクスペリエンスを作成することに尽力しています。シームレスな機能のための堅牢な API を活用して、ピクセルに完璧で魅力的でアクセスしやすい Web サイトを精度と注意をもって構築します。",
     "ariaLabel": {
       "navigationLinks": "ナビゲーションリンク",
       "socialMedia": "ソーシャルメディア",
@@ -96,7 +97,7 @@
       "html": "HTML",
       "jquery": "jQuery",
       "css": "CSS",
-      "tailwind": "追い風CSS",
+      "tailwind": "追い風 CSS",
       "shadCn": "シャッドCN",
       "mui": "マテリアルUI",
       "chakraUi": "チャクラUI",
@@ -141,7 +142,7 @@
       "centOS": "CentOS",
       "cicd": "CI/CD",
       "netlify": "ネットリファイ",
-      "heroku": "ヒーローク",
+      "heroku": "Heroku",
       "vitest": "ヴィテスト",
       "microservices": "マイクロサービス",
       "figma": "フィグマ",
@@ -154,6 +155,8 @@
     }
   },
   "projects": {
+    "title": "プロジェクト",
+    "description": "テストプロジェクトの説明",
     "tag": {
       "confidential": "機密",
       "personal": "個人的",
@@ -176,7 +179,7 @@
     "yoo": {
       "title": "よーPH",
       "company": "Mach95 ソフトウェア デベロッパー コーポレーション",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
+      "description": "YooPH は、管理ダッシュボード機能、電子商取引機能、堅牢なフードデリバリー システムを網羅する多用途のフルスタック アプリケーションです。",
       "imageName": "ユ PH プレビュー",
       "category": {
         "deliveryApp": "配送申請",
@@ -187,7 +190,7 @@
     "siriusWebpos": {
       "title": "シリウス WebPOS - 本社",
       "company": "アライアンスソフトウェア株式会社",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
+      "description": "Sirius WebPOS は、本社管理機能を備えた包括的なフルスタックの販売時点情報管理 (POS) システムです。",
       "category": {
         "webPos": "WebPOS",
         "admin": "管理者ダッシュボード"
@@ -197,7 +200,7 @@
     "unifiedYouth": {
       "title": "統一青少年",
       "company": "トライアド ソフトウェア デジタル ソリューション",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "description": "One Tap Connect としても知られる Unified Youth は、地方自治体の取り組みへの若者の関与と参加を効率化するために設計された最先端のプラットフォームです。 ",
       "imageName": "統一青少年プレビュー",
       "category": {
         "admin": "管理者ダッシュボード"
@@ -206,7 +209,7 @@
     "countryScape": {
       "title": "田舎の風景",
       "company": "トライアド ソフトウェア デジタル ソリューション",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクト・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドローレ・マグナ・アリクア。",
+      "description": "Country Scape は、Figma から細心の注意を払って作成され、React JavaScript で実現された魅力的な静的ランディング ページです。",
       "imageName": "カントリースケーププレビュー",
       "category": {
         "booking": "ホテルの予約"
@@ -214,7 +217,7 @@
     },
     "hoobank": {
       "title": "フーバンク",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "description": "Hoobank は、Javascript Master による初心者向けのコードに沿ったチュートリアルで、クラスの使用法や構成など、Tailwind CSS の基本を参加者に紹介します。 ",
       "imageName": "国",
       "category": {
         "landing": "ランディングページ"
@@ -223,7 +226,7 @@
     "iqmk": {
       "title": "IQMK",
       "company": "Mach95 ソフトウェア デベロッパー コーポレーション",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
+      "description": "IQMK は、Tailwind CSS を使用して Figma デザインを HTML に変換することに重点を置いたクライアント プロジェクトです。",
       "imageName": "IQMK プレビュー",
       "category": {
         "landing": "ランディングページ"
@@ -231,8 +234,8 @@
     },
     "pawfectlyYours": {
       "title": "素敵にあなたのもの",
-      "description": "ロレム・イプサム・ドルー・シット・アメット、コンセクテトゥール・アディピシング・エリート、セド・ド・エ​​イウスモッド・テンポラ・インシディダント・ユー・レイバーとドロレ・マグナ・アリクア。",
-      "imageName": "IQMK プレビュー",
+      "description": "Pawfectly Yours は、単なるペット ショップや獣医追跡サービスを超えています。",
+      "imageName": "完璧にあなたのものプレビュー",
       "category": {
         "ecommerce": "eコマース",
         "landing": "ランディングページ"
@@ -240,6 +243,8 @@
     }
   },
   "contact": {
+    "title": "接触",
+    "description": "テスト連絡先の説明",
     "keepInTouch": "これからも連絡取り合おうね",
     "placeHolder": {
       "name": "名前",
@@ -265,12 +270,71 @@
     "content_two": "のレイアウト",
     "figma": "フィグマ",
     "content_three": "丁寧に作られています",
-    "visualStudioCode": "Visual Studio コード",
+    "visualStudioCode": "Visual Studioコード",
     "content_four": "本当にあなたによって。",
     "vite": "ヴィテ、",
     "react": "反応して、",
     "tailwind": "追い風CSS",
     "content_five": "シームレスで効率的な開発エクスペリエンスを保証します。",
     "content_other": "～からインスピレーションを得てデザインされました"
-  }
+  },
+  "settings": {
+    "header": {
+      "appearance": "外観設定",
+      "general": "一般設定"
+    },
+    "settings": "設定",
+    "description": "ポートフォリオを簡単にパーソナライズします。",
+    "nav": {
+      "general": "一般的な",
+      "appearance": "外観"
+    },
+    "font": {
+      "font": "フォントファミリー",
+      "instruction": "新しいフォント ファミリを試してみることに興味がありますか?",
+      "type": {
+        "inter": "インテル"
+      },
+      "toast": {
+        "success": {
+          "font": "フォントファミリーが更新されました！ {{fontName}}！ "
+        }
+      }
+    },
+    "theme": {
+      "theme": "テーマ",
+      "formDescription": "洗練されたダーク モードまたは明瞭なライト モードでブラウジングをアップグレードします。",
+      "mode": {
+        "system": "システムモード",
+        "light": "ライトモード",
+        "dark": "ダークモード"
+      },
+      "toast": {
+        "success": {
+          "theme": "テーマがに変更されました {{theme}}！ "
+        }
+      }
+    },
+    "lang": {
+      "lang": "言語",
+      "formDescription": "別の言語を試してみませんか?",
+      "btn": {
+        "update": "設定を更新"
+      },
+      "toast": {
+        "success": {
+          "general": "言語が更新されました! {{language}}！ "
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "私について",
+    "description": "私についての説明をテストする"
+  },
+  "skills": {
+    "title": "スキル",
+    "description": "テストスキルの説明"
+  },
+  "availableSoon": "近日発売予定"
 }

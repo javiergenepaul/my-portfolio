@@ -3,6 +3,7 @@ import { SettingsSidenav } from "./components";
 import { Outlet } from "react-router-dom";
 import { PATH } from "@/config";
 import { translate } from "@/i18n";
+import { useTranslation } from "react-i18next";
 
 export interface SettingsItemInterface {
   title: string;
@@ -10,10 +11,11 @@ export interface SettingsItemInterface {
 }
 
 export const Settings = () => {
+  const {} = useTranslation();
   const sidebarNavItems: SettingsItemInterface[] = [
     {
       title: translate("settings.nav.general"),
-      href: `${PATH.SETTINGS.path}`,  
+      href: `${PATH.SETTINGS.path}`,
     },
     {
       title: translate("settings.nav.appearance"),

@@ -33,7 +33,7 @@
   "appName": "Javz Portfolio - {{title}}",
   "navName": "Portfolio sa Javz",
   "path": {
-    "pageNotFound": "panid wala makit-an",
+    "pageNotFound": "wala makit-an ang panid",
     "home": "Balay",
     "about": "Mahitungod sa",
     "project": "Proyekto",
@@ -46,8 +46,9 @@
   },
   "header": {
     "name": "Gene Paul Mar Javier",
+    "nickName": "Paul Javier",
     "shortName": "PJ",
-    "description": "Isip usa ka Fullstack Developer, Ako Komitado sa Paghimo ug Talagsaon nga Digital nga mga Kasinatian: Pagtukod sa Pixel-Perfect, Engaging, ug Accessible nga mga Website nga adunay Katukma ug Pag-atiman, Pag-gamit sa Lig-on nga mga API para sa Seamless Functionality.",
+    "description": "Isip usa ka Fullstack Developer, Ako Mipasalig sa Paghimo sa Talagsaon nga Digital nga mga Kasinatian: Pagtukod sa Pixel-Perfect, Engaging, ug Accessible nga mga Websites nga adunay Katukma ug Pag-atiman, Pag-gamit sa Lig-on nga mga API para sa Seamless Functionality.",
     "ariaLabel": {
       "navigationLinks": "Mga Link sa Nabigasyon",
       "socialMedia": "Social Media",
@@ -154,6 +155,8 @@
     }
   },
   "projects": {
+    "title": "Mga proyekto",
+    "description": "paghulagway sa mga proyekto sa pagsulay",
     "tag": {
       "confidential": "Kompidensyal",
       "personal": "Personal",
@@ -171,12 +174,12 @@
       "contribution": "Mga kontribusyon",
       "demoUnavailable": "Demo Dili Magamit",
       "demoAvailable": "{{title}} - Magamit ang Demo",
-      "codeAvaialble": "{{title}} - Github Code Anaa"
+      "codeAvaialble": "{{title}} - Magamit ang Github Code"
     },
     "yoo": {
       "title": "YooPH",
       "company": "Ang Mach95 Software Developer Corp",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang YooPH usa ka versatile full-stack application nga naglangkob sa admin dashboard functionalities, e-commerce features, ug usa ka lig-on nga food delivery system. ",
       "imageName": "Yoo PH Preview",
       "category": {
         "deliveryApp": "Aplikasyon sa Paghatud",
@@ -187,7 +190,7 @@
     "siriusWebpos": {
       "title": "Sirius WebPOS - Hedkuwarter",
       "company": "Alliance Software Inc.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Sirius WebPOS usa ka komprehensibo nga full-stack Point of Sale (POS) nga sistema nga kompleto sa mga kapabilidad sa pagdumala sa punoang buhatan. ",
       "category": {
         "webPos": "WebPOS",
         "admin": "Admin Dashboard"
@@ -197,7 +200,7 @@
     "unifiedYouth": {
       "title": "Nagkahiusang Kabatan-onan",
       "company": "Triad Software Digital Solutions",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Unified Youth, nailhan usab nga One Tap Connect, usa ka cutting-edge nga plataporma nga gidesinyo sa pagpahapsay sa pakiglambigit sa kabatan-onan ug pag-apil sa mga inisyatibo sa lokal nga gobyerno. ",
       "imageName": "Nahiusa nga Pagtan-aw sa Kabatan-onan",
       "category": {
         "admin": "Admin Dashboard"
@@ -206,7 +209,7 @@
     "countryScape": {
       "title": "CountryScape",
       "company": "Triad Software Digital Solutions",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Country Scape usa ka madanihon nga static landing page nga makuti nga gihimo gikan sa Figma ug gibuhi sa React JavaScript. ",
       "imageName": "Pagtan-aw sa Lawak sa Nasod",
       "category": {
         "booking": "Pag-book sa Hotel"
@@ -214,7 +217,7 @@
     },
     "hoobank": {
       "title": "Hoobank",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Hoobank kay usa ka beginner-friendly code-along tutorial sa Javascript Master, nga nagpaila sa mga partisipante sa Tailwind CSS basics, lakip ang paggamit sa klase ug configuration. ",
       "imageName": "Nasud",
       "category": {
         "landing": "Landing Page"
@@ -223,7 +226,7 @@
     "iqmk": {
       "title": "IQMK",
       "company": "Ang Mach95 Software Developer Corp.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang IQMK usa ka proyekto sa kliyente nga naka-focus sa pag-convert sa Figma design ngadto sa HTML gamit ang Tailwind CSS. ",
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
@@ -231,8 +234,8 @@
     },
     "pawfectlyYours": {
       "title": "Pawfecly Imo",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      "imageName": "IQMK Preview",
+      "description": "Ang Pawfectly Yours labaw pa sa pagkahimong pet shop ug veterinary tracker; ",
+      "imageName": "Pawfectly Yours Preview",
       "category": {
         "ecommerce": "ecommerce",
         "landing": "Landing Page"
@@ -240,6 +243,8 @@
     }
   },
   "contact": {
+    "title": "Kontaka",
+    "description": "pagsulay sa paghulagway sa kontak",
     "keepInTouch": "Magpadayon ta sa pagkontak",
     "placeHolder": {
       "name": "Ngalan",
@@ -272,5 +277,64 @@
     "react": "React,",
     "tailwind": "Tailwind CSS",
     "content_five": "pagsiguro sa usa ka seamless ug episyente nga kasinatian sa kalamboan."
-  }
+  },
+  "settings": {
+    "header": {
+      "appearance": "Mga Setting sa Panagway",
+      "general": "Kinatibuk-ang mga Setting"
+    },
+    "settings": "Mga setting",
+    "description": "I-personalize ang portfolio nga walay kahago. ",
+    "nav": {
+      "general": "Heneral",
+      "appearance": "Panagway"
+    },
+    "font": {
+      "font": "Pamilya sa Font",
+      "instruction": "Interesado sa pagsulay sa usa ka bag-ong pamilya sa font? ",
+      "type": {
+        "inter": "Inter"
+      },
+      "toast": {
+        "success": {
+          "font": "Gi-update ang pamilya sa font!  {{fontName}}! "
+        }
+      }
+    },
+    "theme": {
+      "theme": "Tema",
+      "formDescription": "I-upgrade ang imong pag-browse gamit ang Dark Mode para sa sophistication o Light Mode para klaro. ",
+      "mode": {
+        "system": "Sistema nga Mode",
+        "light": "Kahayag nga Mode",
+        "dark": "Dark Mode"
+      },
+      "toast": {
+        "success": {
+          "theme": "Ang tema giilisan sa {{theme}}! "
+        }
+      }
+    },
+    "lang": {
+      "lang": "Pinulongan",
+      "formDescription": "Gusto mosulay ug laing pinulongan? ",
+      "btn": {
+        "update": "Pag-update sa mga Setting"
+      },
+      "toast": {
+        "success": {
+          "general": "Gi-update ang pinulongan!  {{language}}! "
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "Mahitungod Kanako",
+    "description": "test about nako description"
+  },
+  "skills": {
+    "title": "Mga kahanas",
+    "description": "paghulagway sa kahanas sa pagsulay"
+  },
+  "availableSoon": "Magamit sa Dili madugay"
 }

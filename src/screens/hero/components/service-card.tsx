@@ -10,9 +10,11 @@ import { TechStackInterface } from "@/config";
 import { ServiceCardInterface } from "./component-props";
 import React from "react";
 import { StackContent } from "./service";
+import { useTranslation } from "react-i18next";
 
 export const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;
+  const {} = useTranslation();
 
   return (
     <Card>

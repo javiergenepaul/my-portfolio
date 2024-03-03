@@ -179,7 +179,7 @@
     "yoo": {
       "title": "YooPH",
       "company": "Mach95 Software Developer Corp",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "description": "YooPH is a versatile full-stack application encompassing admin dashboard functionalities, e-commerce features, and a robust food delivery system. This all-in-one solution empowers businesses to efficiently manage their operations, streamline sales processes, and offer seamless delivery services to their customers. With its comprehensive suite of tools and user-friendly interface, YooPH provides a unified platform for businesses to thrive in the digital landscape.",
       "imageName": "Yoo PH Preview",
       "category": {
         "deliveryApp": "Delivery Application",
@@ -190,7 +190,7 @@
     "siriusWebpos": {
       "title": "Sirius WebPOS - Headquarter",
       "company": "Alliance Software Inc.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "description": "Sirius WebPOS is a comprehensive full-stack Point of Sale (POS) system complete with headquarters management capabilities. This robust solution caters to businesses of all sizes, offering a seamless and efficient way to manage transactions, inventory, and customer data. With its headquarters functionality, users can oversee multiple locations or branches, streamlining operations and enhancing productivity",
       "category": {
         "webPos": "WebPOS",
         "admin": "Admin Dashboard"
@@ -200,7 +200,7 @@
     "unifiedYouth": {
       "title": "Unified Youth",
       "company": "Triad Software Digital Solutions",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "description": "Unified Youth, also known as One Tap Connect, is a cutting-edge platform designed to streamline youth engagement and participation in local government initiatives. With its innovative features, including RFID attendance tracking, this platform simplifies the process of connecting young individuals with community events and programs. By offering a seamless experience with just one tap, Unified Youth empowers youth to get involved and make a difference in their community effortlessly.",
       "imageName": "Unified Youth Preview",
       "category": {
         "admin": "Admin Dashboard"
@@ -209,7 +209,7 @@
     "countryScape": {
       "title": "CountryScape",
       "company": "Triad Software Digital Solutions",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "description": "Country Scape is a captivating static landing page meticulously crafted from Figma and brought to life with React JavaScript. This stunning page serves as a hotel booking platform, inviting visitors to explore luxurious accommodations in picturesque destinations. With seamless integration between design and development, Country Scape offers an immersive experience, enticing users to book their dream getaway with ease.",
       "imageName": "Country Scape Preview",
       "category": {
         "booking": "Hotel Booking"
@@ -217,7 +217,7 @@
     },
     "hoobank": {
       "title": "Hoobank",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "description": "Hoobank is a beginner-friendly code-along tutorial by Javascript Master, introducing participants to Tailwind CSS basics, including class usage and configuration. Ideal for developers new to Tailwind looking to dive into styling with ease.Hoobank is a beginner-friendly code-along tutorial by Javascript Master, introducing participants to Tailwind CSS basics, including class usage and configuration. Ideal for developers new to Tailwind looking to dive into styling with ease.",
       "imageName": "Country",
       "category": {
         "landing": "Landing Page"
@@ -226,7 +226,7 @@
     "iqmk": {
       "title": "IQMK",
       "company": "Mach95 Software Developer Corp.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "description": "IQMK is a client project focused on converting a Figma design into HTML using Tailwind CSS. This project entails creating a simple landing page devoid of interactive elements, resulting in a static website. Perfect for showcasing design skills and implementing them seamlessly into web development using Tailwind CSS",
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
@@ -234,8 +234,8 @@
     },
     "pawfectlyYours": {
       "title": "Pawfecly Yours",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "imageName": "IQMK Preview",
+      "description": "Pawfectly Yours goes beyond just being a pet shop and veterinary tracker; it also features a comprehensive dashboard to manage and track the records of pet owners. This centralized dashboard allows pet owners to store and access important information about their pets, including medical records, vaccination history, grooming appointments, and dietary preferences. By providing a convenient way to organize and monitor pet-related data, Pawfectly Yours ensures that pet owners stay informed and proactive in caring for their furry companions.",
+      "imageName": "Pawfectly Yours Preview",
       "category": {
         "ecommerce": "ecommerce",
         "landing": "Landing Page"

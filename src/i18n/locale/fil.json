@@ -46,6 +46,7 @@
   },
   "header": {
     "name": "Gene Paul Mar Javier",
+    "nickName": "Paul Javier",
     "shortName": "PJ",
     "description": "Bilang Fullstack Developer, Nakatuon Ako sa Paggawa ng Mga Pambihirang Digital na Karanasan: Pagbuo ng Pixel-Perfect, Nakakaengganyo, at Naa-access na mga Website nang may Katumpakan at Pangangalaga, Paggamit ng Matatag na mga API para sa Seamless Functionality.",
     "ariaLabel": {
@@ -154,6 +155,8 @@
     }
   },
   "projects": {
+    "title": "Mga proyekto",
+    "description": "paglalarawan ng mga proyekto sa pagsubok",
     "tag": {
       "confidential": "Kumpidensyal",
       "personal": "Personal",
@@ -176,7 +179,7 @@
     "yoo": {
       "title": "YooPH",
       "company": "Ang Mach95 Software Developer Corp",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang YooPH ay isang versatile na full-stack na application na sumasaklaw sa mga functionality ng admin dashboard, mga feature ng e-commerce, at isang mahusay na sistema ng paghahatid ng pagkain. ",
       "imageName": "Preview ng Yoo PH",
       "category": {
         "deliveryApp": "Application sa Paghahatid",
@@ -187,7 +190,7 @@
     "siriusWebpos": {
       "title": "Sirius WebPOS - Punong-tanggapan",
       "company": "Alliance Software Inc.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Sirius WebPOS ay isang komprehensibong full-stack Point of Sale (POS) system na kumpleto sa mga kakayahan sa pamamahala ng punong-tanggapan. ",
       "category": {
         "webPos": "WebPOS",
         "admin": "Admin Dashboard"
@@ -197,7 +200,7 @@
     "unifiedYouth": {
       "title": "Pinag-isang Kabataan",
       "company": "Triad Software Digital Solutions",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Unified Youth, na kilala rin bilang One Tap Connect, ay isang cutting-edge na platform na idinisenyo upang i-streamline ang pakikipag-ugnayan ng kabataan at pakikilahok sa mga inisyatiba ng lokal na pamahalaan. ",
       "imageName": "Preview ng Pinag-isang Kabataan",
       "category": {
         "admin": "Admin Dashboard"
@@ -206,7 +209,7 @@
     "countryScape": {
       "title": "CountryScape",
       "company": "Triad Software Digital Solutions",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Country Scape ay isang mapang-akit na static na landing page na maingat na ginawa mula sa Figma at binigyang buhay gamit ang React JavaScript. ",
       "imageName": "Preview ng Scape ng Bansa",
       "category": {
         "booking": "Pagbu-book ng Hotel"
@@ -214,7 +217,7 @@
     },
     "hoobank": {
       "title": "Hoobank",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang Hoobank ay isang beginner-friendly na code-along na tutorial ng Javascript Master, na nagpapakilala sa mga kalahok sa mga pangunahing kaalaman sa Tailwind CSS, kabilang ang paggamit at pagsasaayos ng klase. ",
       "imageName": "Bansa",
       "category": {
         "landing": "Landing Page"
@@ -223,7 +226,7 @@
     "iqmk": {
       "title": "IQMK",
       "company": "Ang Mach95 Software Developer Corp.",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "description": "Ang IQMK ay isang proyekto ng kliyente na nakatuon sa pag-convert ng disenyo ng Figma sa HTML gamit ang Tailwind CSS. ",
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
@@ -231,8 +234,8 @@
     },
     "pawfectlyYours": {
       "title": "Pawfecly Yours",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      "imageName": "IQMK Preview",
+      "description": "Ang Pawfectly Yours ay higit pa sa pagiging isang pet shop at veterinary tracker; ",
+      "imageName": "Pawfectly Yours Preview",
       "category": {
         "ecommerce": "ecommerce",
         "landing": "Landing Page"
@@ -240,6 +243,8 @@
     }
   },
   "contact": {
+    "title": "Makipag-ugnayan",
+    "description": "pagsubok ng paglalarawan ng contact",
     "keepInTouch": "Let's Keep in touch",
     "placeHolder": {
       "name": "Pangalan",
@@ -272,5 +277,64 @@
     "react": "React,",
     "tailwind": "Tailwind CSS",
     "content_five": "pagtiyak ng tuluy-tuloy at mahusay na karanasan sa pag-unlad."
-  }
+  },
+  "settings": {
+    "header": {
+      "appearance": "Mga Setting ng Hitsura",
+      "general": "Pangkalahatang mga Setting"
+    },
+    "settings": "Mga setting",
+    "description": "I-personalize ang portfolio nang walang kahirap-hirap. ",
+    "nav": {
+      "general": "Heneral",
+      "appearance": "Hitsura"
+    },
+    "font": {
+      "font": "Pamilya ng Font",
+      "instruction": "Interesado na sumubok ng bagong pamilya ng font? ",
+      "type": {
+        "inter": "Inter"
+      },
+      "toast": {
+        "success": {
+          "font": "Na-update ang pamilya ng font!  {{fontName}}! "
+        }
+      }
+    },
+    "theme": {
+      "theme": "Tema",
+      "formDescription": "I-upgrade ang iyong pagba-browse gamit ang Dark Mode para sa pagiging sopistikado o Light Mode para sa kalinawan. ",
+      "mode": {
+        "system": "System Mode",
+        "light": "Light Mode",
+        "dark": "Dark Mode"
+      },
+      "toast": {
+        "success": {
+          "theme": "Ang tema ay napalitan ng {{theme}}! "
+        }
+      }
+    },
+    "lang": {
+      "lang": "Wika",
+      "formDescription": "Gusto mo bang sumubok ng ibang wika? ",
+      "btn": {
+        "update": "I-update ang Mga Setting"
+      },
+      "toast": {
+        "success": {
+          "general": "Na-update ang wika!  {{language}}! "
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "Tungkol sa Akin",
+    "description": "pagsubok tungkol sa akin paglalarawan"
+  },
+  "skills": {
+    "title": "Mga kasanayan",
+    "description": "paglalarawan ng mga kasanayan sa pagsubok"
+  },
+  "availableSoon": "Magagamit na"
 }
