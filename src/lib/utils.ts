@@ -30,3 +30,12 @@ export const secondsToMilliseconds = (seconds: number): number => {
 export const minutesToMilliseconds = (minutes: number): number => {
   return minutes * 60 * 1000;
 };
+
+/**
+ * Capitalizes the first letter of a string.
+ * @param {string} value - The input string.
+ * @returns {string} The string with the first letter capitalized.
+ */
+export const capitalizeFirstLetter = (value: string): string => {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+};

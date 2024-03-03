@@ -1,217 +1,129 @@
 import {
   useToast,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  Button,
   Select,
-  RadioGroup,
-  RadioGroupItem,
   SelectContent,
   SelectGroup,
-  SelectItem,
   SelectTrigger,
   SelectValue,
+  RadioGroup,
 } from "@/components";
 import { translate } from "@/i18n";
-import { useThemeStore } from "@/stores";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronDownIcon } from "lucide-react";
-import { useForm, FormProvider } from "react-hook-form";
-import { z } from "zod";
-
-const appearanceFormSchema = z.object({
-  font: z.enum(["inter", "work-sans", "poppins"], {
-    invalid_type_error: "Select a font",
-    required_error: "Please select a font.",
-  }),
-  theme: z.enum(["light", "dark", "system"], {
-    required_error: "Please select a theme.",
-  }),
-});
+import { FontType, useThemeStore } from "@/stores";
+import {
+  ApperanceFontOption,
+  ApperanceThemeOption,
+  ApperanceThemeOptionInterface,
+  FontAvailableInterface,
+  InpuptFieldGroup,
+} from "..";
+import { capitalizeFirstLetter } from "@/lib";
 
 type Theme = "dark" | "light" | "system";
-type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
+
+const FONT_AVAILABLE: FontAvailableInterface[] = [
+  {
+    fontName: translate("settings.font.type.inter"),
+    fontClassName: "font-inter",
+    value: "inter",
+  },
+  {
+    fontName: "Work Sans",
+    fontClassName: "font-work-sans",
+    value: "work-sans",
+  },
+  {
+    fontName: "Poppins",
+    fontClassName: "font-poppins",
+    value: "poppins",
+  },
+];
+
+const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
+  {
+    value: "dark",
+    name: translate("settings.theme.mode.dark"),
+  },
+  {
+    value: "light",
+    name: translate("settings.theme.mode.light"),
+  },
+  {
+    value: "system",
+    name: translate("settings.theme.mode.system"),
+  },
+];
 
 export const SettingsAppearance = () => {
-  const { setTheme, setFont, getSystemTheme, font } = useThemeStore();
+  const { setTheme, setFont, theme, getSystemTheme, font } = useThemeStore();
   const { toast } = useToast();
 
-  const defaultValue: z.infer<typeof appearanceFormSchema> = {
-    font: font,
-    theme: getSystemTheme() as Theme,
-  };
-
-  const { handleSubmit, control } = useForm<AppearanceFormValues>({
-    resolver: zodResolver(appearanceFormSchema),
-    defaultValues: defaultValue,
-  });
-
-  const methods = useForm();
-
-  const onSubmitForm = (data: AppearanceFormValues) => {
-    setFont(data.font);
-    setTheme(data.theme);
-
+  const onChangeFont = (value: FontType) => {
+    setFont(value);
     toast({
       variant: "success",
       duration: 3000,
       title: "Settings Updated",
-      description: "Appreance Settings Successfully Updated",
+      description: translate("settings.font.toast.success.font", {
+        fontName: capitalizeFirstLetter(value),
+      }),
     });
   };
+
+  const onChangeTheme = (theme: Theme) => {
+    setTheme(theme);
+    toast({
+      variant: "success",
+      duration: 3000,
+      title: "Settings Updated",
+      description: translate("settings.theme.toast.success.theme", {
+        theme: theme,
+      }),
+    });
+  };
+
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-8">
-        <FormField
-          control={control}
-          name="font"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{translate("settings.font.font")}</FormLabel>
-              <div className="relative w-max">
-                <FormControl>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a Font" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="inter" className="font-inter">
-                          {translate("settings.font.type.inter")}
-                        </SelectItem>
-                        <SelectItem
-                          value="work-sans"
-                          className="font-work-sans"
-                        >
-                          Work Sans
-                        </SelectItem>
-                        <SelectItem value="poppins" className="font-poppins">
-                          Poppins
-                        </SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
-              </div>
-              <FormDescription>
-                {translate("settings.font.instruction")}
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
+    <div className="space-y-8">
+      {/* FONT SETTINGS */}
+      <InpuptFieldGroup
+        label={translate("settings.font.font")}
+        description={translate("settings.font.instruction")}
+      >
+        <Select
+          onValueChange={onChangeFont}
+          defaultValue={font ? font : "inter"}
+          value={font}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {FONT_AVAILABLE.map(
+                (fontProps: FontAvailableInterface, index: React.Key) => {
+                  return <ApperanceFontOption key={index} {...fontProps} />;
+                }
+              )}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </InpuptFieldGroup>
+      <InpuptFieldGroup
+        label={translate("settings.theme.theme")}
+        description={translate("settings.theme.formDescription")}
+      >
+        <RadioGroup
+          onValueChange={onChangeTheme}
+          value={theme}
+          defaultValue={getSystemTheme()}
+          className="grid max-w-[800px] grid-cols-1 md:grid-cols-3 gap-8 pt-2"
+        >
+          {THEME_AVAILABLE.map(
+            (themeProps: ApperanceThemeOptionInterface, index: React.Key) => {
+              return <ApperanceThemeOption key={index} {...themeProps} />;
+            }
           )}
-        />
-        <FormField
-          control={control}
-          name="theme"
-          render={({ field }) => (
-            <FormItem className="space-y-1">
-              <FormLabel>{translate("settings.theme.theme")}</FormLabel>
-              <FormDescription>
-                {translate("settings.theme.formDescription")}
-              </FormDescription>
-              <FormMessage />
-              <RadioGroup
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-                className="grid max-w-[800px] grid-cols-1 md:grid-cols-3 gap-8 pt-2"
-              >
-                {/* System */}
-                <FormItem>
-                  <FormLabel className="[&:has([data-state=checked])>div]:border-primary">
-                    <FormControl>
-                      <RadioGroupItem value="system" className="sr-only" />
-                    </FormControl>
-                    <div className="items-center p-1 border-2 rounded-md border-muted bg-popover hover:bg-accent hover:text-accent-foreground">
-                      <div className="p-2 space-y-2 rounded-sm bg-slate-950">
-                        <div className="p-2 space-y-2 rounded-md shadow-sm bg-slate-200">
-                          <div className="h-2 w-[80px] rounded-lg bg-slate-400" />
-                          <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                        </div>
-                        <div className="flex items-center p-2 space-x-2 rounded-md shadow-sm bg-slate-200">
-                          <div className="w-4 h-4 rounded-full bg-slate-400" />
-                          <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                        </div>
-                        <div className="flex items-center p-2 space-x-2 rounded-md shadow-sm bg-slate-200">
-                          <div className="w-4 h-4 rounded-full bg-slate-400" />
-                          <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                        </div>
-                      </div>
-                    </div>
-                    <span className="block w-full p-2 font-normal text-center">
-                      {translate("settings.theme.mode.system")}
-                    </span>
-                  </FormLabel>
-                </FormItem>
-                {/* Light */}
-                <FormItem>
-                  <FormLabel className="[&:has([data-state=checked])>div]:border-primary">
-                    <FormControl>
-                      <RadioGroupItem value="light" className="sr-only" />
-                    </FormControl>
-                    <div className="items-center p-1 border-2 rounded-md border-muted hover:border-accent">
-                      <div className="space-y-2 rounded-sm bg-[#ecedef] p-2">
-                        <div className="p-2 space-y-2 bg-white rounded-md shadow-sm">
-                          <div className="h-2 w-[80px] rounded-lg bg-[#ecedef]" />
-                          <div className="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
-                        </div>
-                        <div className="flex items-center p-2 space-x-2 bg-white rounded-md shadow-sm">
-                          <div className="h-4 w-4 rounded-full bg-[#ecedef]" />
-                          <div className="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
-                        </div>
-                        <div className="flex items-center p-2 space-x-2 bg-white rounded-md shadow-sm">
-                          <div className="h-4 w-4 rounded-full bg-[#ecedef]" />
-                          <div className="h-2 w-[100px] rounded-lg bg-[#ecedef]" />
-                        </div>
-                      </div>
-                    </div>
-                    <span className="block w-full p-2 font-normal text-center">
-                      {translate("settings.theme.mode.light")}
-                    </span>
-                  </FormLabel>
-                </FormItem>
-                {/* Dark */}
-                <FormItem>
-                  <FormLabel className="[&:has([data-state=checked])>div]:border-primary">
-                    <FormControl>
-                      <RadioGroupItem value="dark" className="sr-only" />
-                    </FormControl>
-                    <div className="items-center p-1 border-2 rounded-md border-muted bg-popover hover:bg-accent hover:text-accent-foreground">
-                      <div className="p-2 space-y-2 rounded-sm bg-slate-950">
-                        <div className="p-2 space-y-2 rounded-md shadow-sm bg-slate-800">
-                          <div className="h-2 w-[80px] rounded-lg bg-slate-400" />
-                          <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                        </div>
-                        <div className="flex items-center p-2 space-x-2 rounded-md shadow-sm bg-slate-800">
-                          <div className="w-4 h-4 rounded-full bg-slate-400" />
-                          <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                        </div>
-                        <div className="flex items-center p-2 space-x-2 rounded-md shadow-sm bg-slate-800">
-                          <div className="w-4 h-4 rounded-full bg-slate-400" />
-                          <div className="h-2 w-[100px] rounded-lg bg-slate-400" />
-                        </div>
-                      </div>
-                    </div>
-                    <span className="block w-full p-2 font-normal text-center">
-                      {translate("settings.theme.mode.dark")}
-                    </span>
-                  </FormLabel>
-                </FormItem>
-              </RadioGroup>
-            </FormItem>
-          )}
-        />
-        <Button type="submit">
-          {translate("settings.theme.button.update")}
-        </Button>
-      </form>
-    </FormProvider>
+        </RadioGroup>
+      </InpuptFieldGroup>
+    </div>
   );
 };
