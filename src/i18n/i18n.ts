@@ -4,6 +4,13 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { en, ja, fil, ceb } from "./locale";
 import { DEFAULT_LANGUAGE } from "@/stores";
 
+// Check local storage for preferred language
+const preferredLanguage = localStorage.getItem("i18nextLng");
+
+console.log("preferred Lanugage:" + preferredLanguage);
+
+console.log("navigator language:" + navigator.language);
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -28,7 +35,10 @@ i18n
       },
     },
   });
-i18n.changeLanguage(navigator.language || DEFAULT_LANGUAGE);
+
+i18n.changeLanguage(
+  preferredLanguage || navigator.language || DEFAULT_LANGUAGE
+);
 
 /**
  * Builds up valid keypaths for translations.
