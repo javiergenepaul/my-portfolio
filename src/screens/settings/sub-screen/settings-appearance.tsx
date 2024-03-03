@@ -8,7 +8,7 @@ import {
   RadioGroup,
 } from "@/components";
 import { translate } from "@/i18n";
-import { FontType, useThemeStore } from "@/stores";
+import { FontType, useLanguageStore, useThemeStore } from "@/stores";
 import {
   ApperanceFontOption,
   ApperanceThemeOption,
@@ -55,6 +55,8 @@ const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
 
 export const SettingsAppearance = () => {
   const { setTheme, setFont, theme, getSystemTheme, font } = useThemeStore();
+  const { language } = useLanguageStore();
+
   const { toast } = useToast();
 
   const onChangeFont = (value: FontType) => {
@@ -85,6 +87,7 @@ export const SettingsAppearance = () => {
     <div className="space-y-8">
       {/* FONT SETTINGS */}
       <InpuptFieldGroup
+        isHidden={language === "ja"}
         label={translate("settings.font.font")}
         description={translate("settings.font.instruction")}
       >
