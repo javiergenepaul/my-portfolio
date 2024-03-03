@@ -290,22 +290,29 @@
       "appearance": "Appearance"
     },
     "font": {
-      "font": "Font",
-      "instruction": "Set the font you like.",
+      "font": "Font Family",
+      "instruction": "Interested in trying a new font family? No problem! We've got you covered. Customize it here.",
       "type": {
         "inter": "Inter"
+      },
+      "toast": {
+        "success": {
+          "font": "Font family updated! Enjoy smoother reading in {{fontName}}! 🎉🎉🎉"
+        }
       }
     },
     "theme": {
       "theme": "Theme",
-      "formDescription": "Select the theme you like.",
+      "formDescription": "Ready for a fresh look? Explore our range of themes to transform your experience. Choose a theme that suits your style and make browsing more enjoyable.",
       "mode": {
         "system": "System Mode",
         "light": "Light Mode",
         "dark": "Dark Mode"
       },
-      "button": {
-        "update": "Update preferences"
+      "toast": {
+        "success": {
+          "theme": "Theme has been changed to {{theme}}! 🎉🎉🎉"
+        }
       }
     },
     "lang": {

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export type Theme = "dark" | "light" | "system" | undefined;
-type FontType = "inter" | "work-sans" | "poppins";
+export type FontType = "inter" | "work-sans" | "poppins";
 
 type ThemeStore = {
   theme: Theme;
@@ -40,8 +40,6 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
         ? "dark"
         : "light";
 
-      console.log("get system theme");
-      console.log(systemTheme);
       return systemTheme;
     }
     return get().theme as string;
