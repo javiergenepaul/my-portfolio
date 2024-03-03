@@ -22,16 +22,16 @@ export const PATH = {
     path: "/contacts",
   },
   SETTINGS: {
-    name: translate("settings.settings"),
+    name: translate("settings.header.general"),
     path: "/settings",
   },
   SETTINGS_GENERAL: {
     name: translate("settings.header.general"),
-    path: "/settings",
+    path: "/settings/",
   },
   SETTINGS_APPEARNCE: {
     name: translate("settings.header.appearance"),
-    path: "/settings/",
+    path: "/settings/appearance",
   },
   CONFIDENTIAL: {
     name: "confidential",
