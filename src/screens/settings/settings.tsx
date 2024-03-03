@@ -13,7 +13,7 @@ export const Settings = () => {
   const sidebarNavItems: SettingsItemInterface[] = [
     {
       title: translate("settings.nav.general"),
-      href: `${PATH.SETTINGS.path}`,
+      href: `${PATH.SETTINGS.path}`,  
     },
     {
       title: translate("settings.nav.appearance"),
@@ -23,7 +23,7 @@ export const Settings = () => {
 
   return (
     <FadeAnimation>
-      <div className="p-10 pt-0 pb-16 space-y-6 lg:pt-10 ">
+      <div className="space-y-6 lg:py-16">
         <PageTitle
           pageName={translate("settings.settings")}
           path={PATH.HOME.path}
