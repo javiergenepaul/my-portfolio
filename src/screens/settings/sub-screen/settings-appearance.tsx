@@ -17,6 +17,7 @@ import {
   InpuptFieldGroup,
 } from "..";
 import { capitalizeFirstLetter } from "@/lib";
+import { DLP, LLP, SLP } from "@/assets/layout";
 
 type Theme = "dark" | "light" | "system";
 
@@ -42,14 +43,23 @@ const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
   {
     value: "dark",
     name: translate("settings.theme.mode.dark"),
+    icon: (
+      <img className="rounded-md" width={"170px"} height={"80px"} src={DLP} />
+    ),
   },
   {
     value: "light",
     name: translate("settings.theme.mode.light"),
+    icon: (
+      <img className="rounded-md" width={"170px"} height={"80px"} src={LLP} />
+    ),
   },
   {
     value: "system",
     name: translate("settings.theme.mode.system"),
+    icon: (
+      <img className="rounded-md" width={"170px"} height={"80px"} src={SLP} />
+    ),
   },
 ];
 
@@ -110,6 +120,7 @@ export const SettingsAppearance = () => {
           </SelectContent>
         </Select>
       </InpuptFieldGroup>
+
       <InpuptFieldGroup
         label={translate("settings.theme.theme")}
         description={translate("settings.theme.formDescription")}
