@@ -284,7 +284,7 @@
       "general": "General Settings"
     },
     "settings": "Settings",
-    "description": "Manage settings",
+    "description": "Welcome to the Settings page for the portfolio! Personalize the portfolio effortlessly. Tailor font family, color palette, and theme to meet your standards. Make the portfolio unique with these intuitive tools. Unlock its full potential here. Additionally, you can change the language to suit your preferences.",
     "nav": {
       "general": "General",
       "appearance": "Appearance"
@@ -313,6 +313,11 @@
       "formDescription": "Select the language you like.",
       "btn": {
         "update": "Update Settings"
+      },
+      "toast": {
+        "success": {
+          "general": "Language updated! Cheers to smoother browsing in {{language}}! 🎉🎉🎉"
+        }
       }
     }
   },

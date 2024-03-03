@@ -1,4 +1,4 @@
-import { FormControl, FormItem, FormLabel } from "@/components";
+import { Label } from "@/components";
 import { LanguageType } from "@/stores";
 import { RadioGroupItem } from "@radix-ui/react-radio-group";
 
@@ -11,16 +11,15 @@ export interface GeneralLangOptions {
 export const GeneralLangOption = (props: GeneralLangOptions) => {
   const { value, name, icon } = props;
   return (
-    <FormItem>
-      <FormLabel className="[&:has([data-state=checked])>div]:border-primary">
-        <FormControl>
-          <RadioGroupItem value={value} className="sr-only" />
-        </FormControl>
-        <div className="items-center p-1 border-2 rounded-md border-muted bg-popover hover:bg-accent hover:text-accent-foreground">
-          {icon}
-        </div>
-        <span className="block w-full p-2 font-normal text-center">{name}</span>
-      </FormLabel>
-    </FormItem>
+    <div>
+      <RadioGroupItem value={value} id={value} className="sr-only peer" />
+      <Label
+        htmlFor={value}
+        className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+      >
+        {icon}
+        {name}
+      </Label>
+    </div>
   );
 };

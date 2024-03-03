@@ -18,8 +18,18 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { font } = useThemeStore();
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => setIsOpen(true),
-    onSwipedRight: () => setIsOpen(false),
+    onSwipedLeft: (event) => {
+      const swipeDistance = Math.abs(event.deltaX);
+      if (swipeDistance >= 200) {
+        setIsOpen(true);
+      }
+    },
+    onSwipedRight: (event) => {
+      const swipeDistance = Math.abs(event.deltaX);
+      if (swipeDistance >= 200) {
+        setIsOpen(false);
+      }
+    },
   });
 
   const fontSelected = (): string => {
@@ -35,13 +45,23 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
     }
   };
 
+  const scrollTopTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Optional - adds smooth scrolling
+    });
+  };
+
   return (
     <>
       <nav className="block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0">
         <div className="flex items-center justify-between w-full">
           <div
-            className="flex items-center gap-4"
-            onClick={() => navigate(PATH.HOME.path)}
+            className="flex items-center gap-4 cursor-pointer select-none"
+            onClick={() => {
+              navigate(PATH.HOME.path);
+              scrollTopTop();
+            }}
           >
             <img
               src={ContactLogo}

@@ -5,8 +5,18 @@ import { Drawer } from "vaul";
 export const SidebarOverlay = () => {
   const { setIsOpen } = useSiderStore();
   const handlers = useSwipeable({
-    onSwipedLeft: () => setIsOpen(true),
-    onSwipedRight: () => setIsOpen(false),
+    onSwipedLeft: (event) => {
+      const swipeDistance = Math.abs(event.deltaX);
+      if (swipeDistance >= 200) {
+        setIsOpen(true);
+      }
+    },
+    onSwipedRight: (event) => {
+      const swipeDistance = Math.abs(event.deltaX);
+      if (swipeDistance >= 200) {
+        setIsOpen(false);
+      }
+    },
   });
 
   return (
