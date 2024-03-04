@@ -13,7 +13,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
 }) => {
-  const { theme, setTheme } = useThemeStore();
+  const { theme, setTheme, color } = useThemeStore();
 
   useEffect(() => {
     if (DEV_MODE && DEV_MODE === "development") {
@@ -24,7 +24,27 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   useEffect(() => {
     const root = window.document.documentElement;
+    // reset first
+    root.classList.remove(
+      "azure",
+      "emerald",
+      "golden",
+      "sunset",
+      "lavender",
+      "scarlet",
+      "silver"
+    );
 
+    if (color) {
+      root.classList.add(color);
+    } else {
+      // set default when color palette is empty
+      root.classList.add("emerald");
+    }
+  }, [color]);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
     root.classList.remove("light", "dark");
 
     if (theme === "system") {

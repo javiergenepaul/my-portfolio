@@ -8,8 +8,10 @@ import {
   RadioGroup,
 } from "@/components";
 import { translate } from "@/i18n";
-import { FontType, useLanguageStore, useThemeStore } from "@/stores";
+import { Color, FontType, useLanguageStore, useThemeStore } from "@/stores";
 import {
+  AppearanceColorOptions,
+  AppearanceColorOptionsInterface,
   ApperanceFontOption,
   ApperanceThemeOption,
   ApperanceThemeOptionInterface,
@@ -63,8 +65,49 @@ const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
   },
 ];
 
+export const COLOR_PALETTE_AVAILABLE: AppearanceColorOptionsInterface[] = [
+  {
+    name: translate("settings.color.options.azure"),
+    value: "azure",
+    color: "#3B82F6",
+  },
+  {
+    name: translate("settings.color.options.emerald"),
+    value: "emerald",
+    color: "#22C55E",
+  },
+  {
+    name: translate("settings.color.options.golden"),
+    value: "golden",
+    color: "#FACC15",
+  },
+  {
+    name: translate("settings.color.options.sunset"),
+    value: "sunset",
+    color: "#EA580C",
+  },
+  {
+    name: translate("settings.color.options.lavender"),
+    value: "lavender",
+    color: "#6D28D9",
+  },
+  {
+    name: translate("settings.color.options.scarlet"),
+    value: "scarlet",
+    color: "#E11D48",
+  },
+  {
+    name: translate("settings.color.options.silver"),
+    value: "silver",
+    color: "#57616D",
+  },
+];
+
+const TOAST_DURATION: number = 1500;
+
 export const SettingsAppearance = () => {
-  const { setTheme, setFont, theme, getSystemTheme, font } = useThemeStore();
+  const { setTheme, setFont, theme, getSystemTheme, font, color, setColor } =
+    useThemeStore();
   const { language } = useLanguageStore();
 
   const { toast } = useToast();
@@ -73,7 +116,7 @@ export const SettingsAppearance = () => {
     setFont(value);
     toast({
       variant: "success",
-      duration: 3000,
+      duration: TOAST_DURATION,
       title: "Settings Updated",
       description: translate("settings.font.toast.success.font", {
         fontName: capitalizeFirstLetter(value),
@@ -85,10 +128,24 @@ export const SettingsAppearance = () => {
     setTheme(theme);
     toast({
       variant: "success",
-      duration: 3000,
+      duration: TOAST_DURATION,
       title: "Settings Updated",
       description: translate("settings.theme.toast.success.theme", {
         theme: theme,
+      }),
+    });
+  };
+
+  const onChangeColor = (color: Color) => {
+    setColor(color);
+
+    toast({
+      variant: "success",
+      duration: TOAST_DURATION,
+      title: "Settings Updated",
+      description: translate("settings.color.toast.success", {
+        color: COLOR_PALETTE_AVAILABLE.find((data) => data.value === color)
+          ?.name,
       }),
     });
   };
@@ -120,7 +177,7 @@ export const SettingsAppearance = () => {
           </SelectContent>
         </Select>
       </InpuptFieldGroup>
-      
+
       {/* THEME SETTINGS */}
       <InpuptFieldGroup
         label={translate("settings.theme.theme")}
@@ -135,6 +192,22 @@ export const SettingsAppearance = () => {
           {THEME_AVAILABLE.map(
             (themeProps: ApperanceThemeOptionInterface, index: React.Key) => {
               return <ApperanceThemeOption key={index} {...themeProps} />;
+            }
+          )}
+        </RadioGroup>
+      </InpuptFieldGroup>
+
+      {/* COLOR PALETTE SETTINGS */}
+      <InpuptFieldGroup label={"Color"} description={"Color Desc"}>
+        <RadioGroup
+          onValueChange={onChangeColor}
+          value={color}
+          defaultValue={color}
+          className="flex max-w-[800px] gap-4 pt-2"
+        >
+          {COLOR_PALETTE_AVAILABLE.map(
+            (themeProps: AppearanceColorOptionsInterface, index: React.Key) => {
+              return <AppearanceColorOptions key={index} {...themeProps} />;
             }
           )}
         </RadioGroup>

@@ -315,6 +315,22 @@
         }
       }
     },
+    "color": {
+      "color": "Color",
+      "formDescription": "Upgrade your interface: Select from our color palette styles for a sleek. Customize your browsing experience, your way.",
+      "options": {
+        "emerald": "Enchanted Emerald",
+        "azure": "Azure Bliss",
+        "golden": "Golden Haze",
+        "sunset": "Sunset Ember",
+        "lavender": "Lavender Enchantment",
+        "scarlet": "Scaret Serenade",
+        "silver": "Silver Serenity"
+      },
+      "toast": {
+        "success": "Palette refreshed! Dive into a smoother browsing experience with our {{color}} color scheme! 🌈✨"
+      }
+    },
     "lang": {
       "lang": "Language",
       "formDescription": "Wanna try a different language? No problem! We've got you covered. Change it here.",
