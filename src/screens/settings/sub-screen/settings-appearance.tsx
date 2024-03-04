@@ -198,7 +198,10 @@ export const SettingsAppearance = () => {
       </InpuptFieldGroup>
 
       {/* COLOR PALETTE SETTINGS */}
-      <InpuptFieldGroup label={"Color"} description={"Color Desc"}>
+      <InpuptFieldGroup
+        label={translate("settings.color.color")}
+        description={translate("settings.color.formDescription")}
+      >
         <RadioGroup
           onValueChange={onChangeColor}
           value={color}
