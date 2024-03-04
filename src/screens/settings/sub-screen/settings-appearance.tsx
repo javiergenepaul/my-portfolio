@@ -120,7 +120,8 @@ export const SettingsAppearance = () => {
           </SelectContent>
         </Select>
       </InpuptFieldGroup>
-
+      
+      {/* THEME SETTINGS */}
       <InpuptFieldGroup
         label={translate("settings.theme.theme")}
         description={translate("settings.theme.formDescription")}
@@ -129,7 +130,7 @@ export const SettingsAppearance = () => {
           onValueChange={onChangeTheme}
           value={theme}
           defaultValue={getSystemTheme()}
-          className="grid max-w-[800px] grid-cols-1 md:grid-cols-3 gap-8 pt-2"
+          className="grid max-w-[800px] grid-cols-3 gap-8 pt-2"
         >
           {THEME_AVAILABLE.map(
             (themeProps: ApperanceThemeOptionInterface, index: React.Key) => {
