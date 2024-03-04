@@ -7,10 +7,6 @@ import { DEFAULT_LANGUAGE } from "@/stores";
 // Check local storage for preferred language
 const preferredLanguage = localStorage.getItem("i18nextLng");
 
-console.log("preferred Lanugage:" + preferredLanguage);
-
-console.log("navigator language:" + navigator.language);
-
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
