@@ -2,19 +2,34 @@ import { create } from "zustand";
 
 export type Theme = "dark" | "light" | "system" | undefined;
 export type FontType = "inter" | "work-sans" | "poppins";
+export type Color =
+  | "azure"
+  | "emerald"
+  | "golden"
+  | "sunset"
+  | "lavender"
+  | "scarlet"
+  | "silver";
 
 type ThemeStore = {
   theme: Theme;
   font: FontType;
+  color: Color;
   setFont: (font: FontType) => void;
   setTheme: (theme: Theme) => void;
   getSystemTheme: () => string;
   getTheme: () => boolean;
   toggleTheme: (isDark: boolean) => void;
+  setColor: (color: Color) => void;
 };
 
 export const useThemeStore = create<ThemeStore>((set, get) => ({
   theme: localStorage.getItem("vite-ui-theme") as Theme | undefined,
+  color: localStorage.getItem("vite-ui-color") as Color | "emerald",
+  setColor: (color: Color) => {
+    localStorage.setItem("vite-ui-color", color as string);
+    set({ color });
+  },
   font: localStorage.getItem("vite-ui-font") as FontType | "inter",
   setFont: (font: FontType) => {
     localStorage.setItem("vite-ui-font", font);
@@ -49,3 +64,5 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
     set({ theme });
   },
 }));
+
+export default useThemeStore;
