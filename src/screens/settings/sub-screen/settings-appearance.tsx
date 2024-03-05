@@ -161,7 +161,7 @@ export const SettingsAppearance = () => {
         <Select
           onValueChange={onChangeFont}
           defaultValue={font ? font : "inter"}
-          value={font}
+          value={font ? font : "inter"}
         >
           <SelectTrigger className="w-[180px]">
             <SelectValue />
