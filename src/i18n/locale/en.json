@@ -323,8 +323,8 @@
         "azure": "Azure Bliss",
         "golden": "Golden Haze",
         "sunset": "Sunset Ember",
-        "lavender": "Lavender Enchantment",
-        "scarlet": "Scaret Serenade",
+        "lavender": "Purple Majesty",
+        "scarlet": "Scarlet Serenade",
         "silver": "Silver Serenity"
       },
       "toast": {
@@ -342,7 +342,8 @@
           "general": "Language updated! Cheers to smoother browsing in {{language}}! 🎉🎉🎉"
         }
       }
-    }
+    },
+    "settingsUpdated": "Settings Updated"
   },
   "about": {
     "title": "About Me",

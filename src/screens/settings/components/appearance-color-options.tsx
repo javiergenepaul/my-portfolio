@@ -10,7 +10,7 @@ export interface AppearanceColorOptionsInterface {
 export const AppearanceColorOptions = (
   props: AppearanceColorOptionsInterface
 ) => {
-  const { name, value } = props;
+  const { name, value, color } = props;
   return (
     <div>
       <RadioGroupItem
@@ -22,7 +22,9 @@ export const AppearanceColorOptions = (
         htmlFor={value}
         className="flex gap-4 flex-col items-center justify-between text-center rounded-full border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
       >
-        <span className={`text-${value}`}>{name}</span>
+        <span className="" style={{ color: color }}>
+          {name}
+        </span>
       </Label>
     </div>
   );

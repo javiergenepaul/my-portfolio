@@ -67,14 +67,14 @@ const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
 
 export const COLOR_PALETTE_AVAILABLE: AppearanceColorOptionsInterface[] = [
   {
-    name: translate("settings.color.options.azure"),
-    value: "azure",
-    color: "#3B82F6",
-  },
-  {
     name: translate("settings.color.options.emerald"),
     value: "emerald",
     color: "#22C55E",
+  },
+  {
+    name: translate("settings.color.options.azure"),
+    value: "azure",
+    color: "#3B82F6",
   },
   {
     name: translate("settings.color.options.golden"),
@@ -117,7 +117,7 @@ export const SettingsAppearance = () => {
     toast({
       variant: "success",
       duration: TOAST_DURATION,
-      title: "Settings Updated",
+      title: translate("settings.settingsUpdated"),
       description: translate("settings.font.toast.success.font", {
         fontName: capitalizeFirstLetter(value),
       }),
@@ -129,7 +129,7 @@ export const SettingsAppearance = () => {
     toast({
       variant: "success",
       duration: TOAST_DURATION,
-      title: "Settings Updated",
+      title: translate("settings.settingsUpdated"),
       description: translate("settings.theme.toast.success.theme", {
         theme: theme,
       }),
@@ -142,7 +142,7 @@ export const SettingsAppearance = () => {
     toast({
       variant: "success",
       duration: TOAST_DURATION,
-      title: "Settings Updated",
+      title: translate("settings.settingsUpdated"),
       description: translate("settings.color.toast.success", {
         color: COLOR_PALETTE_AVAILABLE.find((data) => data.value === color)
           ?.name,
