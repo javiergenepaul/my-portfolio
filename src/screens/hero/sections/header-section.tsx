@@ -58,7 +58,7 @@ export const HeaderSection = () => {
       key: "linkedIn",
       icon: <LinkedInLogoIcon width={"24px"} height={"24px"} />,
       title: translate("header.socialMediaLinks.linkedIn"),
-      url: LINKED_IN_URL,
+      url: LINKED_IN_URL, 
     },
     {
       key: "upwork",

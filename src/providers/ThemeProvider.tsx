@@ -14,7 +14,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   storageKey = "vite-ui-theme",
 }) => {
   const { theme, setTheme, color } = useThemeStore();
-
   useEffect(() => {
     if (DEV_MODE && DEV_MODE === "development") {
       const root = window.document.documentElement;

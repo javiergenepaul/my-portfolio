@@ -75,7 +75,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
       </nav>
       <main
         {...handlers}
-        className={`${fontSelected()} relative w-full h-full min-h-screen px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 ${
+        className={`${fontSelected()} relative w-full h-full min-h-screen px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none ${
           DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
         }`}
       >
