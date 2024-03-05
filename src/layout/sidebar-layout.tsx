@@ -1,7 +1,7 @@
 import React from "react";
 import ContactLogo from "../assets/contact-logo.svg";
 import { translate } from "@/i18n";
-import { BackgroundAnimation, SideBar } from "@/components";
+import { SideBar } from "@/components";
 import { DEV_MODE, PATH } from "@/config";
 import { useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
@@ -79,7 +79,6 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
           DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
         }`}
       >
-        <BackgroundAnimation />
         {children}
       </main>
     </>
