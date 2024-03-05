@@ -5,33 +5,73 @@ import {
   InpuptFieldGroup,
 } from "../components";
 import { JPFlag, PHFlag, USFlag } from "@/assets";
-import { LanguageType, useLanguageStore } from "@/stores";
-import { RadioGroup, useToast } from "@/components";
+import { LanguageType, useLanguageStore, useThemeStore } from "@/stores";
+import {
+  Label,
+  RadioGroup,
+  Switch,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+  useToast,
+} from "@/components";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 export const SettingsGeneral = () => {
   const { setLanguage, language } = useLanguageStore();
+  const { enableParticleBackground, setEnableParticleBackground } =
+    useThemeStore();
   const { toast } = useToast();
 
   const LANGUAGE_OPTIONS: GeneralLangOptions[] = [
     {
       value: "en",
       name: translate("sidebar.languageOption.english"),
-      icon: <img width={"170px"} height={"80px"} src={USFlag} />,
+      icon: (
+        <img
+          className="rounded-md"
+          width={"170px"}
+          height={"80px"}
+          src={USFlag}
+        />
+      ),
     },
     {
       value: "ja",
       name: translate("sidebar.languageOption.japanese"),
-      icon: <img width={"170px"} height={"80px"} src={JPFlag} />,
+      icon: (
+        <img
+          className="rounded-md"
+          width={"170px"}
+          height={"80px"}
+          src={JPFlag}
+        />
+      ),
     },
     {
       value: "fil",
       name: translate("sidebar.languageOption.tagalog"),
-      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
+      icon: (
+        <img
+          className="rounded-md"
+          width={"170px"}
+          height={"80px"}
+          src={PHFlag}
+        />
+      ),
     },
     {
       value: "ceb",
       name: translate("sidebar.languageOption.cebuano"),
-      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
+      icon: (
+        <img
+          className="rounded-md"
+          width={"170px"}
+          height={"80px"}
+          src={PHFlag}
+        />
+      ),
     },
   ];
 
@@ -42,7 +82,7 @@ export const SettingsGeneral = () => {
     toast({
       variant: "success",
       duration: 3000,
-      title: "Settings Updated",
+      title: translate("settings.settingsUpdated"),
       description: translate("settings.lang.toast.success.general", {
         language: getLanguageName(value),
       }),
@@ -64,8 +104,45 @@ export const SettingsGeneral = () => {
     }
   };
 
+  const onChangeParticleBackground = (value: boolean) => {
+    setEnableParticleBackground(value);
+    toast({
+      variant: "success",
+      duration: 3000,
+      title: translate("settings.settingsUpdated"),
+      description: translate("settings.particle.toast.success", {
+        enabledParticle: value
+          ? translate("settings.particle.enabled")
+          : translate("settings.particle.disabled"),
+      }),
+    });
+  };
+
   return (
-    <>
+    <div className="space-y-8">
+      <div className="flex gap-4 items-center py-2.5">
+        <Switch
+          checked={enableParticleBackground}
+          onCheckedChange={onChangeParticleBackground}
+          id="particle-background"
+        />
+        <Label
+          className="cursor-pointer flex gap-2 items-center"
+          htmlFor="particle-background"
+        >
+          {translate("settings.particle.formDescription")}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <InfoCircledIcon height={"1.2rem"} width={"1.2rem"} />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{translate("settings.particle.tooltip")}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </Label>
+      </div>
       <InpuptFieldGroup
         label={translate("settings.lang.lang")}
         description={translate("settings.lang.formDescription")}
@@ -83,6 +160,6 @@ export const SettingsGeneral = () => {
           )}
         </RadioGroup>
       </InpuptFieldGroup>
-    </>
+    </div>
   );
 };

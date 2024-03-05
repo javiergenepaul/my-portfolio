@@ -15,15 +15,20 @@ type ThemeStore = {
   theme: Theme;
   font: FontType;
   color: Color;
+  enableParticleBackground: boolean;
   setFont: (font: FontType) => void;
   setTheme: (theme: Theme) => void;
   getSystemTheme: () => string;
   getTheme: () => boolean;
   toggleTheme: (isDark: boolean) => void;
   setColor: (color: Color) => void;
+  setEnableParticleBackground: (enableParticlaBackground: boolean) => void;
 };
 
 export const useThemeStore = create<ThemeStore>((set, get) => ({
+  enableParticleBackground: localStorage.getItem("vite-ui-enableParticle")
+    ? localStorage.getItem("vite-ui-enableParticle") === "true"
+    : true,
   theme: localStorage.getItem("vite-ui-theme") as Theme | undefined,
   color: localStorage.getItem("vite-ui-color") as Color | "emerald",
   setColor: (color: Color) => {
@@ -62,6 +67,13 @@ export const useThemeStore = create<ThemeStore>((set, get) => ({
   setTheme: (theme: Theme) => {
     localStorage.setItem("vite-ui-theme", theme as string);
     set({ theme });
+  },
+  setEnableParticleBackground: (enableParticleBackground: boolean) => {
+    localStorage.setItem(
+      "vite-ui-enableParticle",
+      enableParticleBackground ? "true" : "false"
+    );
+    set({ enableParticleBackground });
   },
 }));
 
