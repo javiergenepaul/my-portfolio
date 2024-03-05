@@ -206,7 +206,7 @@ export const SettingsAppearance = () => {
           onValueChange={onChangeColor}
           value={color}
           defaultValue={color}
-          className="flex max-w-[800px] gap-4 pt-2"
+          className="max-w-[800px] grid-cols-3 gap-4 pt-2"
         >
           {COLOR_PALETTE_AVAILABLE.map(
             (themeProps: AppearanceColorOptionsInterface, index: React.Key) => {
