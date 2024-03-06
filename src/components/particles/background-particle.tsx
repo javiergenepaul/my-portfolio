@@ -106,7 +106,7 @@ export const BackgroundParticle = () => {
       case "silver":
         return "#57616D";
       default:
-        return "#3C38A7";
+        return "#22C55E";
     }
   };
 
