@@ -55,10 +55,10 @@ export const Hero = () => {
   return (
     <FadeAnimation>
       <div className="h-full lg:flex lg:justify-between lg:gap-4">
-        <header className="justify-between h-[80vh] lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-2/5 lg:flex-col lg:py-24">
+        <header className="justify-between h-[80dvh] lg:sticky lg:top-0 lg:flex lg:max-h-dvh lg:w-2/5 lg:flex-col lg:py-24">
           <HeaderSection />
         </header>
-        <main className="flex flex-col lg:w-3/5 lg:min-h-screen snap-y">
+        <main className="flex flex-col lg:w-3/5 lg:min-h-dvh snap-y">
           <ServiceSection />
           <ProjectSection />
           <ContactSection />
