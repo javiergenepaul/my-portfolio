@@ -11,11 +11,12 @@ export type Color =
   | "scarlet"
   | "silver";
 
-type SettingsStore = {
+interface SettingsStore {
   theme: Theme;
   font: FontType;
   color: Color;
   sidenavSwipeToggle: boolean;
+  sidenavSwipeSensitivity: number;
   enableParticleBackground: boolean;
   setFont: (font: FontType) => void;
   setTheme: (theme: Theme) => void;
@@ -25,7 +26,8 @@ type SettingsStore = {
   setColor: (color: Color) => void;
   setEnableParticleBackground: (enableParticlaBackground: boolean) => void;
   setSideNavSwipeToggle: (sidenavSwipeToggle: boolean) => void;
-};
+  setSideNavSwipeSensitivity: (sidenavSwipeSensitivity: number) => void;
+}
 
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
   sidenavSwipeToggle: localStorage.getItem("vite-ui-sidenavSwipeToggle")
@@ -37,6 +39,9 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   theme: localStorage.getItem("vite-ui-theme") as Theme | undefined,
   color: localStorage.getItem("vite-ui-color") as Color | "emerald",
   font: localStorage.getItem("vite-ui-font") as FontType | "inter",
+  sidenavSwipeSensitivity: localStorage.getItem("vite-ui-sideNavSensitivity")
+    ? parseInt(localStorage.getItem("vite-ui-sideNavSensitivity") as string)
+    : 50,
   setColor: (color: Color) => {
     localStorage.setItem("vite-ui-color", color as string);
     set({ color });
@@ -86,6 +91,13 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       sidenavSwipeToggle ? "true" : "false"
     );
     set({ sidenavSwipeToggle });
+  },
+  setSideNavSwipeSensitivity: (sidenavSwipeSensitivity: number) => {
+    localStorage.setItem(
+      "vite-ui-sideNavSensitivity",
+      sidenavSwipeSensitivity.toString()
+    );
+    set({ sidenavSwipeSensitivity });
   },
 }));
 

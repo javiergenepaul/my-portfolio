@@ -9,6 +9,7 @@ import { LanguageType, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   Label,
   RadioGroup,
+  Slider,
   Switch,
   Tooltip,
   TooltipContent,
@@ -17,15 +18,18 @@ import {
   useToast,
 } from "@/components";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { useId } from "react";
+import { useEffect, useId, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 export const SettingsGeneral = () => {
   const { setLanguage, language } = useLanguageStore();
   const {
     enableParticleBackground,
     sidenavSwipeToggle,
+    sidenavSwipeSensitivity,
     setEnableParticleBackground,
     setSideNavSwipeToggle,
+    setSideNavSwipeSensitivity,
   } = useSettingsStore();
   const { toast } = useToast();
 
@@ -98,6 +102,15 @@ export const SettingsGeneral = () => {
     });
   };
 
+  const [showSlider, setShowSlider] = useState<boolean>(sidenavSwipeToggle);
+
+  const onChangeSideNavSwipeToggleSwitch = (value: boolean) => {
+    setSideNavSwipeToggle(value);
+    setShowSlider(value);
+
+    // TODO:: add toast message here
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-2">
@@ -130,16 +143,37 @@ export const SettingsGeneral = () => {
         <div className="flex gap-4 items-center py-2.5">
           <Switch
             checked={sidenavSwipeToggle}
-            onCheckedChange={setSideNavSwipeToggle}
+            onCheckedChange={onChangeSideNavSwipeToggleSwitch}
             id={sideNavToggleSwitch}
           />
           <Label
             className="cursor-pointer flex gap-2 items-center"
             htmlFor={sideNavToggleSwitch}
           >
+            {/* TODO:: change into translate */}
             Sidenav Swipe Open
-            {/* {translate("settings.particle.formDescription")} */}
           </Label>
+        </div>
+
+        <div
+          className={`flex flex-col gap-4 py-2.5 ${showSlider ? "" : "hidden"}`}
+        >
+          <Label
+            className="cursor-pointer flex gap-2 items-center"
+            // htmlFor={sideNavToggleSwitch}
+          >
+            Sidenav Swipe Sensitivity
+          </Label>
+          <Slider
+            onValueChange={(value) => {
+              setSideNavSwipeSensitivity(value[0]);
+              console.log(value[0]);
+            }}
+            value={[sidenavSwipeSensitivity]}
+            min={20}
+            max={400}
+            step={1}
+          />
         </div>
       </div>
 

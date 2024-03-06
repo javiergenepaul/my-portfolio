@@ -16,19 +16,20 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   const navigate = useNavigate();
   const { setIsOpen } = useSiderStore();
-  const { font, sidenavSwipeToggle } = useSettingsStore();
+  const { font, sidenavSwipeToggle, sidenavSwipeSensitivity } =
+    useSettingsStore();
   const {} = useTranslation();
 
   const handlers = useSwipeable({
     onSwipedLeft: (event) => {
       const swipeDistance = Math.abs(event.deltaX);
-      if (sidenavSwipeToggle && swipeDistance >= 10) {
+      if (sidenavSwipeToggle && swipeDistance >= sidenavSwipeSensitivity) {
         setIsOpen(true);
       }
     },
     onSwipedRight: (event) => {
       const swipeDistance = Math.abs(event.deltaX);
-      if (swipeDistance >= 50) {
+      if (swipeDistance >= sidenavSwipeSensitivity) {
         setIsOpen(false);
       }
     },
