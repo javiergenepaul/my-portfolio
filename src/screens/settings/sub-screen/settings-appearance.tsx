@@ -18,10 +18,15 @@ import {
   FontAvailableInterface,
   InpuptFieldGroup,
 } from "..";
-import { capitalizeFirstLetter } from "@/lib";
+import {
+  capitalizeFirstLetter,
+  generateColorQoutes,
+  getRandomGeneratedColorQoutes,
+} from "@/lib";
 import { DLP, LLP, SLP } from "@/assets/layout";
 
 type Theme = "dark" | "light" | "system";
+const TOAST_DURATION: number = 2000;
 
 const FONT_AVAILABLE: FontAvailableInterface[] = [
   {
@@ -67,43 +72,48 @@ const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
 
 export const COLOR_PALETTE_AVAILABLE: AppearanceColorOptionsInterface[] = [
   {
-    name: translate("settings.color.options.emerald"),
+    name: translate("settings.color.options.emerald.title"),
     value: "emerald",
     color: "#22C55E",
+    qoutes: [...generateColorQoutes("emerald")],
   },
   {
-    name: translate("settings.color.options.azure"),
+    name: translate("settings.color.options.azure.title"),
     value: "azure",
     color: "#3B82F6",
+    qoutes: [...generateColorQoutes("azure")],
   },
   {
-    name: translate("settings.color.options.golden"),
+    name: translate("settings.color.options.golden.title"),
     value: "golden",
     color: "#FACC15",
+    qoutes: [...generateColorQoutes("golden")],
   },
   {
-    name: translate("settings.color.options.sunset"),
+    name: translate("settings.color.options.sunset.title"),
     value: "sunset",
     color: "#EA580C",
+    qoutes: [...generateColorQoutes("sunset")],
   },
   {
-    name: translate("settings.color.options.lavender"),
+    name: translate("settings.color.options.lavender.title"),
     value: "lavender",
     color: "#6D28D9",
+    qoutes: [...generateColorQoutes("lavender")],
   },
   {
-    name: translate("settings.color.options.scarlet"),
+    name: translate("settings.color.options.scarlet.title"),
     value: "scarlet",
     color: "#E11D48",
+    qoutes: [...generateColorQoutes("scarlet")],
   },
   {
-    name: translate("settings.color.options.silver"),
+    name: translate("settings.color.options.silver.title"),
     value: "silver",
     color: "#57616D",
+    qoutes: [...generateColorQoutes("silver")],
   },
 ];
-
-const TOAST_DURATION: number = 1500;
 
 export const SettingsAppearance = () => {
   const { setTheme, setFont, theme, getSystemTheme, font, color, setColor } =
@@ -138,16 +148,17 @@ export const SettingsAppearance = () => {
 
   const onChangeColor = (color: Color) => {
     setColor(color);
+    const colorSelected: AppearanceColorOptionsInterface | undefined =
+      COLOR_PALETTE_AVAILABLE.find((data) => data.value === color);
 
-    toast({
-      variant: "success",
-      duration: TOAST_DURATION,
-      title: translate("settings.settingsUpdated"),
-      description: translate("settings.color.toast.success", {
-        color: COLOR_PALETTE_AVAILABLE.find((data) => data.value === color)
-          ?.name,
-      }),
-    });
+    if (colorSelected) {
+      toast({
+        variant: "success",
+        duration: TOAST_DURATION,
+        title: colorSelected.name,
+        description: getRandomGeneratedColorQoutes(colorSelected.qoutes),
+      });
+    }
   };
 
   return (

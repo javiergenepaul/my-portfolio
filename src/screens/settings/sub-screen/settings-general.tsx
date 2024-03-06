@@ -30,7 +30,6 @@ export const SettingsGeneral = () => {
       name: translate("sidebar.languageOption.english"),
       icon: (
         <img
-          className="rounded-md"
           width={"170px"}
           height={"80px"}
           src={USFlag}
@@ -42,7 +41,6 @@ export const SettingsGeneral = () => {
       name: translate("sidebar.languageOption.japanese"),
       icon: (
         <img
-          className="rounded-md"
           width={"170px"}
           height={"80px"}
           src={JPFlag}
@@ -54,7 +52,6 @@ export const SettingsGeneral = () => {
       name: translate("sidebar.languageOption.tagalog"),
       icon: (
         <img
-          className="rounded-md"
           width={"170px"}
           height={"80px"}
           src={PHFlag}
@@ -66,7 +63,6 @@ export const SettingsGeneral = () => {
       name: translate("sidebar.languageOption.cebuano"),
       icon: (
         <img
-          className="rounded-md"
           width={"170px"}
           height={"80px"}
           src={PHFlag}
