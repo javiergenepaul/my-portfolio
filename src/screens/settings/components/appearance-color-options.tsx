@@ -5,6 +5,7 @@ export interface AppearanceColorOptionsInterface {
   value: Color;
   name: string;
   color: string;
+  qoutes: string[];
 }
 
 export const AppearanceColorOptions = (
@@ -20,7 +21,7 @@ export const AppearanceColorOptions = (
       />
       <Label
         htmlFor={value}
-        className="flex gap-4 flex-col items-center justify-between text-center rounded-full border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+        className="flex gap-4 flex-col items-center justify-between text-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
       >
         <span className="" style={{ color: color }}>
           {name}
