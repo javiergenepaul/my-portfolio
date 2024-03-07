@@ -23,19 +23,19 @@ export const NAV_LINKS: NavLinkInterface[] = [
 export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
   {
     key: "github",
-    icon: "fa6-brands:square-github",
+    icon: "github",
     title: translate("header.socialMediaLinks.github"),
     url: url.GITHUB_URL,
   },
   {
     key: "linkedIn",
-    icon: "fa6-brands:linkedin",
+    icon: "linkedin",
     title: translate("header.socialMediaLinks.linkedIn"),
     url: url.LINKED_IN_URL,
   },
   {
     key: "upwork",
-    icon: "fa6-brands:upwork",
+    icon: "upwork",
     title: translate("header.socialMediaLinks.upwork"),
     url: url.UPWORK_URL,
   },
