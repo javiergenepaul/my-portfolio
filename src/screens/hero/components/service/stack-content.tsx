@@ -13,7 +13,7 @@ export const StackContent = (stack: TechStackInterface) => {
   const onClickBadgeHandler = () => {
     window.open(url, "_blank");
   };
-  
+
   return (
     <HoverCard>
       <HoverCardTrigger>
