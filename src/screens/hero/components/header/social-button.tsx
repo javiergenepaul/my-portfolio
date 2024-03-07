@@ -1,4 +1,5 @@
 import {
+  SocialIcon,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -19,7 +20,7 @@ export const SocialButton = (props: SocialMediaLinksInterface) => {
             aria-label={title}
             className="flex flex-row items-center gap-2 transition duration-150"
           >
-            {icon}
+            <SocialIcon icon={icon} />
           </a>
         </TooltipTrigger>
         <TooltipContent>

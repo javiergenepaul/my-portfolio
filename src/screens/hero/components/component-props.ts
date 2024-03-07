@@ -1,3 +1,4 @@
+import { SocialIcon } from "@/components";
 import { ServiceOfferInterface, TechStackInterface } from "@/config";
 import { SelectedNavLink } from "@/stores";
 
@@ -16,7 +17,7 @@ export interface NavLinkInterface {
 
 export interface SocialMediaLinksInterface {
   key: string;
-  icon: React.ReactNode;
+  icon: SocialIcon;
   title: string;
   url: string;
 }

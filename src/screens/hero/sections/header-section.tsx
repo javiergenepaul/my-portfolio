@@ -26,11 +26,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Settings } from "lucide-react";
-import {
-  FaceIcon,
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-} from "@radix-ui/react-icons";
 
 export const HeaderSection = () => {
   const navigate = useNavigate();
@@ -39,19 +34,19 @@ export const HeaderSection = () => {
   const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
     {
       key: "github",
-      icon: <GitHubLogoIcon width={"24px"} height={"24px"} />,
+      icon: "github",
       title: translate("header.socialMediaLinks.github"),
       url: GITHUB_URL,
     },
     {
       key: "linkedIn",
-      icon: <LinkedInLogoIcon width={"24px"} height={"24px"} />,
+      icon: "linkedin",
       title: translate("header.socialMediaLinks.linkedIn"),
       url: LINKED_IN_URL,
     },
     {
       key: "upwork",
-      icon: <FaceIcon width={"24px"} height={"24px"} />,
+      icon: "upwork",
       title: translate("header.socialMediaLinks.upwork"),
       url: UPWORK_URL,
     },
@@ -109,7 +104,7 @@ export const HeaderSection = () => {
             </Link>
           </div>
           <ul
-            className="flex items-center gap-3 mt-8 ml-1"
+            className="flex items-center gap-4 mt-8 ml-1"
             aria-label={translate("header.ariaLabel.socialMedia")}
           >
             {SOCIAL_MEDIA_LINKS.map(
