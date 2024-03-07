@@ -29,7 +29,8 @@
     "invalidEmail": "Please enter a valid email address.",
     "maximumCharacter": "Maximum character limit exceeded. Please limit your input to {{count}} characters or fewer."
   },
-  "moreInfo": "More Info",
+  "getInTouch": "Get In Touch",
+  "learnMore": "Learn More",
   "appName": "Javz Portfolio - {{title}}",
   "navName": "Javz Portfolio",
   "path": {

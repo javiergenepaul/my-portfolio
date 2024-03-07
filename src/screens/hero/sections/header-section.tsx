@@ -14,7 +14,6 @@ import {
   UPWORK_URL,
 } from "@/config";
 import { translate } from "@/i18n";
-import { useSettingsStore } from "@/stores";
 import React from "react";
 import {
   AboutMeAvatar,
@@ -24,8 +23,7 @@ import {
   SocialMediaLinksInterface,
   SubTitleAnimation,
 } from "../components";
-import { Link } from "react-router-dom";
-import { ResumeDark, ResumeLight } from "../../../assets";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Settings } from "lucide-react";
 import {
@@ -35,17 +33,8 @@ import {
 } from "@radix-ui/react-icons";
 
 export const HeaderSection = () => {
-  const { getTheme } = useSettingsStore();
+  const navigate = useNavigate();
   const {} = useTranslation();
-
-  const downloadResumeHandler = () => {
-    getTheme;
-    if (getTheme()) {
-      window.open(ResumeDark, "_blank");
-    } else {
-      window.open(ResumeLight, "_blank");
-    }
-  };
 
   const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
     {
@@ -58,7 +47,7 @@ export const HeaderSection = () => {
       key: "linkedIn",
       icon: <LinkedInLogoIcon width={"24px"} height={"24px"} />,
       title: translate("header.socialMediaLinks.linkedIn"),
-      url: LINKED_IN_URL, 
+      url: LINKED_IN_URL,
     },
     {
       key: "upwork",
@@ -109,12 +98,14 @@ export const HeaderSection = () => {
             <Button
               className="w-fit"
               variant={"default"}
-              onClick={downloadResumeHandler}
+              onClick={() => {
+                navigate(PATH.CONTACTS.path);
+              }}
             >
-              {translate("resume.btnName")}
+              {translate("getInTouch")}
             </Button>
             <Link to={PATH.ABOUT.path}>
-              <Button variant={"link"}>{translate("moreInfo")}</Button>
+              <Button variant={"link"}>{translate("learnMore")}</Button>
             </Link>
           </div>
           <ul
@@ -144,11 +135,6 @@ export const HeaderSection = () => {
               </Tooltip>
             </TooltipProvider>
             <AboutMeAvatar />
-            {/* TODO:: might use later */}
-            {/* <ThemeSwitch
-              checked={getTheme()}
-              onChange={(e) => toggleTheme(e.target.checked)}
-            /> */}
           </ul>
         </div>
       </section>
