@@ -5,7 +5,8 @@ import { SideBar } from "@/components";
 import { DEV_MODE, PATH } from "@/config";
 import { useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
-import { useSiderStore, useThemeStore } from "@/stores";
+import { useSiderStore, useSettingsStore } from "@/stores";
+import { useTranslation } from "react-i18next";
 
 interface SideBarLayoutInterface {
   children: React.ReactNode;
@@ -15,18 +16,20 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   const navigate = useNavigate();
   const { setIsOpen } = useSiderStore();
-  const { font } = useThemeStore();
+  const { font, sidenavSwipeToggle, sidenavSwipeSensitivity } =
+    useSettingsStore();
+  const {} = useTranslation();
 
   const handlers = useSwipeable({
     onSwipedLeft: (event) => {
       const swipeDistance = Math.abs(event.deltaX);
-      if (swipeDistance >= 200) {
+      if (sidenavSwipeToggle && swipeDistance >= sidenavSwipeSensitivity) {
         setIsOpen(true);
       }
     },
     onSwipedRight: (event) => {
       const swipeDistance = Math.abs(event.deltaX);
-      if (swipeDistance >= 200) {
+      if (swipeDistance >= sidenavSwipeSensitivity) {
         setIsOpen(false);
       }
     },
@@ -65,7 +68,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
           >
             <img
               src={ContactLogo}
-              alt="jav-logo.svg"
+              alt="Gene Paul Mar Javier - Logo"
               className="w-[36px] h-[36px]"
             />
             {translate("navName")}

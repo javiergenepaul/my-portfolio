@@ -444,7 +444,7 @@
     "particle": {
       "enabled": "ENABLED",
       "disabled": "DISABLED",
-      "formDescription": "Enable Particle Background",
+      "formDescription": "Particle Effect Toggle",
       "tooltip": "Enabling this may cause performance issues.",
       "toast": {
         "success": "Your particle background settings have been {{enabledParticle}}. Enjoy the enhanced visual experience or revert to the standard view."

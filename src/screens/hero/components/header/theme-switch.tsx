@@ -5,7 +5,7 @@ import {
   TooltipTrigger,
 } from "@/components";
 import { translate } from "@/i18n";
-import { useThemeStore } from "@/stores";
+import { useSettingsStore } from "@/stores";
 import { Moon, Sun } from "lucide-react";
 import React, { forwardRef } from "react";
 
@@ -13,7 +13,7 @@ export const ThemeSwitch = forwardRef<
   HTMLInputElement,
   React.InputHTMLAttributes<HTMLInputElement>
 >((props, ref) => {
-  const { theme } = useThemeStore();
+  const { theme } = useSettingsStore();
 
   /**
    * Retrieves the theme string based on the current theme.

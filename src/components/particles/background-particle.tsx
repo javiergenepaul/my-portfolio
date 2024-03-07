@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
-import { useThemeStore } from "@/stores";
+import { useSettingsStore } from "@/stores";
 
 interface ParticleInterface {
   darkMode: boolean;
@@ -87,7 +87,7 @@ export const BackgroundParticle = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
-  const { enableParticleBackground, getTheme, color } = useThemeStore();
+  const { enableParticleBackground, getTheme, color } = useSettingsStore();
 
   const getColor = () => {
     switch (color) {

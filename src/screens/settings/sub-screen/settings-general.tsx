@@ -5,10 +5,11 @@ import {
   InpuptFieldGroup,
 } from "../components";
 import { JPFlag, PHFlag, USFlag } from "@/assets";
-import { LanguageType, useLanguageStore, useThemeStore } from "@/stores";
+import { LanguageType, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   Label,
   RadioGroup,
+  Slider,
   Switch,
   Tooltip,
   TooltipContent,
@@ -17,57 +18,43 @@ import {
   useToast,
 } from "@/components";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { useId, useState } from "react";
 
 export const SettingsGeneral = () => {
   const { setLanguage, language } = useLanguageStore();
-  const { enableParticleBackground, setEnableParticleBackground } =
-    useThemeStore();
+  const {
+    enableParticleBackground,
+    sidenavSwipeToggle,
+    sidenavSwipeSensitivity,
+    setEnableParticleBackground,
+    setSideNavSwipeToggle,
+    setSideNavSwipeSensitivity,
+  } = useSettingsStore();
   const { toast } = useToast();
+
+  const particleSwitchId = useId();
+  const sideNavToggleSwitch = useId();
 
   const LANGUAGE_OPTIONS: GeneralLangOptions[] = [
     {
       value: "en",
       name: translate("sidebar.languageOption.english"),
-      icon: (
-        <img
-          width={"170px"}
-          height={"80px"}
-          src={USFlag}
-        />
-      ),
+      icon: <img width={"170px"} height={"80px"} src={USFlag} />,
     },
     {
       value: "ja",
       name: translate("sidebar.languageOption.japanese"),
-      icon: (
-        <img
-          width={"170px"}
-          height={"80px"}
-          src={JPFlag}
-        />
-      ),
+      icon: <img width={"170px"} height={"80px"} src={JPFlag} />,
     },
     {
       value: "fil",
       name: translate("sidebar.languageOption.tagalog"),
-      icon: (
-        <img
-          width={"170px"}
-          height={"80px"}
-          src={PHFlag}
-        />
-      ),
+      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
     },
     {
       value: "ceb",
       name: translate("sidebar.languageOption.cebuano"),
-      icon: (
-        <img
-          width={"170px"}
-          height={"80px"}
-          src={PHFlag}
-        />
-      ),
+      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
     },
   ];
 
@@ -114,31 +101,89 @@ export const SettingsGeneral = () => {
     });
   };
 
+  const [showSlider, setShowSlider] = useState<boolean>(sidenavSwipeToggle);
+
+  const onChangeSideNavSwipeToggleSwitch = (value: boolean) => {
+    setSideNavSwipeToggle(value);
+    setShowSlider(value);
+
+    // TODO:: add toast message here
+  };
+
   return (
     <div className="space-y-8">
-      <div className="flex gap-4 items-center py-2.5">
-        <Switch
-          checked={enableParticleBackground}
-          onCheckedChange={onChangeParticleBackground}
-          id="particle-background"
-        />
-        <Label
-          className="cursor-pointer flex gap-2 items-center"
-          htmlFor="particle-background"
+      <div className="flex flex-col gap-2">
+        {/* Particle Background Switch Field */}
+        <div className="flex gap-4 items-center py-2.5">
+          <Switch
+            checked={enableParticleBackground}
+            onCheckedChange={onChangeParticleBackground}
+            id={particleSwitchId}
+          />
+          <Label
+            className="cursor-pointer flex gap-2 items-center"
+            htmlFor={particleSwitchId}
+          >
+            {translate("settings.particle.formDescription")}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <InfoCircledIcon height={"1.2rem"} width={"1.2rem"} />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{translate("settings.particle.tooltip")}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </Label>
+        </div>
+
+        {/* Side Nav Side Toggle Switch Field */}
+        <div className="flex gap-4 items-center py-2.5 lg:hidden">
+          <Switch
+            checked={sidenavSwipeToggle}
+            onCheckedChange={onChangeSideNavSwipeToggleSwitch}
+            id={sideNavToggleSwitch}
+          />
+          <Label
+            className="cursor-pointer flex gap-2 items-center"
+            htmlFor={sideNavToggleSwitch}
+          >
+            {/* TODO:: change into translate */}
+            Sidebar Swipe Open
+          </Label>
+        </div>
+
+        <div
+          className={`flex flex-col gap-4 py-2.5 lg:hidden ${
+            showSlider ? "" : "hidden"
+          }`}
         >
-          {translate("settings.particle.formDescription")}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <InfoCircledIcon height={"1.2rem"} width={"1.2rem"} />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{translate("settings.particle.tooltip")}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </Label>
+          <Label className="cursor-pointer flex gap-2 items-center">
+            {/* TODO:: change into translate */}
+            Sidebar Swipe Sensitivity
+          </Label>
+          <Slider
+            className="cursor-pointer"
+            onValueChange={(value) => {
+              setSideNavSwipeSensitivity(value[0]);
+              console.log(value[0]);
+            }}
+            value={[sidenavSwipeSensitivity]}
+            min={20}
+            max={400}
+            step={1}
+          />
+          <p className="text-sm text-muted-foreground">
+            {/* TODO: change into translate */}
+            The lower the sensitivity value, the shorter the distance required
+            to swipe open the sidebar; conversely, the higher the value, the
+            greater the distance needed for it to open.
+          </p>
+        </div>
       </div>
+
+      {/* Language Fields */}
       <InpuptFieldGroup
         label={translate("settings.lang.lang")}
         description={translate("settings.lang.formDescription")}

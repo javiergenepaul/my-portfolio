@@ -8,7 +8,7 @@ import {
   RadioGroup,
 } from "@/components";
 import { translate } from "@/i18n";
-import { Color, FontType, useLanguageStore, useThemeStore } from "@/stores";
+import { Color, FontType, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   AppearanceColorOptions,
   AppearanceColorOptionsInterface,
@@ -117,7 +117,7 @@ export const COLOR_PALETTE_AVAILABLE: AppearanceColorOptionsInterface[] = [
 
 export const SettingsAppearance = () => {
   const { setTheme, setFont, theme, getSystemTheme, font, color, setColor } =
-    useThemeStore();
+    useSettingsStore();
   const { language } = useLanguageStore();
 
   const { toast } = useToast();

@@ -1,5 +1,5 @@
 import { DEV_MODE } from "@/config";
-import { Theme, useThemeStore } from "@/stores";
+import { Theme, useSettingsStore } from "@/stores";
 import { useEffect } from "react";
 
 type ThemeProviderProps = {
@@ -13,7 +13,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
 }) => {
-  const { theme, setTheme, color } = useThemeStore();
+  const { theme, setTheme, color } = useSettingsStore();
   useEffect(() => {
     if (DEV_MODE && DEV_MODE === "development") {
       const root = window.document.documentElement;

@@ -10,7 +10,7 @@ export const SPRING_BOOT_STACK: TechStackInterface = {
 };
 
 export const SPRING_SECURITY_STACK: TechStackInterface = {
-  name: translate("services.stack.springBoot"),
+  name: translate("services.stack.springSecurity"),
   isFavorite: true,
   url: url.SPRING_BOOT_URL,
 };

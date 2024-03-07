@@ -14,7 +14,7 @@ import {
   UPWORK_URL,
 } from "@/config";
 import { translate } from "@/i18n";
-import { useThemeStore } from "@/stores";
+import { useSettingsStore } from "@/stores";
 import React from "react";
 import {
   AboutMeAvatar,
@@ -35,7 +35,7 @@ import {
 } from "@radix-ui/react-icons";
 
 export const HeaderSection = () => {
-  const { getTheme } = useThemeStore();
+  const { getTheme } = useSettingsStore();
   const {} = useTranslation();
 
   const downloadResumeHandler = () => {
