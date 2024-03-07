@@ -120,7 +120,7 @@ export const HeaderSection = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Link className="hidden lg:block" to={PATH.SETTINGS.path}>
+                  <Link className="hidden lg:block hover:text-primary" to={PATH.SETTINGS.path}>
                     <Settings />
                   </Link>
                 </TooltipTrigger>
