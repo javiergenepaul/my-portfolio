@@ -39,22 +39,46 @@ export const SettingsGeneral = () => {
     {
       value: "en",
       name: translate("sidebar.languageOption.english"),
-      icon: <img width={"170px"} height={"80px"} src={USFlag} />,
+      icon: (
+        <img
+          width={"170px"}
+          height={"80px"}
+          src={USFlag}
+        />
+      ),
     },
     {
       value: "ja",
       name: translate("sidebar.languageOption.japanese"),
-      icon: <img width={"170px"} height={"80px"} src={JPFlag} />,
+      icon: (
+        <img
+          width={"170px"}
+          height={"80px"}
+          src={JPFlag}
+        />
+      ),
     },
     {
       value: "fil",
       name: translate("sidebar.languageOption.tagalog"),
-      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
+      icon: (
+        <img
+          width={"170px"}
+          height={"80px"}
+          src={PHFlag}
+        />
+      ),
     },
     {
       value: "ceb",
       name: translate("sidebar.languageOption.cebuano"),
-      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
+      icon: (
+        <img
+          width={"170px"}
+          height={"80px"}
+          src={PHFlag}
+        />
+      ),
     },
   ];
 

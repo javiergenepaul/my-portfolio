@@ -45,6 +45,11 @@ Start the server
 - Visual Appeal
 - Navigation
 - Translator Static Text (English, Japanese, Tagalog, Cebuano)
+- Settings Page: Create a dedicated settings page accessible from the website's navigation menu where users can adjust their preferences.
+Font Family & Color Palette Selection: a dropdown menus or color pickers for users to make their selections.
+- Theme Mode: Offer radio buttons or a dropdown menu to choose between light, dark, or system-based themes.
+- Particle Background Switch: a toggle switch that users can easily turn on or off to enable or disable the particle background effect.
+Save Settings: Utilize cookies or local storage to save user preferences and apply them across the website.
 
 ## Lessons Learned
 
