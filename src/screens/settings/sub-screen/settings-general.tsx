@@ -18,8 +18,7 @@ import {
   useToast,
 } from "@/components";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { useEffect, useId, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { useId, useState } from "react";
 
 export const SettingsGeneral = () => {
   const { setLanguage, language } = useLanguageStore();
@@ -140,7 +139,7 @@ export const SettingsGeneral = () => {
         </div>
 
         {/* Side Nav Side Toggle Switch Field */}
-        <div className="flex gap-4 items-center py-2.5">
+        <div className="flex gap-4 items-center py-2.5 lg:hidden">
           <Switch
             checked={sidenavSwipeToggle}
             onCheckedChange={onChangeSideNavSwipeToggleSwitch}
@@ -151,20 +150,21 @@ export const SettingsGeneral = () => {
             htmlFor={sideNavToggleSwitch}
           >
             {/* TODO:: change into translate */}
-            Sidenav Swipe Open
+            Sidebar Swipe Open
           </Label>
         </div>
 
         <div
-          className={`flex flex-col gap-4 py-2.5 ${showSlider ? "" : "hidden"}`}
+          className={`flex flex-col gap-4 py-2.5 lg:hidden ${
+            showSlider ? "" : "hidden"
+          }`}
         >
-          <Label
-            className="cursor-pointer flex gap-2 items-center"
-            // htmlFor={sideNavToggleSwitch}
-          >
-            Sidenav Swipe Sensitivity
+          <Label className="cursor-pointer flex gap-2 items-center">
+            {/* TODO:: change into translate */}
+            Sidebar Swipe Sensitivity
           </Label>
           <Slider
+            className="cursor-pointer"
             onValueChange={(value) => {
               setSideNavSwipeSensitivity(value[0]);
               console.log(value[0]);
@@ -174,6 +174,11 @@ export const SettingsGeneral = () => {
             max={400}
             step={1}
           />
+          <p className="text-sm text-muted-foreground">
+            The lower the sensitivity value, the shorter the distance required
+            to swipe open the sidebar; conversely, the higher the value, the
+            greater the distance needed for it to open.
+          </p>
         </div>
       </div>
 

@@ -68,7 +68,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
           >
             <img
               src={ContactLogo}
-              alt="jav-logo.svg"
+              alt="Gene Paul Mar Javier - Logo"
               className="w-[36px] h-[36px]"
             />
             {translate("navName")}
