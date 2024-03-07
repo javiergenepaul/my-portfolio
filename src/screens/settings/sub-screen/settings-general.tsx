@@ -175,6 +175,7 @@ export const SettingsGeneral = () => {
             step={1}
           />
           <p className="text-sm text-muted-foreground">
+            {/* TODO: change into translate */}
             The lower the sensitivity value, the shorter the distance required
             to swipe open the sidebar; conversely, the higher the value, the
             greater the distance needed for it to open.
