@@ -11,24 +11,25 @@ export const ServiceSection = () => {
       stack: [
         Stack.SPRING_BOOT_STACK,
         Stack.SPRING_SECURITY_STACK,
-        Stack.SPRING_OAUTH_STACK,
         Stack.SPRING_JDBC_STACK,
         Stack.SPRING_API_STACK,
         Stack.JAVA_STACK,
         Stack.MYSQL_STACK,
-        Stack.JUNIT_STACK,
-        Stack.MOCKITO_STACK,
         Stack.POSTMAN_STACK,
         Stack.LINUX_STACK,
         Stack.AZURE_STACK,
-        Stack.AWS_STACK,
-        Stack.AZURE_PIPELINE_AGENT_STACK,
         Stack.FIREBASE_STACK,
         Stack.GIT_STACK,
         Stack.NGINX_STACK,
         Stack.CENTOS_STACK,
         Stack.NETLIFY_STACK,
-        Stack.HEROKU_STACK,
+        Stack.MVC_STACK,
+        // Stack.SPRING_OAUTH_STACK, //TODO:: enable this when done
+        // Stack.JUNIT_STACK, //TODO:: when done practicing enable this
+        // Stack.MOCKITO_STACK, //TODO:: when done practicing enable this
+        // Stack.AWS_STACK, //TODO:: enable this when done
+        // Stack.AZURE_PIPELINE_AGENT_STACK, // TODO:: when done practicing enable this
+        // Stack.HEROKU_STACK, //TODO:: enable this when done
       ],
     },
     {
@@ -48,20 +49,22 @@ export const ServiceSection = () => {
         Stack.MUI_STACK,
         Stack.CHAKRA_STACK,
         Stack.ANT_DESIGN_STACK,
-        Stack.NEXT_UI_STACK,
         Stack.ZUSTAND_STACK,
         Stack.MOBX_STACK,
         Stack.CHART_JS_STACK,
         Stack.GSAP_STACK,
-        Stack.THREE_JS_STACK,
         Stack.FRAMER_MOTION_STACK,
-        Stack.CYPRESS_STACK,
         Stack.I18N_STACK,
         Stack.AXIOS_STACK,
         Stack.REACT_QUERY_STACK,
         Stack.NPM_STACK,
         Stack.PNPM_STACK,
         Stack.YARN_STACK,
+        // Stack.NEXT_UI_STACK, //TODO:: update later
+        // Stack.THREE_JS_STACK, //TODO:: update later
+        // Stack.JEST_STACK, //TODO:: update later
+        // Stack.VITEST_STACK, //TODO:: update later
+        // Stack.CYPRESS_STACK, //TODO:: update later
       ],
     },
     {

@@ -1,5 +1,7 @@
+import { StackName } from "@/screens";
+
 export interface TechStackInterface {
-  name: string;
+  name: StackName;
   icon?: string;
   url: string | undefined;
   isFavorite: boolean;
