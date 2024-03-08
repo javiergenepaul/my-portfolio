@@ -1,5 +1,4 @@
 import {
-  Badge,
   BounceText,
   Card,
   CardContent,
@@ -18,6 +17,7 @@ import {
 import { ShowTag } from "./show-tag";
 import { Eye, EyeOff } from "lucide-react";
 import { translate } from "@/i18n";
+import { StackContent } from "@/screens";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -99,19 +99,10 @@ export const ProjectCard = (props: ProjectCardInterface) => {
               {description}
             </CardDescription>
           </CardHeader>
+
           <CardContent className="flex flex-wrap gap-2 px-0 pb-0">
             {stack?.map((stack: TechStackInterface, index: React.Key) => {
-              return (
-                <Badge key={index} className="cursor-pointer">
-                  {stack.url ? (
-                    <a href={stack.url} target="_blank" rel="noreferrer">
-                      {stack.name}
-                    </a>
-                  ) : (
-                    stack.name
-                  )}
-                </Badge>
-              );
+              return <StackContent key={index} {...stack} />;
             })}
           </CardContent>
         </div>

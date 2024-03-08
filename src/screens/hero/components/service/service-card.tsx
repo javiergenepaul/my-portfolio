@@ -29,11 +29,7 @@ export const ServiceCard = (props: ServiceCardInterface) => {
       </CardHeader>
       <CardFooter className="flex flex-wrap gap-2 px-4 md:px-8">
         {stack?.map((stack: TechStackInterface, index: React.Key) => {
-          return (
-            <React.Fragment key={index}>
-              <StackContent {...stack} />
-            </React.Fragment>
-          );
+          return <StackContent key={index} {...stack} />;
         })}
       </CardFooter>
     </Card>
