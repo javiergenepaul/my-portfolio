@@ -1,18 +1,13 @@
 import {
   BounceText,
   Button,
+  SocialIcon,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
-import {
-  GITHUB_URL,
-  LINKED_IN_URL,
-  NAV_LINKS,
-  PATH,
-  UPWORK_URL,
-} from "@/config";
+import { GITHUB_URL, LINKED_IN_URL, PATH, UPWORK_URL } from "@/config";
 import { translate } from "@/i18n";
 import React from "react";
 import {
@@ -25,7 +20,6 @@ import {
 } from "../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Settings } from "lucide-react";
 
 export const HeaderSection = () => {
   const navigate = useNavigate();
@@ -49,6 +43,24 @@ export const HeaderSection = () => {
       icon: "upwork",
       title: translate("header.socialMediaLinks.upwork"),
       url: UPWORK_URL,
+    },
+  ];
+
+  const NAV_LINKS: NavLinkInterface[] = [
+    {
+      name: translate("header.navLinks.services"),
+      path: "#services",
+      selectedId: "services",
+    },
+    {
+      name: translate("header.navLinks.projects"),
+      path: "#projects",
+      selectedId: "projects",
+    },
+    {
+      name: translate("header.navLinks.contacts"),
+      path: "#contacts",
+      selectedId: "contacts",
     },
   ];
 
@@ -120,8 +132,12 @@ export const HeaderSection = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Link className="hidden lg:block hover:text-primary" to={PATH.SETTINGS.path}>
-                    <Settings />
+                  <Link
+                    className="hidden lg:block hover:text-primary"
+                    to={PATH.SETTINGS.path}
+                  >
+                    <SocialIcon icon={"settings"} />
+                    {/* <Settings /> */}
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent className="hidden lg:block">
