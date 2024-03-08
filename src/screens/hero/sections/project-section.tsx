@@ -203,9 +203,9 @@ export const ProjectSection = () => {
   ];
 
   const priorityOrder: { [key in Data["type"]]: number } = {
-    personal: 1,
-    client: 2,
-    confidential: 3,
+    client: 1,
+    confidential: 2,
+    personal: 3,
     tutorial: 4,
   };
 

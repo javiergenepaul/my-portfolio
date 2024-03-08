@@ -6,7 +6,7 @@ import {
 } from "@/components";
 import { TechStackInterface } from "@/config";
 import { StackDetails } from ".";
-import { TxKeyPath, translate } from "@/i18n";
+import { translate } from "@/i18n";
 
 export type StackName = BackEndStack | FrontEndStack | UIStack;
 type BackEndStack =
@@ -81,11 +81,16 @@ export const StackContent = (stack: TechStackInterface) => {
   const { name, url } = stack;
 
   const onClickBadgeHandler = () => {
-    window.open(url, "_blank");
+    if (url) {
+      window.open(url, "_blank");
+    }
   };
 
   const getStackName = (): string => {
-    return translate(`services.stack.${name}` as TxKeyPath);
+    if (name) {
+      return translate(`services.stack.${name}`);
+    }
+    return "";
   };
 
   return (
