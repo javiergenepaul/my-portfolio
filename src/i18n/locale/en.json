@@ -290,6 +290,11 @@
       "general": "General",
       "appearance": "Appearance"
     },
+    "sideBar": {
+      "allowSwipeToOpen": "Allow Sidebar Swipe to Open",
+      "swipeSensitivity": "Sidebar Swipe Sensitivity",
+      "swipeSentitivitySubInfo": "Lower sensitivity requires a shorter swipe to open the sidebar, while higher sensitivity demands a longer swipe."
+    },
     "font": {
       "font": "Font Family",
       "instruction": "Interested in trying a new font family? No problem! We've got you covered. Customize it here.",
@@ -445,7 +450,7 @@
     "particle": {
       "enabled": "ENABLED",
       "disabled": "DISABLED",
-      "formDescription": "Particle Effect Toggle",
+      "formDescription": "Enable Particle Effect",
       "tooltip": "Enabling this may cause performance issues.",
       "toast": {
         "success": "Your particle background settings have been {{enabledParticle}}. Enjoy the enhanced visual experience or revert to the standard view."
