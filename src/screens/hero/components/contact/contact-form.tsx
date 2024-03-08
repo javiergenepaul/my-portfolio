@@ -40,7 +40,9 @@ export const ContactForm = () => {
       toast({
         variant: "destructive",
         duration: 3000,
-        title: translate("contact.toast.error.title"),
+        // TODO:: change message
+        // title: translate("contact.toast.error.title"),
+        title: "Not yet working Available Soon!",
         description: translate("contact.toast.error.description"),
       });
     }
