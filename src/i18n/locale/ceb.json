@@ -29,11 +29,12 @@
     "invalidEmail": "Palihug pagsulod ug balido nga email address.",
     "maximumCharacter": "Milapas na sa maximum nga limitasyon sa karakter.  {{count}} mga karakter o mas gamay."
   },
-  "moreInfo": "Dugang Impormasyon",
-  "appName": "Javz Portfolio - {{title}}",
-  "navName": "Portfolio sa Javz",
+  "getInTouch": "Kontaka",
+  "learnMore": "Pagkat-on pa",
+  "appName": "Gene Paul Mar Javier - {{title}}",
+  "navName": "Gene Paul Mar Javier",
   "path": {
-    "pageNotFound": "wala makit-an ang panid",
+    "pageNotFound": "panid wala makit-an",
     "home": "Balay",
     "about": "Mahitungod sa",
     "project": "Proyekto",
@@ -84,7 +85,7 @@
       "description": "Sa akong front-end development service, nag-espesyalisar ko sa paghimo ug mga interface sa user gamit ang React with TypeScript ug lain-laing library sama sa Tailwind CSS, ShadCN, NextUI, ug custom CSS. "
     },
     "designImplementation": {
-      "title": "Gikan sa Figma hangtod sa Web: Paghimog Makapaikag nga mga Disenyo",
+      "title": "Gikan sa Figma hangtod sa Web: Paghimog Makadani nga mga Disenyo",
       "description": "Sa akong serbisyo alang sa pagpatuman sa mga disenyo sa Figma, milabaw ko sa hapsay nga pagbag-o sa mga konsepto sa disenyo ngadto sa makabibihag ug hingpit nga operasyon nga mga website, nga nag-una sa makuti nga pagtagad sa detalye sa tibuok proseso. "
     },
     "stack": {
@@ -209,7 +210,7 @@
     "countryScape": {
       "title": "CountryScape",
       "company": "Triad Software Digital Solutions",
-      "description": "Ang Country Scape usa ka madanihon nga static landing page nga makuti nga gihimo gikan sa Figma ug gibuhi sa React JavaScript. ",
+      "description": "Ang Country Scape usa ka madanihon nga static nga landing page nga makuti nga gihimo gikan sa Figma ug gibuhi sa React JavaScript. ",
       "imageName": "Pagtan-aw sa Lawak sa Nasod",
       "category": {
         "booking": "Pag-book sa Hotel"
@@ -289,6 +290,11 @@
       "general": "Heneral",
       "appearance": "Panagway"
     },
+    "sideBar": {
+      "allowSwipeToOpen": "Tugoti ang Sidebar Swipe sa Pag-abli",
+      "swipeSensitivity": "Pagkasensitibo sa Pag-swipe sa Sidebar",
+      "swipeSentitivitySubInfo": "Ang ubos nga pagkasensitibo nanginahanglan usa ka mubo nga pag-swipe aron maablihan ang sidebar, samtang ang mas taas nga pagkasensitibo nanginahanglan usa ka taas nga pag-swipe."
+    },
     "font": {
       "font": "Pamilya sa Font",
       "instruction": "Interesado sa pagsulay sa usa ka bag-ong pamilya sa font? ",
@@ -315,6 +321,120 @@
         }
       }
     },
+    "color": {
+      "color": "Kolor",
+      "formDescription": "Pag-upgrade sa imong interface: Pagpili gikan sa among mga istilo sa paleta sa kolor alang sa usa ka matahum. ",
+      "options": {
+        "emerald": {
+          "title": "Emerald Elegance",
+          "quotes": {
+            "10": "Ang kasanag ni Emerald nagdan-ag sa dalan paingon sa walay kataposang katahom, nga naghatag ug masanag nga kahayag sa tanan nga midawat niini.",
+            "01": "Sa kahiladman sa iyang lunhaw nga kolor nahimutang ang diwa sa kaanyag sa esmeralda, usa ka simbolo sa grasya ug pagpino.",
+            "02": "Gidayandayanan sa pagdani sa esmeralda, ang kaanyag nahimong walay katapusan nga pahayag sa katahum ug kaligdong.",
+            "03": "Uban sa harianong kaanyag sa esmeralda, ang kaanyag namulak ngadto sa usa ka madanihon nga symphony sa sophistication.",
+            "04": "Ang Emerald naghunghong sa kahalangdon ug grasya, nga naghabol sa usa ka sugilanon sa walay kataposang katahom sa matag silaw.",
+            "05": "Dawata ang makabibihag nga pagdani sa esmeralda, diin ang kaanyag naghari sa tanang bahin.",
+            "06": "Sa gingharian sa kaanyag sa esmeralda, ang matag shimmering facet nagsulti sa usa ka istorya sa dalisay nga grasya ug natural nga katahum.",
+            "07": "Sama sa usa ka symphony sa berde nga mga kolor, ang kaanyag sa esmeralda nagsayaw uban ang pagkamaayo ug pagkadani.",
+            "08": "Sulod sa giladmon sa masanag nga kahayag sa esmeralda nahimutang ang usa ka kalibutan sa dili hitupngan nga kaanyag ug kaanyag.",
+            "09": "Sa natad sa kaluho, ang esmeralda nagbarug ingon nga ehemplo sa kaanyag, usa ka mutya nga nagdayandayan sa matahum."
+          }
+        },
+        "azure": {
+          "title": "Azure Bliss",
+          "quotes": {
+            "10": "Azure nga kalipay: diin ang azure nga kalangitan nagtagbo sa malinawon nga dagat, ug ang tanan nga mga kabalaka nawala sa kapunawpunawan.",
+            "01": "Sa hawan sa azure nga kalipay, pangitaa ang kahupayan sa malumo nga paghaplos sa walay katapusan nga kalangitan ug malinawon nga tubig.",
+            "02": "Himoa nga ang azure nga kalipay mobanlas kanimo sama sa usa ka hinay nga hangin, nga nagdala sa mga kabalaka ug nagbilin lamang sa kalinaw sa iyang haya.",
+            "03": "Sa ilawom sa azure nga canopy sa langit, diskobrehi ang walay kinutuban nga kalinaw nga naghunghong sa kasingkasing sa kalipay.",
+            "04": "Azure bliss: diin ang kalapad sa kalangitan nagtagbo sa giladmon sa dagat, nagpintal sa usa ka hulagway sa kalinaw.",
+            "05": "Sa gingharian sa azure bliss, matag gutlo usa ka brushstroke sa kalinaw sa canvas sa kinabuhi.",
+            "06": "Pangitaa ang dalangpanan sa azure nga kahiladman sa kalipay, diin ang kalag nakakaplag ug santuwaryo sa paggakos sa walay kinutuban nga asul.",
+            "07": "Azure bliss: usa ka symphony sa kalmado, diin ang kanta sa dagat nagtagbo sa melodiya sa langit.",
+            "08": "Dawata ang azure nga kapunawpunawan sa kalipay, diin ang matag kolor sa asul naghupot sa saad sa kalinaw.",
+            "09": "Sa azure nga hawan sa kalipay, himoa nga ang imong espiritu molupad sa mga pako sa kalinaw ug grasya."
+          }
+        },
+        "golden": {
+          "title": "Bulawan nga Haze",
+          "quotes": {
+            "10": "Sa bulawanon nga alisngaw sa kilumkilom, pasagdi ang imong mga kabalaka nga mawala ngadto sa kapunawpunawan, samtang ang adlaw mobalhin ngadto sa hilom nga mga hunghong sa kagabhion.",
+            "01": "Sa paggakos sa bulawan nga haze, pangitaa ang kainit sa malumo nga paghapuhap sa kahayag sa adlaw, nagpintal sa kalibutan sa mga kolor sa amber ug bulawan.",
+            "02": "Nawala sa bulawan nga alisngaw, pahunonga ang panahon samtang nagsuroy-suroy ka sa kapatagan sa mga damgo nga naligo sa humok nga silaw sa kilumkilom.",
+            "03": "Sa ilawom sa bulawan nga haze, pagdiskobre sa salamangka sa mga gutlo nga gisuspinde sa amber nga kahayag, diin ang mga panumduman gihulma sa panapton sa panahon.",
+            "04": "Bulawanon nga haze: diin ang adlaw nagtagbo sa kapunawpunawan, nga naghimo sa usa ka salamangka sa pagkabig sa yuta, nagdilaab sa mga kasingkasing sa kalayo sa inspirasyon.",
+            "05": "Sa gingharian sa bulawan nga haze, ang matag huyuhoy sa hangin nagdala ug mga lanog sa mga damgo nga wala pa mapadayag, nagsaad nga mga panimpalad sa kayutaan nga wala mailhi.",
+            "06": "Sama sa mga hunghong gikan sa nangagi, ang bulawan nga aso nagpadayag sa mga sekreto nga dugay nang nakalimtan, naghabol sa usa ka tapiserya sa mga istorya sa ilawom sa bulawan nga kalangitan.",
+            "07": "Pagbaton sa bulawan nga haze, diin ang matag gutlo naghupot sa saad sa bag-ong mga sinugdanan, ug ang matag pagsalop sa adlaw nagpintal sa langit sa mga damgo.",
+            "08": "Sulod sa bulawan nga haze, pangitaa ang kahupayan sa malumo nga silaw sa kahayag sa kagabhion, samtang ang mga anino nagsayaw ug ang mga damgo naglupad.",
+            "09": "Bulawanon nga haze: usa ka symphony sa kainit ug kahibulongan, diin ang kalibutan naligo sa malumo nga paggakos sa kilumkilom."
+          }
+        },
+        "sunset": {
+          "title": "Sunset Ember",
+          "quotes": {
+            "10": "Sa paggakos sa ember sa pagsalop sa adlaw, biyai ang mga kabalaka sa adlaw, samtang ang nagdilaab nga kahayag nagdan-ag sa dalan sa kalinaw ug kalinaw.",
+            "01": "Sa kasanag sa pagsalop sa adlaw, bation ang kainit sa nagkaanam nga kahayag sa adlaw nga naghalok sa yuta nga adunay mga kolor nga mapula ug bulawan, usa ka katapusang gakos sa dili pa ang kagabhion.",
+            "02": "Nawala sa makapakurat nga sayaw sa ember sa pagsalop sa adlaw, tugoti ang siga sa kilumkilom nga magdilaab sa imong kalag sa gugma ug posibilidad, pagpintal sa langit nga adunay mga damgo.",
+            "03": "Sa ilawom sa canopy sa pagsalop sa adlaw, pagdiskobre sa salamangka sa mga gutlo nga gisuspinde sa nagdilaab nga kahayag, diin ang mga panumduman gikulit sa canvas sa kalangitan sa kagabhion.",
+            "04": "Sunset ember: diin ang adlaw nagtagbo sa iyang katapusan, nagbutang usa ka nagdilaab nga talan-awon sa kapunawpunawan, usa ka symphony sa mga kolor nga nagdilaab sa kasingkasing sa katingala.",
+            "05": "Sa gingharian sa pagsalop sa adlaw, ang matag kidlap sa kahayag nagpintal sa usa ka istorya sa mga katapusan ug sinugdanan, usa ka tapestry sa mga emosyon nga gihabol sa panapton sa kilumkilom.",
+            "06": "Sama sa mga baga sa usa ka himalatyon nga kalayo, ang pagsalop sa adlaw naghunghong sa mga sekreto sa adlaw nga panaw, nga nagbutang ug mga anino nga nagsayaw uban sa nagakahanaw nga kahayag.",
+            "07": "Dawata ang kainit sa ember sa pagsalop sa adlaw, diin ang matag silaw sa kahayag naghupot sa saad sa usa ka bag-ong kaadlawon, ug ang matag kilumkilom usa ka pahinumdom sa walay katapusan nga siklo sa kinabuhi.",
+            "08": "Sulod sa silaw sa pagsalop sa adlaw, pangitaa ang kahupayan sa hilom nga mga gutlo sa pagpamalandong, samtang ang adlaw mosalop sa malumo nga paggakos sa kagabhion.",
+            "09": "Sunset ember: usa ka symphony sa mga kolor ug landong, diin ang kalangitan nagdilaab sa kataposang mga gutlo sa adlaw, usa ka makapahinganghang pagpakita sa katahom sa kinaiyahan."
+          }
+        },
+        "lavender": {
+          "title": "Purple Kamahalan",
+          "quotes": {
+            "10": "Sa gingharian sa Purple Majesty, tugoti ang imong espiritu nga molupad sa mga pako sa imahinasyon, samtang imong gitagamtam ang himaya sa kahalangdon sa kinaiyahan.",
+            "01": "Sa gingharian sa Purple Majesty, himoa nga ang harianong kolor maghari, nagpintal sa kalibutan sa harianong kaanyag.",
+            "02": "Nawala sa madanihon nga paggakos sa Purple Majesty, mabati ang salamangka sa halok sa kilumkilom samtang ang adlaw moabut sa gabii.",
+            "03": "Sa ilawom sa kupo sa Purple Majesty, diskobrehi ang kabuhong sa tapestry sa kinabuhi, nga gihabol sa mga hilo sa gugma ug grasya.",
+            "04": "Purple Majesty: diin ang langit nakigtagbo sa yuta sa usa ka halangdon nga sayaw sa kilumkilom, nga naghimo sa usa ka spell sa kataha ug katingala.",
+            "05": "Sa gingharian sa Purple Majesty, ang matag gutlo usa ka symphony sa mga violet nga kolor, nga nagpalanog sa kahalangdon sa mga hari ug mga rayna.",
+            "06": "Sama sa mga hunghong gikan sa usa ka halayong gingharian, ang Purple Majesty nagsinyas sa mga saad sa mga damgo nga natuman ug gigakos ang mga padulngan.",
+            "07": "Dawata ang kaanindot sa Purple Majesty, diin ang matag pagsalop sa adlaw usa ka koronasyon sa mga kolor, nagpintal sa kalangitan sa mga kolor sa pagkahari.",
+            "08": "Sulod sa paggakos sa Purple Majesty, pangitaa ang kahupayan sa malinawon nga katahum sa kilumkilom, samtang ang adlaw matahum nga nagbunga sa gabii.",
+            "09": "Purple Majesty: usa ka tapestry sa mga damgo ug mga tinguha, diin ang kasingkasing nakakaplag ug dangpanan sa kalinaw sa kilumkilom nga gakos."
+          }
+        },
+        "scarlet": {
+          "title": "Scarlet Serenade",
+          "quotes": {
+            "10": "Sa melodiya sa Scarlet Serenade, tugoti ang imong kalag nga mosayaw sa ritmo sa gugma, samtang mosurender ka sa awit sa matam-is nga harana sa gugma.",
+            "01": "Sa symphony sa Scarlet Serenade, himoa nga ang mapula nga melodiya mosayaw sa imong kalag, makapukaw sa kahinam ug makapukaw sa mga kasingkasing.",
+            "02": "Nawala sa madanihon nga paggakos sa Scarlet Serenade, mabati ang ritmo sa kinabuhi nga nagpitik sa matag kolor nga pula nga nota.",
+            "03": "Sa ilawom sa canopy sa Scarlet Serenade, pagdiskubre sa gahum sa melodiya sa gugma, paghabol sa agianan sa tapestry sa panahon.",
+            "04": "Scarlet Serenade: diin ang mga lanog sa gugma milanog, nagpintal sa kalibutan sa mga kolor sa nagdilaab nga tinguha ug nagdilaab nga debosyon.",
+            "05": "Sa paggakos sa Scarlet Serenade, matag gutlo usa ka awit sa gugma, giawit sa kasingkasing ug gihunghong sa hangin.",
+            "06": "Sama sa mga hunghong gikan sa usa ka layo nga balad, ang Scarlet Serenade nagtawag sa kalag, nga nagpahibalo sa mga saad sa romansa ug panimpalad.",
+            "07": "Dawata ang gugma sa Scarlet Serenade, diin ang matag pagsalop sa adlaw usa ka serenade sa mga eskarlata nga kolor, nagpintal sa langit sa walay katapusan nga siga sa gugma.",
+            "08": "Sulod sa gakos sa Scarlet Serenade, pangitaa ang kahupayan sa malumo nga paggakos sa matam-is nga melodiya sa gugma, samtang kini nag-awit sa kagabhion.",
+            "09": "Scarlet Serenade: usa ka symphony sa tinguha ug debosyon, diin ang kasingkasing nakakaplag ug dangpanan sa paggakos sa walay kataposang siga sa gugma."
+          }
+        },
+        "silver": {
+          "title": "Silver Serenity",
+          "quotes": {
+            "10": "Sa kalinaw sa Silver Serenity, tugoti nga mawala ang imong mga kabalaka samtang imong gitagamtam ang hilom nga katahum sa kagabhion, pagpangita og kalinaw sa kahilom.",
+            "01": "Sa paggakos sa Silver Serenity, pangitaa ang kalinaw sa naggilakgilak nga silaw sa kahayag sa bulan, nga naghatag usa ka makapahupay nga spell sa tibuuk kalibutan.",
+            "02": "Nawala sa malinawon nga paggakos sa Silver Serenity, gibati ang malumo nga paghikap sa kahayag sa bituon nga naggiya kanimo sa usa ka lugar sa kalinaw sa sulod.",
+            "03": "Sa ilawom sa habol sa Silver Serenity, pangitaa ang katahum sa kahilom, diin ang kahilom nagsulti sa mga volume ug ang kalag nakakaplag kahupayan.",
+            "04": "Silver Serenity: diin ang bulan naghalok sa yuta gamit ang pilak nga kahayag, nagpintal sa gabii nga adunay usa ka malinawon nga kolor sa kalmado.",
+            "05": "Sa gingharian sa Silver Serenity, ang matag gininhawa usa ka hunghong sa kalinaw, nga nagpalanog sa hilom nga katahum sa usa ka malinawon nga gabii.",
+            "06": "Sama sa mga hunghong gikan sa usa ka celestial symphony, ang Silver Serenity nag-awhag sa mga saad sa kalinaw ug panag-uyon sa sulod.",
+            "07": "Dawata ang kalinaw sa Silver Serenity, diin ang matag bituon usa ka pahinumdom sa katahum nga makita sa mga gutlo sa hilom nga pagpamalandong.",
+            "08": "Sulod sa gakos sa Silver Serenity, pangitaa ang kahupayan sa malumo nga paggakos sa kagabhion, samtang ang kalibutan nahinanok sa ilawom sa usa ka habol sa mga bituon.",
+            "09": "Silver Serenity: usa ka santuwaryo sa kalinaw ug kalinaw, diin ang kalag nakakaplag ug dangpanan sa malumo nga gakos sa kalangitan sa kagabhion."
+          }
+        }
+      },
+      "toast": {
+        "success": "Na-refresh ang palette!  {{color}} laraw sa kolor! "
+      }
+    },
     "lang": {
       "lang": "Pinulongan",
       "formDescription": "Gusto mosulay ug laing pinulongan? ",
@@ -326,7 +446,17 @@
           "general": "Gi-update ang pinulongan!  {{language}}! "
         }
       }
-    }
+    },
+    "particle": {
+      "enabled": "GIHIMO",
+      "disabled": "disabled",
+      "formDescription": "I-enable ang Particle Effect",
+      "tooltip": "Ang pagpagana niini mahimong hinungdan sa mga isyu sa performance.",
+      "toast": {
+        "success": "Ang imong mga setting sa background sa partikulo nahimo na {{enabledParticle}}. "
+      }
+    },
+    "settingsUpdated": "Gi-update ang mga Setting"
   },
   "about": {
     "title": "Mahitungod Kanako",
