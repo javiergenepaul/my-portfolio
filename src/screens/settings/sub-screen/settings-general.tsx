@@ -106,8 +106,6 @@ export const SettingsGeneral = () => {
   const onChangeSideNavSwipeToggleSwitch = (value: boolean) => {
     setSideNavSwipeToggle(value);
     setShowSlider(value);
-
-    // TODO:: add toast message here
   };
 
   return (
@@ -149,8 +147,7 @@ export const SettingsGeneral = () => {
             className="cursor-pointer flex gap-2 items-center"
             htmlFor={sideNavToggleSwitch}
           >
-            {/* TODO:: change into translate */}
-            Sidebar Swipe Open
+            {translate("settings.sideBar.allowSwipeToOpen")}
           </Label>
         </div>
 
@@ -160,8 +157,7 @@ export const SettingsGeneral = () => {
           }`}
         >
           <Label className="cursor-pointer flex gap-2 items-center">
-            {/* TODO:: change into translate */}
-            Sidebar Swipe Sensitivity
+            {translate("settings.sideBar.swipeSensitivity")}
           </Label>
           <Slider
             className="cursor-pointer"
@@ -175,9 +171,7 @@ export const SettingsGeneral = () => {
             step={1}
           />
           <p className="text-sm text-muted-foreground">
-            {/* TODO: change into translate */}
-            Lower sensitivity requires a shorter swipe to open the sidebar,
-            while higher sensitivity demands a longer swipe.
+            {translate("settings.sideBar.swipeSentitivitySubInfo")}
           </p>
         </div>
       </div>
