@@ -50,7 +50,7 @@ export const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form className="grid gap-4" onSubmit={form.handleSubmit(onFinishForm)}>
+      <form className="grid gap-2" onSubmit={form.handleSubmit(onFinishForm)}>
         <FormField
           control={form.control}
           name="name"
@@ -125,7 +125,7 @@ export const ContactForm = () => {
             </FormItem>
           )}
         />
-        <Button className="mt-8 select-none" type="submit">
+        <Button className="mt-4 select-none" type="submit">
           {translate("contact.button.submit")}
         </Button>
       </form>
