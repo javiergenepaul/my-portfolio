@@ -13,9 +13,9 @@ import { ContactForm } from "../hero/components/contact";
 export const Contact = () => {
   return (
     <FadeAnimation>
-      <div className="py-10 h-screen  pt-0 pb-16 space-y-6 lg:pt-10 ">
-        <div className="flex gap-24 py-8 ">
-          <Card className="basis-1/2">
+      <div className="py-10 h-screen pt-0 pb-16 space-y-6 lg:pt-10 ">
+        <div className="flex flex-col lg:flex-row gap-24 h-full">
+          <Card className="basis-1/2 h-full w-full items-center">
             <CardHeader className="gap-10 pb-10 select-none">
               <img
                 src={ContactLogo}
@@ -29,7 +29,7 @@ export const Contact = () => {
             </CardContent>
           </Card>
 
-          <div className="basis-1/2 flex items-center justify-center">
+          <div className="basis-1/2 w-full flex items-center justify-center">
             <EarthCanvas />
           </div>
         </div>
