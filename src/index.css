@@ -5,3 +5,32 @@
 html {
   scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #929292;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #232323;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.8);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: #ccc;
+}
