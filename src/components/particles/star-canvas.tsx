@@ -4,6 +4,7 @@ import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.cjs";
 import { twMerge } from "tailwind-merge";
 import { useSettingsStore } from "@/stores";
+import { getColor } from "@/lib";
 
 const Stars = (props: any) => {
   const { color } = useSettingsStore();
@@ -12,27 +13,6 @@ const Stars = (props: any) => {
   useEffect(() => {
     setColorParticle(getColor(color));
   }, [color]);
-
-  const getColor = (colorSelected: string) => {
-    switch (colorSelected) {
-      case "azure":
-        return "#3B82F6";
-      case "emerald":
-        return "#22C55E";
-      case "golden":
-        return "#FACC15";
-      case "sunset":
-        return "#EA580C";
-      case "lavender":
-        return "#6D28D9";
-      case "scarlet":
-        return "#E11D48";
-      case "silver":
-        return "#57616D";
-      default:
-        return "#22C55E";
-    }
-  };
 
   const ref: any = useRef();
   const [sphere] = useState(() =>
