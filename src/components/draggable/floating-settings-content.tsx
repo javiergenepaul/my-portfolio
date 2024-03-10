@@ -1,30 +1,54 @@
-import { useSettingsStore } from "@/stores";
-import { Button, Label, RadioGroup, RadioGroupItem, Switch } from "..";
-import React from "react";
-import { translate } from "@/i18n";
+import { LanguageType, useLanguageStore, useSettingsStore } from "@/stores";
+import {
+  Button,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  Label,
+  RadioGroup,
+  RadioGroupItem,
+  Switch,
+} from "..";
+import React, { useState } from "react";
+import { i18n, translate } from "@/i18n";
 import { generateColorQoutes } from "@/lib";
 import {
   AppearanceColorOptionsInterface,
   ApperanceThemeOptionInterface,
+  GeneralLangOptions,
 } from "@/screens";
-import { Settings } from "lucide-react";
+import { ChevronsUpDown } from "lucide-react";
 import { SLP, DLP, LLP } from "@/assets/layout";
+import { USFlag, JPFlag, PHFlag } from "@/assets";
+import { useTranslation } from "react-i18next";
 
 export const FloatingSettingsContent = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <div className="p-4 flex flex-col gap-2">
-      <div className="flex justify-between items-center">
-        <span>Settings</span>
-        <Button variant={"ghost"}>
-          <Settings />
-        </Button>
-      </div>
-      <div className="flex flex-col gap-4">
-        <BackgroundSwitchField />
-        <ParticleSwitchField />
-        <ColorPaletteField />
-        <ThemeField />
-      </div>
+    <div
+      className="p-4 flex flex-col gap-2"
+      onMouseLeave={() => {
+        setIsOpen(false);
+      }}
+    >
+      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+        <div className="flex justify-between gap-4 items-center">
+          <span>Settings</span>
+          <CollapsibleTrigger asChild>
+            <Button variant={"ghost"} size={"sm"}>
+              <ChevronsUpDown className="h-4 w-4" />
+              <span className="sr-only">Toggle</span>
+            </Button>
+          </CollapsibleTrigger>
+        </div>
+        <CollapsibleContent className="space-y-2">
+          <BackgroundSwitchField />
+          <ParticleSwitchField />
+          <ColorPaletteField />
+          <ThemeField />
+          <LanguageField />
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 };
@@ -65,6 +89,7 @@ const ParticleSwitchField = () => {
 
 // TODO:: change the design
 const ColorPaletteField = () => {
+  const {} = useTranslation();
   const { color, setColor } = useSettingsStore();
   const COLOR_PALETTE_AVAILABLE: AppearanceColorOptionsInterface[] = [
     {
@@ -135,7 +160,55 @@ const ColorPaletteField = () => {
 };
 
 // TODO:: change the design
+const LanguageField = () => {
+  const { language, setLanguage } = useLanguageStore();
+  const LANGUAGE_OPTIONS: GeneralLangOptions[] = [
+    {
+      value: "en",
+      name: translate("sidebar.languageOption.english"),
+      icon: <img width={"170px"} height={"80px"} src={USFlag} />,
+    },
+    {
+      value: "ja",
+      name: translate("sidebar.languageOption.japanese"),
+      icon: <img width={"170px"} height={"80px"} src={JPFlag} />,
+    },
+    {
+      value: "fil",
+      name: translate("sidebar.languageOption.tagalog"),
+      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
+    },
+    {
+      value: "ceb",
+      name: translate("sidebar.languageOption.cebuano"),
+      icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
+    },
+  ];
+
+  const onChangeLangHandler = (value: LanguageType) => {
+    setLanguage(value);
+    i18n.changeLanguage(value);
+  };
+  return (
+    <div className="">
+      <Label>Change Language</Label>
+      <RadioGroup value={language} onValueChange={onChangeLangHandler}>
+        {LANGUAGE_OPTIONS.map((lang: GeneralLangOptions) => (
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value={lang.value} id={lang.value} />
+            <Label className="cursor-pointer" htmlFor={lang.value}>
+              {lang.name}
+            </Label>
+          </div>
+        ))}
+      </RadioGroup>
+    </div>
+  );
+};
+
+// TODO:: change the design
 const ThemeField = () => {
+  const {} = useTranslation();
   const { theme, setTheme } = useSettingsStore();
   const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
     {
