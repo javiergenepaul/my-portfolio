@@ -23,3 +23,4 @@ export * from "./page-title";
 export * from "./switch";
 export * from "./slider";
 export * from "./skeleton";
+export * from "./collapsible";
