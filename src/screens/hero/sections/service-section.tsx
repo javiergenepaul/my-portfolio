@@ -5,7 +5,7 @@ import { Suspense, lazy } from "react";
 import { ServiceCardSkeleton } from "../components";
 
 const LazyServiceCard = lazy(
-  () => import("../components/service/service-card")
+  () => import("../components/service-card/service-card")
 );
 
 export const ServiceSection = () => {
