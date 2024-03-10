@@ -21,7 +21,7 @@ import { StackContent } from "@/screens";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
-export const ProjectCard = (props: ProjectCardInterface) => {
+const ProjectCard = (props: ProjectCardInterface) => {
   const {
     title,
     description,
@@ -110,3 +110,5 @@ export const ProjectCard = (props: ProjectCardInterface) => {
     </Card>
   );
 };
+
+export default ProjectCard;
