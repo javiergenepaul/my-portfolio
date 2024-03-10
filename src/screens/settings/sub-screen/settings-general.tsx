@@ -165,10 +165,7 @@ export const SettingsGeneral = () => {
           </Label>
           <Slider
             className="cursor-pointer"
-            onValueChange={(value) => {
-              setSideNavSwipeSensitivity(value[0]);
-              console.log(value[0]);
-            }}
+            onValueChange={(value) => setSideNavSwipeSensitivity(value[0])}
             value={[sidenavSwipeSensitivity]}
             min={20}
             max={400}

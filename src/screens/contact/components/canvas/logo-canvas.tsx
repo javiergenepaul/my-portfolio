@@ -1,21 +1,15 @@
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { CanvasLoader } from "../canvas-loader";
 import { useSettingsStore } from "@/stores";
 import { getColor } from "@/lib";
+import { twMerge } from "tailwind-merge";
 
 const Logo = () => {
   const { color } = useSettingsStore();
   const logo: any = useGLTF("./logo/logo.gltf");
   const logoRef: any = useRef();
-
-  // Rotate the Earth around the y-axis
-  useFrame(() => {
-    if (logoRef.current) {
-      logoRef.current.rotation.y += 0.005; // Adjust the speed of rotation as needed
-    }
-  });
 
   useEffect(() => {
     // Function to update the color of the meshes
@@ -56,7 +50,7 @@ const Logo = () => {
       {/* Your 3D model */}
       <primitive
         object={logo.scene}
-        scale={50}
+        scale={60}
         position-y={-2}
         rotation-y={0}
       />
@@ -89,8 +83,13 @@ const FollowCameraLight = () => {
 };
 
 export const LogoCanvas = () => {
+  const [isGrabbing, setIsGrabbing] = useState<boolean>(false);
+
   return (
     <Canvas
+      onMouseDown={() => setIsGrabbing(true)}
+      onMouseUp={() => setIsGrabbing(false)}
+      className={twMerge("cursor-grab", isGrabbing ? "cursor-grabbing" : "")}
       shadows
       frameloop="demand"
       dpr={[1, 2]}
@@ -106,12 +105,11 @@ export const LogoCanvas = () => {
         <Logo />
         <OrbitControls
           autoRotate={true}
-          enablePan={true}
+          enablePan={false}
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        {/* <Preload all /> */}
       </Suspense>
       <FollowCameraLight />
     </Canvas>
