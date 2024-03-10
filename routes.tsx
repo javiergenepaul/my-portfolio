@@ -1,11 +1,28 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useLocation,
+} from "react-router-dom";
 import { PATH } from "./src/config";
 import * as Screens from "./src/screens";
 import { HeaderTitleProvider } from "@/providers";
 import SideBarLayout from "@/layout/sidebar-layout";
+import { useEffect } from "react";
+import { useSettingsStore } from "@/stores";
 
 const AppScreen = (props: { component: React.ReactNode }) => {
+  const { setHideFloatingSettings } = useSettingsStore();
   const { component } = props;
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === PATH.SETTINGS.path) {
+      setHideFloatingSettings(true);
+    } else {
+      setHideFloatingSettings(false);
+    }
+  }, [location.pathname]);
 
   return (
     <HeaderTitleProvider>

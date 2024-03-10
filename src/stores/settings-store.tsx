@@ -19,6 +19,8 @@ interface SettingsStore {
   sidenavSwipeToggle: boolean;
   sidenavSwipeSensitivity: number;
   enableParticleBackground: boolean;
+  isSettingsNew: boolean;
+  hideFloatingSettings: boolean;
   setFont: (font: FontType) => void;
   setTheme: (theme: Theme) => void;
   getSystemTheme: () => string;
@@ -29,30 +31,45 @@ interface SettingsStore {
   setSideNavSwipeToggle: (sidenavSwipeToggle: boolean) => void;
   setSideNavSwipeSensitivity: (sidenavSwipeSensitivity: number) => void;
   setIsBackgroundOnly: (isBackgroundOnly: boolean) => void;
+  setIsSettingsNew: (isSettingsNew: boolean) => void;
+  setHideFloatingSettings: (hideFloatingSettings: boolean) => void;
 }
 
+const BACKGROUND_ONLY_LOCAL: string = "vite-ui-background-only";
+const SETTINGS_NEW_LOCAL: string = "vite-ui-settings-new";
+const SIDE_NAV_SWIPE_TOGGLE_LOCAL: string = "vite-ui-sidenavSwipeToggle";
+const ENABLE_PARTICLE_LOCAL: string = "vite-ui-enableParticle";
+const THEME_LOCAL: string = "vite-ui-theme";
+const COLOR_LOCAL: string = "vite-ui-color";
+const FONT_LOCAL: string = "vite-ui-font";
+const SWIPE_SENSITIVITY_LOCAL: string = "vite-ui-sideNavSensitivity";
+
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
-  isBackgroundOnly: localStorage.getItem("vite-ui-background-only")
-    ? localStorage.getItem("vite-ui-background-only") === "true"
+  hideFloatingSettings: false,
+  isSettingsNew: localStorage.getItem(SETTINGS_NEW_LOCAL)
+    ? localStorage.getItem(SETTINGS_NEW_LOCAL) === "true"
     : false,
-  sidenavSwipeToggle: localStorage.getItem("vite-ui-sidenavSwipeToggle")
-    ? localStorage.getItem("vite-ui-sidenavSwipeToggle") === "true"
+  isBackgroundOnly: localStorage.getItem(BACKGROUND_ONLY_LOCAL)
+    ? localStorage.getItem(BACKGROUND_ONLY_LOCAL) === "true"
+    : false,
+  sidenavSwipeToggle: localStorage.getItem(SIDE_NAV_SWIPE_TOGGLE_LOCAL)
+    ? localStorage.getItem(SIDE_NAV_SWIPE_TOGGLE_LOCAL) === "true"
     : true,
-  enableParticleBackground: localStorage.getItem("vite-ui-enableParticle")
-    ? localStorage.getItem("vite-ui-enableParticle") === "true"
+  enableParticleBackground: localStorage.getItem(ENABLE_PARTICLE_LOCAL)
+    ? localStorage.getItem(ENABLE_PARTICLE_LOCAL) === "true"
     : true,
-  theme: localStorage.getItem("vite-ui-theme") as Theme | undefined,
-  color: localStorage.getItem("vite-ui-color") as Color | "emerald",
-  font: localStorage.getItem("vite-ui-font") as FontType | "inter",
-  sidenavSwipeSensitivity: localStorage.getItem("vite-ui-sideNavSensitivity")
-    ? parseInt(localStorage.getItem("vite-ui-sideNavSensitivity") as string)
+  theme: localStorage.getItem(THEME_LOCAL) as Theme | undefined,
+  color: localStorage.getItem(COLOR_LOCAL) as Color | "emerald",
+  font: localStorage.getItem(FONT_LOCAL) as FontType | "inter",
+  sidenavSwipeSensitivity: localStorage.getItem(SWIPE_SENSITIVITY_LOCAL)
+    ? parseInt(localStorage.getItem(SWIPE_SENSITIVITY_LOCAL) as string)
     : 50,
   setColor: (color: Color) => {
-    localStorage.setItem("vite-ui-color", color as string);
+    localStorage.setItem(COLOR_LOCAL, color as string);
     set({ color });
   },
   setFont: (font: FontType) => {
-    localStorage.setItem("vite-ui-font", font);
+    localStorage.setItem(FONT_LOCAL, font);
     set({ font });
   },
   getTheme: (): boolean => {
@@ -65,7 +82,7 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   },
   toggleTheme: (isDark: boolean) => {
     const resultTheme: Theme = isDark ? "dark" : "light";
-    localStorage.setItem("vite-ui-theme", resultTheme);
+    localStorage.setItem(THEME_LOCAL, resultTheme);
     set({ theme: resultTheme });
   },
   getSystemTheme: (): string => {
@@ -80,36 +97,43 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
     return get().theme as string;
   },
   setTheme: (theme: Theme) => {
-    localStorage.setItem("vite-ui-theme", theme as string);
+    localStorage.setItem(THEME_LOCAL, theme as string);
     set({ theme });
   },
   setEnableParticleBackground: (enableParticleBackground: boolean) => {
     localStorage.setItem(
-      "vite-ui-enableParticle",
+      ENABLE_PARTICLE_LOCAL,
       enableParticleBackground ? "true" : "false"
     );
     set({ enableParticleBackground });
   },
   setSideNavSwipeToggle: (sidenavSwipeToggle: boolean) => {
     localStorage.setItem(
-      "vite-ui-sidenavSwipeToggle",
+      SIDE_NAV_SWIPE_TOGGLE_LOCAL,
       sidenavSwipeToggle ? "true" : "false"
     );
     set({ sidenavSwipeToggle });
   },
   setSideNavSwipeSensitivity: (sidenavSwipeSensitivity: number) => {
     localStorage.setItem(
-      "vite-ui-sideNavSensitivity",
+      SWIPE_SENSITIVITY_LOCAL,
       sidenavSwipeSensitivity.toString()
     );
     set({ sidenavSwipeSensitivity });
   },
   setIsBackgroundOnly: (isBackgroundOnly: boolean) => {
     localStorage.setItem(
-      "vite-ui-background-only",
+      BACKGROUND_ONLY_LOCAL,
       isBackgroundOnly ? "true" : "false"
     );
     set({ isBackgroundOnly });
+  },
+  setIsSettingsNew: (isSettingsNew: boolean) => {
+    localStorage.setItem(SETTINGS_NEW_LOCAL, isSettingsNew ? "true" : "false");
+    set({ isSettingsNew });
+  },
+  setHideFloatingSettings: (hideFloatingSettings: boolean) => {
+    set({ hideFloatingSettings });
   },
 }));
 

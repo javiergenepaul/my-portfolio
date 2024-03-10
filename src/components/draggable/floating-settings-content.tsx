@@ -1,4 +1,4 @@
-import { LanguageType, useLanguageStore, useSettingsStore } from "@/stores";
+import { Color, LanguageType, Theme, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   Button,
   Collapsible,
@@ -8,10 +8,11 @@ import {
   RadioGroup,
   RadioGroupItem,
   Switch,
+  toast,
 } from "..";
 import React, { useState } from "react";
 import { i18n, translate } from "@/i18n";
-import { generateColorQoutes } from "@/lib";
+import { generateColorQoutes, getRandomGeneratedColorQoutes } from "@/lib";
 import {
   AppearanceColorOptionsInterface,
   ApperanceThemeOptionInterface,
@@ -22,21 +23,23 @@ import { SLP, DLP, LLP } from "@/assets/layout";
 import { USFlag, JPFlag, PHFlag } from "@/assets";
 import { useTranslation } from "react-i18next";
 
+const TOAST_DURATION: number = 2000;
+
 export const FloatingSettingsContent = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div
-      className="p-4 flex flex-col gap-2"
+      className="flex flex-col gap-2 p-4"
       onMouseLeave={() => {
         setIsOpen(false);
       }}
     >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <div className="flex justify-between gap-4 items-center">
+        <div className="flex items-center justify-between gap-4">
           <span>Settings</span>
           <CollapsibleTrigger asChild>
             <Button variant={"ghost"} size={"sm"}>
-              <ChevronsUpDown className="h-4 w-4" />
+              <ChevronsUpDown className="w-4 h-4" />
               <span className="sr-only">Toggle</span>
             </Button>
           </CollapsibleTrigger>
@@ -57,12 +60,22 @@ export const FloatingSettingsContent = () => {
 const BackgroundSwitchField = () => {
   const backgroundId = React.useId();
   const { isBackgroundOnly, setIsBackgroundOnly } = useSettingsStore();
+
+  const onChangeBackgroundSwitch = (value: boolean) => {
+    setIsBackgroundOnly(value);
+    toast({
+      variant: "success",
+      duration: 3000,
+      title: translate("settings.settingsUpdated"),
+      description: "You can now enjoy the background only view",
+    });
+  };
   return (
     <div className="flex items-center gap-2">
       <Switch
         id={backgroundId}
         checked={isBackgroundOnly}
-        onCheckedChange={setIsBackgroundOnly}
+        onCheckedChange={onChangeBackgroundSwitch}
       />
       <Label htmlFor={backgroundId}>Background-Only Mode</Label>
     </div>
@@ -75,12 +88,26 @@ const ParticleSwitchField = () => {
   const { enableParticleBackground, setEnableParticleBackground } =
     useSettingsStore();
 
+  const onChangeParticleBackground = (value: boolean) => {
+    setEnableParticleBackground(value);
+    toast({
+      variant: "success",
+      duration: 3000,
+      title: translate("settings.settingsUpdated"),
+      description: translate("settings.particle.toast.success", {
+        enabledParticle: value
+          ? translate("settings.particle.enabled")
+          : translate("settings.particle.disabled"),
+      }),
+    });
+  };
+
   return (
     <div className="flex items-center gap-2">
       <Switch
         id={particleId}
         checked={enableParticleBackground}
-        onCheckedChange={setEnableParticleBackground}
+        onCheckedChange={onChangeParticleBackground}
       />
       <Label htmlFor={particleId}>Disable Particle</Label>
     </div>
@@ -91,6 +118,21 @@ const ParticleSwitchField = () => {
 const ColorPaletteField = () => {
   const {} = useTranslation();
   const { color, setColor } = useSettingsStore();
+  const onChangeColor = (color: Color) => {
+    setColor(color);
+    const colorSelected: AppearanceColorOptionsInterface | undefined =
+      COLOR_PALETTE_AVAILABLE.find((data) => data.value === color);
+
+    if (colorSelected) {
+      toast({
+        variant: "success",
+        duration: TOAST_DURATION,
+        title: colorSelected.name,
+        description: getRandomGeneratedColorQoutes(colorSelected.qoutes),
+      });
+    }
+  };
+
   const COLOR_PALETTE_AVAILABLE: AppearanceColorOptionsInterface[] = [
     {
       name: translate("settings.color.options.emerald.title"),
@@ -139,7 +181,7 @@ const ColorPaletteField = () => {
   return (
     <div className="">
       <Label>Color Palette</Label>
-      <RadioGroup value={color} onValueChange={setColor}>
+      <RadioGroup value={color} onValueChange={onChangeColor}>
         {COLOR_PALETTE_AVAILABLE.map(
           (color: AppearanceColorOptionsInterface) => (
             <div className="flex items-center space-x-2">
@@ -162,6 +204,36 @@ const ColorPaletteField = () => {
 // TODO:: change the design
 const LanguageField = () => {
   const { language, setLanguage } = useLanguageStore();
+
+  const onChangeLangHanlder = (value: LanguageType) => {
+    setLanguage(value);
+    i18n.changeLanguage(value);
+
+    toast({
+      variant: "success",
+      duration: 3000,
+      title: translate("settings.settingsUpdated"),
+      description: translate("settings.lang.toast.success.general", {
+        language: getLanguageName(value),
+      }),
+    });
+  };
+
+  const getLanguageName = (lang: LanguageType): string => {
+    switch (lang) {
+      case "en":
+        return "English";
+      case "ja":
+        return "Japanese";
+      case "fil":
+        return "Tagalog";
+      case "ceb":
+        return "Cebuano";
+      default:
+        return "English";
+    }
+  };
+
   const LANGUAGE_OPTIONS: GeneralLangOptions[] = [
     {
       value: "en",
@@ -185,14 +257,10 @@ const LanguageField = () => {
     },
   ];
 
-  const onChangeLangHandler = (value: LanguageType) => {
-    setLanguage(value);
-    i18n.changeLanguage(value);
-  };
   return (
     <div className="">
       <Label>Change Language</Label>
-      <RadioGroup value={language} onValueChange={onChangeLangHandler}>
+      <RadioGroup value={language} onValueChange={onChangeLangHanlder}>
         {LANGUAGE_OPTIONS.map((lang: GeneralLangOptions) => (
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={lang.value} id={lang.value} />
@@ -210,6 +278,19 @@ const LanguageField = () => {
 const ThemeField = () => {
   const {} = useTranslation();
   const { theme, setTheme } = useSettingsStore();
+
+  const onChangeTheme = (theme: Theme) => {
+    setTheme(theme);
+    toast({
+      variant: "success",
+      duration: TOAST_DURATION,
+      title: translate("settings.settingsUpdated"),
+      description: translate("settings.theme.toast.success.theme", {
+        theme: theme,
+      }),
+    });
+  };
+
   const THEME_AVAILABLE: ApperanceThemeOptionInterface[] = [
     {
       value: "system",
@@ -236,7 +317,10 @@ const ThemeField = () => {
   return (
     <div className="">
       <Label>Theme Mode</Label>
-      <RadioGroup value={theme} onValueChange={(theme: any) => setTheme(theme)}>
+      <RadioGroup
+        value={theme}
+        onValueChange={(theme: any) => onChangeTheme(theme)}
+      >
         {THEME_AVAILABLE.map((theme: ApperanceThemeOptionInterface) => (
           <div className="flex items-center space-x-2">
             <RadioGroupItem value={theme.value as string} id={theme.value} />
