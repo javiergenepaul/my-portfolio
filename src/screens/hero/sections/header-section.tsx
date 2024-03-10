@@ -20,10 +20,13 @@ import {
 } from "../components";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useSettingsStore } from "@/stores";
+import { twMerge } from "tailwind-merge";
 
 export const HeaderSection = () => {
   const navigate = useNavigate();
   const {} = useTranslation();
+  const { isSettingsNew, setIsSettingsNew } = useSettingsStore();
 
   const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
     {
@@ -133,11 +136,24 @@ export const HeaderSection = () => {
               <Tooltip>
                 <TooltipTrigger>
                   <Link
+                    onClick={() => setIsSettingsNew(true)}
                     className="hidden lg:block hover:text-primary"
                     to={PATH.SETTINGS.path}
                   >
-                    <SocialIcon icon={"settings"} />
-                    {/* <Settings /> */}
+                    <div className="relative">
+                      <div
+                        className={twMerge(
+                          "absolute top-[-4px] right-[-3px]",
+                          isSettingsNew ? "hidden" : ""
+                        )}
+                      >
+                        <span className="relative flex w-2.5 h-2.5">
+                          <span className="absolute inline-flex w-full h-full bg-red-500 rounded-full opacity-75 animate-ping" />
+                          <span className="relative inline-flex w-full h-full bg-red-600 rounded-full animate-pulse" />
+                        </span>
+                      </div>
+                      <SocialIcon icon={"settings"} />
+                    </div>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent className="hidden lg:block">

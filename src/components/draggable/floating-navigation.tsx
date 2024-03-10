@@ -2,8 +2,10 @@ import { useState } from "react";
 import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
 import { twMerge } from "tailwind-merge";
 import { FloatingSettingsContent } from "./floating-settings-content";
+import { useSettingsStore } from "@/stores";
 
 export const FloatingNavigation = () => {
+  const { hideFloatingSettings } = useSettingsStore();
   const [onDrag, setOnDrag] = useState<boolean>(false);
 
   const onStartHandler = () => {
@@ -17,7 +19,12 @@ export const FloatingNavigation = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-center items-center pointer-events-none">
+    <div
+      className={twMerge(
+        "fixed inset-0 z-50 flex items-center justify-center pointer-events-none",
+        hideFloatingSettings ? "hidden" : ""
+      )}
+    >
       <Draggable
         bounds="parent"
         onStart={onStartHandler}
