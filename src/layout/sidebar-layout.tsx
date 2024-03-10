@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
 import { useSiderStore, useSettingsStore } from "@/stores";
 import { useTranslation } from "react-i18next";
+import { twMerge } from "tailwind-merge";
 
 interface SideBarLayoutInterface {
   children: React.ReactNode;
@@ -16,8 +17,12 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   const navigate = useNavigate();
   const { setIsOpen } = useSiderStore();
-  const { font, sidenavSwipeToggle, sidenavSwipeSensitivity } =
-    useSettingsStore();
+  const {
+    font,
+    sidenavSwipeToggle,
+    sidenavSwipeSensitivity,
+    isBackgroundOnly,
+  } = useSettingsStore();
   const {} = useTranslation();
 
   const handlers = useSwipeable({
@@ -57,7 +62,12 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
 
   return (
     <>
-      <nav className="block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0">
+      <nav
+        className={twMerge(
+          "block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0 transition-all duration-300",
+          isBackgroundOnly ? "opacity-0" : ""
+        )}
+      >
         <div className="flex items-center justify-between w-full">
           <div
             className="flex items-center gap-4 cursor-pointer select-none"
@@ -78,9 +88,12 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
       </nav>
       <main
         {...handlers}
-        className={`${fontSelected()} relative w-full h-full min-h-dvh px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none ${
-          DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
-        }`}
+        className={twMerge(
+          "relative w-full h-full min-h-dvh px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none duration-300 transition-all",
+          `${fontSelected()} ${isBackgroundOnly ? "opacity-0" : ""} ${
+            DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
+          }`
+        )}
       >
         {children}
       </main>
