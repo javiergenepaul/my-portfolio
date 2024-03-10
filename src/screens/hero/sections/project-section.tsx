@@ -2,7 +2,6 @@ import { PATH, ProjectInterface } from "@/config";
 import { Button } from "@/components";
 import { useNavigate } from "react-router-dom";
 import { translate } from "@/i18n";
-// import { ProjectCard } from "@/screens";
 import * as Stack from "../../../config/stack";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
@@ -230,7 +229,6 @@ export const ProjectSection = () => {
       <div className="flex flex-col gap-8">
         {sortedProjectsHandler().map(
           (project: ProjectInterface, index: React.Key) => (
-            // <ProjectCardSkeleton />
             <Suspense key={index} fallback={<ProjectCardSkeleton />}>
               <LazyComponent key={index} {...project} />
             </Suspense>
