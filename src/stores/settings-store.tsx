@@ -15,6 +15,7 @@ interface SettingsStore {
   theme: Theme;
   font: FontType;
   color: Color;
+  isBackgroundOnly: boolean;
   sidenavSwipeToggle: boolean;
   sidenavSwipeSensitivity: number;
   enableParticleBackground: boolean;
@@ -27,9 +28,13 @@ interface SettingsStore {
   setEnableParticleBackground: (enableParticlaBackground: boolean) => void;
   setSideNavSwipeToggle: (sidenavSwipeToggle: boolean) => void;
   setSideNavSwipeSensitivity: (sidenavSwipeSensitivity: number) => void;
+  setIsBackgroundOnly: (isBackgroundOnly: boolean) => void;
 }
 
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
+  isBackgroundOnly: localStorage.getItem("vite-ui-background-only")
+    ? localStorage.getItem("vite-ui-background-only") === "true"
+    : false,
   sidenavSwipeToggle: localStorage.getItem("vite-ui-sidenavSwipeToggle")
     ? localStorage.getItem("vite-ui-sidenavSwipeToggle") === "true"
     : true,
@@ -98,6 +103,13 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       sidenavSwipeSensitivity.toString()
     );
     set({ sidenavSwipeSensitivity });
+  },
+  setIsBackgroundOnly: (isBackgroundOnly: boolean) => {
+    localStorage.setItem(
+      "vite-ui-background-only",
+      isBackgroundOnly ? "true" : "false"
+    );
+    set({ isBackgroundOnly });
   },
 }));
 
