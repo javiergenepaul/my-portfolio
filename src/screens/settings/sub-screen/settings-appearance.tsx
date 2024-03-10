@@ -12,8 +12,8 @@ import { Color, FontType, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   AppearanceColorOptions,
   AppearanceColorOptionsInterface,
+  AppearanceThemeOptionsSkeleton,
   ApperanceFontOption,
-  ApperanceThemeOption,
   ApperanceThemeOptionInterface,
   FontAvailableInterface,
   InpuptFieldGroup,
@@ -25,6 +25,11 @@ import {
 } from "@/lib";
 import { DLP, LLP, SLP } from "@/assets/layout";
 import { useTranslation } from "react-i18next";
+import { Suspense, lazy } from "react";
+
+const LazyThemeOption = lazy(
+  () => import("../components/appearance/appearance-theme-options")
+);
 
 type Theme = "dark" | "light" | "system";
 const TOAST_DURATION: number = 2000;
@@ -202,9 +207,14 @@ export const SettingsAppearance = () => {
           className="grid max-w-[800px] grid-cols-3 gap-8 pt-2"
         >
           {THEME_AVAILABLE.map(
-            (themeProps: ApperanceThemeOptionInterface, index: React.Key) => {
-              return <ApperanceThemeOption key={index} {...themeProps} />;
-            }
+            (themeProps: ApperanceThemeOptionInterface, index: React.Key) => (
+              <Suspense
+                key={index}
+                fallback={<AppearanceThemeOptionsSkeleton />}
+              >
+                <LazyThemeOption {...themeProps} />
+              </Suspense>
+            )
           )}
         </RadioGroup>
       </InpuptFieldGroup>
