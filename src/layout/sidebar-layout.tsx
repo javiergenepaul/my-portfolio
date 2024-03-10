@@ -65,7 +65,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
       <nav
         className={twMerge(
           "block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-[60] text-foreground sticky top-0 transition-all duration-300",
-          isBackgroundOnly ? "opacity-0" : ""
+          isBackgroundOnly ? "opacity-0 pointer-events-none" : ""
         )}
       >
         <div className="flex items-center justify-between w-full">
@@ -90,7 +90,7 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
         {...handlers}
         className={twMerge(
           "relative w-full h-full min-h-dvh px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none duration-300 transition-all",
-          `${fontSelected()} ${isBackgroundOnly ? "opacity-0" : ""} ${
+          `${fontSelected()} ${isBackgroundOnly ? "opacity-0 pointer-events-none" : ""} ${
             DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
           }`
         )}
