@@ -7,7 +7,7 @@ export interface ApperanceThemeOptionInterface {
   icon: React.ReactNode;
 }
 
-export const ApperanceThemeOption = (props: ApperanceThemeOptionInterface) => {
+const ApperanceThemeOption = (props: ApperanceThemeOptionInterface) => {
   const { value, name, icon } = props;
 
   return (
@@ -27,3 +27,5 @@ export const ApperanceThemeOption = (props: ApperanceThemeOptionInterface) => {
     </div>
   );
 };
+
+export default ApperanceThemeOption;

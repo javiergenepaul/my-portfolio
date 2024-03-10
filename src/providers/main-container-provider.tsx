@@ -8,11 +8,7 @@ interface MainContainerProviderInterface {
 const MainContainerProvider = (props: MainContainerProviderInterface) => {
   const { children } = props;
 
-  return (
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
-  );
+  return <ThemeProvider>{children}</ThemeProvider>;
 };
 
 export { MainContainerProvider };

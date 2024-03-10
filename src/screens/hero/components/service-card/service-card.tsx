@@ -11,7 +11,7 @@ import { StackContent } from "./stack-content";
 import React from "react";
 import { ServiceCardInterface } from "../component-props";
 
-export const ServiceCard = (props: ServiceCardInterface) => {
+const ServiceCard = (props: ServiceCardInterface) => {
   const { title, description, stack } = props;
 
   return (
@@ -35,3 +35,5 @@ export const ServiceCard = (props: ServiceCardInterface) => {
     </Card>
   );
 };
+
+export default ServiceCard;

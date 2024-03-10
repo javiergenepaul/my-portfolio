@@ -14,6 +14,7 @@ function App() {
         <GlobalHelmet />
         <Toaster />
         <BackgroundParticle />
+
         <MainContainerProvider>
           <AppRoutes />
         </MainContainerProvider>

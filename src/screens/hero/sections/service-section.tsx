@@ -1,7 +1,12 @@
 import { translate } from "@/i18n";
-import { ServiceCard } from "..";
 import { ServiceOfferInterface } from "@/config";
 import * as Stack from "../../../config/stack";
+import { Suspense, lazy } from "react";
+import { ServiceCardSkeleton } from "../components";
+
+const LazyServiceCard = lazy(
+  () => import("../components/service-card/service-card")
+);
 
 export const ServiceSection = () => {
   const SERVICE_OFFER: ServiceOfferInterface[] = [
@@ -24,6 +29,8 @@ export const ServiceSection = () => {
         Stack.CENTOS_STACK,
         Stack.NETLIFY_STACK,
         Stack.MVC_STACK,
+        Stack.PHP_STACK,
+        Stack.LARAVEL_STACK,
         // Stack.SPRING_OAUTH_STACK, //TODO:: enable this when done
         // Stack.JUNIT_STACK, //TODO:: when done practicing enable this
         // Stack.MOCKITO_STACK, //TODO:: when done practicing enable this
@@ -90,9 +97,11 @@ export const ServiceSection = () => {
     >
       <div className="flex flex-col gap-8">
         {SERVICE_OFFER.map(
-          (service: ServiceOfferInterface, index: React.Key) => {
-            return <ServiceCard key={index} {...service} />;
-          }
+          (service: ServiceOfferInterface, index: React.Key) => (
+            <Suspense key={index} fallback={<ServiceCardSkeleton />}>
+              <LazyServiceCard {...service} />
+            </Suspense>
+          )
         )}
       </div>
     </section>

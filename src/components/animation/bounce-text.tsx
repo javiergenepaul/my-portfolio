@@ -8,7 +8,8 @@ export const BounceText = (props: BounceTextInterface) => {
 
   return (
     <>
-      {path ? (
+      {text}
+      {/* {path ? (
         <Link
           to={path ? path : ""}
           {...(openInNewTab ? { target: "_blank" } : {})}
@@ -30,7 +31,7 @@ export const BounceText = (props: BounceTextInterface) => {
             </RubberAnimation>
           );
         })
-      )}
+      )} */}
     </>
   );
 };

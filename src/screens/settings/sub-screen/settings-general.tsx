@@ -1,7 +1,7 @@
 import { i18n, translate } from "@/i18n";
 import {
-  GeneralLangOption,
   GeneralLangOptions,
+  GeneralLangOptionsSkeleton,
   InpuptFieldGroup,
 } from "../components";
 import { JPFlag, PHFlag, USFlag } from "@/assets";
@@ -18,7 +18,11 @@ import {
   useToast,
 } from "@/components";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { useId, useState } from "react";
+import { Suspense, lazy, useId, useState } from "react";
+
+const LazyLanguageOption = lazy(
+  () => import("../components/general/general-lang-options")
+);
 
 export const SettingsGeneral = () => {
   const { setLanguage, language } = useLanguageStore();
@@ -188,9 +192,11 @@ export const SettingsGeneral = () => {
           className="grid grid-cols-4 gap-4"
         >
           {LANGUAGE_OPTIONS.map(
-            (lang: GeneralLangOptions, index: React.Key) => {
-              return <GeneralLangOption key={index} {...lang} />;
-            }
+            (lang: GeneralLangOptions, index: React.Key) => (
+              <Suspense key={index} fallback={<GeneralLangOptionsSkeleton />}>
+                <LazyLanguageOption key={index} {...lang} />
+              </Suspense>
+            )
           )}
         </RadioGroup>
       </InpuptFieldGroup>
