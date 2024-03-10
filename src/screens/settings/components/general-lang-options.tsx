@@ -8,7 +8,7 @@ export interface GeneralLangOptions {
   icon: React.ReactNode;
 }
 
-export const GeneralLangOption = (props: GeneralLangOptions) => {
+const GeneralLangOption = (props: GeneralLangOptions) => {
   const { value, name, icon } = props;
   return (
     <div>
@@ -23,3 +23,5 @@ export const GeneralLangOption = (props: GeneralLangOptions) => {
     </div>
   );
 };
+
+export default GeneralLangOption;
