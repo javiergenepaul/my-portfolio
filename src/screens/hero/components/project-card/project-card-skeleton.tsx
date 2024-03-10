@@ -12,12 +12,12 @@ export const ProjectCardSkeleton = () => {
     <Card className="relative p-0 overfow-hidden cursor-wait">
       <div className="flex flex-col gap-4 px-4 py-6 xl:flex-row md:px-8 h-fit">
         <div className="items-center relative justify-center overflow-hidden rounded-lg select-none md:basis-2/5">
-          <Skeleton className="h-full        rounded-lg" />
+          <Skeleton className="h-full rounded-lg" />
         </div>
         <div className="flex flex-col md:basis-3/5">
           <CardHeader className="px-0 pt-0">
             <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
-              <Skeleton className="h-[24px] w-full rounded-lg" />
+              <Skeleton className="h-6 w-full rounded-lg" />
             </CardTitle>
             <div className="flex gap-2">
               <div className="flex gap-2">

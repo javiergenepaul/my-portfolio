@@ -1,8 +1,12 @@
 import { translate } from "@/i18n";
 import { ServiceOfferInterface } from "@/config";
 import * as Stack from "../../../config/stack";
-import { Suspense } from "react";
-import { ServiceCard } from "../components";
+import { Suspense, lazy } from "react";
+import { ServiceCardSkeleton } from "../components";
+
+const LazyServiceCard = lazy(
+  () => import("../components/service/service-card")
+);
 
 export const ServiceSection = () => {
   const SERVICE_OFFER: ServiceOfferInterface[] = [
@@ -94,8 +98,8 @@ export const ServiceSection = () => {
       <div className="flex flex-col gap-8">
         {SERVICE_OFFER.map(
           (service: ServiceOfferInterface, index: React.Key) => (
-            <Suspense key={index} fallback={<div>Loading...</div>}>
-              <ServiceCard key={index} {...service} />
+            <Suspense key={index} fallback={<ServiceCardSkeleton />}>
+              <LazyServiceCard {...service} />
             </Suspense>
           )
         )}
