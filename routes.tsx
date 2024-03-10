@@ -17,7 +17,11 @@ const AppScreen = (props: { component: React.ReactNode }) => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === PATH.SETTINGS.path) {
+    if (
+      location.pathname === PATH.SETTINGS.path ||
+      location.pathname === PATH.SETTINGS_APPEARNCE.path ||
+      location.pathname === PATH.SETTINGS_GENERAL.path
+    ) {
       setHideFloatingSettings(true);
     } else {
       setHideFloatingSettings(false);
