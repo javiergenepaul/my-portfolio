@@ -5,8 +5,8 @@ import {
   HoverCardTrigger,
 } from "@/components";
 import { TechStackInterface } from "@/config";
-import { StackDetails } from ".";
 import { translate } from "@/i18n";
+import { StackDetails } from "../service-card";
 
 export type StackName = BackEndStack | FrontEndStack | UIStack;
 type BackEndStack =
