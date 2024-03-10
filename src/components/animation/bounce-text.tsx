@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
-import { RubberAnimation } from "./rubber-animation";
 import { BounceTextInterface } from "./animation-props";
 
 export const BounceText = (props: BounceTextInterface) => {
-  const { text, path, openInNewTab, className } = props;
-  const textSplit = text.split("");
+  const { text } = props;
+  // const textSplit = text.split("");
 
   return (
     <>
