@@ -17,7 +17,7 @@ export const ProjectCardSkeleton = () => {
         <div className="flex flex-col md:basis-3/5">
           <CardHeader className="px-0 pt-0">
             <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
-              <Skeleton className="h-6 w-full rounded-lg" />
+              <Skeleton className="h-6 w-10/12 rounded-lg" />
             </CardTitle>
             <div className="flex gap-2">
               <div className="flex gap-2">
