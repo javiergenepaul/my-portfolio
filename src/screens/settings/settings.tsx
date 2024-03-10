@@ -12,6 +12,7 @@ export interface SettingsItemInterface {
 
 export const Settings = () => {
   const {} = useTranslation();
+  
   const sidebarNavItems: SettingsItemInterface[] = [
     {
       title: translate("settings.nav.general"),
