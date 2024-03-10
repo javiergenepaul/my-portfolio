@@ -6,7 +6,7 @@ import * as Stack from "../../../config/stack";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
 
-const LazyComponent = lazy(
+const LazyProjectCard = lazy(
   () => import("../components/project-card/project-card")
 );
 
@@ -230,7 +230,7 @@ export const ProjectSection = () => {
         {sortedProjectsHandler().map(
           (project: ProjectInterface, index: React.Key) => (
             <Suspense key={index} fallback={<ProjectCardSkeleton />}>
-              <LazyComponent key={index} {...project} />
+              <LazyProjectCard key={index} {...project} />
             </Suspense>
           )
         )}
