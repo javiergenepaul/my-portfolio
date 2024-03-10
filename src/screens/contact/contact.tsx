@@ -6,9 +6,9 @@ import {
   FadeAnimation,
 } from "@/components";
 import { translate } from "@/i18n";
-import { EarthCanvas } from "./components/canvas/earth-canvas";
 import { ContactLogo } from "@/assets";
-import { ContactForm } from "../hero/components/contact";
+import { LogoCanvas } from "./components";
+import { ContactForm } from "../hero";
 
 export const Contact = () => {
   return (
@@ -30,7 +30,7 @@ export const Contact = () => {
           </Card>
 
           <div className="basis-1/2 w-full flex items-center justify-center">
-            <EarthCanvas />
+            <LogoCanvas />
           </div>
         </div>
       </div>

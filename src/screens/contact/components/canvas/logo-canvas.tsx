@@ -1,35 +1,63 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { CanvasLoader } from "../canvas-loader";
 import { useSettingsStore } from "@/stores";
 import { getColor } from "@/lib";
 
-const Earth = () => {
+const Logo = () => {
   const { color } = useSettingsStore();
   const logo: any = useGLTF("./logo/logo.gltf");
-  const earthRef: any = useRef();
+  const logoRef: any = useRef();
 
   // Rotate the Earth around the y-axis
   useFrame(() => {
-    if (earthRef.current) {
-      earthRef.current.rotation.y += 0.005; // Adjust the speed of rotation as needed
+    if (logoRef.current) {
+      logoRef.current.rotation.y += 0.005; // Adjust the speed of rotation as needed
     }
   });
 
-  logo.scene.traverse((child: any) => {
-    if (child.isMesh) {
-      child.material.color.set(getColor(color));
-    }
-  });
+  useEffect(() => {
+    // Function to update the color of the meshes
+    const updateMeshColor = (child: any) => {
+      if (child.isMesh) {
+        child.material.color.set(getColor(color));
+      }
+    };
+
+    // Traverse through the scene and update mesh colors
+    logo.scene.traverse(updateMeshColor);
+
+    // Return cleanup function to avoid memory leaks
+    return () => {
+      logo.scene.traverse(updateMeshColor);
+    };
+  }, [color]);
+
+  useEffect(() => {
+    // Function to update the color of the meshes
+    const updateMeshColor = (child: any) => {
+      if (child.isMesh) {
+        child.material.color.set(getColor(color));
+      }
+    };
+
+    // Traverse through the scene and update mesh colors
+    logo.scene.traverse(updateMeshColor);
+
+    // Return cleanup function to avoid memory leaks
+    return () => {
+      logo.scene.traverse(updateMeshColor);
+    };
+  }, []);
 
   return (
-    <group ref={earthRef}>
+    <group ref={logoRef}>
       {/* Your 3D model */}
       <primitive
         object={logo.scene}
-        scale={80}
-        position-y={-3}
+        scale={50}
+        position-y={-2}
         rotation-y={0}
       />
     </group>
@@ -60,7 +88,7 @@ const FollowCameraLight = () => {
   );
 };
 
-export const EarthCanvas = () => {
+export const LogoCanvas = () => {
   return (
     <Canvas
       shadows
@@ -75,7 +103,7 @@ export const EarthCanvas = () => {
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <Earth />
+        <Logo />
         <OrbitControls
           autoRotate={true}
           enablePan={true}
@@ -83,7 +111,7 @@ export const EarthCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Preload all />
+        {/* <Preload all /> */}
       </Suspense>
       <FollowCameraLight />
     </Canvas>
