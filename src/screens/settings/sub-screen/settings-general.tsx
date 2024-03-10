@@ -21,7 +21,7 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Suspense, lazy, useId, useState } from "react";
 
 const LazyLanguageOption = lazy(
-  () => import("../components/general-lang-options")
+  () => import("../components/general/general-lang-options")
 );
 
 export const SettingsGeneral = () => {
