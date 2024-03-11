@@ -159,7 +159,7 @@
     "title": "Projects",
     "description": "test projects description",
     "tag": {
-      "confidential": "Confidential",
+      "confidential": "Protected",
       "personal": "Personal",
       "client": "Client",
       "tutorial": "Tutorial"
