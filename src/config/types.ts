@@ -19,14 +19,19 @@ export interface ProjectInterface {
   description: string;
   date: Date;
   keyContribution?: string[];
-  image64: string;
-  imageName: string;
+  carousel: ProjectCarouselInterface[];
   company: string | undefined;
   category: string[];
   previewUrl?: string | undefined;
   codeUrl?: string | undefined;
   type: ProjectType;
   stack?: TechStackInterface[];
+}
+
+export interface ProjectCarouselInterface {
+  value: string;
+  image: string;
+  name: string;
 }
 
 export interface SideMenuInterface {
