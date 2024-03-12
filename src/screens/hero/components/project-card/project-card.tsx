@@ -18,6 +18,7 @@ import { ShowTag } from "./show-tag";
 import { Eye, EyeOff } from "lucide-react";
 import { translate } from "@/i18n";
 import { StackContent } from "@/screens";
+import { ProjectCarousel } from "./project-carousel";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -29,8 +30,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
     type,
     previewUrl,
     codeUrl,
-    image64,
-    imageName,
+    carousel,
   } = props;
 
   const [isPreviewHovered, setIsPreviewHovered] = useState<boolean>(false);
@@ -58,13 +58,13 @@ const ProjectCard = (props: ProjectCardInterface) => {
             "items-center relative justify-center overflow-hidden rounded-lg cursor-not-allowed select-none md:basis-2/5",
             previewUrl ? "cursor-pointer" : ""
           )}
-          onMouseEnter={onMouseEnterPreviewHandler}
-          onMouseLeave={onMouseLeavePreviewHandler}
+          // onMouseEnter={onMouseEnterPreviewHandler}
+          // onMouseLeave={onMouseLeavePreviewHandler}
         >
           <div
             onClick={onClickPreviewUrl}
             className={twMerge(
-              "absolute z-20 hidden items-center justify-center w-full h-full rounded-lg bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none",
+              "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none",
               `${isPreviewHovered ? "flex gap-2" : ""}`
             )}
           >
@@ -78,7 +78,8 @@ const ProjectCard = (props: ProjectCardInterface) => {
               </>
             )}
           </div>
-          <img className="flex h-full" src={image64} alt={imageName} />
+          <ProjectCarousel carousel={carousel} />
+          {/* <img className="flex h-full" src={image64} alt={imageName} /> */}
         </div>
         <div className="flex flex-col md:basis-3/5">
           <CardHeader className="px-0 pt-0">

@@ -5,6 +5,13 @@ import { translate } from "@/i18n";
 import * as Stack from "../../../config/stack";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
+import {
+  ProjectTest01,
+  ProjectTest02,
+  ProjectTest03,
+  ProjectTest04,
+  ProjectTest05,
+} from "@/assets";
 
 const LazyProjectCard = lazy(
   () => import("../components/project-card/project-card")
@@ -27,8 +34,33 @@ export const ProjectSection = () => {
       previewUrl: "https://www.yoo.ph/login",
       codeUrl: undefined,
       type: "confidential",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: "Yoo PH Preview",
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
       stack: [
         Stack.LARAVEL_STACK,
         Stack.PHP_STACK,
@@ -51,8 +83,33 @@ export const ProjectSection = () => {
       previewUrl: undefined,
       codeUrl: undefined,
       type: "confidential",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: translate("projects.siriusWebpos.imageName"),
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
       stack: [
         Stack.SPRING_BOOT_STACK,
         Stack.SPRING_API_STACK,
@@ -86,8 +143,33 @@ export const ProjectSection = () => {
       previewUrl: undefined,
       codeUrl: "https://github.com/orgs/Unified-Youth/repositories",
       type: "client",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: translate("projects.unifiedYouth.imageName"),
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
       stack: [
         Stack.SPRING_BOOT_STACK,
         Stack.SPRING_API_STACK,
@@ -120,8 +202,33 @@ export const ProjectSection = () => {
       codeUrl: "https://github.com/javiergenepaul/country-scape",
       previewUrl: undefined,
       type: "personal",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: translate("projects.countryScape.imageName"),
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
       stack: [
         Stack.REACT_STACK,
         Stack.TYPESCRIPT_STACK,
@@ -143,8 +250,35 @@ export const ProjectSection = () => {
       codeUrl:
         "https://github.com/javiergenepaul/hoobank-react-tailwind-yt-tutorial",
       type: "tutorial",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: translate("projects.hoobank.imageName"),
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
+      // image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+      // imageName: translate("projects.hoobank.imageName"),
       stack: [
         Stack.VITE_STACK,
         Stack.REACT_STACK,
@@ -164,8 +298,35 @@ export const ProjectSection = () => {
       previewUrl: "https://iqmk-demo.netlify.app/",
       codeUrl: "https://github.com/javiergenepaul/IQMK-tailwind",
       type: "confidential",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: translate("projects.iqmk.imageName"),
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
+      // image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+      // imageName: translate("projects.iqmk.imageName"),
       stack: [
         Stack.HTML_STACK,
         Stack.TAILWIND_STACK,
@@ -188,8 +349,35 @@ export const ProjectSection = () => {
       codeUrl: "https://github.com/javiergenepaul/pawfectly-yours",
       previewUrl: undefined,
       type: "personal",
-      image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      imageName: translate("projects.pawfectlyYours.imageName"),
+      carousel: [
+        {
+          value: "1",
+          image: ProjectTest01,
+          name: "test01",
+        },
+        {
+          value: "2",
+          image: ProjectTest02,
+          name: "test02",
+        },
+        {
+          value: "3",
+          image: ProjectTest03,
+          name: "test03",
+        },
+        {
+          value: "4",
+          image: ProjectTest04,
+          name: "test04",
+        },
+        {
+          value: "5",
+          image: ProjectTest05,
+          name: "test05",
+        },
+      ],
+      // image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
+      // imageName: translate("projects.pawfectlyYours.imageName"),
       stack: [
         Stack.SPRING_BOOT_STACK,
         Stack.SPRING_API_STACK,
