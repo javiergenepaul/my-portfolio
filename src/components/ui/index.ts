@@ -24,3 +24,4 @@ export * from "./switch";
 export * from "./slider";
 export * from "./skeleton";
 export * from "./collapsible";
+export * from "./carousel";
