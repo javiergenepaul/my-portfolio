@@ -22,6 +22,15 @@ import { ChevronsUpDown } from "lucide-react";
 import { SLP, DLP, LLP } from "@/assets/layout";
 import { USFlag, JPFlag, PHFlag } from "@/assets";
 import { useTranslation } from "react-i18next";
+import {
+  AZURE_COLOR,
+  EMERALD_COLOR,
+  GOLDEN_COLOR,
+  LAVENDER_COLOR,
+  SCARLET_COLOR,
+  SILVER_COLOR,
+  SUNSET_COLOR,
+} from "@/config";
 
 const TOAST_DURATION: number = 2000;
 
@@ -36,10 +45,12 @@ export const FloatingSettingsContent = () => {
     >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between gap-4">
+          {/* TODO:: translate */}
           <span>Playground</span>
           <CollapsibleTrigger asChild>
             <Button variant={"ghost"} size={"sm"}>
               <ChevronsUpDown className="w-4 h-4" />
+              {/* TODO:: translate */}
               <span className="sr-only">Toggle</span>
             </Button>
           </CollapsibleTrigger>
@@ -77,6 +88,7 @@ const BackgroundSwitchField = () => {
         checked={isBackgroundOnly}
         onCheckedChange={onChangeBackgroundSwitch}
       />
+      {/* TODO:: translate */}
       <Label htmlFor={backgroundId}>Background-Only Mode</Label>
     </div>
   );
@@ -109,6 +121,7 @@ const ParticleSwitchField = () => {
         checked={enableParticleBackground}
         onCheckedChange={onChangeParticleBackground}
       />
+      {/* TODO: translate */}
       <Label htmlFor={particleId}>Disable Particle</Label>
     </div>
   );
@@ -137,43 +150,43 @@ const ColorPaletteField = () => {
     {
       name: translate("settings.color.options.emerald.title"),
       value: "emerald",
-      color: "#22C55E",
+      color: EMERALD_COLOR,
       qoutes: [...generateColorQoutes("emerald")],
     },
     {
       name: translate("settings.color.options.azure.title"),
       value: "azure",
-      color: "#3B82F6",
+      color: AZURE_COLOR,
       qoutes: [...generateColorQoutes("azure")],
     },
     {
       name: translate("settings.color.options.golden.title"),
       value: "golden",
-      color: "#FACC15",
+      color: GOLDEN_COLOR,
       qoutes: [...generateColorQoutes("golden")],
     },
     {
       name: translate("settings.color.options.sunset.title"),
       value: "sunset",
-      color: "#EA580C",
+      color: SUNSET_COLOR,
       qoutes: [...generateColorQoutes("sunset")],
     },
     {
       name: translate("settings.color.options.lavender.title"),
       value: "lavender",
-      color: "#6D28D9",
+      color: LAVENDER_COLOR,
       qoutes: [...generateColorQoutes("lavender")],
     },
     {
       name: translate("settings.color.options.scarlet.title"),
       value: "scarlet",
-      color: "#E11D48",
+      color: SCARLET_COLOR,
       qoutes: [...generateColorQoutes("scarlet")],
     },
     {
       name: translate("settings.color.options.silver.title"),
       value: "silver",
-      color: "#57616D",
+      color: SILVER_COLOR,
       qoutes: [...generateColorQoutes("silver")],
     },
   ];
