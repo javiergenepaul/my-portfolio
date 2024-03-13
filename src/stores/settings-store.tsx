@@ -54,7 +54,7 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
     : false,
   sidenavSwipeToggle: localStorage.getItem(SIDE_NAV_SWIPE_TOGGLE_LOCAL)
     ? localStorage.getItem(SIDE_NAV_SWIPE_TOGGLE_LOCAL) === "true"
-    : true,
+    : false,
   enableParticleBackground: localStorage.getItem(ENABLE_PARTICLE_LOCAL)
     ? localStorage.getItem(ENABLE_PARTICLE_LOCAL) === "true"
     : true,
