@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components";
 import { ProjectInterface, TechStackInterface } from "@/config";
-import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import {
   CodeIndicator,
@@ -34,15 +33,15 @@ const ProjectCard = (props: ProjectCardInterface) => {
     projectId,
   } = props;
 
-  const [isPreviewHovered, setIsPreviewHovered] = useState<boolean>(false);
+  // const [isPreviewHovered, setIsPreviewHovered] = useState<boolean>(false);
 
-  const onMouseEnterPreviewHandler = () => {
-    setIsPreviewHovered(true);
-  };
+  // const onMouseEnterPreviewHandler = () => {
+  //   setIsPreviewHovered(true);
+  // };
 
-  const onMouseLeavePreviewHandler = () => {
-    setIsPreviewHovered(false);
-  };
+  // const onMouseLeavePreviewHandler = () => {
+  //   setIsPreviewHovered(false);
+  // };
 
   const onClickPreviewUrl = () => {
     if (previewUrl) {
@@ -66,7 +65,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
             onClick={onClickPreviewUrl}
             className={twMerge(
               "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none",
-              `${isPreviewHovered ? "flex gap-2" : ""}`
+              // `${isPreviewHovered ? "flex gap-2" : ""}`
             )}
           >
             {previewUrl ? (
