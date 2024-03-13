@@ -1,3 +1,12 @@
+import {
+  AZURE_COLOR,
+  EMERALD_COLOR,
+  GOLDEN_COLOR,
+  LAVENDER_COLOR,
+  SCARLET_COLOR,
+  SILVER_COLOR,
+  SUNSET_COLOR,
+} from "@/config";
 import { TxKeyPath, translate } from "@/i18n";
 import { Color } from "@/stores";
 import { type ClassValue, clsx } from "clsx";
@@ -75,24 +84,23 @@ export const getRandomGeneratedColorQoutes = (
   return colorQoutes[randomIndex];
 };
 
-
 export const getColor = (colorSelected: string) => {
   switch (colorSelected) {
     case "azure":
-      return "#3B82F6";
+      return AZURE_COLOR;
     case "emerald":
-      return "#22C55E";
+      return EMERALD_COLOR;
     case "golden":
-      return "#FACC15";
+      return GOLDEN_COLOR;
     case "sunset":
-      return "#EA580C";
+      return SUNSET_COLOR;
     case "lavender":
-      return "#6D28D9";
+      return LAVENDER_COLOR;
     case "scarlet":
-      return "#E11D48";
+      return SCARLET_COLOR;
     case "silver":
-      return "#57616D";
+      return SILVER_COLOR;
     default:
-      return "#22C55E";
+      return EMERALD_COLOR;
   }
 };
