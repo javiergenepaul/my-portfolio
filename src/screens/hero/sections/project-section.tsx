@@ -34,6 +34,7 @@ export const ProjectSection = () => {
       previewUrl: "https://www.yoo.ph/login",
       codeUrl: undefined,
       type: "confidential",
+      projectId: "yoo-ph",
       carousel: [
         {
           value: "1",
@@ -83,6 +84,7 @@ export const ProjectSection = () => {
       previewUrl: undefined,
       codeUrl: undefined,
       type: "confidential",
+      projectId: "sirius-webpos",
       carousel: [
         {
           value: "1",
@@ -143,6 +145,7 @@ export const ProjectSection = () => {
       previewUrl: undefined,
       codeUrl: "https://github.com/orgs/Unified-Youth/repositories",
       type: "client",
+      projectId: "unified-youth",
       carousel: [
         {
           value: "1",
@@ -202,6 +205,7 @@ export const ProjectSection = () => {
       codeUrl: "https://github.com/javiergenepaul/country-scape",
       previewUrl: undefined,
       type: "personal",
+      projectId: "country-scape",
       carousel: [
         {
           value: "1",
@@ -250,6 +254,7 @@ export const ProjectSection = () => {
       codeUrl:
         "https://github.com/javiergenepaul/hoobank-react-tailwind-yt-tutorial",
       type: "tutorial",
+      projectId: "hoobank",
       carousel: [
         {
           value: "1",
@@ -277,8 +282,6 @@ export const ProjectSection = () => {
           name: "test05",
         },
       ],
-      // image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      // imageName: translate("projects.hoobank.imageName"),
       stack: [
         Stack.VITE_STACK,
         Stack.REACT_STACK,
@@ -298,6 +301,7 @@ export const ProjectSection = () => {
       previewUrl: "https://iqmk-demo.netlify.app/",
       codeUrl: "https://github.com/javiergenepaul/IQMK-tailwind",
       type: "confidential",
+      projectId: "iqmk",
       carousel: [
         {
           value: "1",
@@ -325,8 +329,6 @@ export const ProjectSection = () => {
           name: "test05",
         },
       ],
-      // image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      // imageName: translate("projects.iqmk.imageName"),
       stack: [
         Stack.HTML_STACK,
         Stack.TAILWIND_STACK,
@@ -349,6 +351,7 @@ export const ProjectSection = () => {
       codeUrl: "https://github.com/javiergenepaul/pawfectly-yours",
       previewUrl: undefined,
       type: "personal",
+      projectId: "pawfectly-yours",
       carousel: [
         {
           value: "1",
@@ -376,8 +379,6 @@ export const ProjectSection = () => {
           name: "test05",
         },
       ],
-      // image64: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?",
-      // imageName: translate("projects.pawfectlyYours.imageName"),
       stack: [
         Stack.SPRING_BOOT_STACK,
         Stack.SPRING_API_STACK,

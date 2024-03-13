@@ -26,6 +26,13 @@ export interface ProjectInterface {
   codeUrl?: string | undefined;
   type: ProjectType;
   stack?: TechStackInterface[];
+  projectId: string;
+}
+
+export interface ProjectCarouselInterface {
+  value: string;
+  image: string;
+  name: string;
 }
 
 export interface ProjectCarouselInterface {
