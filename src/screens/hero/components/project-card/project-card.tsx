@@ -31,6 +31,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
     previewUrl,
     codeUrl,
     carousel,
+    projectId,
   } = props;
 
   const [isPreviewHovered, setIsPreviewHovered] = useState<boolean>(false);
@@ -78,7 +79,10 @@ const ProjectCard = (props: ProjectCardInterface) => {
               </>
             )}
           </div>
-          <ProjectCarousel carousel={carousel} />
+          <ProjectCarousel
+            projectId={projectId}
+            carousel={carousel}
+          />
           {/* <img className="flex h-full" src={image64} alt={imageName} /> */}
         </div>
         <div className="flex flex-col md:basis-3/5">
