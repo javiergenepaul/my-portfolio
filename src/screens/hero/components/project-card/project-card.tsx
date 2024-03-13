@@ -32,16 +32,6 @@ const ProjectCard = (props: ProjectCardInterface) => {
     projectId,
   } = props;
 
-  // const [isPreviewHovered, setIsPreviewHovered] = useState<boolean>(false);
-
-  // const onMouseEnterPreviewHandler = () => {
-  //   setIsPreviewHovered(true);
-  // };
-
-  // const onMouseLeavePreviewHandler = () => {
-  //   setIsPreviewHovered(false);
-  // };
-
   const onClickPreviewUrl = () => {
     if (previewUrl) {
       window.open(previewUrl, "_blank");
@@ -52,20 +42,17 @@ const ProjectCard = (props: ProjectCardInterface) => {
     <Card className="relative p-0 overflow-hidden">
       <ShowTag type={type} />
       <div className="flex flex-col">
-        <div className="flex flex-col gap-4 px-4 py-6 xl:flex-row md:px-8 h-fit">
+        <div className="flex flex-col gap-4 px-4 py-6 pb-4 xl:flex-row md:px-8 h-fit">
           <div
             className={twMerge(
               "items-center relative justify-center overflow-hidden rounded-lg cursor-not-allowed select-none md:basis-2/5",
               previewUrl ? "cursor-pointer" : ""
             )}
-            // onMouseEnter={onMouseEnterPreviewHandler}
-            // onMouseLeave={onMouseLeavePreviewHandler}
           >
             <div
               onClick={onClickPreviewUrl}
               className={twMerge(
                 "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none"
-                // `${isPreviewHovered ? "flex gap-2" : ""}`
               )}
             >
               {previewUrl ? (
@@ -99,15 +86,9 @@ const ProjectCard = (props: ProjectCardInterface) => {
                 {description}
               </CardDescription>
             </CardHeader>
-
-            {/* <CardContent className="flex flex-wrap gap-2 px-0 pb-0">
-            {stack?.map((stack: TechStackInterface, index: React.Key) => {
-              return <StackContent key={index} {...stack} />;
-            })}
-          </CardContent> */}
           </div>
         </div>
-        <div className="mx-8 mb-6 flex flex-wrap gap-2 px-0 pb-0">
+        <div className="px-4 md:px-8 pb-6 flex flex-wrap gap-2">
           {stack?.map((stack: TechStackInterface, index: React.Key) => {
             return <StackContent key={index} {...stack} />;
           })}
