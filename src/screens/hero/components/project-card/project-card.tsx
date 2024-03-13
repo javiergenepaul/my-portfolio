@@ -1,7 +1,6 @@
 import {
   BounceText,
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -52,63 +51,66 @@ const ProjectCard = (props: ProjectCardInterface) => {
   return (
     <Card className="relative p-0 overflow-hidden">
       <ShowTag type={type} />
-      <div className="flex flex-col gap-4 px-4 py-6 xl:flex-row md:px-8 h-fit">
-        <div
-          className={twMerge(
-            "items-center relative justify-center overflow-hidden rounded-lg cursor-not-allowed select-none md:basis-2/5",
-            previewUrl ? "cursor-pointer" : ""
-          )}
-          // onMouseEnter={onMouseEnterPreviewHandler}
-          // onMouseLeave={onMouseLeavePreviewHandler}
-        >
+      <div className="flex flex-col">
+        <div className="flex flex-col gap-4 px-4 py-6 xl:flex-row md:px-8 h-fit">
           <div
-            onClick={onClickPreviewUrl}
             className={twMerge(
-              "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none",
-              // `${isPreviewHovered ? "flex gap-2" : ""}`
+              "items-center relative justify-center overflow-hidden rounded-lg cursor-not-allowed select-none md:basis-2/5",
+              previewUrl ? "cursor-pointer" : ""
             )}
+            // onMouseEnter={onMouseEnterPreviewHandler}
+            // onMouseLeave={onMouseLeavePreviewHandler}
           >
-            {previewUrl ? (
-              <>
-                <Eye /> {translate("projects.indicator.viewDemo")}
-              </>
-            ) : (
-              <>
-                <EyeOff /> {translate("projects.indicator.demoUnavailable")}
-              </>
-            )}
-          </div>
-          <ProjectCarousel
-            projectId={projectId}
-            carousel={carousel}
-          />
-          {/* <img className="flex h-full" src={image64} alt={imageName} /> */}
-        </div>
-        <div className="flex flex-col md:basis-3/5">
-          <CardHeader className="px-0 pt-0">
-            <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
-              <h3 className="font-bold">
-                <BounceText className="cursor-default" text={title} />
-              </h3>
-            </CardTitle>
-            <div className="flex gap-2">
-              <KeyContributionIndicator contributions={["test"]} />
-              <DemoIndicator title={title} previewUrl={previewUrl} />
-              <CodeIndicator title={title} codeUrl={codeUrl} />
+            <div
+              onClick={onClickPreviewUrl}
+              className={twMerge(
+                "absolute z-20 hidden items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm hover:flex duration-300 select-none"
+                // `${isPreviewHovered ? "flex gap-2" : ""}`
+              )}
+            >
+              {previewUrl ? (
+                <>
+                  <Eye /> {translate("projects.indicator.viewDemo")}
+                </>
+              ) : (
+                <>
+                  <EyeOff /> {translate("projects.indicator.demoUnavailable")}
+                </>
+              )}
             </div>
-            <CardDescription className="flex flex-col gap-2 select-none">
-              <span className="text-sm font-medium dark:text-white Description">
-                {translate("projects.indicator.description")}
-              </span>
-              {description}
-            </CardDescription>
-          </CardHeader>
+            <ProjectCarousel projectId={projectId} carousel={carousel} />
+          </div>
+          <div className="flex flex-col md:basis-3/5">
+            <CardHeader className="px-0 pt-0">
+              <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
+                <h3 className="font-bold">
+                  <BounceText className="cursor-default" text={title} />
+                </h3>
+              </CardTitle>
+              <div className="flex gap-2">
+                <KeyContributionIndicator contributions={["test"]} />
+                <DemoIndicator title={title} previewUrl={previewUrl} />
+                <CodeIndicator title={title} codeUrl={codeUrl} />
+              </div>
+              <CardDescription className="flex flex-col gap-2 select-none">
+                <span className="text-sm font-medium dark:text-white Description">
+                  {translate("projects.indicator.description")}
+                </span>
+                {description}
+              </CardDescription>
+            </CardHeader>
 
-          <CardContent className="flex flex-wrap gap-2 px-0 pb-0">
+            {/* <CardContent className="flex flex-wrap gap-2 px-0 pb-0">
             {stack?.map((stack: TechStackInterface, index: React.Key) => {
               return <StackContent key={index} {...stack} />;
             })}
-          </CardContent>
+          </CardContent> */}
+          </div>
+        </div>
+        <div className="mx-8 mb-6 flex flex-wrap gap-2 px-0 pb-0">
+          {stack?.map((stack: TechStackInterface, index: React.Key) => {
+            return <StackContent key={index} {...stack} />;
+          })}
         </div>
       </div>
     </Card>
