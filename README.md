@@ -45,11 +45,14 @@ Start the server
 - Visual Appeal
 - Navigation
 - Translator Static Text (English, Japanese, Tagalog, Cebuano)
+- Rotating 3D Icon: Implement a visually appealing rotating 3D icon feature to enhance user engagement and aesthetics.
+- Particle Background: Dynamic background particles that move for an immersive browsing experience.
 - Settings Page: Create a dedicated settings page accessible from the website's navigation menu where users can adjust their preferences.
 Font Family & Color Palette Selection: a dropdown menus or color pickers for users to make their selections.
 - Theme Mode: Offer radio buttons or a dropdown menu to choose between light, dark, or system-based themes.
 - Particle Background Switch: a toggle switch that users can easily turn on or off to enable or disable the particle background effect.
-Save Settings: Utilize cookies or local storage to save user preferences and apply them across the website.
+- Save Settings: Utilize cookies or local storage to save user preferences and apply them across the website.
+- Floating Settings Playground: Incorporate a floating settings icon or button that remains accessible at all times, allowing users to quickly access the settings menu without navigating away from the current page.
 
 ## Lessons Learned
 
