@@ -11,6 +11,7 @@ export interface TechStackInterface {
   rate: NumberBetweenOneAndTen;
   dateStarted: Moment;
   dateEnded: Moment | "present";
+  isStudying: boolean;
 }
 
 export interface ServiceOfferInterface {
