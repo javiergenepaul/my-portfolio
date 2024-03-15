@@ -1,6 +1,7 @@
 import { Separator } from "@/components";
 import { StackDetailsProps } from "../component-props";
 import { TxKeyPath, translate } from "@/i18n";
+import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
 
 export const StackDetails = (props: StackDetailsProps) => {
   const { name, isFavorite, icon, rate } = props;
@@ -9,15 +10,19 @@ export const StackDetails = (props: StackDetailsProps) => {
   return (
     // TODO:: add design for hover card
     <div className="relative">
-      {isFavorite ? (
-        <div className="absolute top-0 right-0">true</div>
-      ) : (
-        <div className="absolute top-0 right-0">false</div>
-      )}
-
+      <div className="absolute top-[-14px] right-[-34px] pt-6 pb-1 rotate-45 bg-red-800 w-24 flex justify-center items-center">
+        <div className="text-primary -rotate-45">
+          {isFavorite ? (
+            <BookmarkFilledIcon height={"24px"} width={"24px"} />
+          ) : (
+            <BookmarkIcon height={"24px"} width={"24px"} />
+          )}
+        </div>
+      </div>
       <div className="flex flex-col p-6 gap-4">
         <div className="text-center font-bold">{translate(stackName)}</div>
         <div className="flex w-full justify-center">
+          {/* TODO:: CHANGE INTO SVG ICON */}
           <svg
             width="120"
             height="124"
