@@ -45,6 +45,7 @@
     "i18next-browser-languagedetector": "^7.2.0",
     "lucide-react": "^0.336.0",
     "maath": "^0.10.7",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",

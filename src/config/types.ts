@@ -1,4 +1,5 @@
 import { StackName } from "@/screens";
+import { Moment } from "moment";
 
 type NumberBetweenOneAndTen = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
@@ -8,6 +9,8 @@ export interface TechStackInterface {
   url: string | undefined;
   isFavorite: boolean;
   rate: NumberBetweenOneAndTen;
+  dateStarted: Moment;
+  dateEnded: Moment | "present";
 }
 
 export interface ServiceOfferInterface {
