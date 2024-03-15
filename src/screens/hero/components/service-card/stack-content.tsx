@@ -100,7 +100,7 @@ export const StackContent = (stack: TechStackInterface) => {
           {getStackName()}
         </Badge>
       </HoverCardTrigger>
-      <HoverCardContent side="top">
+      <HoverCardContent className="overflow-hidden p-0 m-0 border-0" side="top">
         <StackDetails {...stack} />
       </HoverCardContent>
     </HoverCard>
