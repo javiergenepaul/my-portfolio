@@ -2,10 +2,34 @@ import { Separator } from "@/components";
 import { StackDetailsProps } from "../component-props";
 import { TxKeyPath, translate } from "@/i18n";
 import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
+import moment from "moment";
 
 export const StackDetails = (props: StackDetailsProps) => {
-  const { name, isFavorite, icon, rate } = props;
+  const { name, isFavorite, icon, rate, dateStarted, dateEnded, isStudying } =
+    props;
   const stackName: TxKeyPath = `services.stack.${name}` as TxKeyPath;
+
+  const getMonthExperience = (): number => {
+    // Get the difference in months between the start date and the current date
+    let monthsDiff: number = 0;
+
+    if (isStudying) {
+      return 3 / 12;
+    }
+
+    if (dateEnded === "present") {
+      monthsDiff = moment().diff(dateStarted, "months");
+    } else {
+      monthsDiff = dateEnded.diff(dateStarted, "months");
+    }
+
+    // checking if month diff is 0 for catching error
+    if (monthsDiff === 0) {
+      return 3 / 12;
+    }
+
+    return monthsDiff / 12;
+  };
 
   return (
     // TODO:: add design for hover card
@@ -90,7 +114,7 @@ export const StackDetails = (props: StackDetailsProps) => {
         <div className="flex h-5 items-center justify-center space-x-4 text-sm">
           <div className="w-full flex-flex-col justify-center py-2">
             <div className="w-full h-fit text-center">
-              <h3>3</h3>
+              <h3>{getMonthExperience().toFixed(2)}</h3>
             </div>
             <div className="w-full text-center text-sm text-muted-foreground">
               Years
