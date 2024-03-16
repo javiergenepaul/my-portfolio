@@ -61,7 +61,7 @@ export const StackDetails = (props: StackDetailsProps) => {
         <div className="flex h-5 items-center justify-center space-x-4 text-sm">
           <div className="w-full flex-flex-col justify-center py-2">
             <div className="w-full h-fit text-center">
-              <h3>{getMonthExperience().toFixed(2)}</h3>
+              <h3>{getMonthExperience().toFixed(1)}</h3>
             </div>
             <div className="w-full text-center text-sm text-muted-foreground">
               Years
