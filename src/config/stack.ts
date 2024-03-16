@@ -34,6 +34,7 @@ export const SPRING_OAUTH_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.SpringOauthStackIcon,
 };
 
 export const SPRING_JDBC_STACK: TechStackInterface = {
@@ -455,6 +456,7 @@ export const CHART_JS_STACK: TechStackInterface = {
   dateStarted: moment("2023-01-01"),
   dateEnded: moment("2024-02-01"),
   isStudying: false,
+  icon: StackIcon.ChartJsStackIcon,
 };
 
 export const GSAP_STACK: TechStackInterface = {
@@ -465,6 +467,7 @@ export const GSAP_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.GsapStackIcon,
 };
 
 export const THREE_JS_STACK: TechStackInterface = {
@@ -485,6 +488,7 @@ export const FRAMER_MOTION_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.FramerMotionStackIcon,
 };
 
 export const JEST_STACK: TechStackInterface = {
