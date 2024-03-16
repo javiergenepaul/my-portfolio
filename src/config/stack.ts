@@ -236,6 +236,7 @@ export const LARAVEL_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.LaravelStackIcon,
 };
 
 export const PHP_STACK: TechStackInterface = {
@@ -246,6 +247,7 @@ export const PHP_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.PHPStackIcon,
 };
 
 export const BOOTSTRAP_STACK: TechStackInterface = {
@@ -278,6 +280,7 @@ export const VITE_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.ViteStackIcon,
 };
 
 export const REACT_STACK: TechStackInterface = {
