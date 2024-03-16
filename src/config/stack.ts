@@ -541,6 +541,7 @@ export const AXIOS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.AxiosStackIcon,
+  // alt: "axios-stack-icon.svg",
 };
 
 export const REACT_QUERY_STACK: TechStackInterface = {
@@ -551,6 +552,7 @@ export const REACT_QUERY_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.ReactQueryStackIcon,
 };
 
 export const NPM_STACK: TechStackInterface = {
@@ -561,6 +563,7 @@ export const NPM_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.NpmStackIcon,
 };
 
 export const PNPM_STACK: TechStackInterface = {
@@ -571,6 +574,7 @@ export const PNPM_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.PnpmStackIcon,
 };
 
 export const YARN_STACK: TechStackInterface = {
@@ -581,6 +585,7 @@ export const YARN_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.YarnStackIcon,
 };
 
 export const VITEST_STACK: TechStackInterface = {

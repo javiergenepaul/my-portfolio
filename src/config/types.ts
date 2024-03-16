@@ -12,6 +12,7 @@ export interface TechStackInterface {
   dateStarted: Moment;
   dateEnded: Moment | "present";
   isStudying: boolean;
+  // alt: string;
 }
 
 export interface ServiceOfferInterface {

@@ -23,8 +23,11 @@ import MVCStackIcon from "./mvc-stack-icon.svg";
 import MySQLStackIcon from "./mysql-stack-icon.svg";
 import NetlifyStackIcon from "./netlify-stack-icon.svg";
 import NginxStackIcon from "./nginx-stack-icon.svg";
+import NpmStackIcon from "./npm-stack-icon.svg";
 import PHPStackIcon from "./php-stack-icon.svg";
+import PnpmStackIcon from "./pnpm-stack-icon.svg";
 import PostmanStackIcon from "./postman-stack-icon.svg";
+import ReactQueryStackIcon from "./react-query-stack-icon.svg";
 import ReactStackIcon from "./react-stack-icon.svg";
 import ShadCNStackIcon from "./shadcnui-stack-icon.svg";
 import SpringBootStackIcon from "./spring-boot-stack-icon.svg";
@@ -34,6 +37,7 @@ import SpringOauthStackIcon from "./spring-oauth-stack-icon.svg";
 import TailwindStackIcon from "./tailwind-stack-icon.svg";
 import TypeScriptStackIcon from "./typescript-stack-icon.svg";
 import ViteStackIcon from "./vite-stack-icon.svg";
+import YarnStackIcon from "./yarn-stack-icon.svg";
 import ZustandStackIcon from "./zustand-stack-icon.svg";
 
 export {
@@ -62,8 +66,11 @@ export {
   MySQLStackIcon,
   NetlifyStackIcon,
   NginxStackIcon,
+  NpmStackIcon,
   PHPStackIcon,
+  PnpmStackIcon,
   PostmanStackIcon,
+  ReactQueryStackIcon,
   ReactStackIcon,
   ShadCNStackIcon,
   SpringBootStackIcon,
@@ -73,5 +80,6 @@ export {
   TailwindStackIcon,
   TypeScriptStackIcon,
   ViteStackIcon,
+  YarnStackIcon,
   ZustandStackIcon,
 };
