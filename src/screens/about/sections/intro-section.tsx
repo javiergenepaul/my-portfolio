@@ -13,7 +13,6 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
-
   /**
    * Handles the download of the resume.
    * Opens the resume in a new tab.
@@ -57,8 +56,8 @@ export const IntroSection = () => {
   ];
 
   return (
-    <div className="h-screen flex">
-      <div className="basis-1/2 flex items-end pl-24">
+    <div className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
+      <div className="flex items-end w-full pl-0 lg:pl-24">
         <img
           width={"400px"}
           height={"400px"}
@@ -66,10 +65,10 @@ export const IntroSection = () => {
           alt="Gene Paul Mar Javier"
         />
       </div>
-      <div className="basis-1/2 flex">
+      <div className="flex w-full">
         <div className="flex flex-col justify-center">
-          <h3 className="font-medium text-2xl">Hello I'm</h3>
-          <h1 className="text-primary text-5xl font-bold">
+          <h3 className="text-2xl font-medium">Hello I'm</h3>
+          <h1 className="text-5xl font-bold text-primary">
             Gene Paul Mar Javier
           </h1>
           <SubTitleAnimation />
@@ -84,7 +83,7 @@ export const IntroSection = () => {
           </p>
           <Button
             onClick={DownloadResumeHandler}
-            className="space-x-2 w-fit px-8 mt-4"
+            className="px-8 mt-4 space-x-2 w-fit"
           >
             <span>Download My Resume</span>
             <DownloadIcon />
