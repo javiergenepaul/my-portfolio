@@ -182,6 +182,7 @@ export const GIT_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.GitStackIcon,
 };
 
 export const NGINX_STACK: TechStackInterface = {
@@ -192,6 +193,7 @@ export const NGINX_STACK: TechStackInterface = {
   dateStarted: moment("2023-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.NginxStackIcon,
 };
 
 export const CENTOS_STACK: TechStackInterface = {
