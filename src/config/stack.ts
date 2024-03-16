@@ -1,6 +1,7 @@
 import moment from "moment";
 import { TechStackInterface } from "./types";
 import * as url from "./url";
+import * as StackIcon from "@/assets/stack-icon";
 
 // BACKEND STACK
 export const SPRING_BOOT_STACK: TechStackInterface = {
@@ -11,6 +12,7 @@ export const SPRING_BOOT_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.SpringBootStackIcon,
 };
 
 export const SPRING_SECURITY_STACK: TechStackInterface = {
@@ -21,6 +23,7 @@ export const SPRING_SECURITY_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.SpringSecurityStackIcon,
 };
 
 export const SPRING_OAUTH_STACK: TechStackInterface = {
@@ -41,6 +44,7 @@ export const SPRING_JDBC_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.SpringJDBCStackIcon,
 };
 
 export const SPRING_API_STACK: TechStackInterface = {
@@ -51,6 +55,7 @@ export const SPRING_API_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.ApiStackIcon,
 };
 
 export const JWT_STACK: TechStackInterface = {
@@ -71,6 +76,7 @@ export const JAVA_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.JavaStackIcon,
 };
 
 export const MYSQL_STACK: TechStackInterface = {
@@ -81,6 +87,7 @@ export const MYSQL_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.MySQLStackIcon,
 };
 
 export const JUNIT_STACK: TechStackInterface = {
@@ -105,12 +112,13 @@ export const MOCKITO_STACK: TechStackInterface = {
 
 export const POSTMAN_STACK: TechStackInterface = {
   name: "postman",
-  isFavorite: false,
+  isFavorite: true,
   url: url.POSTMAN_URL,
   rate: 10,
   dateStarted: moment("2021-08-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.PostmanStackIcon,
 };
 
 export const LINUX_STACK: TechStackInterface = {
@@ -121,6 +129,7 @@ export const LINUX_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.LinuxStackIcon,
 };
 
 export const AZURE_STACK: TechStackInterface = {
@@ -272,6 +281,7 @@ export const REACT_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.ReactStackIcon,
 };
 
 export const TYPESCRIPT_STACK: TechStackInterface = {
