@@ -22,14 +22,14 @@ interface ProjectCardInterface extends ProjectInterface {}
 
 const ProjectCard = (props: ProjectCardInterface) => {
   const {
-    title,
-    description,
-    stack,
     type,
-    previewUrl,
+    title,
+    stack,
     codeUrl,
     carousel,
     projectId,
+    previewUrl,
+    description,
   } = props;
 
   const onClickPreviewUrl = () => {
