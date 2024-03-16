@@ -324,6 +324,7 @@ export const HTML_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.HtmlStackIcon,
 };
 
 export const CSS_STACK: TechStackInterface = {
@@ -334,6 +335,7 @@ export const CSS_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.CssStackIcon,
 };
 
 export const JQUERY_STACK: TechStackInterface = {
@@ -344,6 +346,7 @@ export const JQUERY_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.JqueryStackIcon,
 };
 
 export const BLADE_STACK: TechStackInterface = {
@@ -354,6 +357,7 @@ export const BLADE_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.LaravelStackIcon,
 };
 
 export const TAILWIND_STACK: TechStackInterface = {
@@ -364,6 +368,7 @@ export const TAILWIND_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.TailwindStackIcon,
 };
 
 export const SHAD_CN_STACK: TechStackInterface = {

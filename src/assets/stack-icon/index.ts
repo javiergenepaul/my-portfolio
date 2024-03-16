@@ -1,10 +1,13 @@
 import ApiStackIcon from "./api-stack-icon.svg";
 import AzureStackIcon from "./azure-stack-icon.svg";
 import CentosStackIcon from "./centos-stack-icon.svg";
+import CssStackIcon from "./css-stack-icon.svg";
 import FirebaseStackIcon from "./firebase-stack-icon.svg";
 import GitStackIcon from "./git-stack-icon.svg";
+import HtmlStackIcon from "./html-stack-icon.svg";
 import JavaStackIcon from "./java-stack-icon.svg";
 import JavaScriptStackIcon from "./javascript-stack-icon.svg";
+import JqueryStackIcon from "./jquery-stack-icon.svg";
 import LaravelStackIcon from "./laravel-stack-icon.svg";
 import LinuxStackIcon from "./linux-stack-icon.svg";
 import MVCStackIcon from "./mvc-stack-icon.svg";
@@ -17,6 +20,7 @@ import ReactStackIcon from "./react-stack-icon.svg";
 import SpringBootStackIcon from "./spring-boot-stack-icon.svg";
 import SpringSecurityStackIcon from "./spring-security-stack-icon.svg";
 import SpringJDBCStackIcon from "./spring-jdbc-stack-icon.svg";
+import TailwindStackIcon from "./tailwind-stack-icon.svg";
 import TypeScriptStackIcon from "./typescript-stack-icon.svg";
 import ViteStackIcon from "./vite-stack-icon.svg";
 
@@ -24,10 +28,13 @@ export {
   ApiStackIcon,
   AzureStackIcon,
   CentosStackIcon,
+  CssStackIcon,
   FirebaseStackIcon,
   GitStackIcon,
+  HtmlStackIcon,
   JavaStackIcon,
   JavaScriptStackIcon,
+  JqueryStackIcon,
   LaravelStackIcon,
   LinuxStackIcon,
   MVCStackIcon,
@@ -40,6 +47,7 @@ export {
   SpringBootStackIcon,
   SpringSecurityStackIcon,
   SpringJDBCStackIcon,
+  TailwindStackIcon,
   TypeScriptStackIcon,
   ViteStackIcon,
 };
