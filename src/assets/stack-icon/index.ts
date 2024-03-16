@@ -17,6 +17,7 @@ import NginxStackIcon from "./nginx-stack-icon.svg";
 import PHPStackIcon from "./php-stack-icon.svg";
 import PostmanStackIcon from "./postman-stack-icon.svg";
 import ReactStackIcon from "./react-stack-icon.svg";
+import ShadCNStackIcon from "./shadcnui-stack-icon.svg";
 import SpringBootStackIcon from "./spring-boot-stack-icon.svg";
 import SpringSecurityStackIcon from "./spring-security-stack-icon.svg";
 import SpringJDBCStackIcon from "./spring-jdbc-stack-icon.svg";
@@ -44,6 +45,7 @@ export {
   PHPStackIcon,
   PostmanStackIcon,
   ReactStackIcon,
+  ShadCNStackIcon,
   SpringBootStackIcon,
   SpringSecurityStackIcon,
   SpringJDBCStackIcon,
