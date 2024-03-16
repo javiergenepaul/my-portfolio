@@ -13,6 +13,7 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
+
   /**
    * Handles the download of the resume.
    * Opens the resume in a new tab.
