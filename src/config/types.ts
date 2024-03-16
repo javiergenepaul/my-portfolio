@@ -5,14 +5,14 @@ type NumberBetweenOneAndTen = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export interface TechStackInterface {
   name: StackName;
-  icon?: string;
+  icon: string;
   url: string | undefined;
   isFavorite: boolean;
   rate: NumberBetweenOneAndTen;
   dateStarted: Moment;
   dateEnded: Moment | "present";
   isStudying: boolean;
-  // alt: string;
+  alt: string;
 }
 
 export interface ServiceOfferInterface {

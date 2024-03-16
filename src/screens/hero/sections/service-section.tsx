@@ -31,6 +31,7 @@ export const ServiceSection = () => {
         Stack.MVC_STACK,
         Stack.PHP_STACK,
         Stack.LARAVEL_STACK,
+        Stack.MICROSERVICES_STACK
         // Stack.SPRING_OAUTH_STACK, //TODO:: enable this when done
         // Stack.JUNIT_STACK, //TODO:: when done practicing enable this
         // Stack.MOCKITO_STACK, //TODO:: when done practicing enable this
@@ -67,8 +68,9 @@ export const ServiceSection = () => {
         Stack.NPM_STACK,
         Stack.PNPM_STACK,
         Stack.YARN_STACK,
-        // Stack.NEXT_UI_STACK, //TODO:: update later
-        // Stack.THREE_JS_STACK, //TODO:: update later
+        Stack.NEXT_UI_STACK,
+        Stack.BOOTSTRAP_STACK,
+        Stack.THREE_JS_STACK,
         // Stack.JEST_STACK, //TODO:: update later
         // Stack.VITEST_STACK, //TODO:: update later
         // Stack.CYPRESS_STACK, //TODO:: update later
