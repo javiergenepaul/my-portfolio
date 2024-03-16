@@ -2,6 +2,9 @@ import { Separator } from "@/components";
 import { StackDetailsProps } from "../component-props";
 import { TxKeyPath, translate } from "@/i18n";
 import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
+import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+
+import "react-circular-progressbar/dist/styles.css";
 import moment from "moment";
 
 export const StackDetails = (props: StackDetailsProps) => {
@@ -46,9 +49,17 @@ export const StackDetails = (props: StackDetailsProps) => {
       <div className="flex flex-col p-6 gap-4">
         <div className="text-center font-bold">{translate(stackName)}</div>
         <div className="flex w-full justify-center">
-          <img width={"100px"} src={icon} alt={translate(stackName)} />
+          <CircularProgressbarWithChildren value={rate * 10}>
+            <img
+              width={"80px"}
+              src={icon}
+              alt={translate(stackName)}
+            />
+            <div style={{ fontSize: 12, marginTop: 12 }}>
+              <strong>{rate} out of 10</strong>
+            </div>
+          </CircularProgressbarWithChildren>
         </div>
-        <div className="text-center text-sm">{rate} out of 10</div>
         <Separator />
         <div className="flex h-5 items-center justify-center space-x-4 text-sm">
           <div className="w-full flex-flex-col justify-center py-2">
