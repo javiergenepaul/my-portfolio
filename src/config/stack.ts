@@ -215,6 +215,7 @@ export const NETLIFY_STACK: TechStackInterface = {
   dateStarted: moment("2024-03-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.NetlifyStackIcon,
 };
 
 export const HEROKU_STACK: TechStackInterface = {
@@ -265,6 +266,7 @@ export const MVC_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.MVCStackIcon,
 };
 
 // FRONT END STACK
