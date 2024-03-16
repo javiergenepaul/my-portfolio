@@ -302,6 +302,7 @@ export const TYPESCRIPT_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.TypeScriptStackIcon,
 };
 
 export const JAVASCRIPT_STACK: TechStackInterface = {
@@ -312,6 +313,7 @@ export const JAVASCRIPT_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.JavaScriptStackIcon,
 };
 
 export const HTML_STACK: TechStackInterface = {
