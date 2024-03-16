@@ -52,9 +52,10 @@ export const StackDetails = (props: StackDetailsProps) => {
         <div className="flex w-full justify-center">
           <CircularProgressbarWithChildren strokeWidth={6} value={rate * 10}>
             <img width={"80px"} src={icon} alt={translate(stackName)} />
-            <div style={{ fontSize: 12, marginTop: 12 }}>
+            {/* TODO:: remove later */}
+            {/* <div style={{ fontSize: 12, marginTop: 12 }}>
               <p>{rate} out of 10</p>
-            </div>
+            </div> */}
           </CircularProgressbarWithChildren>
         </div>
         <Separator />
