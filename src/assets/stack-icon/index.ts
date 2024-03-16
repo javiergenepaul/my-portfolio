@@ -1,5 +1,6 @@
 import AntDesignStackIcon from "./ant-design-stack-icon.svg";
 import ApiStackIcon from "./api-stack-icon.svg";
+import AttentionToDetailsStackIcon from "./attention-to-details-stack-icon.svg";
 import AxiosStackIcon from "./axios-stack-icon.svg";
 import AzureStackIcon from "./azure-stack-icon.svg";
 import CentosStackIcon from "./centos-stack-icon.svg";
@@ -19,6 +20,7 @@ import FrontEndStackIcon from "./front-end-stack-icon.svg";
 import JavaStackIcon from "./java-stack-icon.svg";
 import JavaScriptStackIcon from "./javascript-stack-icon.svg";
 import JqueryStackIcon from "./jquery-stack-icon.svg";
+import LandingPageStackIcon from "./landing-page-stack-icon.svg";
 import LaravelStackIcon from "./laravel-stack-icon.svg";
 import LinuxStackIcon from "./linux-stack-icon.svg";
 import MobxStackIcon from "./mobx-stack-icon.svg";
@@ -29,6 +31,7 @@ import NetlifyStackIcon from "./netlify-stack-icon.svg";
 import NginxStackIcon from "./nginx-stack-icon.svg";
 import NpmStackIcon from "./npm-stack-icon.svg";
 import PHPStackIcon from "./php-stack-icon.svg";
+import PixelPerfectStackIcon from "./pixel-perfect-stack-icon.svg";
 import PnpmStackIcon from "./pnpm-stack-icon.svg";
 import PostmanStackIcon from "./postman-stack-icon.svg";
 import ReactQueryStackIcon from "./react-query-stack-icon.svg";
@@ -47,6 +50,7 @@ import ZustandStackIcon from "./zustand-stack-icon.svg";
 export {
   AntDesignStackIcon,
   ApiStackIcon,
+  AttentionToDetailsStackIcon,
   AxiosStackIcon,
   AzureStackIcon,
   CentosStackIcon,
@@ -66,6 +70,7 @@ export {
   JavaStackIcon,
   JavaScriptStackIcon,
   JqueryStackIcon,
+  LandingPageStackIcon,
   LaravelStackIcon,
   LinuxStackIcon,
   MobxStackIcon,
@@ -76,6 +81,7 @@ export {
   NginxStackIcon,
   NpmStackIcon,
   PHPStackIcon,
+  PixelPerfectStackIcon,
   PnpmStackIcon,
   PostmanStackIcon,
   ReactQueryStackIcon,

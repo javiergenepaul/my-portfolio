@@ -661,6 +661,7 @@ export const ATTENTION_TO_DETAILS_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.AttentionToDetailsStackIcon,
 };
 
 export const PIXEL_PERFECT_STACK: TechStackInterface = {
@@ -671,6 +672,7 @@ export const PIXEL_PERFECT_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.PixelPerfectStackIcon,
 };
 
 export const LANDING_PAGE_STACK: TechStackInterface = {
@@ -681,4 +683,5 @@ export const LANDING_PAGE_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.LandingPageStackIcon,
 };
