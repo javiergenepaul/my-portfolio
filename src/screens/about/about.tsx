@@ -1,10 +1,9 @@
-import { FadeAnimation } from "@/components";
+import { FadeAnimation, FloatingNavbar } from "@/components";
 import {
   CertificateSection,
   ExperienceSection,
   IntroSection,
 } from "./sections";
-import { FloatingNavbar } from "@/components/floating-navbar/floating-navbar";
 
 export const About = () => {
   return (
