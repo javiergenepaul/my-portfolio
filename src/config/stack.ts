@@ -379,6 +379,7 @@ export const SHAD_CN_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.ShadCNStackIcon,
 };
 
 export const MUI_STACK: TechStackInterface = {
