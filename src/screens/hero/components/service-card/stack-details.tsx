@@ -46,11 +46,7 @@ export const StackDetails = (props: StackDetailsProps) => {
       <div className="flex flex-col p-6 gap-4">
         <div className="text-center font-bold">{translate(stackName)}</div>
         <div className="flex w-full justify-center">
-          {icon ? (
-            <img width={"100px"} src={icon} alt={translate(stackName)} />
-          ) : (
-            "test"
-          )}
+          <img width={"100px"} src={icon} alt={translate(stackName)} />
         </div>
         <div className="text-center text-sm">{rate} out of 10</div>
         <Separator />
