@@ -204,6 +204,7 @@ export const CENTOS_STACK: TechStackInterface = {
   dateStarted: moment("2023-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.CentosStackIcon,
 };
 
 export const NETLIFY_STACK: TechStackInterface = {
