@@ -21,7 +21,6 @@ export const IntroSection = () => {
    */
   const DownloadResumeHandler = () => {
     // TODO:: add resume download depends on color palette and theme
-    console.log("download resume here");
     window.open(ResumeDark, "_blank");
   };
 
@@ -47,8 +46,8 @@ export const IntroSection = () => {
     },
     {
       count: countProjectStatus("completed"),
-      topTitle: "Project",
-      botTitle: "Completed",
+      topTitle: "Completed",
+      botTitle: "Project",
     },
     {
       count: moment().diff(moment("2018-08-01"), "years"),
