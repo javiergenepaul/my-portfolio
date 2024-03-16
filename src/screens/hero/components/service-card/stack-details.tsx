@@ -1,13 +1,13 @@
+import moment from "moment";
 import { Separator } from "@/components";
-import { StackDetailsProps } from "../component-props";
+import { PROJECTS } from "../../sections";
 import { TxKeyPath, translate } from "@/i18n";
+import { StackDetailsProps } from "../component-props";
 import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
-import "./custom-progress-bar.css";
 
+import "./custom-progress-bar.css";
 import "react-circular-progressbar/dist/styles.css";
-import moment from "moment";
-import { PROJECTS } from "../../sections";
 
 export const StackDetails = (props: StackDetailsProps) => {
   const {
@@ -94,7 +94,7 @@ export const StackDetails = (props: StackDetailsProps) => {
               <h3>{getMonthExperience().toFixed(1)}</h3>
             </div>
             <div className="w-full text-center text-sm text-muted-foreground">
-              Years
+              {translate("services.hoverCard.years")}
             </div>
           </div>
           <Separator orientation="vertical" />
@@ -103,7 +103,7 @@ export const StackDetails = (props: StackDetailsProps) => {
               <h3>{countOccurrences(name)}</h3>
             </div>
             <div className="w-full text-center text-sm text-muted-foreground">
-              Projects
+              {translate("services.hoverCard.projects")}
             </div>
           </div>
         </div>

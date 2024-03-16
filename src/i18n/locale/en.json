@@ -153,6 +153,10 @@
       "attentionToDetails": "Attention to Details",
       "pixelPerfect": "Pixel Perfect",
       "landingPage": "Landing Page"
+    },
+    "hoverCard": {
+      "years": "Years",
+      "projects": "Projects"
     }
   },
   "projects": {
