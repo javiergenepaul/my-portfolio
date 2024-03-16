@@ -390,6 +390,7 @@ export const MUI_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: moment("2022-12-01"),
   isStudying: false,
+  icon: StackIcon.MUIStackIcon,
 };
 
 export const CHAKRA_STACK: TechStackInterface = {
@@ -400,6 +401,7 @@ export const CHAKRA_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: moment("2022-12-01"),
   isStudying: false,
+  icon: StackIcon.ChakraUIStackIcon,
 };
 
 export const ANT_DESIGN_STACK: TechStackInterface = {
@@ -410,6 +412,7 @@ export const ANT_DESIGN_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.AntDesignStackIcon,
 };
 
 export const NEXT_UI_STACK: TechStackInterface = {
@@ -430,6 +433,7 @@ export const ZUSTAND_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.ZustandStackIcon,
 };
 
 export const MOBX_STACK: TechStackInterface = {
