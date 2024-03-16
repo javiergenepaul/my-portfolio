@@ -7,6 +7,7 @@ import ChakraUIStackIcon from "./chakra-ui-stack-icon.svg";
 import ChartJsStackIcon from "./chart-js-stack-icon.svg";
 import CssStackIcon from "./css-stack-icon.svg";
 import FigmaHtmlStackIcon from "./figma-html-stack-icon.svg";
+import FigmaReactStackIcon from "./figma-react-stack-icon.svg";
 import FigmaStackIcon from "./figma-stack-icon.svg";
 import FirebaseStackIcon from "./firebase-stack-icon.svg";
 import GitStackIcon from "./git-stack-icon.svg";
@@ -53,6 +54,7 @@ export {
   ChartJsStackIcon,
   CssStackIcon,
   FigmaHtmlStackIcon,
+  FigmaReactStackIcon,
   FigmaStackIcon,
   FirebaseStackIcon,
   GitStackIcon,

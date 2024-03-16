@@ -650,6 +650,7 @@ export const FIGMA_TO_REACT_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.FigmaReactStackIcon,
 };
 
 export const ATTENTION_TO_DETAILS_STACK: TechStackInterface = {
