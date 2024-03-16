@@ -7,6 +7,7 @@ import "./custom-progress-bar.css";
 
 import "react-circular-progressbar/dist/styles.css";
 import moment from "moment";
+import { PROJECTS } from "../../sections";
 
 export const StackDetails = (props: StackDetailsProps) => {
   const {
@@ -21,6 +22,12 @@ export const StackDetails = (props: StackDetailsProps) => {
   } = props;
   const stackName: TxKeyPath = `services.stack.${name}` as TxKeyPath;
 
+  /**
+   * Calculates the experience in years based on the start and end dates.
+   * If still studying, it returns 3 months of experience.
+   * If the end date is set to "present", it calculates the experience until the current date.
+   * @returns {number} The experience in years.
+   */
   const getMonthExperience = (): number => {
     // Get the difference in months between the start date and the current date
     let monthsDiff: number = 0;
@@ -41,6 +48,25 @@ export const StackDetails = (props: StackDetailsProps) => {
     }
 
     return monthsDiff / 12;
+  };
+
+  /**
+   * Counts the occurrences of a specific name within the project stack.
+   * @param {string} targetName - The name to search for within the project stack.
+   * @returns {number} The total count of occurrences of the target name within the project stack.
+   */
+  const countOccurrences = (targetName: string): number => {
+    let count = 0;
+    PROJECTS.forEach((project) => {
+      if (project.stack) {
+        project.stack.forEach((stackItem) => {
+          if (stackItem.name === targetName) {
+            count++;
+          }
+        });
+      }
+    });
+    return count;
   };
 
   return (
@@ -74,7 +100,7 @@ export const StackDetails = (props: StackDetailsProps) => {
           <Separator orientation="vertical" />
           <div className="w-full flex-flex-col justify-center py-2">
             <div className="w-full h-fit text-center">
-              <h3>1</h3>
+              <h3>{countOccurrences(name)}</h3>
             </div>
             <div className="w-full text-center text-sm text-muted-foreground">
               Projects
