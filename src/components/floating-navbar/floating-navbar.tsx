@@ -39,9 +39,9 @@ export const FloatingNavbar = () => {
   ];
 
   return (
-    <div className="fixed inset-0 h-full w-full flex items-center">
-      <div className="bg-popover py-4 px-2 rounded-r-xl">
-        <ul className="flex flex-col gap-2">
+    <div className="fixed inset-0 flex items-center w-full h-full pointer-events-none">
+      <div className="px-2 py-4 bg-popover rounded-r-xl">
+        <ul className="flex flex-col gap-2 pointer-events-auto">
           {FLOATING_NAV_BUTTON.map((item: FloatingNavButtonInterface) => {
             return <FloatingNavButton {...item} />;
           })}
