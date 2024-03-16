@@ -140,6 +140,7 @@ export const AZURE_STACK: TechStackInterface = {
   dateStarted: moment("2023-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.AzureStackIcon,
 };
 
 export const AWS_STACK: TechStackInterface = {
