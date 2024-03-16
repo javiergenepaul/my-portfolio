@@ -23,31 +23,31 @@ import { useTranslation } from "react-i18next";
 import { useSettingsStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
 
+export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
+  {
+    key: "github",
+    icon: "github",
+    title: translate("header.socialMediaLinks.github"),
+    url: GITHUB_URL,
+  },
+  {
+    key: "linkedIn",
+    icon: "linkedin",
+    title: translate("header.socialMediaLinks.linkedIn"),
+    url: LINKED_IN_URL,
+  },
+  {
+    key: "upwork",
+    icon: "upwork",
+    title: translate("header.socialMediaLinks.upwork"),
+    url: UPWORK_URL,
+  },
+];
+
 export const HeaderSection = () => {
   const navigate = useNavigate();
   const {} = useTranslation();
   const { isSettingsNew, setIsSettingsNew } = useSettingsStore();
-
-  const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
-    {
-      key: "github",
-      icon: "github",
-      title: translate("header.socialMediaLinks.github"),
-      url: GITHUB_URL,
-    },
-    {
-      key: "linkedIn",
-      icon: "linkedin",
-      title: translate("header.socialMediaLinks.linkedIn"),
-      url: LINKED_IN_URL,
-    },
-    {
-      key: "upwork",
-      icon: "upwork",
-      title: translate("header.socialMediaLinks.upwork"),
-      url: UPWORK_URL,
-    },
-  ];
 
   const NAV_LINKS: NavLinkInterface[] = [
     {
