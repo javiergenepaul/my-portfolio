@@ -43,6 +43,12 @@ export interface ProjectCarouselInterface {
   name: string;
 }
 
+export interface ProjectCarouselInterface {
+  value: string;
+  image: string;
+  name: string;
+}
+
 export interface SideMenuInterface {
   name: string;
   path: string;

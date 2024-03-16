@@ -1,10 +1,4 @@
-import {
-  Color,
-  LanguageType,
-  Theme,
-  useLanguageStore,
-  useSettingsStore,
-} from "@/stores";
+import { Color, LanguageType, Theme, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   Button,
   Collapsible,
