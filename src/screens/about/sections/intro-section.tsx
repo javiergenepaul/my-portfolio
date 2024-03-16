@@ -25,8 +25,15 @@ export const IntroSection = () => {
           <h1 className="text-primary text-5xl font-bold">
             Gene Paul Mar Javier
           </h1>
-          <p>
-            <SubTitleAnimation />
+          <SubTitleAnimation />
+          <p className="text-sm text-muted-foreground">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo
+            pellentesque donec pretium facilisis. Adipiscing neque enim, lacus
+            pretium scelerisque proin. Ultrices non gravida vitae, sed sagittis
+            arcu. In quisque nulla viverra interdum ac urna auctor. Auctor enim
+            leo a nisl massa. Amet cursus odio dolor congue. Eu, bibendum sed
+            duis ornare id ut cras. Luctus eget mattis pharetra amet interdum
+            commodo.
           </p>
           <Button
             onClick={DownloadResumeHandler}
