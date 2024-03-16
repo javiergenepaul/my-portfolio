@@ -617,6 +617,7 @@ export const FIGMA_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.FigmaStackIcon,
 };
 
 export const FRONTEND_STACK: TechStackInterface = {
@@ -627,6 +628,7 @@ export const FRONTEND_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.FrontEndStackIcon,
 };
 
 export const FIGMA_TO_HTML_STACK: TechStackInterface = {
@@ -637,6 +639,7 @@ export const FIGMA_TO_HTML_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.FigmaHtmlStackIcon,
 };
 
 export const FIGMA_TO_REACT_STACK: TechStackInterface = {
