@@ -529,6 +529,7 @@ export const I18N_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.I18NextStackIcon,
 };
 
 export const AXIOS_STACK: TechStackInterface = {
@@ -539,6 +540,7 @@ export const AXIOS_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.AxiosStackIcon,
 };
 
 export const REACT_QUERY_STACK: TechStackInterface = {
