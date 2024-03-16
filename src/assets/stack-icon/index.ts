@@ -6,12 +6,15 @@ import CentosStackIcon from "./centos-stack-icon.svg";
 import ChakraUIStackIcon from "./chakra-ui-stack-icon.svg";
 import ChartJsStackIcon from "./chart-js-stack-icon.svg";
 import CssStackIcon from "./css-stack-icon.svg";
+import FigmaHtmlStackIcon from "./figma-html-stack-icon.svg";
+import FigmaStackIcon from "./figma-stack-icon.svg";
 import FirebaseStackIcon from "./firebase-stack-icon.svg";
 import GitStackIcon from "./git-stack-icon.svg";
 import GsapStackIcon from "./gsap-stack-icon.svg";
 import HtmlStackIcon from "./html-stack-icon.svg";
 import I18NextStackIcon from "./i18next-stack-icon.svg";
 import FramerMotionStackIcon from "./framer-motion-stack-icon.svg";
+import FrontEndStackIcon from "./front-end-stack-icon.svg";
 import JavaStackIcon from "./java-stack-icon.svg";
 import JavaScriptStackIcon from "./javascript-stack-icon.svg";
 import JqueryStackIcon from "./jquery-stack-icon.svg";
@@ -49,12 +52,15 @@ export {
   ChakraUIStackIcon,
   ChartJsStackIcon,
   CssStackIcon,
+  FigmaHtmlStackIcon,
+  FigmaStackIcon,
   FirebaseStackIcon,
   GitStackIcon,
   GsapStackIcon,
   HtmlStackIcon,
   I18NextStackIcon,
   FramerMotionStackIcon,
+  FrontEndStackIcon,
   JavaStackIcon,
   JavaScriptStackIcon,
   JqueryStackIcon,
