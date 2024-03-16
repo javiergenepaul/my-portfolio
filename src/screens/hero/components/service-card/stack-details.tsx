@@ -3,6 +3,7 @@ import { StackDetailsProps } from "../component-props";
 import { TxKeyPath, translate } from "@/i18n";
 import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+import "./custom-progress-bar.css";
 
 import "react-circular-progressbar/dist/styles.css";
 import moment from "moment";
@@ -49,14 +50,10 @@ export const StackDetails = (props: StackDetailsProps) => {
       <div className="flex flex-col p-6 gap-4">
         <div className="text-center font-bold">{translate(stackName)}</div>
         <div className="flex w-full justify-center">
-          <CircularProgressbarWithChildren value={rate * 10}>
-            <img
-              width={"80px"}
-              src={icon}
-              alt={translate(stackName)}
-            />
+          <CircularProgressbarWithChildren strokeWidth={6} value={rate * 10}>
+            <img width={"80px"} src={icon} alt={translate(stackName)} />
             <div style={{ fontSize: 12, marginTop: 12 }}>
-              <strong>{rate} out of 10</strong>
+              <p>{rate} out of 10</p>
             </div>
           </CircularProgressbarWithChildren>
         </div>
