@@ -69,6 +69,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MVC_STACK,
       Stack.GIT_STACK,
     ],
+    status: "completed",
   },
   {
     title: translate("projects.siriusWebpos.title"),
@@ -134,6 +135,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.CENTOS_STACK,
       Stack.GIT_STACK,
     ],
+    status: "ongoing",
   },
   {
     title: translate("projects.unifiedYouth.title"),
@@ -194,6 +196,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MICROSERVICES_STACK,
       Stack.I18N_STACK,
     ],
+    status: "ongoing",
   },
   {
     title: translate("projects.countryScape.title"),
@@ -242,6 +245,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.NETLIFY_STACK,
       Stack.I18N_STACK,
     ],
+    status: "unfinished",
   },
   {
     title: translate("projects.hoobank.title"),
@@ -290,6 +294,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.NETLIFY_STACK,
       Stack.LANDING_PAGE_STACK,
     ],
+    status: "completed",
   },
   {
     title: translate("projects.iqmk.title"),
@@ -337,6 +342,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.LANDING_PAGE_STACK,
       Stack.NETLIFY_STACK,
     ],
+    status: "completed",
   },
   {
     title: translate("projects.pawfectlyYours.title"),
@@ -392,6 +398,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.HEROKU_STACK,
       Stack.MICROSERVICES_STACK,
     ],
+    status: "unfinished",
   },
 ];
 
