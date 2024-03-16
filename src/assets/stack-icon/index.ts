@@ -1,5 +1,6 @@
 import AntDesignStackIcon from "./ant-design-stack-icon.svg";
 import ApiStackIcon from "./api-stack-icon.svg";
+import AxiosStackIcon from "./axios-stack-icon.svg";
 import AzureStackIcon from "./azure-stack-icon.svg";
 import CentosStackIcon from "./centos-stack-icon.svg";
 import ChakraUIStackIcon from "./chakra-ui-stack-icon.svg";
@@ -9,6 +10,7 @@ import FirebaseStackIcon from "./firebase-stack-icon.svg";
 import GitStackIcon from "./git-stack-icon.svg";
 import GsapStackIcon from "./gsap-stack-icon.svg";
 import HtmlStackIcon from "./html-stack-icon.svg";
+import I18NextStackIcon from "./i18next-stack-icon.svg";
 import FramerMotionStackIcon from "./framer-motion-stack-icon.svg";
 import JavaStackIcon from "./java-stack-icon.svg";
 import JavaScriptStackIcon from "./javascript-stack-icon.svg";
@@ -37,6 +39,7 @@ import ZustandStackIcon from "./zustand-stack-icon.svg";
 export {
   AntDesignStackIcon,
   ApiStackIcon,
+  AxiosStackIcon,
   AzureStackIcon,
   CentosStackIcon,
   ChakraUIStackIcon,
@@ -46,6 +49,7 @@ export {
   GitStackIcon,
   GsapStackIcon,
   HtmlStackIcon,
+  I18NextStackIcon,
   FramerMotionStackIcon,
   JavaStackIcon,
   JavaScriptStackIcon,
