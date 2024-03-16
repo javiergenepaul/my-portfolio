@@ -13,7 +13,13 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
+  /**
+   * Handles the download of the resume.
+   * Opens the resume in a new tab.
+   * @returns {void}
+   */
   const DownloadResumeHandler = () => {
+    // TODO:: add resume download depends on color palette and theme
     console.log("download resume here");
     window.open(ResumeDark, "_blank");
   };
