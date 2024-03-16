@@ -13,6 +13,7 @@ export const SPRING_BOOT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.SpringBootStackIcon,
+  alt: "spring-boot-stack-icon.svg",
 };
 
 export const SPRING_SECURITY_STACK: TechStackInterface = {
@@ -24,6 +25,7 @@ export const SPRING_SECURITY_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.SpringSecurityStackIcon,
+  alt: "spring-security-stack-icon.svg",
 };
 
 export const SPRING_OAUTH_STACK: TechStackInterface = {
@@ -35,6 +37,7 @@ export const SPRING_OAUTH_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.SpringOauthStackIcon,
+  alt: "spring-oauth-stack-icon.svg",
 };
 
 export const SPRING_JDBC_STACK: TechStackInterface = {
@@ -46,6 +49,7 @@ export const SPRING_JDBC_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.SpringJDBCStackIcon,
+  alt: "spring-jdbc-stack-icon.svg",
 };
 
 export const SPRING_API_STACK: TechStackInterface = {
@@ -57,6 +61,7 @@ export const SPRING_API_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.ApiStackIcon,
+  alt: "api-stack-icon.svg",
 };
 
 export const JWT_STACK: TechStackInterface = {
@@ -68,6 +73,7 @@ export const JWT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.JwtStackIcon,
+  alt: "jwt-stack-icon.svg",
 };
 
 export const JAVA_STACK: TechStackInterface = {
@@ -79,6 +85,7 @@ export const JAVA_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.JavaStackIcon,
+  alt: "java-stack-icon.svg",
 };
 
 export const MYSQL_STACK: TechStackInterface = {
@@ -90,6 +97,7 @@ export const MYSQL_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.MySQLStackIcon,
+  alt: "mysql-stack-icon.svg",
 };
 
 export const JUNIT_STACK: TechStackInterface = {
@@ -101,6 +109,7 @@ export const JUNIT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.JunitStackIcon,
+  alt: "junit-stack-icon.svg",
 };
 
 // export const MOCKITO_STACK: TechStackInterface = {
@@ -122,6 +131,7 @@ export const POSTMAN_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.PostmanStackIcon,
+  alt: "postman-stack-icon.svg",
 };
 
 export const LINUX_STACK: TechStackInterface = {
@@ -133,6 +143,7 @@ export const LINUX_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.LinuxStackIcon,
+  alt: "linux-stack-icon.svg",
 };
 
 export const AZURE_STACK: TechStackInterface = {
@@ -144,6 +155,7 @@ export const AZURE_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.AzureStackIcon,
+  alt: "azure-stack-icon.svg",
 };
 
 export const AWS_STACK: TechStackInterface = {
@@ -155,6 +167,7 @@ export const AWS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.AwsStackIcon,
+  alt: "aws-stack-icon.svg",
 };
 
 export const AZURE_PIPELINE_AGENT_STACK: TechStackInterface = {
@@ -166,6 +179,7 @@ export const AZURE_PIPELINE_AGENT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.AzurePipelineAgentStackIcon,
+  alt: "azure-pipeline-agent-stack-icon.svg",
 };
 
 export const FIREBASE_STACK: TechStackInterface = {
@@ -177,6 +191,7 @@ export const FIREBASE_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.FirebaseStackIcon,
+  alt: "firebase-stack-icon.svg",
 };
 
 export const GIT_STACK: TechStackInterface = {
@@ -188,6 +203,7 @@ export const GIT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.GitStackIcon,
+  alt: "git-stack-icon.svg",
 };
 
 export const NGINX_STACK: TechStackInterface = {
@@ -199,6 +215,7 @@ export const NGINX_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.NginxStackIcon,
+  alt: "nginx-stack-icon.svg",
 };
 
 export const CENTOS_STACK: TechStackInterface = {
@@ -210,6 +227,7 @@ export const CENTOS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.CentosStackIcon,
+  alt: "centos-stack-icon.svg",
 };
 
 export const NETLIFY_STACK: TechStackInterface = {
@@ -221,6 +239,7 @@ export const NETLIFY_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.NetlifyStackIcon,
+  alt: "netlify-stack-icon.svg",
 };
 
 export const HEROKU_STACK: TechStackInterface = {
@@ -232,6 +251,7 @@ export const HEROKU_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.HerokuStackIcon,
+  alt: "heroku-stack-icon.svg",
 };
 
 export const LARAVEL_STACK: TechStackInterface = {
@@ -243,6 +263,7 @@ export const LARAVEL_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.LaravelStackIcon,
+  alt: "laravel-stack-icon.svg",
 };
 
 export const PHP_STACK: TechStackInterface = {
@@ -254,6 +275,7 @@ export const PHP_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.PHPStackIcon,
+  alt: "php-stack-icon.svg",
 };
 
 export const BOOTSTRAP_STACK: TechStackInterface = {
@@ -265,6 +287,7 @@ export const BOOTSTRAP_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.BoostrapStackIcon,
+  alt: "bootstrap-stack-icon.svg",
 };
 
 export const MVC_STACK: TechStackInterface = {
@@ -276,6 +299,7 @@ export const MVC_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.MVCStackIcon,
+  alt: "mvc-stack-icon.svg",
 };
 
 // FRONT END STACK
@@ -288,6 +312,7 @@ export const VITE_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.ViteStackIcon,
+  alt: "vite-stack-icon.svg",
 };
 
 export const REACT_STACK: TechStackInterface = {
@@ -299,6 +324,7 @@ export const REACT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.ReactStackIcon,
+  alt: "react-stack-icon.svg",
 };
 
 export const TYPESCRIPT_STACK: TechStackInterface = {
@@ -310,6 +336,7 @@ export const TYPESCRIPT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.TypeScriptStackIcon,
+  alt: "typescript-stack-icon.svg",
 };
 
 export const JAVASCRIPT_STACK: TechStackInterface = {
@@ -321,6 +348,7 @@ export const JAVASCRIPT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.JavaScriptStackIcon,
+  alt: "javascript-stack-icon.svg",
 };
 
 export const HTML_STACK: TechStackInterface = {
@@ -332,6 +360,7 @@ export const HTML_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.HtmlStackIcon,
+  alt: "html-stack-icon.svg",
 };
 
 export const CSS_STACK: TechStackInterface = {
@@ -343,6 +372,7 @@ export const CSS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.CssStackIcon,
+  alt: "css-stack-icon.svg",
 };
 
 export const JQUERY_STACK: TechStackInterface = {
@@ -354,6 +384,7 @@ export const JQUERY_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.JqueryStackIcon,
+  alt: "jquery-stack-icon.svg",
 };
 
 export const BLADE_STACK: TechStackInterface = {
@@ -365,6 +396,7 @@ export const BLADE_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-12"),
   isStudying: false,
   icon: StackIcon.LaravelStackIcon,
+  alt: "laravel-stack-icon.svg",
 };
 
 export const TAILWIND_STACK: TechStackInterface = {
@@ -376,6 +408,7 @@ export const TAILWIND_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.TailwindStackIcon,
+  alt: "tailwind-stack-icon.svg",
 };
 
 export const SHAD_CN_STACK: TechStackInterface = {
@@ -387,6 +420,7 @@ export const SHAD_CN_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.ShadCNStackIcon,
+  alt: "shadcnui-stack-icon.svg",
 };
 
 export const MUI_STACK: TechStackInterface = {
@@ -398,6 +432,7 @@ export const MUI_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-01"),
   isStudying: false,
   icon: StackIcon.MUIStackIcon,
+  alt: "mui-stack-icon.svg",
 };
 
 export const CHAKRA_STACK: TechStackInterface = {
@@ -409,6 +444,7 @@ export const CHAKRA_STACK: TechStackInterface = {
   dateEnded: moment("2022-12-01"),
   isStudying: false,
   icon: StackIcon.ChakraUIStackIcon,
+  alt: "chakra-ui-stack-icon.svg",
 };
 
 export const ANT_DESIGN_STACK: TechStackInterface = {
@@ -420,6 +456,7 @@ export const ANT_DESIGN_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.AntDesignStackIcon,
+  alt: "ant-design-stack-icon.svg",
 };
 
 export const NEXT_UI_STACK: TechStackInterface = {
@@ -431,6 +468,7 @@ export const NEXT_UI_STACK: TechStackInterface = {
   dateEnded: moment("2024-03-01"),
   isStudying: false,
   icon: StackIcon.NextUiStackIcon,
+  alt: "next-ui-stack-icon.svg",
 };
 
 export const ZUSTAND_STACK: TechStackInterface = {
@@ -442,6 +480,7 @@ export const ZUSTAND_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.ZustandStackIcon,
+  alt: "zustand-stack-icon.svg",
 };
 
 export const MOBX_STACK: TechStackInterface = {
@@ -453,6 +492,7 @@ export const MOBX_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.MobxStackIcon,
+  alt: "mobx-stack-icon.svg",
 };
 
 export const CHART_JS_STACK: TechStackInterface = {
@@ -464,6 +504,7 @@ export const CHART_JS_STACK: TechStackInterface = {
   dateEnded: moment("2024-02-01"),
   isStudying: false,
   icon: StackIcon.ChartJsStackIcon,
+  alt: "chart-js-stack-icon.svg",
 };
 
 export const GSAP_STACK: TechStackInterface = {
@@ -475,6 +516,7 @@ export const GSAP_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.GsapStackIcon,
+  alt: "gsap-stack-icon.svg",
 };
 
 export const THREE_JS_STACK: TechStackInterface = {
@@ -486,6 +528,7 @@ export const THREE_JS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.ThreeJsStackIcon,
+  alt: "three-js-stack-icon.svg",
 };
 
 export const FRAMER_MOTION_STACK: TechStackInterface = {
@@ -497,6 +540,7 @@ export const FRAMER_MOTION_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.FramerMotionStackIcon,
+  alt: "framer-motion-stack-icon.svg",
 };
 
 export const JEST_STACK: TechStackInterface = {
@@ -508,6 +552,7 @@ export const JEST_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.JestStackIcon,
+  alt: "jest-stack-icon.svg",
 };
 
 // export const ENZYME_STACK: TechStackInterface = {
@@ -529,6 +574,7 @@ export const CYPRESS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.CypressStackIcon,
+  alt: "cypress-stack-icon.svg",
 };
 
 export const I18N_STACK: TechStackInterface = {
@@ -540,6 +586,7 @@ export const I18N_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.I18NextStackIcon,
+  alt: "i18next-stack-icon.svg",
 };
 
 export const AXIOS_STACK: TechStackInterface = {
@@ -551,7 +598,7 @@ export const AXIOS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.AxiosStackIcon,
-  // alt: "axios-stack-icon.svg",
+  alt: "axios-stack-icon.svg",
 };
 
 export const REACT_QUERY_STACK: TechStackInterface = {
@@ -563,6 +610,7 @@ export const REACT_QUERY_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.ReactQueryStackIcon,
+  alt: "react-query-stack-icon.svg",
 };
 
 export const NPM_STACK: TechStackInterface = {
@@ -574,6 +622,7 @@ export const NPM_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.NpmStackIcon,
+  alt: "npm-stack-icon.svg",
 };
 
 export const PNPM_STACK: TechStackInterface = {
@@ -585,6 +634,7 @@ export const PNPM_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.PnpmStackIcon,
+  alt: "pnpm-stack-icon.svg",
 };
 
 export const YARN_STACK: TechStackInterface = {
@@ -596,6 +646,7 @@ export const YARN_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.YarnStackIcon,
+  alt: "yarn-stack-icon.svg",
 };
 
 export const VITEST_STACK: TechStackInterface = {
@@ -607,6 +658,7 @@ export const VITEST_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: true,
   icon: StackIcon.VitestStackIcon,
+  alt: "vitest-stack-icon.svg",
 };
 
 export const MICROSERVICES_STACK: TechStackInterface = {
@@ -618,6 +670,7 @@ export const MICROSERVICES_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.MIcroservicesStackIcon,
+  alt: "microservices-stack-icon.svg",
 };
 
 // user interface
@@ -630,6 +683,7 @@ export const FIGMA_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.FigmaStackIcon,
+  alt: "figma-stack-icon.svg",
 };
 
 export const FRONTEND_STACK: TechStackInterface = {
@@ -641,6 +695,7 @@ export const FRONTEND_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.FrontEndStackIcon,
+  alt: "front-end-stack-icon.svg",
 };
 
 export const FIGMA_TO_HTML_STACK: TechStackInterface = {
@@ -652,6 +707,7 @@ export const FIGMA_TO_HTML_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.FigmaHtmlStackIcon,
+  alt: "figma-html-stack-icon.svg",
 };
 
 export const FIGMA_TO_REACT_STACK: TechStackInterface = {
@@ -663,6 +719,7 @@ export const FIGMA_TO_REACT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.FigmaReactStackIcon,
+  alt: "figma-react-stack-icon.svg",
 };
 
 export const ATTENTION_TO_DETAILS_STACK: TechStackInterface = {
@@ -674,6 +731,7 @@ export const ATTENTION_TO_DETAILS_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.AttentionToDetailsStackIcon,
+  alt: "attention-to-details-stack-icon.svg",
 };
 
 export const PIXEL_PERFECT_STACK: TechStackInterface = {
@@ -685,6 +743,7 @@ export const PIXEL_PERFECT_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.PixelPerfectStackIcon,
+  alt: "pixel-perfect-stack-icon.svg",
 };
 
 export const LANDING_PAGE_STACK: TechStackInterface = {
@@ -696,4 +755,5 @@ export const LANDING_PAGE_STACK: TechStackInterface = {
   dateEnded: "present",
   isStudying: false,
   icon: StackIcon.LandingPageStackIcon,
+  alt: "landing-page-stack-icon.svg",
 };
