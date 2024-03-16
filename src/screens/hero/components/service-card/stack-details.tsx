@@ -9,8 +9,16 @@ import "react-circular-progressbar/dist/styles.css";
 import moment from "moment";
 
 export const StackDetails = (props: StackDetailsProps) => {
-  const { name, isFavorite, icon, rate, dateStarted, dateEnded, isStudying } =
-    props;
+  const {
+    name,
+    isFavorite,
+    icon,
+    rate,
+    dateStarted,
+    dateEnded,
+    isStudying,
+    alt,
+  } = props;
   const stackName: TxKeyPath = `services.stack.${name}` as TxKeyPath;
 
   const getMonthExperience = (): number => {
@@ -36,7 +44,6 @@ export const StackDetails = (props: StackDetailsProps) => {
   };
 
   return (
-    // TODO:: add design for hover card
     <div className="relative">
       <div className="absolute top-[-14px] right-[-34px] pt-6 pb-1 rotate-45 bg-red-800 w-24 flex justify-center items-center">
         <div className="text-primary -rotate-45">
@@ -51,11 +58,7 @@ export const StackDetails = (props: StackDetailsProps) => {
         <div className="text-center font-bold">{translate(stackName)}</div>
         <div className="flex w-full justify-center">
           <CircularProgressbarWithChildren strokeWidth={6} value={rate * 10}>
-            <img width={"80px"} src={icon} alt={translate(stackName)} />
-            {/* TODO:: remove later */}
-            {/* <div style={{ fontSize: 12, marginTop: 12 }}>
-              <p>{rate} out of 10</p>
-            </div> */}
+            <img width={"80px"} src={icon} alt={alt} />
           </CircularProgressbarWithChildren>
         </div>
         <Separator />
