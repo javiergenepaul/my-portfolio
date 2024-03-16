@@ -67,6 +67,7 @@ export const JWT_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.JwtStackIcon,
 };
 
 export const JAVA_STACK: TechStackInterface = {
@@ -99,17 +100,18 @@ export const JUNIT_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.JunitStackIcon,
 };
 
-export const MOCKITO_STACK: TechStackInterface = {
-  name: "mockito",
-  isFavorite: false,
-  url: url.MOCKITO_URL,
-  rate: 5,
-  dateStarted: moment("2024-02-01"),
-  dateEnded: "present",
-  isStudying: true,
-};
+// export const MOCKITO_STACK: TechStackInterface = {
+//   name: "mockito",
+//   isFavorite: false,
+//   url: url.MOCKITO_URL,
+//   rate: 5,
+//   dateStarted: moment("2024-02-01"),
+//   dateEnded: "present",
+//   isStudying: true,
+// };
 
 export const POSTMAN_STACK: TechStackInterface = {
   name: "postman",
@@ -152,6 +154,7 @@ export const AWS_STACK: TechStackInterface = {
   dateStarted: moment("2023-03-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.AwsStackIcon,
 };
 
 export const AZURE_PIPELINE_AGENT_STACK: TechStackInterface = {
@@ -162,6 +165,7 @@ export const AZURE_PIPELINE_AGENT_STACK: TechStackInterface = {
   dateStarted: moment("2023-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.AzurePipelineAgentStackIcon,
 };
 
 export const FIREBASE_STACK: TechStackInterface = {
@@ -227,6 +231,7 @@ export const HEROKU_STACK: TechStackInterface = {
   dateStarted: moment(),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.HerokuStackIcon,
 };
 
 export const LARAVEL_STACK: TechStackInterface = {
@@ -259,6 +264,7 @@ export const BOOTSTRAP_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.BoostrapStackIcon,
 };
 
 export const MVC_STACK: TechStackInterface = {
@@ -424,6 +430,7 @@ export const NEXT_UI_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: moment("2024-03-01"),
   isStudying: false,
+  icon: StackIcon.NextUiStackIcon,
 };
 
 export const ZUSTAND_STACK: TechStackInterface = {
@@ -472,12 +479,13 @@ export const GSAP_STACK: TechStackInterface = {
 
 export const THREE_JS_STACK: TechStackInterface = {
   name: "threeJs",
-  isFavorite: true,
+  isFavorite: false,
   url: url.THREE_JS_URL,
-  rate: 8,
+  rate: 5,
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
-  isStudying: false,
+  isStudying: true,
+  icon: StackIcon.ThreeJsStackIcon,
 };
 
 export const FRAMER_MOTION_STACK: TechStackInterface = {
@@ -499,17 +507,18 @@ export const JEST_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.JestStackIcon,
 };
 
-export const ENZYME_STACK: TechStackInterface = {
-  name: "enzyme",
-  isFavorite: true,
-  url: url.ENZYME_URL,
-  rate: 8,
-  dateStarted: moment("2024-02-01"),
-  dateEnded: "present",
-  isStudying: true,
-};
+// export const ENZYME_STACK: TechStackInterface = {
+//   name: "enzyme",
+//   isFavorite: true,
+//   url: url.ENZYME_URL,
+//   rate: 8,
+//   dateStarted: moment("2024-02-01"),
+//   dateEnded: "present",
+//   isStudying: true,
+// };
 
 export const CYPRESS_STACK: TechStackInterface = {
   name: "cypress",
@@ -519,6 +528,7 @@ export const CYPRESS_STACK: TechStackInterface = {
   dateStarted: moment("2024-02-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.CypressStackIcon,
 };
 
 export const I18N_STACK: TechStackInterface = {
@@ -596,6 +606,7 @@ export const VITEST_STACK: TechStackInterface = {
   dateStarted: moment("2022-06-01"),
   dateEnded: "present",
   isStudying: true,
+  icon: StackIcon.VitestStackIcon,
 };
 
 export const MICROSERVICES_STACK: TechStackInterface = {
@@ -606,6 +617,7 @@ export const MICROSERVICES_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.MIcroservicesStackIcon,
 };
 
 // user interface
@@ -622,7 +634,7 @@ export const FIGMA_STACK: TechStackInterface = {
 
 export const FRONTEND_STACK: TechStackInterface = {
   name: "frontend",
-  isFavorite: false,
+  isFavorite: true,
   url: undefined,
   rate: 8,
   dateStarted: moment("2022-06-01"),
@@ -633,7 +645,7 @@ export const FRONTEND_STACK: TechStackInterface = {
 
 export const FIGMA_TO_HTML_STACK: TechStackInterface = {
   name: "figmaToHTML",
-  isFavorite: false,
+  isFavorite: true,
   url: undefined,
   rate: 8,
   dateStarted: moment("2022-06-01"),
@@ -644,7 +656,7 @@ export const FIGMA_TO_HTML_STACK: TechStackInterface = {
 
 export const FIGMA_TO_REACT_STACK: TechStackInterface = {
   name: "figmaToReact",
-  isFavorite: false,
+  isFavorite: true,
   url: undefined,
   rate: 8,
   dateStarted: moment("2022-06-01"),
@@ -655,7 +667,7 @@ export const FIGMA_TO_REACT_STACK: TechStackInterface = {
 
 export const ATTENTION_TO_DETAILS_STACK: TechStackInterface = {
   name: "attentionToDetails",
-  isFavorite: false,
+  isFavorite: true,
   url: undefined,
   rate: 8,
   dateStarted: moment("2022-06-01"),
@@ -666,7 +678,7 @@ export const ATTENTION_TO_DETAILS_STACK: TechStackInterface = {
 
 export const PIXEL_PERFECT_STACK: TechStackInterface = {
   name: "pixelPerfect",
-  isFavorite: false,
+  isFavorite: true,
   url: undefined,
   rate: 8,
   dateStarted: moment("2022-06-01"),
@@ -677,7 +689,7 @@ export const PIXEL_PERFECT_STACK: TechStackInterface = {
 
 export const LANDING_PAGE_STACK: TechStackInterface = {
   name: "landingPage",
-  isFavorite: false,
+  isFavorite: true,
   url: undefined,
   rate: 8,
   dateStarted: moment("2022-06-01"),
