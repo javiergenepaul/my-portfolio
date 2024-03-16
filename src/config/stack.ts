@@ -444,6 +444,7 @@ export const MOBX_STACK: TechStackInterface = {
   dateStarted: moment("2022-12-12"),
   dateEnded: "present",
   isStudying: false,
+  icon: StackIcon.MobxStackIcon,
 };
 
 export const CHART_JS_STACK: TechStackInterface = {

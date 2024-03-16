@@ -12,6 +12,7 @@ import JavaScriptStackIcon from "./javascript-stack-icon.svg";
 import JqueryStackIcon from "./jquery-stack-icon.svg";
 import LaravelStackIcon from "./laravel-stack-icon.svg";
 import LinuxStackIcon from "./linux-stack-icon.svg";
+import MobxStackIcon from "./mobx-stack-icon.svg";
 import MUIStackIcon from "./mui-stack-icon.svg";
 import MVCStackIcon from "./mvc-stack-icon.svg";
 import MySQLStackIcon from "./mysql-stack-icon.svg";
@@ -44,6 +45,7 @@ export {
   JqueryStackIcon,
   LaravelStackIcon,
   LinuxStackIcon,
+  MobxStackIcon,
   MUIStackIcon,
   MVCStackIcon,
   MySQLStackIcon,
