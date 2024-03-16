@@ -171,6 +171,7 @@ export const FIREBASE_STACK: TechStackInterface = {
   dateStarted: moment("2021-08-01"),
   dateEnded: moment("2022-12-12"),
   isStudying: false,
+  icon: StackIcon.FirebaseStackIcon,
 };
 
 export const GIT_STACK: TechStackInterface = {
