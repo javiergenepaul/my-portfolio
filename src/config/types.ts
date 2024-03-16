@@ -1,6 +1,7 @@
 import { StackName } from "@/screens";
 import { Moment } from "moment";
 
+export type ProjectStatus = "ongoing" | "completed" | "unfinished";
 type NumberBetweenOneAndTen = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 export interface TechStackInterface {
@@ -35,6 +36,7 @@ export interface ProjectInterface {
   type: ProjectType;
   stack?: TechStackInterface[];
   projectId: string;
+  status: ProjectStatus;
 }
 
 export interface ProjectCarouselInterface {
