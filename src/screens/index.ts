@@ -6,3 +6,4 @@ export * from "./project";
 export * from "./skills";
 export * from "./confidential";
 export * from "./settings";
+export * from "./main";

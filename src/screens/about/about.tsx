@@ -1,4 +1,4 @@
-import { FadeAnimation, FloatingNavbar } from "@/components";
+import { FadeAnimation } from "@/components";
 import {
   CertificateSection,
   ExperienceSection,
@@ -8,8 +8,7 @@ import {
 export const About = () => {
   return (
     <FadeAnimation>
-      <FloatingNavbar />
-      <div className="pb-16 space-y-6 h-full">
+      <div className="h-full pb-16 space-y-6">
         <IntroSection />
         <ExperienceSection />
         <CertificateSection />
