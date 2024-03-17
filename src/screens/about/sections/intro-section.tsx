@@ -1,11 +1,15 @@
-import { AboutMe, ResumeDark } from "@/assets";
+import { AboutMe } from "@/assets";
 import { Button } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
 import { SubTitleAnimation } from "@/screens";
 import { PROJECTS } from "@/screens/hero/sections";
+import { useSettingsStore } from "@/stores";
 import { DownloadIcon } from "@radix-ui/react-icons";
 import moment from "moment";
+
+import * as DarkResume from "@/assets/resume/dark";
+import * as LightResume from "@/assets/resume/light";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -14,14 +18,61 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
+  const { getTheme, color } = useSettingsStore();
+
+  /**
+   * Returns the appropriate resume based on the selected theme and color.
+   * @returns {string} The URL of the selected resume.
+   */
+  const getResumeTemplates = (): string => {
+    if (getTheme()) {
+      switch (color) {
+        case "azure":
+          return DarkResume.ResumeDarkAzureBliss;
+        case "emerald":
+          return DarkResume.ResumeDarkEmeraldElegance;
+        case "golden":
+          return DarkResume.ResumeDarkGoldenHaze;
+        case "sunset":
+          return DarkResume.ResumeDarkSunsetEmber;
+        case "lavender":
+          return DarkResume.ResumeDarkPurpleMajesty;
+        case "scarlet":
+          return DarkResume.ResumeDarkScarletSerenade;
+        case "silver":
+          return DarkResume.ResumeDarkSilverSerenity;
+        default:
+          return DarkResume.ResumeDarkEmeraldElegance;
+      }
+    } else {
+      switch (color) {
+        case "azure":
+          return LightResume.ResumeLightAzureBliss;
+        case "emerald":
+          return LightResume.ResumeLightEmeraldElegance;
+        case "golden":
+          return LightResume.ResumeLightGoldenHaze;
+        case "sunset":
+          return LightResume.ResumeLightSunsetEmber;
+        case "lavender":
+          return LightResume.ResumeLightPurpleMajesty;
+        case "scarlet":
+          return LightResume.ResumeLightScarletSerenade;
+        case "silver":
+          return LightResume.ResumeLightSilverSerenity;
+        default:
+          return LightResume.ResumeLightEmeraldElegance;
+      }
+    }
+  };
+
   /**
    * Handles the download of the resume.
    * Opens the resume in a new tab.
    * @returns {void}
    */
   const DownloadResumeHandler = () => {
-    // TODO:: add resume download depends on color palette and theme
-    window.open(ResumeDark, "_blank");
+    window.open(getResumeTemplates(), "_blank");
   };
 
   /**
