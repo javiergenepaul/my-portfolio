@@ -181,7 +181,7 @@ export const IntroSection = () => {
         </div>
       </div>
       <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
-        <div className="flex items-end w-full pl-0 lg:pl-24">
+        <div className="flex items-end w-full pb-8 pl-0 lg:pl-24">
           <img
             width={"400px"}
             height={"400px"}
@@ -190,12 +190,11 @@ export const IntroSection = () => {
           />
         </div>
         <div className="flex w-full">
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-end pb-28">
             <h3 className="text-2xl font-medium">{translate("about.hello")}</h3>
             <h1 className="text-5xl font-bold text-primary">
               {translate("about.name")}
             </h1>
-            <SubTitleAnimation />
             <p className="mt-4 text-sm text-muted-foreground">
               {translate("about.intruduction")}
             </p>
