@@ -38,39 +38,45 @@ const AppScreen = (props: { component: React.ReactNode }) => {
 const router = createBrowserRouter([
   {
     path: PATH.HOME.path,
-    element: <AppScreen component={<Screens.Hero />} />,
-  },
-  {
-    path: PATH.ABOUT.path,
-    element: <AppScreen component={<Screens.About />} />,
-  },
-  {
-    path: PATH.PROJECTS.path,
-    element: <AppScreen component={<Screens.Project />} />,
-  },
-  {
-    path: PATH.SKILLS.path,
-    element: <AppScreen component={<Screens.Skills />} />,
-  },
-  {
-    path: PATH.CONTACTS.path,
-    element: <AppScreen component={<Screens.Contact />} />,
-  },
-  {
-    path: PATH.CONFIDENTIAL.path,
-    element: <AppScreen component={<Screens.Confidential />} />,
-  },
-  {
-    path: PATH.SETTINGS.path,
-    element: <AppScreen component={<Screens.Settings />} />,
+    element: <Screens.Main />,
     children: [
       {
         path: "",
-        element: <Screens.SettingsGeneral />,
+        element: <AppScreen component={<Screens.Hero />} />,
       },
       {
-        path: "appearance",
-        element: <Screens.SettingsAppearance />,
+        path: PATH.ABOUT.path,
+        element: <AppScreen component={<Screens.About />} />,
+      },
+      {
+        path: PATH.PROJECTS.path,
+        element: <AppScreen component={<Screens.Project />} />,
+      },
+      {
+        path: PATH.SKILLS.path,
+        element: <AppScreen component={<Screens.Skills />} />,
+      },
+      {
+        path: PATH.CONTACTS.path,
+        element: <AppScreen component={<Screens.Contact />} />,
+      },
+      {
+        path: PATH.CONFIDENTIAL.path,
+        element: <AppScreen component={<Screens.Confidential />} />,
+      },
+      {
+        path: PATH.SETTINGS.path,
+        element: <AppScreen component={<Screens.Settings />} />,
+        children: [
+          {
+            path: "",
+            element: <Screens.SettingsGeneral />,
+          },
+          {
+            path: "appearance",
+            element: <Screens.SettingsAppearance />,
+          },
+        ],
       },
     ],
   },
