@@ -11,7 +11,9 @@ import * as LightResume from "@/assets/resume/light";
 import { Brain, Lightbulb } from "lucide-react";
 import { getColor } from "@/lib";
 import moment from "moment";
+import { useState } from "react";
 import "./css/intro-section.css";
+import { twMerge } from "tailwind-merge";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -21,6 +23,8 @@ interface PersonalStatisticInterface {
 
 export const IntroSection = () => {
   const { getTheme, color } = useSettingsStore();
+  const [isPauseAnimateBanner, setIsPauseAnimateBanner] =
+    useState<boolean>(false);
 
   /**
    * Returns the appropriate resume based on the selected theme and color.
@@ -90,6 +94,17 @@ export const IntroSection = () => {
     });
     return count;
   };
+  let hoverTimeout: string | number | NodeJS.Timeout | undefined;
+  const onMouseEnterBanner = () => {
+    hoverTimeout = setTimeout(() => {
+      setIsPauseAnimateBanner(true);
+    }, 300); // Adjust delay time in milliseconds (e.g., 500 for 0.5 seconds)
+  };
+
+  const onMouseLeaveBanner = () => {
+    clearTimeout(hoverTimeout);
+    setIsPauseAnimateBanner(false);
+  };
 
   const STATISTICS: PersonalStatisticInterface[] = [
     {
@@ -112,9 +127,18 @@ export const IntroSection = () => {
   return (
     <div className="relative h-full min-h-screen">
       <div className="absolute overflow-hidden w-screen bottom-0 left-[-100px]">
-        <div className="flex px-4 py-2 overflow-hidden bg-popover">
+        <div
+          onMouseEnter={onMouseEnterBanner}
+          onMouseLeave={onMouseLeaveBanner}
+          className="flex px-4 py-2 overflow-hidden bg-popover"
+        >
           <div className="flex gap-2 -ml-2">
-            <div className="flex gap-24 logo-slide flex-nowrap animate-tape">
+            <div
+              className={twMerge(
+                "flex gap-24 logo-slide flex-nowrap animate-tape",
+                isPauseAnimateBanner ? "pause-tape-animation" : ""
+              )}
+            >
               {Array.from({ length: 999 }, (_, index) => (
                 <div
                   key={index}
