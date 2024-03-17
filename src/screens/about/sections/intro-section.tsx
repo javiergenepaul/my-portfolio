@@ -10,6 +10,9 @@ import moment from "moment";
 
 import * as DarkResume from "@/assets/resume/dark";
 import * as LightResume from "@/assets/resume/light";
+import { Lightbulb } from "lucide-react";
+import "./css/intro-section.css";
+import { getColor } from "@/lib";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -108,9 +111,34 @@ export const IntroSection = () => {
   ];
 
   return (
-    <div className="relative h-full min-h-screen ">
-      <div className="absolute bottom-0 left-[-100px]">
-        <div className="w-[999000px] border-b border-primary"></div>
+    <div className="relative h-full min-h-screen">
+      <div className="absolute overflow-hidden w-screen bottom-0 left-[-100px]">
+        <div className="flex px-4 py-2 overflow-hidden bg-popover">
+          <div className="flex gap-2 -ml-2">
+            <div className="flex gap-24 logo-slide flex-nowrap animate-tape">
+              {Array.from({ length: 999 }, (_, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 flex-nowrap"
+                >
+                  <Lightbulb
+                    color={getColor(color)}
+                    width={"18px"}
+                    height={"18px"}
+                  />
+                  <span className="text-xs text-nowrap">
+                    Turning Ideas Into Reality
+                  </span>
+                  <Lightbulb
+                    color={getColor(color)}
+                    width={"18px"}
+                    height={"18px"}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
         <div className="flex items-end w-full pl-0 lg:pl-24">
