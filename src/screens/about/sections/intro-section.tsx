@@ -5,14 +5,16 @@ import { translate } from "@/i18n";
 import { PROJECTS } from "@/screens/hero/sections";
 import { useSettingsStore } from "@/stores";
 import { DownloadIcon } from "@radix-ui/react-icons";
-import * as DarkResume from "@/assets/resume/dark";
-import * as LightResume from "@/assets/resume/light";
 import { Brain, Lightbulb } from "lucide-react";
 import { getColor } from "@/lib";
-import moment from "moment";
 import { useState } from "react";
-import "./css/intro-section.css";
 import { twMerge } from "tailwind-merge";
+
+import * as LightResume from "@/assets/resume/light";
+import * as DarkResume from "@/assets/resume/dark";
+
+import moment from "moment";
+import "./css/intro-section.css";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -93,6 +95,7 @@ export const IntroSection = () => {
     });
     return count;
   };
+
   let hoverTimeout: string | number | NodeJS.Timeout | undefined;
   const onMouseEnterBanner = () => {
     hoverTimeout = setTimeout(() => {
@@ -190,8 +193,8 @@ export const IntroSection = () => {
         </div>
         <div className="flex w-full">
           <div className="flex flex-col justify-end pb-28">
-            <h3 className="text-2xl font-medium">{translate("about.hello")}</h3>
-            <h1 className="text-5xl font-bold text-primary">
+            <h3 className="text-2xl">{translate("about.hello")}</h3>
+            <h1 className="text-4xl font-bold text-primary">
               {translate("about.name")}
             </h1>
             <p className="mt-4 text-sm text-muted-foreground">
@@ -205,15 +208,16 @@ export const IntroSection = () => {
               <DownloadIcon />
             </Button>
 
-            <div className="grid grid-cols-3 mt-8">
+            <div className="grid grid-cols-3 mt-10">
               {STATISTICS.map((item: PersonalStatisticInterface) => {
                 return (
                   <div className="flex flex-col">
-                    <h1 className="text-5xl font-semibold">{item.count}+</h1>
+                    <h1 className="text-5xl font-semibold text-primary">
+                      {item.count}+
+                    </h1>
                     <span className="text-sm text-muted-foreground">
-                      {item.topTitle}
-                      <br />
-                      {item.botTitle}
+                      <p>{item.topTitle}</p>
+                      <p>{item.botTitle}</p>
                     </span>
                   </div>
                 );
