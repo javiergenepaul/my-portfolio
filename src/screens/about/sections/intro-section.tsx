@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { AboutMe } from "@/assets";
 import { Button } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
@@ -12,16 +11,6 @@ import moment from "moment";
 import * as DarkResume from "@/assets/resume/dark";
 import * as LightResume from "@/assets/resume/light";
 
-=======
-import { AboutMe, ResumeDark } from "@/assets";
-import { Button } from "@/components";
-import { ProjectInterface, ProjectStatus } from "@/config";
-import { SubTitleAnimation } from "@/screens";
-import { PROJECTS } from "@/screens/hero/sections";
-import { DownloadIcon } from "@radix-ui/react-icons";
-import moment from "moment";
-
->>>>>>> master
 interface PersonalStatisticInterface {
   count: number;
   topTitle: string;
@@ -29,7 +18,6 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
-<<<<<<< HEAD
   const { getTheme, color } = useSettingsStore();
 
   /**
@@ -78,20 +66,13 @@ export const IntroSection = () => {
     }
   };
 
-=======
->>>>>>> master
   /**
    * Handles the download of the resume.
    * Opens the resume in a new tab.
    * @returns {void}
    */
   const DownloadResumeHandler = () => {
-<<<<<<< HEAD
     window.open(getResumeTemplates(), "_blank");
-=======
-    // TODO:: add resume download depends on color palette and theme
-    window.open(ResumeDark, "_blank");
->>>>>>> master
   };
 
   /**
@@ -127,11 +108,7 @@ export const IntroSection = () => {
   ];
 
   return (
-<<<<<<< HEAD
     <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
-=======
-    <div className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
->>>>>>> master
       <div className="flex items-end w-full pl-0 lg:pl-24">
         <img
           width={"400px"}
@@ -142,7 +119,6 @@ export const IntroSection = () => {
       </div>
       <div className="flex w-full">
         <div className="flex flex-col justify-center">
-<<<<<<< HEAD
           <h3 className="text-2xl font-medium">{translate("about.hello")}</h3>
           <h1 className="text-5xl font-bold text-primary">
             {translate("about.name")}
@@ -150,31 +126,12 @@ export const IntroSection = () => {
           <SubTitleAnimation />
           <p className="mt-4 text-sm text-muted-foreground">
             {translate("about.intruduction")}
-=======
-          <h3 className="text-2xl font-medium">Hello I'm</h3>
-          <h1 className="text-5xl font-bold text-primary">
-            Gene Paul Mar Javier
-          </h1>
-          <SubTitleAnimation />
-          <p className="text-sm text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo
-            pellentesque donec pretium facilisis. Adipiscing neque enim, lacus
-            pretium scelerisque proin. Ultrices non gravida vitae, sed sagittis
-            arcu. In quisque nulla viverra interdum ac urna auctor. Auctor enim
-            leo a nisl massa. Amet cursus odio dolor congue. Eu, bibendum sed
-            duis ornare id ut cras. Luctus eget mattis pharetra amet interdum
-            commodo.
->>>>>>> master
           </p>
           <Button
             onClick={DownloadResumeHandler}
             className="px-8 mt-4 space-x-2 w-fit"
           >
-<<<<<<< HEAD
             <span>{translate("about.downloadResume")}</span>
-=======
-            <span>Download My Resume</span>
->>>>>>> master
             <DownloadIcon />
           </Button>
 
@@ -191,40 +148,9 @@ export const IntroSection = () => {
                 </div>
               );
             })}
-<<<<<<< HEAD
           </div>
         </div>
       </div>
     </section>
-=======
-            {/* <div className="flex flex-col">
-              <h1 className="text-5xl">10+</h1>
-              <span className="text-sm text-muted-foreground">
-                Project
-                <br />
-                Completed
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-5xl">5+</h1>
-              <span className="text-sm text-muted-foreground">
-                Years
-                <br />
-                Experience
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-5xl">2+</h1>
-              <span className="text-sm text-muted-foreground">
-                Awards
-                <br />
-                Achievement
-              </span>
-            </div> */}
-          </div>
-        </div>
-      </div>
-    </div>
->>>>>>> master
   );
 };
