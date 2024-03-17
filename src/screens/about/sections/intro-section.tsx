@@ -2,7 +2,6 @@ import { AboutMe } from "@/assets";
 import { Button } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
-import { SubTitleAnimation } from "@/screens";
 import { PROJECTS } from "@/screens/hero/sections";
 import { useSettingsStore } from "@/stores";
 import { DownloadIcon } from "@radix-ui/react-icons";
@@ -181,7 +180,7 @@ export const IntroSection = () => {
         </div>
       </div>
       <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
-        <div className="flex items-end w-full pb-8 pl-0 lg:pl-24">
+        <div className="flex items-end w-full pl-0 lg:pb-8 lg:pl-24">
           <img
             width={"400px"}
             height={"400px"}
