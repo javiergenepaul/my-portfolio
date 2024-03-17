@@ -56,7 +56,7 @@ export const IntroSection = () => {
   ];
 
   return (
-    <div className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
+    <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
       <div className="flex items-end w-full pl-0 lg:pl-24">
         <img
           width={"400px"}
@@ -72,7 +72,7 @@ export const IntroSection = () => {
             Gene Paul Mar Javier
           </h1>
           <SubTitleAnimation />
-          <p className="text-sm mt-4 text-muted-foreground">
+          <p className="mt-4 text-sm text-muted-foreground">
             My journey into the world of technology began at the University of
             Cebu in 2019. From those early days, I've grown into a seasoned
             full-stack developer, adept at crafting digital landscapes. While
@@ -110,6 +110,6 @@ export const IntroSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

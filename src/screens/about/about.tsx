@@ -3,6 +3,7 @@ import {
   CertificateSection,
   ExperienceSection,
   IntroSection,
+  LanguageSection,
 } from "./sections";
 
 export const About = () => {
@@ -12,6 +13,7 @@ export const About = () => {
         <IntroSection />
         <ExperienceSection />
         <CertificateSection />
+        <LanguageSection />
       </div>
     </FadeAnimation>
   );
