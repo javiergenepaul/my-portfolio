@@ -9,4 +9,10 @@
 
 .animate-tape {
   animation: move-tape 9000s linear infinite;
+  transition: animation-play-state 0.3s ease; /* Add transition */
+}
+
+.pause-tape-animation {
+  animation-play-state: paused;
+  transition: animation-play-state 0.3s ease; /* Add transition */
 }
