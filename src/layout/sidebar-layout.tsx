@@ -3,7 +3,7 @@ import ContactLogo from "../assets/contact-logo.svg";
 import { translate } from "@/i18n";
 import { SideBar } from "@/components";
 import { DEV_MODE, PATH } from "@/config";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
 import { useSiderStore, useSettingsStore } from "@/stores";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,8 @@ interface SideBarLayoutInterface {
 const SideBarLayout = (props: SideBarLayoutInterface) => {
   const { children } = props;
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { setIsOpen } = useSiderStore();
   const {
     font,
@@ -89,10 +91,12 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
       <main
         {...handlers}
         className={twMerge(
-          "relative w-full h-full min-h-dvh px-6 overflow-x-hidden py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none duration-300 transition-all",
+          "relative w-full h-full min-h-dvh px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none duration-300 transition-all",
           `${fontSelected()} ${
             isBackgroundOnly ? "opacity-0 pointer-events-none" : ""
-          } ${DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""}`
+          } ${DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""} ${
+            location.pathname === PATH.ABOUT.path ? "overflow-x-hidden" : ""
+          }`
         )}
       >
         {children}
