@@ -12,7 +12,6 @@ import {
   ProjectTest04,
   ProjectTest05,
 } from "@/assets";
-import moment from "moment";
 
 const LazyProjectCard = lazy(
   () => import("../components/project-card/project-card")
