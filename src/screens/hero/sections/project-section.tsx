@@ -399,7 +399,6 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MICROSERVICES_STACK,
     ],
     status: "unfinished",
-<<<<<<< HEAD
   },
   {
     title: translate("projects.myPortfolio.title"),
@@ -460,8 +459,6 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.VITEST_STACK,
     ],
     status: "completed",
-=======
->>>>>>> master
   },
 ];
 
