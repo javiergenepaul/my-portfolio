@@ -109,9 +109,10 @@ export const IntroSection = () => {
   };
 
   const STATISTICS: PersonalStatisticInterface[] = [
+    // TODO:: change translate
     {
       count: countProjectStatus("ongoing"),
-      topTitle: "Ongoing",
+      topTitle: "Ongoing", //TODO:: change into certificate
       botTitle: "Project",
     },
     {
@@ -127,8 +128,8 @@ export const IntroSection = () => {
   ];
 
   return (
-    <div className="relative h-full min-h-screen">
-      <div className="absolute overflow-hidden w-screen bottom-0 left-[-100px]">
+    <div className="relative">
+      <div className="absolute overflow-hidden w-screen bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
         <div
           onMouseEnter={onMouseEnterBanner}
           onMouseLeave={onMouseLeaveBanner}
@@ -182,17 +183,17 @@ export const IntroSection = () => {
           </div>
         </div>
       </div>
-      <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
+      <section className="flex flex-col-reverse h-full min-h-screen mx-auto lg:flex-row max-w-7xl">
         <div className="flex items-end w-full pl-0 lg:pb-8 lg:pl-24">
           <img
             width={"400px"}
             height={"400px"}
             src={AboutMe}
-            alt="Gene Paul Mar Javier"
+            alt={translate("about.name")}
           />
         </div>
         <div className="flex w-full">
-          <div className="flex flex-col justify-end pb-28">
+          <div className="flex flex-col justify-end pb-8 lg:pb-28">
             <h3 className="text-2xl">{translate("about.hello")}</h3>
             <h1 className="text-4xl font-bold text-primary">
               {translate("about.name")}
