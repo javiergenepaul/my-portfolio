@@ -250,6 +250,16 @@
         "landing": "Landing Page",
         "portfolioWebsite": "portfolioWebsite"
       }
+    },
+    "paletteShift": {
+      "title": "PaletteShift: Personalize Language and Theme",
+      "description": "PaletteShift is a dynamic platform designed to empower users to personalize their digital environment. With PaletteShift, users can seamlessly adjust both language and theme settings, allowing for a truly tailored experience. Whether you prefer a specific language or a particular color palette, PaletteShift puts the power of customization in your hands, ensuring that your digital experience reflects your unique preferences.",
+      "category": {
+        "webDevelopment": "Web Development",
+        "localizationAndInternalization": "Localization and Internationalization",
+        "accessibility": "Accessibility",
+        "softwareToolsLibraries": "Software Tools and Libraries"
+      }
     }
   },
   "contact": {

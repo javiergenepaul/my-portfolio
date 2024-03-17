@@ -460,6 +460,68 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  {
+    title: translate("projects.paletteShift.title"),
+    description: translate("projects.paletteShift.description"),
+    company: undefined,
+    date: new Date("2024-03-17"),
+    type: "personal",
+    projectId: "palette-shift",
+    carousel: [
+      {
+        value: "1",
+        image: ProjectTest01,
+        name: "test01",
+      },
+      {
+        value: "2",
+        image: ProjectTest02,
+        name: "test02",
+      },
+      {
+        value: "3",
+        image: ProjectTest03,
+        name: "test03",
+      },
+      {
+        value: "4",
+        image: ProjectTest04,
+        name: "test04",
+      },
+      {
+        value: "5",
+        image: ProjectTest05,
+        name: "test05",
+      },
+    ],
+    category: [
+      translate("projects.paletteShift.category.webDevelopment"),
+      translate(
+        "projects.paletteShift.category.localizationAndInternalization"
+      ),
+      translate("projects.paletteShift.category.accessibility"),
+      translate("projects.paletteShift.category.softwareToolsLibraries"),
+    ],
+    stack: [
+      Stack.VITE_STACK,
+      Stack.REACT_STACK,
+      Stack.TYPESCRIPT_STACK,
+      Stack.TAILWIND_STACK,
+      Stack.SHAD_CN_STACK,
+      Stack.ZUSTAND_STACK,
+      Stack.NETLIFY_STACK,
+      Stack.FIGMA_STACK,
+      Stack.THREE_JS_STACK,
+      Stack.FRAMER_MOTION_STACK,
+      Stack.I18N_STACK,
+      Stack.PNPM_STACK,
+      Stack.LANDING_PAGE_STACK,
+      Stack.FIGMA_TO_REACT_STACK,
+      Stack.PIXEL_PERFECT_STACK,
+      Stack.VITEST_STACK,
+    ],
+    status: "ongoing",
+  },
 ];
 
 export const ProjectSection = () => {
