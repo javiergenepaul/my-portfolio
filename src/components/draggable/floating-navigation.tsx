@@ -21,7 +21,7 @@ export const FloatingNavigation = () => {
   return (
     <div
       className={twMerge(
-        "fixed inset-0 z-50 flex items-center justify-center pointer-events-none",
+        "fixed inset-0 z-50 hidden lg:flex items-center justify-center pointer-events-none",
         hideFloatingSettings ? "hidden" : ""
       )}
     >
@@ -34,7 +34,7 @@ export const FloatingNavigation = () => {
       >
         <div
           className={twMerge(
-            "bg-popover border z-[999999999999] rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-10 hover:opacity-100 transition-opacity duration-300",
+            "bg-popover border z-[999999999999] rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-10 hover:opacity-100 transition-opacity",
             onDrag ? "cursor-grabbing opacity-100" : ""
           )}
         >
