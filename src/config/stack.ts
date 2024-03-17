@@ -757,3 +757,15 @@ export const LANDING_PAGE_STACK: TechStackInterface = {
   icon: StackIcon.LandingPageStackIcon,
   alt: "landing-page-stack-icon.svg",
 };
+
+export const REACT_ROUTER_STACK: TechStackInterface = {
+  name: "reactRouter",
+  icon: StackIcon.ReactRouterStackIcon,
+  url: url.REACT_ROUTER_URL,
+  isFavorite: false,
+  rate: 8,
+  dateStarted: moment("2023-12-12"),
+  dateEnded: "present",
+  isStudying: false,
+  alt: "react-router-stack-icon.svg",
+};
