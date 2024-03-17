@@ -72,14 +72,19 @@ export const IntroSection = () => {
             Gene Paul Mar Javier
           </h1>
           <SubTitleAnimation />
-          <p className="text-sm text-muted-foreground">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Leo
-            pellentesque donec pretium facilisis. Adipiscing neque enim, lacus
-            pretium scelerisque proin. Ultrices non gravida vitae, sed sagittis
-            arcu. In quisque nulla viverra interdum ac urna auctor. Auctor enim
-            leo a nisl massa. Amet cursus odio dolor congue. Eu, bibendum sed
-            duis ornare id ut cras. Luctus eget mattis pharetra amet interdum
-            commodo.
+          <p className="text-sm mt-4 text-muted-foreground">
+            My journey into the world of technology began at the University of
+            Cebu in 2019. From those early days, I've grown into a seasoned
+            full-stack developer, adept at crafting digital landscapes. While
+            specializing in modern technologies like React, TypeScript, Tailwind
+            CSS, and Spring Boot, I'm always eager to learn new tech stacks that
+            offer innovative software solutions. Each project serves as a
+            chapter in my story, where challenges fuel my passion for
+            innovation. With every line of code, I turn ideas into reality,
+            weaving dreams into tangible experiences and pushing the boundaries
+            of what's achievable in the digital realm. Welcome to my portfolio,
+            where innovation thrives, imagination flourishes, and every
+            challenge is an opportunity for growth.
           </p>
           <Button
             onClick={DownloadResumeHandler}
@@ -102,30 +107,6 @@ export const IntroSection = () => {
                 </div>
               );
             })}
-            {/* <div className="flex flex-col">
-              <h1 className="text-5xl">10+</h1>
-              <span className="text-sm text-muted-foreground">
-                Project
-                <br />
-                Completed
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-5xl">5+</h1>
-              <span className="text-sm text-muted-foreground">
-                Years
-                <br />
-                Experience
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <h1 className="text-5xl">2+</h1>
-              <span className="text-sm text-muted-foreground">
-                Awards
-                <br />
-                Achievement
-              </span>
-            </div> */}
           </div>
         </div>
       </div>
