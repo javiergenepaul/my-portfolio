@@ -34,7 +34,7 @@ export const FloatingNavigation = () => {
       >
         <div
           className={twMerge(
-            "bg-popover z-[999999999999] rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-10 hover:opacity-100 transition-opacity duration-300",
+            "bg-popover border z-[999999999999] rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-10 hover:opacity-100 transition-opacity duration-300",
             onDrag ? "cursor-grabbing opacity-100" : ""
           )}
         >
