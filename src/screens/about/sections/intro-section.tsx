@@ -6,13 +6,12 @@ import { SubTitleAnimation } from "@/screens";
 import { PROJECTS } from "@/screens/hero/sections";
 import { useSettingsStore } from "@/stores";
 import { DownloadIcon } from "@radix-ui/react-icons";
-import moment from "moment";
-
 import * as DarkResume from "@/assets/resume/dark";
 import * as LightResume from "@/assets/resume/light";
-import { Lightbulb } from "lucide-react";
-import "./css/intro-section.css";
+import { Brain, Lightbulb } from "lucide-react";
 import { getColor } from "@/lib";
+import moment from "moment";
+import "./css/intro-section.css";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -121,19 +120,36 @@ export const IntroSection = () => {
                   key={index}
                   className="flex items-center gap-2 flex-nowrap"
                 >
-                  <Lightbulb
-                    color={getColor(color)}
-                    width={"18px"}
-                    height={"18px"}
-                  />
+                  {index % 2 === 0 ? (
+                    <Lightbulb
+                      color={getColor(color)}
+                      width={"18px"}
+                      height={"18px"}
+                    />
+                  ) : (
+                    <Brain
+                      color={getColor(color)}
+                      width={"18px"}
+                      height={"18px"}
+                    />
+                  )}
+
                   <span className="text-xs text-nowrap">
-                    Turning Ideas Into Reality
+                    {translate("about.slogan")}
                   </span>
-                  <Lightbulb
-                    color={getColor(color)}
-                    width={"18px"}
-                    height={"18px"}
-                  />
+                  {index % 2 === 0 ? (
+                    <Lightbulb
+                      color={getColor(color)}
+                      width={"18px"}
+                      height={"18px"}
+                    />
+                  ) : (
+                    <Brain
+                      color={getColor(color)}
+                      width={"18px"}
+                      height={"18px"}
+                    />
+                  )}
                 </div>
               ))}
             </div>
