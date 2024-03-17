@@ -1,4 +1,10 @@
-import { Color, LanguageType, Theme, useLanguageStore, useSettingsStore } from "@/stores";
+import {
+  Color,
+  LanguageType,
+  Theme,
+  useLanguageStore,
+  useSettingsStore,
+} from "@/stores";
 import {
   Button,
   Collapsible,
@@ -29,6 +35,7 @@ import {
   LAVENDER_COLOR,
   SCARLET_COLOR,
   SILVER_COLOR,
+  SILVER_COLOR_DARK,
   SUNSET_COLOR,
 } from "@/config";
 
@@ -130,7 +137,7 @@ const ParticleSwitchField = () => {
 // TODO:: change the design
 const ColorPaletteField = () => {
   const {} = useTranslation();
-  const { color, setColor } = useSettingsStore();
+  const { color, setColor, getTheme } = useSettingsStore();
   const onChangeColor = (color: Color) => {
     setColor(color);
     const colorSelected: AppearanceColorOptionsInterface | undefined =
@@ -186,7 +193,7 @@ const ColorPaletteField = () => {
     {
       name: translate("settings.color.options.silver.title"),
       value: "silver",
-      color: SILVER_COLOR,
+      color: getTheme() ? SILVER_COLOR : SILVER_COLOR_DARK,
       qoutes: [...generateColorQoutes("silver")],
     },
   ];

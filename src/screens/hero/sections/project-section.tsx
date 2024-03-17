@@ -399,6 +399,69 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MICROSERVICES_STACK,
     ],
     status: "unfinished",
+<<<<<<< HEAD
+  },
+  {
+    title: translate("projects.myPortfolio.title"),
+    company: undefined,
+    date: new Date("2024-02-22"),
+    description: translate("projects.myPortfolio.description"),
+    category: [
+      translate("projects.myPortfolio.category.landing"),
+      translate("projects.myPortfolio.category.portfolioWebsite"),
+    ],
+    codeUrl: "https://github.com/javiergenepaul/my-portfolio",
+    previewUrl: "https://paul-javier-portfolio.netlify.app/",
+    type: "personal",
+    projectId: "my-portfolio",
+    carousel: [
+      {
+        value: "1",
+        image: ProjectTest01,
+        name: "test01",
+      },
+      {
+        value: "2",
+        image: ProjectTest02,
+        name: "test02",
+      },
+      {
+        value: "3",
+        image: ProjectTest03,
+        name: "test03",
+      },
+      {
+        value: "4",
+        image: ProjectTest04,
+        name: "test04",
+      },
+      {
+        value: "5",
+        image: ProjectTest05,
+        name: "test05",
+      },
+    ],
+    stack: [
+      Stack.VITE_STACK,
+      Stack.REACT_STACK,
+      Stack.TYPESCRIPT_STACK,
+      Stack.TAILWIND_STACK,
+      Stack.SHAD_CN_STACK,
+      Stack.ZUSTAND_STACK,
+      Stack.NETLIFY_STACK,
+      Stack.FIGMA_STACK,
+      Stack.THREE_JS_STACK,
+      Stack.FRAMER_MOTION_STACK,
+      Stack.I18N_STACK,
+      Stack.PNPM_STACK,
+      Stack.LANDING_PAGE_STACK,
+      Stack.FIGMA_TO_REACT_STACK,
+      Stack.PIXEL_PERFECT_STACK,
+      Stack.VITEST_STACK,
+    ],
+    status: "completed",
+=======
+>>>>>>> master
   },
 ];
 

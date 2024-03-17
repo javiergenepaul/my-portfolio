@@ -21,9 +21,6 @@
     "dark": "Dark Mode",
     "system": "System"
   },
-  "resume": {
-    "btnName": "Download Resume"
-  },
   "errorMessages": {
     "required": "This field is required. Please provide a value.",
     "invalidEmail": "Please enter a valid email address.",
@@ -245,6 +242,14 @@
         "ecommerce": "ecommerce",
         "landing": "Landing Page"
       }
+    },
+    "myPortfolio": {
+      "title": "My Portfolio",
+      "description": "This project showcases my front-end development skills and passion for software engineering. Explore a collection of my projects, each demonstrating expertise in various technologies and frameworks. With responsive design and interactive elements, this portfolio offers a glimpse into my creativity and dedication to crafting elegant solutions. Thank you for visiting!",
+      "category": {
+        "landing": "Landing Page",
+        "portfolioWebsite": "portfolioWebsite"
+      }
     }
   },
   "contact": {
@@ -463,8 +468,12 @@
     "settingsUpdated": "Settings Updated"
   },
   "about": {
+    "hello": "Hello I'm",
+    "name": "Gene Paul Mar Javier",
+    "intruduction": "My journey into the world of technology began at the University of Cebu in 2019. From those early days, I've grown into a seasoned full-stack developer, adept at crafting digital landscapes. While specializing in modern technologies like React, TypeScript, Tailwind CSS, and Spring Boot, I'm always eager to learn new tech stacks that offer innovative software solutions. Each project serves as a chapter in my story, where challenges fuel my passion for innovation. With every line of code, I turn ideas into reality, weaving dreams into tangible experiences and pushing the boundaries of what's achievable in the digital realm. Welcome to my portfolio, where innovation thrives, imagination flourishes, and every challenge is an opportunity for growth.",
     "title": "About Me",
-    "description": "test about me description"
+    "description": "test about me description",
+    "downloadResume": "Download My Resume"
   },
   "skills": {
     "title": "Skills",
