@@ -108,8 +108,8 @@ export const FloatingNavbar = () => {
   return (
     <div
       className={twMerge(
-        "hidden lg:block",
-        location.pathname === PATH.HOME.path ? "lg:hidden" : ""
+        "hidden lg:block opacity-1 duration-300 transition-opacity",
+        location.pathname === PATH.HOME.path ? "opacity-0" : ""
       )}
     >
       <div className="fixed inset-0 z-[999999999] flex items-center w-full h-full pointer-events-none">
