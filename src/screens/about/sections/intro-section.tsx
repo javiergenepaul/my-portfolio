@@ -1,6 +1,7 @@
 import { AboutMe, ResumeDark } from "@/assets";
 import { Button } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
+import { translate } from "@/i18n";
 import { SubTitleAnimation } from "@/screens";
 import { PROJECTS } from "@/screens/hero/sections";
 import { DownloadIcon } from "@radix-ui/react-icons";
@@ -67,30 +68,19 @@ export const IntroSection = () => {
       </div>
       <div className="flex w-full">
         <div className="flex flex-col justify-center">
-          <h3 className="text-2xl font-medium">Hello I'm</h3>
+          <h3 className="text-2xl font-medium">{translate("about.hello")}</h3>
           <h1 className="text-5xl font-bold text-primary">
-            Gene Paul Mar Javier
+            {translate("about.name")}
           </h1>
           <SubTitleAnimation />
           <p className="mt-4 text-sm text-muted-foreground">
-            My journey into the world of technology began at the University of
-            Cebu in 2019. From those early days, I've grown into a seasoned
-            full-stack developer, adept at crafting digital landscapes. While
-            specializing in modern technologies like React, TypeScript, Tailwind
-            CSS, and Spring Boot, I'm always eager to learn new tech stacks that
-            offer innovative software solutions. Each project serves as a
-            chapter in my story, where challenges fuel my passion for
-            innovation. With every line of code, I turn ideas into reality,
-            weaving dreams into tangible experiences and pushing the boundaries
-            of what's achievable in the digital realm. Welcome to my portfolio,
-            where innovation thrives, imagination flourishes, and every
-            challenge is an opportunity for growth.
+            {translate("about.intruduction")}
           </p>
           <Button
             onClick={DownloadResumeHandler}
             className="px-8 mt-4 space-x-2 w-fit"
           >
-            <span>Download My Resume</span>
+            <span>{translate("about.downloadResume")}</span>
             <DownloadIcon />
           </Button>
 
