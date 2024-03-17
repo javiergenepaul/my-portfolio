@@ -89,10 +89,10 @@ const SideBarLayout = (props: SideBarLayoutInterface) => {
       <main
         {...handlers}
         className={twMerge(
-          "relative w-full h-full min-h-dvh px-6 py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none duration-300 transition-all",
-          `${fontSelected()} ${isBackgroundOnly ? "opacity-0 pointer-events-none" : ""} ${
-            DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""
-          }`
+          "relative w-full h-full min-h-dvh px-6 overflow-x-hidden py-12 mx-auto min-w-screen-xl lg:px-24 lg:py-0 select-none duration-300 transition-all",
+          `${fontSelected()} ${
+            isBackgroundOnly ? "opacity-0 pointer-events-none" : ""
+          } ${DEV_MODE && DEV_MODE === "development" ? "debug-screens" : ""}`
         )}
       >
         {children}
