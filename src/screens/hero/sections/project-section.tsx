@@ -471,6 +471,8 @@ export const PROJECTS: ProjectInterface[] = [
     date: new Date("2024-03-17"),
     type: "personal",
     projectId: "palette-shift",
+    codeUrl: "https://github.com/javiergenepaul/Palette-Shift.git",
+    previewUrl: undefined,
     carousel: [
       {
         value: "1",
