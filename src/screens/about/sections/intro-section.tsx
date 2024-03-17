@@ -10,6 +10,9 @@ import moment from "moment";
 
 import * as DarkResume from "@/assets/resume/dark";
 import * as LightResume from "@/assets/resume/light";
+import { Lightbulb } from "lucide-react";
+import "./css/intro-section.css";
+import { getColor } from "@/lib";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -108,49 +111,79 @@ export const IntroSection = () => {
   ];
 
   return (
-    <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
-      <div className="flex items-end w-full pl-0 lg:pl-24">
-        <img
-          width={"400px"}
-          height={"400px"}
-          src={AboutMe}
-          alt="Gene Paul Mar Javier"
-        />
-      </div>
-      <div className="flex w-full">
-        <div className="flex flex-col justify-center">
-          <h3 className="text-2xl font-medium">{translate("about.hello")}</h3>
-          <h1 className="text-5xl font-bold text-primary">
-            {translate("about.name")}
-          </h1>
-          <SubTitleAnimation />
-          <p className="mt-4 text-sm text-muted-foreground">
-            {translate("about.intruduction")}
-          </p>
-          <Button
-            onClick={DownloadResumeHandler}
-            className="px-8 mt-4 space-x-2 w-fit"
-          >
-            <span>{translate("about.downloadResume")}</span>
-            <DownloadIcon />
-          </Button>
-
-          <div className="grid grid-cols-3 mt-8">
-            {STATISTICS.map((item: PersonalStatisticInterface) => {
-              return (
-                <div className="flex flex-col">
-                  <h1 className="text-5xl font-semibold">{item.count}+</h1>
-                  <span className="text-sm text-muted-foreground">
-                    {item.topTitle}
-                    <br />
-                    {item.botTitle}
+    <div className="relative h-full min-h-screen">
+      <div className="absolute overflow-hidden w-screen bottom-0 left-[-100px]">
+        <div className="flex px-4 py-2 overflow-hidden bg-popover">
+          <div className="flex gap-2 -ml-2">
+            <div className="flex gap-24 logo-slide flex-nowrap animate-tape">
+              {Array.from({ length: 999 }, (_, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 flex-nowrap"
+                >
+                  <Lightbulb
+                    color={getColor(color)}
+                    width={"18px"}
+                    height={"18px"}
+                  />
+                  <span className="text-xs text-nowrap">
+                    Turning Ideas Into Reality
                   </span>
+                  <Lightbulb
+                    color={getColor(color)}
+                    width={"18px"}
+                    height={"18px"}
+                  />
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </section>
+      <section className="flex flex-col-reverse h-full min-h-screen lg:flex-row">
+        <div className="flex items-end w-full pl-0 lg:pl-24">
+          <img
+            width={"400px"}
+            height={"400px"}
+            src={AboutMe}
+            alt="Gene Paul Mar Javier"
+          />
+        </div>
+        <div className="flex w-full">
+          <div className="flex flex-col justify-center">
+            <h3 className="text-2xl font-medium">{translate("about.hello")}</h3>
+            <h1 className="text-5xl font-bold text-primary">
+              {translate("about.name")}
+            </h1>
+            <SubTitleAnimation />
+            <p className="mt-4 text-sm text-muted-foreground">
+              {translate("about.intruduction")}
+            </p>
+            <Button
+              onClick={DownloadResumeHandler}
+              className="px-8 mt-4 space-x-2 w-fit"
+            >
+              <span>{translate("about.downloadResume")}</span>
+              <DownloadIcon />
+            </Button>
+
+            <div className="grid grid-cols-3 mt-8">
+              {STATISTICS.map((item: PersonalStatisticInterface) => {
+                return (
+                  <div className="flex flex-col">
+                    <h1 className="text-5xl font-semibold">{item.count}+</h1>
+                    <span className="text-sm text-muted-foreground">
+                      {item.topTitle}
+                      <br />
+                      {item.botTitle}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
