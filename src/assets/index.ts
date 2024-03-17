@@ -7,4 +7,5 @@ import AboutMe from "./about-me.png";
 export * from "./flag";
 export * from "./projects";
 export * from "./stack-icon";
+export * from "./resume";
 export { AvatarProfile, ResumeLight, ResumeDark, ContactLogo, AboutMe };
