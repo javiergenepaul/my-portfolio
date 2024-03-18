@@ -8,6 +8,7 @@ import { useSettingsStore } from "@/stores";
 import { useEffect, useState } from "react";
 import { getColor } from "@/lib";
 import { twMerge } from "tailwind-merge";
+import { translate } from "@/i18n";
 
 export const FloatingNavbar = () => {
   const location = useLocation();
@@ -44,7 +45,7 @@ export const FloatingNavbar = () => {
         />
       ),
       path: PATH.HOME.path,
-      name: "Home",
+      name: translate("floatingNav.home"),
     },
     {
       icon: (
@@ -55,7 +56,7 @@ export const FloatingNavbar = () => {
         />
       ),
       path: PATH.ABOUT.path,
-      name: "About Me",
+      name: translate("floatingNav.aboutMe"),
     },
     {
       icon: (
@@ -66,7 +67,7 @@ export const FloatingNavbar = () => {
         />
       ),
       path: PATH.PROJECTS.path,
-      name: "Projects",
+      name: translate("floatingNav.project"),
     },
     {
       icon: (
@@ -77,7 +78,7 @@ export const FloatingNavbar = () => {
         />
       ),
       path: PATH.SKILLS.path,
-      name: "Skills",
+      name: translate("floatingNav.skills"),
     },
     {
       icon: (
@@ -88,7 +89,7 @@ export const FloatingNavbar = () => {
         />
       ),
       path: PATH.CONTACTS.path,
-      name: "Contact Me",
+      name: translate("floatingNav.contactMe"),
     },
     {
       icon: (
@@ -103,7 +104,7 @@ export const FloatingNavbar = () => {
         />
       ),
       path: PATH.SETTINGS.path,
-      name: "Settings",
+      name: translate("floatingNav.settings"),
     },
   ];
 

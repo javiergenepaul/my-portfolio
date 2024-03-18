@@ -16,6 +16,14 @@
       "skills": "Skills"
     }
   },
+  "floatingNav": {
+    "home": "Home",
+    "aboutMe": "About Me",
+    "project": "Project",
+    "skills": "Skills",
+    "contactMe": "Contact Me",
+    "settings": "Settings"
+  },
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
