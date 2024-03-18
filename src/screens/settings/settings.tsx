@@ -1,4 +1,4 @@
-import { FadeAnimation, FloatingNavbar, PageTitle } from "@/components";
+import { FadeAnimation, PageTitle } from "@/components";
 import { SettingsSidenav } from "./components";
 import { Outlet } from "react-router-dom";
 import { PATH } from "@/config";
@@ -26,7 +26,6 @@ export const Settings = () => {
 
   return (
     <FadeAnimation>
-      <FloatingNavbar />
       <div className="space-y-6 select-none lg:py-16">
         <PageTitle
           pageName={translate("settings.settings")}
