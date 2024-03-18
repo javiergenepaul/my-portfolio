@@ -32,13 +32,15 @@ export const FloatingNavbar = () => {
     }
   };
 
+  const NAV_ICON_SIZE: string = "1.5rem";
+
   const FLOATING_NAV_BUTTON: FloatingNavButtonInterface[] = [
     {
       icon: (
         <Home
           color={isNavActive(PATH.HOME.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.HOME.path,
@@ -48,8 +50,8 @@ export const FloatingNavbar = () => {
       icon: (
         <User
           color={isNavActive(PATH.ABOUT.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.ABOUT.path,
@@ -59,8 +61,8 @@ export const FloatingNavbar = () => {
       icon: (
         <PieChart
           color={isNavActive(PATH.PROJECTS.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.PROJECTS.path,
@@ -70,8 +72,8 @@ export const FloatingNavbar = () => {
       icon: (
         <Code
           color={isNavActive(PATH.SKILLS.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.SKILLS.path,
@@ -81,8 +83,8 @@ export const FloatingNavbar = () => {
       icon: (
         <Contact
           color={isNavActive(PATH.CONTACTS.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.CONTACTS.path,
@@ -96,8 +98,8 @@ export const FloatingNavbar = () => {
             PATH.SETTINGS_APPEARNCE.path,
             PATH.SETTINGS_GENERAL.path,
           ])}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.SETTINGS.path,
