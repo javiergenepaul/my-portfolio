@@ -8,7 +8,7 @@
 }
 
 .animate-tape {
-  animation: move-tape 9000s linear infinite;
+  animation: move-tape 900s linear infinite;
   transition: animation-play-state 0.3s ease; /* Add transition */
 }
 
