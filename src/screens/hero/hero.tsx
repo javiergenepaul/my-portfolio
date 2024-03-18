@@ -54,7 +54,7 @@ export const Hero = () => {
 
   return (
     <FadeAnimation>
-      <div className="h-full lg:flex lg:justify-between lg:gap-4">
+      <div className="h-full mx-auto lg:flex lg:justify-between max-w-7xl lg:gap-4">
         <header className="justify-between h-[80dvh] lg:sticky lg:top-0 lg:flex lg:max-h-dvh lg:w-2/5 lg:flex-col lg:py-24">
           <HeaderSection />
         </header>

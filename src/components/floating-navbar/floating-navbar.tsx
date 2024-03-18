@@ -108,16 +108,18 @@ export const FloatingNavbar = () => {
   return (
     <div
       className={twMerge(
-        "hidden lg:block",
-        location.pathname === PATH.HOME.path ? "lg:hidden" : ""
+        "hidden lg:block opacity-1",
+        location.pathname === PATH.HOME.path ? "opacity-0" : ""
       )}
     >
       <div className="fixed inset-0 z-[999999999] flex items-center w-full h-full pointer-events-none">
         <nav className="px-2 py-4 border bg-popover rounded-r-xl">
           <ul className="flex flex-col gap-2 pointer-events-auto">
-            {FLOATING_NAV_BUTTON.map((item: FloatingNavButtonInterface) => {
-              return <FloatingNavButton {...item} />;
-            })}
+            {FLOATING_NAV_BUTTON.map(
+              (item: FloatingNavButtonInterface, index: React.Key) => {
+                return <FloatingNavButton key={index} {...item} />;
+              }
+            )}
           </ul>
         </nav>
       </div>
