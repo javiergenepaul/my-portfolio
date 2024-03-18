@@ -127,13 +127,15 @@ export const IntroSection = () => {
     },
   ];
 
+  const BANNER_ICON_SIZE: string = "1.125rem";
+
   return (
     <div className="relative">
       <div className="absolute overflow-hidden w-screen bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
         <div
           onMouseEnter={onMouseEnterBanner}
           onMouseLeave={onMouseLeaveBanner}
-          className="flex px-4 py-2 overflow-hidden bg-popover"
+          className="flex px-4 py-2 overflow-hidden border bg-popover"
         >
           <div className="flex gap-2 -ml-2">
             <div
@@ -142,7 +144,7 @@ export const IntroSection = () => {
                 isPauseAnimateBanner ? "pause-tape-animation" : ""
               )}
             >
-              {Array.from({ length: 999 }, (_, index) => (
+              {Array.from({ length: 50 }, (_, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-2 flex-nowrap"
@@ -150,14 +152,14 @@ export const IntroSection = () => {
                   {index % 2 === 0 ? (
                     <Lightbulb
                       color={getColor(color)}
-                      width={"18px"}
-                      height={"18px"}
+                      width={BANNER_ICON_SIZE}
+                      height={BANNER_ICON_SIZE}
                     />
                   ) : (
                     <Brain
                       color={getColor(color)}
-                      width={"18px"}
-                      height={"18px"}
+                      width={BANNER_ICON_SIZE}
+                      height={BANNER_ICON_SIZE}
                     />
                   )}
 
@@ -167,14 +169,14 @@ export const IntroSection = () => {
                   {index % 2 === 0 ? (
                     <Lightbulb
                       color={getColor(color)}
-                      width={"18px"}
-                      height={"18px"}
+                      width={BANNER_ICON_SIZE}
+                      height={BANNER_ICON_SIZE}
                     />
                   ) : (
                     <Brain
                       color={getColor(color)}
-                      width={"18px"}
-                      height={"18px"}
+                      width={BANNER_ICON_SIZE}
+                      height={BANNER_ICON_SIZE}
                     />
                   )}
                 </div>
@@ -203,10 +205,14 @@ export const IntroSection = () => {
             </p>
             <Button
               onClick={DownloadResumeHandler}
-              className="px-8 mt-4 space-x-2 w-fit"
+              className="px-8 mt-4 space-x-2 text-foreground w-fit"
             >
               <span>{translate("about.downloadResume")}</span>
-              <DownloadIcon />
+              <DownloadIcon
+                className="transition-colors duration-300 text-foreground"
+                width={"20px"}
+                height={"20px"}
+              />
             </Button>
 
             <div className="grid grid-cols-3 mt-10">

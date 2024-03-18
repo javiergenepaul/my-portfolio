@@ -8,6 +8,7 @@ import { useSettingsStore } from "@/stores";
 import { useEffect, useState } from "react";
 import { getColor } from "@/lib";
 import { twMerge } from "tailwind-merge";
+import { translate } from "@/i18n";
 
 export const FloatingNavbar = () => {
   const location = useLocation();
@@ -32,61 +33,63 @@ export const FloatingNavbar = () => {
     }
   };
 
+  const NAV_ICON_SIZE: string = "1.5rem";
+
   const FLOATING_NAV_BUTTON: FloatingNavButtonInterface[] = [
     {
       icon: (
         <Home
           color={isNavActive(PATH.HOME.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.HOME.path,
-      name: "Home",
+      name: translate("floatingNav.home"),
     },
     {
       icon: (
         <User
           color={isNavActive(PATH.ABOUT.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.ABOUT.path,
-      name: "About Me",
+      name: translate("floatingNav.aboutMe"),
     },
     {
       icon: (
         <PieChart
           color={isNavActive(PATH.PROJECTS.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.PROJECTS.path,
-      name: "Projects",
+      name: translate("floatingNav.project"),
     },
     {
       icon: (
         <Code
           color={isNavActive(PATH.SKILLS.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.SKILLS.path,
-      name: "Skills",
+      name: translate("floatingNav.skills"),
     },
     {
       icon: (
         <Contact
           color={isNavActive(PATH.CONTACTS.path)}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.CONTACTS.path,
-      name: "Contact Me",
+      name: translate("floatingNav.contactMe"),
     },
     {
       icon: (
@@ -96,12 +99,12 @@ export const FloatingNavbar = () => {
             PATH.SETTINGS_APPEARNCE.path,
             PATH.SETTINGS_GENERAL.path,
           ])}
-          height={"28px"}
-          width={"28px"}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
         />
       ),
       path: PATH.SETTINGS.path,
-      name: "Settings",
+      name: translate("floatingNav.settings"),
     },
   ];
 

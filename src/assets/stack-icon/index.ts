@@ -45,6 +45,7 @@ import PixelPerfectStackIcon from "./pixel-perfect-stack-icon.svg";
 import PnpmStackIcon from "./pnpm-stack-icon.svg";
 import PostmanStackIcon from "./postman-stack-icon.svg";
 import ReactQueryStackIcon from "./react-query-stack-icon.svg";
+import ReactRouterStackIcon from "./react-router-stack-icon.svg";
 import ReactStackIcon from "./react-stack-icon.svg";
 import ShadCNStackIcon from "./shadcnui-stack-icon.svg";
 import SpringBootStackIcon from "./spring-boot-stack-icon.svg";
@@ -107,6 +108,7 @@ export {
   PnpmStackIcon,
   PostmanStackIcon,
   ReactQueryStackIcon,
+  ReactRouterStackIcon,
   ReactStackIcon,
   ShadCNStackIcon,
   SpringBootStackIcon,

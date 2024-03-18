@@ -67,6 +67,7 @@ export const BLADE_URL: string = "https://laravel.com/docs/10.x/blade";
 export const PHP_URL: string = "https://www.php.net/";
 export const BOOTSTRAP_URL: string = "https://getbootstrap.com/";
 export const VITEST_URL: string = "https://vitest.dev/";
+export const REACT_ROUTER_URL: string = "https://reactrouter.com/en/main";
 
 // general url
 export const CREDITS_OWNER_URL: string = "https://brittanychiang.com/";

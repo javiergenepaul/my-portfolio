@@ -66,7 +66,8 @@ type FrontEndStack =
   | "npm"
   | "pnpm"
   | "yarn"
-  | "vitest";
+  | "vitest"
+  | "reactRouter";
 
 type UIStack =
   | "figma"
@@ -100,7 +101,7 @@ export const StackContent = (stack: TechStackInterface) => {
           {getStackName()}
         </Badge>
       </HoverCardTrigger>
-      <HoverCardContent className="overflow-hidden p-0 m-0 border-0" side="top">
+      <HoverCardContent className="p-0 m-0 overflow-hidden border-0" side="top">
         <StackDetails {...stack} />
       </HoverCardContent>
     </HoverCard>

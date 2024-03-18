@@ -16,6 +16,14 @@
       "skills": "Skills"
     }
   },
+  "floatingNav": {
+    "home": "Home",
+    "aboutMe": "About Me",
+    "project": "Project",
+    "skills": "Skills",
+    "contactMe": "Contact Me",
+    "settings": "Settings"
+  },
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
@@ -149,7 +157,8 @@
       "figmaToReact": "Figma to React",
       "attentionToDetails": "Attention to Details",
       "pixelPerfect": "Pixel Perfect",
-      "landingPage": "Landing Page"
+      "landingPage": "Landing Page",
+      "reactRouter": "React Router"
     },
     "hoverCard": {
       "years": "Years",
