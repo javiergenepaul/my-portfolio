@@ -1,5 +1,5 @@
 import { AboutMe } from "@/assets";
-import { Button } from "@/components";
+import { Button, LazyImage } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
 import { PROJECTS } from "@/screens/hero/sections";
@@ -188,9 +188,8 @@ export const IntroSection = () => {
       </div>
       <section className="flex flex-col-reverse h-full min-h-screen mx-auto lg:flex-row max-w-7xl">
         <div className="flex items-end w-full pl-0 lg:pb-8 lg:pl-24">
-          <img
-            width={"400px"}
-            height={"400px"}
+          <LazyImage
+            width="400px"
             src={AboutMe}
             alt={translate("about.name")}
           />
