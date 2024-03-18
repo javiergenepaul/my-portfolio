@@ -54,8 +54,6 @@ export const ServiceSection = () => {
         Stack.BLADE_STACK,
         Stack.TAILWIND_STACK,
         Stack.SHAD_CN_STACK,
-        Stack.MUI_STACK,
-        Stack.CHAKRA_STACK,
         Stack.ANT_DESIGN_STACK,
         Stack.ZUSTAND_STACK,
         Stack.MOBX_STACK,
@@ -73,6 +71,8 @@ export const ServiceSection = () => {
         Stack.THREE_JS_STACK,
         Stack.REACT_ROUTER_STACK,
         Stack.VITEST_STACK,
+        // Stack.MUI_STACK, // TODO:: enable this when have a project
+        // Stack.CHAKRA_STACK, //TODO:: enable this when have a project
         // Stack.JEST_STACK, //TODO:: update later
         // Stack.CYPRESS_STACK, //TODO:: update later
       ],
