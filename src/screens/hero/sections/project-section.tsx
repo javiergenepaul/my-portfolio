@@ -247,7 +247,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.NETLIFY_STACK,
       Stack.I18N_STACK,
     ],
-    status: "unfinished",
+    status: "completed",
   },
   {
     title: translate("projects.hoobank.title"),
@@ -401,7 +401,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MICROSERVICES_STACK,
       Stack.REACT_ROUTER_STACK,
     ],
-    status: "unfinished",
+    status: "completed",
   },
   {
     title: translate("projects.myPortfolio.title"),
@@ -521,7 +521,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.LANDING_PAGE_STACK,
       Stack.VITEST_STACK,
     ],
-    status: "ongoing",
+    status: "completed",
   },
 ];
 

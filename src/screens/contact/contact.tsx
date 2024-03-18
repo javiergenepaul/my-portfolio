@@ -4,7 +4,6 @@ import {
   CardHeader,
   CardTitle,
   FadeAnimation,
-  FloatingNavbar,
 } from "@/components";
 import { translate } from "@/i18n";
 import { LogoCanvas } from "./components";
@@ -13,7 +12,6 @@ import { ContactForm } from "../hero";
 export const Contact = () => {
   return (
     <FadeAnimation>
-      <FloatingNavbar />
       <div className="h-screen py-10 pt-0 pb-16 space-y-6 lg:pt-10 ">
         <div className="flex flex-col h-full gap-24 lg:flex-row">
           <Card className="items-center w-full h-full basis-1/2">
