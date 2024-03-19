@@ -131,11 +131,11 @@ export const IntroSection = () => {
 
   return (
     <div className="relative">
-      <div className="absolute overflow-hidden w-screen bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
+      <div className="absolute overflow-hidden w-screen z-50 bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
         <div
           onMouseEnter={onMouseEnterBanner}
           onMouseLeave={onMouseLeaveBanner}
-          className="flex px-4 py-2 overflow-hidden border bg-popover"
+          className="flex px-4 py-2 overflow-hidden border-t border-b bg-popover"
         >
           <div className="flex gap-2 -ml-2">
             <div
