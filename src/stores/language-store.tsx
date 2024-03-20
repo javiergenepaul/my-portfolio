@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type LanguageType = "en" | "ja" | "fil" | "ceb";
+type LanguageType = "en" | "ja" | "fil" | "ceb" | "ar";
 
 interface LanguageStoreInterface {
   language: LanguageType;

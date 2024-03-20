@@ -1,6 +1,7 @@
-import en from "./en.json"
-import ja from "./ja.json"
-import fil from "./fil.json"
-import ceb from "./ceb.json"
+import EN from "./en.json";
+import JA from "./ja.json";
+import FIL from "./fil.json";
+import CEB from "./ceb.json";
+import AR from "./ar.json";
 
-export {en, ja, fil, ceb}
+export { EN, JA, FIL, CEB, AR };

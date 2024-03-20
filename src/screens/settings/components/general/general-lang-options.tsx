@@ -2,13 +2,13 @@ import { Label } from "@/components";
 import { LanguageType } from "@/stores";
 import { RadioGroupItem } from "@radix-ui/react-radio-group";
 
-export interface GeneralLangOptions {
+export interface GeneralLangOptionsInterface {
   value: LanguageType;
   name: string;
   icon: React.ReactNode;
 }
 
-const GeneralLangOption = (props: GeneralLangOptions) => {
+const GeneralLangOption = (props: GeneralLangOptionsInterface) => {
   const { value, name, icon } = props;
   return (
     <div>

@@ -1,10 +1,10 @@
 import { i18n, translate } from "@/i18n";
 import {
-  GeneralLangOptions,
+  GeneralLangOptionsInterface,
   GeneralLangOptionsSkeleton,
   InpuptFieldGroup,
 } from "../components";
-import { JPFlag, PHFlag, USFlag } from "@/assets";
+import { ARFlag, JPFlag, PHFlag, USFlag } from "@/assets";
 import { LanguageType, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   Label,
@@ -39,7 +39,7 @@ export const SettingsGeneral = () => {
   const particleSwitchId = useId();
   const sideNavToggleSwitch = useId();
 
-  const LANGUAGE_OPTIONS: GeneralLangOptions[] = [
+  const LANGUAGE_OPTIONS: GeneralLangOptionsInterface[] = [
     {
       value: "en",
       name: translate("sidebar.languageOption.english"),
@@ -60,35 +60,28 @@ export const SettingsGeneral = () => {
       name: translate("sidebar.languageOption.cebuano"),
       icon: <img width={"170px"} height={"80px"} src={PHFlag} />,
     },
+    {
+      value: "ar",
+      name: "Arabic",
+      icon: <img width={"170px"} height={"80px"} src={ARFlag} />,
+    },
   ];
 
   const onChangeLangHanlder = (value: LanguageType) => {
     setLanguage(value);
     i18n.changeLanguage(value);
+    const languageSelected: string | undefined = LANGUAGE_OPTIONS.find(
+      (data) => data.value === value
+    )?.name;
 
     toast({
       variant: "success",
       duration: 3000,
       title: translate("settings.settingsUpdated"),
       description: translate("settings.lang.toast.success.general", {
-        language: getLanguageName(value),
+        language: languageSelected,
       }),
     });
-  };
-
-  const getLanguageName = (lang: LanguageType): string => {
-    switch (lang) {
-      case "en":
-        return "English";
-      case "ja":
-        return "Japanese";
-      case "fil":
-        return "Tagalog";
-      case "ceb":
-        return "Cebuano";
-      default:
-        return "English";
-    }
   };
 
   const onChangeParticleBackground = (value: boolean) => {
@@ -189,7 +182,7 @@ export const SettingsGeneral = () => {
           className="grid grid-cols-4 gap-4"
         >
           {LANGUAGE_OPTIONS.map(
-            (lang: GeneralLangOptions, index: React.Key) => (
+            (lang: GeneralLangOptionsInterface, index: React.Key) => (
               <Suspense key={index} fallback={<GeneralLangOptionsSkeleton />}>
                 <LazyLanguageOption key={index} {...lang} />
               </Suspense>
