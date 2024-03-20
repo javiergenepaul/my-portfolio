@@ -16,13 +16,18 @@
       "skills": "Mga kasanayan"
     }
   },
+  "floatingNav": {
+    "home": "Bahay",
+    "aboutMe": "Tungkol sa Akin",
+    "project": "Proyekto",
+    "skills": "Mga kasanayan",
+    "contactMe": "Tawagan mo ako",
+    "settings": "Mga setting"
+  },
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
     "system": "Sistema"
-  },
-  "resume": {
-    "btnName": "I-download ang Resume"
   },
   "errorMessages": {
     "required": "Kinakailangan ang field na ito. ",
@@ -42,7 +47,7 @@
     "contacts": "Mga contact"
   },
   "more": {
-    "show": "Ipakita ang Higit Pa",
+    "show": "Magpakita ng Higit Pa",
     "hide": "Magpakita ng Mas Kaunti"
   },
   "header": {
@@ -77,7 +82,7 @@
   },
   "services": {
     "backend": {
-      "title": "Pag-unlad ng Back-end",
+      "title": "Back-end Development",
       "description": "Sa aking serbisyo sa pag-develop ng backend, dalubhasa ako sa pagpapatupad ng Spring Boot Java Microservices upang gumawa ng mga matatag na API, na tinitiyak ang pagiging maaasahan, scalability, at seguridad ng iyong imprastraktura sa backend. "
     },
     "frontend": {
@@ -117,7 +122,7 @@
       "i18n": "i18Susunod",
       "axios": "Axios",
       "reactQuery": "React Query",
-      "springBoot": "Spring Boot",
+      "springBoot": "Boot ng tagsibol",
       "springSecurity": "Seguridad sa tagsibol",
       "springSecurityOAuth": "Spring Security OAuth",
       "springJDBC": "JDBC kasama si Spring",
@@ -152,14 +157,19 @@
       "figmaToReact": "Figma to React",
       "attentionToDetails": "Atensyon sa mga detalye",
       "pixelPerfect": "Pixel Perfect",
-      "landingPage": "Landing Page"
+      "landingPage": "Landing Page",
+      "reactRouter": "React Router"
+    },
+    "hoverCard": {
+      "years": "taon",
+      "projects": "Mga proyekto"
     }
   },
   "projects": {
     "title": "Mga proyekto",
     "description": "paglalarawan ng mga proyekto sa pagsubok",
     "tag": {
-      "confidential": "Kumpidensyal",
+      "confidential": "Pinoprotektahan",
       "personal": "Personal",
       "client": "Kliyente",
       "tutorial": "Pagtuturo"
@@ -240,6 +250,24 @@
       "category": {
         "ecommerce": "ecommerce",
         "landing": "Landing Page"
+      }
+    },
+    "myPortfolio": {
+      "title": "Aking portfolio",
+      "description": "Ang proyektong ito ay nagpapakita ng aking mga front-end na mga kasanayan sa pagbuo at pagkahilig para sa software engineering. ",
+      "category": {
+        "landing": "Landing Page",
+        "portfolioWebsite": "portfolioWebsite"
+      }
+    },
+    "paletteShift": {
+      "title": "PaletteShift: I-personalize ang Wika at Tema",
+      "description": "Ang PaletteShift ay isang dynamic na platform na idinisenyo upang bigyang kapangyarihan ang mga user na i-personalize ang kanilang digital na kapaligiran. ",
+      "category": {
+        "webDevelopment": "Web Development",
+        "localizationAndInternalization": "Lokalisasyon at Internasyonalisasyon",
+        "accessibility": "Accessibility",
+        "softwareToolsLibraries": "Mga Software Tool at Mga Aklatan"
       }
     }
   },
@@ -336,7 +364,7 @@
             "05": "Yakapin ang kaakit-akit na pang-akit ng esmeralda, kung saan ang kagandahan ay naghahari sa bawat aspeto.",
             "06": "Sa larangan ng emerald elegance, ang bawat shimmering facet ay nagsasabi ng isang kuwento ng pinong biyaya at natural na karilagan.",
             "07": "Tulad ng isang symphony ng berdeng kulay, ang emerald elegance ay sumasayaw na may sopistikado at pang-akit.",
-            "08": "Sa kailaliman ng kumikinang na ningning ng esmeralda ay naroon ang isang mundo ng walang kapantay na kagandahan at kagandahan.",
+            "08": "Sa kaibuturan ng maningning na ningning ng esmeralda ay naroon ang isang mundo ng walang kapantay na kagandahan at kagandahan.",
             "09": "Sa larangan ng karangyaan, nakatayo ang esmeralda bilang ehemplo ng kagandahan, isang hiyas na nagpapalamuti sa kaaya-aya."
           }
         },
@@ -345,7 +373,7 @@
           "quotes": {
             "10": "Azure bliss: kung saan ang azure na kalangitan ay nakakatugon sa tahimik na dagat, at lahat ng alalahanin ay kumukupas sa abot-tanaw.",
             "01": "Sa kalawakan ng azure bliss, hanapin ang aliw sa banayad na haplos ng walang katapusang kalangitan at tahimik na tubig.",
-            "02": "Hayaang ang azure bliss ay dumaan sa iyo tulad ng isang banayad na simoy ng hangin, na nag-aalis ng mga alalahanin at nag-iiwan lamang ng kapayapaan sa likuran nito.",
+            "02": "Hayaan ang azure bliss na dumaan sa iyo tulad ng isang banayad na simoy ng hangin, na nag-aalis ng mga alalahanin at nag-iiwan lamang ng kapayapaan sa kanyang kalagayan.",
             "03": "Sa ilalim ng azure canopy ng langit, tuklasin ang walang hangganang katahimikan na bumubulong sa puso ng kaligayahan.",
             "04": "Azure bliss: kung saan ang kalawakan ng kalangitan ay nakakatugon sa lalim ng karagatan, nagpinta ng larawan ng katahimikan.",
             "05": "Sa larangan ng azure bliss, bawat sandali ay isang brushstroke ng katahimikan sa canvas ng buhay.",
@@ -363,10 +391,10 @@
             "02": "Nawala sa ginintuang ulap, hayaang tumigil ang oras habang ikaw ay gumagala sa mga patlang ng pangarap na naliligo sa malambot na ningning ng takipsilim.",
             "03": "Sa ilalim ng ginintuang manipis na ulap, tuklasin ang mahika ng mga sandali na nasuspinde sa liwanag ng amber, kung saan ang mga alaala ay hinabi sa tela ng panahon.",
             "04": "Golden haze: kung saan ang araw ay nakakatugon sa abot-tanaw, naghahatid ng isang spell ng enchantment sa ibabaw ng lupa, nag-aapoy sa mga puso ng apoy ng inspirasyon.",
-            "05": "Sa larangan ng ginintuang manipis na ulap, ang bawat bulong ng hangin ay nagdadala ng mga alingawngaw ng mga pangarap na hindi pa mabubunyag, na nangangako ng mga pakikipagsapalaran sa mga lupaing hindi alam.",
+            "05": "Sa kaharian ng ginintuang ulap, ang bawat bulong ng hangin ay nagdadala ng mga alingawngaw ng mga pangarap na hindi pa mabubunyag, na nangangako ng mga pakikipagsapalaran sa mga lupaing hindi alam.",
             "06": "Tulad ng mga bulong ng nakaraan, ang ginintuang ulap ay nagbubunyag ng mga lihim na matagal nang nakalimutan, naghahabi ng tapiserya ng mga kuwento sa ilalim ng ginintuang kalangitan.",
-            "07": "Yakapin ang ginintuang manipis na ulap, kung saan ang bawat sandali ay nagtataglay ng pangako ng mga bagong simula, at bawat paglubog ng araw ay nagpinta sa langit ng mga pangarap.",
-            "08": "Sa loob ng ginintuang ulap, humanap ng aliw sa banayad na liwanag ng gabi, habang ang mga anino ay sumasayaw at ang mga pangarap ay lumilipad.",
+            "07": "Yakapin ang ginintuang ulap, kung saan ang bawat sandali ay nagtataglay ng pangako ng mga bagong simula, at bawat paglubog ng araw ay nagpinta sa langit ng mga pangarap.",
+            "08": "Sa loob ng ginintuang manipis na ulap, humanap ng aliw sa banayad na kislap ng liwanag sa gabi, habang sumasayaw ang mga anino at lumilipad ang mga pangarap.",
             "09": "Golden haze: isang symphony ng init at kababalaghan, kung saan ang mundo ay naliligo sa malambot na yakap ng takip-silim."
           }
         },
@@ -379,7 +407,7 @@
             "03": "Sa ilalim ng canopy ng paglubog ng araw, tuklasin ang mahika ng mga sandali na nasuspinde sa nagniningas na liwanag, kung saan ang mga alaala ay nakaukit sa canvas ng kalangitan sa gabi.",
             "04": "Sunset ember: kung saan ang araw ay nagtatapos, naghahagis ng isang maapoy na palabas sa abot-tanaw, isang simponya ng mga kulay na nag-aapoy sa puso nang may pagkamangha.",
             "05": "Sa larangan ng paglubog ng araw, ang bawat kisap ng liwanag ay nagpinta ng isang kuwento ng mga wakas at simula, isang tapiserya ng mga emosyon na hinabi sa tela ng takipsilim.",
-            "06": "Tulad ng mga baga ng namamatay na apoy, ang paglubog ng araw na ember ay bumubulong ng mga lihim ng paglalakbay sa maghapon, na naglalabas ng mga anino na sumasayaw sa kumukupas na liwanag.",
+            "06": "Tulad ng mga baga ng namamatay na apoy, ang paglubog ng araw ay bumubulong ng mga lihim ng paglalakbay sa maghapon, na naglalabas ng mga anino na sumasayaw sa kumukupas na liwanag.",
             "07": "Yakapin ang init ng paglubog ng araw, kung saan ang bawat sinag ng liwanag ay nagtataglay ng pangako ng isang bagong bukang-liwayway, at bawat dapit-hapon ay isang paalala ng walang hanggang ikot ng buhay.",
             "08": "Sa loob ng ningning ng paglubog ng araw, humanap ng aliw sa mga tahimik na sandali ng pagmuni-muni, habang ang araw ay kumukupas sa banayad na yakap ng gabi.",
             "09": "Sunset ember: isang symphony ng mga kulay at lilim, kung saan ang kalangitan ay nagliliyab sa mga huling sandali ng liwanag ng araw, isang nakamamanghang pagpapakita ng kagandahan ng kalikasan."
@@ -393,8 +421,8 @@
             "02": "Nawala sa kaakit-akit na yakap ng Purple Majesty, damhin ang mahika ng halik ng takipsilim habang ang araw ay nagbibigay daan sa gabi.",
             "03": "Sa ilalim ng balabal ng Purple Majesty, tuklasin ang yaman ng tapiserya ng buhay, hinabi ng mga sinulid ng pagsinta at biyaya.",
             "04": "Purple Majesty: kung saan ang langit ay nakakatugon sa lupa sa isang marilag na sayaw ng takip-silim, na nagpapamalas ng pagkamangha at pagkamangha.",
-            "05": "Sa kaharian ng Purple Majesty, ang bawat sandali ay isang symphony ng mga kulay violet, na umaalingawngaw sa kadakilaan ng mga hari at reyna.",
-            "06": "Tulad ng mga bulong mula sa isang malayong kaharian, ang Purple Majesty ay umaalingawngaw sa mga pangako ng mga pangarap na natupad at mga tadhana ay niyakap.",
+            "05": "Sa kaharian ng Purple Majesty, ang bawat sandali ay isang simponya ng mga kulay violet, na umaalingawngaw sa kadakilaan ng mga hari at reyna.",
+            "06": "Tulad ng mga bulong mula sa isang malayong kaharian, ang Purple Majesty ay umaawat ng mga pangako ng mga pangarap na natupad at ang mga tadhana ay niyakap.",
             "07": "Yakapin ang kagandahan ng Purple Majesty, kung saan ang bawat paglubog ng araw ay isang koronasyon ng mga kulay, pagpipinta sa kalangitan sa mga kulay ng royalty.",
             "08": "Sa loob ng yakap ng Purple Majesty, humanap ng aliw sa tahimik na kagandahan ng takip-silim, habang ang araw ay maganda na nagbubunga sa gabi.",
             "09": "Purple Majesty: isang tapiserya ng mga pangarap at pagnanasa, kung saan ang puso ay nakakahanap ng kanlungan sa katahimikan ng yakap ng takipsilim."
@@ -410,7 +438,7 @@
             "04": "Scarlet Serenade: kung saan umaalingawngaw ang mga alingawngaw ng pagsinta, pinipinta ang mundo sa mga kulay ng nagniningas na pagnanasa at nagniningas na debosyon.",
             "05": "Sa yakap ni Scarlet Serenade, bawat sandali ay isang awit ng pag-ibig, inaawit ng puso at ibinubulong ng hangin.",
             "06": "Tulad ng mga bulong mula sa isang malayong balad, ang Scarlet Serenade ay tumatawag sa kaluluwa, na kumukuha ng mga pangako ng romansa at pakikipagsapalaran.",
-            "07": "Yakapin ang hilig ng Scarlet Serenade, kung saan ang bawat paglubog ng araw ay isang harana ng mga kulay iskarlata, na pinipintura ang kalangitan ng walang hanggang apoy ng pag-ibig.",
+            "07": "Yakapin ang hilig ng Scarlet Serenade, kung saan ang bawat paglubog ng araw ay isang harana ng mga kulay na iskarlata, na nagpinta sa kalangitan ng walang hanggang apoy ng pag-ibig.",
             "08": "Sa loob ng yakap ng Scarlet Serenade, hanapin ang aliw sa malambot na yakap ng matamis na himig ng pag-ibig, habang ito ay naghaharana sa gabi.",
             "09": "Scarlet Serenade: isang symphony ng pagnanais at debosyon, kung saan ang puso ay nakakahanap ng kanlungan sa yakap ng walang hanggang apoy ng pag-ibig."
           }
@@ -459,8 +487,13 @@
     "settingsUpdated": "Na-update ang Mga Setting"
   },
   "about": {
+    "hello": "Hello ako si",
+    "name": "Gene Paul Mar Javier",
+    "slogan": "Ginagawang Realidad ang mga Ideya",
+    "intruduction": "Nagsimula ang aking tech na paglalakbay sa University of Cebu noong 2019. Ngayon ay isang batikang full-stack na developer, dalubhasa ako sa mga modernong tool tulad ng React, TypeScript, Tailwind CSS, at Spring Boot. ",
     "title": "Tungkol sa Akin",
-    "description": "pagsubok tungkol sa akin paglalarawan"
+    "description": "pagsubok tungkol sa akin paglalarawan",
+    "downloadResume": "I-download ang Aking Resume"
   },
   "skills": {
     "title": "Mga kasanayan",
