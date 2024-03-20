@@ -21,6 +21,7 @@ interface Data {
   type: "confidential" | "client" | "personal" | "tutorial";
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectInterface[] = [
   {
     title: "YooPH",
@@ -472,7 +473,7 @@ export const PROJECTS: ProjectInterface[] = [
     type: "personal",
     projectId: "palette-shift",
     codeUrl: "https://github.com/javiergenepaul/Palette-Shift.git",
-    previewUrl: undefined,
+    previewUrl: "https://palette-shift.netlify.app/",
     carousel: [
       {
         value: "1",
