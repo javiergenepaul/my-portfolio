@@ -11,6 +11,7 @@ export interface SettingsItemInterface {
 }
 
 export const Settings = () => {
+  // eslint-disable-next-line no-empty-pattern
   const {} = useTranslation();
 
   const sidebarNavItems: SettingsItemInterface[] = [

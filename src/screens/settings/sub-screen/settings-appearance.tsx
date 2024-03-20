@@ -47,6 +47,7 @@ export const SettingsAppearance = () => {
   const { setTheme, setFont, theme, getSystemTheme, font, color, setColor } =
     useSettingsStore();
   const { language } = useLanguageStore();
+  // eslint-disable-next-line no-empty-pattern
   const {} = useTranslation();
   const { toast } = useToast();
 
