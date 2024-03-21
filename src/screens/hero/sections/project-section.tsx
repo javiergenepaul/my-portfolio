@@ -23,6 +23,7 @@ interface Data {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectInterface[] = [
+  // YooPH
   {
     title: "YooPH",
     company: "Mach95 Software Developer Corp.",
@@ -72,6 +73,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // Sirius Webpos
   {
     title: translate("projects.siriusWebpos.title"),
     company: translate("projects.siriusWebpos.company"),
@@ -139,6 +141,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "ongoing",
   },
+  // Unified Youth
   {
     title: translate("projects.unifiedYouth.title"),
     company: translate("projects.unifiedYouth.company"),
@@ -201,6 +204,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "ongoing",
   },
+  // Country Scape
   {
     title: translate("projects.countryScape.title"),
     company: translate("projects.countryScape.company"),
@@ -250,6 +254,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // Hoobank
   {
     title: translate("projects.hoobank.title"),
     company: undefined,
@@ -299,6 +304,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // IQMK
   {
     title: translate("projects.iqmk.title"),
     company: translate("projects.iqmk.company"),
@@ -347,6 +353,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // Pawfectly Yours
   {
     title: translate("projects.pawfectlyYours.title"),
     company: undefined,
@@ -404,6 +411,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // My portfolio
   {
     title: translate("projects.myPortfolio.title"),
     company: undefined,
@@ -465,6 +473,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // Palette Shift
   {
     title: translate("projects.paletteShift.title"),
     description: translate("projects.paletteShift.description"),
@@ -521,6 +530,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.PNPM_STACK,
       Stack.LANDING_PAGE_STACK,
       Stack.VITEST_STACK,
+      Stack.CSS_STACK,
     ],
     status: "completed",
   },
