@@ -276,21 +276,26 @@
     "description": "test contact description",
     "keepInTouch": "Let's Keep in touch",
     "placeHolder": {
-      "name": "Name",
-      "email": "Email",
+      "name": "Your Name",
+      "email": "Your Email",
       "message": "Message"
     },
     "button": {
-      "submit": "Submit"
+      "submit": "Submit",
+      "resend": "Wait and Resend in {{time}}"
     },
     "toast": {
       "success": {
         "title": "Email Submission Successful",
-        "description": "Thank you for submitting your email! Your message has been received successfully."
+        "description": "Thank you for reaching me out. I will get back to you soon!."
       },
       "error": {
         "title": "Email Submission Error!!!",
         "description": "Oops! There was an error submitting your email. Please try again later."
+      },
+      "errrorConfig": {
+        "title": "Something Went Wrong",
+        "description": "Please provide configuration for Email Js."
       }
     }
   },

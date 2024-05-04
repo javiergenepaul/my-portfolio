@@ -59,3 +59,17 @@ export interface SideMenuInterface {
 }
 
 export type ProjectType = "confidential" | "client" | "personal" | "tutorial";
+
+interface TemplateParams {
+  from_name: string;
+  from_email: string;
+  to_name: string;
+  message: string;
+}
+
+export interface EmailInterface {
+  service_id: string;
+  template_id: string;
+  user_id: string;
+  template_params: TemplateParams;
+}
