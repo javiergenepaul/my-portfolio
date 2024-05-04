@@ -24,13 +24,13 @@ import {
   EmailInterface,
 } from "@/config";
 import { SendEmail } from "@/services";
-import { useLoadingStore } from "@/stores";
-import { useEffect, useState } from "react";
+import { useLoadingStore, useResendTimerStore } from "@/stores";
+import { useEffect } from "react";
 
 export const ContactForm = () => {
   const { toast } = useToast();
   const { setLoading } = useLoadingStore();
-  const [secondsLeft, setSecondsLeft] = useState(0);
+  const { timer, setTimer } = useResendTimerStore();
 
   const form = useForm<ContactRequestInterface>({
     resolver: zodResolver(ContactFormSchema),
@@ -65,7 +65,7 @@ export const ContactForm = () => {
           description: translate("contact.toast.success.description"),
         });
         form.reset();
-        setSecondsLeft(3 * 60);
+        setTimer(3 * 60);
       },
       onError: () => {
         toast({
@@ -79,17 +79,17 @@ export const ContactForm = () => {
   };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (secondsLeft > 0) {
-        setSecondsLeft(secondsLeft - 1);
+    const timerinterval = setInterval(() => {
+      if (timer > 0) {
+        setTimer(timer - 1);
       } else {
-        setSecondsLeft(0);
+        setTimer(0);
         clearInterval(timer);
       }
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [secondsLeft]);
+    return () => clearInterval(timerinterval);
+  }, [timer]);
 
   const formatTime = (time: any) => {
     const minutes = Math.floor(time / 60);
@@ -178,14 +178,14 @@ export const ContactForm = () => {
             />
           </div>
           <Button
-            disabled={secondsLeft !== 0}
+            disabled={timer !== 0}
             className={"select-none"}
             type="submit"
           >
-            {secondsLeft === 0
+            {timer === 0
               ? translate("contact.button.submit")
               : translate("contact.button.resend", {
-                  time: formatTime(secondsLeft),
+                  time: formatTime(timer),
                 })}
           </Button>
         </div>
