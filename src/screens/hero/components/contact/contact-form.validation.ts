@@ -3,16 +3,16 @@ import * as z from "zod";
 
 export type ContactRequestInterface = z.infer<typeof ContactFormSchema>;
 export const defaultContactFormForm: z.infer<typeof ContactFormSchema> = {
-  name: "",
-  email: "",
+  from_name: "",
+  from_email: "",
   message: "",
 };
 
 export const ContactFormSchema = z.object({
-  name: z.string().min(1, {
+  from_name: z.string().min(1, {
     message: translate("errorMessages.required"),
   }),
-  email: z
+  from_email: z
     .string()
     .email(translate("errorMessages.invalidEmail"))
     .min(1, {
