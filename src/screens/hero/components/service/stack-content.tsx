@@ -9,6 +9,7 @@ import { translate } from "@/i18n";
 import { StackDetails } from "../service-card";
 
 export type StackName = BackEndStack | FrontEndStack | UIStack;
+
 type BackEndStack =
   | "springBoot"
   | "springSecurity"
@@ -36,6 +37,7 @@ type BackEndStack =
   | "bootstrap"
   | "mvc"
   | "microservices";
+  
 type FrontEndStack =
   | "vite"
   | "react"
