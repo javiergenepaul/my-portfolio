@@ -26,7 +26,6 @@ import {
 import { SendEmail } from "@/services";
 import { useLoadingStore } from "@/stores";
 import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -100,92 +99,96 @@ export const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form className="grid gap-2" onSubmit={form.handleSubmit(onFinishForm)}>
-        <FormField
-          control={form.control}
-          name="from_name"
-          render={({ field, fieldState }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  className={
-                    fieldState.invalid
-                      ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
-                      : "caret-primary"
-                  }
-                  placeholder={translate("contact.placeHolder.name")}
-                  autoCapitalize="none"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  type="text"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="from_email"
-          render={({ field, fieldState }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  className={
-                    fieldState.invalid
-                      ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
-                      : "caret-primary"
-                  }
-                  placeholder={translate("contact.placeHolder.email")}
-                  autoCapitalize="none"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  type="text"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field, fieldState }) => (
-            <FormItem>
-              <FormControl>
-                <>
-                  <Textarea
-                    maxLength={255}
-                    className={
-                      fieldState.invalid
-                        ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
-                        : "caret-primary"
-                    }
-                    placeholder={translate("contact.placeHolder.message")}
-                    autoCapitalize="none"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    {...field}
-                  />
-                </>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          disabled={secondsLeft !== 0}
-          className={"mt-4 select-none"}
-          type="submit"
-        >
-          {secondsLeft === 0
-            ? translate("contact.button.submit")
-            : translate("contact.button.resend", {
-                time: formatTime(secondsLeft),
-              })}
-        </Button>
+      <form className="h-full" onSubmit={form.handleSubmit(onFinishForm)}>
+        <div className="flex flex-col justify-between h-full gap-8">
+          <div className="grid gap-4">
+            <FormField
+              control={form.control}
+              name="from_name"
+              render={({ field, fieldState }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className={
+                        fieldState.invalid
+                          ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
+                          : "caret-primary"
+                      }
+                      placeholder={translate("contact.placeHolder.name")}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="from_email"
+              render={({ field, fieldState }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className={
+                        fieldState.invalid
+                          ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
+                          : "caret-primary"
+                      }
+                      placeholder={translate("contact.placeHolder.email")}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field, fieldState }) => (
+                <FormItem>
+                  <FormControl>
+                    <>
+                      <Textarea
+                        maxLength={255}
+                        className={
+                          fieldState.invalid
+                            ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
+                            : "caret-primary"
+                        }
+                        placeholder={translate("contact.placeHolder.message")}
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        {...field}
+                      />
+                    </>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <Button
+            disabled={secondsLeft !== 0}
+            className={"select-none"}
+            type="submit"
+          >
+            {secondsLeft === 0
+              ? translate("contact.button.submit")
+              : translate("contact.button.resend", {
+                  time: formatTime(secondsLeft),
+                })}
+          </Button>
+        </div>
       </form>
     </Form>
   );
