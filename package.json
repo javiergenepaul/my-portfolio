@@ -36,6 +36,7 @@
     "@react-three/fiber": "^8.15.19",
     "@types/mathjs": "^9.4.2",
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "embla-carousel-autoplay": "^8.0.0",
