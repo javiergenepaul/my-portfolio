@@ -11,16 +11,17 @@ import { i18n } from "./i18n";
 import "typeface-inter";
 import "typeface-work-sans";
 import "typeface-poppins";
+import { LoadingMask } from "./components/loading-mask";
 
 function App() {
   return (
     <>
       <I18nextProvider i18n={i18n}>
+        <LoadingMask />
         <GlobalHelmet />
         <Toaster />
         <FloatingNavigation />
         <BackgroundParticle />
-
         <MainContainerProvider>
           <AppRoutes />
         </MainContainerProvider>
