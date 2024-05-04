@@ -10,8 +10,8 @@ export const LoadingMask = () => {
   return (
     <div
       className={twMerge(
-        "w-screen h-full absolute z-50 bg-background/50 cursor-progress flex justify-center items-center",
-        loading ? "absolute" : "hidden"
+        "w-screen h-screen fixed z-50 bg-background/50 cursor-progress flex justify-center items-center",
+        loading ? "fixed" : "hidden"
       )}
     >
       <PuffLoader
