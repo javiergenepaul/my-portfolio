@@ -13,11 +13,9 @@ import {
   KeyContributionIndicator,
 } from "./indicator";
 import { ShowTag } from "./show-tag";
-import { Eye, EyeOff } from "lucide-react";
 import { translate } from "@/i18n";
 import { StackContent } from "@/screens";
 import { ProjectCarousel } from "./project-carousel";
-import { useState } from "react";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -33,47 +31,21 @@ const ProjectCard = (props: ProjectCardInterface) => {
     description,
   } = props;
 
-  const onClickPreviewUrl = () => {
-    if (previewUrl) {
-      window.open(previewUrl, "_blank");
-    }
-  };
-
-  const [onHover, setOnHover] = useState<boolean>(false);
-
   return (
     <Card className="relative p-0 overflow-hidden">
       <ShowTag type={type} />
       <div className="flex flex-col">
         <div className="flex flex-col gap-4 px-4 py-6 pb-4 xl:flex-row md:px-8 h-fit">
           <div
-            onMouseEnter={() => setOnHover(true)}
-            onMouseLeave={() => setOnHover(false)}
             className={twMerge(
-              "items-center relative justify-center overflow-hidden rounded-lg cursor-not-allowed select-none md:basis-2/5",
-              previewUrl ? "cursor-pointer" : ""
+              "items-center relative justify-center overflow-hidden rounded-lg select-none md:basis-2/5"
             )}
           >
-            <div
-              onClick={onClickPreviewUrl}
-              className={twMerge(
-                "absolute z-50 items-center justify-center w-full h-full bg-black/25 backdrop-blur-sm select-none",
-                onHover ? "visible" : "invisible"
-              )}
-            >
-              <div className="flex w-full h-full justify-center items-center gap-2">
-                {previewUrl ? (
-                  <>
-                    <Eye /> {translate("projects.indicator.viewDemo")}
-                  </>
-                ) : (
-                  <>
-                    <EyeOff /> {translate("projects.indicator.demoUnavailable")}
-                  </>
-                )}
-              </div>
-            </div>
-            <ProjectCarousel projectId={projectId} carousel={carousel} />
+            <ProjectCarousel
+              projectId={projectId}
+              carousel={carousel}
+              previewUrl={previewUrl}
+            />
           </div>
           <div className="flex flex-col md:basis-3/5">
             <CardHeader className="px-0 pt-0">
