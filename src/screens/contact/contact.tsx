@@ -23,7 +23,7 @@ export const Contact = () => {
             </CardContent>
           </Card>
 
-          <div className="items-center justify-center hidden w-full basis-1/2 lg:flex">
+          <div className="items-center justify-center hidden w-full h-full basis-1/2 lg:flex">
             <LogoCanvas />
           </div>
         </div>
