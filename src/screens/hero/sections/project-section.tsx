@@ -21,7 +21,6 @@ interface Data {
   type: "confidential" | "client" | "personal" | "tutorial";
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const PROJECTS: ProjectInterface[] = [
   // YooPH
   {
@@ -512,11 +511,11 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     category: [
       translate("projects.paletteShift.category.webDevelopment"),
-      translate(
-        "projects.paletteShift.category.localizationAndInternalization"
-      ),
+      translate("projects.paletteShift.category.local"),
+      translate("projects.paletteShift.category.international"),
       translate("projects.paletteShift.category.accessibility"),
-      translate("projects.paletteShift.category.softwareToolsLibraries"),
+      translate("projects.paletteShift.category.tools"),
+      translate("projects.paletteShift.category.libraries"),
     ],
     stack: [
       Stack.VITE_STACK,

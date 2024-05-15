@@ -22,7 +22,6 @@ export const Contact = () => {
               <ContactForm />
             </CardContent>
           </Card>
-
           <div className="items-center justify-center hidden w-full h-full basis-1/2 lg:flex">
             <LogoCanvas />
           </div>
