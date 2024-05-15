@@ -1,6 +1,7 @@
 import { FadeAnimation, PageTitle } from "@/components";
 import { PATH } from "@/config";
 import { translate } from "@/i18n";
+import { ProjectTable } from "./components/table/project-table";
 
 export const Project = () => {
   return (
@@ -11,7 +12,7 @@ export const Project = () => {
           path={PATH.HOME.path}
           description={translate("projects.description")}
         />
-        <h1>{translate("availableSoon")}</h1>
+        <ProjectTable />
       </div>
     </FadeAnimation>
   );
