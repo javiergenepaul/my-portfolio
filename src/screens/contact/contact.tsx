@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -10,7 +9,7 @@ import {
 import { translate } from "@/i18n";
 import { CopyToClipBoard, LogoCanvas } from "./components";
 import { ContactForm } from "../hero";
-import { Clipboard, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { EMAIL_ADDRESS, MOBILE_NUMBER } from "@/config";
 
 export const Contact = () => {
@@ -44,10 +43,19 @@ export const Contact = () => {
             <LogoCanvas />
             <div className="flex gap-2">
               {/* PHONE */}
-              <CopyToClipBoard clipboardContent="Copied!" icon={<Phone />} content={formatPhoneNumber(MOBILE_NUMBER)} />
+              <CopyToClipBoard
+                clipboardContent={translate("contact.copyToClipboard.copied")}
+                icon={<Phone />}
+                content={formatPhoneNumber(MOBILE_NUMBER)}
+              />
+              {/* Separator */}
               <Separator className="mx-2" orientation="vertical" />
               {/* EMAIL */}
-              <CopyToClipBoard clipboardContent="Copied!" icon={<Mail />} content={EMAIL_ADDRESS} />
+              <CopyToClipBoard
+                clipboardContent={translate("contact.copyToClipboard.copied")}
+                icon={<Mail />}
+                content={EMAIL_ADDRESS}
+              />
             </div>
           </div>
         </div>

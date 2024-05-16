@@ -297,6 +297,10 @@
       "submit": "Submit",
       "resend": "Wait and Resend in {{time}}"
     },
+    "copyToClipboard": {
+      "default": "Copy to ClipBoard",
+      "copied": "Copied!"
+    },
     "toast": {
       "success": {
         "title": "Email Submission Successful",

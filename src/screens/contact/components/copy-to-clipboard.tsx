@@ -5,6 +5,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
+import { translate } from "@/i18n";
 import { Clipboard } from "lucide-react";
 import { useState } from "react";
 
@@ -20,8 +21,9 @@ export const CopyToClipBoard = ({
   clipboardContent,
 }: CopyToClipBoardInterface) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
-  const [tooltipContent, setTooltipContent] =
-    useState<string>("Copy to ClipBoard");
+  const [tooltipContent, setTooltipContent] = useState<string>(
+    translate("contact.copyToClipboard.default")
+  );
 
   return (
     <div className="flex items-center space-x-2">
@@ -36,8 +38,10 @@ export const CopyToClipBoard = ({
                 onMouseLeave={() => {
                   setIsTooltipOpen(false);
                   setTimeout(() => {
-                    setTooltipContent("Copy to Clipboard");
-                  }, 300); // Delay of 300ms
+                    setTooltipContent(
+                      translate("contact.copyToClipboard.default")
+                    );
+                  }, 300);
                 }}
                 variant="secondary"
                 className="absolute rounded-l-8 h-full right-0 top-0 shrink-0 hover:cursor-copy"
