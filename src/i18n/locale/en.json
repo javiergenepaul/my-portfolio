@@ -167,7 +167,7 @@
   },
   "projects": {
     "title": "Projects",
-    "description": "test projects description",
+    "description": "Where Ideas Take Shape: Exploring the Vast Canvas of Creative Projects",
     "tag": {
       "confidential": "Protected",
       "personal": "Personal",
@@ -515,11 +515,17 @@
     "intruduction": "My tech journey started at the University of Cebu in 2019. Now a seasoned full-stack developer, I specialize in modern tools like React, TypeScript, Tailwind CSS, and Spring Boot. I'm always hungry to explore new stacks for innovative solutions. Each project fuels my passion for innovation, turning ideas into reality and pushing digital boundaries. Welcome to my portfolio, where creativity thrives, and challenges drive growth.",
     "title": "About Me",
     "description": "test about me description",
-    "downloadResume": "Download My Resume"
+    "downloadResume": "Download My Resume",
+    "education": {
+      "title": "Education"
+    },
+    "experience": {
+      "title": "Experience"
+    }
   },
   "skills": {
     "title": "Skills",
-    "description": "test skills description"
+    "description": "Navigating the Depths of Your Versatile Skill Set to Empower Growth and Success"
   },
   "availableSoon": "Available Soon"
 }

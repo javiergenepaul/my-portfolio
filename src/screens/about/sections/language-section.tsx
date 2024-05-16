@@ -1,3 +1,5 @@
 export const LanguageSection = () => {
-  return <section>LanguageSection</section>;
+  return (
+    <section className="h-screen py-10 bg-blue-950">LanguageSection</section>
+  );
 };
