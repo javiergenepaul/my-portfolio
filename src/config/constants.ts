@@ -31,3 +31,5 @@ export const SUNSET_COLOR: string = "#EA580C";
 export const GOLDEN_COLOR: string = "#FACC15";
 export const AZURE_COLOR: string = "#3B82F6";
 export const EMERALD_COLOR: string = "#22C55E";
+export const MOBILE_NUMBER: string = "09762912231";
+export const EMAIL_ADDRESS: string = "javiergenepaul@gmail.com";
