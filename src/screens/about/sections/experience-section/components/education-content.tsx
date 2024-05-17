@@ -33,7 +33,7 @@ export const EducationSection = () => {
         />
         <ContentBody
           level="primary"
-          title={"Isablea Central Elementary Pilot School"}
+          title={"Isabela Central Elementary Pilot School"}
           abbreviation="ICEPS"
           startYear={moment("2011")}
           endYear={moment("2015")}
