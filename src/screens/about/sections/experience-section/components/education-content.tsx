@@ -1,6 +1,5 @@
 import { translate } from "@/i18n";
-import { ContentTitle } from "@/screens";
-import { ContentBody } from "@/screens/about/components/content-body";
+import { ContentBody, ContentTitle } from "@/screens";
 import moment from "moment";
 
 export const EducationSection = () => {
