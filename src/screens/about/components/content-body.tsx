@@ -76,8 +76,7 @@ export const ContentBody = (props: ContentBodyProps) => {
             {endYear === "present"
               ? "present"
               : endYear.format(isWork ? "MMM YYYY" : "YYYY")}
-          </span>
-          {/* years spent */}
+          </span>\
           {isWork && (
             <>
               <Dot></Dot>
@@ -89,3 +88,4 @@ export const ContentBody = (props: ContentBodyProps) => {
     </Card>
   );
 };
+ 

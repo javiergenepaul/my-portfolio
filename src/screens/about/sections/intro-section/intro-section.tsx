@@ -5,16 +5,13 @@ import { translate } from "@/i18n";
 import { PROJECTS } from "@/screens/hero/sections";
 import { useSettingsStore } from "@/stores";
 import { DownloadIcon } from "@radix-ui/react-icons";
-import { Brain, Lightbulb } from "lucide-react";
-import { getColor } from "@/lib";
-import { useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 import * as LightResume from "@/assets/resume/light";
 import * as DarkResume from "@/assets/resume/dark";
 
 import moment from "moment";
-import "./css/intro-section.css";
+import "../css/intro-section.css";
+import { Banner } from "../../components";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -24,8 +21,6 @@ interface PersonalStatisticInterface {
 
 export const IntroSection = () => {
   const { getTheme, color } = useSettingsStore();
-  const [isPauseAnimateBanner, setIsPauseAnimateBanner] =
-    useState<boolean>(false);
 
   /**
    * Returns the appropriate resume based on the selected theme and color.
@@ -96,18 +91,6 @@ export const IntroSection = () => {
     return count;
   };
 
-  let hoverTimeout: string | number | NodeJS.Timeout | undefined;
-  const onMouseEnterBanner = () => {
-    hoverTimeout = setTimeout(() => {
-      setIsPauseAnimateBanner(true);
-    }, 300); // Adjust delay time in milliseconds (e.g., 500 for 0.5 seconds)
-  };
-
-  const onMouseLeaveBanner = () => {
-    clearTimeout(hoverTimeout);
-    setIsPauseAnimateBanner(false);
-  };
-
   const STATISTICS: PersonalStatisticInterface[] = [
     // TODO:: change translate
     {
@@ -127,64 +110,9 @@ export const IntroSection = () => {
     },
   ];
 
-  const BANNER_ICON_SIZE: string = "1.125rem";
-
   return (
     <div className="relative">
-      <div className="absolute overflow-hidden w-screen z-50 bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
-        <div
-          onMouseEnter={onMouseEnterBanner}
-          onMouseLeave={onMouseLeaveBanner}
-          className="flex px-4 py-2 overflow-hidden border-t border-b bg-popover"
-        >
-          <div className="flex gap-2 -ml-2">
-            <div
-              className={twMerge(
-                "flex gap-24 logo-slide flex-nowrap animate-tape",
-                isPauseAnimateBanner ? "pause-tape-animation" : ""
-              )}
-            >
-              {Array.from({ length: 50 }, (_, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-2 flex-nowrap"
-                >
-                  {index % 2 === 0 ? (
-                    <Lightbulb
-                      color={getColor(color)}
-                      width={BANNER_ICON_SIZE}
-                      height={BANNER_ICON_SIZE}
-                    />
-                  ) : (
-                    <Brain
-                      color={getColor(color)}
-                      width={BANNER_ICON_SIZE}
-                      height={BANNER_ICON_SIZE}
-                    />
-                  )}
-
-                  <span className="text-xs text-nowrap">
-                    {translate("about.slogan")}
-                  </span>
-                  {index % 2 === 0 ? (
-                    <Lightbulb
-                      color={getColor(color)}
-                      width={BANNER_ICON_SIZE}
-                      height={BANNER_ICON_SIZE}
-                    />
-                  ) : (
-                    <Brain
-                      color={getColor(color)}
-                      width={BANNER_ICON_SIZE}
-                      height={BANNER_ICON_SIZE}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Banner />
       <section className="flex flex-col-reverse h-full min-h-screen mx-auto lg:flex-row max-w-7xl">
         <div className="flex items-end w-full pl-0 lg:pb-8 lg:pl-24">
           <LazyImage
