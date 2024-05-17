@@ -364,6 +364,7 @@ export const ShadcnPlugin = plugin(
         },
       },
       extend: {
+        typography: ["ordinal"],
         colors: {
           azure: "#3B82F6",
           emerald: "#22C55E",
