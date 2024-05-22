@@ -4,5 +4,5 @@ interface ContentTitleInterface {
 
 export const ContentTitle = (props: ContentTitleInterface) => {
   const { title } = props;
-  return <div className="text-xl">{title}</div>;
+  return <div className="text-2xl">{title}</div>;
 };
