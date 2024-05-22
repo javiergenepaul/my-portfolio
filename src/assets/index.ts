@@ -6,4 +6,6 @@ export * from "./flag";
 export * from "./projects";
 export * from "./stack-icon";
 export * from "./resume";
+export * from "./education";
+
 export { AvatarProfile, ContactLogo, AboutMe };

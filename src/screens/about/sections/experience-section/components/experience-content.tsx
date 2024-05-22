@@ -4,11 +4,11 @@ import moment from "moment";
 
 export const ExperienceContent = () => {
   return (
-    <section className="basis-1/2">
+    <section className="basis-1/2 space-y-2">
       <ContentTitle title={translate("about.experience.title")} />
       <div className="flex flex-col gap-4">
         <ContentBody
-          title={"Software Engineer - Associate Technical Specialist I (ATS I)"}
+          title={"Software Engineer - Associate Technical Specialist I"}
           subtitle={"Alliance Software Inc."}
           startYear={moment("2024-01-01")}
           abbreviation="ATS I"
@@ -16,7 +16,7 @@ export const ExperienceContent = () => {
           isWork
         />
         <ContentBody
-          title={"Software Engineer - Technical Specialist I (TS I)"}
+          title={"Software Engineer - Technical Specialist I"}
           subtitle={"Alliance Software Inc."}
           startYear={moment("2022-12-01")}
           abbreviation="TS I"
@@ -31,7 +31,7 @@ export const ExperienceContent = () => {
           isWork
         />
         <ContentBody
-          title={"VR/AR Developer & 3D Modeler (Part Time)"}
+          title={"VR/AR Developer & 3D Modeler"}
           subtitle={"Exodia Game Development"}
           abbreviation="Part Time"
           startYear={moment("2019-07-01")}
