@@ -8,7 +8,6 @@ import {
 import { Dot } from "lucide-react";
 import moment from "moment";
 import { Moment } from "moment";
-import "moment-duration-format";
 
 interface ContentBodyProps {
   title: string;
@@ -18,11 +17,22 @@ interface ContentBodyProps {
   level?: "tertiary" | "secondary" | "primary" | "vocational";
   abbreviation?: string;
   isWork?: boolean;
+  watermark?: React.ReactNode;
+  watermarkAlt?: string;
 }
 
 export const ContentBody = (props: ContentBodyProps) => {
-  const { title, subtitle, startYear, endYear, abbreviation, level, isWork } =
-    props;
+  const {
+    title,
+    subtitle,
+    startYear,
+    endYear,
+    abbreviation,
+    level,
+    isWork,
+    watermark,
+    watermarkAlt,
+  } = props;
 
   const getYearSpent = (
     startDate: Moment,
@@ -58,10 +68,21 @@ export const ContentBody = (props: ContentBodyProps) => {
   };
 
   return (
-    <Card>
+    <Card className="relative">
+      {watermark && (
+        <img
+          width={"100px"}
+          height={"100px"}
+          className="absolute top-2 right-0 opacity-30 "
+          src={watermark as string}
+          alt={watermarkAlt}
+        />
+      )}
       <CardHeader>
         <CardTitle>
-          <span className="font-bold">{title}</span>
+          <span className="font-bold">
+            {title} {`(${abbreviation})`}
+          </span>
         </CardTitle>
         <CardDescription>
           {subtitle && (
@@ -76,10 +97,10 @@ export const ContentBody = (props: ContentBodyProps) => {
             {endYear === "present"
               ? "present"
               : endYear.format(isWork ? "MMM YYYY" : "YYYY")}
-          </span>\
+          </span>
           {isWork && (
             <>
-              <Dot></Dot>
+              <Dot />
               <div className="">{getYearSpent(startYear, endYear)}</div>
             </>
           )}
@@ -88,4 +109,3 @@ export const ContentBody = (props: ContentBodyProps) => {
     </Card>
   );
 };
- 
