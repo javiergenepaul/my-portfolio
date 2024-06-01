@@ -16,42 +16,53 @@ export const EducationSection = () => {
       <div className="flex flex-col gap-4">
         <ContentBody
           level="tertiary"
-          title={"University of Cebu - Main Campus"}
-          abbreviation="BSCPE"
-          subtitle={"Bachelor of Science of Computer Engineering"}
+          title={translate("about.experience.education.tertiary.title")}
+          description={translate(
+            "about.experience.education.tertiary.description"
+          )}
+          abbreviation={translate("about.experience.education.tertiary.abb")}
+          subtitle={translate("about.experience.education.tertiary.subtitle")}
           startYear={moment("2016")}
           endYear={moment("2021")}
           watermark={UcWatermark}
-          watermarkAlt="University of Cebu Main Logo"
+          watermarkAlt={translate("about.experience.education.tertiary.alt")}
         />
         <ContentBody
           level="vocational"
           title={"Cebu Technological University"}
-          abbreviation="OLTEC"
-          subtitle={"Opportunity Livelihood Technology Entrepreneurial Classes"}
+          description={translate(
+            "about.experience.education.vocational.description"
+          )}
+          abbreviation={translate("about.experience.education.vocational.abb")}
+          subtitle={translate("about.experience.education.tertiary.subtitle")}
           startYear={moment("2015")}
           endYear={moment("2016")}
           watermark={CTUWatermark}
-          watermarkAlt="Cebu Technological University"
+          watermarkAlt={translate("about.experience.education.vocational.alt")}
         />
         <ContentBody
           level="secondary"
-          title={"Basilan National High School"}
-          subtitle="High School"
-          abbreviation="BNHS"
+          title={translate("about.experience.education.secondary.title")}
+          description={translate(
+            "about.experience.education.secondary.description"
+          )}
+          subtitle={translate("about.experience.education.secondary.subtitle")}
+          abbreviation={translate("about.experience.education.secondary.abb")}
           startYear={moment("2011")}
           endYear={moment("2015")}
           watermark={BNHSWatermark}
-          watermarkAlt="Basilan National High School Logo"
+          watermarkAlt={translate("about.experience.education.secondary.alt")}
         />
         <ContentBody
           level="primary"
-          title={"Isabela Central Elementary Pilot School"}
-          subtitle="Elementary School"
-          abbreviation="ICEPS"
+          title={translate("about.experience.education.primary.title")}
+          description={translate("about.experience.education.primary.description")}
+          subtitle={translate("about.experience.education.primary.subtitle")}
+          abbreviation={translate("about.experience.education.primary.abb")}
           startYear={moment("2011")}
           watermark={PilotWatermark}
           endYear={moment("2015")}
+          watermarkAlt={translate("about.experience.education.primary.alt")}
         />
       </div>
     </section>

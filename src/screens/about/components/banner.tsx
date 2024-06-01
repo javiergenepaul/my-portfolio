@@ -14,7 +14,7 @@ export const Banner = () => {
   const onMouseEnterBanner = () => {
     hoverTimeout = setTimeout(() => {
       setIsPauseAnimateBanner(true);
-    }, 300); 
+    }, 300);
   };
 
   const BANNER_ICON_SIZE: string = "1.125rem";
@@ -25,7 +25,7 @@ export const Banner = () => {
   };
 
   return (
-    <div className="absolute overflow-hidden w-screen z-50 bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
+    <div className="absolute z-10 overflow-hidden w-screen bottom-0 left-[-24px] md:left-[-24px] lg:left-[-96px]">
       <div
         onMouseEnter={onMouseEnterBanner}
         onMouseLeave={onMouseLeaveBanner}

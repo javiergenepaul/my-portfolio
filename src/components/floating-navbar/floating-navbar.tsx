@@ -115,7 +115,7 @@ export const FloatingNavbar = () => {
         location.pathname === PATH.HOME.path ? "opacity-0" : ""
       )}
     >
-      <div className="fixed inset-0 z-[999999999] flex items-center w-full h-full pointer-events-none">
+      <div className="fixed inset-0 z-[999999999999] flex items-center w-full h-full pointer-events-none">
         <nav className="px-2 py-4 border bg-popover rounded-r-xl">
           <ul className="flex flex-col gap-2 pointer-events-auto">
             {FLOATING_NAV_BUTTON.map(
