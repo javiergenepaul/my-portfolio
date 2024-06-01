@@ -520,7 +520,68 @@
       "title": "Education"
     },
     "experience": {
-      "title": "Experience"
+      "title": "Experience",
+      "education": {
+        "tertiary": {
+          "title": "University of Cebu - Main Campus",
+          "description": "As a University of Cebu graduate specializing in web development and virtual reality, I'm proficient in various programming languages such as C++, HTML, CSS, and Java. My thesis project, which utilized Unreal Engine 4 to create a Human Anatomy Virtual Reality experience, reflects my commitment to immersive technology and fuels my enthusiasm for engaging in collaborative coding projects.",
+          "subtitle": "Bachelor of Science of Computer Engineering",
+          "abb": "BSCPE",
+          "alt": "University of Cebu Main Logo"
+        },
+        "vocational": {
+          "title": "Cebu Technological University",
+          "description": "Passionate IT specialist adept in PC hardware, troubleshooting, system assembly, and OS installation. Committed to delivering top-notch IT solutions while prioritizing system safety. Dedicated to providing efficient and effective technical support.",
+          "subtitle": "Opportunity Livelihood Technology Entrepreneurial Classes",
+          "abb": "OLTEC",
+          "alt": "Cebu Technological University"
+        },
+        "secondary": {
+          "title": "Basilan National High School",
+          "description": "Graduated from Basilan National High School with a robust foundation in academic and interpersonal skills. Actively participated in diverse school activities, honing teamwork and communication abilities. Ready to leverage these skills to excel in future endeavors.",
+          "subtitle": "High School",
+          "abb": "BNHS",
+          "alt": "Basilan National High School Logo"
+        },
+        "primary": {
+          "title": "Isabela Central Elementary Pilot School",
+          "description": "Elementary graduate from Isabela Central Elementary Pilot School with a strong foundation in core academic subjects. Developed critical thinking, creativity, and teamwork skills through diverse activities. Eager to excel in future academic and personal endeavors.",
+          "subtitle": "Elementary School",
+          "abb": "ICEPS",
+          "alt": "Isabela Central Elementary Pilot School Logo"
+        }
+      },
+      "experience": {
+        "alliance": {
+          "ts1": {
+            "title": "Software Engineer - Technical Specialist I",
+            "subtitle": "Alliance Software Inc.",
+            "abb": "TS I",
+            "description": "Experienced Full Stack Developer proficient in Spring Boot and React TypeScript, dedicated to building robust applications with a focus on seamless frontend experiences and efficient backend operations. Specializes in creating foundational codebases and shared components to streamline development workflows for cross-functional teams. Well-versed in Agile methodologies, delivering results in dynamic, fast-paced environments.",
+            "alt": "Alliance Software Inc. Logo"
+          },
+          "ats1": {
+            "title": "Software Engineer - Associate Technical Specialist I",
+            "subtitle": "Alliance Software Inc.",
+            "abb": "ATS I",
+            "description": "Experienced Full-stack Developer adept in Vite, React, TypeScript, and Spring Boot, known for implementing robust security measures and enhancing performance for web applications. Skilled in managing server environments on Linux-based systems like CentOS and configuring web servers such as HTTPD and Nginx. Additionally, attended the LAMPP program to apply leadership processes and manage teams effectively, passionate about delivering high-quality solutions and fostering collaboration.",
+            "alt": "Alliance Software Inc. Logo"
+          }
+        },
+        "mach95": {
+          "title": "Software Developer",
+          "description": "Experienced Full Stack Developer adept in Laravel 8 and CodeIgniter, passionate about crafting dynamic web solutions and enhancing applications. Skilled in creating robust RESTful APIs, implementing feature-rich enhancements, and designing captivating landing pages using Tailwind CSS. Ready to collaborate on your next web development project.",
+          "subtitle": "Mach95 Software Development Corporation",
+          "alt": "Mach95 Software Development Logo"
+        },
+        "exodia": {
+          "title": "VR/AR Developer & 3D Modeler",
+          "description": "Passionate 3D Environmental Designer specializing in crafting immersive digital experiences for Virtual Reality (VR) and Augmented Reality (AR) projects. Proficient in game development with Unreal Engine 4 and Unity, transforming concepts into captivating interactive worlds. Skilled collaborator adept at contributing to successful project outcomes within multidisciplinary teams.",
+          "subtitle": "Exodia Game Development",
+          "abb": "Part Time",
+          "alt": "Exodia Game Development Logo"
+        }
+      }
     }
   },
   "skills": {
