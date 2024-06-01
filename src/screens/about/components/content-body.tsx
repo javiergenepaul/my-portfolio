@@ -19,6 +19,7 @@ interface ContentBodyProps {
   isWork?: boolean;
   watermark?: React.ReactNode;
   watermarkAlt?: string;
+  description: string;
 }
 
 export const ContentBody = (props: ContentBodyProps) => {
@@ -28,10 +29,10 @@ export const ContentBody = (props: ContentBodyProps) => {
     startYear,
     endYear,
     abbreviation,
-    level,
     isWork,
     watermark,
     watermarkAlt,
+    description,
   } = props;
 
   const getYearSpent = (
@@ -73,7 +74,7 @@ export const ContentBody = (props: ContentBodyProps) => {
         <img
           width={"100px"}
           height={"100px"}
-          className="absolute top-2 right-0 opacity-30 "
+          className="absolute top-2 right-2 opacity-30"
           src={watermark as string}
           alt={watermarkAlt}
         />
@@ -81,7 +82,7 @@ export const ContentBody = (props: ContentBodyProps) => {
       <CardHeader>
         <CardTitle>
           <span className="font-bold">
-            {title} {`(${abbreviation})`}
+            {title} {abbreviation && `(${abbreviation})`}
           </span>
         </CardTitle>
         <CardDescription>
@@ -91,6 +92,12 @@ export const ContentBody = (props: ContentBodyProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {description && (
+          <div className="text-muted-foreground text-sm mb-4">
+            {description}
+          </div>
+        )}
+
         <div className="flex gap-1 text-nowrap text-xs items-center">
           <span>{startYear.format(isWork ? "MMM YYYY" : "YYYY")}</span>~
           <span>
