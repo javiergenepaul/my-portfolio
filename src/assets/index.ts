@@ -7,5 +7,6 @@ export * from "./projects";
 export * from "./stack-icon";
 export * from "./resume";
 export * from "./watermark";
+export * from "./organization";
 
 export { AvatarProfile, ContactLogo, AboutMe };
