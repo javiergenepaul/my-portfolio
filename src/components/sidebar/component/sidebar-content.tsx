@@ -38,11 +38,12 @@ export const SidebarContent = (props: SidebarContentInterface) => {
       path: PATH.CONTACTS.path,
       icon: <Contact width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
     },
-    {
-      name: translate("sidebar.sideBarMenu.skills"),
-      path: PATH.SKILLS.path,
-      icon: <Code width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
-    },
+    // TODO:: create skill pages
+    // {
+    //   name: translate("sidebar.sideBarMenu.skills"),
+    //   path: PATH.SKILLS.path,
+    //   icon: <Code width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
+    // },
     {
       name: translate("settings.settings"),
       path: PATH.SETTINGS.path,
