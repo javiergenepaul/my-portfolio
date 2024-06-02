@@ -20,8 +20,8 @@ export const About = () => {
         <IntroSection />
         <BackgroundSection />
         <CertificateSection />
-        <LanguageSection />
-        <TestimonialSection />
+        {/* <LanguageSection /> */}
+        {/* <TestimonialSection /> */}
         <FooterSection />
       </div>
     </FadeAnimation>
