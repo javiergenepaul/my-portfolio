@@ -8,6 +8,7 @@ import {
 import { Dot } from "lucide-react";
 import moment from "moment";
 import { Moment } from "moment";
+import { twMerge } from "tailwind-merge";
 
 interface ContentBodyProps {
   title: string;
@@ -20,6 +21,8 @@ interface ContentBodyProps {
   watermark?: React.ReactNode;
   watermarkAlt?: string;
   description: string;
+  hidden?: boolean;
+  subtitleUrl?: string;
 }
 
 export const ContentBody = (props: ContentBodyProps) => {
@@ -33,6 +36,8 @@ export const ContentBody = (props: ContentBodyProps) => {
     watermark,
     watermarkAlt,
     description,
+    hidden,
+    subtitleUrl,
   } = props;
 
   const getYearSpent = (
@@ -68,19 +73,34 @@ export const ContentBody = (props: ContentBodyProps) => {
     return yearSpentText;
   };
 
+  const renderSubtitle = () => {
+    if (subtitle) {
+      if (subtitleUrl) {
+        return (
+          <a
+            href={subtitleUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-foreground hover:text-primary"
+          >
+            {subtitle}
+          </a>
+        );
+      } else {
+        return <div className="font-medium text-foreground">{subtitle}</div>;
+      }
+    }
+  };
+
   return (
-    <Card className="relative">
+    <Card className={twMerge("relative", hidden ? "hidden" : "")}>
       <CardHeader>
         <CardTitle>
           <span className="font-bold">
             {title} {abbreviation && `(${abbreviation})`}
           </span>
         </CardTitle>
-        <CardDescription>
-          {subtitle && (
-            <div className="font-medium text-foreground">{subtitle}</div>
-          )}
-        </CardDescription>
+        <CardDescription>{renderSubtitle()}</CardDescription>
       </CardHeader>
       <CardContent>
         {description && (
