@@ -70,15 +70,6 @@ export const ContentBody = (props: ContentBodyProps) => {
 
   return (
     <Card className="relative">
-      {watermark && (
-        <img
-          width={"100px"}
-          height={"100px"}
-          className="absolute top-2 right-2 opacity-30"
-          src={watermark as string}
-          alt={watermarkAlt}
-        />
-      )}
       <CardHeader>
         <CardTitle>
           <span className="font-bold">
@@ -113,6 +104,15 @@ export const ContentBody = (props: ContentBodyProps) => {
           )}
         </div>
       </CardContent>
+      {watermark && (
+        <img
+          width={"100px"}
+          height={"100px"}
+          className="absolute top-2 right-2 opacity-30"
+          src={watermark as string}
+          alt={watermarkAlt}
+        />
+      )}
     </Card>
   );
 };

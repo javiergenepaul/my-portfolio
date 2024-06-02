@@ -8,7 +8,7 @@ import { translate } from "@/i18n";
 import { ContentBody, ContentTitle } from "@/screens";
 import moment from "moment";
 
-export const EducationSection = () => {
+export const EducationContent = () => {
   return (
     <section className="basis-1/2 space-y-2">
       <ContentTitle title={translate("about.education.title")} />
