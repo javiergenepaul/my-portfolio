@@ -1,13 +1,13 @@
 import { Banner } from "../../components";
-import { EducationSection, ExperienceContent } from "./components";
+import { EducationContent, ExperienceContent } from "./components";
 
 export const ExperienceSection = () => {
   return (
     <div className="relative pb-16">
       <Banner />
-      <section className="min-h-screen py-10 flex gap-12">
+      <section className="min-h-screen py-10 flex lg:flex-row flex-col gap-12">
         <ExperienceContent />
-        <EducationSection />
+        <EducationContent />
       </section>
     </div>
   );

@@ -512,7 +512,7 @@
     "hello": "Hello I'm",
     "name": "Gene Paul Mar Javier",
     "slogan": "Turning Ideas Into Reality",
-    "intruduction": "My tech journey started at the University of Cebu in 2019. Now a seasoned full-stack developer, I specialize in modern tools like React, TypeScript, Tailwind CSS, and Spring Boot. I'm always hungry to explore new stacks for innovative solutions. Each project fuels my passion for innovation, turning ideas into reality and pushing digital boundaries. Welcome to my portfolio, where creativity thrives, and challenges drive growth.",
+    "intruduction": "My tech journey started at the University of Cebu. Now a seasoned full-stack developer, I specialize in modern tools like React, TypeScript, Tailwind CSS, and Spring Boot. I'm always hungry to explore new stacks for innovative solutions. Each project fuels my passion for innovation, turning ideas into reality and pushing digital boundaries. Welcome to my portfolio, where creativity thrives, and challenges drive growth.",
     "title": "About Me",
     "description": "test about me description",
     "downloadResume": "Download My Resume",
@@ -523,30 +523,30 @@
       "title": "Experience",
       "education": {
         "tertiary": {
-          "title": "University of Cebu - Main Campus",
+          "title": "Bachelor of Science of Computer Engineering",
+          "subtitle": "University of Cebu - Main Campus",
           "description": "As a University of Cebu graduate specializing in web development and virtual reality, I'm proficient in various programming languages such as C++, HTML, CSS, and Java. My thesis project, which utilized Unreal Engine 4 to create a Human Anatomy Virtual Reality experience, reflects my commitment to immersive technology and fuels my enthusiasm for engaging in collaborative coding projects.",
-          "subtitle": "Bachelor of Science of Computer Engineering",
           "abb": "BSCPE",
           "alt": "University of Cebu Main Logo"
         },
         "vocational": {
-          "title": "Cebu Technological University",
+          "title": "Opportunity Livelihood Technology Entrepreneurial Classes",
+          "subtitle": "Cebu Technological University",
           "description": "Passionate IT specialist adept in PC hardware, troubleshooting, system assembly, and OS installation. Committed to delivering top-notch IT solutions while prioritizing system safety. Dedicated to providing efficient and effective technical support.",
-          "subtitle": "Opportunity Livelihood Technology Entrepreneurial Classes",
           "abb": "OLTEC",
           "alt": "Cebu Technological University"
         },
         "secondary": {
-          "title": "Basilan National High School",
+          "title": "High School",
+          "subtitle": "Basilan National High School",
           "description": "Graduated from Basilan National High School with a robust foundation in academic and interpersonal skills. Actively participated in diverse school activities, honing teamwork and communication abilities. Ready to leverage these skills to excel in future endeavors.",
-          "subtitle": "High School",
           "abb": "BNHS",
           "alt": "Basilan National High School Logo"
         },
         "primary": {
-          "title": "Isabela Central Elementary Pilot School",
+          "title": "Elementary School",
+          "subtitle": "Isabela Central Elementary Pilot School",
           "description": "Elementary graduate from Isabela Central Elementary Pilot School with a strong foundation in core academic subjects. Developed critical thinking, creativity, and teamwork skills through diverse activities. Eager to excel in future academic and personal endeavors.",
-          "subtitle": "Elementary School",
           "abb": "ICEPS",
           "alt": "Isabela Central Elementary Pilot School Logo"
         }
