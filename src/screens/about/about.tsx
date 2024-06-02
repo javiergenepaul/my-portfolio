@@ -1,7 +1,7 @@
 import { FadeAnimation } from "@/components";
 import {
   CertificateSection,
-  ExperienceSection,
+  BackgroundSection,
   FooterSection,
   IntroSection,
   LanguageSection,
@@ -18,7 +18,7 @@ export const About = () => {
     <FadeAnimation>
       <div className="h-full pb-16 space-y-6">
         <IntroSection />
-        <ExperienceSection />
+        <BackgroundSection />
         <CertificateSection />
         <LanguageSection />
         <TestimonialSection />
