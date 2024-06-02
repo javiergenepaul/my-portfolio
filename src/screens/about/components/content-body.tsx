@@ -10,7 +10,7 @@ import moment from "moment";
 import { Moment } from "moment";
 import { twMerge } from "tailwind-merge";
 
-interface ContentBodyProps {
+export interface ContentBodyInterface {
   title: string;
   subtitle?: string;
   startYear: Moment;
@@ -21,11 +21,10 @@ interface ContentBodyProps {
   watermark?: React.ReactNode;
   watermarkAlt?: string;
   description: string;
-  hidden?: boolean;
   subtitleUrl?: string;
 }
 
-export const ContentBody = (props: ContentBodyProps) => {
+export const ContentBody = (props: ContentBodyInterface) => {
   const {
     title,
     subtitle,
@@ -36,7 +35,6 @@ export const ContentBody = (props: ContentBodyProps) => {
     watermark,
     watermarkAlt,
     description,
-    hidden,
     subtitleUrl,
   } = props;
 
@@ -73,34 +71,29 @@ export const ContentBody = (props: ContentBodyProps) => {
     return yearSpentText;
   };
 
-  const renderSubtitle = () => {
-    if (subtitle) {
-      if (subtitleUrl) {
-        return (
-          <a
-            href={subtitleUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium text-foreground hover:text-primary"
-          >
-            {subtitle}
-          </a>
-        );
-      } else {
-        return <div className="font-medium text-foreground">{subtitle}</div>;
-      }
-    }
-  };
-
   return (
-    <Card className={twMerge("relative", hidden ? "hidden" : "")}>
+    <Card
+      className={twMerge(
+        "relative",
+        subtitleUrl
+          ? "hover:border hover:border-primary hover:cursor-pointer"
+          : ""
+      )}
+      onClick={() => {
+        if (subtitleUrl) {
+          window.open(subtitleUrl, "_blank");
+        }
+      }}
+    >
       <CardHeader>
         <CardTitle>
           <span className="font-bold">
             {title} {abbreviation && `(${abbreviation})`}
           </span>
         </CardTitle>
-        <CardDescription>{renderSubtitle()}</CardDescription>
+        <CardDescription className="font-medium text-foreground">
+          {subtitle}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {description && (
