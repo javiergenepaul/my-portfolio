@@ -1,7 +1,7 @@
 import { Banner } from "../../components";
 import { EducationContent, ExperienceContent } from "./components";
 
-export const ExperienceSection = () => {
+export const BackgroundSection = () => {
   return (
     <div className="relative pb-16">
       <Banner />

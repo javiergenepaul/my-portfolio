@@ -1,2 +1,2 @@
 export * from "./components";
-export * from "./experience-section";
+export * from "./background-section";
