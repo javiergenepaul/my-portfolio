@@ -582,6 +582,20 @@
           "alt": "Exodia Game Development Logo"
         }
       }
+    },
+    "certificate": {
+      "header": "Certificates",
+      "issued": "issued {{date}}",
+      "react": {
+        "title": "The Complete Guide 2024 (incl. React Router & Redux)",
+        "organization": "Udemy",
+        "organizationAlt": "Udemy Certificates"
+      },
+      "springBoot": {
+        "title": "FullStack: React and Java Spring Boot - The Developer Guide",
+        "organization": "Udemy",
+        "organizationAlt": "Udemy Certificates"
+      }
     }
   },
   "skills": {
