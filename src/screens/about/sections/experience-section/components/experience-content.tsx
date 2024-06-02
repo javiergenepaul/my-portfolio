@@ -1,4 +1,9 @@
 import { AllianceWatermark, ExodiaWatermark, Mach95Watermark } from "@/assets";
+import {
+  ALLIANCE_COMPANY_URL,
+  EXODIA_COMPANY_URL,
+  MACH95_COMPANY_URL,
+} from "@/config";
 import { translate } from "@/i18n";
 import { ContentBody, ContentTitle } from "@/screens";
 import moment from "moment";
@@ -8,6 +13,7 @@ export const ExperienceContent = () => {
     <section className="basis-1/2 space-y-2">
       <ContentTitle title={translate("about.experience.title")} />
       <div className="flex flex-col gap-4">
+        {/* Alliance ATS 1 */}
         <ContentBody
           title={translate("about.experience.experience.alliance.ats1.title")}
           description={translate(
@@ -25,8 +31,10 @@ export const ExperienceContent = () => {
           watermarkAlt={translate(
             "about.experience.experience.alliance.ats1.alt"
           )}
+          subtitleUrl={ALLIANCE_COMPANY_URL}
           isWork
         />
+        {/* Alliance TS 1 */}
         <ContentBody
           title={translate("about.experience.experience.alliance.ts1.title")}
           description={translate(
@@ -40,12 +48,14 @@ export const ExperienceContent = () => {
             "about.experience.experience.alliance.ts1.abb"
           )}
           endYear={moment("2024-01-01")}
-          isWork
           watermark={AllianceWatermark}
           watermarkAlt={translate(
             "about.experience.experience.alliance.ts1.alt"
           )}
+          subtitleUrl={ALLIANCE_COMPANY_URL}
+          isWork
         />
+        {/* Mach 95 */}
         <ContentBody
           title={translate("about.experience.experience.mach95.title")}
           description={translate(
@@ -56,8 +66,10 @@ export const ExperienceContent = () => {
           endYear={moment("2022-12-01")}
           watermark={Mach95Watermark}
           watermarkAlt={translate("about.experience.experience.mach95.alt")}
+          subtitleUrl={MACH95_COMPANY_URL}
           isWork
         />
+        {/* Exodia */}
         <ContentBody
           title={translate("about.experience.experience.exodia.title")}
           description={translate(
@@ -69,6 +81,7 @@ export const ExperienceContent = () => {
           endYear={moment("2021-07-01")}
           watermark={ExodiaWatermark}
           watermarkAlt={translate("about.experience.experience.exodia.alt")}
+          subtitleUrl={EXODIA_COMPANY_URL}
           isWork
         />
       </div>
