@@ -60,7 +60,7 @@ export const FloatingNavbar = () => {
     },
     {
       icon: (
-        <PieChart
+        <Code
           color={isNavActive(PATH.PROJECTS.path)}
           height={NAV_ICON_SIZE}
           width={NAV_ICON_SIZE}
@@ -69,17 +69,18 @@ export const FloatingNavbar = () => {
       path: PATH.PROJECTS.path,
       name: translate("floatingNav.project"),
     },
-    {
-      icon: (
-        <Code
-          color={isNavActive(PATH.SKILLS.path)}
-          height={NAV_ICON_SIZE}
-          width={NAV_ICON_SIZE}
-        />
-      ),
-      path: PATH.SKILLS.path,
-      name: translate("floatingNav.skills"),
-    },
+    // TODO:: create skill page
+    // {
+    //   icon: (
+    //     <Code
+    //       color={isNavActive(PATH.SKILLS.path)}
+    //       height={NAV_ICON_SIZE}
+    //       width={NAV_ICON_SIZE}
+    //     />
+    //   ),
+    //   path: PATH.SKILLS.path,
+    //   name: translate("floatingNav.skills"),
+    // },
     {
       icon: (
         <Contact

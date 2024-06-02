@@ -602,5 +602,10 @@
     "title": "Skills",
     "description": "Navigating the Depths of Your Versatile Skill Set to Empower Growth and Success"
   },
+  "outro": {
+    "workTogether": "Let's work together",
+    "sub": "I'd love to hear from you! Whether you have a project in mind, want to collaborate, or just have a question, feel free to reach out. Let's create something amazing together!",
+    "getInTouch": "Get In Touch"
+  },
   "availableSoon": "Available Soon"
 }
