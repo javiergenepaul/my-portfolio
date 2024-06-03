@@ -12,6 +12,13 @@ import {
   ProjectTest04,
   ProjectTest05,
 } from "@/assets";
+import {
+  MyPortfolio1,
+  MyPortfolio2,
+  MyPortfolio3,
+  MyPortfolio4,
+  MyPortfolio5,
+} from "@/assets/mockups";
 
 const LazyProjectCard = lazy(
   () => import("../components/project-card/project-card")
@@ -427,27 +434,27 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: ProjectTest01,
+        image: MyPortfolio1,
         name: "test01",
       },
       {
         value: "2",
-        image: ProjectTest02,
+        image: MyPortfolio2,
         name: "test02",
       },
       {
         value: "3",
-        image: ProjectTest03,
+        image: MyPortfolio3,
         name: "test03",
       },
       {
         value: "4",
-        image: ProjectTest04,
+        image: MyPortfolio4,
         name: "test04",
       },
       {
         value: "5",
-        image: ProjectTest05,
+        image: MyPortfolio5,
         name: "test05",
       },
     ],
