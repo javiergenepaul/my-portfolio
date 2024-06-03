@@ -26,6 +26,7 @@ const AppScreen = (props: { component: React.ReactNode }) => {
     } else {
       setHideFloatingSettings(false);
     }
+    window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
