@@ -4,8 +4,6 @@ import {
   BackgroundSection,
   FooterSection,
   IntroSection,
-  LanguageSection,
-  TestimonialSection,
 } from "./sections";
 import { useEffect } from "react";
 import { OutroSection } from "./sections/outro-section";

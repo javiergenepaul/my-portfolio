@@ -1,7 +1,7 @@
 import React from "react";
 import { PATH, SOCIAL_MEDIA_LINKS, SideMenuInterface } from "@/config";
 import { PersonIcon } from "@radix-ui/react-icons";
-import { HomeIcon, PieChart, Contact, Code, Settings } from "lucide-react";
+import { HomeIcon, PieChart, Contact, Settings } from "lucide-react";
 import { Drawer } from "vaul";
 import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";

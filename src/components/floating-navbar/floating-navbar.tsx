@@ -1,4 +1,4 @@
-import { Code, Contact, Home, PieChart, Settings, User } from "lucide-react";
+import { Code, Contact, Home, Settings, User } from "lucide-react";
 import { EMERALD_COLOR, PATH } from "@/config";
 import FloatingNavButton, {
   FloatingNavButtonInterface,
