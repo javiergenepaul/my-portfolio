@@ -87,7 +87,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
     >
       <CardHeader>
         <CardTitle>
-          <span className="font-bold">
+          <span className="font-bold text-lg lg:text-2xl">
             {title} {abbreviation && `(${abbreviation})`}
           </span>
         </CardTitle>

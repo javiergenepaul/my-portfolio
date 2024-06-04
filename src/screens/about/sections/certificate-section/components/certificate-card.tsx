@@ -46,7 +46,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
       <CardHeader>
         <div className="flex gap-2 justify-between">
           <div className="">
-            <CardTitle>{title}</CardTitle>
+            <CardTitle className="line-clamp-2 text-lg font-bold lg:text-2xl">{title}</CardTitle>
             <CardDescription>{organization}</CardDescription>
             <CardContent className="p-0 mt-2 text-muted-foreground">
               <p className="text-xs">
