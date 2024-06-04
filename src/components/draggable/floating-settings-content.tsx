@@ -52,13 +52,11 @@ export const FloatingSettingsContent = () => {
     >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between gap-4">
-          {/* TODO:: translate */}
-          <span>Playground</span>
+          <span>{translate("floating.quickAcces")}</span>
           <CollapsibleTrigger asChild>
             <Button variant={"ghost"} size={"sm"}>
               <ChevronsUpDown className="w-4 h-4" />
-              {/* TODO:: translate */}
-              <span className="sr-only">Toggle</span>
+              <span className="sr-only">{translate("floating.toggle")}</span>
             </Button>
           </CollapsibleTrigger>
         </div>
@@ -95,8 +93,9 @@ const BackgroundSwitchField = () => {
         checked={isBackgroundOnly}
         onCheckedChange={onChangeBackgroundSwitch}
       />
-      {/* TODO:: translate */}
-      <Label htmlFor={backgroundId}>Background-Only Mode</Label>
+      <Label htmlFor={backgroundId}>
+        {translate("floating.backgroundOnlyMode")}
+      </Label>
     </div>
   );
 };
@@ -128,8 +127,9 @@ const ParticleSwitchField = () => {
         checked={enableParticleBackground}
         onCheckedChange={onChangeParticleBackground}
       />
-      {/* TODO: translate */}
-      <Label htmlFor={particleId}>Disable Particle</Label>
+      <Label htmlFor={particleId}>
+        {translate("floating.disableParticle")}
+      </Label>
     </div>
   );
 };
@@ -200,7 +200,7 @@ const ColorPaletteField = () => {
 
   return (
     <div className="">
-      <Label>Color Palette</Label>
+      <Label>{translate("floating.colorPalette")}</Label>
       <RadioGroup value={color} onValueChange={onChangeColor}>
         {COLOR_PALETTE_AVAILABLE.map(
           (color: AppearanceColorOptionsInterface) => (
@@ -278,8 +278,8 @@ const LanguageField = () => {
   ];
 
   return (
-    <div className="">
-      <Label>Change Language</Label>
+    <div>
+      <Label>{translate("floating.changeLanguage")}</Label>
       <RadioGroup value={language} onValueChange={onChangeLangHanlder}>
         {LANGUAGE_OPTIONS.map((lang: GeneralLangOptions) => (
           <div className="flex items-center space-x-2">
@@ -336,7 +336,7 @@ const ThemeField = () => {
   ];
   return (
     <div className="">
-      <Label>Theme Mode</Label>
+      <Label>{translate("floating.themeMode")}</Label>
       <RadioGroup
         value={theme}
         onValueChange={(theme: any) => onChangeTheme(theme)}
