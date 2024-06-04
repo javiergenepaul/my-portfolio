@@ -41,7 +41,7 @@ export const CertificateSection = () => {
         <div className="text-2xl font-bold text-center pb-4">
           {translate("about.certificate.header")}
         </div>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {CERTIFICATES.map(
             (cert: CertificateCardInterface, index: React.Key) => {
               return <CertificateCard key={index} {...cert} />;
