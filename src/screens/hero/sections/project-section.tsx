@@ -2,23 +2,11 @@ import { PATH, ProjectInterface } from "@/config";
 import { Button } from "@/components";
 import { useNavigate } from "react-router-dom";
 import { translate } from "@/i18n";
-import * as Stack from "../../../config/stack";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
-import {
-  ProjectTest01,
-  ProjectTest02,
-  ProjectTest03,
-  ProjectTest04,
-  ProjectTest05,
-} from "@/assets";
-import {
-  MyPortfolio1,
-  MyPortfolio2,
-  MyPortfolio3,
-  MyPortfolio4,
-  MyPortfolio5,
-} from "@/assets/mockups";
+
+import * as Stack from "../../../config/stack";
+import * as Mockup from "@/assets/mockups";
 
 const LazyProjectCard = lazy(
   () => import("../components/project-card/project-card")
@@ -43,27 +31,27 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: ProjectTest01,
+        image: Mockup.YooMockup1,
         name: "test01",
       },
       {
         value: "2",
-        image: ProjectTest02,
+        image: Mockup.YooMockup2,
         name: "test02",
       },
       {
         value: "3",
-        image: ProjectTest03,
+        image: Mockup.YooMockup3,
         name: "test03",
       },
       {
         value: "4",
-        image: ProjectTest04,
+        image: Mockup.YooMockup4,
         name: "test04",
       },
       {
         value: "5",
-        image: ProjectTest05,
+        image: Mockup.YooMockup5,
         name: "test05",
       },
     ],
@@ -96,27 +84,27 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: ProjectTest01,
+        image: Mockup.SiriusMockup1,
         name: "test01",
       },
       {
         value: "2",
-        image: ProjectTest02,
+        image: Mockup.SiriusMockup2,
         name: "test02",
       },
       {
         value: "3",
-        image: ProjectTest03,
+        image: Mockup.SiriusMockup3,
         name: "test03",
       },
       {
         value: "4",
-        image: ProjectTest04,
+        image: Mockup.SiriusMockup4,
         name: "test04",
       },
       {
         value: "5",
-        image: ProjectTest05,
+        image: Mockup.SiriusMockup5,
         name: "test05",
       },
     ],
@@ -147,119 +135,6 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "ongoing",
   },
-  // Unified Youth
-  {
-    title: translate("projects.unifiedYouth.title"),
-    company: translate("projects.unifiedYouth.company"),
-    date: new Date(),
-    description: translate("projects.unifiedYouth.description"),
-    category: [translate("projects.unifiedYouth.category.admin")],
-    previewUrl: undefined,
-    codeUrl: "https://github.com/orgs/Unified-Youth/repositories",
-    type: "client",
-    projectId: "unified-youth",
-    carousel: [
-      {
-        value: "1",
-        image: ProjectTest01,
-        name: "test01",
-      },
-      {
-        value: "2",
-        image: ProjectTest02,
-        name: "test02",
-      },
-      {
-        value: "3",
-        image: ProjectTest03,
-        name: "test03",
-      },
-      {
-        value: "4",
-        image: ProjectTest04,
-        name: "test04",
-      },
-      {
-        value: "5",
-        image: ProjectTest05,
-        name: "test05",
-      },
-    ],
-    stack: [
-      Stack.SPRING_BOOT_STACK,
-      Stack.SPRING_API_STACK,
-      Stack.SPRING_JDBC_STACK,
-      Stack.SPRING_SECURITY_STACK,
-      Stack.JWT_STACK,
-      Stack.SPRING_SECURITY_STACK,
-      Stack.JUNIT_STACK,
-      Stack.JAVA_STACK,
-      Stack.VITE_STACK,
-      Stack.REACT_STACK,
-      Stack.SHAD_CN_STACK,
-      Stack.TAILWIND_STACK,
-      Stack.I18N_STACK,
-      Stack.REACT_QUERY_STACK,
-      Stack.AXIOS_STACK,
-      Stack.AWS_STACK,
-      Stack.FIGMA_STACK,
-      Stack.VITEST_STACK,
-      Stack.MICROSERVICES_STACK,
-      Stack.I18N_STACK,
-      Stack.REACT_ROUTER_STACK,
-    ],
-    status: "ongoing",
-  },
-  // Country Scape
-  {
-    title: translate("projects.countryScape.title"),
-    company: translate("projects.countryScape.company"),
-    date: new Date(),
-    description: translate("projects.countryScape.description"),
-    category: [translate("projects.countryScape.category.booking")],
-    codeUrl: "https://github.com/javiergenepaul/country-scape",
-    previewUrl: undefined,
-    type: "personal",
-    projectId: "country-scape",
-    carousel: [
-      {
-        value: "1",
-        image: ProjectTest01,
-        name: "test01",
-      },
-      {
-        value: "2",
-        image: ProjectTest02,
-        name: "test02",
-      },
-      {
-        value: "3",
-        image: ProjectTest03,
-        name: "test03",
-      },
-      {
-        value: "4",
-        image: ProjectTest04,
-        name: "test04",
-      },
-      {
-        value: "5",
-        image: ProjectTest05,
-        name: "test05",
-      },
-    ],
-    stack: [
-      Stack.REACT_STACK,
-      Stack.TYPESCRIPT_STACK,
-      Stack.SHAD_CN_STACK,
-      Stack.FIGMA_STACK,
-      Stack.LANDING_PAGE_STACK,
-      Stack.TAILWIND_STACK,
-      Stack.NETLIFY_STACK,
-      Stack.I18N_STACK,
-    ],
-    status: "completed",
-  },
   // Hoobank
   {
     title: translate("projects.hoobank.title"),
@@ -275,28 +150,28 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: ProjectTest01,
-        name: "test01",
+        image: Mockup.HoobankMockup1,
+        name: "hoobank-mockup-1",
       },
       {
         value: "2",
-        image: ProjectTest02,
-        name: "test02",
+        image: Mockup.HoobankMockup2,
+        name: "hoobank-mockup-2",
       },
       {
         value: "3",
-        image: ProjectTest03,
-        name: "test03",
+        image: Mockup.HoobankMockup3,
+        name: "hoobank-mockup-3",
       },
       {
         value: "4",
-        image: ProjectTest04,
-        name: "test04",
+        image: Mockup.HoobankMockup4,
+        name: "hoobank-mockup-4",
       },
       {
         value: "5",
-        image: ProjectTest05,
-        name: "test05",
+        image: Mockup.HoobankMockup5,
+        name: "hoobank-mockup-5",
       },
     ],
     stack: [
@@ -324,27 +199,27 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: ProjectTest01,
+        image: Mockup.IqmkMockup1,
         name: "test01",
       },
       {
         value: "2",
-        image: ProjectTest02,
+        image: Mockup.IqmkMockup2,
         name: "test02",
       },
       {
         value: "3",
-        image: ProjectTest03,
+        image: Mockup.IqmkMockup3,
         name: "test03",
       },
       {
         value: "4",
-        image: ProjectTest04,
+        image: Mockup.IqmkMockup4,
         name: "test04",
       },
       {
         value: "5",
-        image: ProjectTest05,
+        image: Mockup.IqmkMockup5,
         name: "test05",
       },
     ],
@@ -356,64 +231,6 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.JAVASCRIPT_STACK,
       Stack.LANDING_PAGE_STACK,
       Stack.NETLIFY_STACK,
-    ],
-    status: "completed",
-  },
-  // Pawfectly Yours
-  {
-    title: translate("projects.pawfectlyYours.title"),
-    company: undefined,
-    date: new Date(),
-    description: translate("projects.pawfectlyYours.description"),
-    category: [
-      translate("projects.pawfectlyYours.category.ecommerce"),
-      translate("projects.pawfectlyYours.category.landing"),
-    ],
-    codeUrl: "https://github.com/javiergenepaul/pawfectly-yours",
-    previewUrl: undefined,
-    type: "personal",
-    projectId: "pawfectly-yours",
-    carousel: [
-      {
-        value: "1",
-        image: ProjectTest01,
-        name: "test01",
-      },
-      {
-        value: "2",
-        image: ProjectTest02,
-        name: "test02",
-      },
-      {
-        value: "3",
-        image: ProjectTest03,
-        name: "test03",
-      },
-      {
-        value: "4",
-        image: ProjectTest04,
-        name: "test04",
-      },
-      {
-        value: "5",
-        image: ProjectTest05,
-        name: "test05",
-      },
-    ],
-    stack: [
-      Stack.SPRING_BOOT_STACK,
-      Stack.SPRING_API_STACK,
-      Stack.SPRING_JDBC_STACK,
-      Stack.SPRING_OAUTH_STACK,
-      Stack.SPRING_SECURITY_STACK,
-      Stack.JWT_STACK,
-      Stack.REACT_STACK,
-      Stack.SHAD_CN_STACK,
-      Stack.TYPESCRIPT_STACK,
-      Stack.TAILWIND_STACK,
-      Stack.HEROKU_STACK,
-      Stack.MICROSERVICES_STACK,
-      Stack.REACT_ROUTER_STACK,
     ],
     status: "completed",
   },
@@ -434,28 +251,28 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: MyPortfolio1,
-        name: "test01",
+        image: Mockup.MyPortfolio1,
+        name: "my-portfolio-1",
       },
       {
         value: "2",
-        image: MyPortfolio2,
-        name: "test02",
+        image: Mockup.MyPortfolio2,
+        name: "my-portfolio-2",
       },
       {
         value: "3",
-        image: MyPortfolio3,
-        name: "test03",
+        image: Mockup.MyPortfolio3,
+        name: "my-portfolio-3",
       },
       {
         value: "4",
-        image: MyPortfolio4,
-        name: "test04",
+        image: Mockup.MyPortfolio4,
+        name: "my-portfolio-4",
       },
       {
         value: "5",
-        image: MyPortfolio5,
-        name: "test05",
+        image: Mockup.MyPortfolio5,
+        name: "my-portfolio-5",
       },
     ],
     stack: [
@@ -492,28 +309,28 @@ export const PROJECTS: ProjectInterface[] = [
     carousel: [
       {
         value: "1",
-        image: ProjectTest01,
-        name: "test01",
+        image: Mockup.PaletteShift1,
+        name: "palette-shift-mockup-1",
       },
       {
         value: "2",
-        image: ProjectTest02,
-        name: "test02",
+        image: Mockup.PaletteShift2,
+        name: "palette-shift-mockup-2",
       },
       {
         value: "3",
-        image: ProjectTest03,
-        name: "test03",
+        image: Mockup.PaletteShift3,
+        name: "palette-shift-mockup-3",
       },
       {
         value: "4",
-        image: ProjectTest04,
-        name: "test04",
+        image: Mockup.PaletteShift4,
+        name: "palette-shift-mockup-4",
       },
       {
         value: "5",
-        image: ProjectTest05,
-        name: "test05",
+        image: Mockup.PaletteShift5,
+        name: "palette-shift-mockup-5",
       },
     ],
     category: [
@@ -540,6 +357,177 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // TODO:: Unified Youth
+  // {
+  //   title: translate("projects.unifiedYouth.title"),
+  //   company: translate("projects.unifiedYouth.company"),
+  //   date: new Date(),
+  //   description: translate("projects.unifiedYouth.description"),
+  //   category: [translate("projects.unifiedYouth.category.admin")],
+  //   previewUrl: undefined,
+  //   codeUrl: "https://github.com/orgs/Unified-Youth/repositories",
+  //   type: "client",
+  //   projectId: "unified-youth",
+  //   carousel: [
+  //     {
+  //       value: "1",
+  //       image: ProjectTest01,
+  //       name: "test01",
+  //     },
+  //     {
+  //       value: "2",
+  //       image: ProjectTest02,
+  //       name: "test02",
+  //     },
+  //     {
+  //       value: "3",
+  //       image: ProjectTest03,
+  //       name: "test03",
+  //     },
+  //     {
+  //       value: "4",
+  //       image: ProjectTest04,
+  //       name: "test04",
+  //     },
+  //     {
+  //       value: "5",
+  //       image: ProjectTest05,
+  //       name: "test05",
+  //     },
+  //   ],
+  //   stack: [
+  //     Stack.SPRING_BOOT_STACK,
+  //     Stack.SPRING_API_STACK,
+  //     Stack.SPRING_JDBC_STACK,
+  //     Stack.SPRING_SECURITY_STACK,
+  //     Stack.JWT_STACK,
+  //     Stack.SPRING_SECURITY_STACK,
+  //     Stack.JUNIT_STACK,
+  //     Stack.JAVA_STACK,
+  //     Stack.VITE_STACK,
+  //     Stack.REACT_STACK,
+  //     Stack.SHAD_CN_STACK,
+  //     Stack.TAILWIND_STACK,
+  //     Stack.I18N_STACK,
+  //     Stack.REACT_QUERY_STACK,
+  //     Stack.AXIOS_STACK,
+  //     Stack.AWS_STACK,
+  //     Stack.FIGMA_STACK,
+  //     Stack.VITEST_STACK,
+  //     Stack.MICROSERVICES_STACK,
+  //     Stack.I18N_STACK,
+  //     Stack.REACT_ROUTER_STACK,
+  //   ],
+  //   status: "ongoing",
+  // },
+  // TODO:: Country Scape
+  // {
+  //   title: translate("projects.countryScape.title"),
+  //   company: translate("projects.countryScape.company"),
+  //   date: new Date(),
+  //   description: translate("projects.countryScape.description"),
+  //   category: [translate("projects.countryScape.category.booking")],
+  //   codeUrl: "https://github.com/javiergenepaul/country-scape",
+  //   previewUrl: undefined,
+  //   type: "personal",
+  //   projectId: "country-scape",
+  //   carousel: [
+  //     {
+  //       value: "1",
+  //       image: ProjectTest01,
+  //       name: "test01",
+  //     },
+  //     {
+  //       value: "2",
+  //       image: ProjectTest02,
+  //       name: "test02",
+  //     },
+  //     {
+  //       value: "3",
+  //       image: ProjectTest03,
+  //       name: "test03",
+  //     },
+  //     {
+  //       value: "4",
+  //       image: ProjectTest04,
+  //       name: "test04",
+  //     },
+  //     {
+  //       value: "5",
+  //       image: ProjectTest05,
+  //       name: "test05",
+  //     },
+  //   ],
+  //   stack: [
+  //     Stack.REACT_STACK,
+  //     Stack.TYPESCRIPT_STACK,
+  //     Stack.SHAD_CN_STACK,
+  //     Stack.FIGMA_STACK,
+  //     Stack.LANDING_PAGE_STACK,
+  //     Stack.TAILWIND_STACK,
+  //     Stack.NETLIFY_STACK,
+  //     Stack.I18N_STACK,
+  //   ],
+  //   status: "completed",
+  // },
+  // TODO:: Pawfectly Yours
+  // {
+  //   title: translate("projects.pawfectlyYours.title"),
+  //   company: undefined,
+  //   date: new Date(),
+  //   description: translate("projects.pawfectlyYours.description"),
+  //   category: [
+  //     translate("projects.pawfectlyYours.category.ecommerce"),
+  //     translate("projects.pawfectlyYours.category.landing"),
+  //   ],
+  //   codeUrl: "https://github.com/javiergenepaul/pawfectly-yours",
+  //   previewUrl: undefined,
+  //   type: "personal",
+  //   projectId: "pawfectly-yours",
+  //   carousel: [
+  //     {
+  //       value: "1",
+  //       image: ProjectTest01,
+  //       name: "test01",
+  //     },
+  //     {
+  //       value: "2",
+  //       image: ProjectTest02,
+  //       name: "test02",
+  //     },
+  //     {
+  //       value: "3",
+  //       image: ProjectTest03,
+  //       name: "test03",
+  //     },
+  //     {
+  //       value: "4",
+  //       image: ProjectTest04,
+  //       name: "test04",
+  //     },
+  //     {
+  //       value: "5",
+  //       image: ProjectTest05,
+  //       name: "test05",
+  //     },
+  //   ],
+  //   stack: [
+  //     Stack.SPRING_BOOT_STACK,
+  //     Stack.SPRING_API_STACK,
+  //     Stack.SPRING_JDBC_STACK,
+  //     Stack.SPRING_OAUTH_STACK,
+  //     Stack.SPRING_SECURITY_STACK,
+  //     Stack.JWT_STACK,
+  //     Stack.REACT_STACK,
+  //     Stack.SHAD_CN_STACK,
+  //     Stack.TYPESCRIPT_STACK,
+  //     Stack.TAILWIND_STACK,
+  //     Stack.HEROKU_STACK,
+  //     Stack.MICROSERVICES_STACK,
+  //     Stack.REACT_ROUTER_STACK,
+  //   ],
+  //   status: "completed",
+  // },
 ];
 
 export const ProjectSection = () => {
