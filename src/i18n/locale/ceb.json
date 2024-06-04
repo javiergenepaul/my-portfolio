@@ -16,18 +16,32 @@
       "skills": "Mga kahanas"
     }
   },
+  "floatingNav": {
+    "home": "Balay",
+    "aboutMe": "Mahitungod Kanako",
+    "project": "Proyekto",
+    "skills": "Mga kahanas",
+    "contactMe": "Kontaka Ako",
+    "settings": "Mga setting"
+  },
   "theme": {
     "light": "Kahayag nga Mode",
     "dark": "Dark Mode",
     "system": "Sistema"
   },
-  "resume": {
-    "btnName": "I-download ang Resume"
-  },
   "errorMessages": {
     "required": "Kini nga field gikinahanglan. ",
     "invalidEmail": "Palihug pagsulod ug balido nga email address.",
     "maximumCharacter": "Milapas na sa maximum nga limitasyon sa karakter.  {{count}} mga karakter o mas gamay."
+  },
+  "floating": {
+    "quickAcces": "Dali nga Pag-access",
+    "toggle": "Toggle",
+    "backgroundOnlyMode": "Background-Only Mode",
+    "disableParticle": "I-disable ang Partikulo",
+    "colorPalette": "Palette sa Kolor",
+    "changeLanguage": "Usba ang Pinulongan",
+    "themeMode": "Mode sa Tema"
   },
   "getInTouch": "Kontaka",
   "learnMore": "Pagkat-on pa",
@@ -49,7 +63,7 @@
     "name": "Gene Paul Mar Javier",
     "nickName": "Paul Javier",
     "shortName": "PJ",
-    "description": "Isip usa ka Fullstack Developer, Ako Mipasalig sa Paghimo sa Talagsaon nga Digital nga mga Kasinatian: Pagtukod sa Pixel-Perfect, Engaging, ug Accessible nga mga Websites nga adunay Katukma ug Pag-atiman, Pag-gamit sa Lig-on nga mga API para sa Seamless Functionality.",
+    "description": "Isip usa ka Fullstack Developer, Ako Komitado sa Paghimo ug Talagsaon nga Digital nga mga Kasinatian: Pagtukod sa Pixel-Perfect, Engaging, ug Accessible nga mga Website nga adunay Katukma ug Pag-atiman, Paggamit sa Lig-on nga mga API alang sa Seamless Functionality.",
     "ariaLabel": {
       "navigationLinks": "Mga Link sa Nabigasyon",
       "socialMedia": "Social Media",
@@ -71,7 +85,7 @@
       "reactTypescript": "React TypeScript Developer",
       "springBoot": "Developer sa Spring Boot",
       "uiuxAdvocate": "UI/UX Advocate",
-      "uiLibraryEnthusiasts": "Mga Mahiligon sa Library sa UI"
+      "uiLibraryEnthusiasts": "Mga Mahiligon sa UI Library"
     },
     "aboutMe": "Mahitungod Kanako"
   },
@@ -145,24 +159,40 @@
       "netlify": "Netlify",
       "heroku": "Heroku",
       "vitest": "Vitest",
-      "microservices": "Microservices",
+      "microservices": "Mga microservice",
       "figma": "Ang Figma",
       "frontend": "Front-End",
       "figmaToHTML": "Figma sa HTML",
       "figmaToReact": "Figma sa Reaksyon",
       "attentionToDetails": "Pagtagad sa mga Detalye",
       "pixelPerfect": "Pixel Perfect",
-      "landingPage": "Landing Page"
+      "landingPage": "Landing Page",
+      "reactRouter": "React Router"
+    },
+    "hoverCard": {
+      "years": "Mga tuig",
+      "projects": "Mga proyekto"
     }
   },
   "projects": {
     "title": "Mga proyekto",
-    "description": "paghulagway sa mga proyekto sa pagsulay",
+    "description": "Diin Naporma ang mga Ideya: Pagsuhid sa Dakong Canvas sa Mga Mamugnaong Proyekto",
     "tag": {
-      "confidential": "Kompidensyal",
+      "confidential": "Gipanalipdan",
       "personal": "Personal",
       "client": "Kliyente",
       "tutorial": "Tutorial"
+    },
+    "table": {
+      "tableHeader": "Usa ka lista sa akong mga proyekto.",
+      "tableRow": {
+        "title": "Titulo",
+        "company": "Kompanya",
+        "category": "Kategorya",
+        "type": "Matang",
+        "status": "Status",
+        "action": "Aksyon"
+      }
     },
     "button": {
       "sourceCode": "Code sa GitHub",
@@ -210,7 +240,7 @@
     "countryScape": {
       "title": "CountryScape",
       "company": "Triad Software Digital Solutions",
-      "description": "Ang Country Scape usa ka madanihon nga static nga landing page nga makuti nga gihimo gikan sa Figma ug gibuhi sa React JavaScript. ",
+      "description": "Ang Country Scape usa ka madanihon nga static landing page nga makuti nga gihimo gikan sa Figma ug gibuhi sa React JavaScript. ",
       "imageName": "Pagtan-aw sa Lawak sa Nasod",
       "category": {
         "booking": "Pag-book sa Hotel"
@@ -218,7 +248,7 @@
     },
     "hoobank": {
       "title": "Hoobank",
-      "description": "Ang Hoobank kay usa ka beginner-friendly code-along tutorial sa Javascript Master, nga nagpaila sa mga partisipante sa Tailwind CSS basics, lakip ang paggamit sa klase ug configuration. ",
+      "description": "Ang Hoobank kay usa ka beginner-friendly code-along tutorial sa Javascript Master, nga nagpaila sa mga partisipante sa Tailwind CSS basics, lakip na ang paggamit sa klase ug configuration. ",
       "imageName": "Nasud",
       "category": {
         "landing": "Landing Page"
@@ -241,6 +271,26 @@
         "ecommerce": "ecommerce",
         "landing": "Landing Page"
       }
+    },
+    "myPortfolio": {
+      "title": "Akong Portfolio",
+      "description": "Gipakita sa kini nga proyekto ang akong kahanas sa pag-uswag sa unahan ug hilig sa software engineering. ",
+      "category": {
+        "landing": "Landing Page",
+        "portfolioWebsite": "portfolioWebsite"
+      }
+    },
+    "paletteShift": {
+      "title": "PaletteShift: I-personalize ang Pinulongan ug Tema",
+      "description": "Ang PaletteShift usa ka dinamikong plataporma nga gilaraw aron mahatagan ug gahum ang mga tiggamit sa pag-personalize sa ilang digital nga palibot. ",
+      "category": {
+        "webDevelopment": "Pagpalambo sa Web",
+        "local": "Lokalisasyon",
+        "international": "Internasyonalisasyon",
+        "accessibility": "Accessibility",
+        "tools": "Mga Gamit sa Software",
+        "libraries": "Mga librarya"
+      }
     }
   },
   "contact": {
@@ -248,21 +298,30 @@
     "description": "pagsulay sa paghulagway sa kontak",
     "keepInTouch": "Magpadayon ta sa pagkontak",
     "placeHolder": {
-      "name": "Ngalan",
-      "email": "Email",
+      "name": "Imong pangalan",
+      "email": "Imong email",
       "message": "Mensahe"
     },
     "button": {
-      "submit": "Isumite"
+      "submit": "Isumite",
+      "resend": "Paghulat ug Ipadala pag-usab {{time}}"
+    },
+    "copyToClipboard": {
+      "default": "Kopyaha sa Clipboard",
+      "copied": "Gikopya!"
     },
     "toast": {
       "success": {
         "title": "Nagmalampuson ang Pagsumite sa Email",
-        "description": "Salamat sa pagsumite sa imong email! "
+        "description": "Salamat sa pagkontak nako. "
       },
       "error": {
         "title": "Sayop sa Pagsumite sa Email!!!",
         "description": "Oops! "
+      },
+      "errrorConfig": {
+        "title": "Adunay Nasayop",
+        "description": "Palihug paghatag og configuration para sa Email Js."
       }
     }
   },
@@ -277,7 +336,8 @@
     "vite": "Vite,",
     "react": "React,",
     "tailwind": "Tailwind CSS",
-    "content_five": "pagsiguro sa usa ka seamless ug episyente nga kasinatian sa kalamboan."
+    "content_five": "pagsiguro sa usa ka seamless ug episyente nga kasinatian sa kalamboan.",
+    "name": "@2024 - Gene Paul Mar Javier"
   },
   "settings": {
     "header": {
@@ -350,7 +410,7 @@
             "04": "Azure bliss: diin ang kalapad sa kalangitan nagtagbo sa giladmon sa dagat, nagpintal sa usa ka hulagway sa kalinaw.",
             "05": "Sa gingharian sa azure bliss, matag gutlo usa ka brushstroke sa kalinaw sa canvas sa kinabuhi.",
             "06": "Pangitaa ang dalangpanan sa azure nga kahiladman sa kalipay, diin ang kalag nakakaplag ug santuwaryo sa paggakos sa walay kinutuban nga asul.",
-            "07": "Azure bliss: usa ka symphony sa kalmado, diin ang kanta sa dagat nagtagbo sa melodiya sa langit.",
+            "07": "Azure bliss: usa ka symphony of calm, diin ang kanta sa dagat nagtagbo sa melodiya sa langit.",
             "08": "Dawata ang azure nga kapunawpunawan sa kalipay, diin ang matag kolor sa asul naghupot sa saad sa kalinaw.",
             "09": "Sa azure nga hawan sa kalipay, himoa nga ang imong espiritu molupad sa mga pako sa kalinaw ug grasya."
           }
@@ -360,26 +420,26 @@
           "quotes": {
             "10": "Sa bulawanon nga alisngaw sa kilumkilom, pasagdi ang imong mga kabalaka nga mawala ngadto sa kapunawpunawan, samtang ang adlaw mobalhin ngadto sa hilom nga mga hunghong sa kagabhion.",
             "01": "Sa paggakos sa bulawan nga haze, pangitaa ang kainit sa malumo nga paghapuhap sa kahayag sa adlaw, nagpintal sa kalibutan sa mga kolor sa amber ug bulawan.",
-            "02": "Nawala sa bulawan nga alisngaw, pahunonga ang panahon samtang nagsuroy-suroy ka sa kapatagan sa mga damgo nga naligo sa humok nga silaw sa kilumkilom.",
+            "02": "Nawala sa bulawan nga alisngaw, pahunonga ang oras samtang nagsuroy-suroy ka sa kapatagan sa mga damgo nga naligo sa humok nga silaw sa kilumkilom.",
             "03": "Sa ilawom sa bulawan nga haze, pagdiskobre sa salamangka sa mga gutlo nga gisuspinde sa amber nga kahayag, diin ang mga panumduman gihulma sa panapton sa panahon.",
-            "04": "Bulawanon nga haze: diin ang adlaw nagtagbo sa kapunawpunawan, nga naghimo sa usa ka salamangka sa pagkabig sa yuta, nagdilaab sa mga kasingkasing sa kalayo sa inspirasyon.",
+            "04": "Bulawanon nga haze: diin ang adlaw nagtagbo sa kapunawpunawan, nga naghimo sa usa ka salamangka sa pagkakabig sa yuta, nagdilaab sa mga kasingkasing sa kalayo sa inspirasyon.",
             "05": "Sa gingharian sa bulawan nga haze, ang matag huyuhoy sa hangin nagdala ug mga lanog sa mga damgo nga wala pa mapadayag, nagsaad nga mga panimpalad sa kayutaan nga wala mailhi.",
             "06": "Sama sa mga hunghong gikan sa nangagi, ang bulawan nga aso nagpadayag sa mga sekreto nga dugay nang nakalimtan, naghabol sa usa ka tapiserya sa mga istorya sa ilawom sa bulawan nga kalangitan.",
             "07": "Pagbaton sa bulawan nga haze, diin ang matag gutlo naghupot sa saad sa bag-ong mga sinugdanan, ug ang matag pagsalop sa adlaw nagpintal sa langit sa mga damgo.",
             "08": "Sulod sa bulawan nga haze, pangitaa ang kahupayan sa malumo nga silaw sa kahayag sa kagabhion, samtang ang mga anino nagsayaw ug ang mga damgo naglupad.",
-            "09": "Bulawanon nga haze: usa ka symphony sa kainit ug kahibulongan, diin ang kalibutan naligo sa malumo nga paggakos sa kilumkilom."
+            "09": "Bulawanon nga haze: usa ka symphony sa kainit ug katingala, diin ang kalibutan naligo sa malumo nga gakos sa kilumkilom."
           }
         },
         "sunset": {
           "title": "Sunset Ember",
           "quotes": {
             "10": "Sa paggakos sa ember sa pagsalop sa adlaw, biyai ang mga kabalaka sa adlaw, samtang ang nagdilaab nga kahayag nagdan-ag sa dalan sa kalinaw ug kalinaw.",
-            "01": "Sa kasanag sa pagsalop sa adlaw, bation ang kainit sa nagkaanam nga kahayag sa adlaw nga naghalok sa yuta nga adunay mga kolor nga mapula ug bulawan, usa ka katapusang gakos sa dili pa ang kagabhion.",
-            "02": "Nawala sa makapakurat nga sayaw sa ember sa pagsalop sa adlaw, tugoti ang siga sa kilumkilom nga magdilaab sa imong kalag sa gugma ug posibilidad, pagpintal sa langit nga adunay mga damgo.",
+            "01": "Sa kasanag sa pagsalop sa adlaw, bation ang kainit sa nagkaanam nga kahayag sa adlaw nga naghalok sa yuta nga adunay mga kolor nga mapula ug bulawan, usa ka katapusang paggakos sa dili pa ang kagabhion.",
+            "02": "Nawala sa makapakurat nga sayaw sa pagsalop sa adlaw, tugoti ang mga siga sa kilumkilom nga magdilaab sa imong kalag sa gugma ug posibilidad, pagpintal sa langit nga adunay mga damgo.",
             "03": "Sa ilawom sa canopy sa pagsalop sa adlaw, pagdiskobre sa salamangka sa mga gutlo nga gisuspinde sa nagdilaab nga kahayag, diin ang mga panumduman gikulit sa canvas sa kalangitan sa kagabhion.",
-            "04": "Sunset ember: diin ang adlaw nagtagbo sa iyang katapusan, nagbutang usa ka nagdilaab nga talan-awon sa kapunawpunawan, usa ka symphony sa mga kolor nga nagdilaab sa kasingkasing sa katingala.",
+            "04": "Pagsalop sa adlaw: diin ang adlaw nagtagbo sa iyang katapusan, nagbutang usa ka nagdilaab nga talan-awon sa kapunawpunawan, usa ka symphony sa mga kolor nga nagdilaab sa kasingkasing sa katingala.",
             "05": "Sa gingharian sa pagsalop sa adlaw, ang matag kidlap sa kahayag nagpintal sa usa ka istorya sa mga katapusan ug sinugdanan, usa ka tapestry sa mga emosyon nga gihabol sa panapton sa kilumkilom.",
-            "06": "Sama sa mga baga sa usa ka himalatyon nga kalayo, ang pagsalop sa adlaw naghunghong sa mga sekreto sa adlaw nga panaw, nga nagbutang ug mga anino nga nagsayaw uban sa nagakahanaw nga kahayag.",
+            "06": "Sama sa mga baga sa usa ka himalatyon nga kalayo, ang pagsalop sa adlaw naghunghong sa mga sekreto sa adlaw nga panaw, nga nagbutang sa mga anino nga nagsayaw uban sa nagakahanaw nga kahayag.",
             "07": "Dawata ang kainit sa ember sa pagsalop sa adlaw, diin ang matag silaw sa kahayag naghupot sa saad sa usa ka bag-ong kaadlawon, ug ang matag kilumkilom usa ka pahinumdom sa walay katapusan nga siklo sa kinabuhi.",
             "08": "Sulod sa silaw sa pagsalop sa adlaw, pangitaa ang kahupayan sa hilom nga mga gutlo sa pagpamalandong, samtang ang adlaw mosalop sa malumo nga paggakos sa kagabhion.",
             "09": "Sunset ember: usa ka symphony sa mga kolor ug landong, diin ang kalangitan nagdilaab sa kataposang mga gutlo sa adlaw, usa ka makapahinganghang pagpakita sa katahom sa kinaiyahan."
@@ -389,11 +449,11 @@
           "title": "Purple Kamahalan",
           "quotes": {
             "10": "Sa gingharian sa Purple Majesty, tugoti ang imong espiritu nga molupad sa mga pako sa imahinasyon, samtang imong gitagamtam ang himaya sa kahalangdon sa kinaiyahan.",
-            "01": "Sa gingharian sa Purple Majesty, himoa nga ang harianong kolor maghari, nagpintal sa kalibutan sa harianong kaanyag.",
+            "01": "Sa gingharian sa Purple Majesty, himoa nga ang harianong kolor maghari, nagpintal sa kalibutan sa harianong kahalangdon.",
             "02": "Nawala sa madanihon nga paggakos sa Purple Majesty, mabati ang salamangka sa halok sa kilumkilom samtang ang adlaw moabut sa gabii.",
             "03": "Sa ilawom sa kupo sa Purple Majesty, diskobrehi ang kabuhong sa tapestry sa kinabuhi, nga gihabol sa mga hilo sa gugma ug grasya.",
             "04": "Purple Majesty: diin ang langit nakigtagbo sa yuta sa usa ka halangdon nga sayaw sa kilumkilom, nga naghimo sa usa ka spell sa kataha ug katingala.",
-            "05": "Sa gingharian sa Purple Majesty, ang matag gutlo usa ka symphony sa mga violet nga kolor, nga nagpalanog sa kahalangdon sa mga hari ug mga rayna.",
+            "05": "Sa gingharian sa Purple Majesty, ang matag gutlo usa ka symphony sa mga kolor nga bayolet, nga nagpalanog sa kahalangdon sa mga hari ug mga rayna.",
             "06": "Sama sa mga hunghong gikan sa usa ka halayong gingharian, ang Purple Majesty nagsinyas sa mga saad sa mga damgo nga natuman ug gigakos ang mga padulngan.",
             "07": "Dawata ang kaanindot sa Purple Majesty, diin ang matag pagsalop sa adlaw usa ka koronasyon sa mga kolor, nagpintal sa kalangitan sa mga kolor sa pagkahari.",
             "08": "Sulod sa paggakos sa Purple Majesty, pangitaa ang kahupayan sa malinawon nga katahum sa kilumkilom, samtang ang adlaw matahum nga nagbunga sa gabii.",
@@ -404,13 +464,13 @@
           "title": "Scarlet Serenade",
           "quotes": {
             "10": "Sa melodiya sa Scarlet Serenade, tugoti ang imong kalag nga mosayaw sa ritmo sa gugma, samtang mosurender ka sa awit sa matam-is nga harana sa gugma.",
-            "01": "Sa symphony sa Scarlet Serenade, himoa nga ang mapula nga melodiya mosayaw sa imong kalag, makapukaw sa kahinam ug makapukaw sa mga kasingkasing.",
+            "01": "Sa symphony sa Scarlet Serenade, himoa nga ang mapula nga melodiya mosayaw sa imong kalag, makapukaw sa kahinam ug makapapukaw sa mga kasingkasing.",
             "02": "Nawala sa madanihon nga paggakos sa Scarlet Serenade, mabati ang ritmo sa kinabuhi nga nagpitik sa matag kolor nga pula nga nota.",
             "03": "Sa ilawom sa canopy sa Scarlet Serenade, pagdiskubre sa gahum sa melodiya sa gugma, paghabol sa agianan sa tapestry sa panahon.",
             "04": "Scarlet Serenade: diin ang mga lanog sa gugma milanog, nagpintal sa kalibutan sa mga kolor sa nagdilaab nga tinguha ug nagdilaab nga debosyon.",
             "05": "Sa paggakos sa Scarlet Serenade, matag gutlo usa ka awit sa gugma, giawit sa kasingkasing ug gihunghong sa hangin.",
             "06": "Sama sa mga hunghong gikan sa usa ka layo nga balad, ang Scarlet Serenade nagtawag sa kalag, nga nagpahibalo sa mga saad sa romansa ug panimpalad.",
-            "07": "Dawata ang gugma sa Scarlet Serenade, diin ang matag pagsalop sa adlaw usa ka serenade sa mga eskarlata nga kolor, nagpintal sa langit sa walay katapusan nga siga sa gugma.",
+            "07": "Dawata ang gugma sa Scarlet Serenade, diin ang matag pagsalop sa adlaw usa ka serenade sa mga eskarlata nga kolor, nagpintal sa kalangitan sa walay katapusan nga siga sa gugma.",
             "08": "Sulod sa gakos sa Scarlet Serenade, pangitaa ang kahupayan sa malumo nga paggakos sa matam-is nga melodiya sa gugma, samtang kini nag-awit sa kagabhion.",
             "09": "Scarlet Serenade: usa ka symphony sa tinguha ug debosyon, diin ang kasingkasing nakakaplag ug dangpanan sa paggakos sa walay kataposang siga sa gugma."
           }
@@ -427,7 +487,7 @@
             "06": "Sama sa mga hunghong gikan sa usa ka celestial symphony, ang Silver Serenity nag-awhag sa mga saad sa kalinaw ug panag-uyon sa sulod.",
             "07": "Dawata ang kalinaw sa Silver Serenity, diin ang matag bituon usa ka pahinumdom sa katahum nga makita sa mga gutlo sa hilom nga pagpamalandong.",
             "08": "Sulod sa gakos sa Silver Serenity, pangitaa ang kahupayan sa malumo nga paggakos sa kagabhion, samtang ang kalibutan nahinanok sa ilawom sa usa ka habol sa mga bituon.",
-            "09": "Silver Serenity: usa ka santuwaryo sa kalinaw ug kalinaw, diin ang kalag nakakaplag ug dangpanan sa malumo nga gakos sa kalangitan sa kagabhion."
+            "09": "Silver Serenity: usa ka santuwaryo sa kalinaw ug kalmado, diin ang kalag nakakaplag ug dangpanan sa malumo nga paggakos sa kalangitan sa kagabhion."
           }
         }
       },
@@ -437,7 +497,7 @@
     },
     "lang": {
       "lang": "Pinulongan",
-      "formDescription": "Gusto mosulay ug laing pinulongan? ",
+      "formDescription": "Gusto ka mosulay ug laing pinulongan? ",
       "btn": {
         "update": "Pag-update sa mga Setting"
       },
@@ -459,12 +519,103 @@
     "settingsUpdated": "Gi-update ang mga Setting"
   },
   "about": {
+    "hello": "Hello ako nga",
+    "name": "Gene Paul Mar Javier",
+    "slogan": "Paghimo sa mga Ideya Ngadto sa Kamatuoran",
+    "intruduction": "Nagsugod ang akong tech journey sa University of Cebu. ",
     "title": "Mahitungod Kanako",
-    "description": "test about nako description"
+    "description": "test about nako description",
+    "downloadResume": "I-download ang Akong Resume",
+    "education": {
+      "title": "Edukasyon"
+    },
+    "experience": {
+      "title": "Kasinatian",
+      "education": {
+        "tertiary": {
+          "title": "Bachelor of Science sa Computer Engineering",
+          "subtitle": "Unibersidad sa Sugbo - Main Campus",
+          "description": "Isip usa ka gradwado sa Unibersidad sa Cebu nga nag-espesyalisar sa web development ug virtual reality, hanas ko sa lain-laing programming language sama sa C++, HTML, CSS, ug Java. ",
+          "abb": "BSCPE",
+          "alt": "Pangunang Logo sa Unibersidad sa Sugbo"
+        },
+        "vocational": {
+          "title": "Oportunidad Livelihood Technology Entrepreneurial Classes",
+          "subtitle": "Cebu Technological University",
+          "description": "Madasigon nga espesyalista sa IT nga hanas sa hardware sa PC, pag-troubleshoot, pag-assemble sa sistema, ug pag-install sa OS. ",
+          "abb": "OLTEC",
+          "alt": "Cebu Technological University"
+        },
+        "secondary": {
+          "title": "High School",
+          "subtitle": "Basilan National High School",
+          "description": "Migraduwar sa Basilan National High School nga adunay lig-on nga pundasyon sa academic ug interpersonal skills. ",
+          "abb": "BNHS",
+          "alt": "Logo sa Basilan National High School"
+        },
+        "primary": {
+          "title": "Elementary School",
+          "subtitle": "Isabela Central Elementary Pilot School",
+          "description": "Elementary graduate gikan sa Isabela Central Elementary Pilot School nga adunay lig-on nga pundasyon sa core academic subjects. ",
+          "abb": "ICEPS",
+          "alt": "Logo sa Isabela Central Elementary Pilot School"
+        }
+      },
+      "experience": {
+        "alliance": {
+          "ts1": {
+            "title": "Software Engineer - Espesyalista sa Teknikal I",
+            "subtitle": "Alliance Software Inc.",
+            "abb": "TS ko",
+            "description": "Nasinati nga Tibuok Stack Developer nga hanas sa Spring Boot ug React TypeScript, gipahinungod sa pagtukod og lig-on nga mga aplikasyon nga adunay pagtutok sa mga seamless frontend nga mga kasinatian ug episyente nga mga operasyon sa backend. ",
+            "alt": "Logo sa Alliance Software Inc"
+          },
+          "ats1": {
+            "title": "Software Engineer - Associate Technical Specialist I",
+            "subtitle": "Alliance Software Inc.",
+            "abb": "ATS I",
+            "description": "Ang eksperyensiyado nga Full-stack Developer nga hanas sa Vite, React, TypeScript, ug Spring Boot, nga nailhan sa pagpatuman sa lig-on nga mga lakang sa seguridad ug pagpaayo sa performance para sa mga web application. ",
+            "alt": "Logo sa Alliance Software Inc"
+          }
+        },
+        "mach95": {
+          "title": "Software Developer",
+          "description": "Ang eksperyensiyado nga Tibuok Stack Developer nga hanas sa Laravel 8 ug CodeIgniter, madasigon sa paghimo ug dinamikong mga solusyon sa web ug pagpaayo sa mga aplikasyon. ",
+          "subtitle": "Mach95 Software Development Corporation",
+          "alt": "Mach95 Software Development Logo"
+        },
+        "exodia": {
+          "title": "VR/AR Developer ug 3D Modeler",
+          "description": "Madasigon nga 3D Environmental Designer nga nag-espesyalisar sa paghimo og immersive nga digital nga mga kasinatian para sa Virtual Reality (VR) ug Augmented Reality (AR) nga mga proyekto. ",
+          "subtitle": "Pag-uswag sa Dula sa Exodia",
+          "abb": "Part Time",
+          "alt": "Exodia Game Development Logo"
+        }
+      }
+    },
+    "certificate": {
+      "header": "Mga sertipiko",
+      "issued": "gipagawas {{date}}",
+      "react": {
+        "title": "Ang Kompleto nga Giya 2024 (lakip ang React Router & Redux)",
+        "organization": "Udemy",
+        "organizationAlt": "Mga Sertipiko sa Udemy"
+      },
+      "springBoot": {
+        "title": "FullStack: React ug Java Spring Boot - Ang Giya sa Developer",
+        "organization": "Udemy",
+        "organizationAlt": "Mga Sertipiko sa Udemy"
+      }
+    },
+    "outro": {
+      "workTogether": "Magtinabangay ta",
+      "sub": "Ganahan ko makadungog gikan nimo! ",
+      "getInTouch": "Kontaka"
+    }
   },
   "skills": {
     "title": "Mga kahanas",
-    "description": "paghulagway sa kahanas sa pagsulay"
+    "description": "Pag-navigate sa Kalawom sa Imong Daghag Gamit nga Kahanas nga Gitakda sa Pagpalig-on sa Pag-uswag ug Kalampusan"
   },
   "availableSoon": "Magamit sa Dili madugay"
 }
