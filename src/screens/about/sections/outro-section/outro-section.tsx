@@ -18,7 +18,9 @@ export const OutroSection = () => {
               className="rounded-full border-primary border-4"
               src={AvatarProfile}
             />
-            <AvatarFallback>{translate("header.shortName")}</AvatarFallback>
+            <AvatarFallback className="rounded-full border-primary border-4">
+              {translate("header.shortName")}
+            </AvatarFallback>
           </Avatar>
           <h1 className="text-5xl font-semibold">
             {translate("outro.workTogether")}
