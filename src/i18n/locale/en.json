@@ -336,7 +336,8 @@
     "vite": "Vite,",
     "react": "React,",
     "tailwind": "Tailwind CSS",
-    "content_five": "ensuring a seamless and efficient development experience."
+    "content_five": "ensuring a seamless and efficient development experience.",
+    "name": "@2024 - Gene Paul Mar Javier"
   },
   "settings": {
     "header": {
@@ -605,16 +606,17 @@
         "organization": "Udemy",
         "organizationAlt": "Udemy Certificates"
       }
+    },
+    "outro": {
+      "workTogether": "Let's work together",
+      "sub": "I'd love to hear from you! Whether you have a project in mind, want to collaborate, or just have a question, feel free to reach out. Let's create something amazing together!",
+      "getInTouch": "Get In Touch"
     }
   },
   "skills": {
     "title": "Skills",
     "description": "Navigating the Depths of Your Versatile Skill Set to Empower Growth and Success"
   },
-  "outro": {
-    "workTogether": "Let's work together",
-    "sub": "I'd love to hear from you! Whether you have a project in mind, want to collaborate, or just have a question, feel free to reach out. Let's create something amazing together!",
-    "getInTouch": "Get In Touch"
-  },
+
   "availableSoon": "Available Soon"
 }

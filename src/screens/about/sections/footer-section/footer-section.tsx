@@ -1,4 +1,6 @@
+import { Separator } from "@/components";
 import { PATH, SOCIAL_MEDIA_LINKS } from "@/config";
+import { translate } from "@/i18n";
 import { SocialButton } from "@/screens/hero";
 
 export const FooterSection = () => {
@@ -22,9 +24,11 @@ export const FooterSection = () => {
   ];
 
   return (
-    <footer className="pt-10 flex justify-between">
-      <div className="">@2024 - Gene Paul Mar Javier</div>
-      <div className="flex gap-4">
+    <footer className="pt-10 flex flex-col md:flex-row gap-4 md:gap-0 justify-between">
+      <div className="text-center md:text-start">
+        {translate("footer.name")}
+      </div>
+      <div className="flex gap-4 justify-center">
         {SOCIAL_MEDIA_LINKS.map((socialMedia, key: React.Key) => {
           return (
             <SocialButton
@@ -36,22 +40,21 @@ export const FooterSection = () => {
           );
         })}
       </div>
-      <div className="">
-        <ul className="flex gap-4">
-          {FOOTER_NAV_LINKS.map((data) => {
-            return (
-              <li>
-                <a
-                  href={data.url}
-                  className="hover:text-primary cursor-pointer"
-                >
-                  {data.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <ul className="flex gap-2 justify-center">
+        {FOOTER_NAV_LINKS.map((data, index) => {
+          return (
+            <li className="flex gap-2">
+              <a href={data.url} className="hover:text-primary cursor-pointer">
+                {data.label}
+              </a>
+              <Separator
+                hidden={index === FOOTER_NAV_LINKS.length - 1}
+                orientation="vertical"
+              />
+            </li>
+          );
+        })}
+      </ul>
     </footer>
   );
 };
