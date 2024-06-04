@@ -23,10 +23,10 @@ export const OutroSection = () => {
             </AvatarFallback>
           </Avatar>
           <h1 className="text-5xl font-semibold">
-            {translate("outro.workTogether")}
+            {translate("about.outro.workTogether")}
           </h1>
           <p className="text-muted-foreground text-sm max-w-[700px] text-center">
-            {translate("outro.sub")}
+            {translate("about.outro.sub")}
           </p>
           <Button
             className="w-fit"
@@ -34,7 +34,7 @@ export const OutroSection = () => {
               navigate(PATH.CONTACTS.path);
             }}
           >
-            {translate("outro.getInTouch")}
+            {translate("about.outro.getInTouch")}
           </Button>
         </div>
       </div>
