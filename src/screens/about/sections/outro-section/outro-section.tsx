@@ -22,7 +22,7 @@ export const OutroSection = () => {
               {translate("header.shortName")}
             </AvatarFallback>
           </Avatar>
-          <h1 className="text-5xl font-semibold">
+          <h1 className="lg:text-5xl text-center text-2xl font-semibold">
             {translate("about.outro.workTogether")}
           </h1>
           <p className="text-muted-foreground text-sm max-w-[700px] text-center">
