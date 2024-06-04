@@ -54,7 +54,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
                   date: issuedDate.format("MMM YYYY"),
                 })}
               </p>
-              <p>{credentialId}</p>
+              <p className="hidden md:block">{credentialId}</p>
             </CardContent>
           </div>
           <img
