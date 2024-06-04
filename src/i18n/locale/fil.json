@@ -16,18 +16,32 @@
       "skills": "Mga kasanayan"
     }
   },
+  "floatingNav": {
+    "home": "Bahay",
+    "aboutMe": "Tungkol sa Akin",
+    "project": "Proyekto",
+    "skills": "Mga kasanayan",
+    "contactMe": "Tawagan mo ako",
+    "settings": "Mga setting"
+  },
   "theme": {
     "light": "Light Mode",
     "dark": "Dark Mode",
     "system": "Sistema"
   },
-  "resume": {
-    "btnName": "I-download ang Resume"
-  },
   "errorMessages": {
     "required": "Kinakailangan ang field na ito. ",
     "invalidEmail": "Mangyaring magpasok ng wastong email address.",
     "maximumCharacter": "Lumampas sa maximum na limitasyon ng character.  {{count}} mga character o mas kaunti."
+  },
+  "floating": {
+    "quickAcces": "Mabilis na pagpasok",
+    "toggle": "I-toggle",
+    "backgroundOnlyMode": "Background-Only Mode",
+    "disableParticle": "Huwag paganahin ang Particle",
+    "colorPalette": "Palette ng Kulay",
+    "changeLanguage": "Baguhin ang Wika",
+    "themeMode": "Mode ng Tema"
   },
   "getInTouch": "Makipag-ugnayan",
   "learnMore": "Matuto pa",
@@ -42,7 +56,7 @@
     "contacts": "Mga contact"
   },
   "more": {
-    "show": "Ipakita ang Higit Pa",
+    "show": "Magpakita ng Higit Pa",
     "hide": "Magpakita ng Mas Kaunti"
   },
   "header": {
@@ -77,12 +91,12 @@
   },
   "services": {
     "backend": {
-      "title": "Pag-unlad ng Back-end",
+      "title": "Back-end Development",
       "description": "Sa aking serbisyo sa pag-develop ng backend, dalubhasa ako sa pagpapatupad ng Spring Boot Java Microservices upang gumawa ng mga matatag na API, na tinitiyak ang pagiging maaasahan, scalability, at seguridad ng iyong imprastraktura sa backend. "
     },
     "frontend": {
       "title": "Front-end Development",
-      "description": "Sa aking front-end na serbisyo sa pagpapaunlad, dalubhasa ako sa paggawa ng mga nakakaengganyong user interface gamit ang React with TypeScript at iba't ibang library tulad ng Tailwind CSS, ShadCN, NextUI, at custom na CSS. "
+      "description": "Sa aking front-end na serbisyo sa pagpapaunlad, dalubhasa ako sa paggawa ng mga nakaka-engganyong user interface gamit ang React with TypeScript at iba't ibang library tulad ng Tailwind CSS, ShadCN, NextUI, at custom na CSS. "
     },
     "designImplementation": {
       "title": "Mula sa Figma hanggang sa Web: Paggawa ng Mga Makatawag-pansing Disenyo",
@@ -117,8 +131,8 @@
       "i18n": "i18Susunod",
       "axios": "Axios",
       "reactQuery": "React Query",
-      "springBoot": "Spring Boot",
-      "springSecurity": "Seguridad sa tagsibol",
+      "springBoot": "Boot ng tagsibol",
+      "springSecurity": "Spring Security",
       "springSecurityOAuth": "Spring Security OAuth",
       "springJDBC": "JDBC kasama si Spring",
       "api": "API",
@@ -152,17 +166,33 @@
       "figmaToReact": "Figma to React",
       "attentionToDetails": "Atensyon sa mga detalye",
       "pixelPerfect": "Pixel Perfect",
-      "landingPage": "Landing Page"
+      "landingPage": "Landing Page",
+      "reactRouter": "React Router"
+    },
+    "hoverCard": {
+      "years": "taon",
+      "projects": "Mga proyekto"
     }
   },
   "projects": {
     "title": "Mga proyekto",
-    "description": "paglalarawan ng mga proyekto sa pagsubok",
+    "description": "Kung Saan Nagkakaroon ng Hugis ang Mga Ideya: Paggalugad sa Malawak na Canvas ng Mga Malikhaing Proyekto",
     "tag": {
-      "confidential": "Kumpidensyal",
+      "confidential": "Pinoprotektahan",
       "personal": "Personal",
       "client": "Kliyente",
       "tutorial": "Pagtuturo"
+    },
+    "table": {
+      "tableHeader": "Isang listahan ng aking mga proyekto.",
+      "tableRow": {
+        "title": "Pamagat",
+        "company": "kumpanya",
+        "category": "Kategorya",
+        "type": "Uri",
+        "status": "Katayuan",
+        "action": "Aksyon"
+      }
     },
     "button": {
       "sourceCode": "Code sa GitHub",
@@ -241,6 +271,26 @@
         "ecommerce": "ecommerce",
         "landing": "Landing Page"
       }
+    },
+    "myPortfolio": {
+      "title": "Aking portfolio",
+      "description": "Ang proyektong ito ay nagpapakita ng aking mga front-end na mga kasanayan sa pagbuo at pagkahilig para sa software engineering. ",
+      "category": {
+        "landing": "Landing Page",
+        "portfolioWebsite": "portfolioWebsite"
+      }
+    },
+    "paletteShift": {
+      "title": "PaletteShift: I-personalize ang Wika at Tema",
+      "description": "Ang PaletteShift ay isang dynamic na platform na idinisenyo upang bigyang kapangyarihan ang mga user na i-personalize ang kanilang digital na kapaligiran. ",
+      "category": {
+        "webDevelopment": "Web Development",
+        "local": "Lokalisasyon",
+        "international": "Internasyonalisasyon",
+        "accessibility": "Accessibility",
+        "tools": "Mga Tool sa Software",
+        "libraries": "Mga aklatan"
+      }
     }
   },
   "contact": {
@@ -248,21 +298,30 @@
     "description": "pagsubok ng paglalarawan ng contact",
     "keepInTouch": "Let's Keep in touch",
     "placeHolder": {
-      "name": "Pangalan",
-      "email": "Email",
+      "name": "Ang pangalan mo",
+      "email": "Ang email mo",
       "message": "Mensahe"
     },
     "button": {
-      "submit": "Ipasa"
+      "submit": "Ipasa",
+      "resend": "Maghintay at Muling Ipadala {{time}}"
+    },
+    "copyToClipboard": {
+      "default": "Kopyahin sa clipboard",
+      "copied": "Kinopya!"
     },
     "toast": {
       "success": {
         "title": "Matagumpay ang Pagsusumite ng Email",
-        "description": "Salamat sa pagsusumite ng iyong email! "
+        "description": "Salamat sa pag-abot sa akin. "
       },
       "error": {
         "title": "Error sa Pagsusumite ng Email!!!",
         "description": "Oops! "
+      },
+      "errrorConfig": {
+        "title": "May Nagkamali",
+        "description": "Mangyaring magbigay ng configuration para sa Email Js."
       }
     }
   },
@@ -275,9 +334,10 @@
     "visualStudioCode": "Visual Studio Code",
     "content_four": "sa pamamagitan ng iyong tunay. ",
     "vite": "Vite,",
-    "react": "React,",
+    "react": "Mag-react,",
     "tailwind": "Tailwind CSS",
-    "content_five": "pagtiyak ng tuluy-tuloy at mahusay na karanasan sa pag-unlad."
+    "content_five": "pagtiyak ng tuluy-tuloy at mahusay na karanasan sa pag-unlad.",
+    "name": "@2024 - Gene Paul Mar Javier"
   },
   "settings": {
     "header": {
@@ -329,14 +389,14 @@
           "title": "Emerald Elegance",
           "quotes": {
             "10": "Ang kinang ni Emerald ay nagbibigay liwanag sa landas tungo sa walang hanggang kagandahan, na nagbibigay ng maningning na liwanag sa lahat ng yumakap sa pang-akit nito.",
-            "01": "Sa kaibuturan ng kanyang luntiang kulay ay namamalagi ang diwa ng esmeralda na kagandahan, isang simbolo ng biyaya at pagpipino.",
+            "01": "Sa kailaliman ng kanyang luntiang kulay ay namamalagi ang diwa ng esmeralda na kagandahan, isang simbolo ng biyaya at pagpipino.",
             "02": "Pinalamutian ng pang-akit ng esmeralda, ang kagandahan ay nagiging isang walang hanggang pahayag ng kagandahan at poise.",
-            "03": "Sa marangal na alindog ng esmeralda, ang kagandahan ay namumulaklak sa isang mapang-akit na symphony ng pagiging sopistikado.",
+            "03": "Sa maharlikang kagandahan ng esmeralda, ang kagandahan ay namumulaklak sa isang mapang-akit na symphony ng pagiging sopistikado.",
             "04": "Si Emerald ay bumubulong ng karangyaan at biyaya, naghahabi ng isang kuwento ng walang hanggang kagandahan sa bawat kinang.",
             "05": "Yakapin ang kaakit-akit na pang-akit ng esmeralda, kung saan ang kagandahan ay naghahari sa bawat aspeto.",
             "06": "Sa larangan ng emerald elegance, ang bawat shimmering facet ay nagsasabi ng isang kuwento ng pinong biyaya at natural na karilagan.",
-            "07": "Tulad ng isang symphony ng berdeng kulay, ang emerald elegance ay sumasayaw na may sopistikado at pang-akit.",
-            "08": "Sa kailaliman ng kumikinang na ningning ng esmeralda ay naroon ang isang mundo ng walang kapantay na kagandahan at kagandahan.",
+            "07": "Tulad ng isang symphony ng berdeng kulay, ang emerald elegance ay sumasayaw nang may sopistikado at pang-akit.",
+            "08": "Sa kaibuturan ng maningning na kinang ng esmeralda ay naroon ang isang mundo ng walang kapantay na kagandahan at kagandahan.",
             "09": "Sa larangan ng karangyaan, nakatayo ang esmeralda bilang ehemplo ng kagandahan, isang hiyas na nagpapalamuti sa kaaya-aya."
           }
         },
@@ -363,7 +423,7 @@
             "02": "Nawala sa ginintuang ulap, hayaang tumigil ang oras habang ikaw ay gumagala sa mga patlang ng pangarap na naliligo sa malambot na ningning ng takipsilim.",
             "03": "Sa ilalim ng ginintuang manipis na ulap, tuklasin ang mahika ng mga sandali na nasuspinde sa liwanag ng amber, kung saan ang mga alaala ay hinabi sa tela ng panahon.",
             "04": "Golden haze: kung saan ang araw ay nakakatugon sa abot-tanaw, naghahatid ng isang spell ng enchantment sa ibabaw ng lupa, nag-aapoy sa mga puso ng apoy ng inspirasyon.",
-            "05": "Sa larangan ng ginintuang manipis na ulap, ang bawat bulong ng hangin ay nagdadala ng mga alingawngaw ng mga pangarap na hindi pa mabubunyag, na nangangako ng mga pakikipagsapalaran sa mga lupaing hindi alam.",
+            "05": "Sa kaharian ng ginintuang ulap, ang bawat bulong ng hangin ay nagdadala ng mga alingawngaw ng mga pangarap na hindi pa mabubunyag, na nangangako ng mga pakikipagsapalaran sa mga lupaing hindi alam.",
             "06": "Tulad ng mga bulong ng nakaraan, ang ginintuang ulap ay nagbubunyag ng mga lihim na matagal nang nakalimutan, naghahabi ng tapiserya ng mga kuwento sa ilalim ng ginintuang kalangitan.",
             "07": "Yakapin ang ginintuang manipis na ulap, kung saan ang bawat sandali ay nagtataglay ng pangako ng mga bagong simula, at bawat paglubog ng araw ay nagpinta sa langit ng mga pangarap.",
             "08": "Sa loob ng ginintuang ulap, humanap ng aliw sa banayad na liwanag ng gabi, habang ang mga anino ay sumasayaw at ang mga pangarap ay lumilipad.",
@@ -379,7 +439,7 @@
             "03": "Sa ilalim ng canopy ng paglubog ng araw, tuklasin ang mahika ng mga sandali na nasuspinde sa nagniningas na liwanag, kung saan ang mga alaala ay nakaukit sa canvas ng kalangitan sa gabi.",
             "04": "Sunset ember: kung saan ang araw ay nagtatapos, naghahagis ng isang maapoy na palabas sa abot-tanaw, isang simponya ng mga kulay na nag-aapoy sa puso nang may pagkamangha.",
             "05": "Sa larangan ng paglubog ng araw, ang bawat kisap ng liwanag ay nagpinta ng isang kuwento ng mga wakas at simula, isang tapiserya ng mga emosyon na hinabi sa tela ng takipsilim.",
-            "06": "Tulad ng mga baga ng namamatay na apoy, ang paglubog ng araw na ember ay bumubulong ng mga lihim ng paglalakbay sa maghapon, na naglalabas ng mga anino na sumasayaw sa kumukupas na liwanag.",
+            "06": "Tulad ng mga baga ng namamatay na apoy, ang paglubog ng araw ay bumubulong ng mga lihim ng paglalakbay sa maghapon, na naglalabas ng mga anino na sumasayaw sa kumukupas na liwanag.",
             "07": "Yakapin ang init ng paglubog ng araw, kung saan ang bawat sinag ng liwanag ay nagtataglay ng pangako ng isang bagong bukang-liwayway, at bawat dapit-hapon ay isang paalala ng walang hanggang ikot ng buhay.",
             "08": "Sa loob ng ningning ng paglubog ng araw, humanap ng aliw sa mga tahimik na sandali ng pagmuni-muni, habang ang araw ay kumukupas sa banayad na yakap ng gabi.",
             "09": "Sunset ember: isang symphony ng mga kulay at lilim, kung saan ang kalangitan ay nagliliyab sa mga huling sandali ng liwanag ng araw, isang nakamamanghang pagpapakita ng kagandahan ng kalikasan."
@@ -389,11 +449,11 @@
           "title": "Lilang Kamahalan",
           "quotes": {
             "10": "Sa kaharian ng Purple Majesty, hayaan ang iyong espiritu na pumailanglang sa mga pakpak ng imahinasyon, habang ikaw ay nalulugod sa kaluwalhatian ng kadakilaan ng kalikasan.",
-            "01": "Sa kaharian ng Purple Majesty, hayaang maghari ang maharlikang kulay, ipinipinta ang mundo sa marangal na kariktan.",
+            "01": "Sa kaharian ng Purple Majesty, hayaang maghari ang maharlikang kulay, na pinipintura ang mundo sa marangal na karilagan.",
             "02": "Nawala sa kaakit-akit na yakap ng Purple Majesty, damhin ang mahika ng halik ng takipsilim habang ang araw ay nagbibigay daan sa gabi.",
             "03": "Sa ilalim ng balabal ng Purple Majesty, tuklasin ang yaman ng tapiserya ng buhay, hinabi ng mga sinulid ng pagsinta at biyaya.",
             "04": "Purple Majesty: kung saan ang langit ay nakakatugon sa lupa sa isang marilag na sayaw ng takip-silim, na nagpapamalas ng pagkamangha at pagkamangha.",
-            "05": "Sa kaharian ng Purple Majesty, ang bawat sandali ay isang symphony ng mga kulay violet, na umaalingawngaw sa kadakilaan ng mga hari at reyna.",
+            "05": "Sa kaharian ng Purple Majesty, ang bawat sandali ay isang simponya ng mga kulay violet, na umaalingawngaw sa kadakilaan ng mga hari at reyna.",
             "06": "Tulad ng mga bulong mula sa isang malayong kaharian, ang Purple Majesty ay umaalingawngaw sa mga pangako ng mga pangarap na natupad at mga tadhana ay niyakap.",
             "07": "Yakapin ang kagandahan ng Purple Majesty, kung saan ang bawat paglubog ng araw ay isang koronasyon ng mga kulay, pagpipinta sa kalangitan sa mga kulay ng royalty.",
             "08": "Sa loob ng yakap ng Purple Majesty, humanap ng aliw sa tahimik na kagandahan ng takip-silim, habang ang araw ay maganda na nagbubunga sa gabi.",
@@ -406,12 +466,12 @@
             "10": "Sa himig ng Scarlet Serenade, hayaang sumayaw ang iyong kaluluwa sa ritmo ng pagsinta, habang sumusuko ka sa awit ng matamis na harana ng pag-ibig.",
             "01": "Sa symphony ng Scarlet Serenade, hayaang sumayaw ang pulang-pula na melody sa iyong kaluluwa, pumukaw ng pagsinta at paggising sa mga puso.",
             "02": "Nawala sa kaakit-akit na yakap ng Scarlet Serenade, damhin ang ritmo ng buhay na pumipintig sa bawat iskarlata na kulay.",
-            "03": "Sa ilalim ng canopy ng Scarlet Serenade, tuklasin ang kapangyarihan ng himig ng pag-ibig, na humahabi sa tapik ng panahon.",
+            "03": "Sa ilalim ng canopy ng Scarlet Serenade, tuklasin ang kapangyarihan ng himig ng pag-ibig, na hinahabi ang daan sa tapiserya ng panahon.",
             "04": "Scarlet Serenade: kung saan umaalingawngaw ang mga alingawngaw ng pagsinta, pinipinta ang mundo sa mga kulay ng nagniningas na pagnanasa at nagniningas na debosyon.",
             "05": "Sa yakap ni Scarlet Serenade, bawat sandali ay isang awit ng pag-ibig, inaawit ng puso at ibinubulong ng hangin.",
             "06": "Tulad ng mga bulong mula sa isang malayong balad, ang Scarlet Serenade ay tumatawag sa kaluluwa, na kumukuha ng mga pangako ng romansa at pakikipagsapalaran.",
             "07": "Yakapin ang hilig ng Scarlet Serenade, kung saan ang bawat paglubog ng araw ay isang harana ng mga kulay iskarlata, na pinipintura ang kalangitan ng walang hanggang apoy ng pag-ibig.",
-            "08": "Sa loob ng yakap ng Scarlet Serenade, hanapin ang aliw sa malambot na yakap ng matamis na himig ng pag-ibig, habang ito ay naghaharana sa gabi.",
+            "08": "Sa loob ng yakap ng Scarlet Serenade, humanap ng aliw sa malambot na yakap ng matamis na himig ng pag-ibig, habang ito ay naghaharana sa gabi.",
             "09": "Scarlet Serenade: isang symphony ng pagnanais at debosyon, kung saan ang puso ay nakakahanap ng kanlungan sa yakap ng walang hanggang apoy ng pag-ibig."
           }
         },
@@ -419,11 +479,11 @@
           "title": "Silver Serenity",
           "quotes": {
             "10": "Sa katahimikan ng Silver Serenity, hayaang mawala ang iyong mga alalahanin habang naliligo ka sa tahimik na kagandahan ng gabi, nakakahanap ng kapayapaan sa katahimikan.",
-            "01": "Sa yakap ng Silver Serenity, humanap ng katahimikan sa kumikinang na liwanag ng buwan, na nagbibigay ng nakakaaliw na spell sa buong mundo.",
+            "01": "Sa yakap ng Silver Serenity, humanap ng katahimikan sa kumikinang na liwanag ng buwan, na nagbibigay ng nakapapawing pagod na spell sa buong mundo.",
             "02": "Nawala sa matahimik na yakap ng Silver Serenity, damhin ang banayad na dampi ng liwanag ng bituin na gumagabay sa iyo sa isang lugar ng panloob na kapayapaan.",
             "03": "Sa ilalim ng kumot ng Silver Serenity, tuklasin ang kagandahan ng katahimikan, kung saan ang katahimikan ay nagsasalita ng mga volume at ang kaluluwa ay nakatagpo ng aliw.",
             "04": "Silver Serenity: kung saan hinahalikan ng buwan ang lupa gamit ang kulay-pilak nitong liwanag, pinipinta ang gabi na may tahimik na kulay ng kalmado.",
-            "05": "Sa larangan ng Silver Serenity, ang bawat hininga ay isang bulong ng katahimikan, na umaalingawngaw sa tahimik na kagandahan ng isang mapayapang gabi.",
+            "05": "Sa kaharian ng Silver Serenity, ang bawat paghinga ay isang bulong ng katahimikan, na umaalingawngaw sa tahimik na kagandahan ng isang mapayapang gabi.",
             "06": "Tulad ng mga bulong mula sa isang celestial symphony, ang Silver Serenity ay umaakay ng mga pangako ng katahimikan at panloob na pagkakaisa.",
             "07": "Yakapin ang katahimikan ng Silver Serenity, kung saan ang bawat bituin ay isang paalala ng kagandahang makikita sa mga sandali ng tahimik na pagmumuni-muni.",
             "08": "Sa loob ng yakap ng Silver Serenity, humanap ng aliw sa banayad na yakap ng gabi, habang ang mundo ay natutulog sa ilalim ng kumot ng mga bituin.",
@@ -459,12 +519,103 @@
     "settingsUpdated": "Na-update ang Mga Setting"
   },
   "about": {
+    "hello": "Hello ako si",
+    "name": "Gene Paul Mar Javier",
+    "slogan": "Ginagawang Realidad ang mga Ideya",
+    "intruduction": "Nagsimula ang aking tech journey sa Unibersidad ng Cebu. ",
     "title": "Tungkol sa Akin",
-    "description": "pagsubok tungkol sa akin paglalarawan"
+    "description": "pagsubok tungkol sa akin paglalarawan",
+    "downloadResume": "I-download ang Aking Resume",
+    "education": {
+      "title": "Edukasyon"
+    },
+    "experience": {
+      "title": "karanasan",
+      "education": {
+        "tertiary": {
+          "title": "Batsilyer ng Agham ng Computer Engineering",
+          "subtitle": "Unibersidad ng Cebu - Main Campus",
+          "description": "Bilang nagtapos sa Unibersidad ng Cebu na dalubhasa sa web development at virtual reality, bihasa ako sa iba't ibang programming language gaya ng C++, HTML, CSS, at Java. ",
+          "abb": "BSCPE",
+          "alt": "Pangunahing Logo ng Unibersidad ng Cebu"
+        },
+        "vocational": {
+          "title": "Opportunity Livelihood Technology Mga Entrepreneurial Classes",
+          "subtitle": "Pamantasang Teknolohikal ng Cebu",
+          "description": "Masigasig na espesyalista sa IT na sanay sa PC hardware, pag-troubleshoot, system assembly, at pag-install ng OS. ",
+          "abb": "OLTEC",
+          "alt": "Pamantasang Teknolohikal ng Cebu"
+        },
+        "secondary": {
+          "title": "Mataas na paaralan",
+          "subtitle": "Basilan National High School",
+          "description": "Nagtapos sa Basilan National High School na may matatag na pundasyon sa akademiko at interpersonal na kasanayan. ",
+          "abb": "BNHS",
+          "alt": "Logo ng Basilan National High School"
+        },
+        "primary": {
+          "title": "Paaralang Elementarya",
+          "subtitle": "Isabela Central Elementary Pilot School",
+          "description": "Elementary graduate mula sa Isabela Central Elementary Pilot School na may matibay na pundasyon sa mga pangunahing akademikong asignatura. ",
+          "abb": "ICEPS",
+          "alt": "Logo ng Isabela Central Elementary Pilot School"
+        }
+      },
+      "experience": {
+        "alliance": {
+          "ts1": {
+            "title": "Software Engineer - Teknikal na Espesyalista I",
+            "subtitle": "Alliance Software Inc.",
+            "abb": "TS I",
+            "description": "Nakaranas ng Full Stack Developer na bihasa sa Spring Boot at React TypeScript, na nakatuon sa pagbuo ng mga mahuhusay na application na may pagtuon sa tuluy-tuloy na mga karanasan sa frontend at mahusay na mga operasyon sa backend. ",
+            "alt": "Logo ng Alliance Software Inc"
+          },
+          "ats1": {
+            "title": "Software Engineer - Associate Technical Specialist I",
+            "subtitle": "Alliance Software Inc.",
+            "abb": "ATS I",
+            "description": "Nakaranas ng Full-stack Developer na sanay sa Vite, React, TypeScript, at Spring Boot, na kilala sa pagpapatupad ng matatag na mga hakbang sa seguridad at pagpapahusay ng pagganap para sa mga web application. ",
+            "alt": "Logo ng Alliance Software Inc"
+          }
+        },
+        "mach95": {
+          "title": "Software developer",
+          "description": "Nakaranas ng Full Stack Developer na sanay sa Laravel 8 at CodeIgniter, masigasig sa paggawa ng mga dynamic na solusyon sa web at pagpapahusay ng mga application. ",
+          "subtitle": "Mach95 Software Development Corporation",
+          "alt": "Logo ng Mach95 Software Development"
+        },
+        "exodia": {
+          "title": "VR/AR Developer at 3D Modeler",
+          "description": "Masigasig na 3D Environmental Designer na dalubhasa sa paggawa ng mga nakaka-engganyong digital na karanasan para sa mga proyekto ng Virtual Reality (VR) at Augmented Reality (AR). ",
+          "subtitle": "Pag-unlad ng Laro ng Exodia",
+          "abb": "Part Time",
+          "alt": "Logo ng Exodia Game Development"
+        }
+      }
+    },
+    "certificate": {
+      "header": "Mga sertipiko",
+      "issued": "inisyu {{date}}",
+      "react": {
+        "title": "Ang Kumpletong Gabay 2024 (kabilang ang React Router at Redux)",
+        "organization": "Udemy",
+        "organizationAlt": "Mga Sertipiko ng Udemy"
+      },
+      "springBoot": {
+        "title": "FullStack: React at Java Spring Boot - Ang Gabay sa Developer",
+        "organization": "Udemy",
+        "organizationAlt": "Mga Sertipiko ng Udemy"
+      }
+    },
+    "outro": {
+      "workTogether": "Magtulungan tayo",
+      "sub": "Gusto kong marinig mula sa iyo! ",
+      "getInTouch": "Makipag-ugnayan"
+    }
   },
   "skills": {
     "title": "Mga kasanayan",
-    "description": "paglalarawan ng mga kasanayan sa pagsubok"
+    "description": "Pag-navigate sa Kalaliman ng Iyong Maraming Kakayahang Itinakda para Magbigay-lakas sa Paglago at Tagumpay"
   },
   "availableSoon": "Available sa lalong madaling panahon"
 }
