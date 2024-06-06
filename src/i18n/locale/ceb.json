@@ -159,7 +159,7 @@
       "netlify": "Netlify",
       "heroku": "Heroku",
       "vitest": "Vitest",
-      "microservices": "Mga microservice",
+      "microservices": "Microservices",
       "figma": "Ang Figma",
       "frontend": "Front-End",
       "figmaToHTML": "Figma sa HTML",
@@ -205,7 +205,7 @@
       "contribution": "Mga kontribusyon",
       "demoUnavailable": "Demo Dili Magamit",
       "demoAvailable": "{{title}} - Magamit ang Demo",
-      "codeAvaialble": "{{title}} - Magamit ang Github Code"
+      "codeAvaialble": "{{title}} - Github Code Anaa"
     },
     "yoo": {
       "title": "YooPH",
@@ -257,7 +257,7 @@
     "iqmk": {
       "title": "IQMK",
       "company": "Ang Mach95 Software Developer Corp.",
-      "description": "Ang IQMK usa ka proyekto sa kliyente nga naka-focus sa pag-convert sa Figma design ngadto sa HTML gamit ang Tailwind CSS. ",
+      "description": "Ang IQMK usa ka proyekto sa kliyente nga naka-focus sa pag-convert sa disenyo sa Figma ngadto sa HTML gamit ang Tailwind CSS. ",
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
@@ -312,7 +312,7 @@
     },
     "toast": {
       "success": {
-        "title": "Nagmalampuson ang Pagsumite sa Email",
+        "title": "Malampuson ang Pagsumite sa Email",
         "description": "Salamat sa pagkontak nako. "
       },
       "error": {
@@ -330,7 +330,7 @@
     "creditsOwner": "Brittany Chiang ni",
     "content_two": "layout sa",
     "figma": "Ang Figma",
-    "content_three": "ug gihimo uban ang pag-amping sa",
+    "content_three": "ug gihimo uban ang pag-amping",
     "visualStudioCode": "Visual Studio Code",
     "content_four": "pinaagi sa imong tinuod. ",
     "vite": "Vite,",
@@ -409,7 +409,7 @@
             "03": "Sa ilawom sa azure nga canopy sa langit, diskobrehi ang walay kinutuban nga kalinaw nga naghunghong sa kasingkasing sa kalipay.",
             "04": "Azure bliss: diin ang kalapad sa kalangitan nagtagbo sa giladmon sa dagat, nagpintal sa usa ka hulagway sa kalinaw.",
             "05": "Sa gingharian sa azure bliss, matag gutlo usa ka brushstroke sa kalinaw sa canvas sa kinabuhi.",
-            "06": "Pangitaa ang dalangpanan sa azure nga kahiladman sa kalipay, diin ang kalag nakakaplag ug santuwaryo sa paggakos sa walay kinutuban nga asul.",
+            "06": "Pangitag dangpanan sa azure nga kahiladman sa kalipay, diin ang kalag nakakaplag ug santuwaryo sa gakos sa walay kinutuban nga asul.",
             "07": "Azure bliss: usa ka symphony of calm, diin ang kanta sa dagat nagtagbo sa melodiya sa langit.",
             "08": "Dawata ang azure nga kapunawpunawan sa kalipay, diin ang matag kolor sa asul naghupot sa saad sa kalinaw.",
             "09": "Sa azure nga hawan sa kalipay, himoa nga ang imong espiritu molupad sa mga pako sa kalinaw ug grasya."
@@ -424,7 +424,7 @@
             "03": "Sa ilawom sa bulawan nga haze, pagdiskobre sa salamangka sa mga gutlo nga gisuspinde sa amber nga kahayag, diin ang mga panumduman gihulma sa panapton sa panahon.",
             "04": "Bulawanon nga haze: diin ang adlaw nagtagbo sa kapunawpunawan, nga naghimo sa usa ka salamangka sa pagkakabig sa yuta, nagdilaab sa mga kasingkasing sa kalayo sa inspirasyon.",
             "05": "Sa gingharian sa bulawan nga haze, ang matag huyuhoy sa hangin nagdala ug mga lanog sa mga damgo nga wala pa mapadayag, nagsaad nga mga panimpalad sa kayutaan nga wala mailhi.",
-            "06": "Sama sa mga hunghong gikan sa nangagi, ang bulawan nga aso nagpadayag sa mga sekreto nga dugay nang nakalimtan, naghabol sa usa ka tapiserya sa mga istorya sa ilawom sa bulawan nga kalangitan.",
+            "06": "Sama sa mga hunghong sa nangagi, ang bulawan nga aso nagpadayag sa mga sekreto nga dugay nang nakalimtan, naghabol sa usa ka tapiserya sa mga istorya sa ilawom sa bulawan nga kalangitan.",
             "07": "Pagbaton sa bulawan nga haze, diin ang matag gutlo naghupot sa saad sa bag-ong mga sinugdanan, ug ang matag pagsalop sa adlaw nagpintal sa langit sa mga damgo.",
             "08": "Sulod sa bulawan nga haze, pangitaa ang kahupayan sa malumo nga silaw sa kahayag sa kagabhion, samtang ang mga anino nagsayaw ug ang mga damgo naglupad.",
             "09": "Bulawanon nga haze: usa ka symphony sa kainit ug katingala, diin ang kalibutan naligo sa malumo nga gakos sa kilumkilom."
@@ -434,13 +434,13 @@
           "title": "Sunset Ember",
           "quotes": {
             "10": "Sa paggakos sa ember sa pagsalop sa adlaw, biyai ang mga kabalaka sa adlaw, samtang ang nagdilaab nga kahayag nagdan-ag sa dalan sa kalinaw ug kalinaw.",
-            "01": "Sa kasanag sa pagsalop sa adlaw, bation ang kainit sa nagkaanam nga kahayag sa adlaw nga naghalok sa yuta nga adunay mga kolor nga mapula ug bulawan, usa ka katapusang paggakos sa dili pa ang kagabhion.",
-            "02": "Nawala sa makapakurat nga sayaw sa pagsalop sa adlaw, tugoti ang mga siga sa kilumkilom nga magdilaab sa imong kalag sa gugma ug posibilidad, pagpintal sa langit nga adunay mga damgo.",
+            "01": "Sa kasanag sa pagsalop sa adlaw, bation ang kainit sa nagkaanam nga kahayag sa adlaw nga naghalok sa yuta nga adunay mga kolor sa mapula ug bulawan, usa ka katapusang gakos sa dili pa ang kagabhion.",
+            "02": "Nawala sa makapakurat nga sayaw sa ember sa pagsalop sa adlaw, tugoti ang siga sa kilumkilom nga magdilaab sa imong kalag sa gugma ug posibilidad, pagpintal sa langit nga adunay mga damgo.",
             "03": "Sa ilawom sa canopy sa pagsalop sa adlaw, pagdiskobre sa salamangka sa mga gutlo nga gisuspinde sa nagdilaab nga kahayag, diin ang mga panumduman gikulit sa canvas sa kalangitan sa kagabhion.",
             "04": "Pagsalop sa adlaw: diin ang adlaw nagtagbo sa iyang katapusan, nagbutang usa ka nagdilaab nga talan-awon sa kapunawpunawan, usa ka symphony sa mga kolor nga nagdilaab sa kasingkasing sa katingala.",
             "05": "Sa gingharian sa pagsalop sa adlaw, ang matag kidlap sa kahayag nagpintal sa usa ka istorya sa mga katapusan ug sinugdanan, usa ka tapestry sa mga emosyon nga gihabol sa panapton sa kilumkilom.",
-            "06": "Sama sa mga baga sa usa ka himalatyon nga kalayo, ang pagsalop sa adlaw naghunghong sa mga sekreto sa adlaw nga panaw, nga nagbutang sa mga anino nga nagsayaw uban sa nagakahanaw nga kahayag.",
-            "07": "Dawata ang kainit sa ember sa pagsalop sa adlaw, diin ang matag silaw sa kahayag naghupot sa saad sa usa ka bag-ong kaadlawon, ug ang matag kilumkilom usa ka pahinumdom sa walay katapusan nga siklo sa kinabuhi.",
+            "06": "Sama sa mga baga sa usa ka himalatyon nga kalayo, ang pagsalop sa adlaw naghunghong sa mga sekreto sa adlaw nga panaw, nga nagbutang ug mga anino nga nagsayaw uban sa nagakahanaw nga kahayag.",
+            "07": "Dawata ang kainit sa pagsalop sa adlaw, diin ang matag silaw sa kahayag naghupot sa saad sa usa ka bag-ong kaadlawon, ug ang matag kilumkilom usa ka pahinumdom sa walay katapusan nga siklo sa kinabuhi.",
             "08": "Sulod sa silaw sa pagsalop sa adlaw, pangitaa ang kahupayan sa hilom nga mga gutlo sa pagpamalandong, samtang ang adlaw mosalop sa malumo nga paggakos sa kagabhion.",
             "09": "Sunset ember: usa ka symphony sa mga kolor ug landong, diin ang kalangitan nagdilaab sa kataposang mga gutlo sa adlaw, usa ka makapahinganghang pagpakita sa katahom sa kinaiyahan."
           }
@@ -497,9 +497,9 @@
     },
     "lang": {
       "lang": "Pinulongan",
-      "formDescription": "Gusto ka mosulay ug laing pinulongan? ",
+      "formDescription": "Gusto mosulay ug laing pinulongan? ",
       "btn": {
-        "update": "Pag-update sa mga Setting"
+        "update": "Pag-update sa Mga Setting"
       },
       "toast": {
         "success": {
@@ -519,13 +519,20 @@
     "settingsUpdated": "Gi-update ang mga Setting"
   },
   "about": {
-    "hello": "Hello ako nga",
-    "name": "Gene Paul Mar Javier",
-    "slogan": "Paghimo sa mga Ideya Ngadto sa Kamatuoran",
-    "intruduction": "Nagsugod ang akong tech journey sa University of Cebu. ",
-    "title": "Mahitungod Kanako",
-    "description": "test about nako description",
-    "downloadResume": "I-download ang Akong Resume",
+    "intro": {
+      "hello": "Hello ako nga",
+      "name": "Gene Paul Mar Javier",
+      "slogan": "Paghimo sa mga Ideya Ngadto sa Realidad",
+      "intruduction": "Nagsugod ang akong tech journey sa University of Cebu. ",
+      "title": "Mahitungod Kanako",
+      "description": "test about nako description",
+      "downloadResume": "I-download ang Akong Resume",
+      "project": "Proyekto",
+      "ongoing": "Nagpadayon",
+      "completed": "Nakompleto",
+      "years": "Mga tuig",
+      "experience": "Kasinatian"
+    },
     "education": {
       "title": "Edukasyon"
     },
@@ -567,7 +574,7 @@
             "title": "Software Engineer - Espesyalista sa Teknikal I",
             "subtitle": "Alliance Software Inc.",
             "abb": "TS ko",
-            "description": "Nasinati nga Tibuok Stack Developer nga hanas sa Spring Boot ug React TypeScript, gipahinungod sa pagtukod og lig-on nga mga aplikasyon nga adunay pagtutok sa mga seamless frontend nga mga kasinatian ug episyente nga mga operasyon sa backend. ",
+            "description": "Ang eksperyensiyado nga Full Stack Developer hanas sa Spring Boot ug React TypeScript, nga gipahinungod sa pagtukod og lig-on nga mga aplikasyon nga adunay pagtutok sa mga seamless frontend nga mga kasinatian ug episyente nga mga operasyon sa backend. ",
             "alt": "Logo sa Alliance Software Inc"
           },
           "ats1": {

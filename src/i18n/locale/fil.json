@@ -56,7 +56,7 @@
     "contacts": "Mga contact"
   },
   "more": {
-    "show": "Magpakita ng Higit Pa",
+    "show": "Ipakita ang Higit Pa",
     "hide": "Magpakita ng Mas Kaunti"
   },
   "header": {
@@ -91,7 +91,7 @@
   },
   "services": {
     "backend": {
-      "title": "Back-end Development",
+      "title": "Pag-unlad ng Back-end",
       "description": "Sa aking serbisyo sa pag-develop ng backend, dalubhasa ako sa pagpapatupad ng Spring Boot Java Microservices upang gumawa ng mga matatag na API, na tinitiyak ang pagiging maaasahan, scalability, at seguridad ng iyong imprastraktura sa backend. "
     },
     "frontend": {
@@ -132,7 +132,7 @@
       "axios": "Axios",
       "reactQuery": "React Query",
       "springBoot": "Boot ng tagsibol",
-      "springSecurity": "Spring Security",
+      "springSecurity": "Seguridad sa tagsibol",
       "springSecurityOAuth": "Spring Security OAuth",
       "springJDBC": "JDBC kasama si Spring",
       "api": "API",
@@ -274,7 +274,7 @@
     },
     "myPortfolio": {
       "title": "Aking portfolio",
-      "description": "Ang proyektong ito ay nagpapakita ng aking mga front-end na mga kasanayan sa pagbuo at pagkahilig para sa software engineering. ",
+      "description": "Ang proyektong ito ay nagpapakita ng aking mga kasanayan sa pag-unlad sa harapan at pagkahilig para sa software engineering. ",
       "category": {
         "landing": "Landing Page",
         "portfolioWebsite": "portfolioWebsite"
@@ -282,7 +282,7 @@
     },
     "paletteShift": {
       "title": "PaletteShift: I-personalize ang Wika at Tema",
-      "description": "Ang PaletteShift ay isang dynamic na platform na idinisenyo upang bigyang kapangyarihan ang mga user na i-personalize ang kanilang digital na kapaligiran. ",
+      "description": "Ang PaletteShift ay isang dynamic na platform na idinisenyo upang bigyan ng kapangyarihan ang mga user na i-personalize ang kanilang digital na kapaligiran. ",
       "category": {
         "webDevelopment": "Web Development",
         "local": "Lokalisasyon",
@@ -334,7 +334,7 @@
     "visualStudioCode": "Visual Studio Code",
     "content_four": "sa pamamagitan ng iyong tunay. ",
     "vite": "Vite,",
-    "react": "Mag-react,",
+    "react": "React,",
     "tailwind": "Tailwind CSS",
     "content_five": "pagtiyak ng tuluy-tuloy at mahusay na karanasan sa pag-unlad.",
     "name": "@2024 - Gene Paul Mar Javier"
@@ -391,12 +391,12 @@
             "10": "Ang kinang ni Emerald ay nagbibigay liwanag sa landas tungo sa walang hanggang kagandahan, na nagbibigay ng maningning na liwanag sa lahat ng yumakap sa pang-akit nito.",
             "01": "Sa kailaliman ng kanyang luntiang kulay ay namamalagi ang diwa ng esmeralda na kagandahan, isang simbolo ng biyaya at pagpipino.",
             "02": "Pinalamutian ng pang-akit ng esmeralda, ang kagandahan ay nagiging isang walang hanggang pahayag ng kagandahan at poise.",
-            "03": "Sa maharlikang kagandahan ng esmeralda, ang kagandahan ay namumulaklak sa isang mapang-akit na symphony ng pagiging sopistikado.",
+            "03": "Sa marangal na alindog ng esmeralda, ang kagandahan ay namumulaklak sa isang mapang-akit na symphony ng pagiging sopistikado.",
             "04": "Si Emerald ay bumubulong ng karangyaan at biyaya, naghahabi ng isang kuwento ng walang hanggang kagandahan sa bawat kinang.",
             "05": "Yakapin ang kaakit-akit na pang-akit ng esmeralda, kung saan ang kagandahan ay naghahari sa bawat aspeto.",
             "06": "Sa larangan ng emerald elegance, ang bawat shimmering facet ay nagsasabi ng isang kuwento ng pinong biyaya at natural na karilagan.",
-            "07": "Tulad ng isang symphony ng berdeng kulay, ang emerald elegance ay sumasayaw nang may sopistikado at pang-akit.",
-            "08": "Sa kaibuturan ng maningning na kinang ng esmeralda ay naroon ang isang mundo ng walang kapantay na kagandahan at kagandahan.",
+            "07": "Tulad ng isang symphony ng berdeng kulay, ang emerald elegance ay sumasayaw na may sopistikado at pang-akit.",
+            "08": "Sa kailaliman ng kumikinang na ningning ng esmeralda ay naroon ang isang mundo ng walang kapantay na kagandahan at kagandahan.",
             "09": "Sa larangan ng karangyaan, nakatayo ang esmeralda bilang ehemplo ng kagandahan, isang hiyas na nagpapalamuti sa kaaya-aya."
           }
         },
@@ -423,7 +423,7 @@
             "02": "Nawala sa ginintuang ulap, hayaang tumigil ang oras habang ikaw ay gumagala sa mga patlang ng pangarap na naliligo sa malambot na ningning ng takipsilim.",
             "03": "Sa ilalim ng ginintuang manipis na ulap, tuklasin ang mahika ng mga sandali na nasuspinde sa liwanag ng amber, kung saan ang mga alaala ay hinabi sa tela ng panahon.",
             "04": "Golden haze: kung saan ang araw ay nakakatugon sa abot-tanaw, naghahatid ng isang spell ng enchantment sa ibabaw ng lupa, nag-aapoy sa mga puso ng apoy ng inspirasyon.",
-            "05": "Sa kaharian ng ginintuang ulap, ang bawat bulong ng hangin ay nagdadala ng mga alingawngaw ng mga pangarap na hindi pa mabubunyag, na nangangako ng mga pakikipagsapalaran sa mga lupaing hindi alam.",
+            "05": "Sa larangan ng ginintuang manipis na ulap, ang bawat bulong ng hangin ay nagdadala ng mga alingawngaw ng mga pangarap na hindi pa mabubunyag, na nangangako ng mga pakikipagsapalaran sa mga lupaing hindi alam.",
             "06": "Tulad ng mga bulong ng nakaraan, ang ginintuang ulap ay nagbubunyag ng mga lihim na matagal nang nakalimutan, naghahabi ng tapiserya ng mga kuwento sa ilalim ng ginintuang kalangitan.",
             "07": "Yakapin ang ginintuang manipis na ulap, kung saan ang bawat sandali ay nagtataglay ng pangako ng mga bagong simula, at bawat paglubog ng araw ay nagpinta sa langit ng mga pangarap.",
             "08": "Sa loob ng ginintuang ulap, humanap ng aliw sa banayad na liwanag ng gabi, habang ang mga anino ay sumasayaw at ang mga pangarap ay lumilipad.",
@@ -449,12 +449,12 @@
           "title": "Lilang Kamahalan",
           "quotes": {
             "10": "Sa kaharian ng Purple Majesty, hayaan ang iyong espiritu na pumailanglang sa mga pakpak ng imahinasyon, habang ikaw ay nalulugod sa kaluwalhatian ng kadakilaan ng kalikasan.",
-            "01": "Sa kaharian ng Purple Majesty, hayaang maghari ang maharlikang kulay, na pinipintura ang mundo sa marangal na karilagan.",
+            "01": "Sa kaharian ng Purple Majesty, hayaang maghari ang maharlikang kulay, ipinipinta ang mundo sa marangal na kariktan.",
             "02": "Nawala sa kaakit-akit na yakap ng Purple Majesty, damhin ang mahika ng halik ng takipsilim habang ang araw ay nagbibigay daan sa gabi.",
             "03": "Sa ilalim ng balabal ng Purple Majesty, tuklasin ang yaman ng tapiserya ng buhay, hinabi ng mga sinulid ng pagsinta at biyaya.",
             "04": "Purple Majesty: kung saan ang langit ay nakakatugon sa lupa sa isang marilag na sayaw ng takip-silim, na nagpapamalas ng pagkamangha at pagkamangha.",
             "05": "Sa kaharian ng Purple Majesty, ang bawat sandali ay isang simponya ng mga kulay violet, na umaalingawngaw sa kadakilaan ng mga hari at reyna.",
-            "06": "Tulad ng mga bulong mula sa isang malayong kaharian, ang Purple Majesty ay umaalingawngaw sa mga pangako ng mga pangarap na natupad at mga tadhana ay niyakap.",
+            "06": "Tulad ng mga bulong mula sa isang malayong kaharian, ang Purple Majesty ay sumisigaw ng mga pangako ng mga pangarap na natupad at ang mga tadhana ay niyakap.",
             "07": "Yakapin ang kagandahan ng Purple Majesty, kung saan ang bawat paglubog ng araw ay isang koronasyon ng mga kulay, pagpipinta sa kalangitan sa mga kulay ng royalty.",
             "08": "Sa loob ng yakap ng Purple Majesty, humanap ng aliw sa tahimik na kagandahan ng takip-silim, habang ang araw ay maganda na nagbubunga sa gabi.",
             "09": "Purple Majesty: isang tapiserya ng mga pangarap at pagnanasa, kung saan ang puso ay nakakahanap ng kanlungan sa katahimikan ng yakap ng takipsilim."
@@ -464,14 +464,14 @@
           "title": "Scarlet Serenade",
           "quotes": {
             "10": "Sa himig ng Scarlet Serenade, hayaang sumayaw ang iyong kaluluwa sa ritmo ng pagsinta, habang sumusuko ka sa awit ng matamis na harana ng pag-ibig.",
-            "01": "Sa symphony ng Scarlet Serenade, hayaang sumayaw ang pulang-pula na melody sa iyong kaluluwa, pumukaw ng pagsinta at paggising sa mga puso.",
+            "01": "Sa symphony ng Scarlet Serenade, hayaang sumayaw ang pulang-pula na himig sa iyong kaluluwa, pumukaw ng pagsinta at paggising sa mga puso.",
             "02": "Nawala sa kaakit-akit na yakap ng Scarlet Serenade, damhin ang ritmo ng buhay na pumipintig sa bawat iskarlata na kulay.",
-            "03": "Sa ilalim ng canopy ng Scarlet Serenade, tuklasin ang kapangyarihan ng himig ng pag-ibig, na hinahabi ang daan sa tapiserya ng panahon.",
+            "03": "Sa ilalim ng canopy ng Scarlet Serenade, tuklasin ang kapangyarihan ng himig ng pag-ibig, na humahabi sa tapik ng panahon.",
             "04": "Scarlet Serenade: kung saan umaalingawngaw ang mga alingawngaw ng pagsinta, pinipinta ang mundo sa mga kulay ng nagniningas na pagnanasa at nagniningas na debosyon.",
             "05": "Sa yakap ni Scarlet Serenade, bawat sandali ay isang awit ng pag-ibig, inaawit ng puso at ibinubulong ng hangin.",
             "06": "Tulad ng mga bulong mula sa isang malayong balad, ang Scarlet Serenade ay tumatawag sa kaluluwa, na kumukuha ng mga pangako ng romansa at pakikipagsapalaran.",
-            "07": "Yakapin ang hilig ng Scarlet Serenade, kung saan ang bawat paglubog ng araw ay isang harana ng mga kulay iskarlata, na pinipintura ang kalangitan ng walang hanggang apoy ng pag-ibig.",
-            "08": "Sa loob ng yakap ng Scarlet Serenade, humanap ng aliw sa malambot na yakap ng matamis na himig ng pag-ibig, habang ito ay naghaharana sa gabi.",
+            "07": "Yakapin ang hilig ng Scarlet Serenade, kung saan ang bawat paglubog ng araw ay isang harana ng mga kulay na iskarlata, na nagpinta sa kalangitan ng walang hanggang apoy ng pag-ibig.",
+            "08": "Sa loob ng yakap ng Scarlet Serenade, hanapin ang aliw sa malambot na yakap ng matamis na himig ng pag-ibig, habang ito ay naghaharana sa gabi.",
             "09": "Scarlet Serenade: isang symphony ng pagnanais at debosyon, kung saan ang puso ay nakakahanap ng kanlungan sa yakap ng walang hanggang apoy ng pag-ibig."
           }
         },
@@ -479,11 +479,11 @@
           "title": "Silver Serenity",
           "quotes": {
             "10": "Sa katahimikan ng Silver Serenity, hayaang mawala ang iyong mga alalahanin habang naliligo ka sa tahimik na kagandahan ng gabi, nakakahanap ng kapayapaan sa katahimikan.",
-            "01": "Sa yakap ng Silver Serenity, humanap ng katahimikan sa kumikinang na liwanag ng buwan, na nagbibigay ng nakapapawing pagod na spell sa buong mundo.",
+            "01": "Sa yakap ng Silver Serenity, humanap ng katahimikan sa kumikinang na liwanag ng buwan, na nagbibigay ng nakakaaliw na spell sa buong mundo.",
             "02": "Nawala sa matahimik na yakap ng Silver Serenity, damhin ang banayad na dampi ng liwanag ng bituin na gumagabay sa iyo sa isang lugar ng panloob na kapayapaan.",
             "03": "Sa ilalim ng kumot ng Silver Serenity, tuklasin ang kagandahan ng katahimikan, kung saan ang katahimikan ay nagsasalita ng mga volume at ang kaluluwa ay nakatagpo ng aliw.",
             "04": "Silver Serenity: kung saan hinahalikan ng buwan ang lupa gamit ang kulay-pilak nitong liwanag, pinipinta ang gabi na may tahimik na kulay ng kalmado.",
-            "05": "Sa kaharian ng Silver Serenity, ang bawat paghinga ay isang bulong ng katahimikan, na umaalingawngaw sa tahimik na kagandahan ng isang mapayapang gabi.",
+            "05": "Sa larangan ng Silver Serenity, ang bawat hininga ay isang bulong ng katahimikan, na umaalingawngaw sa tahimik na kagandahan ng isang mapayapang gabi.",
             "06": "Tulad ng mga bulong mula sa isang celestial symphony, ang Silver Serenity ay umaakay ng mga pangako ng katahimikan at panloob na pagkakaisa.",
             "07": "Yakapin ang katahimikan ng Silver Serenity, kung saan ang bawat bituin ay isang paalala ng kagandahang makikita sa mga sandali ng tahimik na pagmumuni-muni.",
             "08": "Sa loob ng yakap ng Silver Serenity, humanap ng aliw sa banayad na yakap ng gabi, habang ang mundo ay natutulog sa ilalim ng kumot ng mga bituin.",
@@ -508,7 +508,7 @@
       }
     },
     "particle": {
-      "enabled": "NAKA-ENABLE",
+      "enabled": "PINAGANAA",
       "disabled": "disabled",
       "formDescription": "Paganahin ang Particle Effect",
       "tooltip": "Ang pagpapagana nito ay maaaring magdulot ng mga isyu sa pagganap.",
@@ -519,18 +519,25 @@
     "settingsUpdated": "Na-update ang Mga Setting"
   },
   "about": {
-    "hello": "Hello ako si",
-    "name": "Gene Paul Mar Javier",
-    "slogan": "Ginagawang Realidad ang mga Ideya",
-    "intruduction": "Nagsimula ang aking tech journey sa Unibersidad ng Cebu. ",
-    "title": "Tungkol sa Akin",
-    "description": "pagsubok tungkol sa akin paglalarawan",
-    "downloadResume": "I-download ang Aking Resume",
+    "intro": {
+      "hello": "Hello ako si",
+      "name": "Gene Paul Mar Javier",
+      "slogan": "Ginagawang Realidad ang mga Ideya",
+      "intruduction": "Nagsimula ang aking tech journey sa Unibersidad ng Cebu. ",
+      "title": "Tungkol sa Akin",
+      "description": "pagsubok tungkol sa akin paglalarawan",
+      "downloadResume": "I-download ang Aking Resume",
+      "project": "Proyekto",
+      "ongoing": "Patuloy",
+      "completed": "Nakumpleto",
+      "years": "taon",
+      "experience": "Karanasan"
+    },
     "education": {
       "title": "Edukasyon"
     },
     "experience": {
-      "title": "karanasan",
+      "title": "Karanasan",
       "education": {
         "tertiary": {
           "title": "Batsilyer ng Agham ng Computer Engineering",
@@ -615,7 +622,7 @@
   },
   "skills": {
     "title": "Mga kasanayan",
-    "description": "Pag-navigate sa Kalaliman ng Iyong Maraming Kakayahang Itinakda para Magbigay-lakas sa Paglago at Tagumpay"
+    "description": "Pag-navigate sa Kalaliman ng Iyong Maraming Kakayahang Itinakda para Mapalakas ang Paglago at Tagumpay"
   },
   "availableSoon": "Available sa lalong madaling panahon"
 }
