@@ -12,6 +12,7 @@ import * as DarkResume from "@/assets/resume/dark";
 import moment from "moment";
 import "../css/intro-section.css";
 import { Banner } from "../../components";
+import { twMerge } from "tailwind-merge";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -92,21 +93,20 @@ export const IntroSection = () => {
   };
 
   const STATISTICS: PersonalStatisticInterface[] = [
-    // TODO:: change translate
     {
       count: countProjectStatus("ongoing"),
-      topTitle: "Ongoing", //TODO:: change into certificate
-      botTitle: "Project",
+      topTitle: translate("about.intro.ongoing"),
+      botTitle: translate("about.intro.project"),
     },
     {
       count: countProjectStatus("completed"),
-      topTitle: "Completed",
-      botTitle: "Project",
+      topTitle: translate("about.intro.completed"),
+      botTitle: translate("about.intro.project"),
     },
     {
       count: moment().diff(moment("2018-08-01"), "years"),
-      topTitle: "Years",
-      botTitle: "Experience",
+      topTitle: translate("about.intro.years"),
+      botTitle: translate("about.intro.experience"),
     },
   ];
 
@@ -118,25 +118,31 @@ export const IntroSection = () => {
           <LazyImage
             width="400px"
             src={AboutMe}
-            alt={translate("about.name")}
+            alt={translate("about.intro.name")}
           />
         </div>
         <div className="flex w-full">
           <div className="flex flex-col justify-end pb-8 lg:pb-28">
-            <h3 className="text-2xl">{translate("about.hello")}</h3>
+            <h3 className="text-2xl">{translate("about.intro.hello")}</h3>
             <h1 className="text-4xl font-bold text-primary">
-              {translate("about.name")}
+              {translate("about.intro.name")}
             </h1>
             <p className="mt-4 text-sm text-muted-foreground">
-              {translate("about.intruduction")}
+              {translate("about.intro.intruduction")}
             </p>
             <Button
               onClick={DownloadResumeHandler}
-              className="px-8 mt-4 space-x-2 text-foreground w-fit"
+              className={twMerge(
+                "transition-colors px-8 mt-4 space-x-2 text-foreground w-fit",
+                color === "silver" ? "text-primary-foreground" : ""
+              )}
             >
-              <span>{translate("about.downloadResume")}</span>
+              <span>{translate("about.intro.downloadResume")}</span>
               <DownloadIcon
-                className="transition-colors duration-300 text-foreground"
+                className={twMerge(
+                  "transition-colors duration-300 text-foreground",
+                  color === "silver" ? "text-primary-foreground" : ""
+                )}
                 width={"20px"}
                 height={"20px"}
               />
