@@ -55,7 +55,7 @@ export const Banner = () => {
                 )}
 
                 <span className="text-xs text-nowrap">
-                  {translate("about.slogan")}
+                  {translate("about.intro.slogan")}
                 </span>
                 {index % 2 === 0 ? (
                   <Lightbulb
