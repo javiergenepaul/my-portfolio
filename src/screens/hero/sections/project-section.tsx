@@ -16,6 +16,13 @@ interface Data {
   type: "confidential" | "client" | "personal" | "tutorial";
 }
 
+/**
+ * Generates an array of key contributions for a project.
+ * @param {object} props - The properties object.
+ * @param {number} props.count - The number of key contributions to generate.
+ * @param {string} props.projectName - The name of the project.
+ * @returns {KeyContributionInterface[]} An array of key contributions.
+ */
 const generateKeyContributions = (props: {
   count: number;
   projectName: string;
