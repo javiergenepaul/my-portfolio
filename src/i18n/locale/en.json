@@ -35,7 +35,7 @@
     "maximumCharacter": "Maximum character limit exceeded. Please limit your input to {{count}} characters or fewer."
   },
   "floating": {
-    "quickAcces": "Quick Access",
+    "quickAccess": "Quick Access",
     "toggle": "Toggle",
     "backgroundOnlyMode": "Background-Only Mode",
     "disableParticle": "Disable Particle",

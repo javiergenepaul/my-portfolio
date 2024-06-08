@@ -52,7 +52,7 @@ export const FloatingSettingsContent = () => {
     >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between gap-4">
-          <span>{translate("floating.quickAcces")}</span>
+          <span>{translate("floating.quickAccess")}</span>
           <CollapsibleTrigger asChild>
             <Button variant={"ghost"} size={"sm"}>
               <ChevronsUpDown className="w-4 h-4" />
