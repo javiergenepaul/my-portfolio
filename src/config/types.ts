@@ -27,7 +27,7 @@ export interface ProjectInterface {
   title: string;
   description: string;
   date: Date;
-  keyContribution?: string[];
+  keyContribution?: KeyContributionInterface[];
   carousel: ProjectCarouselInterface[];
   company: string | undefined;
   category: string[];
@@ -37,6 +37,11 @@ export interface ProjectInterface {
   stack?: TechStackInterface[];
   projectId: string;
   status: ProjectStatus;
+}
+
+export interface KeyContributionInterface {
+  name: string;
+  description: string;
 }
 
 export interface ProjectCarouselInterface {

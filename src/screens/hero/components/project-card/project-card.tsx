@@ -29,6 +29,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
     projectId,
     previewUrl,
     description,
+    keyContribution,
   } = props;
 
   return (
@@ -55,7 +56,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
                 </h3>
               </CardTitle>
               <div className="flex gap-2">
-                <KeyContributionIndicator contributions={["test"]} />
+                <KeyContributionIndicator contributions={keyContribution} />
                 <DemoIndicator title={title} previewUrl={previewUrl} />
                 <CodeIndicator title={title} codeUrl={codeUrl} />
               </div>
