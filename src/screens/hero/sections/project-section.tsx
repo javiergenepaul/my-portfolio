@@ -1,4 +1,4 @@
-import { PATH, ProjectInterface } from "@/config";
+import { KeyContributionInterface, PATH, ProjectInterface } from "@/config";
 import { Button } from "@/components";
 import { useNavigate } from "react-router-dom";
 import { translate } from "@/i18n";
@@ -15,6 +15,22 @@ const LazyProjectCard = lazy(
 interface Data {
   type: "confidential" | "client" | "personal" | "tutorial";
 }
+
+const generateKeyContributions = (props: {
+  count: number;
+  projectName: string;
+}): KeyContributionInterface[] => {
+  return [...Array(props.count)].map((_, i) => ({
+    name: translate(
+      `projects.${props.projectName}.keyContributions.${i + 1}.name` as any
+    ),
+    description: translate(
+      `projects.${props.projectName}.keyContributions.${
+        i + 1
+      }.description` as any
+    ),
+  }));
+};
 
 export const PROJECTS: ProjectInterface[] = [
   // YooPH
@@ -70,12 +86,7 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MVC_STACK,
       Stack.GIT_STACK,
     ],
-    keyContribution: [...Array(5)].map((_, i) => ({
-      name: translate(`projects.yoo.keyContributions.${i + 1}.name` as any),
-      description: translate(
-        `projects.yoo.keyContributions.${i + 1}.description` as any
-      ),
-    })),
+    keyContribution: generateKeyContributions({ count: 5, projectName: "yoo" }),
   },
   // Sirius Webpos
   {
@@ -144,14 +155,10 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.GIT_STACK,
       Stack.REACT_ROUTER_STACK,
     ],
-    keyContribution: [...Array(14)].map((_, i) => ({
-      name: translate(
-        `projects.siriusWebpos.keyContributions.${i + 1}.name` as any
-      ),
-      description: translate(
-        `projects.siriusWebpos.keyContributions.${i + 1}.description` as any
-      ),
-    })),
+    keyContribution: generateKeyContributions({
+      count: 14,
+      projectName: "siriusWebpos",
+    }),
   },
   // Hoobank
   {
@@ -202,15 +209,10 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.NETLIFY_STACK,
       Stack.LANDING_PAGE_STACK,
     ],
-    keyContribution: [...Array(3)].map((_, i) => ({
-      name: translate(
-        `projects.hoobank.keyContributions.${i + 1}.name` as any
-      ),
-      description: translate(
-        `projects.siriusWebpos.keyContributions.${i + 1}.description` as any
-      ),
-    })),
- 
+    keyContribution: generateKeyContributions({
+      count: 3,
+      projectName: "hoobank",
+    }),
   },
   // IQMK
   {
@@ -259,6 +261,10 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.LANDING_PAGE_STACK,
       Stack.NETLIFY_STACK,
     ],
+    keyContribution: generateKeyContributions({
+      count: 2,
+      projectName: "iqmk",
+    }),
     status: "completed",
   },
   // My portfolio
@@ -322,6 +328,10 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.VITEST_STACK,
     ],
     status: "completed",
+    keyContribution: generateKeyContributions({
+      count: 5,
+      projectName: "myPortfolio",
+    }),
   },
   // Palette Shift
   {
@@ -333,6 +343,7 @@ export const PROJECTS: ProjectInterface[] = [
     projectId: "palette-shift",
     codeUrl: "https://github.com/javiergenepaul/Palette-Shift.git",
     previewUrl: "https://palette-shift.netlify.app/",
+    status: "completed",
     carousel: [
       {
         value: "1",
@@ -382,7 +393,10 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.VITEST_STACK,
       Stack.CSS_STACK,
     ],
-    status: "completed",
+    keyContribution: generateKeyContributions({
+      count: 3,
+      projectName: "paletteShift",
+    }),
   },
   // TODO:: Unified Youth
   // {

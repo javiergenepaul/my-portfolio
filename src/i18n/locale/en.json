@@ -356,6 +356,16 @@
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Front End Landing Page Design",
+          "description": "Collaborated with UI/UX designers to create a visually appealing landing page layout using Figma, ensuring alignment with design specifications and user experience goals."
+        },
+        "2": {
+          "name": "Implementing Landing Page with Tailwind CSS",
+          "description": "Developed the front end of the landing page by translating the Figma design into a static website, utilizing Tailwind CSS for efficient styling and layout."
+        }
       }
     },
     "pawfectlyYours": {
@@ -373,6 +383,28 @@
       "category": {
         "landing": "Landing Page",
         "portfolioWebsite": "portfolioWebsite"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Design to Implementation",
+          "description": "Translated design concepts into a fully functional static website, ensuring seamless integration of visual elements and user interface components."
+        },
+        "2": {
+          "name": "Implementing Static Website",
+          "description": "Developed the front end of the portfolio website, utilizing modern web technologies and best practices to create an engaging and responsive user experience."
+        },
+        "3": {
+          "name": "Adding Email Sender Feature",
+          "description": "Implemented an email sender feature, allowing visitors to easily contact you directly through the portfolio website, enhancing communication and networking opportunities."
+        },
+        "4": {
+          "name": "Deploying",
+          "description": "Deployed the portfolio website to a hosting service, making it accessible to users worldwide and ensuring reliable performance and uptime."
+        },
+        "5": {
+          "name": "Creating Content",
+          "description": "Generated compelling and informative content for the portfolio website, including project descriptions, personal bio, and other relevant information to showcase skills and experience."
+        }
       }
     },
     "paletteShift": {
@@ -385,6 +417,20 @@
         "accessibility": "Accessibility",
         "tools": "Software Tools",
         "libraries": "Libraries"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Front End Design with React and TypeScript",
+          "description": "Designed the front end of the application using React with TypeScript, ensuring a modern and responsive user interface."
+        },
+        "2": {
+          "name": "Customizable Themes",
+          "description": "Implemented customizable themes functionality, allowing users to personalize the appearance of the application according to their preferences."
+        },
+        "3": {
+          "name": "Dark Mode & Light Mode",
+          "description": "Integrated support for both dark mode and light mode, enhancing user experience by providing options for different visual preferences."
+        }
       }
     }
   },
