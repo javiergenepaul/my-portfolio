@@ -16,7 +16,7 @@ import {
   Switch,
   toast,
 } from "..";
-import React, { useState } from "react";
+import React from "react";
 import { i18n, translate } from "@/i18n";
 import { generateColorQoutes, getRandomGeneratedColorQoutes } from "@/lib";
 import {
@@ -41,8 +41,15 @@ import {
 
 const TOAST_DURATION: number = 2000;
 
-export const FloatingSettingsContent = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+interface FloatingSettingContentInterface {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export const FloatingSettingsContent = (
+  props: FloatingSettingContentInterface
+) => {
+  const { isOpen, setIsOpen } = props;
   return (
     <div
       className="flex flex-col gap-2 p-4"
@@ -50,11 +57,17 @@ export const FloatingSettingsContent = () => {
         setIsOpen(false);
       }}
     >
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <Collapsible open={isOpen}>
         <div className="flex items-center justify-between gap-4">
           <span>{translate("floating.quickAccess")}</span>
-          <CollapsibleTrigger asChild>
-            <Button variant={"ghost"} size={"sm"}>
+          <CollapsibleTrigger className="no-drag" asChild>
+            <Button
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+              variant={"ghost"}
+              size={"sm"}
+            >
               <ChevronsUpDown className="w-4 h-4" />
               <span className="sr-only">{translate("floating.toggle")}</span>
             </Button>
