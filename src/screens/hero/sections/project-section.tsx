@@ -165,6 +165,7 @@ export const PROJECTS: ProjectInterface[] = [
       "https://github.com/javiergenepaul/hoobank-react-tailwind-yt-tutorial",
     type: "tutorial",
     projectId: "hoobank",
+    status: "completed",
     carousel: [
       {
         value: "1",
@@ -201,7 +202,15 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.NETLIFY_STACK,
       Stack.LANDING_PAGE_STACK,
     ],
-    status: "completed",
+    keyContribution: [...Array(3)].map((_, i) => ({
+      name: translate(
+        `projects.hoobank.keyContributions.${i + 1}.name` as any
+      ),
+      description: translate(
+        `projects.siriusWebpos.keyContributions.${i + 1}.description` as any
+      ),
+    })),
+ 
   },
   // IQMK
   {

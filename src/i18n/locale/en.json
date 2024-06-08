@@ -333,6 +333,20 @@
       "imageName": "Country",
       "category": {
         "landing": "Landing Page"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Creating a React JavaScript Tutorial",
+          "description": "Developed a comprehensive tutorial on React using JavaScript, inspired by the educational style of JavaScript Mastery."
+        },
+        "2": {
+          "name": "Implementing Responsive Design",
+          "description": "Ensured the application's user interface is accessible and intuitive across various devices by implementing responsive design principles."
+        },
+        "3": {
+          "name": "Optimizing Performance",
+          "description": "Enhanced the performance of the application by implementing efficient coding practices and optimizing resource usage, resulting in improved user experience and faster load times."
+        }
       }
     },
     "iqmk": {
