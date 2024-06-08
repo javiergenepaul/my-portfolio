@@ -23,11 +23,16 @@ export const PROJECTS: ProjectInterface[] = [
     company: "Mach95 Software Developer Corp.",
     date: new Date(),
     description: translate("projects.yoo.description"),
-    category: ["delivery app", "ecommerce", "admin dashboard"],
+    category: [
+      translate("projects.yoo.category.deliveryApp"),
+      translate("projects.yoo.category.ecommerce"),
+      translate("projects.yoo.category.admin"),
+    ],
     previewUrl: "https://www.yoo.ph/login",
     codeUrl: undefined,
     type: "confidential",
     projectId: "yoo-ph",
+    status: "completed",
     carousel: [
       {
         value: "1",
@@ -65,39 +70,12 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.MVC_STACK,
       Stack.GIT_STACK,
     ],
-    status: "completed",
-    keyContribution: [
-      {
-        name: translate("projects.yoo.keyContributions.createApi.name"),
-        description: translate(
-          "projects.yoo.keyContributions.createApi.description"
-        ),
-      },
-      {
-        name: translate("projects.yoo.keyContributions.frontEndDesign.name"),
-        description: translate(
-          "projects.yoo.keyContributions.frontEndDesign.description"
-        ),
-      },
-      {
-        name: translate("projects.yoo.keyContributions.laravelAuth.name"),
-        description: translate(
-          "projects.yoo.keyContributions.laravelAuth.description"
-        ),
-      },
-      {
-        name: translate("projects.yoo.keyContributions.databaseDesign.name"),
-        description: translate(
-          "projects.yoo.keyContributions.databaseDesign.description"
-        ),
-      },
-      {
-        name: translate("projects.yoo.keyContributions.multiAuthLogin.name"),
-        description: translate(
-          "projects.yoo.keyContributions.multiAuthLogin.description"
-        ),
-      },
-    ],
+    keyContribution: [...Array(5)].map((_, i) => ({
+      name: translate(`projects.yoo.keyContributions.${i + 1}.name` as any),
+      description: translate(
+        `projects.yoo.keyContributions.${i + 1}.description` as any
+      ),
+    })),
   },
   // Sirius Webpos
   {
@@ -113,6 +91,7 @@ export const PROJECTS: ProjectInterface[] = [
     codeUrl: undefined,
     type: "confidential",
     projectId: "sirius-webpos",
+    status: "ongoing",
     carousel: [
       {
         value: "1",
@@ -165,7 +144,14 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.GIT_STACK,
       Stack.REACT_ROUTER_STACK,
     ],
-    status: "ongoing",
+    keyContribution: [...Array(14)].map((_, i) => ({
+      name: translate(
+        `projects.siriusWebpos.keyContributions.${i + 1}.name` as any
+      ),
+      description: translate(
+        `projects.siriusWebpos.keyContributions.${i + 1}.description` as any
+      ),
+    })),
   },
   // Hoobank
   {

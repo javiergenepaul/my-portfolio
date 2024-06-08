@@ -207,7 +207,7 @@
       "demoAvailable": "{{title}} - Demo Available",
       "codeAvaialble": "{{title}} - Github Code Available"
     },
-    "keyContributions": "Key Contributions",
+    "keyContributions": "Key Contributions Include:",
     "yoo": {
       "title": "YooPH",
       "company": "Mach95 Software Developer Corp",
@@ -219,23 +219,23 @@
         "admin": "Admin Dashboard"
       },
       "keyContributions": {
-        "createApi": {
+        "1": {
           "name": "Created API",
           "description": "Developed and implemented application programming interfaces to ensure seamless communication between web and mobile application."
         },
-        "frontEndDesign": {
+        "2": {
           "name": "Front End Design",
           "description": "Designed and developed the user interface, focusing on an intuitive and user-friendly experience using Boootstrap 5 and Jquery."
         },
-        "laravelAuth": {
+        "3": {
           "name": "Laravel Auth",
           "description": "Implemented authentication mechanisms using Laravel, ensuring secure user login and management."
         },
-        "databaseDesign": {
+        "4": {
           "name": "Database Design and Creation",
           "description": "Structured and built the database, optimizing it for performance and reliability."
         },
-        "multiAuthLogin": {
+        "5": {
           "name": "Multi Auth Login",
           "description": "Implemented multi-authentication mechanisms to support different user roles and access levels within the system."
         }
@@ -249,7 +249,65 @@
         "webPos": "WebPOS",
         "admin": "Admin Dashboard"
       },
-      "imageName": "WebPOS Preview"
+      "imageName": "WebPOS Preview",
+      "keyContributions": {
+        "1": {
+          "name": "Creating a Spring Boot API",
+          "description": "Designed and implemented APIs using Spring Boot to provide robust backend services."
+        },
+        "2": {
+          "name": "Consuming APIs in React Application",
+          "description": "Developed APIs and integrated them with React for seamless data interaction."
+        },
+        "3": {
+          "name": "Creating Common Features in Backend",
+          "description": "Developed reusable and scalable backend features to support various application functionalities."
+        },
+        "4": {
+          "name": "Creating Reusable Components in React",
+          "description": "Built common, reusable components in React to streamline development and ensure consistency across the application."
+        },
+        "5": {
+          "name": "Implementing Robust Security Measures",
+          "description": "Utilized Spring Boot Security and JWT authentication to secure the application."
+        },
+        "6": {
+          "name": "Enhancing Performance and User Experience",
+          "description": "Leveraged React interceptors to improve performance and user interaction."
+        },
+        "7": {
+          "name": "Ensuring Data Security",
+          "description": "Implemented encryption/decryption mechanisms to protect sensitive data."
+        },
+        "8": {
+          "name": "Proactively Resolving Vulnerabilities",
+          "description": "Addressed OWASP ZAP vulnerabilities to enhance application security against common threats."
+        },
+        "9": {
+          "name": "Establishing Code Standards",
+          "description": "Set up base code standards and best practices to ensure consistency and quality."
+        },
+        "10": {
+          "name": "Streamlining Development Processes",
+          "description": "Introduced common utility functions and components to optimize development workflows."
+        },
+        "11": {
+          "name": "Promoting Code Reusability",
+          "description": "Developed common React components to facilitate code reuse."
+        },
+        "12": {
+          "name": "Managing and Setting Up Nginx Server and Services",
+          "description": "Configured and managed Nginx server to handle web traffic efficiently and securely."
+        },
+        "13": {
+          "name": "Leadership and Management",
+          "description": "Led teams, managed On-the-Job Training, and supervised direct reports."
+        },
+        "14": {
+          "name": "Code Review and Standards",
+          "description": "Conducted code reviews and ensured adherence to coding standards."
+        }
+      }
     },
     "unifiedYouth": {
       "title": "Unified Youth",
