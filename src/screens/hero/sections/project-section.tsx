@@ -66,6 +66,38 @@ export const PROJECTS: ProjectInterface[] = [
       Stack.GIT_STACK,
     ],
     status: "completed",
+    keyContribution: [
+      {
+        name: translate("projects.yoo.keyContributions.createApi.name"),
+        description: translate(
+          "projects.yoo.keyContributions.createApi.description"
+        ),
+      },
+      {
+        name: translate("projects.yoo.keyContributions.frontEndDesign.name"),
+        description: translate(
+          "projects.yoo.keyContributions.frontEndDesign.description"
+        ),
+      },
+      {
+        name: translate("projects.yoo.keyContributions.laravelAuth.name"),
+        description: translate(
+          "projects.yoo.keyContributions.laravelAuth.description"
+        ),
+      },
+      {
+        name: translate("projects.yoo.keyContributions.databaseDesign.name"),
+        description: translate(
+          "projects.yoo.keyContributions.databaseDesign.description"
+        ),
+      },
+      {
+        name: translate("projects.yoo.keyContributions.multiAuthLogin.name"),
+        description: translate(
+          "projects.yoo.keyContributions.multiAuthLogin.description"
+        ),
+      },
+    ],
   },
   // Sirius Webpos
   {
