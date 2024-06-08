@@ -207,6 +207,7 @@
       "demoAvailable": "{{title}} - Demo Available",
       "codeAvaialble": "{{title}} - Github Code Available"
     },
+    "keyContributions": "Key Contributions",
     "yoo": {
       "title": "YooPH",
       "company": "Mach95 Software Developer Corp",
@@ -216,6 +217,28 @@
         "deliveryApp": "Delivery Application",
         "ecommerce": "ecommerce",
         "admin": "Admin Dashboard"
+      },
+      "keyContributions": {
+        "createApi": {
+          "name": "Created API",
+          "description": "Developed and implemented application programming interfaces to ensure seamless communication between web and mobile application."
+        },
+        "frontEndDesign": {
+          "name": "Front End Design",
+          "description": "Designed and developed the user interface, focusing on an intuitive and user-friendly experience using Boootstrap 5 and Jquery."
+        },
+        "laravelAuth": {
+          "name": "Laravel Auth",
+          "description": "Implemented authentication mechanisms using Laravel, ensuring secure user login and management."
+        },
+        "databaseDesign": {
+          "name": "Database Design and Creation",
+          "description": "Structured and built the database, optimizing it for performance and reliability."
+        },
+        "multiAuthLogin": {
+          "name": "Multi Auth Login",
+          "description": "Implemented multi-authentication mechanisms to support different user roles and access levels within the system."
+        }
       }
     },
     "siriusWebpos": {
