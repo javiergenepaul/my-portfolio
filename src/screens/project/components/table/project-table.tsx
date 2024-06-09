@@ -33,7 +33,7 @@ export const ProjectTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {PROJECTS.map((project) => (
+        {PROJECTS.map((project, key) => (
           <TableRow
             className={
               project.type !== "confidential" && project.previewUrl
@@ -43,7 +43,7 @@ export const ProjectTable = () => {
             onDoubleClick={() => {
               window.open(project.previewUrl, "_blank");
             }}
-            key={project.projectId}
+            key={key}
           >
             {/* TITLE */}
             <TableCell className="font-medium">{project.title}</TableCell>
@@ -53,8 +53,8 @@ export const ProjectTable = () => {
             </TableCell>
             {/* CATEGORY */}
             <TableCell className="flex gap-2 flex-wrap">
-              {project.category.map((category) => {
-                return <Badge>{category}</Badge>;
+              {project.category.map((category, key) => {
+                return <Badge key={key}>{category}</Badge>;
               })}
             </TableCell>
             {/* TYPE */}

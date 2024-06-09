@@ -10,6 +10,10 @@ export type Color =
   | "lavender"
   | "scarlet"
   | "silver";
+export type ProjectViewMOde =
+  | "list-mode"
+  | "grid-large-mode"
+  | "grid-small-mode";
 
 interface SettingsStore {
   theme: Theme;
@@ -21,6 +25,7 @@ interface SettingsStore {
   enableParticleBackground: boolean;
   isSettingsNew: boolean;
   hideFloatingSettings: boolean;
+  projectViewMode: ProjectViewMOde;
   setFont: (font: FontType) => void;
   setTheme: (theme: Theme) => void;
   getSystemTheme: () => string;
@@ -33,6 +38,7 @@ interface SettingsStore {
   setIsBackgroundOnly: (isBackgroundOnly: boolean) => void;
   setIsSettingsNew: (isSettingsNew: boolean) => void;
   setHideFloatingSettings: (hideFloatingSettings: boolean) => void;
+  setProjectViewMode: (projectViewMode: ProjectViewMOde) => void;
 }
 
 const BACKGROUND_ONLY_LOCAL: string = "vite-ui-background-only";
@@ -43,6 +49,7 @@ const THEME_LOCAL: string = "vite-ui-theme";
 const COLOR_LOCAL: string = "vite-ui-color";
 const FONT_LOCAL: string = "vite-ui-font";
 const SWIPE_SENSITIVITY_LOCAL: string = "vite-ui-sideNavSensitivity";
+const PROJECT_VIEW_MODE_LOCAL: string = "vite-ui-projectViewMode";
 
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
   hideFloatingSettings: false,
@@ -61,6 +68,9 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   theme: localStorage.getItem(THEME_LOCAL) as Theme | undefined,
   color: localStorage.getItem(COLOR_LOCAL) as Color | "emerald",
   font: localStorage.getItem(FONT_LOCAL) as FontType | "inter",
+  projectViewMode: localStorage.getItem(PROJECT_VIEW_MODE_LOCAL) as
+    | ProjectViewMOde
+    | "list-mode",
   sidenavSwipeSensitivity: localStorage.getItem(SWIPE_SENSITIVITY_LOCAL)
     ? parseInt(localStorage.getItem(SWIPE_SENSITIVITY_LOCAL) as string)
     : 50,
@@ -134,6 +144,10 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   },
   setHideFloatingSettings: (hideFloatingSettings: boolean) => {
     set({ hideFloatingSettings });
+  },
+  setProjectViewMode: (projectViewMode: ProjectViewMOde) => {
+    localStorage.setItem(PROJECT_VIEW_MODE_LOCAL, projectViewMode.toString());
+    set({ projectViewMode });
   },
 }));
 
