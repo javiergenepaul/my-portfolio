@@ -14,7 +14,7 @@ import {
 } from "./indicator";
 import { ShowTag } from "./show-tag";
 import { translate } from "@/i18n";
-import { StackContent } from "@/screens";
+import { KeyContributionModal, StackContent } from "@/screens";
 import { ProjectCarousel } from "./project-carousel";
 
 interface ProjectCardInterface extends ProjectInterface {}
@@ -57,6 +57,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
               </CardTitle>
               <div className="flex gap-2">
                 <KeyContributionIndicator contributions={keyContribution} />
+                <KeyContributionModal contributions={keyContribution} />
                 <DemoIndicator title={title} previewUrl={previewUrl} />
                 <CodeIndicator title={title} codeUrl={codeUrl} />
               </div>
