@@ -26,3 +26,4 @@ export * from "./skeleton";
 export * from "./collapsible";
 export * from "./carousel";
 export * from "./table";
+export * from "./dialog";
