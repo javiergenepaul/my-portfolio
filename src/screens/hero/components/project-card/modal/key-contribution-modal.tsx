@@ -20,7 +20,7 @@ export const KeyContributionModal = (props: KeyCOntributionModalInterface) => {
 
   return (
     contributions && (
-      <div className="block md:hidden ">
+      <div className="block lg:hidden ">
         <Dialog>
           <DialogTrigger asChild>
             <IndicatorContainer>
@@ -40,15 +40,17 @@ export const KeyContributionModal = (props: KeyCOntributionModalInterface) => {
               <div className="flex flex-col mt-4 gap-2">
                 {contributions.map((contribute: KeyContributionInterface) => {
                   return (
-                    <p className="flex gap-2 text-sm text-accent-foreground items-start">
+                    <div className="flex gap-2 text-sm text-accent-foreground items-start">
                       <CheckCircle />
-                      <div className="">
+                      <div>
                         <strong className="font-bold text-nowrap">
-                          {contribute.name}
+                          {contribute.name}:
                         </strong>
-                        : {contribute.description}
+                        <p className="text-muted-foreground">
+                          {contribute.description}
+                        </p>
                       </div>
-                    </p>
+                    </div>
                   );
                 })}
               </div>
