@@ -100,7 +100,7 @@ const BackgroundSwitchField = () => {
     });
   };
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 no-drag">
       <Switch
         id={backgroundId}
         checked={isBackgroundOnly}
@@ -134,7 +134,7 @@ const ParticleSwitchField = () => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 no-drag">
       <Switch
         id={particleId}
         checked={enableParticleBackground}
@@ -212,7 +212,7 @@ const ColorPaletteField = () => {
   ];
 
   return (
-    <div className="">
+    <div className="no-drag">
       <Label>{translate("floating.colorPalette")}</Label>
       <RadioGroup value={color} onValueChange={onChangeColor}>
         {COLOR_PALETTE_AVAILABLE.map(
@@ -291,7 +291,7 @@ const LanguageField = () => {
   ];
 
   return (
-    <div>
+    <div className="no-drag">
       <Label>{translate("floating.changeLanguage")}</Label>
       <RadioGroup value={language} onValueChange={onChangeLangHanlder}>
         {LANGUAGE_OPTIONS.map((lang: GeneralLangOptions) => (
@@ -348,7 +348,7 @@ const ThemeField = () => {
     },
   ];
   return (
-    <div className="">
+    <div className="no-drag">
       <Label>{translate("floating.themeMode")}</Label>
       <RadioGroup
         value={theme}
