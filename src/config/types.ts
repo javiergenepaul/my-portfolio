@@ -37,6 +37,7 @@ export interface ProjectInterface {
   stack?: TechStackInterface[];
   projectId: string;
   status: ProjectStatus;
+  hidden?: boolean;
 }
 
 export interface KeyContributionInterface {

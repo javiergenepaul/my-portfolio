@@ -30,10 +30,11 @@ const ProjectCard = (props: ProjectCardInterface) => {
     previewUrl,
     description,
     keyContribution,
+    hidden
   } = props;
 
   return (
-    <Card className="relative p-0 overflow-hidden">
+    <Card hidden={hidden} className="relative p-0 overflow-hidden">
       <ShowTag type={type} />
       <div className="flex flex-col">
         <div className="flex flex-col gap-4 px-4 py-6 pb-4 xl:flex-row md:px-8 h-fit">
