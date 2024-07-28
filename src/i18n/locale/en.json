@@ -432,7 +432,8 @@
           "description": "Integrated support for both dark mode and light mode, enhancing user experience by providing options for different visual preferences."
         }
       }
-    }
+    },
+    "viewMode": "View Mode"
   },
   "contact": {
     "title": "Contact",
