@@ -33,7 +33,7 @@ export const ProjectTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {PROJECTS.map((project, key) => (
+        {PROJECTS.filter((project) => !project.hidden).map((project) => (
           <TableRow
             className={
               project.type !== "confidential" && project.previewUrl
