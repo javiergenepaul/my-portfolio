@@ -22,6 +22,7 @@ export interface ContentBodyInterface {
   watermarkAlt?: string;
   description: string;
   subtitleUrl?: string;
+  waterMarkWidth?: number;
 }
 
 export const ContentBody = (props: ContentBodyInterface) => {
@@ -35,7 +36,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
     watermark,
     watermarkAlt,
     description,
-    subtitleUrl,
+    subtitleUrl,waterMarkWidth
   } = props;
 
   const getYearSpent = (
@@ -68,7 +69,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
       yearSpentText = yearSpentText + `${months} ${months > 1 ? "mos" : "mo"}`;
     }
 
-    return yearSpentText;
+    return yearSpentText ? yearSpentText : "1 mos";
   };
 
   return (
@@ -119,8 +120,8 @@ export const ContentBody = (props: ContentBodyInterface) => {
       </CardContent>
       {watermark && (
         <img
-          width={"100px"}
           height={"100px"}
+          width={waterMarkWidth ? `${waterMarkWidth}px` : "100px"}
           className="absolute top-2 right-2 opacity-30"
           src={watermark as string}
           alt={watermarkAlt}

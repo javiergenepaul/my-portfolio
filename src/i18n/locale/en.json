@@ -710,6 +710,12 @@
         }
       },
       "experience": {
+        "drakeInternational": {
+            "title": "Software Engineer",
+            "subtitle": "Drake International",
+            "description": "As a Software Engineer in training at Drake International, I am learning to develop scalable web applications using Spring Boot for the back-end and Vue.js for the front-end. I have gained knowledge of transitioning from a monolithic architecture to microservices and am familiar with the technology stack and system design. Additionally, I collaborate using Slack for communication with cross-functional teams.",
+            "alt": "Drake International Logo"
+        },
         "alliance": {
           "ts1": {
             "title": "Software Engineer - Technical Specialist I",
@@ -753,6 +759,11 @@
         "title": "FullStack: React and Java Spring Boot - The Developer Guide",
         "organization": "Udemy",
         "organizationAlt": "Udemy Certificates"
+      },
+      "businessCommunication": {
+        "title": "Effective Business Communication Skills",
+        "organization": "Lilolele Incorporated",
+        "organizationAlt": "Lilolele Business Communnication Certificate"
       }
     },
     "outro": {

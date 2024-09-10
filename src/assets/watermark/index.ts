@@ -5,6 +5,7 @@ import PilotWatermark from "./pilot-watermark.png";
 import AllianceWatermark from "./alliance-watermark.png";
 import Mach95Watermark from "./mach95-watermark.png";
 import ExodiaWatermark from "./exodia-watermark.png";
+import DrakeWatermark from "./drake-watermark.png";
 
 export {
   UcWatermark,
@@ -14,4 +15,5 @@ export {
   AllianceWatermark,
   Mach95Watermark,
   ExodiaWatermark,
+  DrakeWatermark
 };

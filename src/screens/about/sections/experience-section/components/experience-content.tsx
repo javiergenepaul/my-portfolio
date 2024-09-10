@@ -1,6 +1,12 @@
-import { AllianceWatermark, ExodiaWatermark, Mach95Watermark } from "@/assets";
+import {
+  AllianceWatermark,
+  DrakeWatermark,
+  ExodiaWatermark,
+  Mach95Watermark,
+} from "@/assets";
 import {
   ALLIANCE_COMPANY_URL,
+  DRAKE_COMPANY_URL,
   EXODIA_COMPANY_URL,
   MACH95_COMPANY_URL,
 } from "@/config";
@@ -11,6 +17,24 @@ import moment from "moment";
 export const ExperienceContent = () => {
   const EXPERIENCE: ContentBodyInterface[] = [
     {
+      title: translate("about.experience.experience.drakeInternational.title"),
+      description: translate(
+        "about.experience.experience.drakeInternational.description"
+      ),
+      subtitle: translate(
+        "about.experience.experience.drakeInternational.subtitle"
+      ),
+      startYear: moment("2024-09-09"),
+      endYear: "present",
+      watermark: DrakeWatermark,
+      watermarkAlt: translate(
+        "about.experience.experience.drakeInternational.alt"
+      ),
+      subtitleUrl: DRAKE_COMPANY_URL,
+      waterMarkWidth: 200,
+      isWork: true,
+    },
+    {
       title: translate("about.experience.experience.alliance.ats1.title"),
       description: translate(
         "about.experience.experience.alliance.ats1.description"
@@ -18,7 +42,7 @@ export const ExperienceContent = () => {
       subtitle: translate("about.experience.experience.alliance.ats1.subtitle"),
       startYear: moment("2024-01-01"),
       abbreviation: translate("about.experience.experience.alliance.ats1.abb"),
-      endYear: "present",
+      endYear: moment("2024-09-05"),
       watermark: AllianceWatermark,
       watermarkAlt: translate("about.experience.experience.alliance.ats1.alt"),
       subtitleUrl: ALLIANCE_COMPANY_URL,

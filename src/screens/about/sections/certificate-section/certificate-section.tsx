@@ -1,4 +1,4 @@
-import { UdemyOrganization } from "@/assets";
+import { LiloleleIncorporatedOrganization, UdemyOrganization } from "@/assets";
 import { Banner } from "../../components";
 import {
   CertificateCard,
@@ -32,6 +32,19 @@ export const CertificateSection = () => {
       credentialUrl:
         "https://udemy-certificate.s3.amazonaws.com/image/UC-02e2602b-ffcc-4457-ab22-4459d0be0ca7.jpg",
     },
+    {
+      title: translate("about.certificate.businessCommunication.title"),
+      organization: translate(
+        "about.certificate.businessCommunication.organization"
+      ),
+      organizationImg: LiloleleIncorporatedOrganization,
+      organizationAlt: translate(
+        "about.certificate.springBoot.organizationAlt"
+      ),
+      issuedDate: moment("2024-07"),
+      credentialUrl:
+        "https://media.licdn.com/dms/image/v2/D4E2DAQFjATgOtAAp7Q/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1725526351160?e=1726574400&v=beta&t=zzSxGmZ1DExa0xw1lgSuUPt0hbdSkrGTgACUrSf1kFY",
+    },
   ];
 
   return (
@@ -41,7 +54,7 @@ export const CertificateSection = () => {
         <div className="text-2xl font-bold text-center pb-4">
           {translate("about.certificate.header")}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {CERTIFICATES.map(
             (cert: CertificateCardInterface, index: React.Key) => {
               return <CertificateCard key={index} {...cert} />;

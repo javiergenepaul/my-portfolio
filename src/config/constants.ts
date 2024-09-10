@@ -35,6 +35,7 @@ export const MOBILE_NUMBER: string = "09762912231";
 export const EMAIL_ADDRESS: string = "javiergenepaul@gmail.com";
 
 // background section
+export const DRAKE_COMPANY_URL: string = "https://drakeintl.com/";
 export const ALLIANCE_COMPANY_URL: string =
   "https://alliance.com.ph/index.html";
 export const MACH95_COMPANY_URL: string = "https://mach95.com/";
@@ -42,4 +43,5 @@ export const EXODIA_COMPANY_URL: string = "https://www.exodiagamedev.com/";
 export const CTU_SCHOOL_URL: string = "https://www.ctu.edu.ph/";
 export const UC_SCHOOL_URL: string = "https://www.universityofcebu.net/";
 export const BNHS_SCHOOL_URL: string = "https://www.facebook.com/bahaisabela/";
-export const ICEPS_SCHOOL_URL: string = "https://www.facebook.com/ICEPSOFFICIAL/";
+export const ICEPS_SCHOOL_URL: string =
+  "https://www.facebook.com/ICEPSOFFICIAL/";
