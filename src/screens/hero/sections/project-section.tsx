@@ -112,6 +112,44 @@ export const PROJECTS: ProjectInterface[] = [
       projectName: "siriusWebpos",
     }),
   },
+  // sirius mru
+  {
+    title: "Sirius MRU",
+    company: translate("projects.siriusWebpos.company"),
+    date: new Date(),
+    description: translate("projects.siriusWebpos.description"),
+    category: [
+      translate("projects.siriusWebpos.category.admin"),
+      translate("projects.siriusWebpos.category.webPos"),
+    ],
+    previewUrl: undefined,
+    codeUrl: undefined,
+    type: "confidential",
+    projectId: "sirius-mru",
+    status: "completed",
+    carousel: [],
+    stack: [],
+    hidden: true,
+  },
+  // sirius pvc
+  {
+    title: "Sirius MRU",
+    company: translate("projects.siriusWebpos.company"),
+    date: new Date(),
+    description: translate("projects.siriusWebpos.description"),
+    category: [
+      translate("projects.siriusWebpos.category.admin"),
+      translate("projects.siriusWebpos.category.webPos"),
+    ],
+    previewUrl: undefined,
+    codeUrl: undefined,
+    type: "confidential",
+    projectId: "sirius-pvc",
+    status: "completed",
+    carousel: [],
+    stack: [],
+    hidden: true,
+  },
   // Palette Shift
   {
     title: translate("projects.paletteShift.title"),
@@ -430,6 +468,7 @@ export const PROJECTS: ProjectInterface[] = [
     ],
     status: "completed",
   },
+  // pawfectly yours
   {
     title: translate("projects.pawfectlyYours.title"),
     company: undefined,
