@@ -25,7 +25,6 @@ export const CertificateCard = (props: CertificateCardInterface) => {
     organization,
     credentialUrl,
     issuedDate,
-    credentialId,
     organizationImg,
     organizationAlt,
   } = props;
