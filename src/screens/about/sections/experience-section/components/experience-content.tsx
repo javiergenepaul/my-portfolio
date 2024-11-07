@@ -1,13 +1,13 @@
 import {
   AllianceWatermark,
-  DrakeWatermark,
   ExodiaWatermark,
+  KryterionWatermark,
   Mach95Watermark,
 } from "@/assets";
 import {
   ALLIANCE_COMPANY_URL,
-  DRAKE_COMPANY_URL,
   EXODIA_COMPANY_URL,
+  KRYTERION_COMPANY_URL,
   MACH95_COMPANY_URL,
 } from "@/config";
 import { translate } from "@/i18n";
@@ -17,50 +17,65 @@ import moment from "moment";
 export const ExperienceContent = () => {
   const EXPERIENCE: ContentBodyInterface[] = [
     {
-      title: translate("about.experience.experience.drakeInternational.title"),
+      title: translate("about.experience.experience.kryterion.title"),
       description: translate(
-        "about.experience.experience.drakeInternational.description"
+        "about.experience.experience.kryterion.description"
       ),
       subtitle: translate(
-        "about.experience.experience.drakeInternational.subtitle"
+        "about.experience.experience.kryterion.subtitle"
       ),
       startYear: moment("2024-09-09"),
       endYear: "present",
-      watermark: DrakeWatermark,
+      watermark: KryterionWatermark,
       watermarkAlt: translate(
-        "about.experience.experience.drakeInternational.alt"
+        "about.experience.experience.kryterion.alt"
       ),
-      subtitleUrl: DRAKE_COMPANY_URL,
-      waterMarkWidth: 200,
+      subtitleUrl: KRYTERION_COMPANY_URL,
+      waterMarkWidth: 105,
       isWork: true,
     },
     {
-      title: translate("about.experience.experience.alliance.ats1.title"),
-      description: translate(
-        "about.experience.experience.alliance.ats1.description"
-      ),
-      subtitle: translate("about.experience.experience.alliance.ats1.subtitle"),
-      startYear: moment("2024-01-01"),
-      abbreviation: translate("about.experience.experience.alliance.ats1.abb"),
-      endYear: moment("2024-09-05"),
-      watermark: AllianceWatermark,
-      watermarkAlt: translate("about.experience.experience.alliance.ats1.alt"),
-      subtitleUrl: ALLIANCE_COMPANY_URL,
-      isWork: true,
-    },
-    {
-      title: translate("about.experience.experience.alliance.ts1.title"),
-      description: translate(
-        "about.experience.experience.alliance.ts1.description"
-      ),
-      subtitle: translate("about.experience.experience.alliance.ts1.subtitle"),
+      title: translate("about.experience.experience.alliance.title"),
       startYear: moment("2022-12-01"),
-      abbreviation: translate("about.experience.experience.alliance.ts1.abb"),
-      endYear: moment("2024-01-01"),
+      endYear: moment("2024-09-05"),
+      description: translate(
+        "about.experience.experience.alliance.description"
+      ),
       watermark: AllianceWatermark,
-      watermarkAlt: translate("about.experience.experience.alliance.ts1.alt"),
+      watermarkAlt: translate("about.experience.experience.alliance.promotion.ats1.alt"),
       subtitleUrl: ALLIANCE_COMPANY_URL,
       isWork: true,
+      subtitle: translate("about.experience.experience.alliance.subtitle"),
+      promotion: [
+        {
+          title: translate("about.experience.experience.alliance.promotion.ats1.title"),
+          description: translate(
+            "about.experience.experience.alliance.promotion.ats1.description"
+          ),
+          subtitle: translate(
+            "about.experience.experience.alliance.promotion.ats1.subtitle"
+          ),
+          startYear: moment("2024-01-01"),
+          abbreviation: translate(
+            "about.experience.experience.alliance.promotion.ats1.abb"
+          ),
+          endYear: moment("2024-09-05"),
+        },
+        {
+          title: translate("about.experience.experience.alliance.promotion.ts1.title"),
+          description: translate(
+            "about.experience.experience.alliance.promotion.ts1.description"
+          ),
+          subtitle: translate(
+            "about.experience.experience.alliance.promotion.ts1.subtitle"
+          ),
+          startYear: moment("2022-12-01"),
+          abbreviation: translate(
+            "about.experience.experience.alliance.promotion.ts1.abb"
+          ),
+          endYear: moment("2024-01-01"),
+        },
+      ],
     },
     {
       title: translate("about.experience.experience.mach95.title"),
