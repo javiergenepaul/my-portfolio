@@ -36,6 +36,7 @@ export const EMAIL_ADDRESS: string = "javiergenepaul@gmail.com";
 
 // background section
 export const DRAKE_COMPANY_URL: string = "https://drakeintl.com/";
+export const KRYTERION_COMPANY_URL: string = "https://www.kryterion.com/";
 export const ALLIANCE_COMPANY_URL: string =
   "https://alliance.com.ph/index.html";
 export const MACH95_COMPANY_URL: string = "https://mach95.com/";
