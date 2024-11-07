@@ -7,6 +7,7 @@ import {
 import moment from "moment";
 import React from "react";
 import { translate } from "@/i18n";
+import { LiloleleBusinessCommunicationCertificate } from "@/assets/certificates";
 
 export const CertificateSection = () => {
   const CERTIFICATES: CertificateCardInterface[] = [
@@ -42,8 +43,7 @@ export const CertificateSection = () => {
         "about.certificate.springBoot.organizationAlt"
       ),
       issuedDate: moment("2024-07"),
-      credentialUrl:
-        "https://media.licdn.com/dms/image/v2/D4E2DAQFjATgOtAAp7Q/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1725526351160?e=1726574400&v=beta&t=zzSxGmZ1DExa0xw1lgSuUPt0hbdSkrGTgACUrSf1kFY",
+      credentialUrl: LiloleleBusinessCommunicationCertificate,
     },
   ];
 
