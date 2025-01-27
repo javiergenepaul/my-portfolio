@@ -132,7 +132,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
         </div>
       </CardContent>
       {promotion && (
-        <CardFooter className="flex flex-col border mx-4 mb-4 rounded-lg">
+        <CardFooter className="flex flex-col border shadow-sm mx-4 mb-4 rounded-lg">
           <ol className="relative space-y-4 border-l mt-4 border-gray-300">
             {promotion.map((prom: PromotionInterface) => {
               return (

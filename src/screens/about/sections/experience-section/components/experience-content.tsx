@@ -55,10 +55,10 @@ export const ExperienceContent = () => {
           subtitle: translate(
             "about.experience.experience.alliance.promotion.ats1.subtitle"
           ),
-          startYear: moment("2024-01-01"),
           abbreviation: translate(
             "about.experience.experience.alliance.promotion.ats1.abb"
           ),
+          startYear: moment("2024-01-01"),
           endYear: moment("2024-09-05"),
         },
         {
@@ -69,10 +69,10 @@ export const ExperienceContent = () => {
           subtitle: translate(
             "about.experience.experience.alliance.promotion.ts1.subtitle"
           ),
-          startYear: moment("2022-12-01"),
           abbreviation: translate(
             "about.experience.experience.alliance.promotion.ts1.abb"
           ),
+          startYear: moment("2022-12-01"),
           endYear: moment("2024-01-01"),
         },
       ],
