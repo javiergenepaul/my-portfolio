@@ -15,7 +15,7 @@ export interface CertificateCardInterface {
   organizationImg: string;
   organizationAlt: string;
   issuedDate: Moment;
-  credentialId: string;
+  credentialId?: string;
   credentialUrl: string;
 }
 
@@ -25,7 +25,6 @@ export const CertificateCard = (props: CertificateCardInterface) => {
     organization,
     credentialUrl,
     issuedDate,
-    credentialId,
     organizationImg,
     organizationAlt,
   } = props;
@@ -54,7 +53,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
                   date: issuedDate.format("MMM YYYY"),
                 })}
               </p>
-              <p className="hidden md:block">{credentialId}</p>
+              {/* <p className="hidden md:block">{credentialId}</p> */}
             </CardContent>
           </div>
           <img

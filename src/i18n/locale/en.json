@@ -710,20 +710,31 @@
         }
       },
       "experience": {
+        "kryterion": {
+          "title": "Software Engineer",
+          "subtitle": "Kryterion by Drake International",
+          "description": "As a Software Engineer in training at Drake International, I am learning to develop scalable web applications using Spring Boot for the back-end and Vue.js for the front-end. I have gained knowledge of transitioning from a monolithic architecture to microservices and am familiar with the technology stack and system design. Additionally, I collaborate using Slack for communication with cross-functional teams.",
+          "alt": "Drake International Logo"
+        },
         "alliance": {
-          "ts1": {
-            "title": "Software Engineer - Technical Specialist I",
-            "subtitle": "Alliance Software Inc.",
-            "abb": "TS I",
-            "description": "Experienced Full Stack Developer proficient in Spring Boot and React TypeScript, dedicated to building robust applications with a focus on seamless frontend experiences and efficient backend operations. Specializes in creating foundational codebases and shared components to streamline development workflows for cross-functional teams. Well-versed in Agile methodologies, delivering results in dynamic, fast-paced environments.",
-            "alt": "Alliance Software Inc. Logo"
-          },
-          "ats1": {
-            "title": "Software Engineer - Associate Technical Specialist I",
-            "subtitle": "Alliance Software Inc.",
-            "abb": "ATS I",
-            "description": "Experienced Full-stack Developer adept in Vite, React, TypeScript, and Spring Boot, known for implementing robust security measures and enhancing performance for web applications. Skilled in managing server environments on Linux-based systems like CentOS and configuring web servers such as HTTPD and Nginx. Additionally, attended the LAMPP program to apply leadership processes and manage teams effectively, passionate about delivering high-quality solutions and fostering collaboration.",
-            "alt": "Alliance Software Inc. Logo"
+          "title": "Software Engineer",
+          "subtitle": "Alliance Software Inc.",
+          "description": "As a Full Stack Engineer at Alliance, I developed and maintained both front-end interfaces and back-end functionality, ensuring seamless user experiences and efficient data handling. I collaborated with cross-functional teams to deliver scalable, user-focused solutions.",
+          "promotion": {
+            "ts1": {
+              "title": "Software Engineer - Technical Specialist I",
+              "subtitle": "Alliance Software Inc.",
+              "abb": "TS I",
+              "description": "Experienced Full Stack Developer proficient in Spring Boot and React TypeScript, dedicated to building robust applications with a focus on seamless frontend experiences and efficient backend operations. Specializes in creating foundational codebases and shared components to streamline development workflows for cross-functional teams. Well-versed in Agile methodologies, delivering results in dynamic, fast-paced environments.",
+              "alt": "Alliance Software Inc. Logo"
+            },
+            "ats1": {
+              "title": "Software Engineer - Associate Technical Specialist I",
+              "subtitle": "Alliance Software Inc.",
+              "abb": "ATS I",
+              "description": "Experienced Full-stack Developer adept in Vite, React, TypeScript, and Spring Boot, known for implementing robust security measures and enhancing performance for web applications. Skilled in managing server environments on Linux-based systems like CentOS and configuring web servers such as HTTPD and Nginx. Additionally, attended the LAMPP program to apply leadership processes and manage teams effectively, passionate about delivering high-quality solutions and fostering collaboration.",
+              "alt": "Alliance Software Inc. Logo"
+            }
           }
         },
         "mach95": {
@@ -753,6 +764,11 @@
         "title": "FullStack: React and Java Spring Boot - The Developer Guide",
         "organization": "Udemy",
         "organizationAlt": "Udemy Certificates"
+      },
+      "businessCommunication": {
+        "title": "Effective Business Communication Skills",
+        "organization": "Lilolele Incorporated",
+        "organizationAlt": "Lilolele Business Communnication Certificate"
       }
     },
     "outro": {
