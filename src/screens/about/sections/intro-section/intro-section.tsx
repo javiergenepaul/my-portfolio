@@ -78,7 +78,7 @@ export const IntroSection = () => {
   const DownloadResumeHandler = () => {
     logEvent({
       category: "Resume",
-      action: "Dowload",
+      action: "Download",
       label: "Download Resume",
     });
     window.open(getResumeTemplates(), "_blank");

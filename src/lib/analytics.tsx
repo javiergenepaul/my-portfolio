@@ -10,7 +10,7 @@ import ReactGa from "react-ga4";
  * Make sure that `MEASUREMENT_ID` is defined and that `ReactGa` is properly imported.
  */
 export const initAnalytics = () => {
-  ReactGa.initialize(import.meta.env.VITE_MEASUREMENT_ID);
+  ReactGa.initialize(import.meta.env.VITE_G_ANALYTICS_ID);
 };
 
 /**

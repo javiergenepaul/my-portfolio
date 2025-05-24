@@ -178,7 +178,7 @@ export const SettingsAppearance = () => {
     logEvent({
       category: "Settings",
       action: "Change Color",
-      label: `Change Color: ${theme}`,
+      label: `Change Color: ${color}`,
     });
 
     setColor(color);

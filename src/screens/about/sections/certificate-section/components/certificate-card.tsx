@@ -40,7 +40,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
       onClick={() => {
         logEvent({
           category: "Link",
-          action: "Click Certficication Card",
+          action: "Click Certification Card",
           label: `${credentialUrl} - link`,
         });
 
