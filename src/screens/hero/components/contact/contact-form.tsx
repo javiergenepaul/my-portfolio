@@ -26,6 +26,7 @@ import {
 import { SendEmail } from "@/services";
 import { useLoadingStore, useResendTimerStore } from "@/stores";
 import { useEffect } from "react";
+import { logEvent } from "@/lib";
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -38,6 +39,12 @@ export const ContactForm = () => {
   });
 
   const onFinishForm = (values: ContactRequestInterface) => {
+    logEvent({
+      category: "Contact",
+      action: "Submit",
+      label: "Contact Form",
+    });
+
     const data: EmailInterface = {
       service_id: EMAIL_SERVICE_ID,
       template_id: EMAIL_TEMPLATE_ID,

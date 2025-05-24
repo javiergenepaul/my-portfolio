@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components";
 import { translate } from "@/i18n";
+import { logEvent } from "@/lib";
 import { Moment } from "moment";
 import { twMerge } from "tailwind-merge";
 
@@ -37,6 +38,12 @@ export const CertificateCard = (props: CertificateCardInterface) => {
           : ""
       )}
       onClick={() => {
+        logEvent({
+          category: "Link",
+          action: "Click Certficication Card",
+          label: `${credentialUrl} - link`,
+        });
+
         if (credentialUrl) {
           window.open(credentialUrl, "_blank");
         }
@@ -45,7 +52,9 @@ export const CertificateCard = (props: CertificateCardInterface) => {
       <CardHeader>
         <div className="flex gap-2 justify-between">
           <div className="">
-            <CardTitle className="line-clamp-2 text-lg font-bold lg:text-2xl">{title}</CardTitle>
+            <CardTitle className="line-clamp-2 text-lg font-bold lg:text-2xl">
+              {title}
+            </CardTitle>
             <CardDescription>{organization}</CardDescription>
             <CardContent className="p-0 mt-2 text-muted-foreground">
               <p className="text-xs">

@@ -13,6 +13,7 @@ import moment from "moment";
 import "../css/intro-section.css";
 import { Banner } from "../../components";
 import { twMerge } from "tailwind-merge";
+import { logEvent } from "@/lib";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -75,6 +76,11 @@ export const IntroSection = () => {
    * @returns {void}
    */
   const DownloadResumeHandler = () => {
+    logEvent({
+      category: "Resume",
+      action: "Dowload",
+      label: "Download Resume",
+    });
     window.open(getResumeTemplates(), "_blank");
   };
 

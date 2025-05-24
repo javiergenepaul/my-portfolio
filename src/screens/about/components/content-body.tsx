@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components";
+import { logEvent } from "@/lib";
 import { Dot } from "lucide-react";
 import moment from "moment";
 import { Moment } from "moment";
@@ -94,6 +95,12 @@ export const ContentBody = (props: ContentBodyInterface) => {
           : ""
       )}
       onClick={() => {
+        logEvent({
+          category: "Link",
+          action: "Click Experience Card",
+          label: `${subtitleUrl} - link`,
+        });
+
         if (subtitleUrl) {
           window.open(subtitleUrl, "_blank");
         }

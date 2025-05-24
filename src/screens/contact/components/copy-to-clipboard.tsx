@@ -6,6 +6,7 @@ import {
   TooltipTrigger,
 } from "@/components";
 import { translate } from "@/i18n";
+import { logEvent } from "@/lib";
 import { Clipboard } from "lucide-react";
 import { useState } from "react";
 
@@ -47,6 +48,12 @@ export const CopyToClipBoard = ({
                 className="absolute rounded-l-8 h-full right-0 top-0 shrink-0 hover:cursor-copy"
                 size={"icon"}
                 onClick={() => {
+                  logEvent({
+                    category: "Clipboard",
+                    action: "Copy",
+                    label: `Copy to clipboard: ${content}`,
+                  });
+
                   setIsTooltipOpen(true);
                   setTooltipContent(clipboardContent);
                   navigator.clipboard.writeText(content);

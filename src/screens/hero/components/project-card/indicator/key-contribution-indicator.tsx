@@ -32,21 +32,26 @@ export const KeyContributionIndicator = (
               {translate("projects.keyContributions")}
             </h3>
             <div className="flex flex-col mt-4 gap-2">
-              {contributions.map((contribute: KeyContributionInterface) => {
-                return (
-                  <div className="flex gap-2 text-sm text-accent-foreground items-start">
-                    <CheckCircle />
-                    <div>
-                      <strong className="font-bold text-nowrap">
-                        {contribute.name}:
-                      </strong>
-                      <p className="text-muted-foreground">
-                        {contribute.description}
-                      </p>
+              {contributions.map(
+                (contribute: KeyContributionInterface, idx: number) => {
+                  return (
+                    <div
+                      key={contribute.name || idx}
+                      className="flex gap-2 text-sm text-accent-foreground items-start"
+                    >
+                      <CheckCircle />
+                      <div>
+                        <strong className="font-bold text-nowrap">
+                          {contribute.name}:
+                        </strong>
+                        <p className="text-muted-foreground">
+                          {contribute.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                }
+              )}
             </div>
           </HoverCardContent>
         </HoverCard>

@@ -7,6 +7,7 @@ import {
 import { TechStackInterface } from "@/config";
 import { StackDetails } from ".";
 import { translate } from "@/i18n";
+import { logEvent } from "@/lib";
 
 export type StackName = BackEndStack | FrontEndStack | UIStack;
 type BackEndStack =
@@ -82,6 +83,11 @@ export const StackContent = (stack: TechStackInterface) => {
   const { name, url } = stack;
 
   const onClickBadgeHandler = () => {
+    logEvent({
+      category: "Links",
+      action: "Click Stack Badge",
+      label: `${url} - link`,
+    });
     if (url) {
       window.open(url, "_blank");
     }
