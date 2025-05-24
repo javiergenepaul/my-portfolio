@@ -19,6 +19,7 @@ import {
 } from "@/components";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { Suspense, lazy, useId, useState } from "react";
+import { logEvent } from "@/lib";
 
 const LazyLanguageOption = lazy(
   () => import("../components/general/general-lang-options")
@@ -63,6 +64,12 @@ export const SettingsGeneral = () => {
   ];
 
   const onChangeLangHanlder = (value: LanguageType) => {
+    logEvent({
+      category: "Settings",
+      action: "Change Language",
+      label: `Change Language: ${value}`,
+    });
+
     setLanguage(value);
     i18n.changeLanguage(value);
 
@@ -92,6 +99,12 @@ export const SettingsGeneral = () => {
   };
 
   const onChangeParticleBackground = (value: boolean) => {
+    logEvent({
+      category: "Settings",
+      action: "Change Particle Background",
+      label: `Change Particle Background: ${value}`,
+    });
+
     setEnableParticleBackground(value);
     toast({
       variant: "success",

@@ -14,6 +14,7 @@ import "typeface-poppins";
 import { LoadingMask } from "./components/loading-mask";
 
 function App() {
+  
   return (
     <>
       <I18nextProvider i18n={i18n}>

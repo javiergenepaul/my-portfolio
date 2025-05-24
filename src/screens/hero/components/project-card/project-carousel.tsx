@@ -9,6 +9,7 @@ import {
 } from "@/components";
 import { ProjectCarouselInterface } from "@/config";
 import { translate } from "@/i18n";
+import { logEvent } from "@/lib";
 import { Eye, EyeOff } from "lucide-react";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -37,6 +38,12 @@ export const ProjectCarousel = ({
   }, [api]);
 
   const onClickPreviewUrl = () => {
+    logEvent({
+      category: "Link",
+      action: "Click",
+      label: `${previewUrl} - link`,
+    });
+
     if (previewUrl) {
       window.open(previewUrl, "_blank");
     }

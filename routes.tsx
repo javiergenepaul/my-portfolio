@@ -9,12 +9,21 @@ import { HeaderTitleProvider } from "@/providers";
 import SideBarLayout from "@/layout/sidebar-layout";
 import { useEffect } from "react";
 import { useSettingsStore } from "@/stores";
+import { initAnalytics, logPageView } from "@/lib";
 
 const AppScreen = (props: { component: React.ReactNode }) => {
   const { setHideFloatingSettings } = useSettingsStore();
   const { component } = props;
 
   const location = useLocation();
+
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    logPageView(location.pathname);
+  }, [location]);
 
   useEffect(() => {
     if (

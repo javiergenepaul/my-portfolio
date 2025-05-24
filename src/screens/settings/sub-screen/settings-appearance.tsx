@@ -22,6 +22,7 @@ import {
   capitalizeFirstLetter,
   generateColorQoutes,
   getRandomGeneratedColorQoutes,
+  logEvent,
 } from "@/lib";
 import { DLP, LLP, SLP } from "@/assets/layout";
 import { useTranslation } from "react-i18next";
@@ -138,6 +139,12 @@ export const SettingsAppearance = () => {
   ];
 
   const onChangeFont = (value: FontType) => {
+    logEvent({
+      category: "Settings",
+      action: "Change Font",
+      label: `Change font: ${value}`,
+    });
+
     setFont(value);
     toast({
       variant: "success",
@@ -150,6 +157,12 @@ export const SettingsAppearance = () => {
   };
 
   const onChangeTheme = (theme: Theme) => {
+    logEvent({
+      category: "Settings",
+      action: "Change Theme",
+      label: `Change Theme: ${theme}`,
+    });
+
     setTheme(theme);
     toast({
       variant: "success",
@@ -162,6 +175,12 @@ export const SettingsAppearance = () => {
   };
 
   const onChangeColor = (color: Color) => {
+    logEvent({
+      category: "Settings",
+      action: "Change Color",
+      label: `Change Color: ${color}`,
+    });
+
     setColor(color);
     const colorSelected: AppearanceColorOptionsInterface | undefined =
       COLOR_PALETTE_AVAILABLE.find((data) => data.value === color);
