@@ -4,3 +4,4 @@ export * from "./hoobank";
 export * from "./iqmk";
 export * from "./yoo";
 export * from "./sirius";
+export * from "./rl-portfolio";
