@@ -167,7 +167,8 @@
       "attentionToDetails": "Attention to Details",
       "pixelPerfect": "Pixel Perfect",
       "landingPage": "Landing Page",
-      "reactRouter": "React Router"
+      "reactRouter": "React Router",
+      "nextJs": "NextJS"
     },
     "hoverCard": {
       "years": "Years",
@@ -430,6 +431,56 @@
         "3": {
           "name": "Dark Mode & Light Mode",
           "description": "Integrated support for both dark mode and light mode, enhancing user experience by providing options for different visual preferences."
+        }
+      }
+    },
+    "rlPortfolio": {
+      "title": "Rochenette Legaspina Portfolio",
+      "description": "Rochenette Legaspina Portfolio is a captivating static landing page meticulously crafted from Figma and brought to life with React JavaScript. This stunning page serves as a hotel booking platform, inviting visitors to explore luxurious accommodations in picturesque destinations. With seamless integration between design and development, Rochenette Legaspina Portfolio offers an immersive experience, enticing users to book their dream getaway with ease.",
+      "imageName": "Rochenette Legaspina Portfolio Preview",
+      "category": {
+        "landing": "Landing Page"
+      }
+    },
+    "exoPortal": {
+      "title": "Exo Portal UI Next",
+      "description": "Exo-ui-portal is a modern organizational portal built with Next.js, featuring Daily Time Record (DTR) management and multi-authentication (OAuth and email). It serves as the frontend for Exo Backend services.",
+      "imageName": "Exo Portal UI Next Preview",
+      "category": {
+        "saas": "Software As A Service"
+      },
+      "ui": {
+        "nuxt": {
+          "title": "Exo Portal UI Nuxt",
+          "description": "Exo-ui-portal is a modern organizational portal built with Nuxt.js, featuring Daily Time Record (DTR) management and multi-authentication (OAuth and email). It serves as the frontend for Exo Backend services.",
+          "imageName": "Exo Portal UI Nuxt Preview",
+          "category": {
+            "saas": "Software As A Service"
+          }
+        },
+        "next": {
+          "title": "Exo Portal UI Next",
+          "description": "Exo-ui-portal is a modern organizational portal built with Next.js, featuring Daily Time Record (DTR) management and multi-authentication (OAuth and email). It serves as the frontend for Exo Backend services.",
+          "imageName": "Exo Portal UI Next Preview",
+          "category": {
+            "saas": "Software As A Service"
+          }
+        }
+      },
+      "common": {
+        "title": "Exo Portal Common",
+        "description": "Exo Common is a shared library for Exo services, housing database models, utility classes, constants, and common abstractions. It enhances consistency, efficiency, and reusability across backend development, minimizing redundancy and streamlining essential components for seamless integration.",
+        "imageName": "Exo Portal Common Preview",
+        "category": {
+          "saas": "Software As A Service"
+        }
+      },
+      "auth": {
+        "title": "Exo Portal Authentication",
+        "description": "Exo Auth is the authentication service for Exo, supporting HttpOnly cookies, JWT, and OAuth for secure and flexible user authentication. It ensures robust access control and seamless integration across Exo services.",
+        "imageName": "Exo Portal Auth Preview",
+        "category": {
+          "saas": "Software As A Service"
         }
       }
     }

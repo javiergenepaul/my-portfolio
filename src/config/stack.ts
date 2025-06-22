@@ -303,6 +303,18 @@ export const MVC_STACK: TechStackInterface = {
 };
 
 // FRONT END STACK
+export const NEXT_STACK: TechStackInterface = {
+  name: "nextJs",
+  isFavorite: false,
+  url: url.VITE_URL,
+  rate: 9,
+  dateStarted: moment("2022-06-01"),
+  dateEnded: "present",
+  isStudying: false,
+  icon: StackIcon.ViteStackIcon,
+  alt: "vite-stack-icon.svg",
+};
+
 export const VITE_STACK: TechStackInterface = {
   name: "vite",
   isFavorite: true,

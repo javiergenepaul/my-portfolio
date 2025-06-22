@@ -35,6 +35,7 @@ type BackEndStack =
   | "php"
   | "bootstrap"
   | "mvc"
+  | "nextJs"
   | "microservices";
 type FrontEndStack =
   | "vite"
