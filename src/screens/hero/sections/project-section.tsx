@@ -1,6 +1,8 @@
+"use client";
+
 import { KeyContributionInterface, PATH, ProjectInterface } from "@/config";
 import { Button } from "@/components";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { translate } from "@/i18n";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
@@ -614,7 +616,7 @@ export const PROJECTS: ProjectInterface[] = [
 ];
 
 export const ProjectSection = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const priorityOrder: { [key in Data["type"]]: number } = {
     client: 1,
@@ -649,7 +651,7 @@ export const ProjectSection = () => {
           className="select-none"
           variant={"link"}
           onClick={() => {
-            navigate(PATH.PROJECTS.path);
+            router.push(PATH.PROJECTS.path);
           }}
         >
           {translate("projects.button.viewFullArchive")}

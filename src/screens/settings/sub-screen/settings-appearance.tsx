@@ -1,3 +1,5 @@
+"use client";
+
 import {
   useToast,
   Select,
@@ -8,7 +10,7 @@ import {
   RadioGroup,
 } from "@/components";
 import { translate } from "@/i18n";
-import { Color, FontType, useLanguageStore, useSettingsStore } from "@/stores";
+import { Color, FontFamily, useLanguageStore, useSettingsStore } from "@/stores";
 import {
   AppearanceColorOptions,
   AppearanceColorOptionsInterface,
@@ -25,7 +27,7 @@ import {
   logEvent,
 } from "@/lib";
 import { DLP, LLP, SLP } from "@/assets/layout";
-import { useTranslation } from "react-i18next";
+import { useLocaleRefresh } from "@/i18n";
 import { Suspense, lazy } from "react";
 import {
   AZURE_COLOR,
@@ -45,10 +47,10 @@ type Theme = "dark" | "light" | "system";
 const TOAST_DURATION: number = 2000;
 
 export const SettingsAppearance = () => {
-  const { setTheme, setFont, theme, getSystemTheme, font, color, setColor } =
+  const { setTheme, setFont, theme, font, color, setColor } =
     useSettingsStore();
   const { language } = useLanguageStore();
-  const {} = useTranslation();
+  useLocaleRefresh();
   const { toast } = useToast();
 
   const FONT_AVAILABLE: FontAvailableInterface[] = [
@@ -138,7 +140,22 @@ export const SettingsAppearance = () => {
     },
   ];
 
-  const onChangeFont = (value: FontType) => {
+  const applyFont = (value: FontFamily) => {
+    const cssVarMap: Record<FontFamily, string> = {
+      inter: "--font-inter-variable",
+      poppins: "--font-poppins-variable",
+      "work-sans": "--font-work-sans-variable",
+    };
+    const varName = cssVarMap[value] ?? "--font-inter-variable";
+    const computed = getComputedStyle(document.body)
+      .getPropertyValue(varName)
+      .trim();
+    if (computed) {
+      document.body.style.fontFamily = `${computed}, sans-serif`;
+    }
+  };
+
+  const onChangeFont = (value: FontFamily) => {
     logEvent({
       category: "Settings",
       action: "Change Font",
@@ -146,6 +163,7 @@ export const SettingsAppearance = () => {
     });
 
     setFont(value);
+    applyFont(value);
     toast({
       variant: "success",
       duration: TOAST_DURATION,
@@ -231,7 +249,7 @@ export const SettingsAppearance = () => {
         <RadioGroup
           onValueChange={onChangeTheme}
           value={theme}
-          defaultValue={getSystemTheme()}
+          defaultValue={theme}
           className="grid max-w-[800px] grid-cols-3 gap-8 pt-2"
         >
           {THEME_AVAILABLE.map(

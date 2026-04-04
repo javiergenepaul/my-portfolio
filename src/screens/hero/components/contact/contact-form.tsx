@@ -163,21 +163,19 @@ export const ContactForm = () => {
               render={({ field, fieldState }) => (
                 <FormItem>
                   <FormControl>
-                    <>
-                      <Textarea
-                        maxLength={255}
-                        className={
-                          fieldState.invalid
-                            ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
-                            : "caret-primary"
-                        }
-                        placeholder={translate("contact.placeHolder.message")}
-                        autoCapitalize="none"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        {...field}
-                      />
-                    </>
+                    <Textarea
+                      maxLength={255}
+                      className={
+                        fieldState.invalid
+                          ? "border-destructive text-destructive placeholder:text-destructive focus-visible:ring-destructive"
+                          : "caret-primary"
+                      }
+                      placeholder={translate("contact.placeHolder.message")}
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

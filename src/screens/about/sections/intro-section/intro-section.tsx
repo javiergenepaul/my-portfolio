@@ -157,7 +157,7 @@ export const IntroSection = () => {
             <div className="grid grid-cols-3 mt-10">
               {STATISTICS.map((item: PersonalStatisticInterface) => {
                 return (
-                  <div className="flex flex-col">
+                  <div key={item.count} className="flex flex-col">
                     <h1 className="text-5xl font-semibold text-primary">
                       {item.count}+
                     </h1>

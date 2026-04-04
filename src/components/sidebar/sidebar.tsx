@@ -1,12 +1,13 @@
+"use client";
+
 import { Drawer } from "vaul";
 import { useSiderStore } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { SidebarNavBtn, SidebarContent, SidebarOverlay } from "./component";
-import { translate } from "@/i18n";
-import { useTranslation } from "react-i18next";
 
 export const SideBar = () => {
   const { isOpen, setIsOpen } = useSiderStore();
-  const {} = useTranslation();
+  useLocaleRefresh();
 
   return (
     <Drawer.Root

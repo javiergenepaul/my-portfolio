@@ -1,16 +1,13 @@
 import ReactGa from "react-ga4";
+import { GA_MEASUREMENT_ID } from "@/config";
 
 /**
  * Initializes Google Analytics tracking for the application.
- *
- * This function sets up ReactGA with the provided measurement ID,
- * enabling analytics tracking throughout the app.
- *
- * @remarks
- * Make sure that `MEASUREMENT_ID` is defined and that `ReactGa` is properly imported.
+ * GA_MEASUREMENT_ID is sourced from NEXT_PUBLIC_GA_MEASUREMENT_ID env var.
  */
 export const initAnalytics = () => {
-  ReactGa.initialize(import.meta.env.VITE_G_ANALYTICS_ID);
+  if (!GA_MEASUREMENT_ID) return;
+  ReactGa.initialize(GA_MEASUREMENT_ID);
 };
 
 /**

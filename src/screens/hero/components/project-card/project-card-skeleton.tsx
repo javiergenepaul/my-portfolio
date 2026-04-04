@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
   Skeleton,
@@ -29,14 +28,14 @@ export const ProjectCardSkeleton = () => {
                 <Skeleton className="h-6 w-24 rounded-lg" />
               </div>
             </div>
-            <CardDescription className="flex flex-col gap-2 select-none">
+            <div className="text-sm text-muted-foreground flex flex-col gap-2 select-none">
               <span className="text-sm font-medium dark:text-white Description">
                 <Skeleton className="h-6 w-24 rounded-lg" />
               </span>
               <Skeleton className="h-6 w-full rounded-lg" />
               <Skeleton className="h-6 w-full rounded-lg" />
               <Skeleton className="h-6 w-full rounded-lg" />
-            </CardDescription>
+            </div>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2 px-0 pb-0">
             <Skeleton className="h-6 w-10 rounded-lg" />

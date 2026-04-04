@@ -52,9 +52,9 @@ const ProjectCard = (props: ProjectCardInterface) => {
           <div className="flex flex-col md:basis-3/5">
             <CardHeader className="px-0 pt-0">
               <CardTitle className="flex items-center gap-4 select-none group-hover:text-primary">
-                <h3 className="font-bold">
+                <span className="font-bold">
                   <BounceText className="cursor-default" text={title} />
-                </h3>
+                </span>
               </CardTitle>
               <div className="flex gap-2">
                 <KeyContributionIndicator contributions={keyContribution} />

@@ -1,29 +1,27 @@
+"use client";
+
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { PATH } from "@/config";
 import { translate } from "@/i18n";
 import { usePageTitleStore } from "@/stores";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 
-interface HeaderTitleProviderInterface {
+interface HeaderTitleProviderProps {
   children: React.ReactNode;
 }
 
-export const HeaderTitleProvider = (props: HeaderTitleProviderInterface) => {
-  const { children } = props;
-  let location = useLocation();
+/**
+ * Syncs the current Next.js pathname to the page-title Zustand store.
+ * Replaces the react-router-dom useLocation() hook with usePathname().
+ */
+export const HeaderTitleProvider = ({ children }: HeaderTitleProviderProps) => {
+  const pathname = usePathname();
   const { setTitle } = usePageTitleStore();
 
   useEffect(() => {
-    const foundPath = Object.values(PATH).find(
-      (item) => item.path === location.pathname
-    );
+    const foundPath = Object.values(PATH).find((item) => item.path === pathname);
+    setTitle(foundPath ? foundPath.name : translate("path.pageNotFound"));
+  }, [pathname, setTitle]);
 
-    if (foundPath) {
-      setTitle(foundPath.name);
-    } else {
-      setTitle(translate("path.pageNotFound"));
-    }
-  }, [location]);
-
-  return children;
+  return <>{children}</>;
 };

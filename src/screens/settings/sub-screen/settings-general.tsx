@@ -1,4 +1,4 @@
-import { i18n, translate } from "@/i18n";
+import { translate } from "@/i18n";
 import {
   GeneralLangOptions,
   GeneralLangOptionsSkeleton,
@@ -70,8 +70,9 @@ export const SettingsGeneral = () => {
       label: `Change Language: ${value}`,
     });
 
+    // setLanguage() triggers I18nProvider to re-render with the new locale —
+    // no manual i18n.changeLanguage() call needed.
     setLanguage(value);
-    i18n.changeLanguage(value);
 
     toast({
       variant: "success",

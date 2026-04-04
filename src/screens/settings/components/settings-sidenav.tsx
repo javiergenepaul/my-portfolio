@@ -1,32 +1,26 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib";
 import { SettingsItemInterface } from "../settings";
 import { buttonVariants } from "@/components";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { PATH } from "@/config";
 
-interface SettingsSidenavInterface {
+interface SettingsSidenavProps {
   items: SettingsItemInterface[];
   className?: string;
 }
 
-export const SettingsSidenav = (props: SettingsSidenavInterface) => {
-  const { items, className } = props;
-  const location = useLocation();
-  const { pathname } = location;
+export const SettingsSidenav = ({ items, className }: SettingsSidenavProps) => {
+  const pathname = usePathname();
 
   return (
-    <nav
-      className={cn(
-        "flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1",
-        className
-      )}
-      {...props}
-    >
+    <nav className={cn("flex flex-wrap gap-1 lg:flex-col lg:flex-nowrap lg:gap-0 lg:space-y-1", className)}>
       {items.map((item) => (
         <Link
           key={item.href}
-          to={item.href}
+          href={item.href}
           className={cn(
             buttonVariants({ variant: "ghost" }),
             pathname === item.href ||

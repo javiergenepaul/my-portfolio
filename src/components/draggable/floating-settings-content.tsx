@@ -17,7 +17,7 @@ import {
   toast,
 } from "..";
 import React from "react";
-import { i18n, translate } from "@/i18n";
+import { translate } from "@/i18n";
 import { generateColorQoutes, getRandomGeneratedColorQoutes } from "@/lib";
 import {
   AppearanceColorOptionsInterface,
@@ -27,7 +27,7 @@ import {
 import { ChevronsUpDown } from "lucide-react";
 import { SLP, DLP, LLP } from "@/assets/layout";
 import { USFlag, JPFlag, PHFlag } from "@/assets";
-import { useTranslation } from "react-i18next";
+import { useLocaleRefresh } from "@/i18n";
 import {
   AZURE_COLOR,
   EMERALD_COLOR,
@@ -149,7 +149,7 @@ const ParticleSwitchField = () => {
 
 // TODO:: change the design
 const ColorPaletteField = () => {
-  const {} = useTranslation();
+  useLocaleRefresh();
   const { color, setColor, getTheme } = useSettingsStore();
   const onChangeColor = (color: Color) => {
     setColor(color);
@@ -240,7 +240,6 @@ const LanguageField = () => {
 
   const onChangeLangHanlder = (value: LanguageType) => {
     setLanguage(value);
-    i18n.changeLanguage(value);
 
     toast({
       variant: "success",
@@ -309,7 +308,7 @@ const LanguageField = () => {
 
 // TODO:: change the design
 const ThemeField = () => {
-  const {} = useTranslation();
+  useLocaleRefresh();
   const { theme, setTheme } = useSettingsStore();
 
   const onChangeTheme = (theme: Theme) => {

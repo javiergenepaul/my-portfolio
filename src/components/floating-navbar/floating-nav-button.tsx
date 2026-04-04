@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
+"use client";
+
+import { useRouter } from "next/navigation";
 import {
   Button,
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "..";
+} from "@/components/ui";
 
 export interface FloatingNavButtonInterface {
   path: string;
@@ -13,9 +15,8 @@ export interface FloatingNavButtonInterface {
   name: string;
 }
 
-const FloatingNavButton = (props: FloatingNavButtonInterface) => {
-  const { path, icon, name } = props;
-  const navigate = useNavigate();
+const FloatingNavButton = ({ path, icon, name }: FloatingNavButtonInterface) => {
+  const router = useRouter();
 
   return (
     <li>
@@ -23,9 +24,9 @@ const FloatingNavButton = (props: FloatingNavButtonInterface) => {
         <Tooltip>
           <TooltipTrigger>
             <Button
-              onClick={() => navigate(path)}
-              size={"icon"}
-              variant={"ghost"}
+              onClick={() => router.push(path)}
+              size="icon"
+              variant="ghost"
             >
               {icon}
             </Button>

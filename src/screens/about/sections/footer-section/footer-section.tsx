@@ -43,7 +43,7 @@ export const FooterSection = () => {
       <ul className="flex gap-2 justify-center">
         {FOOTER_NAV_LINKS.map((data, index) => {
           return (
-            <li className="flex gap-2">
+            <li key={index} className="flex gap-2">
               <a href={data.url} className="hover:text-primary cursor-pointer">
                 {data.label}
               </a>

@@ -1,29 +1,40 @@
-import { DEV_MODE } from "@/config";
-import { Theme, useSettingsStore } from "@/stores";
+"use client";
+
 import { useEffect } from "react";
+import { useSettingsStore } from "@/stores";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
 };
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  defaultTheme = "system",
-  storageKey = "vite-ui-theme",
-}) => {
-  const { theme, setTheme, color } = useSettingsStore();
-  useEffect(() => {
-    if (DEV_MODE && DEV_MODE === "development") {
-      const root = window.document.documentElement;
-      root.classList.add("debug-screens");
-    }
-  }, []);
+/**
+ * Applies color palette, dark/light, and font-family classes to <html>.
+ * Must be a Client Component because it reads from localStorage via Zustand.
+ *
+ * In Next.js, <html> is rendered server-side so we suppress hydration warnings
+ * on it. This component runs after hydration to apply the correct classes.
+ */
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+  const { theme, color, font } = useSettingsStore();
 
+  // ── Apply dark / light class ──────────────────────────────────────────
   useEffect(() => {
-    const root = window.document.documentElement;
-    // reset first
+    const root = document.documentElement;
+    root.classList.remove("light", "dark");
+
+    if (theme === "system") {
+      const systemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      root.classList.add(systemDark ? "dark" : "light");
+    } else {
+      root.classList.add(theme);
+    }
+  }, [theme]);
+
+  // ── Apply color palette class ─────────────────────────────────────────
+  useEffect(() => {
+    const root = document.documentElement;
     root.classList.remove(
       "azure",
       "emerald",
@@ -33,39 +44,26 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       "scarlet",
       "silver"
     );
-
-    if (color) {
-      root.classList.add(color);
-    } else {
-      // set default when color palette is empty
-      root.classList.add("emerald");
-    }
+    root.classList.add(color ?? "emerald");
   }, [color]);
 
+  // ── Apply font-family to <body> ───────────────────────────────────────
+  // Read the computed CSS variable value (set by next/font on <body>) and
+  // apply it as a concrete inline style — no CSS var() chain to break.
   useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-      root.classList.add(systemTheme);
-      return;
-    }
-
-    root.classList.add(theme as string);
-  }, [theme]);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem(storageKey) as Theme | null;
-    if (storedTheme && storedTheme !== theme) {
-      setTheme(storedTheme);
-    } else if (!storedTheme && defaultTheme !== theme) {
-      setTheme(defaultTheme);
-    }
-  }, []);
+    const cssVarMap: Record<string, string> = {
+      inter: "--font-inter-variable",
+      poppins: "--font-poppins-variable",
+      "work-sans": "--font-work-sans-variable",
+    };
+    const varName = cssVarMap[font] ?? "--font-inter-variable";
+    const computed = getComputedStyle(document.body)
+      .getPropertyValue(varName)
+      .trim();
+    document.body.style.fontFamily = computed
+      ? `${computed}, sans-serif`
+      : "sans-serif";
+  }, [font]);
 
   return <>{children}</>;
 };

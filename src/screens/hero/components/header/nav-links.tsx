@@ -1,14 +1,16 @@
+"use client";
+
 import { useNavLinkStore } from "@/stores";
+import { useLocaleRefresh } from "@/i18n";
 import { twMerge } from "tailwind-merge";
 import { BounceText } from "@/components";
 import { NavLinkInterface } from "../component-props";
-import { useTranslation } from "react-i18next";
 
 export const NavLinks = (props: NavLinkInterface) => {
   const { name, path, selectedId } = props;
   const { selectedNav } = useNavLinkStore();
   const isActive: boolean = selectedNav === selectedId;
-  const {} = useTranslation();
+  useLocaleRefresh();
 
   const selectedClass = (): { lineClass: string; nameClass: string } => {
     return {

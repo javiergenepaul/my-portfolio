@@ -1,10 +1,11 @@
-import { translate } from "@/i18n";
+"use client";
+
+import { translate, useLocaleRefresh } from "@/i18n";
 import { secondsToMilliseconds } from "@/lib";
-import { useTranslation } from "react-i18next";
 import { TypeAnimation } from "react-type-animation";
 
 export const SubTitleAnimation = () => {
-  const {} = useTranslation();
+  useLocaleRefresh();
 
   const TYPE_ROLES: string[] = [
     translate("header.typeRole.fullStack"),

@@ -18,8 +18,9 @@ import {
   SocialMediaLinksInterface,
   SubTitleAnimation,
 } from "../components";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useLocaleRefresh } from "@/i18n";
 import { useSettingsStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
 
@@ -45,8 +46,8 @@ export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
 ];
 
 export const HeaderSection = () => {
-  const navigate = useNavigate();
-  const {} = useTranslation();
+  const router = useRouter();
+  useLocaleRefresh();
   const { isSettingsNew, setIsSettingsNew } = useSettingsStore();
 
   const NAV_LINKS: NavLinkInterface[] = [
@@ -71,7 +72,7 @@ export const HeaderSection = () => {
     <>
       <section className="flex flex-col justify-between h-full">
         <div>
-          <Link className="focus:outline-none" to={PATH.ABOUT.path}>
+          <Link className="focus:outline-none" href={PATH.ABOUT.path}>
             <h1 className="block text-5xl font-bold tracking-tight lg:hidden selec-none">
               {translate("header.name")}
             </h1>
@@ -108,13 +109,11 @@ export const HeaderSection = () => {
             <Button
               className="w-fit"
               variant={"default"}
-              onClick={() => {
-                navigate(PATH.CONTACTS.path);
-              }}
+              onClick={() => router.push(PATH.CONTACTS.path)}
             >
               {translate("getInTouch")}
             </Button>
-            <Link to={PATH.ABOUT.path}>
+            <Link href={PATH.ABOUT.path}>
               <Button variant={"link"}>{translate("learnMore")}</Button>
             </Link>
           </div>
@@ -138,7 +137,7 @@ export const HeaderSection = () => {
                   <Link
                     onClick={() => setIsSettingsNew(true)}
                     className="hidden lg:block hover:text-primary"
-                    to={PATH.SETTINGS.path}
+                    href={PATH.SETTINGS.path}
                   >
                     <div className="relative">
                       <div

@@ -1,7 +1,7 @@
 import { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
-import * as random from "maath/random/dist/maath-random.cjs";
+import { inSphere } from "maath/random";
 import { twMerge } from "tailwind-merge";
 import { useSettingsStore } from "@/stores";
 import { getColor } from "@/lib";
@@ -16,7 +16,7 @@ const Stars = (props: any) => {
 
   const ref: any = useRef();
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+    inSphere(new Float32Array(5001), { radius: 1.2 }) as Float32Array
   );
 
   useFrame((_state, delta) => {

@@ -1,3 +1,9 @@
+/**
+ * @deprecated This file is no longer used. All CSS variables and theme tokens
+ * have been migrated to src/app/globals.css as part of the Tailwind v4
+ * CSS-first configuration. This file can be safely deleted once all imports
+ * have been removed.
+ */
 import plugin from "tailwindcss/plugin";
 
 // GREEN

@@ -141,14 +141,14 @@ export const ContentBody = (props: ContentBodyInterface) => {
       {promotion && (
         <CardFooter className="flex flex-col border shadow-sm mx-4 mb-4 rounded-lg">
           <ol className="relative space-y-4 border-l mt-4 border-gray-300">
-            {promotion.map((prom: PromotionInterface) => {
+            {promotion.map((prom: PromotionInterface, idx: number) => {
               return (
-                <li className="ml-6">
+                <li key={idx} className="ml-6">
                   <span className="flex absolute -left-3.5 justify-center items-center w-7 h-7 bg-blue-200 rounded-full dark:bg-gray-700 dark:text-white text-black">
                     <svg
                       stroke="currentColor"
                       fill="currentColor"
-                      stroke-width="0"
+                      strokeWidth="0"
                       viewBox="0 0 256 256"
                       height="1em"
                       width="1em"

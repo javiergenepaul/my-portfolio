@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import {
   Avatar,
   Tooltip,
@@ -8,7 +11,6 @@ import {
   TooltipProvider,
 } from "@/components";
 import { PATH } from "@/config";
-import { Link } from "react-router-dom";
 import { translate } from "@/i18n";
 import { AvatarProfile } from "@/assets";
 
@@ -18,7 +20,7 @@ export const AboutMeAvatar = () => {
       <Tooltip>
         <TooltipTrigger>
           <Link
-            to={PATH.ABOUT.path}
+            href={PATH.ABOUT.path}
             className="items-center justify-center hidden gap-2 cursor-pointer select-none lg:flex"
           >
             <Avatar>

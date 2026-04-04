@@ -8,7 +8,7 @@ import { twMerge } from "tailwind-merge";
 
 const Logo = () => {
   const { color } = useSettingsStore();
-  const logo: any = useGLTF("./logo/logo.gltf");
+  const logo: any = useGLTF("/logo/logo.gltf");
   const logoRef: any = useRef();
 
   useEffect(() => {

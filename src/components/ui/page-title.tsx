@@ -1,5 +1,7 @@
+"use client";
+
+import { useLocaleRefresh } from "@/i18n";
 import { Separator } from ".";
-import { useTranslation } from "react-i18next";
 
 interface PageTitleInterface {
   pageName: string;
@@ -7,9 +9,8 @@ interface PageTitleInterface {
   path: string;
 }
 
-export const PageTitle = (props: PageTitleInterface) => {
-  const { pageName, description } = props;
-  const {} = useTranslation();
+export const PageTitle = ({ pageName, description }: PageTitleInterface) => {
+  useLocaleRefresh();
   return (
     <>
       <div className="space-y-0.5">

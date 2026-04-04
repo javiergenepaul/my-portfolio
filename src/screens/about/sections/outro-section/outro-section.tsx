@@ -1,12 +1,14 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components";
 import { Banner } from "../../components";
 import { AvatarProfile } from "@/assets";
 import { translate } from "@/i18n";
-import { useNavigate } from "react-router-dom";
 import { PATH } from "@/config";
 
 export const OutroSection = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <section className="relative pb-16">
@@ -30,9 +32,7 @@ export const OutroSection = () => {
           </p>
           <Button
             className="w-fit"
-            onClick={() => {
-              navigate(PATH.CONTACTS.path);
-            }}
+            onClick={() => router.push(PATH.CONTACTS.path)}
           >
             {translate("about.outro.getInTouch")}
           </Button>

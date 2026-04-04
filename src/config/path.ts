@@ -1,40 +1,46 @@
-import { translate } from "@/i18n";
-
+/**
+ * Centralised route paths for the 2024 portfolio.
+ * All paths are relative to the year root, e.g. /2024/about.
+ *
+ * Migration note: names are now plain strings (not translated) because
+ * this module runs at import time (before i18n is initialised). Components
+ * that need translated names call translate() themselves.
+ */
 export const PATH = {
   HOME: {
-    name: translate("path.home"),
-    path: "/",
+    name: "Home",
+    path: "/2024",
   },
   ABOUT: {
-    name: translate("path.about"),
-    path: "/about",
+    name: "About",
+    path: "/2024/about",
   },
   PROJECTS: {
-    name: translate("path.project"),
-    path: "/projects",
+    name: "Projects",
+    path: "/2024/projects",
   },
   SKILLS: {
-    name: translate("path.skills"),
-    path: "/skills",
+    name: "Skills",
+    path: "/2024/skills",
   },
   CONTACTS: {
-    name: translate("path.contacts"),
-    path: "/contacts",
+    name: "Contacts",
+    path: "/2024/contacts",
   },
   SETTINGS: {
-    name: translate("settings.header.general"),
-    path: "/settings",
+    name: "Settings",
+    path: "/2024/settings",
   },
   SETTINGS_GENERAL: {
-    name: translate("settings.header.general"),
-    path: "/settings/",
+    name: "General",
+    path: "/2024/settings/",
   },
   SETTINGS_APPEARNCE: {
-    name: translate("settings.header.appearance"),
-    path: "/settings/appearance",
+    name: "Appearance",
+    path: "/2024/settings/appearance",
   },
   CONFIDENTIAL: {
-    name: "confidential",
-    path: "/confidential",
+    name: "Confidential",
+    path: "/2024/confidential",
   },
-};
+} as const;

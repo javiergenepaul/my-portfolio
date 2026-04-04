@@ -8,10 +8,9 @@ import {
   ServiceSection,
 } from "./sections";
 import { FadeAnimation } from "@/components";
-import { useTranslation } from "react-i18next";
 
 export const Hero = () => {
-  const {} = useTranslation();
+
   const { setSelectedNav, setOnScrollNav } = useNavLinkStore();
 
   useEffect(() => {

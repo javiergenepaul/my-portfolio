@@ -1,22 +1,28 @@
+"use client";
+
 import { FadeAnimation, PageTitle } from "@/components";
 import { SettingsSidenav } from "./components";
-import { Outlet } from "react-router-dom";
 import { PATH } from "@/config";
 import { translate } from "@/i18n";
-import { useTranslation } from "react-i18next";
+import { useLocaleRefresh } from "@/i18n";
 
 export interface SettingsItemInterface {
   title: string;
   href: string;
 }
 
-export const Settings = () => {
-  const {} = useTranslation();
+interface SettingsProps {
+  /** Sub-screen content rendered in the content area (replaces <Outlet />). */
+  children: React.ReactNode;
+}
+
+export const Settings = ({ children }: SettingsProps) => {
+  useLocaleRefresh();
 
   const sidebarNavItems: SettingsItemInterface[] = [
     {
       title: translate("settings.nav.general"),
-      href: `${PATH.SETTINGS.path}`,
+      href: PATH.SETTINGS.path,
     },
     {
       title: translate("settings.nav.appearance"),
@@ -33,10 +39,10 @@ export const Settings = () => {
           description={translate("settings.description")}
         />
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <aside className="-mx-4 lg:w-1/5">
+          <aside className="lg:w-1/5 shrink-0">
             <SettingsSidenav items={sidebarNavItems} />
           </aside>
-          <div className="flex-1 lg:max-w-2xl">{<Outlet />}</div>
+          <div className="flex-1 min-w-0 lg:max-w-2xl">{children}</div>
         </div>
       </div>
     </FadeAnimation>

@@ -28,6 +28,7 @@ export const FloatingNavigation = () => {
   };
 
   const ref = useRef<HTMLDivElement>(null);
+  const nodeRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -52,6 +53,7 @@ export const FloatingNavigation = () => {
       )}
     >
       <Draggable
+        nodeRef={nodeRef}
         bounds="parent"
         onStart={onStartHandler}
         onDrag={onDragHandler}
@@ -60,6 +62,7 @@ export const FloatingNavigation = () => {
         cancel=".no-drag"
       >
         <div
+          ref={nodeRef}
           className={twMerge(
             "bg-popover border z-[999999999999] rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-50 hover:opacity-100 transition-opacity",
             twMergeResult()
