@@ -15,7 +15,7 @@ import {
 } from "@/components";
 import { translate } from "@/i18n";
 import { IndicatorContainer } from "@/screens";
-import { PROJECTS } from "@/screens/hero/sections";
+import { getProjects } from "@/config/data";
 import { Code, Eye } from "lucide-react";
 
 export const ProjectTable = () => {
@@ -33,7 +33,7 @@ export const ProjectTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {PROJECTS.filter((project) => !project.hidden).map((project) => (
+        {getProjects().filter((project) => !project.hidden).map((project) => (
           <TableRow
             className={
               project.type !== "confidential" && project.previewUrl
@@ -54,7 +54,7 @@ export const ProjectTable = () => {
             {/* CATEGORY */}
             <TableCell className="flex gap-2 flex-wrap">
               {project.category.map((category) => {
-                return <Badge>{category}</Badge>;
+                return <Badge key={category}>{category}</Badge>;
               })}
             </TableCell>
             {/* TYPE */}

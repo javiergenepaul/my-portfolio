@@ -24,31 +24,26 @@ import { useLocaleRefresh } from "@/i18n";
 import { useSettingsStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
 
-export const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = [
-  {
-    key: "github",
-    icon: "github",
-    title: translate("header.socialMediaLinks.github"),
-    url: GITHUB_URL,
-  },
-  {
-    key: "linkedIn",
-    icon: "linkedin",
-    title: translate("header.socialMediaLinks.linkedIn"),
-    url: LINKED_IN_URL,
-  },
-  {
-    key: "upwork",
-    icon: "upwork",
-    title: translate("header.socialMediaLinks.upwork"),
-    url: UPWORK_URL,
-  },
-];
+// Static parts only — translate() must NOT be called at module scope because
+// messageStore is empty during SSR. Titles are resolved inside the component.
+const SOCIAL_MEDIA_LINK_DATA = [
+  { key: "github",   icon: "github",   url: GITHUB_URL },
+  { key: "linkedIn", icon: "linkedin", url: LINKED_IN_URL },
+  { key: "upwork",   icon: "upwork",   url: UPWORK_URL },
+] as const;
 
 export const HeaderSection = () => {
   const router = useRouter();
   useLocaleRefresh();
   const { isSettingsNew, setIsSettingsNew } = useSettingsStore();
+
+  // Resolved here so translate() runs after messageStore is initialised
+  const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = SOCIAL_MEDIA_LINK_DATA.map(
+    (item) => ({
+      ...item,
+      title: translate(`header.socialMediaLinks.${item.key}`),
+    })
+  );
 
   const NAV_LINKS: NavLinkInterface[] = [
     {
@@ -142,7 +137,7 @@ export const HeaderSection = () => {
                     <div className="relative">
                       <div
                         className={twMerge(
-                          "absolute top-[-4px] right-[-3px]",
+                          "absolute -top-1 -right-0.75",
                           isSettingsNew ? "hidden" : ""
                         )}
                       >

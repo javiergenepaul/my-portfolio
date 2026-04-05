@@ -1,38 +1,39 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { ThemeProvider } from "./ThemeProvider";
 import { I18nProvider } from "./I18nProvider";
 import { Toaster } from "@/components/ui/toaster";
-import { FloatingNavigation } from "@/components/draggable/floating-navigation";
-import dynamic from "next/dynamic";
+import { GlobalHelmet } from "@/components/helmet/global-helmet";
+import { SplashRemover } from "@/components/splash/SplashRemover";
 
-const BackgroundParticle = dynamic(
+const LoadingMask = dynamic(
   () =>
-    import("@/components/particles/background-particle").then(
-      (m) => m.BackgroundParticle
+    import("@/components/loading-mask/loading-mask").then(
+      (m) => m.LoadingMask
     ),
   { ssr: false }
 );
-import { LoadingMask } from "@/components/loading-mask/loading-mask";
-import { GlobalHelmet } from "@/components/helmet/global-helmet";
 
 /**
- * Root client provider tree.
+ * Root client provider tree — global to every page/year.
  *
  * Ordering matters:
  *  1. I18nProvider  — must wrap everything that calls `translate()` / `useLocaleRefresh()`
  *  2. ThemeProvider — applies CSS classes to <html> after hydration
- *  3. UI chrome     — floating settings, particles, toasts (depend on both above)
+ *  3. Global UI chrome (toasts, loading mask, splash removal)
+ *
+ * 2024-specific chrome (FloatingNavigation, BackgroundParticle) lives in
+ * src/app/(years)/2024/layout-client.tsx so it never renders on 2025/2026.
  */
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <I18nProvider>
       <ThemeProvider>
+        <SplashRemover />
         <GlobalHelmet />
         <LoadingMask />
         <Toaster />
-        <FloatingNavigation />
-        <BackgroundParticle />
         {children}
       </ThemeProvider>
     </I18nProvider>

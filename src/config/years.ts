@@ -4,6 +4,10 @@ export interface YearConfig {
   label: string;
   /** Relative path under /app/(years)/ */
   path: string;
+  /** Visual theme name shown on the landing card */
+  theme: string;
+  /** One-liner for the "My Journey" section on the landing card */
+  journey: string;
   /** Brief description shown in previews / coming-soon pages */
   description: string;
 }
@@ -14,6 +18,8 @@ export const YEARS: YearConfig[] = [
     enabled: true,
     label: "2024",
     path: "/2024",
+    theme: "Space · Dark Emerald",
+    journey: "Building full-stack products with React, Spring Boot, and modern web technologies.",
     description: "Full-stack engineer — React, Spring Boot, modern web.",
   },
   {
@@ -21,6 +27,8 @@ export const YEARS: YearConfig[] = [
     enabled: true,
     label: "2025",
     path: "/2025",
+    theme: "Coming Soon",
+    journey: "The next chapter is being crafted. Stay tuned.",
     description: "Coming soon.",
   },
   {
@@ -28,6 +36,8 @@ export const YEARS: YearConfig[] = [
     enabled: true,
     label: "2026",
     path: "/2026",
+    theme: "Coming Soon",
+    journey: "A vision for the future. Check back later.",
     description: "Coming soon.",
   },
 ];

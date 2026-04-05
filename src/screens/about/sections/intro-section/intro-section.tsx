@@ -2,7 +2,7 @@ import { AboutMe } from "@/assets";
 import { Button, LazyImage } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
-import { PROJECTS } from "@/screens/hero/sections";
+import { getProjects } from "@/config/data";
 import { useSettingsStore } from "@/stores";
 import { DownloadIcon } from "@radix-ui/react-icons";
 
@@ -90,7 +90,7 @@ export const IntroSection = () => {
    */
   const countProjectStatus = (status: ProjectStatus): number => {
     let count: number = 0;
-    PROJECTS.forEach((project: ProjectInterface) => {
+    getProjects().forEach((project: ProjectInterface) => {
       if (project.stack && project.status === status) {
         count++;
       }

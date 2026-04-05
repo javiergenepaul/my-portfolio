@@ -1,11 +1,10 @@
 import React from "react";
-import { PATH, SOCIAL_MEDIA_LINKS, SideMenuInterface } from "@/config";
+import { PATH, SOCIAL_MEDIA_LINK_DATA, SideMenuInterface } from "@/config";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { HomeIcon, PieChart, Contact, Settings } from "lucide-react";
 import { Drawer } from "vaul";
 import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";
-import { SocialMediaLinksInterface } from "@/screens";
 import { SocialIcon } from "@/components";
 
 interface SidebarContentInterface {
@@ -52,7 +51,7 @@ export const SidebarContent = (props: SidebarContentInterface) => {
   ];
 
   return (
-    <Drawer.Content className="bg-foreground flex flex-col rounded-t-[10px] h-full w-[325px] z-[70] mt-24 fixed bottom-0 right-0">
+    <Drawer.Content className="bg-foreground flex flex-col rounded-t-[10px] h-full w-81.25 z-70 mt-24 fixed bottom-0 right-0">
       <div className="flex-1 h-screen p-4 bg-background">
         <div className="h-full max-w-md mx-auto flex flex-col">
           <div className="flex flex-col gap-4">
@@ -69,13 +68,11 @@ export const SidebarContent = (props: SidebarContentInterface) => {
           </div>
           <div className="mt-auto pt-auto px-2">
             <div className="flex justify-end gap-4">
-              {SOCIAL_MEDIA_LINKS.map(
-                (socialMedia: SocialMediaLinksInterface, index: React.Key) => (
-                  <a className="flex gap-2" key={index} href={socialMedia.url}>
-                    <SocialIcon icon={socialMedia.icon} />
-                  </a>
-                )
-              )}
+              {SOCIAL_MEDIA_LINK_DATA.map((socialMedia, index: React.Key) => (
+                <a className="flex gap-2" key={index} href={socialMedia.url}>
+                  <SocialIcon icon={socialMedia.icon} />
+                </a>
+              ))}
             </div>
           </div>
         </div>

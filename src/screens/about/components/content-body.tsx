@@ -11,31 +11,9 @@ import { Dot } from "lucide-react";
 import moment from "moment";
 import { Moment } from "moment";
 import { twMerge } from "tailwind-merge";
+import type { ContentBodyInterface, PromotionInterface } from "@/config/types";
 
-interface PromotionInterface {
-  title: string;
-  subtitle: string;
-  startYear: Moment;
-  endYear: Moment | "present";
-  abbreviation?: string;
-  description: string;
-}
-
-export interface ContentBodyInterface {
-  title: string;
-  subtitle?: string;
-  startYear: Moment;
-  endYear: Moment | "present";
-  level?: "tertiary" | "secondary" | "primary" | "vocational";
-  abbreviation?: string;
-  isWork?: boolean;
-  watermark?: React.ReactNode;
-  watermarkAlt?: string;
-  description: string;
-  subtitleUrl?: string;
-  waterMarkWidth?: number;
-  promotion?: PromotionInterface[];
-}
+export type { ContentBodyInterface } from "@/config/types";
 
 export const ContentBody = (props: ContentBodyInterface) => {
   const {

@@ -217,7 +217,7 @@ const ColorPaletteField = () => {
       <RadioGroup value={color} onValueChange={onChangeColor}>
         {COLOR_PALETTE_AVAILABLE.map(
           (color: AppearanceColorOptionsInterface) => (
-            <div className="flex items-center space-x-2">
+            <div key={color.value} className="flex items-center space-x-2">
               <RadioGroupItem value={color.value} id={color.value} />
               <Label
                 className="cursor-pointer"
@@ -354,7 +354,7 @@ const ThemeField = () => {
         onValueChange={(theme: any) => onChangeTheme(theme)}
       >
         {THEME_AVAILABLE.map((theme: ApperanceThemeOptionInterface) => (
-          <div className="flex items-center space-x-2">
+          <div key={theme.value} className="flex items-center space-x-2">
             <RadioGroupItem value={theme.value as string} id={theme.value} />
             <Label className="cursor-pointer" htmlFor={theme.value}>
               {theme.name}

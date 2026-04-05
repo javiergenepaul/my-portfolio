@@ -1,38 +1,51 @@
 "use client";
 
 import { NextIntlClientProvider } from "next-intl";
+import { useEffect, useState } from "react";
 import { useLanguageStore } from "@/stores";
 import { messageStore } from "@/i18n/store";
-import { en, ja, fil, ceb } from "@/i18n/locale";
+// Only English is bundled statically — other locales are fetched on demand.
+import en from "@/i18n/locale/en.json";
 
 type Locale = "en" | "ja" | "fil" | "ceb";
-const allMessages: Record<Locale, typeof en> = { en, ja, fil, ceb };
+type Messages = typeof en;
+
+async function loadLocale(locale: Locale): Promise<Messages> {
+  if (locale === "en") return en;
+  const mod = await import(`@/i18n/locale/${locale}.json`);
+  return mod.default as Messages;
+}
 
 /**
- * Client-side i18n provider — replaces i18next + I18nextProvider.
+ * Client-side i18n provider.
  *
- * How it works:
- *  1. Reads `language` from Zustand (persisted to localStorage).
- *  2. Passes the matching message bundle to `NextIntlClientProvider`.
- *  3. Calls `messageStore.init()` **synchronously during render** so the
- *     `translate()` helper always has fresh messages before any child paints.
- *
- * When the user switches language:
- *  - `useLanguageStore()` triggers a re-render of this provider.
- *  - `messageStore` is updated synchronously.
- *  - `NextIntlClientProvider` receives new `messages` + `locale` props.
- *  - All children using `useTranslations()` / `useLocaleRefresh()` re-render.
+ * Bundle strategy:
+ *  - `en` is the only statically imported bundle (smallest initial JS).
+ *  - All other locales are fetched via dynamic import only when selected.
+ *  - On first render the active locale from localStorage is loaded; if it
+ *    differs from "en" there is a single short re-render once it resolves.
  */
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const { language } = useLanguageStore();
-  const locale = (language as Locale) ?? "en";
-  const messages = allMessages[locale] ?? en;
+  const requested = (language as Locale) ?? "en";
 
-  // Sync singleton before children render — no async, no flash
-  messageStore.init(locale, messages);
+  const [activeLocale, setActiveLocale] = useState<Locale>("en");
+  const [messages, setMessages] = useState<Messages>(en);
+
+  useEffect(() => {
+    if (requested === activeLocale) return;
+    loadLocale(requested).then((msgs) => {
+      setMessages(msgs);
+      setActiveLocale(requested);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requested]);
+
+  // Sync singleton before children render
+  messageStore.init(activeLocale, messages);
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={activeLocale} messages={messages}>
       {children}
     </NextIntlClientProvider>
   );

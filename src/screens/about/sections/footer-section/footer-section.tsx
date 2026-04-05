@@ -1,5 +1,5 @@
 import { Separator } from "@/components";
-import { PATH, SOCIAL_MEDIA_LINKS } from "@/config";
+import { PATH, SOCIAL_MEDIA_LINK_DATA } from "@/config";
 import { translate } from "@/i18n";
 import { SocialButton } from "@/screens/hero";
 
@@ -29,11 +29,11 @@ export const FooterSection = () => {
         {translate("footer.name")}
       </div>
       <div className="flex gap-4 justify-center">
-        {SOCIAL_MEDIA_LINKS.map((socialMedia, key: React.Key) => {
+        {SOCIAL_MEDIA_LINK_DATA.map((socialMedia, key: React.Key) => {
           return (
             <SocialButton
               key={key as string}
-              title={socialMedia.title}
+              title={translate(`header.socialMediaLinks.${socialMedia.key}`)}
               url={socialMedia.url}
               icon={socialMedia.icon}
             />

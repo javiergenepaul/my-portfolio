@@ -7,18 +7,9 @@ import {
 } from "@/components";
 import { translate } from "@/i18n";
 import { logEvent } from "@/lib";
-import { Moment } from "moment";
 import { twMerge } from "tailwind-merge";
-
-export interface CertificateCardInterface {
-  title: string;
-  organization: string;
-  organizationImg: string;
-  organizationAlt: string;
-  issuedDate: Moment;
-  credentialId?: string;
-  credentialUrl: string;
-}
+import type { CertificateCardInterface } from "@/config/types";
+export type { CertificateCardInterface } from "@/config/types";
 
 export const CertificateCard = (props: CertificateCardInterface) => {
   const {
@@ -68,7 +59,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
           <img
             className="rounded-lg"
             width={"100px"}
-            src={organizationImg}
+            src={typeof organizationImg === "string" ? organizationImg : organizationImg.src}
             alt={organizationAlt}
           />
         </div>

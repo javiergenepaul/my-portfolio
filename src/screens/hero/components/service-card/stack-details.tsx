@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Separator } from "@/components";
-import { PROJECTS } from "../../sections";
+import { getProjects } from "@/config/data";
 import { TxKeyPath, translate } from "@/i18n";
 import { StackDetailsProps } from "../component-props";
 import { BookmarkFilledIcon, BookmarkIcon } from "@radix-ui/react-icons";
@@ -57,7 +57,7 @@ export const StackDetails = (props: StackDetailsProps) => {
    */
   const countOccurrences = (targetName: string): number => {
     let count = 0;
-    PROJECTS.forEach((project) => {
+    getProjects().forEach((project) => {
       if (project.stack) {
         project.stack.forEach((stackItem) => {
           if (stackItem.name === targetName) {

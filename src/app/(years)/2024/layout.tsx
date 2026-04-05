@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Layout2024Client } from "./layout-client";
 
 export const metadata: Metadata = {
   title: "Gene Paul Mar Javier — 2024 Portfolio",
@@ -18,9 +19,14 @@ export const metadata: Metadata = {
 
 export default function Layout2024({ children }: { children: React.ReactNode }) {
   return (
-    // data-year scopes CSS variables and Tailwind variants to this year's theme
-    <div data-year="2024" className="year-page-enter">
-      {children}
-    </div>
+    // Layout2024Client (FloatingNavigation, BackgroundParticle) must be a
+    // sibling of data-year — NOT nested inside it. The year-page-enter
+    // animation uses transform, which creates a new containing block and
+    // would trap position:fixed children (breaking FloatingNavigation).
+    <Layout2024Client>
+      <div data-year="2024" className="year-page-enter">
+        {children}
+      </div>
+    </Layout2024Client>
   );
 }

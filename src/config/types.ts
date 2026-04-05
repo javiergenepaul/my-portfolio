@@ -1,5 +1,6 @@
 import { StackName } from "@/screens";
 import { Moment } from "moment";
+import type { ReactNode } from "react";
 
 export type ProjectStatus = "ongoing" | "completed" | "unfinished";
 type NumberBetweenOneAndTen = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -65,6 +66,54 @@ export interface SideMenuInterface {
 }
 
 export type ProjectType = "confidential" | "client" | "personal" | "tutorial";
+
+// ── Experience / Education ───────────────────────────────────────────────────
+
+export interface PromotionInterface {
+  title: string;
+  subtitle: string;
+  startYear: Moment;
+  endYear: Moment | "present";
+  abbreviation?: string;
+  description: string;
+}
+
+export interface ContentBodyInterface {
+  title: string;
+  subtitle?: string;
+  startYear: Moment;
+  endYear: Moment | "present";
+  level?: "tertiary" | "secondary" | "primary" | "vocational";
+  abbreviation?: string;
+  isWork?: boolean;
+  watermark?: ReactNode;
+  watermarkAlt?: string;
+  description: string;
+  subtitleUrl?: string;
+  waterMarkWidth?: number;
+  promotion?: PromotionInterface[];
+}
+
+// ── Certificates ─────────────────────────────────────────────────────────────
+
+export interface CertificateCardInterface {
+  title: string;
+  organization: string;
+  /** Accepts a plain URL string or a Next.js static image import (StaticImageData). */
+  organizationImg: string | { src: string; height: number; width: number; blurDataURL?: string };
+  organizationAlt: string;
+  issuedDate: Moment;
+  credentialId?: string;
+  credentialUrl: string;
+}
+
+// ── Skills ───────────────────────────────────────────────────────────────────
+
+export interface SkillCategory {
+  key: string;
+  label: string;
+  stacks: TechStackInterface[];
+}
 
 interface TemplateParams {
   from_name: string;
