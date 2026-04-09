@@ -111,7 +111,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
           {isWork && (
             <>
               <Dot />
-              <div className="">{getYearSpent(startYear, endYear)}</div>
+              <div suppressHydrationWarning>{getYearSpent(startYear, endYear)}</div>
             </>
           )}
         </div>

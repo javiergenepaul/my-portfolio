@@ -68,7 +68,7 @@ export const ProjectTable = () => {
                   {project.previewUrl && (
                     <TooltipProvider>
                       <Tooltip>
-                        <TooltipTrigger>
+                        <TooltipTrigger asChild>
                           <IndicatorContainer>
                             <Button
                               size={"icon"}
@@ -94,7 +94,7 @@ export const ProjectTable = () => {
                   {project.codeUrl && (
                     <TooltipProvider>
                       <Tooltip>
-                        <TooltipTrigger>
+                        <TooltipTrigger asChild>
                           <IndicatorContainer>
                             <Button
                               size={"icon"}

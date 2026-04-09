@@ -158,7 +158,7 @@ export const IntroSection = () => {
               {STATISTICS.map((item: PersonalStatisticInterface) => {
                 return (
                   <div key={item.count} className="flex flex-col">
-                    <h1 className="text-5xl font-semibold text-primary">
+                    <h1 suppressHydrationWarning className="text-5xl font-semibold text-primary">
                       {item.count}+
                     </h1>
                     <span className="text-sm text-muted-foreground">
