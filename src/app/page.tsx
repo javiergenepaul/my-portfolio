@@ -1,83 +1,149 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { YEARS, type YearConfig } from "@/config/years";
 import { cn } from "@/lib/utils";
 
+function SplashScreen({ onDone }: { onDone: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onDone, 1800);
+    return () => clearTimeout(t);
+  }, [onDone]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#08080c]"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+    >
+      <motion.p
+        className="text-[10px] font-semibold uppercase tracking-[0.4em] text-white/30 mb-4"
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        Portfolio
+      </motion.p>
+      <motion.h1
+        className="text-4xl font-bold tracking-tight sm:text-5xl text-white"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.22 }}
+      >
+        Gene Paul Mar Javier
+      </motion.h1>
+      <motion.div
+        className="mt-8 h-px w-16 bg-white/20"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      />
+    </motion.div>
+  );
+}
+
 export default function RootPage() {
+  const [splash, setSplash] = useState(true);
+  const [navigating, setNavigating] = useState(false);
   const enabledYears = YEARS.filter((y) => y.enabled).sort(
     (a, b) => a.year - b.year
   );
 
   return (
-    <div className="relative min-h-dvh overflow-hidden bg-[#08080c] text-white flex flex-col">
-      {/* Star field background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#0d1a2a_0%,#08080c_60%)]" />
-        {/* CSS star dots */}
-        <div className="stars-sm" />
-        <div className="stars-md" />
-      </div>
+    <>
+      <AnimatePresence>
+        {splash && <SplashScreen onDone={() => setSplash(false)} />}
+      </AnimatePresence>
 
-      {/* Header */}
-      <header className="pt-16 pb-6 text-center px-6">
-        <motion.p
-          className="text-xs font-semibold uppercase tracking-[0.3em] text-white/30 mb-3"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Portfolio
-        </motion.p>
-        <motion.h1
-          className="text-4xl font-bold tracking-tight sm:text-5xl"
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.08 }}
-        >
-          Gene Paul Mar Javier
-        </motion.h1>
-        <motion.p
-          className="mt-3 text-sm text-white/40"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          Select a year to explore my journey
-        </motion.p>
-      </header>
+      {/* Top progress bar */}
+      <AnimatePresence>
+        {navigating && (
+          <motion.div
+            key="root-progress"
+            className="fixed top-0 left-0 z-50 h-0.5 bg-white/60"
+            initial={{ width: "0%" }}
+            animate={{ width: "80%", transition: { duration: 2, ease: "easeOut" } }}
+            exit={{ width: "100%", opacity: 0, transition: { duration: 0.25 } }}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Year cards */}
-      <main className="flex-1 flex items-center justify-center px-6 py-10">
-        <div className="flex flex-wrap gap-8 justify-center items-start">
-          {enabledYears.map((year, i) => (
-            <YearCard key={year.year} year={year} index={i} />
-          ))}
+      <div className="relative min-h-dvh overflow-hidden bg-[#08080c] text-white flex flex-col">
+        {/* Star field background */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#0d1a2a_0%,#08080c_60%)]" />
+          <div className="stars-sm" />
+          <div className="stars-md" />
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="pb-8 text-center text-xs text-white/20">
-        &copy; {new Date().getFullYear()} Gene Paul Mar Javier
-      </footer>
-    </div>
+        {/* Header */}
+        <header className="pt-16 pb-6 text-center px-6">
+          <motion.p
+            className="text-xs font-semibold uppercase tracking-[0.3em] text-white/30 mb-3"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Portfolio
+          </motion.p>
+          <motion.h1
+            className="text-4xl font-bold tracking-tight sm:text-5xl"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+          >
+            Gene Paul Mar Javier
+          </motion.h1>
+          <motion.p
+            className="mt-3 text-sm text-white/40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Select a year to explore my journey
+          </motion.p>
+        </header>
+
+        {/* Year cards */}
+        <main className="flex-1 flex items-center justify-center px-6 py-10">
+          <div className="flex flex-wrap gap-8 justify-center items-start">
+            {enabledYears.map((year, i) => (
+              <YearCard key={year.year} year={year} index={i} onNavigate={() => setNavigating(true)} />
+            ))}
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="pb-8 text-center text-xs text-white/20">
+          &copy; {new Date().getFullYear()} Gene Paul Mar Javier
+        </footer>
+      </div>
+    </>
   );
 }
 
-function YearCard({ year, index }: { year: YearConfig; index: number }) {
+function YearCard({ year, index, onNavigate }: { year: YearConfig; index: number; onNavigate: () => void }) {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
+  const [navigating, setNavigating] = useState(false);
   const isComingSoon = year.theme === "Coming Soon";
+
+  function handleClick() {
+    setNavigating(true);
+    onNavigate();
+    router.push(year.path);
+  }
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: index * 0.12, ease: "easeOut" }}
-      onClick={() => router.push(year.path)}
+      onClick={handleClick}
       className={cn(
         "group relative w-72 cursor-pointer select-none",
         "rounded-2xl border border-white/8 bg-white/3",
@@ -85,9 +151,25 @@ function YearCard({ year, index }: { year: YearConfig; index: number }) {
         "transition-all duration-300",
         "shadow-[0_4px_32px_rgba(0,0,0,0.4)]",
         "hover:shadow-[0_8px_48px_rgba(0,0,0,0.6)]",
-        "hover:-translate-y-1"
+        "hover:-translate-y-1",
+        navigating && "pointer-events-none"
       )}
     >
+      {/* Navigation loading overlay */}
+      <AnimatePresence>
+        {navigating && (
+          <motion.div
+            className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 rounded-2xl bg-black/60 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Loader2 className="h-6 w-6 animate-spin text-white/70" />
+            <span className="text-[11px] text-white/50 tracking-wide">Loading {year.year}…</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* ── iframe preview ─────────────────────────────────────────── */}
       <div className="relative h-44 w-full overflow-hidden rounded-t-2xl bg-white/5">
         {!loaded && (

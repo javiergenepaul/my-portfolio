@@ -263,25 +263,9 @@ function SpaceScene() {
 
   return (
     <>
-      {/* Lighting — warm sun + cool blue fill for depth on asteroids */}
-      <ambientLight intensity={0.12} />
-      <directionalLight
-        position={[4, 6, 5]}
-        intensity={1.4}
-        color="#ffe8c0"
-      />
-      <pointLight
-        position={[-5, -4, 3]}
-        intensity={0.5}
-        color="#2255cc"
-      />
-
       {/* Stars */}
       <BackgroundStars />
       <ForegroundStars accentColor={accentColor} />
-
-      {/* Asteroids */}
-      <Asteroids />
 
       {/* Shooting stars — staggered start delays */}
       <ShootingStar delay={2} />
