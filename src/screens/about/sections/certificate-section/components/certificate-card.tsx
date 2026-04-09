@@ -24,9 +24,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
     <Card
       className={twMerge(
         "",
-        credentialUrl
-          ? "hover:border hover:border-primary hover:cursor-pointer"
-          : ""
+        credentialUrl ? "hover:border hover:border-primary hover:cursor-pointer" : ""
       )}
       onClick={() => {
         logEvent({
@@ -36,7 +34,8 @@ export const CertificateCard = (props: CertificateCardInterface) => {
         });
 
         if (credentialUrl) {
-          window.open(credentialUrl, "_blank");
+          const url = typeof credentialUrl === "string" ? credentialUrl : credentialUrl.src;
+          window.open(url, "_blank");
         }
       }}
     >

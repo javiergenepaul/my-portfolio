@@ -8,96 +8,9 @@ import { getColor } from "@/lib";
 import { useSettingsStore } from "@/stores";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components";
+import { TESTIMONIALS, type TestimonialRelationship, type TestimonialInterface } from "@/config";
 
-type Relationship = "Colleague" | "Client" | "Manager" | "Mentor" | "Peer";
-
-interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  avatar: string;
-  text: string;
-  rating: number;
-  service: string;
-  relationship: Relationship;
-  github?: string;
-  linkedin?: string;
-  behance?: string;
-}
-
-const TESTIMONIALS: Testimonial[] = [
-  {
-    name: "Sarah M.",
-    role: "Product Manager",
-    company: "Alliance Software Inc.",
-    avatar: "SM",
-    rating: 5,
-    service: "Full-Stack Development",
-    relationship: "Colleague",
-    text: "Gene consistently delivered clean, scalable code and took full ownership of features from design to deployment. One of the most dependable engineers I've worked with.",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "David L.",
-    role: "Lead Engineer",
-    company: "Alliance Software Inc.",
-    avatar: "DL",
-    rating: 5,
-    service: "Full-Stack Development",
-    relationship: "Manager",
-    text: "His ability to bridge front-end and back-end seamlessly is rare. Gene shipped production-ready Spring Boot + React features without needing hand-holding — a true full-stack contributor.",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "Maria C.",
-    role: "UX Designer",
-    company: "Alliance Software Inc.",
-    avatar: "MC",
-    rating: 4.5,
-    service: "UI Implementation",
-    relationship: "Colleague",
-    text: "Gene is the kind of engineer who actually reads design specs carefully. Every pixel handoff came back pixel-perfect, and he always raised thoughtful questions about edge cases.",
-    linkedin: "https://linkedin.com",
-    behance: "https://behance.net",
-  },
-  {
-    name: "Kevin T.",
-    role: "QA Engineer",
-    company: "Kryterion by Drake International",
-    avatar: "KT",
-    rating: 5,
-    service: "Full-Stack Development",
-    relationship: "Peer",
-    text: "Working with Gene was a pleasure — he wrote clear, well-structured code that was genuinely easy to test. Bug counts on his features were consistently the lowest on the team.",
-    github: "https://github.com",
-  },
-  {
-    name: "Lyn R.",
-    role: "Scrum Master",
-    company: "Alliance Software Inc.",
-    avatar: "LR",
-    rating: 5,
-    service: "Agile Collaboration",
-    relationship: "Colleague",
-    text: "Gene is a natural communicator and a reliable team player. He kept blockers visible early and helped unblock teammates. Sprint velocity always improved when he was leading a story.",
-    linkedin: "https://linkedin.com",
-  },
-  {
-    name: "James O.",
-    role: "Senior Software Engineer",
-    company: "Kryterion by Drake International",
-    avatar: "JO",
-    rating: 5,
-    service: "Backend & Microservices",
-    relationship: "Mentor",
-    text: "Gene picked up our microservices architecture faster than any intern or junior I've mentored. He was asking architecture-level questions within his first month — impressive growth mindset.",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-  },
-];
-
-const RELATIONSHIP_STYLES: Record<Relationship, string> = {
+const RELATIONSHIP_STYLES: Record<TestimonialRelationship, string> = {
   Colleague: "bg-blue-500/10 text-blue-500",
   Client:    "bg-violet-500/10 text-violet-500",
   Manager:   "bg-amber-500/10 text-amber-500",
@@ -138,7 +51,7 @@ function StarRating({ rating, accent }: { rating: number; accent: string }) {
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+function TestimonialCard({ testimonial }: { testimonial: TestimonialInterface }) {
   const { color } = useSettingsStore();
   const accent = getColor(color);
 
@@ -258,7 +171,7 @@ function MarqueeRow({
   reverse = false,
   paused,
 }: {
-  items: Testimonial[];
+  items: TestimonialInterface[];
   reverse?: boolean;
   paused: boolean;
 }) {

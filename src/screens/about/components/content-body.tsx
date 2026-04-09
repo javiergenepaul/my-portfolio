@@ -170,7 +170,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
           height={"100px"}
           width={waterMarkWidth ? `${waterMarkWidth}px` : "100px"}
           className="absolute top-2 right-2 opacity-30"
-          src={watermark as string}
+          src={typeof watermark === "string" ? watermark : (watermark as { src: string }).src}
           alt={watermarkAlt}
         />
       )}

@@ -1,6 +1,7 @@
 import { StackName } from "@/screens";
 import { Moment } from "moment";
 import type { ReactNode } from "react";
+import type { StaticImageData } from "next/image";
 
 export type ProjectStatus = "ongoing" | "completed" | "unfinished";
 type NumberBetweenOneAndTen = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -48,13 +49,7 @@ export interface KeyContributionInterface {
 
 export interface ProjectCarouselInterface {
   value: string;
-  image: string;
-  name: string;
-}
-
-export interface ProjectCarouselInterface {
-  value: string;
-  image: string;
+  image: string | StaticImageData;
   name: string;
 }
 
@@ -86,7 +81,7 @@ export interface ContentBodyInterface {
   level?: "tertiary" | "secondary" | "primary" | "vocational";
   abbreviation?: string;
   isWork?: boolean;
-  watermark?: ReactNode;
+  watermark?: ReactNode | StaticImageData;
   watermarkAlt?: string;
   description: string;
   subtitleUrl?: string;
@@ -104,7 +99,38 @@ export interface CertificateCardInterface {
   organizationAlt: string;
   issuedDate: Moment;
   credentialId?: string;
-  credentialUrl: string;
+  credentialUrl: string | StaticImageData;
+}
+
+// ── Testimonials ─────────────────────────────────────────────────────────────
+
+export type TestimonialRelationship = "Colleague" | "Client" | "Manager" | "Mentor" | "Peer";
+
+export interface TestimonialInterface {
+  name: string;
+  role: string;
+  company: string;
+  avatar: string;
+  text: string;
+  rating: number;
+  service: string;
+  relationship: TestimonialRelationship;
+  github?: string;
+  linkedin?: string;
+  behance?: string;
+}
+
+// ── Languages ────────────────────────────────────────────────────────────────
+
+export type ProficiencyLevel = "Native" | "Fluent" | "Conversational" | "Basic";
+
+export interface LanguageInterface {
+  name: string;
+  nativeName: string;
+  flagIcon: string;
+  locale: "en" | "ja" | "fil" | "ceb";
+  level: ProficiencyLevel;
+  note: string;
 }
 
 // ── Skills ───────────────────────────────────────────────────────────────────

@@ -7,17 +7,7 @@ import { Banner } from "../../components";
 import { getColor } from "@/lib";
 import { useSettingsStore, useLanguageStore, type LanguageType } from "@/stores";
 import { cn } from "@/lib/utils";
-
-type ProficiencyLevel = "Native" | "Fluent" | "Conversational" | "Basic";
-
-interface Language {
-  name: string;
-  nativeName: string;
-  flagIcon: string;
-  locale: LanguageType;
-  level: ProficiencyLevel;
-  note: string;
-}
+import { LANGUAGES, type ProficiencyLevel, type LanguageInterface } from "@/config";
 
 const PROFICIENCY: Record<ProficiencyLevel, { pct: number; style: string }> = {
   Native:        { pct: 100, style: "bg-emerald-500/15 text-emerald-500" },
@@ -25,41 +15,6 @@ const PROFICIENCY: Record<ProficiencyLevel, { pct: number; style: string }> = {
   Conversational:{ pct: 55,  style: "bg-amber-500/15 text-amber-500" },
   Basic:         { pct: 25,  style: "bg-rose-500/15 text-rose-500" },
 };
-
-const LANGUAGES: Language[] = [
-  {
-    name: "Cebuano",
-    nativeName: "Bisaya",
-    flagIcon: "circle-flags:ph",
-    locale: "ceb",
-    level: "Native",
-    note: "Mother tongue — spoken from birth",
-  },
-  {
-    name: "Tagalog",
-    nativeName: "Wikang Tagalog",
-    flagIcon: "circle-flags:ph",
-    locale: "fil",
-    level: "Native",
-    note: "National language — everyday communication",
-  },
-  {
-    name: "English",
-    nativeName: "English",
-    flagIcon: "circle-flags:us",
-    locale: "en",
-    level: "Fluent",
-    note: "Professional — work, writing & documentation",
-  },
-  {
-    name: "Japanese",
-    nativeName: "日本語",
-    flagIcon: "circle-flags:jp",
-    locale: "ja",
-    level: "Basic",
-    note: "Currently learning — JLPT N5 level",
-  },
-];
 
 const container: Variants = {
   hidden: {},
@@ -79,7 +34,7 @@ function LanguageCard({
   onHoverEnd,
   onClick,
 }: {
-  lang: Language;
+  lang: LanguageInterface;
   accent: string;
   active: boolean;
   onHoverStart: () => void;

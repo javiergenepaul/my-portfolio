@@ -20,6 +20,9 @@ interface IProjectCarousel {
   previewUrl: string | undefined;
 }
 
+const imgSrc = (image: string | { src: string }): string =>
+  typeof image === "string" ? image : image.src;
+
 export const ProjectCarousel = ({
   carousel,
   projectId,
@@ -82,7 +85,7 @@ export const ProjectCarousel = ({
                   <CarouselItem key={index}>
                     <img
                       className="rounded-lg aspect-square object-cover w-full"
-                      src={item.image}
+                      src={imgSrc(item.image)}
                       alt={item.name}
                       loading="lazy"
                       width={600}
@@ -120,7 +123,7 @@ export const ProjectCarousel = ({
                     >
                       <img
                         className="rounded-md"
-                        src={item.image}
+                        src={imgSrc(item.image)}
                         alt={item.name}
                         loading="lazy"
                         width={120}
