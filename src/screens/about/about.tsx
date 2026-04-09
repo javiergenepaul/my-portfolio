@@ -1,5 +1,6 @@
 import { FadeAnimation } from "@/components";
 import {
+  BooksSection,
   CertificateSection,
   BackgroundSection,
   FooterSection,
@@ -23,6 +24,7 @@ export const About = () => {
         <CertificateSection />
         <LanguageSection />
         <TestimonialSection />
+        <BooksSection />
         <OutroSection />
         <FooterSection />
       </div>

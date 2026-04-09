@@ -102,6 +102,16 @@ export interface CertificateCardInterface {
   credentialUrl: string | StaticImageData;
 }
 
+// ── Books ─────────────────────────────────────────────────────────────────────
+
+export interface BookInterface {
+  title: string;
+  author: string;
+  quote: string;
+  reflection: string;
+  theme: string;
+}
+
 // ── Testimonials ─────────────────────────────────────────────────────────────
 
 export type TestimonialRelationship = "Colleague" | "Client" | "Manager" | "Mentor" | "Peer";
