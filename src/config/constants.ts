@@ -17,6 +17,7 @@ export const ALLIANCE_COMPANY_URL: string =
   "https://alliance.com.ph/index.html";
 export const MACH95_COMPANY_URL: string = "https://mach95.com/";
 export const EXODIA_COMPANY_URL: string = "https://www.exodiagamedev.com/";
+export const MAGIC_COMPANY_URL: string = "https://www.yourmagic.co/";
 export const CTU_SCHOOL_URL: string = "https://www.ctu.edu.ph/";
 export const UC_SCHOOL_URL: string = "https://www.universityofcebu.net/";
 export const BNHS_SCHOOL_URL: string = "https://www.facebook.com/bahaisabela/";

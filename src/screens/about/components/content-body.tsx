@@ -23,6 +23,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
     endYear,
     abbreviation,
     isWork,
+    employmentType,
     watermark,
     watermarkAlt,
     description,
@@ -101,8 +102,9 @@ export const ContentBody = (props: ContentBodyInterface) => {
           </div>
         )}
 
-        <div className="flex gap-1 text-nowrap text-xs items-center">
+        <div className="flex flex-wrap gap-1 text-nowrap text-xs items-center">
           <span>{startYear.format(isWork ? "MMM YYYY" : "YYYY")}</span>
+          <span className="text-muted-foreground">~</span>
           <span>
             {endYear === "present"
               ? "present"
@@ -112,6 +114,18 @@ export const ContentBody = (props: ContentBodyInterface) => {
             <>
               <Dot />
               <div suppressHydrationWarning>{getYearSpent(startYear, endYear)}</div>
+            </>
+          )}
+          {employmentType && (
+            <>
+              <Dot />
+              <span className={
+                employmentType === "Part-time"
+                  ? "rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-500"
+                  : "rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-500"
+              }>
+                {employmentType}
+              </span>
             </>
           )}
         </div>

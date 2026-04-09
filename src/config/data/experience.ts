@@ -12,6 +12,7 @@ import {
   EXODIA_COMPANY_URL,
   KRYTERION_COMPANY_URL,
   MACH95_COMPANY_URL,
+  MAGIC_COMPANY_URL,
 } from "@/config/constants";
 
 /**
@@ -19,6 +20,19 @@ import {
  * Factory function so translate() runs at render time.
  */
 export const getExperience = (): ContentBodyInterface[] => [
+  {
+    title: "Full Stack Software Developer",
+    subtitle: "Magic",
+    description: "Building and maintaining full-stack features for Magic's platform — a modern SaaS product. Working across the stack with a focus on delivering clean, production-ready code in a remote, async environment.",
+    startYear: moment("2025-08-01"),
+    endYear: "present",
+    watermark: "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
+    watermarkAlt: "Magic",
+    subtitleUrl: MAGIC_COMPANY_URL,
+    waterMarkWidth: 120,
+    isWork: true,
+    employmentType: "Part-time",
+  },
   {
     title: translate("about.experience.experience.kryterion.title"),
     description: translate("about.experience.experience.kryterion.description"),
@@ -30,6 +44,7 @@ export const getExperience = (): ContentBodyInterface[] => [
     subtitleUrl: KRYTERION_COMPANY_URL,
     waterMarkWidth: 105,
     isWork: true,
+    employmentType: "Full-time",
   },
   {
     title: translate("about.experience.experience.alliance.title"),
@@ -40,6 +55,7 @@ export const getExperience = (): ContentBodyInterface[] => [
     watermarkAlt: translate("about.experience.experience.alliance.promotion.ats1.alt"),
     subtitleUrl: ALLIANCE_COMPANY_URL,
     isWork: true,
+    employmentType: "Full-time",
     subtitle: translate("about.experience.experience.alliance.subtitle"),
     promotion: [
       {
@@ -70,6 +86,7 @@ export const getExperience = (): ContentBodyInterface[] => [
     watermarkAlt: translate("about.experience.experience.mach95.alt"),
     subtitleUrl: MACH95_COMPANY_URL,
     isWork: true,
+    employmentType: "Full-time",
   },
   {
     title: translate("about.experience.experience.exodia.title"),
@@ -82,5 +99,6 @@ export const getExperience = (): ContentBodyInterface[] => [
     watermarkAlt: translate("about.experience.experience.exodia.alt"),
     subtitleUrl: EXODIA_COMPANY_URL,
     isWork: true,
+    employmentType: "Part-time",
   },
 ];

@@ -81,6 +81,7 @@ export interface ContentBodyInterface {
   level?: "tertiary" | "secondary" | "primary" | "vocational";
   abbreviation?: string;
   isWork?: boolean;
+  employmentType?: "Full-time" | "Part-time";
   watermark?: ReactNode | StaticImageData;
   watermarkAlt?: string;
   description: string;

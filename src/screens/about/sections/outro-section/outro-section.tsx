@@ -15,10 +15,10 @@ export const OutroSection = () => {
       <Banner />
       <div className="flex justify-center py-16 pb-8">
         <div className="flex flex-col items-center gap-4">
-          <Avatar className="h-[250px] w-[250px]">
+          <Avatar className="h-62.5 w-62.5">
             <AvatarImage
               className="rounded-full border-primary border-4"
-              src={AvatarProfile}
+              src={AvatarProfile.src}
             />
             <AvatarFallback className="rounded-full border-primary border-4">
               {translate("header.shortName")}
@@ -27,7 +27,7 @@ export const OutroSection = () => {
           <h1 className="lg:text-5xl text-center text-2xl font-semibold">
             {translate("about.outro.workTogether")}
           </h1>
-          <p className="text-muted-foreground text-sm max-w-[700px] text-center">
+          <p className="text-muted-foreground text-sm max-w-175 text-center">
             {translate("about.outro.sub")}
           </p>
           <Button
