@@ -1,21 +1,20 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-
 interface LazyImageInterface {
   src: string;
   alt: string;
-  width?: string;
+  width?: string | number;
+  className?: string;
 }
 
-export const LazyImage = (props: LazyImageInterface) => {
-  const { src, alt, width } = props;
+export const LazyImage = ({ src, alt, width, className }: LazyImageInterface) => {
   return (
-    <LazyLoadImage
-    className="flex"
-      width={width ? width : undefined}
-      alt={alt}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       src={src}
-      effect="blur"
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      width={width}
+      className={className ?? "flex"}
     />
   );
 };

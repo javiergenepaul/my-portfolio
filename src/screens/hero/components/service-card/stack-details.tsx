@@ -71,7 +71,7 @@ export const StackDetails = (props: StackDetailsProps) => {
 
   return (
     <div className="relative">
-      <div className="absolute top-[-14px] right-[-34px] pt-6 pb-1 rotate-45 bg-red-800 w-24 flex justify-center items-center">
+      <div className="absolute -top-3.5 -right-8.5 pt-6 pb-1 rotate-45 bg-red-800 w-24 flex justify-center items-center">
         <div className="text-primary -rotate-45">
           {isFavorite ? (
             <BookmarkFilledIcon height={"24px"} width={"24px"} />

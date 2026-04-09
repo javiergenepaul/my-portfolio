@@ -4,6 +4,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
   Input,
   Textarea,
@@ -114,6 +115,7 @@ export const ContactForm = () => {
               name="from_name"
               render={({ field, fieldState }) => (
                 <FormItem>
+                  <FormLabel>{translate("contact.placeHolder.name")}</FormLabel>
                   <FormControl>
                     <Input
                       className={
@@ -123,9 +125,10 @@ export const ContactForm = () => {
                       }
                       placeholder={translate("contact.placeHolder.name")}
                       autoCapitalize="none"
-                      autoComplete="off"
+                      autoComplete="name"
                       autoCorrect="off"
                       type="text"
+                      aria-invalid={fieldState.invalid}
                       {...field}
                     />
                   </FormControl>
@@ -138,6 +141,7 @@ export const ContactForm = () => {
               name="from_email"
               render={({ field, fieldState }) => (
                 <FormItem>
+                  <FormLabel>{translate("contact.placeHolder.email")}</FormLabel>
                   <FormControl>
                     <Input
                       className={
@@ -147,9 +151,10 @@ export const ContactForm = () => {
                       }
                       placeholder={translate("contact.placeHolder.email")}
                       autoCapitalize="none"
-                      autoComplete="off"
+                      autoComplete="email"
                       autoCorrect="off"
-                      type="text"
+                      type="email"
+                      aria-invalid={fieldState.invalid}
                       {...field}
                     />
                   </FormControl>
@@ -162,6 +167,7 @@ export const ContactForm = () => {
               name="message"
               render={({ field, fieldState }) => (
                 <FormItem>
+                  <FormLabel>{translate("contact.placeHolder.message")}</FormLabel>
                   <FormControl>
                     <Textarea
                       maxLength={255}
@@ -174,6 +180,7 @@ export const ContactForm = () => {
                       autoCapitalize="none"
                       autoComplete="off"
                       autoCorrect="off"
+                      aria-invalid={fieldState.invalid}
                       {...field}
                     />
                   </FormControl>
@@ -186,12 +193,15 @@ export const ContactForm = () => {
             disabled={timer !== 0}
             className={"select-none"}
             type="submit"
+            aria-disabled={timer !== 0}
           >
-            {timer === 0
-              ? translate("contact.button.submit")
-              : translate("contact.button.resend", {
-                  time: formatTime(timer),
-                })}
+            <span aria-live="polite" aria-atomic="true">
+              {timer === 0
+                ? translate("contact.button.submit")
+                : translate("contact.button.resend", {
+                    time: formatTime(timer),
+                  })}
+            </span>
           </Button>
         </div>
       </form>

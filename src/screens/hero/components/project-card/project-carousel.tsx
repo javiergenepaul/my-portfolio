@@ -81,9 +81,12 @@ export const ProjectCarousel = ({
                 return (
                   <CarouselItem key={index}>
                     <img
-                      className="rounded-lg aspect-square object-cover"
+                      className="rounded-lg aspect-square object-cover w-full"
                       src={item.image}
                       alt={item.name}
+                      loading="lazy"
+                      width={600}
+                      height={600}
                     />
                   </CarouselItem>
                 );
@@ -113,11 +116,15 @@ export const ProjectCarousel = ({
                     <Label
                       className="rounded-md border-2 cursor-pointer border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                       htmlFor={`carousel-option-${projectId}-${item.value}-${index}-${item.name}`}
+                      aria-label={`View screenshot: ${item.name}`}
                     >
                       <img
                         className="rounded-md"
                         src={item.image}
                         alt={item.name}
+                        loading="lazy"
+                        width={120}
+                        height={120}
                       />
                     </Label>
                   </div>

@@ -284,7 +284,7 @@ export const StarsCanvas = () => {
   return (
     <div
       className={twMerge(
-        "w-full h-auto absolute inset-0 -z-10",
+        "w-full h-auto absolute inset-0 -z-10 pointer-events-none",
         !enableParticleBackground ? "hidden" : ""
       )}
     >
@@ -292,6 +292,7 @@ export const StarsCanvas = () => {
         camera={{ position: [0, 0, 1], fov: 75 }}
         gl={{ antialias: false, alpha: true }}
         dpr={[1, 1.5]}
+        style={{ pointerEvents: "none" }}
       >
         <Suspense fallback={null}>
           <SpaceScene />
