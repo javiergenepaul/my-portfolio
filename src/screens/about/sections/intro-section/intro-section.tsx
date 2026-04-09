@@ -123,7 +123,7 @@ export const IntroSection = () => {
         <div className="flex items-end w-full pl-0 lg:pb-8 lg:pl-24">
           <LazyImage
             width="400px"
-            src={AboutMe}
+            src={AboutMe.src}
             alt={translate("about.intro.name")}
           />
         </div>

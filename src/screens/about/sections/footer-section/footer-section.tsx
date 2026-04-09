@@ -1,6 +1,6 @@
 import { Separator } from "@/components";
 import { PATH, SOCIAL_MEDIA_LINK_DATA } from "@/config";
-import { translate } from "@/i18n";
+import { translate, TxKeyPath } from "@/i18n";
 import { SocialButton } from "@/screens/hero";
 
 export const FooterSection = () => {
@@ -33,7 +33,7 @@ export const FooterSection = () => {
           return (
             <SocialButton
               key={key as string}
-              title={translate(`header.socialMediaLinks.${socialMedia.key}`)}
+              title={translate(`header.socialMediaLinks.${socialMedia.key}` as TxKeyPath)}
               url={socialMedia.url}
               icon={socialMedia.icon}
             />

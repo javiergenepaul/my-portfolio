@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 export const LoadingMask = () => {
   const { color } = useSettingsStore();
-  const { loading } = useLoadingStore();
+  const { isLoading: loading } = useLoadingStore();
 
   return (
     <div

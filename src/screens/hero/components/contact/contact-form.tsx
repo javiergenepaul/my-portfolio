@@ -31,7 +31,7 @@ import { logEvent } from "@/lib";
 
 export const ContactForm = () => {
   const { toast } = useToast();
-  const { setLoading } = useLoadingStore();
+  const { setIsLoading: setLoading } = useLoadingStore();
   const { timer, setTimer } = useResendTimerStore();
 
   const form = useForm<ContactRequestInterface>({

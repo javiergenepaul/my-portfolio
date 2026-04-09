@@ -32,8 +32,8 @@ export const SettingsGeneral = () => {
     sidenavSwipeToggle,
     sidenavSwipeSensitivity,
     setEnableParticleBackground,
-    setSideNavSwipeToggle,
-    setSideNavSwipeSensitivity,
+    setSidenavSwipeToggle: setSideNavSwipeToggle,
+    setSidenavSwipeSensitivity: setSideNavSwipeSensitivity,
   } = useSettingsStore();
   const { toast } = useToast();
 

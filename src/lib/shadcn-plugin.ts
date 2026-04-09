@@ -360,7 +360,7 @@ export const ShadcnPlugin = plugin(
     });
   },
   {
-    darkMode: ["class"],
+    darkMode: ["class"] as any,
     theme: {
       container: {
         center: true,
@@ -370,7 +370,7 @@ export const ShadcnPlugin = plugin(
         },
       },
       extend: {
-        typography: ["ordinal"],
+        typography: ["ordinal"] as any,
         colors: {
           azure: "#3B82F6",
           emerald: "#22C55E",

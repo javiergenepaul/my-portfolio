@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 const Logo = () => {
   const { color } = useSettingsStore();
   const logo: any = useGLTF("/logo/logo.gltf");
-  const logoRef: any = useRef();
+  const logoRef: any = useRef(null);
 
   useEffect(() => {
     // Function to update the color of the meshes
@@ -59,7 +59,7 @@ const Logo = () => {
 };
 
 const FollowCameraLight = () => {
-  const lightRef: any = useRef();
+  const lightRef: any = useRef(null);
   const { camera } = useThree();
 
   useFrame(() => {

@@ -35,7 +35,7 @@
     "maximumCharacter": "Lumampas sa maximum na limitasyon ng character.  {{count}} mga character o mas kaunti."
   },
   "floating": {
-    "quickAcces": "Mabilis na pagpasok",
+    "quickAccess": "Mabilis na pagpasok",
     "toggle": "I-toggle",
     "backgroundOnlyMode": "Background-Only Mode",
     "disableParticle": "Huwag paganahin ang Particle",
@@ -167,7 +167,8 @@
       "attentionToDetails": "Atensyon sa mga detalye",
       "pixelPerfect": "Pixel Perfect",
       "landingPage": "Landing Page",
-      "reactRouter": "React Router"
+      "reactRouter": "React Router",
+      "nextJs": "NextJS"
     },
     "hoverCard": {
       "years": "taon",
@@ -216,6 +217,28 @@
         "deliveryApp": "Application sa Paghahatid",
         "ecommerce": "ecommerce",
         "admin": "Admin Dashboard"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Created API",
+          "description": "Developed and implemented application programming interfaces to ensure seamless communication between web and mobile application."
+        },
+        "2": {
+          "name": "Front End Design",
+          "description": "Designed and developed the user interface, focusing on an intuitive and user-friendly experience using Boootstrap 5 and Jquery."
+        },
+        "3": {
+          "name": "Laravel Auth",
+          "description": "Implemented authentication mechanisms using Laravel, ensuring secure user login and management."
+        },
+        "4": {
+          "name": "Database Design and Creation",
+          "description": "Structured and built the database, optimizing it for performance and reliability."
+        },
+        "5": {
+          "name": "Multi Auth Login",
+          "description": "Implemented multi-authentication mechanisms to support different user roles and access levels within the system."
+        }
       }
     },
     "siriusWebpos": {
@@ -226,7 +249,65 @@
         "webPos": "WebPOS",
         "admin": "Admin Dashboard"
       },
-      "imageName": "Preview ng WebPOS"
+      "imageName": "Preview ng WebPOS",
+      "keyContributions": {
+        "1": {
+          "name": "Creating a Spring Boot API",
+          "description": "Designed and implemented APIs using Spring Boot to provide robust backend services."
+        },
+        "2": {
+          "name": "Consuming APIs in React Application",
+          "description": "Developed APIs and integrated them with React for seamless data interaction."
+        },
+        "3": {
+          "name": "Creating Common Features in Backend",
+          "description": "Developed reusable and scalable backend features to support various application functionalities."
+        },
+        "4": {
+          "name": "Creating Reusable Components in React",
+          "description": "Built common, reusable components in React to streamline development and ensure consistency across the application."
+        },
+        "5": {
+          "name": "Implementing Robust Security Measures",
+          "description": "Utilized Spring Boot Security and JWT authentication to secure the application."
+        },
+        "6": {
+          "name": "Enhancing Performance and User Experience",
+          "description": "Leveraged React interceptors to improve performance and user interaction."
+        },
+        "7": {
+          "name": "Ensuring Data Security",
+          "description": "Implemented encryption/decryption mechanisms to protect sensitive data."
+        },
+        "8": {
+          "name": "Proactively Resolving Vulnerabilities",
+          "description": "Addressed OWASP ZAP vulnerabilities to enhance application security against common threats."
+        },
+        "9": {
+          "name": "Establishing Code Standards",
+          "description": "Set up base code standards and best practices to ensure consistency and quality."
+        },
+        "10": {
+          "name": "Streamlining Development Processes",
+          "description": "Introduced common utility functions and components to optimize development workflows."
+        },
+        "11": {
+          "name": "Promoting Code Reusability",
+          "description": "Developed common React components to facilitate code reuse."
+        },
+        "12": {
+          "name": "Managing and Setting Up Nginx Server and Services",
+          "description": "Configured and managed Nginx server to handle web traffic efficiently and securely."
+        },
+        "13": {
+          "name": "Leadership and Management",
+          "description": "Led teams, managed On-the-Job Training, and supervised direct reports."
+        },
+        "14": {
+          "name": "Code Review and Standards",
+          "description": "Conducted code reviews and ensured adherence to coding standards."
+        }
+      }
     },
     "unifiedYouth": {
       "title": "Pinag-isang Kabataan",
@@ -252,6 +333,20 @@
       "imageName": "Bansa",
       "category": {
         "landing": "Landing Page"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Creating a React JavaScript Tutorial",
+          "description": "Developed a comprehensive tutorial on React using JavaScript, inspired by the educational style of JavaScript Mastery."
+        },
+        "2": {
+          "name": "Implementing Responsive Design",
+          "description": "Ensured the application's user interface is accessible and intuitive across various devices by implementing responsive design principles."
+        },
+        "3": {
+          "name": "Optimizing Performance",
+          "description": "Enhanced the performance of the application by implementing efficient coding practices and optimizing resource usage, resulting in improved user experience and faster load times."
+        }
       }
     },
     "iqmk": {
@@ -261,6 +356,16 @@
       "imageName": "IQMK Preview",
       "category": {
         "landing": "Landing Page"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Front End Landing Page Design",
+          "description": "Collaborated with UI/UX designers to create a visually appealing landing page layout using Figma, ensuring alignment with design specifications and user experience goals."
+        },
+        "2": {
+          "name": "Implementing Landing Page with Tailwind CSS",
+          "description": "Developed the front end of the landing page by translating the Figma design into a static website, utilizing Tailwind CSS for efficient styling and layout."
+        }
       }
     },
     "pawfectlyYours": {
@@ -278,6 +383,28 @@
       "category": {
         "landing": "Landing Page",
         "portfolioWebsite": "portfolioWebsite"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Design to Implementation",
+          "description": "Translated design concepts into a fully functional static website, ensuring seamless integration of visual elements and user interface components."
+        },
+        "2": {
+          "name": "Implementing Static Website",
+          "description": "Developed the front end of the portfolio website, utilizing modern web technologies and best practices to create an engaging and responsive user experience."
+        },
+        "3": {
+          "name": "Adding Email Sender Feature",
+          "description": "Implemented an email sender feature, allowing visitors to easily contact you directly through the portfolio website, enhancing communication and networking opportunities."
+        },
+        "4": {
+          "name": "Deploying",
+          "description": "Deployed the portfolio website to a hosting service, making it accessible to users worldwide and ensuring reliable performance and uptime."
+        },
+        "5": {
+          "name": "Creating Content",
+          "description": "Generated compelling and informative content for the portfolio website, including project descriptions, personal bio, and other relevant information to showcase skills and experience."
+        }
       }
     },
     "paletteShift": {
@@ -290,6 +417,71 @@
         "accessibility": "Accessibility",
         "tools": "Mga Tool sa Software",
         "libraries": "Mga aklatan"
+      },
+      "keyContributions": {
+        "1": {
+          "name": "Front End Design with React and TypeScript",
+          "description": "Designed the front end of the application using React with TypeScript, ensuring a modern and responsive user interface."
+        },
+        "2": {
+          "name": "Customizable Themes",
+          "description": "Implemented customizable themes functionality, allowing users to personalize the appearance of the application according to their preferences."
+        },
+        "3": {
+          "name": "Dark Mode & Light Mode",
+          "description": "Integrated support for both dark mode and light mode, enhancing user experience by providing options for different visual preferences."
+        }
+      }
+    },
+    "keyContributions": "Key Contributions Include:",
+    "rlPortfolio": {
+      "title": "Rochenette Legaspina Portfolio",
+      "description": "Rochenette Legaspina Portfolio is a captivating static landing page meticulously crafted from Figma and brought to life with React JavaScript. This stunning page serves as a hotel booking platform, inviting visitors to explore luxurious accommodations in picturesque destinations. With seamless integration between design and development, Rochenette Legaspina Portfolio offers an immersive experience, enticing users to book their dream getaway with ease.",
+      "imageName": "Rochenette Legaspina Portfolio Preview",
+      "category": {
+        "landing": "Landing Page"
+      }
+    },
+    "exoPortal": {
+      "title": "Exo Portal UI Next",
+      "description": "Exo-ui-portal is a modern organizational portal built with Next.js, featuring Daily Time Record (DTR) management and multi-authentication (OAuth and email). It serves as the frontend for Exo Backend services.",
+      "imageName": "Exo Portal UI Next Preview",
+      "category": {
+        "saas": "Software As A Service"
+      },
+      "ui": {
+        "nuxt": {
+          "title": "Exo Portal UI Nuxt",
+          "description": "Exo-ui-portal is a modern organizational portal built with Nuxt.js, featuring Daily Time Record (DTR) management and multi-authentication (OAuth and email). It serves as the frontend for Exo Backend services.",
+          "imageName": "Exo Portal UI Nuxt Preview",
+          "category": {
+            "saas": "Software As A Service"
+          }
+        },
+        "next": {
+          "title": "Exo Portal UI Next",
+          "description": "Exo-ui-portal is a modern organizational portal built with Next.js, featuring Daily Time Record (DTR) management and multi-authentication (OAuth and email). It serves as the frontend for Exo Backend services.",
+          "imageName": "Exo Portal UI Next Preview",
+          "category": {
+            "saas": "Software As A Service"
+          }
+        }
+      },
+      "common": {
+        "title": "Exo Portal Common",
+        "description": "Exo Common is a shared library for Exo services, housing database models, utility classes, constants, and common abstractions. It enhances consistency, efficiency, and reusability across backend development, minimizing redundancy and streamlining essential components for seamless integration.",
+        "imageName": "Exo Portal Common Preview",
+        "category": {
+          "saas": "Software As A Service"
+        }
+      },
+      "auth": {
+        "title": "Exo Portal Authentication",
+        "description": "Exo Auth is the authentication service for Exo, supporting HttpOnly cookies, JWT, and OAuth for secure and flexible user authentication. It ensures robust access control and seamless integration across Exo services.",
+        "imageName": "Exo Portal Auth Preview",
+        "category": {
+          "saas": "Software As A Service"
+        }
       }
     }
   },
@@ -583,6 +775,25 @@
             "abb": "ATS I",
             "description": "Nakaranas ng Full-stack Developer na sanay sa Vite, React, TypeScript, at Spring Boot, na kilala sa pagpapatupad ng matatag na mga hakbang sa seguridad at pagpapahusay ng pagganap para sa mga web application. ",
             "alt": "Logo ng Alliance Software Inc"
+          },
+          "title": "Software Engineer",
+          "subtitle": "Alliance Software Inc.",
+          "description": "As a Full Stack Engineer at Alliance, I developed and maintained both front-end interfaces and back-end functionality, ensuring seamless user experiences and efficient data handling. I collaborated with cross-functional teams to deliver scalable, user-focused solutions.",
+          "promotion": {
+            "ts1": {
+              "title": "Software Engineer - Technical Specialist I",
+              "subtitle": "Alliance Software Inc.",
+              "abb": "TS I",
+              "description": "Experienced Full Stack Developer proficient in Spring Boot and React TypeScript, dedicated to building robust applications with a focus on seamless frontend experiences and efficient backend operations. Specializes in creating foundational codebases and shared components to streamline development workflows for cross-functional teams. Well-versed in Agile methodologies, delivering results in dynamic, fast-paced environments.",
+              "alt": "Alliance Software Inc. Logo"
+            },
+            "ats1": {
+              "title": "Software Engineer - Associate Technical Specialist I",
+              "subtitle": "Alliance Software Inc.",
+              "abb": "ATS I",
+              "description": "Experienced Full-stack Developer adept in Vite, React, TypeScript, and Spring Boot, known for implementing robust security measures and enhancing performance for web applications. Skilled in managing server environments on Linux-based systems like CentOS and configuring web servers such as HTTPD and Nginx. Additionally, attended the LAMPP program to apply leadership processes and manage teams effectively, passionate about delivering high-quality solutions and fostering collaboration.",
+              "alt": "Alliance Software Inc. Logo"
+            }
           }
         },
         "mach95": {
@@ -597,6 +808,12 @@
           "subtitle": "Pag-unlad ng Laro ng Exodia",
           "abb": "Part Time",
           "alt": "Logo ng Exodia Game Development"
+        },
+        "kryterion": {
+          "title": "Software Engineer",
+          "subtitle": "Kryterion by Drake International",
+          "description": "As a Software Engineer in training at Drake International, I am learning to develop scalable web applications using Spring Boot for the back-end and Vue.js for the front-end. I have gained knowledge of transitioning from a monolithic architecture to microservices and am familiar with the technology stack and system design. Additionally, I collaborate using Slack for communication with cross-functional teams.",
+          "alt": "Drake International Logo"
         }
       }
     },
@@ -612,6 +829,11 @@
         "title": "FullStack: React at Java Spring Boot - Ang Gabay sa Developer",
         "organization": "Udemy",
         "organizationAlt": "Mga Sertipiko ng Udemy"
+      },
+      "businessCommunication": {
+        "title": "Effective Business Communication Skills",
+        "organization": "Lilolele Incorporated",
+        "organizationAlt": "Lilolele Business Communnication Certificate"
       }
     },
     "outro": {
