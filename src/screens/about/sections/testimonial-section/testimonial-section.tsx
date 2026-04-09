@@ -143,7 +143,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   const accent = getColor(color);
 
   return (
-    <div className="shrink-0 w-80 rounded-xl border border-border bg-card p-5 shadow-sm flex flex-col gap-3 mx-3 select-none">
+    <div className="shrink-0 w-72 sm:w-80 rounded-xl border border-border bg-card p-5 shadow-sm flex flex-col gap-3 mx-3 select-none">
       {/* Top: quote + social links */}
       <div className="flex items-start justify-between gap-2">
         <Quote className="h-4 w-4 shrink-0 mt-0.5" style={{ color: accent }} aria-hidden />
@@ -301,7 +301,7 @@ export const TestimonialSection = () => {
   return (
     <div className="relative pb-16">
       <Banner />
-      <section ref={ref} className="py-10 overflow-hidden">
+      <section ref={ref} className="py-10">
         <motion.div
           className="text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
@@ -315,7 +315,7 @@ export const TestimonialSection = () => {
         </motion.div>
 
         <motion.div
-          className={cn("flex flex-col gap-4")}
+          className={cn("flex flex-col gap-4 -mx-6 lg:-mx-24")}
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
