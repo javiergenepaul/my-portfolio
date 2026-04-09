@@ -23,6 +23,9 @@ import { useRouter } from "next/navigation";
 import { useLocaleRefresh } from "@/i18n";
 import { useSettingsStore } from "@/stores";
 import { twMerge } from "tailwind-merge";
+import { useState } from "react";
+
+import { triggerNavigationStart } from "@/components/navigation/NavigationProgress";
 
 // Static parts only — translate() must NOT be called at module scope because
 // messageStore is empty during SSR. Titles are resolved inside the component.
@@ -36,6 +39,7 @@ export const HeaderSection = () => {
   const router = useRouter();
   useLocaleRefresh();
   const { isSettingsNew, setIsSettingsNew } = useSettingsStore();
+  const [navigating, setNavigating] = useState(false);
 
   // Resolved here so translate() runs after messageStore is initialised
   const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = SOCIAL_MEDIA_LINK_DATA.map(
@@ -104,7 +108,12 @@ export const HeaderSection = () => {
             <Button
               className="w-fit"
               variant={"default"}
-              onClick={() => router.push(PATH.CONTACTS.path)}
+              disabled={navigating}
+              onClick={() => {
+                setNavigating(true);
+                triggerNavigationStart();
+                router.push(PATH.CONTACTS.path);
+              }}
             >
               {translate("getInTouch")}
             </Button>

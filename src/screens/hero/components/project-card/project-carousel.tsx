@@ -54,7 +54,7 @@ export const ProjectCarousel = ({
       <div className="flex gap-4 flex-col">
         <Carousel
           setApi={setApi}
-          className="w-full max-w-screen-md overflow-hidden group"
+          className="w-full max-w-3xl overflow-hidden group"
         >
           <div
             onClick={onClickPreviewUrl}
@@ -77,7 +77,7 @@ export const ProjectCarousel = ({
           </div>
           <CarouselContent>
             {carousel.map(
-              (item: ProjectCarouselInterface, index: React.Key) => {
+              (item: ProjectCarouselInterface, index: number) => {
                 return (
                   <CarouselItem key={index}>
                     <img
@@ -105,7 +105,7 @@ export const ProjectCarousel = ({
             value={current.toString()}
           >
             {carousel.map(
-              (item: ProjectCarouselInterface, index: React.Key) => {
+              (item: ProjectCarouselInterface, index: number) => {
                 return (
                   <div key={index} className="flex items-center">
                     <RadioGroupItem
