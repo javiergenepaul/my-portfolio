@@ -4,6 +4,7 @@ import {
   BackgroundSection,
   FooterSection,
   IntroSection,
+  LanguageSection,
   TestimonialSection,
 } from "./sections";
 import { useEffect } from "react";
@@ -20,7 +21,7 @@ export const About = () => {
         <IntroSection />
         <BackgroundSection />
         <CertificateSection />
-        {/* <LanguageSection /> */}
+        <LanguageSection />
         <TestimonialSection />
         <OutroSection />
         <FooterSection />

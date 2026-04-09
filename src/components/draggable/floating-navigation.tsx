@@ -64,7 +64,7 @@ export const FloatingNavigation = () => {
         <div
           ref={nodeRef}
           className={twMerge(
-            "bg-popover border z-[999999999999] rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-50 hover:opacity-100 transition-opacity",
+            "bg-popover border z-999999999999 rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-50 hover:opacity-100 transition-opacity",
             twMergeResult()
           )}
         >
