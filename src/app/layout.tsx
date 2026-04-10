@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   description:
     "Full-stack software engineer specializing in React, Spring Boot, and modern web technologies.",
   metadataBase: new URL("https://javiergenepaul.com"),
+  icons: {
+    icon: "/javi-logo.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

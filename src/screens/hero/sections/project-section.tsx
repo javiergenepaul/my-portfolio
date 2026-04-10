@@ -5,6 +5,7 @@ import { getProjects } from "@/config/data";
 import { Button } from "@/components";
 import { useRouter } from "next/navigation";
 import { translate } from "@/i18n";
+import { triggerNavigationStart } from "@/components/navigation/NavigationProgress";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
 
@@ -44,7 +45,7 @@ export const ProjectSection = () => {
         <Button
           className="select-none"
           variant={"link"}
-          onClick={() => router.push(PATH.PROJECTS.path)}
+          onClick={() => { triggerNavigationStart(); router.push(PATH.PROJECTS.path); }}
         >
           {translate("projects.button.viewFullArchive")}
         </Button>

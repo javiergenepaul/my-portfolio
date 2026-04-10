@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useId } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useAnimationFrame } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Banner } from "../../components";
@@ -21,13 +21,12 @@ const RELATIONSHIP_STYLES: Record<TestimonialRelationship, string> = {
 const ROW_A = TESTIMONIALS.slice(0, 3);
 const ROW_B = TESTIMONIALS.slice(3);
 
-function StarRating({ rating, accent }: { rating: number; accent: string }) {
-  const uid = useId();
+function StarRating({ rating, accent, idPrefix }: { rating: number; accent: string; idPrefix: string }) {
   return (
     <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, i) => {
         const fill = Math.min(1, Math.max(0, rating - i));
-        const gid = `${uid}-s${i}`;
+        const gid = `${idPrefix}-s${i}`;
         return (
           <svg key={i} className="h-3 w-3" viewBox="0 0 24 24" aria-hidden>
             <defs>
@@ -51,7 +50,7 @@ function StarRating({ rating, accent }: { rating: number; accent: string }) {
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: TestimonialInterface }) {
+function TestimonialCard({ testimonial, cardIndex }: { testimonial: TestimonialInterface; cardIndex: number }) {
   const { color } = useSettingsStore();
   const accent = getColor(color);
 
@@ -127,7 +126,7 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialInterface })
 
       {/* Stars + service + relationship */}
       <div className="flex items-center justify-between gap-2">
-        <StarRating rating={testimonial.rating} accent={accent} />
+        <StarRating rating={testimonial.rating} accent={accent} idPrefix={`star-${cardIndex}`} />
         <span className={cn(
           "text-[10px] font-semibold px-2 py-0.5 rounded-full",
           RELATIONSHIP_STYLES[testimonial.relationship]
@@ -170,10 +169,12 @@ function MarqueeRow({
   items,
   reverse = false,
   paused,
+  rowId,
 }: {
   items: TestimonialInterface[];
   reverse?: boolean;
   paused: boolean;
+  rowId: string;
 }) {
   const doubled = [...items, ...items, ...items];
   const contentRef = useRef<HTMLDivElement>(null);
@@ -199,7 +200,7 @@ function MarqueeRow({
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-background to-transparent" />
       <motion.div ref={contentRef} className="flex" style={{ x }}>
         {doubled.map((t, i) => (
-          <TestimonialCard key={i} testimonial={t} />
+          <TestimonialCard key={i} testimonial={t} cardIndex={Number(rowId) * 100 + i} />
         ))}
       </motion.div>
     </div>
@@ -235,8 +236,8 @@ export const TestimonialSection = () => {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <MarqueeRow items={ROW_A} paused={paused} />
-          <MarqueeRow items={ROW_B} reverse paused={paused} />
+          <MarqueeRow items={ROW_A} paused={paused} rowId="0" />
+          <MarqueeRow items={ROW_B} reverse paused={paused} rowId="1" />
         </motion.div>
       </section>
     </div>

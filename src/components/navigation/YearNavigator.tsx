@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { triggerNavigationStart } from "./NavigationProgress";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import {
@@ -40,6 +41,7 @@ export function YearNavigator() {
   const navigate = useCallback(
     (target: YearConfig) => {
       setNavigating(true);
+      triggerNavigationStart();
       router.push(target.path);
     },
     [router]

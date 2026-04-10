@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { triggerNavigationStart } from "@/components/navigation/NavigationProgress";
 import {
   Button,
   Tooltip,
@@ -24,7 +25,7 @@ const FloatingNavButton = ({ path, icon, name }: FloatingNavButtonInterface) => 
         <Tooltip>
           <TooltipTrigger>
             <Button
-              onClick={() => router.push(path)}
+              onClick={() => { triggerNavigationStart(); router.push(path); }}
               size="icon"
               variant="ghost"
             >

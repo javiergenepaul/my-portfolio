@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { triggerNavigationStart } from "@/components/navigation/NavigationProgress";
 import { Avatar, AvatarFallback, AvatarImage, Button } from "@/components";
 import { Banner } from "../../components";
 import { AvatarProfile } from "@/assets";
@@ -18,7 +19,7 @@ export const OutroSection = () => {
           <Avatar className="h-62.5 w-62.5">
             <AvatarImage
               className="rounded-full border-primary border-4"
-              src={AvatarProfile.src}
+              src={AvatarProfile as unknown as string}
             />
             <AvatarFallback className="rounded-full border-primary border-4">
               {translate("header.shortName")}
@@ -32,7 +33,7 @@ export const OutroSection = () => {
           </p>
           <Button
             className="w-fit"
-            onClick={() => router.push(PATH.CONTACTS.path)}
+            onClick={() => { triggerNavigationStart(); router.push(PATH.CONTACTS.path); }}
           >
             {translate("about.outro.getInTouch")}
           </Button>
