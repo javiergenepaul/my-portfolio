@@ -1,19 +1,16 @@
 import { AboutMe } from "@/assets";
 import { Button, LazyImage } from "@/components";
-import { ProjectInterface, ProjectStatus } from "@/config";
+import { ProjectInterface, ProjectStatus, PATH } from "@/config";
 import { translate } from "@/i18n";
 import { getProjects } from "@/config/data";
 import { useSettingsStore } from "@/stores";
-import { DownloadIcon } from "@radix-ui/react-icons";
-
-import * as LightResume from "@/assets/resume/light";
-import * as DarkResume from "@/assets/resume/dark";
-
+import { FileText } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { triggerNavigationStart } from "@/components/navigation/NavigationProgress";
 import moment from "moment";
 import "../css/intro-section.css";
 import { Banner } from "../../components";
 import { twMerge } from "tailwind-merge";
-import { logEvent } from "@/lib";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -22,66 +19,12 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
-  const { getTheme, color } = useSettingsStore();
+  const { color } = useSettingsStore();
+  const router = useRouter();
 
-  /**
-   * Returns the appropriate resume based on the selected theme and color.
-   * @returns {string} The URL of the selected resume.
-   */
-  const getResumeTemplates = (): string => {
-    if (getTheme()) {
-      switch (color) {
-        case "azure":
-          return DarkResume.ResumeDarkAzureBliss;
-        case "emerald":
-          return DarkResume.ResumeDarkEmeraldElegance;
-        case "golden":
-          return DarkResume.ResumeDarkGoldenHaze;
-        case "sunset":
-          return DarkResume.ResumeDarkSunsetEmber;
-        case "lavender":
-          return DarkResume.ResumeDarkPurpleMajesty;
-        case "scarlet":
-          return DarkResume.ResumeDarkScarletSerenade;
-        case "silver":
-          return DarkResume.ResumeDarkSilverSerenity;
-        default:
-          return DarkResume.ResumeDarkEmeraldElegance;
-      }
-    } else {
-      switch (color) {
-        case "azure":
-          return LightResume.ResumeLightAzureBliss;
-        case "emerald":
-          return LightResume.ResumeLightEmeraldElegance;
-        case "golden":
-          return LightResume.ResumeLightGoldenHaze;
-        case "sunset":
-          return LightResume.ResumeLightSunsetEmber;
-        case "lavender":
-          return LightResume.ResumeLightPurpleMajesty;
-        case "scarlet":
-          return LightResume.ResumeLightScarletSerenade;
-        case "silver":
-          return LightResume.ResumeLightSilverSerenity;
-        default:
-          return LightResume.ResumeLightEmeraldElegance;
-      }
-    }
-  };
-
-  /**
-   * Handles the download of the resume.
-   * Opens the resume in a new tab.
-   * @returns {void}
-   */
-  const DownloadResumeHandler = () => {
-    logEvent({
-      category: "Resume",
-      action: "Download",
-      label: "Download Resume",
-    });
-    window.open(getResumeTemplates(), "_blank");
+  const handleBuildResume = () => {
+    triggerNavigationStart();
+    router.push(PATH.RESUME.path);
   };
 
   /**
@@ -137,14 +80,14 @@ export const IntroSection = () => {
               {translate("about.intro.intruduction")}
             </p>
             <Button
-              onClick={DownloadResumeHandler}
+              onClick={handleBuildResume}
               className={twMerge(
                 "transition-colors px-8 mt-4 space-x-2 text-foreground w-fit",
                 color === "silver" ? "text-primary-foreground" : ""
               )}
             >
-              <span>{translate("about.intro.downloadResume")}</span>
-              <DownloadIcon
+              <span>Build My Resume</span>
+              <FileText
                 className={twMerge(
                   "transition-colors duration-300 text-foreground",
                   color === "silver" ? "text-primary-foreground" : ""

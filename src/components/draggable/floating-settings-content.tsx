@@ -294,7 +294,7 @@ const LanguageField = () => {
       <Label>{translate("floating.changeLanguage")}</Label>
       <RadioGroup value={language} onValueChange={onChangeLangHanlder}>
         {LANGUAGE_OPTIONS.map((lang: GeneralLangOptions) => (
-          <div className="flex items-center space-x-2">
+          <div key={lang.value} className="flex items-center space-x-2">
             <RadioGroupItem value={lang.value} id={lang.value} />
             <Label className="cursor-pointer" htmlFor={lang.value}>
               {lang.name}

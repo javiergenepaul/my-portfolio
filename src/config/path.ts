@@ -43,4 +43,8 @@ export const PATH = {
     name: "Confidential",
     path: "/2024/confidential",
   },
+  RESUME: {
+    name: "Resume Builder",
+    path: "/2024/resume",
+  },
 } as const;

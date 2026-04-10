@@ -1,7 +1,7 @@
 import React from "react";
 import { PATH, SOCIAL_MEDIA_LINK_DATA, SideMenuInterface } from "@/config";
 import { PersonIcon } from "@radix-ui/react-icons";
-import { HomeIcon, PieChart, Contact, Settings } from "lucide-react";
+import { HomeIcon, PieChart, Contact, Settings, FileText } from "lucide-react";
 import { Drawer } from "vaul";
 import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";
@@ -48,6 +48,11 @@ export const SidebarContent = (props: SidebarContentInterface) => {
       name: translate("settings.settings"),
       path: PATH.SETTINGS.path,
       icon: <Settings width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
+    },
+    {
+      name: "Resume Builder",
+      path: PATH.RESUME.path,
+      icon: <FileText width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
     },
   ];
 

@@ -1,0 +1,294 @@
+"use client";
+
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { Download, LayoutTemplate, Sparkles, Check, ZoomIn, ZoomOut } from "lucide-react";
+import { useSettingsStore, type Color } from "@/stores";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components";
+import { SimpleTemplate } from "./templates/simple-template";
+import { ModernTemplate } from "./templates/modern-template";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+export type ResumeMode = "simple" | "modern";
+
+export interface ResumeColorConfig {
+  primary: string;
+  light: string;
+  dark: string;
+  /** Text colour to use on the primary background */
+  text: string;
+}
+
+// ─── Color map ────────────────────────────────────────────────────────────────
+
+const COLOR_CONFIG: Record<Color, ResumeColorConfig> = {
+  emerald:  { primary: "#22C55E", light: "#DCFCE7", dark: "#15803D", text: "#FFFFFF" },
+  azure:    { primary: "#3B82F6", light: "#DBEAFE", dark: "#1D4ED8", text: "#FFFFFF" },
+  golden:   { primary: "#CA8A04", light: "#FEF9C3", dark: "#A16207", text: "#FFFFFF" },
+  sunset:   { primary: "#EA580C", light: "#FFEDD5", dark: "#C2410C", text: "#FFFFFF" },
+  lavender: { primary: "#7C3AED", light: "#EDE9FE", dark: "#5B21B6", text: "#FFFFFF" },
+  scarlet:  { primary: "#E11D48", light: "#FFE4E6", dark: "#BE123C", text: "#FFFFFF" },
+  silver:   { primary: "#52525B", light: "#F4F4F5", dark: "#27272A", text: "#FFFFFF" },
+};
+
+const COLOR_SWATCHES: { value: Color; hex: string }[] = [
+  { value: "emerald",  hex: "#22C55E" },
+  { value: "azure",    hex: "#3B82F6" },
+  { value: "golden",   hex: "#CA8A04" },
+  { value: "sunset",   hex: "#EA580C" },
+  { value: "lavender", hex: "#7C3AED" },
+  { value: "scarlet",  hex: "#E11D48" },
+  { value: "silver",   hex: "#52525B" },
+];
+
+// ─── Component ────────────────────────────────────────────────────────────────
+
+export const ResumeBuilder = () => {
+  const { color: storeColor } = useSettingsStore();
+  const [mode, setMode] = useState<ResumeMode>("modern");
+  const [color, setColor] = useState<Color>(storeColor);
+  const [zoom, setZoom] = useState(0.85);
+  const [autoZoom, setAutoZoom] = useState(0.85);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Auto-fit the preview to the available container width on mount
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    const available = containerRef.current.clientWidth;
+    if (available > 0) {
+      const fit = Math.min(0.85, Math.max(0.4, Math.floor((available / 794) * 100) / 100));
+      setAutoZoom(fit);
+      setZoom(fit);
+    }
+  }, []);
+
+  const stepZoom = (delta: number) =>
+    setZoom((z) => Math.min(1.5, Math.max(0.4, Math.round((z + delta) * 10) / 10)))
+
+  const colors = COLOR_CONFIG[color];
+
+  const handleExport = useCallback(() => {
+    const el = document.getElementById("resume-preview");
+    if (!el) return;
+
+    // Copy every <style> tag and <link rel="stylesheet"> from the current page
+    // so Tailwind utility classes resolve correctly in the new window.
+    const styleMarkup = [
+      ...Array.from(document.querySelectorAll("style")).map((s) => s.outerHTML),
+      ...Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(
+        (l) => l.outerHTML
+      ),
+    ].join("\n");
+
+    const html = `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base href="${window.location.origin}/">
+    ${styleMarkup}
+    <style>
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      @page { size: A4 portrait; margin: 0; }
+      html, body { margin: 0; padding: 0; background: white; }
+    </style>
+  </head>
+  <body>${el.outerHTML}</body>
+  <script>
+    window.onload = function () {
+      setTimeout(function () { window.print(); window.close(); }, 300);
+    };
+  <\/script>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
+    setTimeout(() => URL.revokeObjectURL(url), 10_000);
+  }, []);
+
+  return (
+    <div className="min-h-screen py-8 px-4 sm:px-6">
+      {/* Page title */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold tracking-tight">Resume Builder</h1>
+        <p className="text-sm text-muted-foreground mt-1.5">
+          Choose a template and theme, then export as PDF.
+        </p>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
+
+        {/* ── Controls panel ───────────────────────────────────────────── */}
+        <div className="w-full lg:w-72 shrink-0 flex flex-col gap-5">
+
+          {/* Mode */}
+          <ControlCard title="Template">
+            <div className="flex gap-3">
+              <ModeButton
+                active={mode === "simple"}
+                onClick={() => setMode("simple")}
+                icon={<LayoutTemplate size={15} />}
+                label="Simple"
+                description="Classic, clean"
+              />
+              <ModeButton
+                active={mode === "modern"}
+                onClick={() => setMode("modern")}
+                icon={<Sparkles size={15} />}
+                label="Modern"
+                description="Styled sidebar"
+              />
+            </div>
+          </ControlCard>
+
+          {/* Theme */}
+          <ControlCard title="Color Theme">
+            <div className="flex flex-wrap gap-3">
+              {COLOR_SWATCHES.map(({ value, hex }) => (
+                <button
+                  key={value}
+                  onClick={() => setColor(value)}
+                  aria-label={value}
+                  title={value}
+                  className={cn(
+                    "h-8 w-8 rounded-full border-2 transition-all flex items-center justify-center",
+                    color === value
+                      ? "border-foreground scale-110 shadow-md"
+                      : "border-transparent hover:scale-105"
+                  )}
+                  style={{ backgroundColor: hex }}
+                >
+                  {color === value && (
+                    <Check
+                      size={13}
+                      style={{ color: "#fff", strokeWidth: 3 }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground capitalize">{color}</p>
+          </ControlCard>
+
+          {/* Export */}
+          <Button
+            onClick={handleExport}
+            className="w-full gap-2 h-11 text-sm font-semibold"
+            style={{ backgroundColor: colors.primary, color: colors.text }}
+          >
+            <Download size={16} />
+            Export PDF
+          </Button>
+
+          {/* Tips */}
+          <div className="rounded-xl border border-dashed border-border px-4 py-4 flex flex-col gap-2 text-xs text-muted-foreground leading-relaxed">
+            <p className="font-semibold text-foreground text-sm">Export tips</p>
+            <ul className="space-y-1.5 list-disc list-inside">
+              <li>Select <b>Save as PDF</b> in the print dialog.</li>
+              <li>Set margins to <b>None</b> for best fit.</li>
+              <li>Enable <b>Background graphics</b> in More settings.</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* ── Preview ──────────────────────────────────────────────────── */}
+        <div ref={containerRef} className="flex-1 min-w-0 w-full pb-8 flex flex-col gap-3 items-center">
+
+          {/* Zoom toolbar */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => stepZoom(-0.1)}
+              disabled={zoom <= 0.4}
+              className="h-7 w-7 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 transition-colors"
+              title="Zoom out"
+            >
+              <ZoomOut size={14} />
+            </button>
+            <button
+              onClick={() => setZoom(autoZoom)}
+              className="h-7 px-2 rounded text-[11px] font-mono text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              title="Reset zoom"
+            >
+              {Math.round(zoom * 100)}%
+            </button>
+            <button
+              onClick={() => stepZoom(0.1)}
+              disabled={zoom >= 1.5}
+              className="h-7 w-7 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 transition-colors"
+              title="Zoom in"
+            >
+              <ZoomIn size={14} />
+            </button>
+          </div>
+
+          <div className="w-full overflow-x-auto">
+            <div className="mx-auto" style={{ width: `${794 * zoom}px` }}>
+              <div
+                ref={previewRef}
+                className="shadow-2xl rounded ring-1 ring-border/20 origin-top-left"
+                style={{ width: "794px", zoom }}
+              >
+                {mode === "simple" ? (
+                  <SimpleTemplate colors={colors} />
+                ) : (
+                  <ModernTemplate colors={colors} />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function ControlCard({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="rounded-xl border border-border bg-card px-5 py-4 flex flex-col gap-4">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+        {title}
+      </p>
+      {children}
+    </div>
+  );
+}
+
+function ModeButton({
+  active,
+  onClick,
+  icon,
+  label,
+  description,
+}: {
+  active: boolean;
+  onClick: () => void;
+  icon: React.ReactNode;
+  label: string;
+  description: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "flex-1 rounded-lg border px-3 py-3 text-left transition-all",
+        active
+          ? "border-primary bg-primary/5 text-primary"
+          : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+      )}
+    >
+      <div className="flex items-center gap-2 mb-1">
+        {icon}
+        <span className="text-sm font-semibold">{label}</span>
+      </div>
+      <p className="text-[11px] opacity-60">{description}</p>
+    </button>
+  );
+}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Code, Contact, Home, Settings, User } from "lucide-react";
+import { Code, Contact, Home, Settings, User, FileText } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { EMERALD_COLOR, PATH } from "@/config";
 import { useSettingsStore } from "@/stores";
@@ -66,6 +66,11 @@ export const FloatingNavbar = () => {
       path: PATH.SETTINGS.path,
       name: translate("floatingNav.settings"),
     },
+    {
+      icon: <FileText color={isNavActive(PATH.RESUME.path)} height={NAV_ICON_SIZE} width={NAV_ICON_SIZE} />,
+      path: PATH.RESUME.path,
+      name: "Resume Builder",
+    },
   ];
 
   return (
@@ -75,7 +80,7 @@ export const FloatingNavbar = () => {
         pathname === PATH.HOME.path ? "opacity-0" : ""
       )}
     >
-      <div className="fixed inset-0 z-[999999999999] flex items-center w-full h-full pointer-events-none">
+      <div className="fixed inset-0 z-999999999999 flex items-center w-full h-full pointer-events-none">
         <nav className="px-2 py-4 border bg-popover rounded-r-xl">
           <ul className="flex flex-col gap-2 pointer-events-auto">
             {FLOATING_NAV_BUTTON.map((item, index) => (
