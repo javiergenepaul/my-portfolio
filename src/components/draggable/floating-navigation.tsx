@@ -48,8 +48,8 @@ export const FloatingNavigation = () => {
     <div
       ref={ref}
       className={twMerge(
-        "fixed inset-0 z-50 flex items-center justify-center pointer-events-none",
-        hideFloatingSettings ? "hidden" : ""
+        "fixed inset-0 z-50 hidden lg:flex items-center justify-center pointer-events-none",
+        hideFloatingSettings ? "hidden!" : ""
       )}
     >
       <Draggable

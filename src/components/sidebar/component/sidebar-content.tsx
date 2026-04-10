@@ -5,6 +5,7 @@ import { HomeIcon, PieChart, Contact, Settings } from "lucide-react";
 import { Drawer } from "vaul";
 import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";
+import { SidebarQuickAccess } from "./sidebar-quick-access";
 import { SocialIcon } from "@/components";
 
 interface SidebarContentInterface {
@@ -66,8 +67,9 @@ export const SidebarContent = (props: SidebarContentInterface) => {
               </div>
             </div>
           </div>
-          <div className="mt-auto pt-auto px-2">
-            <div className="flex justify-end gap-4">
+          <div className="mt-auto pt-4 flex flex-col gap-4">
+            <SidebarQuickAccess />
+            <div className="flex justify-end gap-4 px-2">
               {SOCIAL_MEDIA_LINK_DATA.map((socialMedia, index: React.Key) => (
                 <a className="flex gap-2" key={index} href={socialMedia.url}>
                   <SocialIcon icon={socialMedia.icon} />
