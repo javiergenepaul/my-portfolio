@@ -4,7 +4,9 @@ export const metadata: Metadata = {
   title: "Gene Paul Mar Javier — 2025 Portfolio",
   description: "2025 portfolio of Gene Paul Mar Javier — Moonlight Red edition.",
   icons: {
-    icon: "/favicons/2025.ico",
+    icon: [
+      { url: "/favicons/2025.svg", type: "image/svg+xml" },
+    ],
   },
 };
 
