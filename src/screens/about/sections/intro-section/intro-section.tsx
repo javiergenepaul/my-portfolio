@@ -1,16 +1,16 @@
 import { AboutMe } from "@/assets";
 import { Button, LazyImage } from "@/components";
-import { ProjectInterface, ProjectStatus, PATH } from "@/config";
+import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
 import { getProjects } from "@/config/data";
 import { useSettingsStore } from "@/stores";
 import { FileText } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { triggerNavigationStart } from "@/components/navigation/NavigationProgress";
+import { useState } from "react";
 import moment from "moment";
 import "../css/intro-section.css";
 import { Banner } from "../../components";
 import { twMerge } from "tailwind-merge";
+import { ResumeModal } from "@/components/resume-modal";
 
 interface PersonalStatisticInterface {
   count: number;
@@ -20,12 +20,7 @@ interface PersonalStatisticInterface {
 
 export const IntroSection = () => {
   const { color } = useSettingsStore();
-  const router = useRouter();
-
-  const handleBuildResume = () => {
-    triggerNavigationStart();
-    router.push(PATH.RESUME.path);
-  };
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   /**
    * Counts the number of completed projects.
@@ -60,6 +55,13 @@ export const IntroSection = () => {
   ];
 
   return (
+    <>
+    <ResumeModal
+      open={resumeOpen}
+      onClose={() => setResumeOpen(false)}
+      year={2024}
+      defaultColor="emerald"
+    />
     <div className="relative">
       <Banner />
       <section className="flex flex-col-reverse h-full min-h-screen mx-auto lg:flex-row max-w-7xl">
@@ -80,7 +82,7 @@ export const IntroSection = () => {
               {translate("about.intro.intruduction")}
             </p>
             <Button
-              onClick={handleBuildResume}
+              onClick={() => setResumeOpen(true)}
               className={twMerge(
                 "transition-colors px-8 mt-4 space-x-2 text-foreground w-fit",
                 color === "silver" ? "text-primary-foreground" : ""
@@ -116,5 +118,6 @@ export const IntroSection = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };

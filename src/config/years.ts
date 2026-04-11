@@ -27,9 +27,9 @@ export const YEARS: YearConfig[] = [
     enabled: true,
     label: "2025",
     path: "/2025",
-    theme: "Coming Soon",
-    journey: "The next chapter is being crafted. Stay tuned.",
-    description: "Coming soon.",
+    theme: "Moonlight Red",
+    journey: "Refined craft, sharper systems, and a portfolio reimagined from the ground up.",
+    description: "A dark, minimal portfolio with a moonlight red accent.",
   },
   {
     year: 2026,

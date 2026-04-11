@@ -12,6 +12,7 @@ import type { ResumeColorConfig } from "../resume";
 
 interface SimpleTemplateProps {
   colors: ResumeColorConfig;
+  isDark?: boolean;
 }
 
 function formatDateRange(
@@ -45,36 +46,40 @@ function EntryHeader({
   subtitle,
   date,
   accent,
+  textDark,
+  textMuted,
 }: {
   title: string;
   subtitle?: string;
   date?: string;
   accent: string;
+  textDark: string;
+  textMuted: string;
 }) {
   return (
     <div className="mb-0.5">
       <div className="flex justify-between items-baseline">
-        <span className="text-[11px] font-bold text-gray-900">
+        <span className="text-[11px] font-bold" style={{ color: textDark }}>
           <span style={{ color: accent }}>//</span>
           {title}
         </span>
         {date && (
-          <span className="text-[9px] text-gray-500 shrink-0 ml-2">{date}</span>
+          <span className="text-[9px] shrink-0 ml-2" style={{ color: textMuted }}>{date}</span>
         )}
       </div>
       {subtitle && (
-        <p className="text-[9.5px] text-gray-500 italic">{subtitle}</p>
+        <p className="text-[9.5px] italic" style={{ color: textMuted }}>{subtitle}</p>
       )}
     </div>
   );
 }
 
 /** Bullet list */
-function BulletList({ items }: { items: string[] }) {
+function BulletList({ items, textMed }: { items: string[]; textMed: string }) {
   return (
     <ul className="mt-0.5 space-y-0.5 pl-3" style={{ listStyleType: "disc" }}>
       {items.map((item, i) => (
-        <li key={i} className="text-[9.5px] text-gray-700 leading-relaxed">
+        <li key={i} className="text-[9.5px] leading-relaxed" style={{ color: textMed }}>
           {item}
         </li>
       ))}
@@ -82,7 +87,7 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-export function SimpleTemplate({ colors }: SimpleTemplateProps) {
+export function SimpleTemplate({ colors, isDark = false }: SimpleTemplateProps) {
   useLocaleRefresh();
 
   const experience = getExperience().filter((e) => e.isWork);
@@ -99,28 +104,38 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
 
   const accent = colors.primary;
 
+  // Neutral tones that flip with isDark
+  const pageBg    = isDark ? "#1E293B" : "#FFFFFF";
+  const colBg     = isDark ? "#0F172A" : "#F9FAFB";
+  const textDark  = isDark ? "#F1F5F9" : "#111827";
+  const textMed   = isDark ? "#CBD5E1" : "#374151";
+  const textMuted = isDark ? "#94A3B8" : "#6B7280";
+  const textLight = isDark ? "#64748B" : "#9CA3AF";
+
   // Flatten top skills for left-column "Core Competencies"
   const coreCompetencies = [
-    ...coreSkills.flatMap((c) => c.stacks.slice(0, 5).map((s) => s.name)),
-    ...(devopsSkills?.stacks.slice(0, 4).map((s) => s.name) ?? []),
+    ...coreSkills.flatMap((c) => c.stacks.slice(0, 5).map((s) => translate(`services.stack.${s.name}` as any))),
+    ...(devopsSkills?.stacks.slice(0, 4).map((s) => translate(`services.stack.${s.name}` as any)) ?? []),
   ];
 
   return (
     <div
       id="resume-preview"
-      className="bg-white text-gray-900"
       style={{
         width: "794px",
         minHeight: "1123px",
         fontFamily: "'Arial', 'Helvetica', sans-serif",
         printColorAdjust: "exact",
         WebkitPrintColorAdjust: "exact",
+        backgroundColor: pageBg,
+        color: textDark,
       } as React.CSSProperties}
     >
       {/* ── HEADER ─────────────────────────────────── */}
       <div className="text-center pt-8 pb-4 px-10">
         <h1
-          className="text-[28px] font-bold tracking-widest uppercase text-gray-900"
+          className="text-[28px] font-bold tracking-widest uppercase"
+          style={{ color: textDark }}
         >
           {FULL_NAME}
         </h1>
@@ -133,7 +148,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
       </div>
 
       {/* Full-width divider */}
-      <div className="mx-10 h-[2px]" style={{ backgroundColor: accent }} />
+      <div className="mx-10 h-0.5" style={{ backgroundColor: accent }} />
 
       {/* ── BODY ───────────────────────────────────── */}
       <div className="flex">
@@ -141,7 +156,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
         {/* LEFT COLUMN */}
         <div
           className="w-44 shrink-0 px-5 py-4 flex flex-col gap-4"
-          style={{ borderRight: `1px solid ${accent}22` }}
+          style={{ borderRight: `1px solid ${accent}22`, backgroundColor: colBg }}
         >
           {/* Contact */}
           <div>
@@ -164,11 +179,11 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
                     {item.icon}
                   </span>
                   {item.href ? (
-                    <a href={item.href} className="text-[8.5px] text-gray-600 leading-tight break-all hover:underline">
+                    <a href={item.href} className="text-[8.5px] leading-tight break-all hover:underline" style={{ color: textMed }}>
                       {item.text}
                     </a>
                   ) : (
-                    <span className="text-[8.5px] text-gray-600 leading-tight">{item.text}</span>
+                    <span className="text-[8.5px] leading-tight" style={{ color: textMed }}>{item.text}</span>
                   )}
                 </div>
               ))}
@@ -188,7 +203,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
             </p>
             <div className="flex flex-col gap-1">
               {coreCompetencies.map((skill) => (
-                <p key={skill} className="text-[9px] text-gray-700">
+                <p key={skill} className="text-[9px]" style={{ color: textMed }}>
                   {skill}
                 </p>
               ))}
@@ -209,11 +224,11 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
             <div className="flex flex-col gap-3">
               {education.map((edu, i) => (
                 <div key={i}>
-                  <p className="text-[9.5px] font-bold text-gray-800">
+                  <p className="text-[9.5px] font-bold" style={{ color: textDark }}>
                     <span style={{ color: accent }}>//</span>{edu.title}
                   </p>
-                  <p className="text-[8.5px] text-gray-500 italic">{edu.subtitle}</p>
-                  <p className="text-[8px] text-gray-400">
+                  <p className="text-[8.5px] italic" style={{ color: textMuted }}>{edu.subtitle}</p>
+                  <p className="text-[8px]" style={{ color: textLight }}>
                     {formatDateRange(edu.startYear, edu.endYear)}
                   </p>
                 </div>
@@ -227,7 +242,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
 
           {/* Qualifications Summary */}
           <SectionDivider title="Qualifications Summary" accent={accent} />
-          <p className="text-[9.5px] text-gray-700 leading-relaxed">
+          <p className="text-[9.5px] leading-relaxed" style={{ color: textMed }}>
             {translate("about.intro.intruduction")}
           </p>
 
@@ -241,6 +256,8 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
                   subtitle={`${exp.subtitle ?? ""}${exp.employmentType ? " · " + exp.employmentType : ""}`}
                   date={formatDateRange(exp.startYear, exp.endYear)}
                   accent={accent}
+                  textDark={textDark}
+                  textMuted={textMuted}
                 />
                 {exp.promotion && exp.promotion.length > 0 ? (
                   <BulletList
@@ -248,6 +265,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
                       (p) =>
                         `${p.title} (${formatDateRange(p.startYear, p.endYear)})`
                     )}
+                    textMed={textMed}
                   />
                 ) : (
                   <BulletList
@@ -256,6 +274,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
                       .filter(Boolean)
                       .slice(0, 3)
                       .map((s) => s.trim().replace(/\.$/, "") + ".")}
+                    textMed={textMed}
                   />
                 )}
               </div>
@@ -271,11 +290,13 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
                   title={p.title}
                   subtitle={
                     p.stack
-                      ? p.stack.slice(0, 5).map((s) => s.name).join(" · ")
+                      ? p.stack.slice(0, 5).map((s) => translate(`services.stack.${s.name}` as any)).join(" · ")
                       : undefined
                   }
                   date={p.type}
                   accent={accent}
+                  textDark={textDark}
+                  textMuted={textMuted}
                 />
                 <BulletList
                   items={p.description
@@ -283,6 +304,7 @@ export function SimpleTemplate({ colors }: SimpleTemplateProps) {
                     .filter(Boolean)
                     .slice(0, 2)
                     .map((s) => s.trim().replace(/\.$/, "") + ".")}
+                  textMed={textMed}
                 />
               </div>
             ))}

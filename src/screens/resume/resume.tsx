@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { Download, LayoutTemplate, Sparkles, Check, ZoomIn, ZoomOut } from "lucide-react";
+import { Download, LayoutTemplate, Sparkles, Check, ZoomIn, ZoomOut, Sun, Moon } from "lucide-react";
 import { useSettingsStore, type Color } from "@/stores";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components";
@@ -44,10 +44,20 @@ const COLOR_SWATCHES: { value: Color; hex: string }[] = [
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-export const ResumeBuilder = () => {
-  const { color: storeColor } = useSettingsStore();
+interface ResumeBuilderProps {
+  /** Seed the color picker with a specific colour instead of the store value */
+  defaultColor?: Color;
+}
+
+export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
+  const { color: storeColor, theme } = useSettingsStore();
   const [mode, setMode] = useState<ResumeMode>("modern");
-  const [color, setColor] = useState<Color>(storeColor);
+  const [color, setColor] = useState<Color>(defaultColor ?? storeColor);
+  const [isDark, setIsDark] = useState(() => {
+    if (theme === "dark") return true;
+    if (theme === "light") return false;
+    return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
   const [zoom, setZoom] = useState(0.85);
   const [autoZoom, setAutoZoom] = useState(0.85);
   const previewRef = useRef<HTMLDivElement>(null);
@@ -113,133 +123,143 @@ export const ResumeBuilder = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6">
-      {/* Page title */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Resume Builder</h1>
-        <p className="text-sm text-muted-foreground mt-1.5">
-          Choose a template and theme, then export as PDF.
-        </p>
+    <div className="flex flex-col lg:flex-row min-h-full">
+
+      {/* ── Controls panel — sticky ───────────────────────────────────── */}
+      <div className="w-full lg:w-96 shrink-0 border-b lg:border-b-0 lg:border-r border-border sticky top-0 self-start flex flex-col gap-5 p-6">
+
+        {/* Mode */}
+        <ControlCard title="Template">
+          <div className="flex gap-3">
+            <ModeButton
+              active={mode === "simple"}
+              onClick={() => setMode("simple")}
+              icon={<LayoutTemplate size={15} />}
+              label="Simple"
+              description="Classic, clean"
+            />
+            <ModeButton
+              active={mode === "modern"}
+              onClick={() => setMode("modern")}
+              icon={<Sparkles size={15} />}
+              label="Modern"
+              description="Styled sidebar"
+            />
+          </div>
+        </ControlCard>
+
+        {/* Dark / Light */}
+        <ControlCard title="Background">
+          <div className="flex gap-3">
+            <ModeButton
+              active={!isDark}
+              onClick={() => setIsDark(false)}
+              icon={<Sun size={15} />}
+              label="Light"
+              description="White paper"
+            />
+            <ModeButton
+              active={isDark}
+              onClick={() => setIsDark(true)}
+              icon={<Moon size={15} />}
+              label="Dark"
+              description="Dark paper"
+            />
+          </div>
+        </ControlCard>
+
+        {/* Theme */}
+        <ControlCard title="Color Theme">
+          <div className="flex flex-wrap gap-3">
+            {COLOR_SWATCHES.map(({ value, hex }) => (
+              <button
+                key={value}
+                onClick={() => setColor(value)}
+                aria-label={value}
+                title={value}
+                className={cn(
+                  "h-8 w-8 rounded-full border-2 transition-all flex items-center justify-center",
+                  color === value
+                    ? "border-foreground scale-110 shadow-md"
+                    : "border-transparent hover:scale-105"
+                )}
+                style={{ backgroundColor: hex }}
+              >
+                {color === value && (
+                  <Check
+                    size={13}
+                    style={{ color: "#fff", strokeWidth: 3 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground capitalize">{color}</p>
+        </ControlCard>
+
+        {/* Export */}
+        <Button
+          onClick={handleExport}
+          className="w-full gap-2 h-11 text-sm font-semibold"
+          style={{ backgroundColor: colors.primary, color: colors.text }}
+        >
+          <Download size={16} />
+          Export PDF
+        </Button>
+
+        {/* Tips */}
+        <div className="rounded-xl border border-dashed border-border px-4 py-4 flex flex-col gap-2 text-xs text-muted-foreground leading-relaxed">
+          <p className="font-semibold text-foreground text-sm">Export tips</p>
+          <ul className="space-y-1.5 list-disc list-inside">
+            <li>Select <b>Save as PDF</b> in the print dialog.</li>
+            <li>Set margins to <b>None</b> for best fit.</li>
+            <li>Enable <b>Background graphics</b> in More settings.</li>
+          </ul>
+        </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
+      {/* ── Preview ──────────────────────────────────────────────────── */}
+      <div ref={containerRef} className="flex-1 min-w-0 w-full p-6 pb-10 flex flex-col gap-3 items-center">
 
-        {/* ── Controls panel ───────────────────────────────────────────── */}
-        <div className="w-full lg:w-72 shrink-0 flex flex-col gap-5">
-
-          {/* Mode */}
-          <ControlCard title="Template">
-            <div className="flex gap-3">
-              <ModeButton
-                active={mode === "simple"}
-                onClick={() => setMode("simple")}
-                icon={<LayoutTemplate size={15} />}
-                label="Simple"
-                description="Classic, clean"
-              />
-              <ModeButton
-                active={mode === "modern"}
-                onClick={() => setMode("modern")}
-                icon={<Sparkles size={15} />}
-                label="Modern"
-                description="Styled sidebar"
-              />
-            </div>
-          </ControlCard>
-
-          {/* Theme */}
-          <ControlCard title="Color Theme">
-            <div className="flex flex-wrap gap-3">
-              {COLOR_SWATCHES.map(({ value, hex }) => (
-                <button
-                  key={value}
-                  onClick={() => setColor(value)}
-                  aria-label={value}
-                  title={value}
-                  className={cn(
-                    "h-8 w-8 rounded-full border-2 transition-all flex items-center justify-center",
-                    color === value
-                      ? "border-foreground scale-110 shadow-md"
-                      : "border-transparent hover:scale-105"
-                  )}
-                  style={{ backgroundColor: hex }}
-                >
-                  {color === value && (
-                    <Check
-                      size={13}
-                      style={{ color: "#fff", strokeWidth: 3 }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-            <p className="text-xs text-muted-foreground capitalize">{color}</p>
-          </ControlCard>
-
-          {/* Export */}
-          <Button
-            onClick={handleExport}
-            className="w-full gap-2 h-11 text-sm font-semibold"
-            style={{ backgroundColor: colors.primary, color: colors.text }}
+        {/* Zoom toolbar */}
+        <div className="flex items-center gap-1 sticky top-4 z-10 bg-background/80 backdrop-blur-sm rounded-lg px-2 py-1 border border-border/50 shadow-sm">
+          <button
+            onClick={() => stepZoom(-0.1)}
+            disabled={zoom <= 0.4}
+            className="h-7 w-7 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 transition-colors"
+            title="Zoom out"
           >
-            <Download size={16} />
-            Export PDF
-          </Button>
-
-          {/* Tips */}
-          <div className="rounded-xl border border-dashed border-border px-4 py-4 flex flex-col gap-2 text-xs text-muted-foreground leading-relaxed">
-            <p className="font-semibold text-foreground text-sm">Export tips</p>
-            <ul className="space-y-1.5 list-disc list-inside">
-              <li>Select <b>Save as PDF</b> in the print dialog.</li>
-              <li>Set margins to <b>None</b> for best fit.</li>
-              <li>Enable <b>Background graphics</b> in More settings.</li>
-            </ul>
-          </div>
+            <ZoomOut size={14} />
+          </button>
+          <button
+            onClick={() => setZoom(autoZoom)}
+            className="h-7 px-2 rounded text-[11px] font-mono text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            title="Reset zoom"
+          >
+            {Math.round(zoom * 100)}%
+          </button>
+          <button
+            onClick={() => stepZoom(0.1)}
+            disabled={zoom >= 1.5}
+            className="h-7 w-7 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 transition-colors"
+            title="Zoom in"
+          >
+            <ZoomIn size={14} />
+          </button>
         </div>
 
-        {/* ── Preview ──────────────────────────────────────────────────── */}
-        <div ref={containerRef} className="flex-1 min-w-0 w-full pb-8 flex flex-col gap-3 items-center">
-
-          {/* Zoom toolbar */}
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => stepZoom(-0.1)}
-              disabled={zoom <= 0.4}
-              className="h-7 w-7 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 transition-colors"
-              title="Zoom out"
+        <div className="w-full overflow-x-auto">
+          <div className="mx-auto" style={{ width: `${794 * zoom}px` }}>
+            <div
+              ref={previewRef}
+              className="shadow-2xl rounded ring-1 ring-border/20 origin-top-left"
+              style={{ width: "794px", zoom }}
             >
-              <ZoomOut size={14} />
-            </button>
-            <button
-              onClick={() => setZoom(autoZoom)}
-              className="h-7 px-2 rounded text-[11px] font-mono text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-              title="Reset zoom"
-            >
-              {Math.round(zoom * 100)}%
-            </button>
-            <button
-              onClick={() => stepZoom(0.1)}
-              disabled={zoom >= 1.5}
-              className="h-7 w-7 rounded flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 transition-colors"
-              title="Zoom in"
-            >
-              <ZoomIn size={14} />
-            </button>
-          </div>
-
-          <div className="w-full overflow-x-auto">
-            <div className="mx-auto" style={{ width: `${794 * zoom}px` }}>
-              <div
-                ref={previewRef}
-                className="shadow-2xl rounded ring-1 ring-border/20 origin-top-left"
-                style={{ width: "794px", zoom }}
-              >
-                {mode === "simple" ? (
-                  <SimpleTemplate colors={colors} />
-                ) : (
-                  <ModernTemplate colors={colors} />
-                )}
-              </div>
+              {mode === "simple" ? (
+                <SimpleTemplate colors={colors} isDark={isDark} />
+              ) : (
+                <ModernTemplate colors={colors} isDark={isDark} />
+              )}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Gene Paul Mar Javier — 2025 Portfolio",
-  description: "Coming soon — 2025 edition of Gene Paul Mar Javier's portfolio.",
+  description: "2025 portfolio of Gene Paul Mar Javier — Moonlight Red edition.",
   icons: {
     icon: "/favicons/2025.ico",
   },

@@ -14,10 +14,20 @@ export interface FloatingNavButtonInterface {
   path: string;
   icon: React.ReactNode;
   name: string;
+  onClick?: () => void;
 }
 
-const FloatingNavButton = ({ path, icon, name }: FloatingNavButtonInterface) => {
+const FloatingNavButton = ({ path, icon, name, onClick }: FloatingNavButtonInterface) => {
   const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      triggerNavigationStart();
+      router.push(path);
+    }
+  };
 
   return (
     <li>
@@ -25,7 +35,7 @@ const FloatingNavButton = ({ path, icon, name }: FloatingNavButtonInterface) => 
         <Tooltip>
           <TooltipTrigger>
             <Button
-              onClick={() => { triggerNavigationStart(); router.push(path); }}
+              onClick={handleClick}
               size="icon"
               variant="ghost"
             >

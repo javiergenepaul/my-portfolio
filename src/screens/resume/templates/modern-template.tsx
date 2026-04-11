@@ -12,6 +12,7 @@ import type { ResumeColorConfig } from "../resume";
 
 interface ModernTemplateProps {
   colors: ResumeColorConfig;
+  isDark?: boolean;
 }
 
 function formatDateRange(
@@ -23,7 +24,7 @@ function formatDateRange(
   return `${s} – ${e}`;
 }
 
-export function ModernTemplate({ colors }: ModernTemplateProps) {
+export function ModernTemplate({ colors, isDark = false }: ModernTemplateProps) {
   useLocaleRefresh();
 
   const experience = getExperience().filter((e) => e.isWork);
@@ -39,16 +40,27 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
 
   const { primary, light, dark, text } = colors;
 
+  // Neutral tones that flip with isDark
+  const pageBg     = isDark ? "#1E293B" : "#FFFFFF";
+  const sidebarBg  = isDark ? "#0F172A" : light;
+  const textDark   = isDark ? "#F1F5F9" : "#111827";
+  const textMed    = isDark ? "#CBD5E1" : "#374151";
+  const textMuted  = isDark ? "#94A3B8" : "#6B7280";
+  const dotEmpty   = isDark ? "#334155" : "#D1D5DB";
+  const badgeBg    = isDark ? `${primary}25` : light;
+  const cardBg     = isDark ? "#0F172A" : light;
+
   return (
     <div
       id="resume-preview"
-      className="bg-white text-gray-900 font-sans"
       style={{
         width: "794px",
         minHeight: "1123px",
         fontFamily: "Arial, sans-serif",
         printColorAdjust: "exact",
         WebkitPrintColorAdjust: "exact",
+        backgroundColor: pageBg,
+        color: textDark,
       } as React.CSSProperties}
     >
       {/* Colored header */}
@@ -83,11 +95,11 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
         {/* Sidebar */}
         <div
           className="w-56 shrink-0 px-6 py-6 flex flex-col gap-5"
-          style={{ backgroundColor: light }}
+          style={{ backgroundColor: sidebarBg }}
         >
           {/* Summary */}
           <SideSection title="About" primary={primary} dark={dark}>
-            <p className="text-[10px] text-gray-700 leading-relaxed">
+            <p className="text-[10px] leading-relaxed" style={{ color: textMed }}>
               {translate("about.intro.intruduction")}
             </p>
           </SideSection>
@@ -98,7 +110,7 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
               <div className="flex flex-col gap-0.5">
                 {cat.stacks.slice(0, 7).map((s) => (
                   <div key={s.name} className="flex items-center justify-between">
-                    <span className="text-[10px] text-gray-700">{s.name}</span>
+                    <span className="text-[10px]" style={{ color: textMed }}>{translate(`services.stack.${s.name}` as any)}</span>
                     <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, idx) => (
                         <div
@@ -106,7 +118,7 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
                           className="w-1.5 h-1.5 rounded-full"
                           style={{
                             backgroundColor:
-                              idx < Math.ceil((s.rate / 10) * 5) ? primary : "#D1D5DB",
+                              idx < Math.ceil((s.rate / 10) * 5) ? primary : dotEmpty,
                           }}
                         />
                       ))}
@@ -122,9 +134,9 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
             <div className="flex flex-col gap-3">
               {education.map((edu, i) => (
                 <div key={i}>
-                  <p className="text-[10px] font-semibold text-gray-800">{edu.subtitle}</p>
-                  <p className="text-[10px] text-gray-600 leading-tight">{edu.title}</p>
-                  <p className="text-[9px] text-gray-500 mt-0.5">
+                  <p className="text-[10px] font-semibold" style={{ color: textDark }}>{edu.subtitle}</p>
+                  <p className="text-[10px] leading-tight" style={{ color: textMed }}>{edu.title}</p>
+                  <p className="text-[9px] mt-0.5" style={{ color: textMuted }}>
                     {formatDateRange(edu.startYear, edu.endYear)}
                   </p>
                 </div>
@@ -143,17 +155,17 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
                 <div key={i}>
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-sm font-semibold text-gray-900">{exp.title}</p>
+                      <p className="text-sm font-semibold" style={{ color: textDark }}>{exp.title}</p>
                       <p className="text-xs font-medium" style={{ color: primary }}>
                         {exp.subtitle}
                         {exp.employmentType && (
-                          <span className="text-gray-400"> · {exp.employmentType}</span>
+                          <span style={{ color: textMuted }}> · {exp.employmentType}</span>
                         )}
                       </p>
                     </div>
                     <span
                       className="text-[10px] px-2 py-0.5 rounded-full shrink-0 ml-2 font-medium"
-                      style={{ backgroundColor: light, color: dark }}
+                      style={{ backgroundColor: badgeBg, color: dark }}
                     >
                       {formatDateRange(exp.startYear, exp.endYear)}
                     </span>
@@ -162,13 +174,13 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
                     <div className="mt-1.5 pl-3 border-l-2 flex flex-col gap-1" style={{ borderColor: primary }}>
                       {exp.promotion.map((p, j) => (
                         <div key={j} className="flex justify-between">
-                          <p className="text-[10px] font-medium text-gray-700">{p.title}</p>
-                          <p className="text-[10px] text-gray-400">{formatDateRange(p.startYear, p.endYear)}</p>
+                          <p className="text-[10px] font-medium" style={{ color: textMed }}>{p.title}</p>
+                          <p className="text-[10px]" style={{ color: textMuted }}>{formatDateRange(p.startYear, p.endYear)}</p>
                         </div>
                       ))}
                     </div>
                   )}
-                  <p className="text-xs text-gray-600 mt-1 leading-relaxed line-clamp-3">
+                  <p className="text-xs mt-1 leading-relaxed line-clamp-3" style={{ color: textMed }}>
                     {exp.description}
                   </p>
                 </div>
@@ -180,14 +192,14 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
           <MainSection title="Featured Projects" primary={primary}>
             <div className="flex flex-col gap-3">
               {projects.map((p) => (
-                <div key={p.projectId} className="rounded-md p-3" style={{ backgroundColor: light }}>
+                <div key={p.projectId} className="rounded-md p-3" style={{ backgroundColor: cardBg }}>
                   <div className="flex justify-between items-center mb-1">
-                    <p className="text-sm font-semibold text-gray-900">{p.title}</p>
+                    <p className="text-sm font-semibold" style={{ color: textDark }}>{p.title}</p>
                     {p.company && (
-                      <span className="text-[10px] text-gray-400">{p.company}</span>
+                      <span className="text-[10px]" style={{ color: textMuted }}>{p.company}</span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{p.description}</p>
+                  <p className="text-xs leading-relaxed line-clamp-2" style={{ color: textMed }}>{p.description}</p>
                   {p.stack && (
                     <div className="flex flex-wrap gap-1 mt-1.5">
                       {p.stack.slice(0, 7).map((s) => (
@@ -196,7 +208,7 @@ export function ModernTemplate({ colors }: ModernTemplateProps) {
                           className="text-[9px] px-1.5 py-0.5 rounded font-medium"
                           style={{ backgroundColor: primary + "20", color: dark }}
                         >
-                          {s.name}
+                          {translate(`services.stack.${s.name}` as any)}
                         </span>
                       ))}
                     </div>
@@ -226,7 +238,7 @@ function SideSection({
     <div>
       <h2
         className="text-[10px] font-bold uppercase tracking-widest mb-2 pb-1"
-        style={{ color: dark, borderBottom: `1px solid ${primary}` }}
+        style={{ color: primary, borderBottom: `1px solid ${primary}` }}
       >
         {title}
       </h2>

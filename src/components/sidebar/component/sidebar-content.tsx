@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { PATH, SOCIAL_MEDIA_LINK_DATA, SideMenuInterface } from "@/config";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { HomeIcon, PieChart, Contact, Settings, FileText } from "lucide-react";
@@ -7,6 +9,7 @@ import { translate } from "@/i18n";
 import { SidebarMenu } from "./sidebar-menu";
 import { SidebarQuickAccess } from "./sidebar-quick-access";
 import { SocialIcon } from "@/components";
+import { ResumeModal } from "@/components/resume-modal";
 
 interface SidebarContentInterface {
   title: string;
@@ -16,6 +19,7 @@ const SIDE_ICON_SIZE: string = "24px";
 
 export const SidebarContent = (props: SidebarContentInterface) => {
   const { title } = props;
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   const SIDE_MENU: SideMenuInterface[] = [
     {
@@ -38,12 +42,6 @@ export const SidebarContent = (props: SidebarContentInterface) => {
       path: PATH.CONTACTS.path,
       icon: <Contact width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
     },
-    // TODO:: create skill pages
-    // {
-    //   name: translate("sidebar.sideBarMenu.skills"),
-    //   path: PATH.SKILLS.path,
-    //   icon: <Code width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
-    // },
     {
       name: translate("settings.settings"),
       path: PATH.SETTINGS.path,
@@ -53,10 +51,12 @@ export const SidebarContent = (props: SidebarContentInterface) => {
       name: "Resume Builder",
       path: PATH.RESUME.path,
       icon: <FileText width={SIDE_ICON_SIZE} height={SIDE_ICON_SIZE} />,
+      onClick: () => setResumeOpen(true),
     },
   ];
 
   return (
+    <>
     <Drawer.Content className="bg-foreground flex flex-col rounded-t-[10px] h-full w-81.25 z-70 mt-24 fixed bottom-0 right-0">
       <div className="flex-1 h-screen p-4 bg-background">
         <div className="h-full max-w-md mx-auto flex flex-col">
@@ -85,5 +85,13 @@ export const SidebarContent = (props: SidebarContentInterface) => {
         </div>
       </div>
     </Drawer.Content>
+
+    <ResumeModal
+      open={resumeOpen}
+      onClose={() => setResumeOpen(false)}
+      year={2024}
+      defaultColor="emerald"
+    />
+    </>
   );
 };

@@ -7,8 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Github, Linkedin, Mail, MapPin, ArrowUpRight,
   BookOpen, Quote, ExternalLink, Code2, Briefcase, GraduationCap,
-  Sun, Moon, Monitor,
+  Sun, Moon, Monitor, FileText,
 } from "lucide-react";
+import { ResumeModal } from "@/components/resume-modal";
 import { translate, useLocaleRefresh } from "@/i18n";
 import type { TxKeyPath } from "@/i18n";
 import {
@@ -205,7 +206,7 @@ export function Portfolio2025() {
           style={{ position: "relative", zIndex: 1, borderRadius: "24px", border: `1px solid ${C.borderSidebar}` }}
         >
           {/* Sidebar */}
-          <div className="lg:w-72 shrink-0 flex flex-col" style={{ backgroundColor: C.sidebar }}>
+          <div className="lg:w-80 shrink-0 flex flex-col" style={{ backgroundColor: C.sidebar }}>
             <SidebarPanel active={active} goto={setActive} />
           </div>
 
@@ -216,7 +217,7 @@ export function Portfolio2025() {
             style={{ backgroundColor: C.main }}
           >
             <AnimatePresence mode="wait">
-              <motion.div key={active} {...pageAnim} style={{ padding: "36px 36px 32px" }}>
+              <motion.div key={active} {...pageAnim} style={{ padding: "48px 52px 44px" }}>
                 {active === "about"        && <AboutPage />}
                 {active === "experience"   && <ExperiencePage experience={experience} education={education} />}
                 {active === "skills"       && <SkillsPage skillGroups={SKILL_CATEGORIES} />}
@@ -242,15 +243,15 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
   return (
     <>
       {/* Profile */}
-      <div style={{ padding: "32px 20px 16px", textAlign: "center" }}>
+      <div style={{ padding: "36px 24px 20px", textAlign: "center" }}>
 
         {/* Avatar with pulsing rings */}
-        <div style={{ display: "inline-block", position: "relative", marginBottom: "14px" }}>
+        <div style={{ display: "inline-block", position: "relative", marginBottom: "18px" }}>
           {[1, 2, 3].map((i) => (
             <motion.div
               key={i}
               style={{
-                position: "absolute", inset: `-${i * 10}px`,
+                position: "absolute", inset: `-${i * 12}px`,
                 borderRadius: "50%",
                 border: `1px solid rgba(225,29,72,${0.4 - i * 0.1})`,
               }}
@@ -260,14 +261,14 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
           ))}
           <motion.div
             style={{
-              borderRadius: "50%", padding: "2.5px",
+              borderRadius: "50%", padding: "3px",
               background: `linear-gradient(135deg, ${C.indigoDark}, ${C.indigo})`,
-              boxShadow: `0 0 28px rgba(225,29,72,0.45)`,
+              boxShadow: `0 0 32px rgba(225,29,72,0.5)`,
             }}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div style={{ width: "88px", height: "88px", borderRadius: "50%", overflow: "hidden" }}>
+            <div style={{ width: "108px", height: "108px", borderRadius: "50%", overflow: "hidden" }}>
               <img
                 src={AvatarProfile as unknown as string}
                 alt={FULL_NAME}
@@ -280,7 +281,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
         <motion.h2
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          style={{ color: C.textSidebar, fontSize: "13px", fontWeight: 800, lineHeight: 1.3, margin: 0 }}
+          style={{ color: C.textSidebar, fontSize: "16px", fontWeight: 800, lineHeight: 1.3, margin: 0 }}
         >
           {FULL_NAME}
         </motion.h2>
@@ -288,12 +289,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.4 }}
-          style={{
-            fontSize: "10px", fontWeight: 600, marginTop: "4px",
-            background: `linear-gradient(90deg, ${C.indigoDark}, ${C.indigo}, ${C.indigoDark})`,
-            backgroundSize: "200% 100%",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-          }}
+          style={{ fontSize: "12px", fontWeight: 600, marginTop: "5px", color: C.indigo }}
         >
           {JOB_TITLE}
         </motion.p>
@@ -301,9 +297,9 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.4 }}
-          style={{ fontSize: "10px", marginTop: "8px", lineHeight: 1.5, color: C.textSidebarDim }}
+          style={{ fontSize: "11px", marginTop: "10px", lineHeight: 1.6, color: C.textSidebarDim }}
         >
-          {translate("about.intro.intruduction").slice(0, 80).trimEnd()}…
+          {translate("about.intro.intruduction").slice(0, 90).trimEnd()}…
         </motion.p>
 
         {/* Stats row */}
@@ -311,8 +307,8 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.4 }}
           style={{
-            display: "flex", marginTop: "16px", gap: "1px",
-            borderRadius: "10px", overflow: "hidden",
+            display: "flex", marginTop: "18px", gap: "1px",
+            borderRadius: "12px", overflow: "hidden",
             border: `1px solid ${C.borderSidebar}`,
           }}
         >
@@ -320,12 +316,12 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
             <div
               key={label}
               style={{
-                flex: 1, padding: "8px 4px", textAlign: "center",
+                flex: 1, padding: "10px 6px", textAlign: "center",
                 backgroundColor: C.sidebarHover,
               }}
             >
-              <p style={{ fontSize: "13px", fontWeight: 800, color: C.indigo, margin: 0 }}>{value}</p>
-              <p style={{ fontSize: "9px", color: C.textSidebarDim, margin: 0, letterSpacing: "0.04em" }}>{label}</p>
+              <p style={{ fontSize: "16px", fontWeight: 800, color: C.indigo, margin: 0 }}>{value}</p>
+              <p style={{ fontSize: "10px", color: C.textSidebarDim, margin: 0, letterSpacing: "0.04em" }}>{label}</p>
             </div>
           ))}
         </motion.div>
@@ -337,7 +333,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        style={{ display: "flex", justifyContent: "center", gap: "10px", padding: "12px 0" }}
+        style={{ display: "flex", justifyContent: "center", gap: "10px", padding: "14px 0" }}
       >
         {[
           { href: GITHUB_URL,                Icon: Github,   label: "GitHub"   },
@@ -351,13 +347,13 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
             whileHover={{ scale: 1.12, backgroundColor: C.indigoDark }}
             whileTap={{ scale: 0.95 }}
             style={{
-              width: "32px", height: "32px", borderRadius: "8px",
+              width: "40px", height: "40px", borderRadius: "10px",
               display: "flex", alignItems: "center", justifyContent: "center",
               backgroundColor: C.sidebarHover, color: C.textSidebarDim,
               border: `1px solid ${C.borderSidebar}`, textDecoration: "none",
             }}
           >
-            <Icon size={13} />
+            <Icon size={16} />
           </motion.a>
         ))}
       </motion.div>
@@ -365,7 +361,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
       <Separator />
 
       {/* Nav */}
-      <nav style={{ padding: "12px 8px", flex: 1 }}>
+      <nav style={{ padding: "14px 10px", flex: 1 }}>
         {NAV_ITEMS.map(({ id, label, num }, i) => {
           const on = active === id;
           return (
@@ -378,24 +374,24 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
               whileHover={{ x: 3 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                display: "flex", alignItems: "center", gap: "10px",
-                padding: "9px 12px", borderRadius: "8px", width: "100%",
+                display: "flex", alignItems: "center", gap: "12px",
+                padding: "11px 14px", borderRadius: "10px", width: "100%",
                 textAlign: "left", border: "none", cursor: "pointer",
                 backgroundColor: on ? C.sidebarHover : "transparent",
                 borderLeft: `2px solid ${on ? C.indigoDark : "transparent"}`,
                 transition: "background-color 0.15s, border-left-color 0.15s",
               }}
             >
-              <span style={{ fontSize: "10px", fontWeight: 700, color: on ? C.indigoDark : C.borderSidebar }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, color: on ? C.indigoDark : C.borderSidebar }}>
                 {num}
               </span>
-              <span style={{ fontSize: "12px", fontWeight: 600, color: on ? C.textSidebar : C.textSidebarDim }}>
+              <span style={{ fontSize: "13px", fontWeight: 600, color: on ? C.textSidebar : C.textSidebarDim }}>
                 {label}
               </span>
               {on && (
                 <motion.div
                   layoutId="nav-dot"
-                  style={{ marginLeft: "auto", width: "5px", height: "5px", borderRadius: "50%", backgroundColor: C.indigoDark }}
+                  style={{ marginLeft: "auto", width: "6px", height: "6px", borderRadius: "50%", backgroundColor: C.indigoDark }}
                 />
               )}
             </motion.button>
@@ -456,29 +452,55 @@ function ThemeToggle() {
 
 function AboutPage() {
   const C = useC();
+  const [resumeOpen, setResumeOpen] = useState(false);
+
+  const HIGHLIGHTS = [
+    {
+      icon: "⚡",
+      title: "Full-Stack Dev",
+      desc: "End-to-end features from database schema to polished UI, with a focus on clean, production-ready code.",
+    },
+    {
+      icon: "🎨",
+      title: "UI / UX Focused",
+      desc: "I care about the details — responsive layouts, fluid animations, and interfaces that feel great to use.",
+    },
+    {
+      icon: "🤝",
+      title: "Remote-Ready",
+      desc: "Comfortable in async, distributed teams. Strong communicator who ships reliably without hand-holding.",
+    },
+  ];
+
   return (
     <>
       <Label text="01 — About" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
         About Me<span style={{ color: C.indigoDark }}>.</span>
       </h2>
 
       <motion.div
         variants={listAnim} initial="initial" animate="animate"
-        style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+        style={{ display: "flex", flexDirection: "column", gap: "20px" }}
       >
-        <motion.div variants={itemAnim} style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
-          <p style={{ flex: 1, fontSize: "13px", lineHeight: 1.8, color: C.textMid, margin: 0 }}>
-            {translate("about.intro.intruduction")}
-          </p>
+        {/* Intro + photo */}
+        <motion.div variants={itemAnim} style={{ display: "flex", gap: "24px", alignItems: "flex-start" }}>
+          <div style={{ flex: 1 }}>
+            <p style={{ fontSize: "14px", lineHeight: 1.85, color: C.textMid, margin: "0 0 12px" }}>
+              {translate("about.intro.intruduction")}
+            </p>
+            <p style={{ fontSize: "14px", lineHeight: 1.85, color: C.textMuted, margin: 0 }}>
+              When I'm not shipping code I'm reading, exploring system design, or tinkering with side projects that scratch a creative itch.
+            </p>
+          </div>
           <motion.div
-            whileHover={{ scale: 1.03, rotate: 1 }}
+            whileHover={{ scale: 1.04, rotate: 1.5 }}
             transition={{ type: "spring", stiffness: 300 }}
             style={{
-              width: "100px", height: "130px", flexShrink: 0,
+              width: "112px", height: "144px", flexShrink: 0,
               borderRadius: "14px", overflow: "hidden",
-              border: `1px solid ${C.border}`,
-              boxShadow: `0 8px 24px rgba(225,29,72,0.15)`,
+              border: `2px solid ${C.indigoDark}44`,
+              boxShadow: `0 8px 24px rgba(225,29,72,0.18)`,
             }}
           >
             <img src={AboutMeImg as unknown as string} alt={FULL_NAME}
@@ -486,14 +508,39 @@ function AboutPage() {
           </motion.div>
         </motion.div>
 
+        {/* What I do highlights */}
+        <motion.div variants={itemAnim}>
+          <p style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: C.textMuted, margin: "0 0 12px" }}>
+            What I bring
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
+            {HIGHLIGHTS.map(({ icon, title, desc }) => (
+              <motion.div
+                key={title}
+                whileHover={{ y: -3, boxShadow: `0 8px 24px rgba(225,29,72,0.12)` }}
+                style={{
+                  padding: "18px 14px", borderRadius: "16px",
+                  border: `1px solid ${C.border}`,
+                  backgroundColor: C.card,
+                  display: "flex", flexDirection: "column", gap: "10px",
+                }}
+              >
+                <span style={{ fontSize: "24px", lineHeight: 1 }}>{icon}</span>
+                <p style={{ fontSize: "13px", fontWeight: 700, color: C.textDark, margin: 0 }}>{title}</p>
+                <p style={{ fontSize: "12px", lineHeight: 1.6, color: C.textMuted, margin: 0 }}>{desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Contact details */}
         <motion.div
           variants={itemAnim}
           style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px",
-            padding: "14px", borderRadius: "14px",
-            background: `linear-gradient(135deg, ${C.card}, #fff)`,
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px",
+            padding: "18px", borderRadius: "16px",
+            backgroundColor: C.card,
             border: `1px solid ${C.border}`,
-            boxShadow: "0 2px 12px rgba(0,0,0,0.04)",
           }}
         >
           {[
@@ -508,19 +555,45 @@ function AboutPage() {
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 whileHover={{ color: C.indigoDark, x: 2 }}
-                style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: C.textMuted, textDecoration: "none" }}
+                style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: C.textMuted, textDecoration: "none" }}
               >
-                <Icon size={11} style={{ color: C.indigoDark, flexShrink: 0 }} />
+                <Icon size={13} style={{ color: C.indigoDark, flexShrink: 0 }} />
                 <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{text}</span>
               </motion.a>
             ) : (
-              <span key={text} style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "11px", color: C.textMuted }}>
-                <Icon size={11} style={{ color: C.indigoDark, flexShrink: 0 }} />
+              <span key={text} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: C.textMuted }}>
+                <Icon size={13} style={{ color: C.indigoDark, flexShrink: 0 }} />
                 {text}
               </span>
             )
           )}
         </motion.div>
+
+        {/* Resume CTA */}
+        <motion.button
+          variants={itemAnim}
+          onClick={() => setResumeOpen(true)}
+          whileHover={{ scale: 1.02, boxShadow: `0 12px 32px rgba(225,29,72,0.45)` }}
+          whileTap={{ scale: 0.98 }}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
+            padding: "15px 24px", borderRadius: "14px", border: "none", cursor: "pointer",
+            background: `linear-gradient(135deg, ${C.indigoDark}, ${C.indigo})`,
+            color: "#fff", fontSize: "14px", fontWeight: 700,
+            boxShadow: `0 8px 24px rgba(225,29,72,0.35)`, width: "100%",
+          }}
+        >
+          <FileText size={16} />
+          Build My Resume
+        </motion.button>
+
+        <ResumeModal
+          open={resumeOpen}
+          onClose={() => setResumeOpen(false)}
+          year={2025}
+          accentColor="#E11D48"
+          defaultColor="scarlet"
+        />
       </motion.div>
     </>
   );
@@ -538,14 +611,14 @@ function ExperiencePage({
   return (
     <>
       <Label text="02 — Education & Experience" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
         My Journey<span style={{ color: C.indigo }}>.</span>
       </h2>
 
       {/* Education */}
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-        <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: C.indigoLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <GraduationCap size={13} style={{ color: C.indigoDark }} />
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+        <div style={{ width: "34px", height: "34px", borderRadius: "10px", backgroundColor: C.indigoLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <GraduationCap size={16} style={{ color: C.indigoDark }} />
         </div>
         <SectionLabel>Education</SectionLabel>
       </div>
@@ -562,19 +635,19 @@ function ExperiencePage({
           <motion.div
             key={i} variants={itemAnim}
             whileHover={{ x: 3, boxShadow: `0 4px 20px rgba(225,29,72,0.12)` }}
-            style={{ position: "relative", marginBottom: "8px", borderRadius: "14px", padding: "14px 16px", border: `1px solid ${C.border}`, backgroundColor: C.card, cursor: "default" }}
+            style={{ position: "relative", marginBottom: "10px", borderRadius: "16px", padding: "18px 20px", border: `1px solid ${C.border}`, backgroundColor: C.card, cursor: "default" }}
           >
             <motion.div
               initial={{ scale: 0 }} animate={{ scale: 1 }}
               transition={{ delay: 0.15 + i * 0.08 }}
-              style={{ position: "absolute", left: "-22px", top: "18px", width: "10px", height: "10px", borderRadius: "50%", backgroundColor: C.indigoDark, border: `2px solid ${C.page}`, boxShadow: `0 0 8px rgba(225,29,72,0.5)` }}
+              style={{ position: "absolute", left: "-24px", top: "22px", width: "12px", height: "12px", borderRadius: "50%", backgroundColor: C.indigoDark, border: `2px solid ${C.page}`, boxShadow: `0 0 8px rgba(225,29,72,0.5)` }}
             />
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px" }}>
               <div>
-                <p style={{ fontWeight: 700, fontSize: "13px", color: C.textDark, margin: 0 }}>{edu.title}</p>
-                <p style={{ fontSize: "12px", fontWeight: 600, color: C.indigoDark, marginTop: "2px" }}>{edu.subtitle}</p>
+                <p style={{ fontWeight: 700, fontSize: "15px", color: C.textDark, margin: 0 }}>{edu.title}</p>
+                <p style={{ fontSize: "13px", fontWeight: 600, color: C.indigoDark, marginTop: "3px" }}>{edu.subtitle}</p>
               </div>
-              <span style={{ fontSize: "10px", padding: "3px 9px", borderRadius: "99px", fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0, backgroundColor: C.indigoLight, color: C.indigoDark }}>
+              <span style={{ fontSize: "11px", padding: "4px 11px", borderRadius: "99px", fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0, backgroundColor: C.indigoLight, color: C.indigoDark }}>
                 {fmt(edu.startYear, edu.endYear)}
               </span>
             </div>
@@ -583,9 +656,9 @@ function ExperiencePage({
       </motion.div>
 
       {/* Experience */}
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-        <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: C.mintLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Briefcase size={13} style={{ color: C.mintDark }} />
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+        <div style={{ width: "34px", height: "34px", borderRadius: "10px", backgroundColor: C.mintLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Briefcase size={16} style={{ color: C.mintDark }} />
         </div>
         <SectionLabel>Work Experience</SectionLabel>
       </div>
@@ -602,47 +675,47 @@ function ExperiencePage({
           <motion.div
             key={i} variants={itemAnim}
             whileHover={{ x: 3, boxShadow: `0 4px 20px rgba(190,18,60,0.1)` }}
-            style={{ position: "relative", marginBottom: "8px", borderRadius: "14px", padding: "14px 16px", border: `1px solid ${C.border}`, backgroundColor: C.card, cursor: "default" }}
+            style={{ position: "relative", marginBottom: "10px", borderRadius: "16px", padding: "18px 20px", border: `1px solid ${C.border}`, backgroundColor: C.card, cursor: "default" }}
           >
             <motion.div
               initial={{ scale: 0 }} animate={{ scale: 1 }}
               transition={{ delay: 0.2 + i * 0.08 }}
-              style={{ position: "absolute", left: "-22px", top: "18px", width: "10px", height: "10px", borderRadius: "50%", backgroundColor: C.mintDark, border: `2px solid ${C.page}`, boxShadow: `0 0 8px rgba(190,18,60,0.5)` }}
+              style={{ position: "absolute", left: "-24px", top: "22px", width: "12px", height: "12px", borderRadius: "50%", backgroundColor: C.mintDark, border: `2px solid ${C.page}`, boxShadow: `0 0 8px rgba(190,18,60,0.5)` }}
             />
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "6px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "8px" }}>
               <div>
-                <p style={{ fontWeight: 700, fontSize: "13px", color: C.textDark, margin: 0 }}>{exp.title}</p>
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "3px", flexWrap: "wrap" }}>
-                  <p style={{ fontSize: "12px", fontWeight: 600, color: C.indigo, margin: 0 }}>{exp.subtitle}</p>
+                <p style={{ fontWeight: 700, fontSize: "15px", color: C.textDark, margin: 0 }}>{exp.title}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px", flexWrap: "wrap" }}>
+                  <p style={{ fontSize: "13px", fontWeight: 600, color: C.indigo, margin: 0 }}>{exp.subtitle}</p>
                   {exp.employmentType && (
-                    <span style={{ fontSize: "9px", padding: "2px 7px", borderRadius: "99px", fontWeight: 600, backgroundColor: C.mintLight, color: C.mintDark }}>
+                    <span style={{ fontSize: "10px", padding: "2px 8px", borderRadius: "99px", fontWeight: 600, backgroundColor: C.mintLight, color: C.mintDark }}>
                       {exp.employmentType}
                     </span>
                   )}
                 </div>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
-                <span style={{ fontSize: "10px", padding: "3px 9px", borderRadius: "99px", fontWeight: 600, whiteSpace: "nowrap", backgroundColor: C.mintLight, color: C.mintDark }}>
+                <span style={{ fontSize: "11px", padding: "4px 11px", borderRadius: "99px", fontWeight: 600, whiteSpace: "nowrap", backgroundColor: C.mintLight, color: C.mintDark }}>
                   {fmt(exp.startYear, exp.endYear)}
                 </span>
                 {exp.subtitleUrl && (
                   <a href={exp.subtitleUrl} target="_blank" rel="noopener noreferrer" style={{ color: C.textMuted }}>
-                    <ArrowUpRight size={13} />
+                    <ArrowUpRight size={15} />
                   </a>
                 )}
               </div>
             </div>
             {exp.promotion && exp.promotion.length > 0 ? (
-              <ul style={{ margin: "8px 0 0", padding: "0 0 0 12px", borderLeft: `2px solid ${C.indigoDark}33`, listStyle: "none" }}>
+              <ul style={{ margin: "10px 0 0", padding: "0 0 0 14px", borderLeft: `2px solid ${C.indigoDark}33`, listStyle: "none" }}>
                 {exp.promotion.map((p, j) => (
-                  <li key={j} style={{ marginBottom: "4px" }}>
-                    <p style={{ fontSize: "11px", fontWeight: 600, color: C.textMid, margin: 0 }}>{p.title}</p>
-                    <p style={{ fontSize: "10px", color: C.textMuted, margin: "1px 0 0" }}>{fmt(p.startYear, p.endYear)}</p>
+                  <li key={j} style={{ marginBottom: "6px" }}>
+                    <p style={{ fontSize: "13px", fontWeight: 600, color: C.textMid, margin: 0 }}>{p.title}</p>
+                    <p style={{ fontSize: "11px", color: C.textMuted, margin: "2px 0 0" }}>{fmt(p.startYear, p.endYear)}</p>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p style={{ fontSize: "12px", lineHeight: 1.6, color: C.textMuted, margin: 0, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+              <p style={{ fontSize: "13px", lineHeight: 1.65, color: C.textMuted, margin: 0, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                 {exp.description}
               </p>
             )}
@@ -671,12 +744,12 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
   return (
     <>
       <Label text="03 — Tech Stack" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
         Tech Stack<span style={{ color: C.amber }}>.</span>
       </h2>
 
       {/* Tab nav */}
-      <div style={{ display: "flex", gap: "4px", marginBottom: "24px", padding: "4px", backgroundColor: "#0F172A", borderRadius: "12px" }}>
+      <div style={{ display: "flex", gap: "4px", marginBottom: "28px", padding: "5px", backgroundColor: "#0F172A", borderRadius: "14px" }}>
         {SKILL_TABS.map(({ id, label, accent }) => {
           const on = tab === id;
           return (
@@ -684,8 +757,8 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
               key={id} onClick={() => setTab(id)}
               whileTap={{ scale: 0.97 }}
               style={{
-                flex: 1, padding: "8px 0", borderRadius: "9px", border: "none",
-                cursor: "pointer", fontSize: "12px", fontWeight: 700,
+                flex: 1, padding: "10px 0", borderRadius: "10px", border: "none",
+                cursor: "pointer", fontSize: "13px", fontWeight: 700,
                 position: "relative", overflow: "hidden",
                 background: on ? `linear-gradient(135deg, ${accent}cc, ${accent})` : "transparent",
                 color: on ? "#fff" : "#64748B",
@@ -715,7 +788,7 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
               )}
               <motion.div
                 variants={listAnim} initial="initial" animate="animate"
-                style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(82px, 1fr))", gap: "8px" }}
+                style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(96px, 1fr))", gap: "10px" }}
               >
                 {cat.stacks.map((s) => {
                   const displayName = translate(`services.stack.${s.name}` as TxKeyPath);
@@ -731,8 +804,8 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
                       title={displayName}
                       style={{
                         display: "flex", flexDirection: "column", alignItems: "center",
-                        gap: "8px", padding: "14px 8px 10px",
-                        borderRadius: "14px", cursor: "default",
+                        gap: "10px", padding: "18px 10px 14px",
+                        borderRadius: "16px", cursor: "default",
                         background: "#0F172A",
                         border: `1px solid rgba(255,255,255,0.06)`,
                         boxShadow: s.isFavorite ? `0 0 0 1px ${activeTab.accent}44, 0 4px 16px ${activeTab.glow}` : "none",
@@ -742,13 +815,13 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
                     >
                       {/* Glow blob */}
                       <div style={{
-                        position: "absolute", top: "6px", left: "50%", transform: "translateX(-50%)",
-                        width: "42px", height: "42px", borderRadius: "50%",
-                        background: activeTab.glow, filter: "blur(14px)", pointerEvents: "none",
+                        position: "absolute", top: "8px", left: "50%", transform: "translateX(-50%)",
+                        width: "52px", height: "52px", borderRadius: "50%",
+                        background: activeTab.glow, filter: "blur(16px)", pointerEvents: "none",
                       }} />
 
                       {/* Icon */}
-                      <div style={{ position: "relative", width: "32px", height: "32px" }}>
+                      <div style={{ position: "relative", width: "40px", height: "40px" }}>
                         <img
                           src={s.icon as unknown as string} alt={s.alt}
                           style={{ width: "100%", height: "100%", objectFit: "contain" }}
@@ -757,7 +830,7 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
 
                       {/* Name */}
                       <p style={{
-                        fontSize: "9.5px", fontWeight: 600, textAlign: "center",
+                        fontSize: "11px", fontWeight: 600, textAlign: "center",
                         color: "#CBD5E1", margin: 0, lineHeight: 1.3,
                         overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "100%",
                       }}>
@@ -769,9 +842,9 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
                         <motion.div
                           initial={{ scale: 0 }} animate={{ scale: 1 }}
                           transition={{ delay: 0.1, type: "spring", stiffness: 400 }}
-                          style={{ position: "absolute", top: "5px", right: "5px" }}
+                          style={{ position: "absolute", top: "6px", right: "6px" }}
                         >
-                          <svg width="8" height="8" viewBox="0 0 24 24" fill={C.amber} stroke="none">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill={C.amber} stroke="none">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                           </svg>
                         </motion.div>
@@ -796,12 +869,12 @@ function ProjectsPage({ projects }: { projects: ReturnType<typeof getProjects> }
   return (
     <>
       <Label text="04 — Projects" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
         Projects<span style={{ color: C.indigoDark }}>.</span>
       </h2>
 
       <motion.div variants={listAnim} initial="initial" animate="animate"
-        style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+        style={{ display: "flex", flexDirection: "column", gap: "12px" }}
       >
         {projects.map((p) => {
           const tc = TYPE_COLORS[p.type] ?? TYPE_COLORS.personal;
@@ -809,47 +882,47 @@ function ProjectsPage({ projects }: { projects: ReturnType<typeof getProjects> }
             <motion.div
               key={p.projectId} variants={itemAnim}
               whileHover={{ x: 3, boxShadow: `0 6px 24px rgba(225,29,72,0.1)` }}
-              style={{ padding: "16px 18px", borderRadius: "14px", border: `1px solid ${C.border}`, backgroundColor: C.card, cursor: "default" }}
+              style={{ padding: "20px 22px", borderRadius: "16px", border: `1px solid ${C.border}`, backgroundColor: C.card, cursor: "default" }}
             >
-              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px", marginBottom: "6px" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px", marginBottom: "8px" }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-                    <p style={{ fontSize: "13px", fontWeight: 700, color: C.textDark, margin: 0 }}>{p.title}</p>
-                    <span style={{ fontSize: "9px", fontWeight: 600, padding: "2px 8px", borderRadius: "99px", backgroundColor: tc.bg, color: tc.color, border: `1px solid ${tc.border}`, whiteSpace: "nowrap" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                    <p style={{ fontSize: "15px", fontWeight: 700, color: C.textDark, margin: 0 }}>{p.title}</p>
+                    <span style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "99px", backgroundColor: tc.bg, color: tc.color, border: `1px solid ${tc.border}`, whiteSpace: "nowrap" }}>
                       {p.type}
                     </span>
                   </div>
-                  {p.company && <p style={{ fontSize: "11px", color: C.textMuted, margin: "2px 0 0" }}>{p.company}</p>}
+                  {p.company && <p style={{ fontSize: "12px", color: C.textMuted, margin: "3px 0 0" }}>{p.company}</p>}
                 </div>
                 <div style={{ display: "flex", gap: "6px", flexShrink: 0 }}>
                   {p.previewUrl && (
                     <motion.a href={p.previewUrl} target="_blank" rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, backgroundColor: C.indigoDark, color: "#fff" }}
-                      style={{ width: "28px", height: "28px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: C.indigoLight, color: C.indigoDark, border: `1px solid rgba(225,29,72,0.2)`, textDecoration: "none" }}>
-                      <ExternalLink size={12} />
+                      style={{ width: "34px", height: "34px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: C.indigoLight, color: C.indigoDark, border: `1px solid rgba(225,29,72,0.2)`, textDecoration: "none" }}>
+                      <ExternalLink size={14} />
                     </motion.a>
                   )}
                   {p.codeUrl && (
                     <motion.a href={p.codeUrl} target="_blank" rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, backgroundColor: C.sidebarHover, color: C.indigo }}
-                      style={{ width: "28px", height: "28px", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: C.card, color: C.textMuted, border: `1px solid ${C.border}`, textDecoration: "none" }}>
-                      <Code2 size={12} />
+                      style={{ width: "34px", height: "34px", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: C.card, color: C.textMuted, border: `1px solid ${C.border}`, textDecoration: "none" }}>
+                      <Code2 size={14} />
                     </motion.a>
                   )}
                 </div>
               </div>
-              <p style={{ fontSize: "12px", lineHeight: 1.6, color: C.textMuted, margin: "0 0 10px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+              <p style={{ fontSize: "13px", lineHeight: 1.65, color: C.textMuted, margin: "0 0 12px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                 {p.description}
               </p>
               {p.stack && p.stack.length > 0 && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                   {p.stack.slice(0, 6).map((s) => (
-                    <span key={s.name} style={{ fontSize: "10px", padding: "2px 8px", borderRadius: "99px", backgroundColor: `${C.border}66`, color: C.textMuted, border: `1px solid ${C.border}` }}>
+                    <span key={s.name} style={{ fontSize: "11px", padding: "3px 10px", borderRadius: "99px", backgroundColor: `${C.border}66`, color: C.textMuted, border: `1px solid ${C.border}` }}>
                       {s.name}
                     </span>
                   ))}
                   {p.stack.length > 6 && (
-                    <span style={{ fontSize: "10px", padding: "2px 8px", borderRadius: "99px", color: C.textMuted }}>
+                    <span style={{ fontSize: "11px", padding: "3px 10px", borderRadius: "99px", color: C.textMuted }}>
                       +{p.stack.length - 6}
                     </span>
                   )}
@@ -870,7 +943,7 @@ function TestimonialsPage() {
   return (
     <>
       <Label text="05 — Testimonials" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
         What They Say<span style={{ color: C.indigo }}>.</span>
       </h2>
 
@@ -953,7 +1026,7 @@ function LanguagesPage() {
   return (
     <>
       <Label text="06 — Languages" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
         Languages<span style={{ color: C.mint }}>.</span>
       </h2>
       <p style={{ fontSize: "13px", color: C.textMuted, marginBottom: "28px", lineHeight: 1.6 }}>
@@ -1002,7 +1075,7 @@ function BooksPage() {
   return (
     <>
       <Label text="07 — Books" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
         Books That Built Me<span style={{ color: C.amber }}>.</span>
       </h2>
       <p style={{ fontSize: "13px", color: C.textMuted, marginBottom: "24px", lineHeight: 1.6 }}>
@@ -1056,7 +1129,7 @@ function ContactPage() {
   return (
     <>
       <Label text="08 — Contact" />
-      <h2 style={{ fontSize: "28px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
+      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
         Get In Touch<span style={{ color: C.indigoDark }}>.</span>
       </h2>
       <p style={{ fontSize: "13px", color: C.textMuted, marginBottom: "28px", lineHeight: 1.6 }}>
@@ -1128,7 +1201,7 @@ function Separator() {
 function Label({ text }: { text: string }) {
   const C = useC();
   return (
-    <p style={{ fontSize: "10px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: C.textMuted, margin: 0 }}>
+    <p style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: C.textMuted, margin: 0 }}>
       {text}
     </p>
   );
@@ -1137,7 +1210,7 @@ function Label({ text }: { text: string }) {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   const C = useC();
   return (
-    <p style={{ fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: C.textMuted, margin: 0 }}>
+    <p style={{ fontSize: "13px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: C.textMuted, margin: 0 }}>
       {children}
     </p>
   );
