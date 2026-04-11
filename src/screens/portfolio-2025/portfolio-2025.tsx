@@ -84,6 +84,17 @@ const iconAnim = {
   animate: { opacity: 1, scale: 1, transition: { duration: 0.3, ease } },
 };
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 // ── Nav & static ──────────────────────────────────────────────────────────────
 
 const NAV_ITEMS = [
@@ -154,6 +165,7 @@ export function Portfolio2025() {
     !window.matchMedia("(prefers-color-scheme: dark)").matches
   );
   const C = makePalette(isLight);
+  const isMobile = useIsMobile();
 
   const experience  = getExperience().filter((e) => e.isWork);
   const education   = getEducation().filter((e) => e.level === "tertiary" || e.level === "vocational");
@@ -168,7 +180,7 @@ export function Portfolio2025() {
   return (
     <CContext.Provider value={C}>
     <div
-      className="min-h-screen flex items-start lg:items-center justify-center p-4 sm:p-6 lg:py-10 lg:px-6"
+      className="min-h-screen lg:h-screen lg:overflow-hidden flex items-start lg:items-center justify-center p-4 sm:p-6 lg:py-10 lg:px-6"
       style={{
         position: "relative",
         background: `radial-gradient(ellipse 80% 60% at 20% 40%, rgba(190,18,60,0.22) 0%, transparent 60%),
@@ -206,7 +218,7 @@ export function Portfolio2025() {
           style={{ position: "relative", zIndex: 1, borderRadius: "24px", border: `1px solid ${C.borderSidebar}` }}
         >
           {/* Sidebar */}
-          <div className="lg:w-80 shrink-0 flex flex-col" style={{ backgroundColor: C.sidebar }}>
+          <div className="lg:w-80 shrink-0 flex flex-col lg:overflow-y-auto" style={{ backgroundColor: C.sidebar, scrollbarWidth: "none" } as React.CSSProperties}>
             <SidebarPanel active={active} goto={setActive} />
           </div>
 
@@ -217,7 +229,7 @@ export function Portfolio2025() {
             style={{ backgroundColor: C.main }}
           >
             <AnimatePresence mode="wait">
-              <motion.div key={active} {...pageAnim} style={{ padding: "48px 52px 44px" }}>
+              <motion.div key={active} {...pageAnim} style={{ padding: isMobile ? "20px 16px 28px" : "48px 52px 44px" }}>
                 {active === "about"        && <AboutPage />}
                 {active === "experience"   && <ExperiencePage experience={experience} education={education} />}
                 {active === "skills"       && <SkillsPage skillGroups={SKILL_CATEGORIES} />}
@@ -240,10 +252,11 @@ export function Portfolio2025() {
 
 function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => void }) {
   const C = useC();
+  const isMobile = useIsMobile();
   return (
     <>
       {/* Profile */}
-      <div style={{ padding: "36px 24px 20px", textAlign: "center" }}>
+      <div style={{ padding: isMobile ? "16px 16px 12px" : "36px 24px 20px", textAlign: "center" }}>
 
         {/* Avatar with pulsing rings */}
         <div style={{ display: "inline-block", position: "relative", marginBottom: "18px" }}>
@@ -268,7 +281,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div style={{ width: "108px", height: "108px", borderRadius: "50%", overflow: "hidden" }}>
+            <div style={{ width: isMobile ? "72px" : "108px", height: isMobile ? "72px" : "108px", borderRadius: "50%", overflow: "hidden" }}>
               <img
                 src={AvatarProfile as unknown as string}
                 alt={FULL_NAME}
@@ -292,14 +305,6 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
           style={{ fontSize: "12px", fontWeight: 600, marginTop: "5px", color: C.indigo }}
         >
           {JOB_TITLE}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.4 }}
-          style={{ fontSize: "11px", marginTop: "10px", lineHeight: 1.6, color: C.textSidebarDim }}
-        >
-          {translate("about.intro.intruduction").slice(0, 90).trimEnd()}…
         </motion.p>
 
         {/* Stats row */}
@@ -361,9 +366,30 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
       <Separator />
 
       {/* Nav */}
-      <nav style={{ padding: "14px 10px", flex: 1 }}>
+      <nav style={isMobile ? { padding: "8px 0", overflowX: "auto", display: "flex", flexDirection: "row", scrollbarWidth: "none" } : { padding: "14px 10px", flex: 1 }}>
         {NAV_ITEMS.map(({ id, label, num }, i) => {
           const on = active === id;
+          if (isMobile) {
+            return (
+              <motion.button
+                key={id}
+                onClick={() => goto(id)}
+                whileTap={{ scale: 0.95 }}
+                style={{
+                  padding: "8px 14px", borderRadius: "20px", border: "none",
+                  cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
+                  fontSize: "12px", fontWeight: 700,
+                  backgroundColor: on ? C.indigoDark : "transparent",
+                  color: on ? "#fff" : C.textSidebarDim,
+                  marginLeft: i === 0 ? "8px" : "4px",
+                  marginRight: i === NAV_ITEMS.length - 1 ? "8px" : "0",
+                  transition: "background-color 0.15s, color 0.15s",
+                }}
+              >
+                {label}
+              </motion.button>
+            );
+          }
           return (
             <motion.button
               key={id}
@@ -376,7 +402,8 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
               style={{
                 display: "flex", alignItems: "center", gap: "12px",
                 padding: "11px 14px", borderRadius: "10px", width: "100%",
-                textAlign: "left", border: "none", cursor: "pointer",
+                textAlign: "left", cursor: "pointer",
+                borderTop: "none", borderRight: "none", borderBottom: "none",
                 backgroundColor: on ? C.sidebarHover : "transparent",
                 borderLeft: `2px solid ${on ? C.indigoDark : "transparent"}`,
                 transition: "background-color 0.15s, border-left-color 0.15s",
@@ -452,6 +479,7 @@ function ThemeToggle() {
 
 function AboutPage() {
   const C = useC();
+  const isMobile = useIsMobile();
   const [resumeOpen, setResumeOpen] = useState(false);
 
   const HIGHLIGHTS = [
@@ -475,7 +503,7 @@ function AboutPage() {
   return (
     <>
       <Label text="01 — About" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
         About Me<span style={{ color: C.indigoDark }}>.</span>
       </h2>
 
@@ -484,7 +512,7 @@ function AboutPage() {
         style={{ display: "flex", flexDirection: "column", gap: "20px" }}
       >
         {/* Intro + photo */}
-        <motion.div variants={itemAnim} style={{ display: "flex", gap: "24px", alignItems: "flex-start" }}>
+        <motion.div variants={itemAnim} style={{ display: "flex", gap: "24px", alignItems: "flex-start", flexDirection: isMobile ? "column" : "row" }}>
           <div style={{ flex: 1 }}>
             <p style={{ fontSize: "14px", lineHeight: 1.85, color: C.textMid, margin: "0 0 12px" }}>
               {translate("about.intro.intruduction")}
@@ -498,6 +526,7 @@ function AboutPage() {
             transition={{ type: "spring", stiffness: 300 }}
             style={{
               width: "112px", height: "144px", flexShrink: 0,
+              display: isMobile ? "none" : undefined,
               borderRadius: "14px", overflow: "hidden",
               border: `2px solid ${C.indigoDark}44`,
               boxShadow: `0 8px 24px rgba(225,29,72,0.18)`,
@@ -513,7 +542,7 @@ function AboutPage() {
           <p style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: C.textMuted, margin: "0 0 12px" }}>
             What I bring
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "10px" }}>
             {HIGHLIGHTS.map(({ icon, title, desc }) => (
               <motion.div
                 key={title}
@@ -537,7 +566,7 @@ function AboutPage() {
         <motion.div
           variants={itemAnim}
           style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px",
+            display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "10px",
             padding: "18px", borderRadius: "16px",
             backgroundColor: C.card,
             border: `1px solid ${C.border}`,
@@ -608,10 +637,11 @@ function ExperiencePage({
   education:  ReturnType<typeof getEducation>;
 }) {
   const C = useC();
+  const isMobile = useIsMobile();
   return (
     <>
       <Label text="02 — Education & Experience" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
         My Journey<span style={{ color: C.indigo }}>.</span>
       </h2>
 
@@ -730,6 +760,7 @@ function ExperiencePage({
 
 function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
   const C = useC();
+  const isMobile = useIsMobile();
   const [tab, setTab] = useState<SkillTab>("backend");
 
   const grouped: Record<SkillTab, typeof SKILL_CATEGORIES> = {
@@ -744,7 +775,7 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
   return (
     <>
       <Label text="03 — Tech Stack" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 20px", color: C.textDark }}>
         Tech Stack<span style={{ color: C.amber }}>.</span>
       </h2>
 
@@ -865,11 +896,12 @@ function SkillsPage({ skillGroups }: { skillGroups: typeof SKILL_CATEGORIES }) {
 
 function ProjectsPage({ projects }: { projects: ReturnType<typeof getProjects> }) {
   const C = useC();
+  const isMobile = useIsMobile();
   const TYPE_COLORS = makeTypeColors(C);
   return (
     <>
       <Label text="04 — Projects" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
         Projects<span style={{ color: C.indigoDark }}>.</span>
       </h2>
 
@@ -940,10 +972,11 @@ function ProjectsPage({ projects }: { projects: ReturnType<typeof getProjects> }
 
 function TestimonialsPage() {
   const C = useC();
+  const isMobile = useIsMobile();
   return (
     <>
       <Label text="05 — Testimonials" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 24px", color: C.textDark }}>
         What They Say<span style={{ color: C.indigo }}>.</span>
       </h2>
 
@@ -967,7 +1000,7 @@ function TestimonialsPage() {
         </motion.div>
       ) : (
         <motion.div variants={listAnim} initial="initial" animate="animate"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
+          style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}
         >
           {TESTIMONIALS.map((t, i) => (
             <motion.div key={i} variants={itemAnim}
@@ -1023,10 +1056,11 @@ function AnimatedBar({ pct, accent, delay = 0 }: { pct: number; accent: string; 
 
 function LanguagesPage() {
   const C = useC();
+  const isMobile = useIsMobile();
   return (
     <>
       <Label text="06 — Languages" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
         Languages<span style={{ color: C.mint }}>.</span>
       </h2>
       <p style={{ fontSize: "13px", color: C.textMuted, marginBottom: "28px", lineHeight: 1.6 }}>
@@ -1071,11 +1105,12 @@ function LanguagesPage() {
 
 function BooksPage() {
   const C = useC();
+  const isMobile = useIsMobile();
   const THEME_COLORS = makeThemeColors(C);
   return (
     <>
       <Label text="07 — Books" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
         Books That Built Me<span style={{ color: C.amber }}>.</span>
       </h2>
       <p style={{ fontSize: "13px", color: C.textMuted, marginBottom: "24px", lineHeight: 1.6 }}>
@@ -1083,7 +1118,7 @@ function BooksPage() {
       </p>
 
       <motion.div variants={listAnim} initial="initial" animate="animate"
-        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}
+        style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "10px" }}
       >
         {BOOKS.map((b, i) => {
           const tc = THEME_COLORS[b.theme] ?? { bg: C.card, color: C.textMuted, border: C.border };
@@ -1126,10 +1161,11 @@ function BooksPage() {
 
 function ContactPage() {
   const C = useC();
+  const isMobile = useIsMobile();
   return (
     <>
       <Label text="08 — Contact" />
-      <h2 style={{ fontSize: "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
+      <h2 style={{ fontSize: isMobile ? "24px" : "34px", fontWeight: 900, letterSpacing: "-0.5px", margin: "4px 0 8px", color: C.textDark }}>
         Get In Touch<span style={{ color: C.indigoDark }}>.</span>
       </h2>
       <p style={{ fontSize: "13px", color: C.textMuted, marginBottom: "28px", lineHeight: 1.6 }}>
