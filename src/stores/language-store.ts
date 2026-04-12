@@ -18,8 +18,8 @@ export const useLanguageStore = create<LanguageState>()(
     {
       name: "portfolio-language",
       storage: createJSONStorage(() =>
-        typeof window !== "undefined" ? localStorage : (null as any)
+        typeof window !== "undefined" ? localStorage : (null as any),
       ),
-    }
-  )
+    },
+  ),
 );

@@ -17,7 +17,12 @@ export interface FloatingNavButtonInterface {
   onClick?: () => void;
 }
 
-const FloatingNavButton = ({ path, icon, name, onClick }: FloatingNavButtonInterface) => {
+const FloatingNavButton = ({
+  path,
+  icon,
+  name,
+  onClick,
+}: FloatingNavButtonInterface) => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -34,11 +39,7 @@ const FloatingNavButton = ({ path, icon, name, onClick }: FloatingNavButtonInter
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <Button
-              onClick={handleClick}
-              size="icon"
-              variant="ghost"
-            >
+            <Button onClick={handleClick} size="icon" variant="ghost">
               {icon}
             </Button>
           </TooltipTrigger>

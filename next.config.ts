@@ -54,14 +54,14 @@ const nextConfig: NextConfig = {
         const uses: any[] = Array.isArray(rule.use)
           ? rule.use
           : rule.use
-          ? [rule.use]
-          : [];
+            ? [rule.use]
+            : [];
         const isNextImageLoader =
           loaderStr.includes("next-image-loader") ||
           uses.some(
             (u) =>
               typeof u === "object" &&
-              String(u.loader ?? "").includes("next-image-loader")
+              String(u.loader ?? "").includes("next-image-loader"),
           );
         if (isNextImageLoader) {
           rule.exclude = ([] as any[])

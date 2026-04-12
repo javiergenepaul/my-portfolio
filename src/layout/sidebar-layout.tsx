@@ -24,13 +24,20 @@ export const SideBarLayout = ({ children }: SideBarLayoutProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const { setIsOpen } = useSiderStore();
-  const { font, sidenavSwipeToggle, sidenavSwipeSensitivity, isBackgroundOnly } =
-    useSettingsStore();
+  const {
+    font,
+    sidenavSwipeToggle,
+    sidenavSwipeSensitivity,
+    isBackgroundOnly,
+  } = useSettingsStore();
   useLocaleRefresh();
 
   const handlers = useSwipeable({
     onSwipedLeft: (event) => {
-      if (sidenavSwipeToggle && Math.abs(event.deltaX) >= sidenavSwipeSensitivity) {
+      if (
+        sidenavSwipeToggle &&
+        Math.abs(event.deltaX) >= sidenavSwipeSensitivity
+      ) {
         setIsOpen(true);
       }
     },
@@ -41,11 +48,12 @@ export const SideBarLayout = ({ children }: SideBarLayoutProps) => {
     },
   });
 
-  const fontClass = {
-    inter: "font-inter",
-    "work-sans": "font-work-sans",
-    poppins: "font-poppins",
-  }[font] ?? "font-inter";
+  const fontClass =
+    {
+      inter: "font-inter",
+      "work-sans": "font-work-sans",
+      poppins: "font-poppins",
+    }[font] ?? "font-inter";
 
   const isSubPage = pathname !== PATH.HOME.path;
 
@@ -61,7 +69,7 @@ export const SideBarLayout = ({ children }: SideBarLayoutProps) => {
       <nav
         className={twMerge(
           "block lg:hidden w-full h-fit py-2.5 px-6 bg-primary dark:bg-primary/60 backdrop-blur-xl z-60 text-foreground sticky top-0 transition-all duration-300",
-          isBackgroundOnly ? "opacity-0 pointer-events-none" : ""
+          isBackgroundOnly ? "opacity-0 pointer-events-none" : "",
         )}
       >
         <div className="flex items-center justify-between w-full">
@@ -105,7 +113,7 @@ export const SideBarLayout = ({ children }: SideBarLayoutProps) => {
             "px-3 py-1.5 text-sm font-medium text-muted-foreground",
             "shadow-sm hover:text-foreground hover:border-foreground/30 hover:bg-background",
             "transition-all duration-200",
-            isBackgroundOnly ? "opacity-0 pointer-events-none" : ""
+            isBackgroundOnly ? "opacity-0 pointer-events-none" : "",
           )}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -122,7 +130,7 @@ export const SideBarLayout = ({ children }: SideBarLayoutProps) => {
           fontClass,
           isBackgroundOnly ? "opacity-0 pointer-events-none" : "",
           isDev ? "debug-screens" : "",
-          pathname === PATH.ABOUT.path ? "overflow-x-hidden" : ""
+          pathname === PATH.ABOUT.path ? "overflow-x-hidden" : "",
         )}
       >
         {children}

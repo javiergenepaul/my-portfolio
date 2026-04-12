@@ -38,7 +38,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       setMessages(msgs);
       setActiveLocale(requested);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requested]);
 
   // Sync singleton before children render

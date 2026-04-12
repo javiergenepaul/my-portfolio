@@ -57,41 +57,43 @@ export const SidebarContent = (props: SidebarContentInterface) => {
 
   return (
     <>
-    <Drawer.Content className="bg-foreground flex flex-col rounded-t-[10px] h-full w-81.25 z-70 mt-24 fixed bottom-0 right-0">
-      <div className="flex-1 h-screen p-4 bg-background">
-        <div className="h-full max-w-md mx-auto flex flex-col">
-          <div className="flex flex-col gap-4">
-            <Drawer.Title className="px-2 font-medium">{title}</Drawer.Title>
-            <div className="flex flex-col justify-between px-2">
-              <div>
-                {SIDE_MENU.map((menu: SideMenuInterface, index: React.Key) => (
-                  <React.Fragment key={index}>
-                    <SidebarMenu {...menu} />
-                  </React.Fragment>
+      <Drawer.Content className="bg-foreground flex flex-col rounded-t-[10px] h-full w-81.25 z-70 mt-24 fixed bottom-0 right-0">
+        <div className="flex-1 h-screen p-4 bg-background">
+          <div className="h-full max-w-md mx-auto flex flex-col">
+            <div className="flex flex-col gap-4">
+              <Drawer.Title className="px-2 font-medium">{title}</Drawer.Title>
+              <div className="flex flex-col justify-between px-2">
+                <div>
+                  {SIDE_MENU.map(
+                    (menu: SideMenuInterface, index: React.Key) => (
+                      <React.Fragment key={index}>
+                        <SidebarMenu {...menu} />
+                      </React.Fragment>
+                    ),
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="mt-auto pt-4 flex flex-col gap-4">
+              <SidebarQuickAccess />
+              <div className="flex justify-end gap-4 px-2">
+                {SOCIAL_MEDIA_LINK_DATA.map((socialMedia, index: React.Key) => (
+                  <a className="flex gap-2" key={index} href={socialMedia.url}>
+                    <SocialIcon icon={socialMedia.icon} />
+                  </a>
                 ))}
               </div>
             </div>
           </div>
-          <div className="mt-auto pt-4 flex flex-col gap-4">
-            <SidebarQuickAccess />
-            <div className="flex justify-end gap-4 px-2">
-              {SOCIAL_MEDIA_LINK_DATA.map((socialMedia, index: React.Key) => (
-                <a className="flex gap-2" key={index} href={socialMedia.url}>
-                  <SocialIcon icon={socialMedia.icon} />
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
-      </div>
-    </Drawer.Content>
+      </Drawer.Content>
 
-    <ResumeModal
-      open={resumeOpen}
-      onClose={() => setResumeOpen(false)}
-      year={2024}
-      defaultColor="emerald"
-    />
+      <ResumeModal
+        open={resumeOpen}
+        onClose={() => setResumeOpen(false)}
+        year={2024}
+        defaultColor="emerald"
+      />
     </>
   );
 };

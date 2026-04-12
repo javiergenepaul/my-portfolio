@@ -62,7 +62,7 @@ export const generateColorQoutes = (color: Color): string[] => {
   for (let i = 1; i <= 10; i++) {
     let quoteKey = `settings.color.options.${color}.quotes.${String(i).padStart(
       2,
-      "0"
+      "0",
     )}`;
     let quoteText: string = translate(quoteKey as TxKeyPath);
 
@@ -78,7 +78,7 @@ export const generateColorQoutes = (color: Color): string[] => {
  * @returns {string} A randomly selected quote from the array.
  */
 export const getRandomGeneratedColorQoutes = (
-  colorQoutes: string[]
+  colorQoutes: string[],
 ): string => {
   const randomIndex = Math.floor(Math.random() * colorQoutes.length);
   return colorQoutes[randomIndex];

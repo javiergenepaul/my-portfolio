@@ -19,7 +19,8 @@ export const YEARS: YearConfig[] = [
     label: "2024",
     path: "/2024",
     theme: "Space · Dark Emerald",
-    journey: "Building full-stack products with React, Spring Boot, and modern web technologies.",
+    journey:
+      "Building full-stack products with React, Spring Boot, and modern web technologies.",
     description: "Full-stack engineer — React, Spring Boot, modern web.",
   },
   {
@@ -28,7 +29,8 @@ export const YEARS: YearConfig[] = [
     label: "2025",
     path: "/2025",
     theme: "Moonlight Red",
-    journey: "Refined craft, sharper systems, and a portfolio reimagined from the ground up.",
+    journey:
+      "Refined craft, sharper systems, and a portfolio reimagined from the ground up.",
     description: "A dark, minimal portfolio with a moonlight red accent.",
   },
   {
@@ -37,19 +39,21 @@ export const YEARS: YearConfig[] = [
     label: "2026",
     path: "/2026",
     theme: "Aurora · macOS",
-    journey: "An interactive macOS-inspired experience — explore projects, skills, and experience through a virtual desktop.",
-    description: "A MacBook-inspired portfolio with Aurora theme — dock, windows, terminal, and more.",
+    journey:
+      "An interactive macOS-inspired experience — explore projects, skills, and experience through a virtual desktop.",
+    description:
+      "A MacBook-inspired portfolio with Aurora theme — dock, windows, terminal, and more.",
   },
 ];
 
 /** The latest enabled year, used as the default redirect target. */
-export const CURRENT_YEAR: number = [...YEARS]
-  .filter((y) => y.enabled)
-  .sort((a, b) => b.year - a.year)[0]?.year ?? 2024;
+export const CURRENT_YEAR: number =
+  [...YEARS].filter((y) => y.enabled).sort((a, b) => b.year - a.year)[0]
+    ?.year ?? 2024;
 
 export const getPrevYear = (year: number): YearConfig | undefined => {
   const enabled = YEARS.filter((y) => y.enabled).sort(
-    (a, b) => a.year - b.year
+    (a, b) => a.year - b.year,
   );
   const idx = enabled.findIndex((y) => y.year === year);
   return idx > 0 ? enabled[idx - 1] : undefined;
@@ -57,7 +61,7 @@ export const getPrevYear = (year: number): YearConfig | undefined => {
 
 export const getNextYear = (yearNum: number): YearConfig | undefined => {
   const enabled = YEARS.filter((y) => y.enabled).sort(
-    (a, b) => a.year - b.year
+    (a, b) => a.year - b.year,
   );
   const idx = enabled.findIndex((y) => y.year === yearNum);
   return idx < enabled.length - 1 ? enabled[idx + 1] : undefined;

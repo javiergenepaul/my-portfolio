@@ -68,7 +68,9 @@ export default function RootLayout({
             theme — preventing a flash of the wrong background colour.
             SplashRemover (inside Providers) fades it out after hydration.
         ─────────────────────────────────────────────────────────────────── */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           #__splash {
             position: fixed;
             inset: 0;
@@ -137,18 +139,51 @@ export default function RootLayout({
             0%, 80%, 100% { opacity: 0.25; transform: scale(1);   }
             40%            { opacity: 0.9;  transform: scale(1.35); }
           }
-        ` }} />
+        `,
+          }}
+        />
 
         <div id="__splash">
           <div className="__splash-content">
             {/* Logo — uses currentColor so it adapts to dark/light */}
             <div className="__splash-logo">
-              <svg width="72" height="72" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="69" height="69" rx="34.5" fill="currentColor" fillOpacity="0.08"/>
-                <rect x="5.25" y="5.25" width="58.5" height="58.5" rx="29.25" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1.5" fill="none"/>
-                <path d="M30.0798 25.1276V18.0002C13.3577 18.8912 10.2738 45.5501 31.1078 47.3319C43.3339 47.3319 48.5148 34.722 44.2659 26.087H31.1763V33.4885H38.8518C38.9889 37.3262 35.1511 41.3696 29.6001 40.3416C20.2797 38.0801 21.7875 26.0185 30.0798 25.1276Z" fill="currentColor"/>
-                <path d="M31.1078 18.0002V24.7849H45.0198C48.8576 30.6786 49.1454 47.4415 31.1078 48.4284V55.8299C46.9384 55.8299 62.2895 36.778 48.8576 18.0002H31.1078Z" fill="currentColor"/>
-                <path d="M30.0193 55.8235L30.0193 48.54L24.3126 48.54C27.6405 50.7316 29.132 54.3088 29.4364 55.8235L30.0193 55.8235Z" fill="currentColor"/>
+              <svg
+                width="72"
+                height="72"
+                viewBox="0 0 69 69"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  width="69"
+                  height="69"
+                  rx="34.5"
+                  fill="currentColor"
+                  fillOpacity="0.08"
+                />
+                <rect
+                  x="5.25"
+                  y="5.25"
+                  width="58.5"
+                  height="58.5"
+                  rx="29.25"
+                  stroke="currentColor"
+                  strokeOpacity="0.3"
+                  strokeWidth="1.5"
+                  fill="none"
+                />
+                <path
+                  d="M30.0798 25.1276V18.0002C13.3577 18.8912 10.2738 45.5501 31.1078 47.3319C43.3339 47.3319 48.5148 34.722 44.2659 26.087H31.1763V33.4885H38.8518C38.9889 37.3262 35.1511 41.3696 29.6001 40.3416C20.2797 38.0801 21.7875 26.0185 30.0798 25.1276Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M31.1078 18.0002V24.7849H45.0198C48.8576 30.6786 49.1454 47.4415 31.1078 48.4284V55.8299C46.9384 55.8299 62.2895 36.778 48.8576 18.0002H31.1078Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M30.0193 55.8235L30.0193 48.54L24.3126 48.54C27.6405 50.7316 29.132 54.3088 29.4364 55.8235L30.0193 55.8235Z"
+                  fill="currentColor"
+                />
               </svg>
             </div>
             <p className="__splash-name">Gene Paul Mar Javier</p>
@@ -163,7 +198,9 @@ export default function RootLayout({
 
         {/* Reads saved theme from localStorage before React runs — prevents
             a flash of the wrong background on themed (non-dark) sessions.  */}
-        <script dangerouslySetInnerHTML={{ __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
           (function() {
             try {
               var raw = localStorage.getItem('portfolio-settings');
@@ -176,7 +213,9 @@ export default function RootLayout({
               }
             } catch(e) {}
           })();
-        ` }} />
+        `,
+          }}
+        />
 
         <Providers>{children}</Providers>
       </body>

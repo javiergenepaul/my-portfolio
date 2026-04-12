@@ -5,7 +5,12 @@ interface LazyImageInterface {
   className?: string;
 }
 
-export const LazyImage = ({ src, alt, width, className }: LazyImageInterface) => {
+export const LazyImage = ({
+  src,
+  alt,
+  width,
+  className,
+}: LazyImageInterface) => {
   const srcString = typeof src === "string" ? src : src.src;
   return (
     // eslint-disable-next-line @next/next/no-img-element

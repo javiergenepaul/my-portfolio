@@ -24,7 +24,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
     if (theme === "system") {
       const systemDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       root.classList.add(systemDark ? "dark" : "light");
     } else {
@@ -42,7 +42,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       "sunset",
       "lavender",
       "scarlet",
-      "silver"
+      "silver",
     );
     root.classList.add(color ?? "emerald");
   }, [color]);

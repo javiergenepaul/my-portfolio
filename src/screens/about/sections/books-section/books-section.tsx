@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils";
 import { BOOKS, type BookInterface } from "@/config";
 
 const THEME_STYLES: Record<string, string> = {
-  Purpose:    "bg-blue-500/10 text-blue-500",
-  Humility:   "bg-amber-500/10 text-amber-500",
-  Systems:    "bg-emerald-500/10 text-emerald-500",
+  Purpose: "bg-blue-500/10 text-blue-500",
+  Humility: "bg-amber-500/10 text-amber-500",
+  Systems: "bg-emerald-500/10 text-emerald-500",
   Resilience: "bg-rose-500/10 text-rose-500",
-  Stoicism:   "bg-violet-500/10 text-violet-500",
-  Focus:      "bg-cyan-500/10 text-cyan-500",
+  Stoicism: "bg-violet-500/10 text-violet-500",
+  Focus: "bg-cyan-500/10 text-cyan-500",
   Leadership: "bg-orange-500/10 text-orange-500",
 };
 
@@ -26,11 +26,20 @@ const container: Variants = {
 
 const item: Variants = {
   hidden: { opacity: 0, y: 28 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-function BookCard({ book, index, accent }: { book: BookInterface; index: number; accent: string }) {
-  const themeStyle = THEME_STYLES[book.theme] ?? "bg-muted text-muted-foreground";
+function BookCard({
+  book,
+  index,
+  accent,
+}: {
+  book: BookInterface;
+  index: number;
+  accent: string;
+}) {
+  const themeStyle =
+    THEME_STYLES[book.theme] ?? "bg-muted text-muted-foreground";
 
   return (
     <motion.div
@@ -53,7 +62,12 @@ function BookCard({ book, index, accent }: { book: BookInterface; index: number;
           >
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className={cn("text-[10px] font-semibold px-2.5 py-0.5 rounded-full shrink-0", themeStyle)}>
+          <span
+            className={cn(
+              "text-[10px] font-semibold px-2.5 py-0.5 rounded-full shrink-0",
+              themeStyle,
+            )}
+          >
             {book.theme}
           </span>
         </div>
@@ -108,7 +122,8 @@ export const BooksSection = () => {
           </p>
           <h2 className="text-2xl font-bold">Books that shaped me</h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-            Not just books I've read — books I return to. Each one left a dent in how I think, build, and lead.
+            Not just books I've read — books I return to. Each one left a dent
+            in how I think, build, and lead.
           </p>
         </motion.div>
 
@@ -119,7 +134,12 @@ export const BooksSection = () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {BOOKS.map((book, index) => (
-            <BookCard key={book.title} book={book} index={index} accent={accent} />
+            <BookCard
+              key={book.title}
+              book={book}
+              index={index}
+              accent={accent}
+            />
           ))}
         </motion.div>
       </section>

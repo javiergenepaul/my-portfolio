@@ -44,7 +44,7 @@ export function YearNavigator() {
       triggerNavigationStart();
       router.push(target.path);
     },
-    [router]
+    [router],
   );
 
   // Reset loading flag once Next.js has committed the new route
@@ -65,7 +65,7 @@ export function YearNavigator() {
   if (!activeYear) return null;
 
   const enabledYears = YEARS.filter((y) => y.enabled).sort(
-    (a, b) => a.year - b.year
+    (a, b) => a.year - b.year,
   );
 
   return (
@@ -77,7 +77,10 @@ export function YearNavigator() {
             key="nav-progress"
             className="fixed top-0 left-0 z-100 h-0.5 bg-primary"
             initial={{ width: "0%" }}
-            animate={{ width: "80%", transition: { duration: 2, ease: "easeOut" } }}
+            animate={{
+              width: "80%",
+              transition: { duration: 2, ease: "easeOut" },
+            }}
             exit={{ width: "100%", opacity: 0, transition: { duration: 0.25 } }}
           />
         )}
@@ -129,7 +132,12 @@ export function YearNavigator() {
 
       {/* ── Timeline dots (bottom-centre) — hidden on 2026 (dock overlap) ── */}
       <TooltipProvider delayDuration={200}>
-        <div className="year-timeline" role="tablist" aria-label="Year timeline" style={activeYear === 2026 ? { display: "none" } : undefined}>
+        <div
+          className="year-timeline"
+          role="tablist"
+          aria-label="Year timeline"
+          style={activeYear === 2026 ? { display: "none" } : undefined}
+        >
           {enabledYears.map((y) => (
             <Tooltip key={y.year}>
               <TooltipTrigger asChild>
@@ -140,7 +148,7 @@ export function YearNavigator() {
                   onClick={() => navigate(y)}
                   className={cn(
                     "year-timeline-dot",
-                    y.year === activeYear && "year-timeline-dot-active"
+                    y.year === activeYear && "year-timeline-dot-active",
                   )}
                 />
               </TooltipTrigger>
@@ -166,7 +174,9 @@ export function YearNavigator() {
                   </div>
 
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-medium text-foreground/70">Theme:</span>{" "}
+                    <span className="font-medium text-foreground/70">
+                      Theme:
+                    </span>{" "}
                     {y.theme}
                   </p>
 
@@ -199,7 +209,7 @@ function YearMiniScreen({ year }: { year: YearConfig }) {
         title={`${year.year} portfolio preview`}
         className={cn(
           "year-mini-screen-iframe",
-          loaded ? "opacity-100" : "opacity-0"
+          loaded ? "opacity-100" : "opacity-0",
         )}
         style={{
           width: "800px",
@@ -232,7 +242,10 @@ function YearTooltipPreview({ year }: { year: YearConfig }) {
       <iframe
         src={year.path}
         title={`${year.year} preview`}
-        className={cn("absolute top-0 left-0", loaded ? "opacity-100" : "opacity-0")}
+        className={cn(
+          "absolute top-0 left-0",
+          loaded ? "opacity-100" : "opacity-0",
+        )}
         style={{
           width: "800px",
           height: "450px",

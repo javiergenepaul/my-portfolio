@@ -34,7 +34,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
 
   const getYearSpent = (
     startDate: Moment,
-    endDate: Moment | "present"
+    endDate: Moment | "present",
   ): string => {
     let years;
     let months;
@@ -71,7 +71,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
         "relative",
         subtitleUrl
           ? "hover:border hover:border-primary hover:cursor-pointer"
-          : ""
+          : "",
       )}
       onClick={() => {
         logEvent({
@@ -113,17 +113,21 @@ export const ContentBody = (props: ContentBodyInterface) => {
           {isWork && (
             <>
               <Dot />
-              <div suppressHydrationWarning>{getYearSpent(startYear, endYear)}</div>
+              <div suppressHydrationWarning>
+                {getYearSpent(startYear, endYear)}
+              </div>
             </>
           )}
           {employmentType && (
             <>
               <Dot />
-              <span className={
-                employmentType === "Part-time"
-                  ? "rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-500"
-                  : "rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-500"
-              }>
+              <span
+                className={
+                  employmentType === "Part-time"
+                    ? "rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-500"
+                    : "rounded-full bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-500"
+                }
+              >
                 {employmentType}
               </span>
             </>
@@ -184,7 +188,11 @@ export const ContentBody = (props: ContentBodyInterface) => {
           height={"100px"}
           width={waterMarkWidth ? `${waterMarkWidth}px` : "100px"}
           className="absolute top-2 right-2 opacity-30"
-          src={typeof watermark === "string" ? watermark : (watermark as { src: string }).src}
+          src={
+            typeof watermark === "string"
+              ? watermark
+              : (watermark as { src: string }).src
+          }
           alt={watermarkAlt}
         />
       )}

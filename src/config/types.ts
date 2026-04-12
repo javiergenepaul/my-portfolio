@@ -97,7 +97,9 @@ export interface CertificateCardInterface {
   title: string;
   organization: string;
   /** Accepts a plain URL string or a Next.js static image import (StaticImageData). */
-  organizationImg: string | { src: string; height: number; width: number; blurDataURL?: string };
+  organizationImg:
+    | string
+    | { src: string; height: number; width: number; blurDataURL?: string };
   organizationAlt: string;
   issuedDate: Moment;
   credentialId?: string;
@@ -116,7 +118,12 @@ export interface BookInterface {
 
 // ── Testimonials ─────────────────────────────────────────────────────────────
 
-export type TestimonialRelationship = "Colleague" | "Client" | "Manager" | "Mentor" | "Peer";
+export type TestimonialRelationship =
+  | "Colleague"
+  | "Client"
+  | "Manager"
+  | "Mentor"
+  | "Peer";
 
 export interface TestimonialInterface {
   name: string;

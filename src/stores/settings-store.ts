@@ -78,7 +78,7 @@ export const useSettingsStore = create<SettingsState>()(
       // only accessed inside "use client" components. The `skipHydration`
       // pattern is not needed since all consumers are client-side.
       storage: createJSONStorage(() =>
-        typeof window !== "undefined" ? localStorage : (null as any)
+        typeof window !== "undefined" ? localStorage : (null as any),
       ),
       // Only persist user preferences, not transient UI state.
       partialize: (state) => ({
@@ -90,6 +90,6 @@ export const useSettingsStore = create<SettingsState>()(
         sidenavSwipeSensitivity: state.sidenavSwipeSensitivity,
         isSettingsNew: state.isSettingsNew,
       }),
-    }
-  )
+    },
+  ),
 );

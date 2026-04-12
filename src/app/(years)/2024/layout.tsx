@@ -17,8 +17,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   alternates: { canonical: "/2024" },
   keywords: [
-    "Gene Paul Mar Javier", "full-stack developer", "React", "Next.js",
-    "Spring Boot", "TypeScript", "Java", "software engineer", "portfolio 2024",
+    "Gene Paul Mar Javier",
+    "full-stack developer",
+    "React",
+    "Next.js",
+    "Spring Boot",
+    "TypeScript",
+    "Java",
+    "software engineer",
+    "portfolio 2024",
     "Cebu Philippines developer",
   ],
   icons: {
@@ -57,15 +64,31 @@ const jsonLd = {
   url: `${BASE_URL}/2024`,
   jobTitle: "Full-Stack Software Engineer",
   description: DESCRIPTION,
-  address: { "@type": "PostalAddress", addressLocality: "Cebu", addressCountry: "PH" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cebu",
+    addressCountry: "PH",
+  },
   sameAs: [
     "https://github.com/javiergenepaul",
     "https://linkedin.com/in/gene-paul-mar-javier",
   ],
-  knowsAbout: ["React", "Next.js", "Spring Boot", "TypeScript", "Java", "PostgreSQL", "Docker"],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "Spring Boot",
+    "TypeScript",
+    "Java",
+    "PostgreSQL",
+    "Docker",
+  ],
 };
 
-export default function Layout2024({ children }: { children: React.ReactNode }) {
+export default function Layout2024({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <script

@@ -5,7 +5,13 @@ import { SideMenuInterface } from "@/config";
 import { useSiderStore } from "@/stores";
 import { Separator } from "@radix-ui/react-separator";
 
-export const SidebarMenu = ({ path, name, icon, href, onClick }: SideMenuInterface) => {
+export const SidebarMenu = ({
+  path,
+  name,
+  icon,
+  href,
+  onClick,
+}: SideMenuInterface) => {
   const { setIsOpen } = useSiderStore();
 
   const handleClick = () => {

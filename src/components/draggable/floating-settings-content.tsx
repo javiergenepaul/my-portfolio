@@ -47,7 +47,7 @@ interface FloatingSettingContentInterface {
 }
 
 export const FloatingSettingsContent = (
-  props: FloatingSettingContentInterface
+  props: FloatingSettingContentInterface,
 ) => {
   const { isOpen, setIsOpen } = props;
   return (
@@ -227,7 +227,7 @@ const ColorPaletteField = () => {
                 {color.name}
               </Label>
             </div>
-          )
+          ),
         )}
       </RadioGroup>
     </div>

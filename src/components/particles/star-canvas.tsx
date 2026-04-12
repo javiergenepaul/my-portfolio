@@ -21,7 +21,7 @@ function onSphereSurface(count: number, radius: number): Float32Array {
   for (let i = 0; i < count; i++) {
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.acos(2 * Math.random() - 1);
-    arr[i * 3]     = radius * Math.sin(phi) * Math.cos(theta);
+    arr[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
     arr[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
     arr[i * 3 + 2] = radius * Math.cos(phi);
   }
@@ -49,7 +49,7 @@ function BackgroundStars() {
       <PointMaterial
         transparent
         color="#d8e8ff"
-        size={0.9}           // pixel size — sizeAttenuation off so all stars
+        size={0.9} // pixel size — sizeAttenuation off so all stars
         sizeAttenuation={false} // appear the same size regardless of depth
         depthWrite={false}
         opacity={0.8}
@@ -93,7 +93,13 @@ interface AsteroidData {
   detail: 0 | 1;
 }
 
-function Asteroid({ pos, scale, spin, drift, detail }: Omit<AsteroidData, "id">) {
+function Asteroid({
+  pos,
+  scale,
+  spin,
+  drift,
+  detail,
+}: Omit<AsteroidData, "id">) {
   const meshRef = useRef<THREE.Mesh>(null!);
   const position = useRef(new THREE.Vector3(...pos));
 
@@ -155,7 +161,7 @@ function Asteroids() {
           detail: Math.random() > 0.6 ? 1 : 0,
         } satisfies AsteroidData;
       }),
-    []
+    [],
   );
 
   return (
@@ -198,17 +204,25 @@ function ShootingStar({ delay }: { delay: number }) {
       const side = (Math.random() - 0.5) * 2 * span;
 
       switch (edge) {
-        case 0: d.origin.set(side, span, 0); break;
-        case 1: d.origin.set(side, -span, 0); break;
-        case 2: d.origin.set(span, side, 0); break;
-        default: d.origin.set(-span, side, 0); break;
+        case 0:
+          d.origin.set(side, span, 0);
+          break;
+        case 1:
+          d.origin.set(side, -span, 0);
+          break;
+        case 2:
+          d.origin.set(span, side, 0);
+          break;
+        default:
+          d.origin.set(-span, side, 0);
+          break;
       }
 
       d.velocity
         .set(
           -d.origin.x + (Math.random() - 0.5) * 0.6,
           -d.origin.y + (Math.random() - 0.5) * 0.6,
-          0
+          0,
         )
         .normalize()
         .multiplyScalar(2.5 + Math.random() * 1.5);
@@ -285,7 +299,7 @@ export const StarsCanvas = () => {
     <div
       className={twMerge(
         "w-full h-auto absolute inset-0 -z-10 pointer-events-none",
-        !enableParticleBackground ? "hidden" : ""
+        !enableParticleBackground ? "hidden" : "",
       )}
     >
       <Canvas

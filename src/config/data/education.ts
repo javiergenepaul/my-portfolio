@@ -1,7 +1,12 @@
 import moment from "moment";
 import { translate } from "@/i18n";
 import type { ContentBodyInterface } from "@/config/types";
-import { BNHSWatermark, CTUWatermark, PilotWatermark, UcWatermark } from "@/assets";
+import {
+  BNHSWatermark,
+  CTUWatermark,
+  PilotWatermark,
+  UcWatermark,
+} from "@/assets";
 import {
   BNHS_SCHOOL_URL,
   CTU_SCHOOL_URL,

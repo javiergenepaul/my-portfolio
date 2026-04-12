@@ -10,7 +10,7 @@ import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
 
 const LazyProjectCard = lazy(
-  () => import("../components/project-card/project-card")
+  () => import("../components/project-card/project-card"),
 );
 
 export const ProjectSection = () => {
@@ -24,9 +24,7 @@ export const ProjectSection = () => {
   };
 
   const sortedProjects = (): ProjectInterface[] =>
-    getProjects().sort(
-      (a, b) => priorityOrder[a.type] - priorityOrder[b.type]
-    );
+    getProjects().sort((a, b) => priorityOrder[a.type] - priorityOrder[b.type]);
 
   return (
     <section
@@ -45,7 +43,10 @@ export const ProjectSection = () => {
         <Button
           className="select-none"
           variant={"link"}
-          onClick={() => { triggerNavigationStart(); router.push(PATH.PROJECTS.path); }}
+          onClick={() => {
+            triggerNavigationStart();
+            router.push(PATH.PROJECTS.path);
+          }}
         >
           {translate("projects.button.viewFullArchive")}
         </Button>

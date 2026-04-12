@@ -23,7 +23,7 @@ export const CopyToClipBoard = ({
 }: CopyToClipBoardInterface) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false);
   const [tooltipContent, setTooltipContent] = useState<string>(
-    translate("contact.copyToClipboard.default")
+    translate("contact.copyToClipboard.default"),
   );
 
   return (
@@ -40,7 +40,7 @@ export const CopyToClipBoard = ({
                   setIsTooltipOpen(false);
                   setTimeout(() => {
                     setTooltipContent(
-                      translate("contact.copyToClipboard.default")
+                      translate("contact.copyToClipboard.default"),
                     );
                   }, 300);
                 }}

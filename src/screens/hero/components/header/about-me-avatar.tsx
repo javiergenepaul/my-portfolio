@@ -24,7 +24,10 @@ export const AboutMeAvatar = () => {
             className="items-center justify-center hidden gap-2 cursor-pointer select-none lg:flex"
           >
             <Avatar>
-              <AvatarImage src={AvatarProfile as unknown as string} alt="Gene Paul Mar Javier" />
+              <AvatarImage
+                src={AvatarProfile as unknown as string}
+                alt="Gene Paul Mar Javier"
+              />
               <AvatarFallback>{translate("header.shortName")}</AvatarFallback>
             </Avatar>
           </Link>

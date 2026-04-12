@@ -9,5 +9,6 @@ interface ResendTimerState {
 export const useResendTimerStore = create<ResendTimerState>()((set) => ({
   timer: 0,
   setTimer: (timer) => set({ timer }),
-  decrementTimer: () => set((state) => ({ timer: Math.max(0, state.timer - 1) })),
+  decrementTimer: () =>
+    set((state) => ({ timer: Math.max(0, state.timer - 1) })),
 }));

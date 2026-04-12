@@ -16,7 +16,7 @@ export const SocialIcon = (props: SocialIconInterface) => {
         <svg
           className={twMerge(
             "fill-foreground hover:fill-primary transition-all duration-300",
-            className
+            className,
           )}
           width="24"
           height="24"
@@ -43,7 +43,7 @@ export const SocialIcon = (props: SocialIconInterface) => {
         <svg
           className={twMerge(
             "fill-foreground hover:fill-primary transition-all duration-300",
-            className
+            className,
           )}
           width="24"
           height="24"
@@ -63,7 +63,7 @@ export const SocialIcon = (props: SocialIconInterface) => {
         <svg
           className={twMerge(
             "fill-foreground hover:fill-primary transition-all duration-300",
-            className
+            className,
           )}
           width="24"
           height="24"
@@ -83,7 +83,7 @@ export const SocialIcon = (props: SocialIconInterface) => {
         <svg
           className={twMerge(
             "fill-foreground hover:fill-primary transition-all duration-300",
-            className
+            className,
           )}
           width="24"
           height="24"

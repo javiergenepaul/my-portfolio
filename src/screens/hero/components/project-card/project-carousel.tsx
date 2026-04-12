@@ -63,7 +63,7 @@ export const ProjectCarousel = ({
             onClick={onClickPreviewUrl}
             className={twMerge(
               "absolute z-50 top-0 left-0 w-full h-full rounded-lg bg-background/30 invisible group-hover:visible",
-              previewUrl ? "cursor-pointer" : "cursor-not-allowed"
+              previewUrl ? "cursor-pointer" : "cursor-not-allowed",
             )}
           >
             <div className="flex h-full w-full items-center justify-center gap-2">
@@ -79,22 +79,20 @@ export const ProjectCarousel = ({
             </div>
           </div>
           <CarouselContent>
-            {carousel.map(
-              (item: ProjectCarouselInterface, index: number) => {
-                return (
-                  <CarouselItem key={index}>
-                    <img
-                      className="rounded-lg aspect-square object-cover w-full"
-                      src={imgSrc(item.image)}
-                      alt={item.name}
-                      loading="lazy"
-                      width={600}
-                      height={600}
-                    />
-                  </CarouselItem>
-                );
-              }
-            )}
+            {carousel.map((item: ProjectCarouselInterface, index: number) => {
+              return (
+                <CarouselItem key={index}>
+                  <img
+                    className="rounded-lg aspect-square object-cover w-full"
+                    src={imgSrc(item.image)}
+                    alt={item.name}
+                    loading="lazy"
+                    width={600}
+                    height={600}
+                  />
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
         </Carousel>
         <div className="w-full">
@@ -107,33 +105,31 @@ export const ProjectCarousel = ({
             className="grid grid-cols-5"
             value={current.toString()}
           >
-            {carousel.map(
-              (item: ProjectCarouselInterface, index: number) => {
-                return (
-                  <div key={index} className="flex items-center">
-                    <RadioGroupItem
-                      value={item.value}
-                      id={`carousel-option-${projectId}-${item.value}-${index}-${item.name}`}
-                      className="sr-only peer"
+            {carousel.map((item: ProjectCarouselInterface, index: number) => {
+              return (
+                <div key={index} className="flex items-center">
+                  <RadioGroupItem
+                    value={item.value}
+                    id={`carousel-option-${projectId}-${item.value}-${index}-${item.name}`}
+                    className="sr-only peer"
+                  />
+                  <Label
+                    className="rounded-md border-2 cursor-pointer border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                    htmlFor={`carousel-option-${projectId}-${item.value}-${index}-${item.name}`}
+                    aria-label={`View screenshot: ${item.name}`}
+                  >
+                    <img
+                      className="rounded-md"
+                      src={imgSrc(item.image)}
+                      alt={item.name}
+                      loading="lazy"
+                      width={120}
+                      height={120}
                     />
-                    <Label
-                      className="rounded-md border-2 cursor-pointer border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                      htmlFor={`carousel-option-${projectId}-${item.value}-${index}-${item.name}`}
-                      aria-label={`View screenshot: ${item.name}`}
-                    >
-                      <img
-                        className="rounded-md"
-                        src={imgSrc(item.image)}
-                        alt={item.name}
-                        loading="lazy"
-                        width={120}
-                        height={120}
-                      />
-                    </Label>
-                  </div>
-                );
-              }
-            )}
+                  </Label>
+                </div>
+              );
+            })}
           </RadioGroup>
         </div>
       </div>

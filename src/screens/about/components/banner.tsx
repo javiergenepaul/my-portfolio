@@ -35,7 +35,7 @@ export const Banner = () => {
           <div
             className={twMerge(
               "flex gap-24 logo-slide flex-nowrap animate-tape",
-              isPauseAnimateBanner ? "pause-tape-animation" : ""
+              isPauseAnimateBanner ? "pause-tape-animation" : "",
             )}
           >
             {Array.from({ length: 50 }, (_, index) => (

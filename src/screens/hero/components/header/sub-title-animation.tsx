@@ -8,7 +8,7 @@ import { secondsToMilliseconds } from "@/lib";
 // avoid the server/client content mismatch hydration warning.
 const TypeAnimation = dynamic(
   () => import("react-type-animation").then((m) => m.TypeAnimation),
-  { ssr: false }
+  { ssr: false },
 );
 
 export const SubTitleAnimation = () => {

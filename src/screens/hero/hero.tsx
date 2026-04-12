@@ -10,7 +10,6 @@ import {
 import { FadeAnimation } from "@/components";
 
 export const Hero = () => {
-
   const { setSelectedNav, setOnScrollNav } = useNavLinkStore();
 
   useEffect(() => {

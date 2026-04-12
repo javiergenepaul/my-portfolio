@@ -1,7 +1,11 @@
 import moment from "moment";
 import { translate } from "@/i18n";
 import type { CertificateCardInterface } from "@/config/types";
-import { LiloleleIncorporatedOrganization, LinkedInLearningOrganization, UdemyOrganization } from "@/assets";
+import {
+  LiloleleIncorporatedOrganization,
+  LinkedInLearningOrganization,
+  UdemyOrganization,
+} from "@/assets";
 import { LiloleleBusinessCommunicationCertificate } from "@/assets/certificates";
 
 /**
@@ -16,7 +20,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/75abbbecb5da197538b9da93e8c64ec8a9339637943b009cb7f5e16b43934cea",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/75abbbecb5da197538b9da93e8c64ec8a9339637943b009cb7f5e16b43934cea",
   },
   {
     title: "Building Modern Projects with React",
@@ -24,7 +29,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/5f22c8b207b62b4a95ca289c55b730fe3d14058a55ffda0190567829dd015d37",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/5f22c8b207b62b4a95ca289c55b730fe3d14058a55ffda0190567829dd015d37",
   },
   {
     title: "Spring Boot 3 Essential Training",
@@ -32,7 +38,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/d6ea6ed9472ede216976b6b9836e912b0b57efdb01911594b67572789181da64",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/d6ea6ed9472ede216976b6b9836e912b0b57efdb01911594b67572789181da64",
   },
   {
     title: "Microservices Foundations",
@@ -40,7 +47,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/e1bffa185437fbdead0cd83798aab79500d48a8226bead96f4fa0d97d384d15a",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/e1bffa185437fbdead0cd83798aab79500d48a8226bead96f4fa0d97d384d15a",
   },
   {
     title: "Tailwind CSS 4 Essential Training",
@@ -48,7 +56,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/fa9ef30850fbba9178d4a1916dc7f8b8fd3d07cd9e26512dc43196876dfaa6ca",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/fa9ef30850fbba9178d4a1916dc7f8b8fd3d07cd9e26512dc43196876dfaa6ca",
   },
   {
     title: "Agile Software Development: Code Quality",
@@ -56,7 +65,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/95478850cd3efed46794e0df058d2b2c504b942d3e4125634a2c25c27bd89b1d",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/95478850cd3efed46794e0df058d2b2c504b942d3e4125634a2c25c27bd89b1d",
   },
   {
     title: "Learning Vue.js",
@@ -64,7 +74,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/ca8b46dfe316ac85197f5cbef288057391e6eea31d60b267ec24cf7417016705",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/ca8b46dfe316ac85197f5cbef288057391e6eea31d60b267ec24cf7417016705",
   },
   {
     title: "Learning Next.js",
@@ -72,7 +83,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/92e556b4a71f8e0beac88741807266681c522c4a61b125007dbb1202921b22af",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/92e556b4a71f8e0beac88741807266681c522c4a61b125007dbb1202921b22af",
   },
   {
     title: "Learning TypeScript",
@@ -80,7 +92,8 @@ export const getCertificates = (): CertificateCardInterface[] => [
     organizationImg: LinkedInLearningOrganization,
     organizationAlt: "LinkedIn Learning",
     issuedDate: moment("2025-01"),
-    credentialUrl: "https://www.linkedin.com/learning/certificates/c1257ca53d8a512a53e5cc0f03ed0eba75130288acc7ad8a750f381f68278860",
+    credentialUrl:
+      "https://www.linkedin.com/learning/certificates/c1257ca53d8a512a53e5cc0f03ed0eba75130288acc7ad8a750f381f68278860",
   },
   // ── Udemy ──────────────────────────────────────────────────────────────────
   {
@@ -105,7 +118,9 @@ export const getCertificates = (): CertificateCardInterface[] => [
   },
   {
     title: translate("about.certificate.businessCommunication.title"),
-    organization: translate("about.certificate.businessCommunication.organization"),
+    organization: translate(
+      "about.certificate.businessCommunication.organization",
+    ),
     organizationImg: LiloleleIncorporatedOrganization,
     organizationAlt: translate("about.certificate.springBoot.organizationAlt"),
     issuedDate: moment("2024-07"),

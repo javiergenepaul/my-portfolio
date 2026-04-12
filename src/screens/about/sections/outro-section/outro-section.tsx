@@ -33,7 +33,10 @@ export const OutroSection = () => {
           </p>
           <Button
             className="w-fit"
-            onClick={() => { triggerNavigationStart(); router.push(PATH.CONTACTS.path); }}
+            onClick={() => {
+              triggerNavigationStart();
+              router.push(PATH.CONTACTS.path);
+            }}
           >
             {translate("about.outro.getInTouch")}
           </Button>

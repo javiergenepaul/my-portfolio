@@ -32,7 +32,9 @@ export function Portfolio2024Shell() {
       PATH.SETTINGS_APPEARNCE.path,
       PATH.SETTINGS_GENERAL.path,
     ];
-    setHideFloatingSettings((settingsPaths as readonly string[]).includes(pathname));
+    setHideFloatingSettings(
+      (settingsPaths as readonly string[]).includes(pathname),
+    );
     window.scrollTo(0, 0);
   }, [pathname, setHideFloatingSettings]);
 

@@ -37,7 +37,7 @@ type BackEndStack =
   | "bootstrap"
   | "mvc"
   | "microservices";
-  
+
 type FrontEndStack =
   | "vite"
   | "react"

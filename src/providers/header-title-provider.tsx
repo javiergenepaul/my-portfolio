@@ -19,7 +19,9 @@ export const HeaderTitleProvider = ({ children }: HeaderTitleProviderProps) => {
   const { setTitle } = usePageTitleStore();
 
   useEffect(() => {
-    const foundPath = Object.values(PATH).find((item) => item.path === pathname);
+    const foundPath = Object.values(PATH).find(
+      (item) => item.path === pathname,
+    );
     setTitle(foundPath ? foundPath.name : translate("path.pageNotFound"));
   }, [pathname, setTitle]);
 

@@ -16,7 +16,12 @@ export const SettingsSidenav = ({ items, className }: SettingsSidenavProps) => {
   const pathname = usePathname();
 
   return (
-    <nav className={cn("flex flex-wrap gap-1 lg:flex-col lg:flex-nowrap lg:gap-0 lg:space-y-1", className)}>
+    <nav
+      className={cn(
+        "flex flex-wrap gap-1 lg:flex-col lg:flex-nowrap lg:gap-0 lg:space-y-1",
+        className,
+      )}
+    >
       {items.map((item) => (
         <Link
           key={item.href}
@@ -27,7 +32,7 @@ export const SettingsSidenav = ({ items, className }: SettingsSidenavProps) => {
               (pathname.endsWith("/") && item.href === PATH.SETTINGS.path)
               ? "bg-muted hover:bg-muted"
               : "hover:bg-transparent hover:underline",
-            "justify-start"
+            "justify-start",
           )}
         >
           {item.title}

@@ -12,7 +12,7 @@ export const ContactSection = () => {
     >
       <Card className="py-8">
         <CardHeader className="gap-10 pb-10 select-none">
-          <img 
+          <img
             src={ContactLogo}
             alt="jav-logo.svg"
             className="w-[74px] h-[74px]"

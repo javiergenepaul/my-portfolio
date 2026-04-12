@@ -30,7 +30,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
     previewUrl,
     description,
     keyContribution,
-    hidden
+    hidden,
   } = props;
 
   return (
@@ -40,7 +40,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
         <div className="flex flex-col gap-4 px-4 py-6 pb-4 xl:flex-row md:px-8 h-fit">
           <div
             className={twMerge(
-              "items-center relative justify-center overflow-hidden rounded-lg select-none md:basis-2/5"
+              "items-center relative justify-center overflow-hidden rounded-lg select-none md:basis-2/5",
             )}
           >
             <ProjectCarousel

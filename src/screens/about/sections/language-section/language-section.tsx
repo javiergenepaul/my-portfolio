@@ -5,15 +5,23 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { Banner } from "../../components";
 import { getColor } from "@/lib";
-import { useSettingsStore, useLanguageStore, type LanguageType } from "@/stores";
+import {
+  useSettingsStore,
+  useLanguageStore,
+  type LanguageType,
+} from "@/stores";
 import { cn } from "@/lib/utils";
-import { LANGUAGES, type ProficiencyLevel, type LanguageInterface } from "@/config";
+import {
+  LANGUAGES,
+  type ProficiencyLevel,
+  type LanguageInterface,
+} from "@/config";
 
 const PROFICIENCY: Record<ProficiencyLevel, { pct: number; style: string }> = {
-  Native:        { pct: 100, style: "bg-emerald-500/15 text-emerald-500" },
-  Fluent:        { pct: 85,  style: "bg-blue-500/15 text-blue-500" },
-  Conversational:{ pct: 55,  style: "bg-amber-500/15 text-amber-500" },
-  Basic:         { pct: 25,  style: "bg-rose-500/15 text-rose-500" },
+  Native: { pct: 100, style: "bg-emerald-500/15 text-emerald-500" },
+  Fluent: { pct: 85, style: "bg-blue-500/15 text-blue-500" },
+  Conversational: { pct: 55, style: "bg-amber-500/15 text-amber-500" },
+  Basic: { pct: 25, style: "bg-rose-500/15 text-rose-500" },
 };
 
 const container: Variants = {
@@ -23,7 +31,7 @@ const container: Variants = {
 
 const item: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
 function LanguageCard({
@@ -53,7 +61,9 @@ function LanguageCard({
         "rounded-xl border bg-card shadow-sm cursor-pointer transition-colors duration-200",
         "p-4 flex flex-row items-center gap-4",
         "sm:p-5 sm:flex-col sm:items-stretch sm:gap-4",
-        active ? "border-primary shadow-md" : "border-border hover:border-primary/50"
+        active
+          ? "border-primary shadow-md"
+          : "border-border hover:border-primary/50",
       )}
     >
       {/* Flag — large on mobile (left), top row on sm+ */}
@@ -65,17 +75,22 @@ function LanguageCard({
 
       {/* Right side on mobile / full content on sm+ */}
       <div className="flex-1 min-w-0 flex flex-col gap-2 sm:gap-4">
-
         {/* Name + level badge */}
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="text-sm font-bold leading-tight sm:text-base">{lang.name}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">{lang.nativeName}</p>
+            <p className="text-sm font-bold leading-tight sm:text-base">
+              {lang.name}
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {lang.nativeName}
+            </p>
           </div>
-          <span className={cn(
-            "text-[10px] font-semibold px-2.5 py-0.5 rounded-full shrink-0",
-            style
-          )}>
+          <span
+            className={cn(
+              "text-[10px] font-semibold px-2.5 py-0.5 rounded-full shrink-0",
+              style,
+            )}
+          >
             {lang.level}
           </span>
         </div>

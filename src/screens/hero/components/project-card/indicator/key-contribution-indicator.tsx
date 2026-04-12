@@ -9,7 +9,7 @@ interface KeyContributionIndicatorInterface {
 }
 
 export const KeyContributionIndicator = (
-  props: KeyContributionIndicatorInterface
+  props: KeyContributionIndicatorInterface,
 ) => {
   const { contributions } = props;
   return (
@@ -50,7 +50,7 @@ export const KeyContributionIndicator = (
                       </div>
                     </div>
                   );
-                }
+                },
               )}
             </div>
           </HoverCardContent>

@@ -49,7 +49,7 @@ export const FloatingNavigation = () => {
       ref={ref}
       className={twMerge(
         "fixed inset-0 z-50 hidden lg:flex items-center justify-center pointer-events-none",
-        hideFloatingSettings ? "hidden!" : ""
+        hideFloatingSettings ? "hidden!" : "",
       )}
     >
       <Draggable
@@ -65,7 +65,7 @@ export const FloatingNavigation = () => {
           ref={nodeRef}
           className={twMerge(
             "bg-popover border z-999999999999 rounded-lg shadow-lg cursor-grab pointer-events-auto opacity-50 hover:opacity-100 transition-opacity",
-            twMergeResult()
+            twMergeResult(),
           )}
         >
           <FloatingSettingsContent isOpen={isOpen} setIsOpen={setIsOpen} />

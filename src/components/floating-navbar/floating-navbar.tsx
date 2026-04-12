@@ -34,22 +34,46 @@ export const FloatingNavbar = () => {
 
   const FLOATING_NAV_BUTTON: FloatingNavButtonInterface[] = [
     {
-      icon: <Home color={isNavActive(PATH.HOME.path)} height={NAV_ICON_SIZE} width={NAV_ICON_SIZE} />,
+      icon: (
+        <Home
+          color={isNavActive(PATH.HOME.path)}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
+        />
+      ),
       path: PATH.HOME.path,
       name: translate("floatingNav.home"),
     },
     {
-      icon: <User color={isNavActive(PATH.ABOUT.path)} height={NAV_ICON_SIZE} width={NAV_ICON_SIZE} />,
+      icon: (
+        <User
+          color={isNavActive(PATH.ABOUT.path)}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
+        />
+      ),
       path: PATH.ABOUT.path,
       name: translate("floatingNav.aboutMe"),
     },
     {
-      icon: <Code color={isNavActive(PATH.PROJECTS.path)} height={NAV_ICON_SIZE} width={NAV_ICON_SIZE} />,
+      icon: (
+        <Code
+          color={isNavActive(PATH.PROJECTS.path)}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
+        />
+      ),
       path: PATH.PROJECTS.path,
       name: translate("floatingNav.project"),
     },
     {
-      icon: <Contact color={isNavActive(PATH.CONTACTS.path)} height={NAV_ICON_SIZE} width={NAV_ICON_SIZE} />,
+      icon: (
+        <Contact
+          color={isNavActive(PATH.CONTACTS.path)}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
+        />
+      ),
       path: PATH.CONTACTS.path,
       name: translate("floatingNav.contactMe"),
     },
@@ -69,7 +93,13 @@ export const FloatingNavbar = () => {
       name: translate("floatingNav.settings"),
     },
     {
-      icon: <FileText color={isNavActive(PATH.RESUME.path)} height={NAV_ICON_SIZE} width={NAV_ICON_SIZE} />,
+      icon: (
+        <FileText
+          color={isNavActive(PATH.RESUME.path)}
+          height={NAV_ICON_SIZE}
+          width={NAV_ICON_SIZE}
+        />
+      ),
       path: PATH.RESUME.path,
       name: "Resume Builder",
       onClick: () => setResumeOpen(true),
@@ -81,7 +111,7 @@ export const FloatingNavbar = () => {
       <div
         className={twMerge(
           "hidden lg:block opacity-1",
-          pathname === PATH.HOME.path ? "opacity-0" : ""
+          pathname === PATH.HOME.path ? "opacity-0" : "",
         )}
       >
         <div className="fixed inset-0 z-999999999999 flex items-center w-full h-full pointer-events-none">

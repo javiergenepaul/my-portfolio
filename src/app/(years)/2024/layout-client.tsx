@@ -10,24 +10,20 @@ import dynamic from "next/dynamic";
 const FloatingNavigation = dynamic(
   () =>
     import("@/components/draggable/floating-navigation").then(
-      (m) => m.FloatingNavigation
+      (m) => m.FloatingNavigation,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 const BackgroundParticle = dynamic(
   () =>
     import("@/components/particles/background-particle").then(
-      (m) => m.BackgroundParticle
+      (m) => m.BackgroundParticle,
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
-export function Layout2024Client({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function Layout2024Client({ children }: { children: React.ReactNode }) {
   const [mountParticles, setMountParticles] = useState(false);
 
   useEffect(() => {

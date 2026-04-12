@@ -24,7 +24,9 @@ export const CertificateCard = (props: CertificateCardInterface) => {
     <Card
       className={twMerge(
         "",
-        credentialUrl ? "hover:border hover:border-primary hover:cursor-pointer" : ""
+        credentialUrl
+          ? "hover:border hover:border-primary hover:cursor-pointer"
+          : "",
       )}
       onClick={() => {
         logEvent({
@@ -34,7 +36,10 @@ export const CertificateCard = (props: CertificateCardInterface) => {
         });
 
         if (credentialUrl) {
-          const url = typeof credentialUrl === "string" ? credentialUrl : credentialUrl.src;
+          const url =
+            typeof credentialUrl === "string"
+              ? credentialUrl
+              : credentialUrl.src;
           window.open(url, "_blank");
         }
       }}
@@ -58,7 +63,11 @@ export const CertificateCard = (props: CertificateCardInterface) => {
           <img
             className="rounded-lg"
             width={"100px"}
-            src={typeof organizationImg === "string" ? organizationImg : organizationImg.src}
+            src={
+              typeof organizationImg === "string"
+                ? organizationImg
+                : organizationImg.src
+            }
             alt={organizationAlt}
           />
         </div>

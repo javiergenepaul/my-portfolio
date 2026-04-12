@@ -19,7 +19,7 @@ export const CertificateSection = () => {
           {CERTIFICATES.map(
             (cert: CertificateCardInterface, index: React.Key) => {
               return <CertificateCard key={index} {...cert} />;
-            }
+            },
           )}
         </div>
       </section>

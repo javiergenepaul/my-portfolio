@@ -16,7 +16,8 @@ type RecursiveKeyOf<TObj extends Record<string, any>> = {
 /** Traverse a nested object by a dot-separated path. */
 function getNestedValue(obj: Record<string, any>, path: string): unknown {
   return path.split(".").reduce<unknown>((acc, key) => {
-    if (acc && typeof acc === "object") return (acc as Record<string, unknown>)[key];
+    if (acc && typeof acc === "object")
+      return (acc as Record<string, unknown>)[key];
     return undefined;
   }, obj);
 }
@@ -28,7 +29,7 @@ function getNestedValue(obj: Record<string, any>, path: string): unknown {
 function interpolate(template: string, params?: Record<string, any>): string {
   if (!params) return template;
   return template.replace(/\{\{(\w+)\}\}/g, (_, key) =>
-    String(params[key] ?? `{{${key}}}`)
+    String(params[key] ?? `{{${key}}}`),
   );
 }
 
@@ -41,7 +42,10 @@ function interpolate(template: string, params?: Record<string, any>): string {
  * @param key  Dot-separated translation key (type-checked against en.json).
  * @param options  Optional interpolation values, e.g. `{ count: 5 }`.
  */
-export function translate(key: TxKeyPath, options?: Record<string, any>): string {
+export function translate(
+  key: TxKeyPath,
+  options?: Record<string, any>,
+): string {
   if (!key) return "";
   const msg = getNestedValue(messageStore.messages, key);
   if (typeof msg !== "string") return key;

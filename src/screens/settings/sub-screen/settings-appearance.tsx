@@ -10,7 +10,12 @@ import {
   RadioGroup,
 } from "@/components";
 import { translate } from "@/i18n";
-import { Color, FontFamily, useLanguageStore, useSettingsStore } from "@/stores";
+import {
+  Color,
+  FontFamily,
+  useLanguageStore,
+  useSettingsStore,
+} from "@/stores";
 import {
   AppearanceColorOptions,
   AppearanceColorOptionsInterface,
@@ -40,7 +45,7 @@ import {
 } from "@/config";
 
 const LazyThemeOption = lazy(
-  () => import("../components/appearance/appearance-theme-options")
+  () => import("../components/appearance/appearance-theme-options"),
 );
 
 type Theme = "dark" | "light" | "system";
@@ -234,7 +239,7 @@ export const SettingsAppearance = () => {
               {FONT_AVAILABLE.map(
                 (fontProps: FontAvailableInterface, index: React.Key) => {
                   return <ApperanceFontOption key={index} {...fontProps} />;
-                }
+                },
               )}
             </SelectGroup>
           </SelectContent>
@@ -260,7 +265,7 @@ export const SettingsAppearance = () => {
               >
                 <LazyThemeOption {...themeProps} />
               </Suspense>
-            )
+            ),
           )}
         </RadioGroup>
       </InpuptFieldGroup>
@@ -279,7 +284,7 @@ export const SettingsAppearance = () => {
           {COLOR_PALETTE_AVAILABLE.map(
             (themeProps: AppearanceColorOptionsInterface, index: React.Key) => {
               return <AppearanceColorOptions key={index} {...themeProps} />;
-            }
+            },
           )}
         </RadioGroup>
       </InpuptFieldGroup>

@@ -1,7 +1,13 @@
 "use client";
 
 import { Moon, Sun, Monitor } from "lucide-react";
-import { useSettingsStore, useLanguageStore, Color, Theme, LanguageType } from "@/stores";
+import {
+  useSettingsStore,
+  useLanguageStore,
+  Color,
+  Theme,
+  LanguageType,
+} from "@/stores";
 import { translate, useLocaleRefresh } from "@/i18n";
 import {
   AZURE_COLOR,
@@ -17,24 +23,27 @@ import { cn } from "@/lib/utils";
 import { USFlag, JPFlag, PHFlag } from "@/assets";
 
 const COLORS: { value: Color; color: (isDark: boolean) => string }[] = [
-  { value: "emerald",  color: () => EMERALD_COLOR },
-  { value: "azure",    color: () => AZURE_COLOR },
-  { value: "golden",   color: () => GOLDEN_COLOR },
-  { value: "sunset",   color: () => SUNSET_COLOR },
+  { value: "emerald", color: () => EMERALD_COLOR },
+  { value: "azure", color: () => AZURE_COLOR },
+  { value: "golden", color: () => GOLDEN_COLOR },
+  { value: "sunset", color: () => SUNSET_COLOR },
   { value: "lavender", color: () => LAVENDER_COLOR },
-  { value: "scarlet",  color: () => SCARLET_COLOR },
-  { value: "silver",   color: (isDark) => isDark ? SILVER_COLOR_DARK : SILVER_COLOR },
+  { value: "scarlet", color: () => SCARLET_COLOR },
+  {
+    value: "silver",
+    color: (isDark) => (isDark ? SILVER_COLOR_DARK : SILVER_COLOR),
+  },
 ];
 
 const THEMES: { value: Theme; icon: React.ReactNode; label: string }[] = [
-  { value: "light",  icon: <Sun  className="h-4 w-4" />, label: "Light"  },
-  { value: "dark",   icon: <Moon className="h-4 w-4" />, label: "Dark"   },
+  { value: "light", icon: <Sun className="h-4 w-4" />, label: "Light" },
+  { value: "dark", icon: <Moon className="h-4 w-4" />, label: "Dark" },
   { value: "system", icon: <Monitor className="h-4 w-4" />, label: "Auto" },
 ];
 
 const LANGUAGES: { value: LanguageType; flag: string; label: string }[] = [
-  { value: "en",  flag: USFlag, label: "EN" },
-  { value: "ja",  flag: JPFlag, label: "JA" },
+  { value: "en", flag: USFlag, label: "EN" },
+  { value: "ja", flag: JPFlag, label: "JA" },
   { value: "fil", flag: PHFlag, label: "FIL" },
   { value: "ceb", flag: PHFlag, label: "CEB" },
 ];
@@ -53,7 +62,9 @@ export const SidebarQuickAccess = () => {
 
       {/* Theme */}
       <div className="flex flex-col gap-1.5 px-2">
-        <p className="text-xs text-muted-foreground">{translate("floating.themeMode")}</p>
+        <p className="text-xs text-muted-foreground">
+          {translate("floating.themeMode")}
+        </p>
         <div className="flex gap-2">
           {THEMES.map((t) => (
             <button
@@ -64,7 +75,7 @@ export const SidebarQuickAccess = () => {
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-sm transition-colors",
                 theme === t.value
                   ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                  : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground",
               )}
             >
               {t.icon}
@@ -76,7 +87,9 @@ export const SidebarQuickAccess = () => {
 
       {/* Color palette */}
       <div className="flex flex-col gap-1.5 px-2">
-        <p className="text-xs text-muted-foreground">{translate("floating.colorPalette")}</p>
+        <p className="text-xs text-muted-foreground">
+          {translate("floating.colorPalette")}
+        </p>
         <div className="flex gap-2.5 flex-wrap">
           {COLORS.map((c) => {
             const hex = c.color(isDark);
@@ -90,7 +103,7 @@ export const SidebarQuickAccess = () => {
                   "h-7 w-7 rounded-full border-2 transition-transform",
                   color === c.value
                     ? "border-foreground scale-110"
-                    : "border-transparent hover:scale-105"
+                    : "border-transparent hover:scale-105",
                 )}
               />
             );
@@ -100,7 +113,9 @@ export const SidebarQuickAccess = () => {
 
       {/* Language */}
       <div className="flex flex-col gap-1.5 px-2">
-        <p className="text-xs text-muted-foreground">{translate("floating.changeLanguage")}</p>
+        <p className="text-xs text-muted-foreground">
+          {translate("floating.changeLanguage")}
+        </p>
         <div className="flex gap-2 flex-wrap">
           {LANGUAGES.map((l) => (
             <button
@@ -110,10 +125,14 @@ export const SidebarQuickAccess = () => {
                 "flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-sm transition-colors",
                 language === l.value
                   ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                  : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground",
               )}
             >
-              <img src={l.flag} alt={l.label} className="h-3.5 w-5 object-cover rounded-sm" />
+              <img
+                src={l.flag}
+                alt={l.label}
+                className="h-3.5 w-5 object-cover rounded-sm"
+              />
               <span className="text-xs font-medium">{l.label}</span>
             </button>
           ))}

@@ -23,7 +23,7 @@ export const ContactFormSchema = z.object({
     .min(1, {
       message: translate("errorMessages.required"),
     })
-    .max(255 , {
+    .max(255, {
       message: translate("errorMessages.maximumCharacter", { count: "255" }),
     }),
 });

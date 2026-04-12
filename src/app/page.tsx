@@ -50,7 +50,7 @@ export default function RootPage() {
   const [splash, setSplash] = useState(true);
   const [navigating, setNavigating] = useState(false);
   const enabledYears = YEARS.filter((y) => y.enabled).sort(
-    (a, b) => a.year - b.year
+    (a, b) => a.year - b.year,
   );
 
   return (
@@ -66,7 +66,10 @@ export default function RootPage() {
             key="root-progress"
             className="fixed top-0 left-0 z-50 h-0.5 bg-white/60"
             initial={{ width: "0%" }}
-            animate={{ width: "80%", transition: { duration: 2, ease: "easeOut" } }}
+            animate={{
+              width: "80%",
+              transition: { duration: 2, ease: "easeOut" },
+            }}
             exit={{ width: "100%", opacity: 0, transition: { duration: 0.25 } }}
           />
         )}
@@ -112,7 +115,12 @@ export default function RootPage() {
         <main className="flex-1 flex items-center justify-center px-6 py-10">
           <div className="flex flex-wrap gap-8 justify-center items-start">
             {enabledYears.map((year, i) => (
-              <YearCard key={year.year} year={year} index={i} onNavigate={() => setNavigating(true)} />
+              <YearCard
+                key={year.year}
+                year={year}
+                index={i}
+                onNavigate={() => setNavigating(true)}
+              />
             ))}
           </div>
         </main>
@@ -126,7 +134,15 @@ export default function RootPage() {
   );
 }
 
-function YearCard({ year, index, onNavigate }: { year: YearConfig; index: number; onNavigate: () => void }) {
+function YearCard({
+  year,
+  index,
+  onNavigate,
+}: {
+  year: YearConfig;
+  index: number;
+  onNavigate: () => void;
+}) {
   const router = useRouter();
   const [loaded, setLoaded] = useState(false);
   const [navigating, setNavigating] = useState(false);
@@ -152,7 +168,7 @@ function YearCard({ year, index, onNavigate }: { year: YearConfig; index: number
         "shadow-[0_4px_32px_rgba(0,0,0,0.4)]",
         "hover:shadow-[0_8px_48px_rgba(0,0,0,0.6)]",
         "hover:-translate-y-1",
-        navigating && "pointer-events-none"
+        navigating && "pointer-events-none",
       )}
     >
       {/* Navigation loading overlay */}
@@ -166,7 +182,9 @@ function YearCard({ year, index, onNavigate }: { year: YearConfig; index: number
             transition={{ duration: 0.2 }}
           >
             <Loader2 className="h-6 w-6 animate-spin text-white/70" />
-            <span className="text-[11px] text-white/50 tracking-wide">Loading {year.year}…</span>
+            <span className="text-[11px] text-white/50 tracking-wide">
+              Loading {year.year}…
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -182,7 +200,7 @@ function YearCard({ year, index, onNavigate }: { year: YearConfig; index: number
           title={`${year.year} portfolio preview`}
           className={cn(
             "absolute left-0 top-0 origin-top-left transition-opacity duration-300",
-            loaded ? "opacity-100" : "opacity-0"
+            loaded ? "opacity-100" : "opacity-0",
           )}
           style={{
             width: "200%",
@@ -247,7 +265,7 @@ function YearCard({ year, index, onNavigate }: { year: YearConfig; index: number
           "rounded-b-2xl border-t border-white/5 px-5 py-2.5",
           "flex items-center justify-between",
           "text-[11px] text-white/30 transition-colors duration-200",
-          "group-hover:text-white/60"
+          "group-hover:text-white/60",
         )}
       >
         <span>{isComingSoon ? "Preview available" : "Click to explore"}</span>

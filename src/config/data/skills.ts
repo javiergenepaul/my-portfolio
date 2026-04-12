@@ -91,10 +91,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     key: "tools",
     label: "Tools & Package Managers",
-    stacks: [
-      Stack.PNPM_STACK,
-      Stack.NPM_STACK,
-      Stack.YARN_STACK,
-    ],
+    stacks: [Stack.PNPM_STACK, Stack.NPM_STACK, Stack.YARN_STACK],
   },
 ];

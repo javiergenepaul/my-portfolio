@@ -141,7 +141,9 @@ export const ContactForm = () => {
               name="from_email"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>{translate("contact.placeHolder.email")}</FormLabel>
+                  <FormLabel>
+                    {translate("contact.placeHolder.email")}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       className={
@@ -167,7 +169,9 @@ export const ContactForm = () => {
               name="message"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>{translate("contact.placeHolder.message")}</FormLabel>
+                  <FormLabel>
+                    {translate("contact.placeHolder.message")}
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       maxLength={255}

@@ -9,7 +9,7 @@ export interface AppearanceColorOptionsInterface {
 }
 
 export const AppearanceColorOptions = (
-  props: AppearanceColorOptionsInterface
+  props: AppearanceColorOptionsInterface,
 ) => {
   const { name, value, color } = props;
   return (

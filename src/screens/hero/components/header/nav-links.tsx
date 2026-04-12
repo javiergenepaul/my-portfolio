@@ -32,13 +32,13 @@ export const NavLinks = (props: NavLinkInterface) => {
         <span
           className={twMerge(
             "nav-indicator mr-4 h-px w-8 transition-all group-hover:w-16 group-hover:bg-foreground group-focus-visible:bg-foreground dark:group-hover:bg-slate-200 group-focus-visible:w-16 dark:group-focus-visible:bg-slate-200 motion-reduce:transition-none",
-            selectedClass().lineClass
+            selectedClass().lineClass,
           )}
         />
         <span
           className={twMerge(
             "nav-text text-xs font-bold uppercase tracking-widest group-hover:text-foreground group-focus-visible:text-foreground dark:group-hover:text-slate-200 dark:group-focus-visible:text-slate-200",
-            selectedClass().nameClass
+            selectedClass().nameClass,
           )}
         >
           <BounceText text={name} />

@@ -1,7 +1,16 @@
 "use client";
 
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import { Download, LayoutTemplate, Sparkles, Check, ZoomIn, ZoomOut, Sun, Moon } from "lucide-react";
+import {
+  Download,
+  LayoutTemplate,
+  Sparkles,
+  Check,
+  ZoomIn,
+  ZoomOut,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { useSettingsStore, type Color } from "@/stores";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components";
@@ -23,23 +32,58 @@ export interface ResumeColorConfig {
 // ─── Color map ────────────────────────────────────────────────────────────────
 
 const COLOR_CONFIG: Record<Color, ResumeColorConfig> = {
-  emerald:  { primary: "#22C55E", light: "#DCFCE7", dark: "#15803D", text: "#FFFFFF" },
-  azure:    { primary: "#3B82F6", light: "#DBEAFE", dark: "#1D4ED8", text: "#FFFFFF" },
-  golden:   { primary: "#CA8A04", light: "#FEF9C3", dark: "#A16207", text: "#FFFFFF" },
-  sunset:   { primary: "#EA580C", light: "#FFEDD5", dark: "#C2410C", text: "#FFFFFF" },
-  lavender: { primary: "#7C3AED", light: "#EDE9FE", dark: "#5B21B6", text: "#FFFFFF" },
-  scarlet:  { primary: "#E11D48", light: "#FFE4E6", dark: "#BE123C", text: "#FFFFFF" },
-  silver:   { primary: "#52525B", light: "#F4F4F5", dark: "#27272A", text: "#FFFFFF" },
+  emerald: {
+    primary: "#22C55E",
+    light: "#DCFCE7",
+    dark: "#15803D",
+    text: "#FFFFFF",
+  },
+  azure: {
+    primary: "#3B82F6",
+    light: "#DBEAFE",
+    dark: "#1D4ED8",
+    text: "#FFFFFF",
+  },
+  golden: {
+    primary: "#CA8A04",
+    light: "#FEF9C3",
+    dark: "#A16207",
+    text: "#FFFFFF",
+  },
+  sunset: {
+    primary: "#EA580C",
+    light: "#FFEDD5",
+    dark: "#C2410C",
+    text: "#FFFFFF",
+  },
+  lavender: {
+    primary: "#7C3AED",
+    light: "#EDE9FE",
+    dark: "#5B21B6",
+    text: "#FFFFFF",
+  },
+  scarlet: {
+    primary: "#E11D48",
+    light: "#FFE4E6",
+    dark: "#BE123C",
+    text: "#FFFFFF",
+  },
+  silver: {
+    primary: "#52525B",
+    light: "#F4F4F5",
+    dark: "#27272A",
+    text: "#FFFFFF",
+  },
 };
 
 const COLOR_SWATCHES: { value: Color; hex: string }[] = [
-  { value: "emerald",  hex: "#22C55E" },
-  { value: "azure",    hex: "#3B82F6" },
-  { value: "golden",   hex: "#CA8A04" },
-  { value: "sunset",   hex: "#EA580C" },
+  { value: "emerald", hex: "#22C55E" },
+  { value: "azure", hex: "#3B82F6" },
+  { value: "golden", hex: "#CA8A04" },
+  { value: "sunset", hex: "#EA580C" },
   { value: "lavender", hex: "#7C3AED" },
-  { value: "scarlet",  hex: "#E11D48" },
-  { value: "silver",   hex: "#52525B" },
+  { value: "scarlet", hex: "#E11D48" },
+  { value: "silver", hex: "#52525B" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -56,7 +100,10 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
   const [isDark, setIsDark] = useState(() => {
     if (theme === "dark") return true;
     if (theme === "light") return false;
-    return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    );
   });
   const [zoom, setZoom] = useState(0.85);
   const [autoZoom, setAutoZoom] = useState(0.85);
@@ -68,14 +115,19 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
     if (!containerRef.current) return;
     const available = containerRef.current.clientWidth;
     if (available > 0) {
-      const fit = Math.min(0.85, Math.max(0.4, Math.floor((available / 794) * 100) / 100));
+      const fit = Math.min(
+        0.85,
+        Math.max(0.4, Math.floor((available / 794) * 100) / 100),
+      );
       setAutoZoom(fit);
       setZoom(fit);
     }
   }, []);
 
   const stepZoom = (delta: number) =>
-    setZoom((z) => Math.min(1.5, Math.max(0.4, Math.round((z + delta) * 10) / 10)))
+    setZoom((z) =>
+      Math.min(1.5, Math.max(0.4, Math.round((z + delta) * 10) / 10)),
+    );
 
   const colors = COLOR_CONFIG[color];
 
@@ -88,7 +140,7 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
     const styleMarkup = [
       ...Array.from(document.querySelectorAll("style")).map((s) => s.outerHTML),
       ...Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(
-        (l) => l.outerHTML
+        (l) => l.outerHTML,
       ),
     ].join("\n");
 
@@ -124,10 +176,8 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-full">
-
       {/* ── Controls panel — sticky ───────────────────────────────────── */}
       <div className="w-full lg:w-96 shrink-0 border-b lg:border-b-0 lg:border-r border-border sticky top-0 self-start flex flex-col gap-5 p-6">
-
         {/* Mode */}
         <ControlCard title="Template">
           <div className="flex gap-3">
@@ -181,15 +231,12 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
                   "h-8 w-8 rounded-full border-2 transition-all flex items-center justify-center",
                   color === value
                     ? "border-foreground scale-110 shadow-md"
-                    : "border-transparent hover:scale-105"
+                    : "border-transparent hover:scale-105",
                 )}
                 style={{ backgroundColor: hex }}
               >
                 {color === value && (
-                  <Check
-                    size={13}
-                    style={{ color: "#fff", strokeWidth: 3 }}
-                  />
+                  <Check size={13} style={{ color: "#fff", strokeWidth: 3 }} />
                 )}
               </button>
             ))}
@@ -211,16 +258,24 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
         <div className="rounded-xl border border-dashed border-border px-4 py-4 flex flex-col gap-2 text-xs text-muted-foreground leading-relaxed">
           <p className="font-semibold text-foreground text-sm">Export tips</p>
           <ul className="space-y-1.5 list-disc list-inside">
-            <li>Select <b>Save as PDF</b> in the print dialog.</li>
-            <li>Set margins to <b>None</b> for best fit.</li>
-            <li>Enable <b>Background graphics</b> in More settings.</li>
+            <li>
+              Select <b>Save as PDF</b> in the print dialog.
+            </li>
+            <li>
+              Set margins to <b>None</b> for best fit.
+            </li>
+            <li>
+              Enable <b>Background graphics</b> in More settings.
+            </li>
           </ul>
         </div>
       </div>
 
       {/* ── Preview ──────────────────────────────────────────────────── */}
-      <div ref={containerRef} className="flex-1 min-w-0 w-full p-6 pb-10 flex flex-col gap-3 items-center">
-
+      <div
+        ref={containerRef}
+        className="flex-1 min-w-0 w-full p-6 pb-10 flex flex-col gap-3 items-center"
+      >
         {/* Zoom toolbar */}
         <div className="flex items-center gap-1 sticky top-4 z-10 bg-background/80 backdrop-blur-sm rounded-lg px-2 py-1 border border-border/50 shadow-sm">
           <button
@@ -270,7 +325,13 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function ControlCard({ title, children }: { title: string; children: React.ReactNode }) {
+function ControlCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-xl border border-border bg-card px-5 py-4 flex flex-col gap-4">
       <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
@@ -301,7 +362,7 @@ function ModeButton({
         "flex-1 rounded-lg border px-3 py-3 text-left transition-all",
         active
           ? "border-primary bg-primary/5 text-primary"
-          : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+          : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground",
       )}
     >
       <div className="flex items-center gap-2 mb-1">

@@ -33,7 +33,9 @@ export const FooterSection = () => {
           return (
             <SocialButton
               key={key as string}
-              title={translate(`header.socialMediaLinks.${socialMedia.key}` as TxKeyPath)}
+              title={translate(
+                `header.socialMediaLinks.${socialMedia.key}` as TxKeyPath,
+              )}
               url={socialMedia.url}
               icon={socialMedia.icon}
             />

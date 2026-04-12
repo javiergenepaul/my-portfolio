@@ -23,10 +23,12 @@ export const getExperience = (): ContentBodyInterface[] => [
   {
     title: "Full Stack Software Developer",
     subtitle: "Magic",
-    description: "Building and maintaining full-stack features for Magic's platform — a modern SaaS product. Working across the stack with a focus on delivering clean, production-ready code in a remote, async environment.",
+    description:
+      "Building and maintaining full-stack features for Magic's platform — a modern SaaS product. Working across the stack with a focus on delivering clean, production-ready code in a remote, async environment.",
     startYear: moment("2025-08-01"),
     endYear: "present",
-    watermark: "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
+    watermark:
+      "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
     watermarkAlt: "Magic",
     subtitleUrl: MAGIC_COMPANY_URL,
     waterMarkWidth: 120,
@@ -52,25 +54,43 @@ export const getExperience = (): ContentBodyInterface[] => [
     endYear: moment("2024-09-05"),
     description: translate("about.experience.experience.alliance.description"),
     watermark: AllianceWatermark,
-    watermarkAlt: translate("about.experience.experience.alliance.promotion.ats1.alt"),
+    watermarkAlt: translate(
+      "about.experience.experience.alliance.promotion.ats1.alt",
+    ),
     subtitleUrl: ALLIANCE_COMPANY_URL,
     isWork: true,
     employmentType: "Full-time",
     subtitle: translate("about.experience.experience.alliance.subtitle"),
     promotion: [
       {
-        title: translate("about.experience.experience.alliance.promotion.ats1.title"),
-        description: translate("about.experience.experience.alliance.promotion.ats1.description"),
-        subtitle: translate("about.experience.experience.alliance.promotion.ats1.subtitle"),
-        abbreviation: translate("about.experience.experience.alliance.promotion.ats1.abb"),
+        title: translate(
+          "about.experience.experience.alliance.promotion.ats1.title",
+        ),
+        description: translate(
+          "about.experience.experience.alliance.promotion.ats1.description",
+        ),
+        subtitle: translate(
+          "about.experience.experience.alliance.promotion.ats1.subtitle",
+        ),
+        abbreviation: translate(
+          "about.experience.experience.alliance.promotion.ats1.abb",
+        ),
         startYear: moment("2024-01-01"),
         endYear: moment("2024-09-05"),
       },
       {
-        title: translate("about.experience.experience.alliance.promotion.ts1.title"),
-        description: translate("about.experience.experience.alliance.promotion.ts1.description"),
-        subtitle: translate("about.experience.experience.alliance.promotion.ts1.subtitle"),
-        abbreviation: translate("about.experience.experience.alliance.promotion.ts1.abb"),
+        title: translate(
+          "about.experience.experience.alliance.promotion.ts1.title",
+        ),
+        description: translate(
+          "about.experience.experience.alliance.promotion.ts1.description",
+        ),
+        subtitle: translate(
+          "about.experience.experience.alliance.promotion.ts1.subtitle",
+        ),
+        abbreviation: translate(
+          "about.experience.experience.alliance.promotion.ts1.abb",
+        ),
         startYear: moment("2022-12-01"),
         endYear: moment("2024-01-01"),
       },

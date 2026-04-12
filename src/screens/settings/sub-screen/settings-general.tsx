@@ -22,7 +22,7 @@ import { Suspense, lazy, useId, useState } from "react";
 import { logEvent } from "@/lib";
 
 const LazyLanguageOption = lazy(
-  () => import("../components/general/general-lang-options")
+  () => import("../components/general/general-lang-options"),
 );
 
 export const SettingsGeneral = () => {
@@ -207,7 +207,7 @@ export const SettingsGeneral = () => {
               <Suspense key={index} fallback={<GeneralLangOptionsSkeleton />}>
                 <LazyLanguageOption key={index} {...lang} />
               </Suspense>
-            )
+            ),
           )}
         </RadioGroup>
       </InpuptFieldGroup>

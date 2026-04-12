@@ -5,7 +5,7 @@ import { Suspense, lazy } from "react";
 import { ServiceCardSkeleton } from "../components";
 
 const LazyServiceCard = lazy(
-  () => import("../components/service-card/service-card")
+  () => import("../components/service-card/service-card"),
 );
 
 export const ServiceSection = () => {
@@ -23,7 +23,7 @@ export const ServiceSection = () => {
             <Suspense key={index} fallback={<ServiceCardSkeleton />}>
               <LazyServiceCard {...service} />
             </Suspense>
-          )
+          ),
         )}
       </div>
     </section>

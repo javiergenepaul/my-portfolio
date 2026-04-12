@@ -57,7 +57,7 @@ export const KeyContributionModal = (props: KeyCOntributionModalInterface) => {
                         </div>
                       </div>
                     );
-                  }
+                  },
                 )}
               </div>
             </ScrollArea>

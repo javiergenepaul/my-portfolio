@@ -16,9 +16,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   alternates: { canonical: "/2026" },
   keywords: [
-    "Gene Paul Mar Javier", "full-stack developer", "React", "Next.js",
-    "Spring Boot", "TypeScript", "Java", "software engineer", "portfolio 2026",
-    "Cebu Philippines developer", "macOS portfolio", "Aurora theme",
+    "Gene Paul Mar Javier",
+    "full-stack developer",
+    "React",
+    "Next.js",
+    "Spring Boot",
+    "TypeScript",
+    "Java",
+    "software engineer",
+    "portfolio 2026",
+    "Cebu Philippines developer",
+    "macOS portfolio",
+    "Aurora theme",
   ],
   icons: {
     icon: "/favicons/2026.svg",
@@ -46,15 +55,31 @@ const jsonLd = {
   url: `${BASE_URL}/2026`,
   jobTitle: "Full-Stack Software Engineer",
   description: DESCRIPTION,
-  address: { "@type": "PostalAddress", addressLocality: "Cebu", addressCountry: "PH" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cebu",
+    addressCountry: "PH",
+  },
   sameAs: [
     "https://github.com/javiergenepaul",
     "https://linkedin.com/in/gene-paul-mar-javier",
   ],
-  knowsAbout: ["React", "Next.js", "Spring Boot", "TypeScript", "Java", "PostgreSQL", "Docker"],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "Spring Boot",
+    "TypeScript",
+    "Java",
+    "PostgreSQL",
+    "Docker",
+  ],
 };
 
-export default function Layout2026({ children }: { children: React.ReactNode }) {
+export default function Layout2026({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <script

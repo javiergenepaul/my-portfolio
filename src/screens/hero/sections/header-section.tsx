@@ -30,9 +30,9 @@ import { triggerNavigationStart } from "@/components/navigation/NavigationProgre
 // Static parts only — translate() must NOT be called at module scope because
 // messageStore is empty during SSR. Titles are resolved inside the component.
 const SOCIAL_MEDIA_LINK_DATA = [
-  { key: "github",   icon: "github",   url: GITHUB_URL },
+  { key: "github", icon: "github", url: GITHUB_URL },
   { key: "linkedIn", icon: "linkedin", url: LINKED_IN_URL },
-  { key: "upwork",   icon: "upwork",   url: UPWORK_URL },
+  { key: "upwork", icon: "upwork", url: UPWORK_URL },
 ] as const;
 
 export const HeaderSection = () => {
@@ -42,12 +42,11 @@ export const HeaderSection = () => {
   const [navigating, setNavigating] = useState(false);
 
   // Resolved here so translate() runs after messageStore is initialised
-  const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] = SOCIAL_MEDIA_LINK_DATA.map(
-    (item) => ({
+  const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] =
+    SOCIAL_MEDIA_LINK_DATA.map((item) => ({
       ...item,
       title: translate(`header.socialMediaLinks.${item.key}`),
-    })
-  );
+    }));
 
   const NAV_LINKS: NavLinkInterface[] = [
     {
@@ -133,7 +132,7 @@ export const HeaderSection = () => {
                   url={socialMedia.url}
                   icon={socialMedia.icon}
                 />
-              )
+              ),
             )}
             <TooltipProvider>
               <Tooltip>
@@ -147,7 +146,7 @@ export const HeaderSection = () => {
                       <div
                         className={twMerge(
                           "absolute -top-1 -right-0.75",
-                          isSettingsNew ? "hidden" : ""
+                          isSettingsNew ? "hidden" : "",
                         )}
                       >
                         <span className="relative flex w-2.5 h-2.5">
