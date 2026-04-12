@@ -641,11 +641,20 @@ function ResumeContent() {
   const handleExport = useCallback(() => {
     const el = document.getElementById("resume-preview-2026");
     if (!el) return;
+
+    // Clone and strip the zoom transform — printing the scaled-down preview
+    // would add white margins; we want the natural 794px-wide 1:1 render.
+    const clone = el.cloneNode(true) as HTMLElement;
+    clone.style.transform    = "none";
+    clone.style.marginBottom = "0";
+    clone.style.boxShadow    = "none";
+    clone.style.width        = "794px";
+
     const styles = [
       ...Array.from(document.querySelectorAll("style")).map(s => s.outerHTML),
       ...Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(l => l.outerHTML),
     ].join("\n");
-    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><base href="${window.location.origin}/">${styles}<style>*,*::before,*::after{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@page{size:A4 portrait;margin:0}html,body{margin:0;padding:0}</style></head><body>${el.outerHTML}</body><script>window.onload=function(){setTimeout(function(){window.print();window.close()},300)}<\/script></html>`;
+    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><base href="${window.location.origin}/">${styles}<style>*,*::before,*::after{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@page{size:A4 portrait;margin:0}html,body{margin:0;padding:0}</style></head><body>${clone.outerHTML}</body><script>window.onload=function(){setTimeout(function(){window.print();window.close()},300)}<\/script></html>`;
     const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
     window.open(url, "_blank");
     setTimeout(() => URL.revokeObjectURL(url), 10_000);
@@ -896,7 +905,7 @@ function AppWindow({
   };
 
   const winStyle: React.CSSProperties = state.maximized
-    ? { position: "fixed", top: 28, left: 0, right: 0, bottom: 68, width: "auto", height: "auto", borderRadius: 0 }
+    ? { position: "fixed", top: 28, left: 0, right: 0, bottom: 80, width: "auto", height: "auto", borderRadius: 0 }
     : { position: "fixed", top: 0, left: 0, width: size.w, height: size.h, borderRadius: 12 };
 
   return (
@@ -1268,7 +1277,7 @@ export function Portfolio2026() {
 
         <main id="desktop" aria-label="Desktop" style={{ position: "absolute", inset: 0, top: 28 }}>
           {/* Desktop icons — right column */}
-          <div style={{ position: "absolute", top: 16, right: 14, display: "flex", flexDirection: "column", gap: 4, zIndex: 50 }}>
+          <div style={{ position: "absolute", top: 16, right: 14, display: "flex", flexDirection: "column", gap: 4, zIndex: 10 }}>
             {desktopIcons.map(({ def, icon }) => (
               <DesktopIcon
                 key={def.id}

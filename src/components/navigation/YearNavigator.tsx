@@ -127,9 +127,9 @@ export function YearNavigator() {
         )}
       </AnimatePresence>
 
-      {/* ── Timeline dots (bottom-centre) ──────────────────────────────── */}
+      {/* ── Timeline dots (bottom-centre) — hidden on 2026 (dock overlap) ── */}
       <TooltipProvider delayDuration={200}>
-        <div className="year-timeline" role="tablist" aria-label="Year timeline">
+        <div className="year-timeline" role="tablist" aria-label="Year timeline" style={activeYear === 2026 ? { display: "none" } : undefined}>
           {enabledYears.map((y) => (
             <Tooltip key={y.year}>
               <TooltipTrigger asChild>
