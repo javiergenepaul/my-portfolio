@@ -2,7 +2,7 @@ import { AboutMe } from "@/assets";
 import { Button, LazyImage } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
-import { getProjects } from "@/config/data";
+import { CAREER_START_DATE, getProjects } from "@/config/data";
 import { useSettingsStore } from "@/stores";
 import { FileText } from "lucide-react";
 import { useState } from "react";
@@ -48,7 +48,7 @@ export const IntroSection = () => {
       botTitle: translate("about.intro.project"),
     },
     {
-      count: moment().diff(moment("2018-08-01"), "years"),
+      count: moment().diff(moment(CAREER_START_DATE), "years"),
       topTitle: translate("about.intro.years"),
       botTitle: translate("about.intro.experience"),
     },

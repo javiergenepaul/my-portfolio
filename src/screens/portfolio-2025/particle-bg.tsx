@@ -25,7 +25,7 @@ function Particles({ count = 160 }: { count?: number }) {
     const g = new THREE.BufferGeometry();
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      pos[i * 3]     = (Math.random() - 0.5) * 34;
+      pos[i * 3] = (Math.random() - 0.5) * 34;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
     }
@@ -38,14 +38,20 @@ function Particles({ count = 160 }: { count?: number }) {
     const arr = ref.current.geometry.attributes.position.array as Float32Array;
     for (let i = 0; i < count; i++) {
       arr[i * 3 + 1] += Math.sin(t * 0.35 + i) * 0.0008;
-      arr[i * 3]     += Math.cos(t * 0.25 + i) * 0.0008;
+      arr[i * 3] += Math.cos(t * 0.25 + i) * 0.0008;
     }
     ref.current.geometry.attributes.position.needsUpdate = true;
   });
 
   return (
     <points ref={ref} geometry={geo}>
-      <pointsMaterial size={0.055} color="#FB7185" transparent opacity={0.55} sizeAttenuation />
+      <pointsMaterial
+        size={0.055}
+        color="#FB7185"
+        transparent
+        opacity={0.55}
+        sizeAttenuation
+      />
     </points>
   );
 }
