@@ -179,6 +179,14 @@ export function Portfolio2025() {
 
   return (
     <CContext.Provider value={C}>
+    {/* Skip to main content — screen reader / keyboard shortcut */}
+    <a
+      href="#p25-scroll"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-99999 focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold focus:no-underline"
+      style={{ backgroundColor: "#E11D48", color: "#fff" }}
+    >
+      Skip to content
+    </a>
     <div
       className="min-h-screen lg:h-screen lg:overflow-hidden flex items-start lg:items-center justify-center p-4 sm:p-6 lg:py-10 lg:px-6"
       style={{
@@ -223,10 +231,11 @@ export function Portfolio2025() {
           </div>
 
           {/* Main */}
-          <div
+          <main
             id="p25-scroll"
             className="flex-1 overflow-y-auto lg:max-h-[90vh]"
             style={{ backgroundColor: C.main }}
+            aria-label="Portfolio content"
           >
             <AnimatePresence mode="wait">
               <motion.div key={active} {...pageAnim} style={{ padding: isMobile ? "20px 16px 28px" : "48px 52px 44px" }}>
@@ -240,7 +249,7 @@ export function Portfolio2025() {
                 {active === "contact"      && <ContactPage />}
               </motion.div>
             </AnimatePresence>
-          </div>
+          </main>
         </div>
       </motion.div>
     </div>
@@ -366,7 +375,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
       <Separator />
 
       {/* Nav */}
-      <nav style={isMobile ? { padding: "8px 0", overflowX: "auto", display: "flex", flexDirection: "row", scrollbarWidth: "none" } : { padding: "14px 10px", flex: 1 }}>
+      <nav aria-label="Portfolio sections" style={isMobile ? { padding: "8px 0", overflowX: "auto", display: "flex", flexDirection: "row", scrollbarWidth: "none" } : { padding: "14px 10px", flex: 1 }}>
         {NAV_ITEMS.map(({ id, label, num }, i) => {
           const on = active === id;
           if (isMobile) {
@@ -375,6 +384,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
                 key={id}
                 onClick={() => goto(id)}
                 whileTap={{ scale: 0.95 }}
+                aria-current={on ? "page" : undefined}
                 style={{
                   padding: "8px 14px", borderRadius: "20px", border: "none",
                   cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
@@ -399,6 +409,7 @@ function SidebarPanel({ active, goto }: { active: string; goto: (id: string) => 
               transition={{ delay: 0.5 + i * 0.04, duration: 0.3 }}
               whileHover={{ x: 3 }}
               whileTap={{ scale: 0.98 }}
+              aria-current={on ? "page" : undefined}
               style={{
                 display: "flex", alignItems: "center", gap: "12px",
                 padding: "11px 14px", borderRadius: "10px", width: "100%",
@@ -445,11 +456,15 @@ function ThemeToggle() {
     { value: "dark",   Icon: Moon    },
   ] as const;
   return (
-    <div style={{
-      display: "flex", gap: "2px", padding: "3px",
-      backgroundColor: "#1C0510", borderRadius: "8px",
-      border: "1px solid #2A0910",
-    }}>
+    <div
+      role="group"
+      aria-label="Color theme"
+      style={{
+        display: "flex", gap: "2px", padding: "3px",
+        backgroundColor: "#1C0510", borderRadius: "8px",
+        border: "1px solid #2A0910",
+      }}
+    >
       {OPTS.map(({ value, Icon }) => {
         const on = theme === value;
         return (
@@ -457,6 +472,8 @@ function ThemeToggle() {
             key={value}
             onClick={() => setTheme(value)}
             whileTap={{ scale: 0.92 }}
+            aria-label={`${value.charAt(0).toUpperCase() + value.slice(1)} theme`}
+            aria-pressed={on}
             title={value.charAt(0).toUpperCase() + value.slice(1)}
             style={{
               width: "26px", height: "22px", borderRadius: "6px",

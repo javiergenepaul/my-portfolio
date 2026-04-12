@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   creator: "Gene Paul Mar Javier",
   metadataBase: new URL(BASE_URL),
   alternates: { canonical: "/2024" },
+  keywords: [
+    "Gene Paul Mar Javier", "full-stack developer", "React", "Next.js",
+    "Spring Boot", "TypeScript", "Java", "software engineer", "portfolio 2024",
+    "Cebu Philippines developer",
+  ],
   icons: {
     icon: "/favicons/2024.ico",
     apple: "/favicons/2024-apple.png",
@@ -49,13 +54,15 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Gene Paul Mar Javier",
-  url: "https://genepaulmarjavier.dev/2024",
+  url: `${BASE_URL}/2024`,
   jobTitle: "Full-Stack Software Engineer",
+  description: DESCRIPTION,
+  address: { "@type": "PostalAddress", addressLocality: "Cebu", addressCountry: "PH" },
   sameAs: [
-    "https://github.com/genepatrickjavier",
-    "https://linkedin.com/in/genepatrickjavier",
+    "https://github.com/javiergenepaul",
+    "https://linkedin.com/in/gene-paul-mar-javier",
   ],
-  knowsAbout: ["React", "Next.js", "Spring Boot", "TypeScript", "Java"],
+  knowsAbout: ["React", "Next.js", "Spring Boot", "TypeScript", "Java", "PostgreSQL", "Docker"],
 };
 
 export default function Layout2024({ children }: { children: React.ReactNode }) {
