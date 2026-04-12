@@ -36,9 +36,9 @@ export const YEARS: YearConfig[] = [
     enabled: true,
     label: "2026",
     path: "/2026",
-    theme: "Coming Soon",
-    journey: "A vision for the future. Check back later.",
-    description: "Coming soon.",
+    theme: "Aurora · macOS",
+    journey: "An interactive macOS-inspired experience — explore projects, skills, and experience through a virtual desktop.",
+    description: "A MacBook-inspired portfolio with Aurora theme — dock, windows, terminal, and more.",
   },
 ];
 

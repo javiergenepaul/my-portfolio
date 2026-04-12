@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="aurora" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF"/>
+      <stop offset="50%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#4ADE80"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="roundedRect">
+      <rect width="32" height="32" rx="8" ry="8"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="32" height="32" rx="8" fill="#0B0F14"/>
+
+  <!-- Aurora blobs -->
+  <circle cx="6" cy="8" r="10" fill="rgba(45,212,191,0.18)" filter="url(#glow)"/>
+  <circle cx="26" cy="10" r="9" fill="rgba(167,139,250,0.16)" filter="url(#glow)"/>
+  <circle cx="18" cy="26" r="8" fill="rgba(74,222,128,0.12)" filter="url(#glow)"/>
+
+  <!-- "26" text -->
+  <text
+    x="16" y="21"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="14"
+    font-weight="700"
+    text-anchor="middle"
+    fill="url(#aurora)"
+    filter="url(#glow)"
+  >26</text>
+
+  <!-- Dock indicator dots -->
+  <circle cx="10" cy="28.5" r="1" fill="rgba(45,212,191,0.6)"/>
+  <circle cx="16" cy="28.5" r="1" fill="rgba(167,139,250,0.6)"/>
+  <circle cx="22" cy="28.5" r="1" fill="rgba(74,222,128,0.6)"/>
+</svg>
