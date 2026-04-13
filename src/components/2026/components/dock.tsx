@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GITHUB_URL } from "@/config/url";
-import { A, MAC_FONT, WIN_DEFS } from "../constants";
+import { MAC_FONT, WIN_DEFS } from "../constants";
+import { useAurora } from "../use-aurora";
 import type { WinId, WinState } from "../constants";
 import { MacAppIcon } from "./mac-app-icons";
 
@@ -16,6 +17,7 @@ export function Dock({
   onOpen: (id: WinId) => void;
   onRestore: (id: WinId) => void;
 }) {
+  const A = useAurora();
   const [hov, setHov] = useState<string | null>(null);
 
   const dockApps = WIN_DEFS.map((d) => ({

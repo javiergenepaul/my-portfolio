@@ -4,7 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence } from "framer-motion";
 import { useLocaleRefresh } from "@/i18n";
-import { A, MAC_FONT, WIN_DEFS } from "./constants";
+import { MAC_FONT, WIN_DEFS } from "./constants";
+import { useAurora, useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
 import { MenuBar } from "./components/menu-bar";
@@ -31,6 +32,8 @@ const INIT_WINS: Record<WinId, WinState> = {
 
 export function Portfolio2026() {
   useLocaleRefresh();
+  const A = useAurora();
+  const isDark = useIsDark();
   const isMobile = useIsMobile();
   const [wins, setWins] = useState<Record<WinId, WinState>>(INIT_WINS);
   const [topZ, setTopZ] = useState(30);
@@ -159,6 +162,17 @@ export function Portfolio2026() {
       </a>
 
       <LiveWallpaper />
+      {!isDark && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(255,255,255,0.70)",
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        />
+      )}
 
       <div
         style={{

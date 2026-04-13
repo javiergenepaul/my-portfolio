@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { FolderOpen, ExternalLink, FolderGit2, FileCode } from "lucide-react";
 import { getProjects } from "@/config";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import { hexRgb } from "../utils";
 
 type ProjFilter = "all" | "web" | "open" | "confidential";
 
 export function ProjectsContent() {
+  const A = useAurora();
   const [filter, setFilter] = useState<ProjFilter>("all");
   const all = getProjects()
     .filter((p) => !p.hidden)

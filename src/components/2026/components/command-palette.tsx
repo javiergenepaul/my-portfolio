@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, GithubIcon, LinkedinIcon, Mail } from "lucide-react";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import { EMAIL_ADDRESS } from "@/config";
-import { A, MAC_FONT, WIN_DEFS } from "../constants";
+import { MAC_FONT, WIN_DEFS } from "../constants";
+import { useAurora } from "../use-aurora";
 import type { WinId } from "../constants";
 
 export function CommandPalette({
@@ -17,6 +18,7 @@ export function CommandPalette({
   onClose: () => void;
   onOpen: (id: WinId) => void;
 }) {
+  const A = useAurora();
   const [q, setQ] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -86,7 +88,7 @@ export function CommandPalette({
               left: "50%",
               transform: "translateX(-50%)",
               width: "min(540px,calc(100vw-32px))",
-              background: "rgba(18,18,18,0.97)",
+              background: A.window,
               border: `1px solid ${A.windowBorder}`,
               borderRadius: 13,
               overflow: "hidden",

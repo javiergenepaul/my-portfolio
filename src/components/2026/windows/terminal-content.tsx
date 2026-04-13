@@ -9,7 +9,8 @@ import {
   getProjects,
 } from "@/config";
 import { translate } from "@/i18n";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import type { WinId } from "../constants";
 
 interface TermEntry {
@@ -65,6 +66,7 @@ const CMDS: Record<string, () => string[]> = {
 };
 
 export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
+  const A = useAurora();
   const [history, setHistory] = useState<TermEntry[]>([
     {
       output: [

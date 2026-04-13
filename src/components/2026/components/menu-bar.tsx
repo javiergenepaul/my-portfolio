@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Search, Command, Monitor } from "lucide-react";
-import { A, MAC_FONT, WIN_DEFS } from "../constants";
+import { MAC_FONT, WIN_DEFS } from "../constants";
+import { useAurora } from "../use-aurora";
 import type { WinId, WinState } from "../constants";
 import { useTime } from "../hooks";
 
@@ -46,6 +47,7 @@ function MenuItem({
   disabled?: boolean;
   onClick?: () => void;
 }) {
+  const A = useAurora();
   const [hov, setHov] = useState(false);
   return (
     <button
@@ -58,7 +60,7 @@ function MenuItem({
         width: "100%",
         padding: "5px 12px 5px 26px",
         border: "none",
-        background: hov && !disabled ? "rgba(255,255,255,0.10)" : "transparent",
+        background: hov && !disabled ? A.glass : "transparent",
         borderRadius: 5,
         color: disabled ? A.textMuted : A.text,
         fontSize: 13,
@@ -71,27 +73,13 @@ function MenuItem({
       }}
     >
       {checked && (
-        <span
-          style={{
-            position: "absolute",
-            left: 9,
-            fontSize: 11,
-            color: A.teal,
-          }}
-        >
+        <span style={{ position: "absolute", left: 9, fontSize: 11, color: A.teal }}>
           ✓
         </span>
       )}
       <span style={{ flex: 1 }}>{label}</span>
       {shortcut && (
-        <span
-          style={{
-            fontSize: 12,
-            color: A.textMuted,
-            marginLeft: 20,
-            fontFamily: MAC_FONT,
-          }}
-        >
+        <span style={{ fontSize: 12, color: A.textMuted, marginLeft: 20, fontFamily: MAC_FONT }}>
           {shortcut}
         </span>
       )}
@@ -108,6 +96,7 @@ function Dropdown({
   children: React.ReactNode;
   style?: React.CSSProperties;
 }) {
+  const A = useAurora();
   return (
     <div
       style={{
@@ -115,10 +104,10 @@ function Dropdown({
         top: "calc(100% + 2px)",
         left: 0,
         minWidth: 220,
-        background: "rgba(32,32,32,0.97)",
-        border: "1px solid rgba(255,255,255,0.10)",
+        background: A.window,
+        border: `1px solid ${A.windowBorder}`,
         borderRadius: 8,
-        boxShadow: "0 8px 32px rgba(0,0,0,0.70), 0 2px 8px rgba(0,0,0,0.50)",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.40), 0 2px 8px rgba(0,0,0,0.30)",
         backdropFilter: "blur(24px)",
         padding: "4px 6px",
         zIndex: 9999,
@@ -140,6 +129,7 @@ export function MenuBar({
   onRestoreAll,
   wins,
 }: MenuBarProps) {
+  const A = useAurora();
   const time = useTime();
   const [activeMenu, setActiveMenu] = useState<MenuId | null>(null);
   const barRef = useRef<HTMLDivElement>(null);

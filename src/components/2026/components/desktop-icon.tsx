@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora, useIsDark } from "../use-aurora";
 import type { WinId } from "../constants";
 import { hexRgb } from "../utils";
 import { MacAppIcon } from "./mac-app-icons";
@@ -20,6 +21,8 @@ export function DesktopIcon({
   isOpen: boolean;
   onClick: () => void;
 }) {
+  const A = useAurora();
+  const isDark = useIsDark();
   const [hov, setHov] = useState(false);
   return (
     <button
@@ -59,8 +62,8 @@ export function DesktopIcon({
           fontSize: 11,
           color: A.text,
           fontWeight: 500,
-          textShadow: "0 1px 4px rgba(0,0,0,0.95)",
-          background: "rgba(0,0,0,0.42)",
+          textShadow: isDark ? "0 1px 4px rgba(0,0,0,0.95)" : "none",
+          background: isDark ? "rgba(0,0,0,0.42)" : "rgba(255,255,255,0.72)",
           borderRadius: 4,
           padding: "1px 6px",
           textAlign: "center",

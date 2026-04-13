@@ -13,7 +13,8 @@ import {
   LayoutTemplate,
 } from "lucide-react";
 import type { Color } from "@/stores";
-import { A, MAC_FONT, RESUME_COLORS, RESUME_SWATCHES } from "../constants";
+import { MAC_FONT, RESUME_COLORS, RESUME_SWATCHES } from "../constants";
+import { useAurora } from "../use-aurora";
 import { hexRgb } from "../utils";
 
 const ResumeSimple = dynamic(
@@ -42,6 +43,7 @@ const ResumeModern = dynamic(
 );
 
 export function ResumeContent() {
+  const A = useAurora();
   type ResumeMode = "simple" | "modern";
   const [mode, setMode] = useState<ResumeMode>("modern");
   const [isDark, setIsDark] = useState(true);

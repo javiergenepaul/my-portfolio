@@ -13,19 +13,16 @@ import {
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
 
-// ── Palette — macOS dark mode + aurora accents ─────────────────────────────────
+// ── Palettes ───────────────────────────────────────────────────────────────────
 
-export const A = {
-  // Aurora accents
+export const A_DARK = {
   teal: "#2DD4BF",
   violet: "#A78BFA",
   green: "#4ADE80",
   blue: "#60A5FA",
-  // Text
   text: "#F0F2F5",
   textMid: "#9BA3AF",
   textMuted: "#4B5563",
-  // Chrome — faithful macOS dark grays
   menuBar: "rgba(20,20,20,0.86)",
   menuBorder: "rgba(255,255,255,0.06)",
   window: "rgba(28,28,28,0.93)",
@@ -35,7 +32,6 @@ export const A = {
   dock: "rgba(30,30,30,0.74)",
   dockBorder: "rgba(255,255,255,0.10)",
   sidebar: "rgba(255,255,255,0.018)",
-  // Glass / cards
   glass: "rgba(255,255,255,0.048)",
   glassBorder: "rgba(255,255,255,0.08)",
   card: "rgba(255,255,255,0.032)",
@@ -43,6 +39,34 @@ export const A = {
   inputBg: "rgba(255,255,255,0.06)",
   termBg: "#0A0A0A",
 };
+
+export const A_LIGHT = {
+  teal: "#0D9488",
+  violet: "#7C3AED",
+  green: "#16A34A",
+  blue: "#2563EB",
+  text: "#111827",
+  textMid: "#6B7280",
+  textMuted: "#9CA3AF",
+  menuBar: "rgba(232,232,232,0.90)",
+  menuBorder: "rgba(0,0,0,0.10)",
+  window: "rgba(250,250,250,0.97)",
+  windowBorder: "rgba(0,0,0,0.10)",
+  titleBar: "rgba(220,220,220,0.92)",
+  titleBorder: "rgba(0,0,0,0.07)",
+  dock: "rgba(200,200,200,0.82)",
+  dockBorder: "rgba(0,0,0,0.15)",
+  sidebar: "rgba(0,0,0,0.03)",
+  glass: "rgba(0,0,0,0.04)",
+  glassBorder: "rgba(0,0,0,0.09)",
+  card: "rgba(0,0,0,0.03)",
+  cardBorder: "rgba(0,0,0,0.08)",
+  inputBg: "rgba(0,0,0,0.05)",
+  termBg: "#0A0A0A",
+};
+
+// Keep backward-compat alias (mac-app-icons uses this for static art, not chrome)
+export const A = A_DARK;
 
 // ── Resume color config (mirrors src/screens/resume/resume.tsx) ───────────────
 

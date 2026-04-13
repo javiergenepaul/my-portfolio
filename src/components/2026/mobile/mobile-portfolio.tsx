@@ -7,7 +7,8 @@ import { MapPin, GithubIcon, LinkedinIcon, Mail, ChevronLeft } from "lucide-reac
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
-import { A, MAC_FONT, WIN_DEFS } from "../constants";
+import { MAC_FONT, WIN_DEFS } from "../constants";
+import { useAurora } from "../use-aurora";
 import type { WinId } from "../constants";
 import { hexRgb } from "../utils";
 import { useMobileTime } from "../hooks";
@@ -22,6 +23,7 @@ import { ResumeContent } from "../windows/resume-content";
 import { SettingsContent } from "../windows/settings-content";
 
 export function MobilePortfolio() {
+  const A = useAurora();
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const time = useMobileTime();
 

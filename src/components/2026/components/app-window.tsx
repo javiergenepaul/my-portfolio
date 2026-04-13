@@ -3,7 +3,8 @@
 import { useState, useRef } from "react";
 import { motion, useMotionValue, AnimatePresence } from "framer-motion";
 import type { PanInfo } from "framer-motion";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import type { WinId, WinDef, WinState } from "../constants";
 import { TrafficLights } from "./traffic-lights";
 import { AboutContent } from "../windows/about-content";
@@ -75,6 +76,7 @@ export function AppWindow({
   onMaximize: () => void;
   onOpen: (id: WinId) => void;
 }) {
+  const A = useAurora();
   const x = useMotionValue(def.defaultPos.x);
   const y = useMotionValue(def.defaultPos.y);
   const [size, setSize] = useState({

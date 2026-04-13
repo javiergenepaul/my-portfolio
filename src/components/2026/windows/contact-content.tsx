@@ -3,10 +3,12 @@
 import { Mail, GithubIcon, LinkedinIcon, ExternalLink } from "lucide-react";
 import { EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import { hexRgb } from "../utils";
 
 export function ContactContent() {
+  const A = useAurora();
   const links = [
     {
       label: "Email",

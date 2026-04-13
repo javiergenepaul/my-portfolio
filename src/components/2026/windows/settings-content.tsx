@@ -5,7 +5,8 @@ import { Sun, Moon, Monitor, Globe, Clock, Check } from "lucide-react";
 import { useSettingsStore } from "@/stores";
 import { useLanguageStore } from "@/stores";
 import type { Theme } from "@/stores";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import { hexRgb } from "../utils";
 import { use2026Settings } from "../settings-store";
 import type { TimeFormat } from "../settings-store";
@@ -33,6 +34,7 @@ function OptionBtn({
   children: React.ReactNode;
   accent?: string;
 }) {
+  const A = useAurora();
   const col = accent ?? A.teal;
   return (
     <button
@@ -63,6 +65,7 @@ function OptionBtn({
 // ── Section label ─────────────────────────────────────────────────────────────
 
 function SLabel({ children }: { children: React.ReactNode }) {
+  const A = useAurora();
   return (
     <div
       style={{
@@ -82,6 +85,7 @@ function SLabel({ children }: { children: React.ReactNode }) {
 // ── Appearance pane ───────────────────────────────────────────────────────────
 
 function AppearancePane() {
+  const A = useAurora();
   const { theme, setTheme } = useSettingsStore();
 
   const themes: { id: Theme; label: string; icon: React.ReactNode }[] = [
@@ -121,24 +125,6 @@ function AppearancePane() {
         </div>
       </div>
 
-      <div>
-        <SLabel>Note</SLabel>
-        <div
-          style={{
-            background: `rgba(${hexRgb(A.teal)},0.06)`,
-            border: `1px solid rgba(${hexRgb(A.teal)},0.18)`,
-            borderRadius: 10,
-            padding: "12px 14px",
-            fontSize: 12,
-            color: A.textMid,
-            lineHeight: 1.7,
-          }}
-        >
-          The 2026 desktop always uses the <strong style={{ color: A.teal }}>Aurora Dark</strong> theme
-          regardless of this setting — the macOS-style chrome is designed exclusively for dark mode.
-          The appearance setting applies to the 2024 and 2025 views.
-        </div>
-      </div>
     </div>
   );
 }
@@ -153,6 +139,7 @@ const LANGUAGES: { code: "en" | "ja" | "fil" | "ceb"; label: string; native: str
 ];
 
 function LanguagePane() {
+  const A = useAurora();
   const { language, setLanguage } = useLanguageStore();
 
   return (
@@ -212,6 +199,7 @@ function LanguagePane() {
 // ── Date & Time pane ──────────────────────────────────────────────────────────
 
 function DateTimePane() {
+  const A = useAurora();
   const { timeFormat, setTimeFormat } = use2026Settings();
 
   const formats: { id: TimeFormat; label: string; example: string }[] = [
@@ -286,6 +274,7 @@ function DateTimePane() {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export function SettingsContent() {
+  const A = useAurora();
   const [pane, setPane] = useState<PaneId>("appearance");
 
   return (

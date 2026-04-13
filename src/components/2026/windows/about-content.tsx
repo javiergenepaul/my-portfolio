@@ -25,10 +25,12 @@ import {
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import moment from "moment";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import { hexRgb, formatDate } from "../utils";
 
 export function AboutContent() {
+  const A = useAurora();
   const [tab, setTab] = useState<"overview" | "experience" | "education">(
     "overview",
   );

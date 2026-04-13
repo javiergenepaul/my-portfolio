@@ -4,10 +4,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SKILL_CATEGORIES } from "@/config";
 import { translate } from "@/i18n";
-import { A, MAC_FONT } from "../constants";
+import { MAC_FONT } from "../constants";
+import { useAurora } from "../use-aurora";
 import { hexRgb } from "../utils";
 
 export function SkillsContent() {
+  const A = useAurora();
   const [active, setActive] = useState(SKILL_CATEGORIES[0]?.key ?? "");
   const cat = SKILL_CATEGORIES.find((c) => c.key === active);
   const ACCENT = [A.teal, A.violet, A.green, A.blue, "#FBBF24", "#FB7185"];
