@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { CURRENT_YEAR } from "@/config/years";
-import { Button } from "@/components/ui/button";
-import { FadeAnimation } from "@/components/animation";
+import { Button } from "@/components/common/ui/button";
+import { FadeAnimation } from "@/components/common/animation";
 
 export default function NotFound() {
   return (

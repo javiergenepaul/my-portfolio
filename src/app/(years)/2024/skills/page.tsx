@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Skills2024 } from "@/components/portfolio-2024/skills";
+import { Skills2024 } from "@/components/2024/skills";
 
 export const metadata: Metadata = {
   title: "Skills",

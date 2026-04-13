@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Resume2024 } from "@/components/portfolio-2024/resume";
+import { Resume2024 } from "@/components/2024/resume";
 
 export const metadata: Metadata = {
   title: "Resume Builder",

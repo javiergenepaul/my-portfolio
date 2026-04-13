@@ -1,10 +1,10 @@
-export * from "./animation";
-export * from "./ui";
-export * from "./helmet/global-helmet";
-export * from "./sidebar";
+export * from "./common/animation";
+export * from "./common/ui";
+export * from "./common/helmet/global-helmet";
+export * from "./common/sidebar";
 // particles intentionally excluded — Three.js components must be dynamically
 // imported with { ssr: false } to avoid ReactCurrentOwner SSR crash.
-export * from "./icon";
-export * from "./draggable";
-export * from "./floating-navbar";
-export * from "./lazy-image";
+export * from "./common/icon";
+export * from "./common/draggable";
+export * from "./common/floating-navbar";
+export * from "./common/lazy-image";

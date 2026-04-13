@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 
 const FloatingNavigation = dynamic(
   () =>
-    import("@/components/draggable/floating-navigation").then(
+    import("@/components/common/draggable/floating-navigation").then(
       (m) => m.FloatingNavigation,
     ),
   { ssr: false },
@@ -17,7 +17,7 @@ const FloatingNavigation = dynamic(
 
 const BackgroundParticle = dynamic(
   () =>
-    import("@/components/particles/background-particle").then(
+    import("@/components/common/particles/background-particle").then(
       (m) => m.BackgroundParticle,
     ),
   { ssr: false },

@@ -1,5 +1,5 @@
-import { YearNavigator } from "@/components/navigation/YearNavigator";
-import { NavigationProgress } from "@/components/navigation/NavigationProgress";
+import { YearNavigator } from "@/components/common/navigation/YearNavigator";
+import { NavigationProgress } from "@/components/common/navigation/NavigationProgress";
 
 /**
  * Shared layout wrapping all year routes.

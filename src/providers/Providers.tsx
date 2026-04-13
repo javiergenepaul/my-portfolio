@@ -3,13 +3,13 @@
 import dynamic from "next/dynamic";
 import { ThemeProvider } from "./ThemeProvider";
 import { I18nProvider } from "./I18nProvider";
-import { Toaster } from "@/components/ui/toaster";
-import { GlobalHelmet } from "@/components/helmet/global-helmet";
-import { SplashRemover } from "@/components/splash/SplashRemover";
+import { Toaster } from "@/components/common/ui/toaster";
+import { GlobalHelmet } from "@/components/common/helmet/global-helmet";
+import { SplashRemover } from "@/components/common/splash/SplashRemover";
 
 const LoadingMask = dynamic(
   () =>
-    import("@/components/loading-mask/loading-mask").then((m) => m.LoadingMask),
+    import("@/components/common/loading-mask/loading-mask").then((m) => m.LoadingMask),
   { ssr: false },
 );
 
