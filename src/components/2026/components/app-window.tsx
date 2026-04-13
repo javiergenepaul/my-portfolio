@@ -280,7 +280,7 @@ export function AppWindow({
       </motion.div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflow: "hidden" }}>
+      <div style={{ flex: 1, minHeight: 0, overflow: "hidden", display: "flex", flexDirection: "column" }}>
         {def.id === "about" && <AboutContent />}
         {def.id === "projects" && <ProjectsContent />}
         {def.id === "terminal" && <TerminalContent onOpen={onOpen} />}

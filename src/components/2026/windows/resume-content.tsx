@@ -201,7 +201,7 @@ export function ResumeContent() {
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", height: "100%", fontFamily: MAC_FONT }}>
+    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
       {mobileToolbar}
       {/* ── Controls sidebar (desktop only) ── */}
       {!isMobile && <div
@@ -497,6 +497,7 @@ export function ResumeContent() {
         <div
           style={{
             flex: 1,
+            minHeight: 0,
             overflowY: "auto",
             overflowX: "auto",
             padding: "20px",

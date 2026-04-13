@@ -168,7 +168,12 @@
       "pixelPerfect": "Pixel Perfect",
       "landingPage": "Landing Page",
       "reactRouter": "React Router",
-      "nextJs": "NextJS"
+      "nextJs": "NextJS",
+      "vue": "Vue.js",
+      "vuex": "Vuex",
+      "pinia": "Pinia",
+      "jsp": "JSP",
+      "struts": "Apache Struts"
     },
     "hoverCard": {
       "years": "taon",

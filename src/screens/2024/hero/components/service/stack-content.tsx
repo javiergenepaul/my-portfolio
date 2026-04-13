@@ -36,7 +36,12 @@ type BackEndStack =
   | "php"
   | "bootstrap"
   | "mvc"
-  | "microservices";
+  | "microservices"
+  | "vue"
+  | "vuex"
+  | "pinia"
+  | "jsp"
+  | "struts";
 
 type FrontEndStack =
   | "vite"

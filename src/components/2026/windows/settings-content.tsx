@@ -415,7 +415,7 @@ export function SettingsContent() {
   });
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", height: "100%", fontFamily: MAC_FONT }}>
+    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
       {/* Mobile: tab strip / Desktop: sidebar */}
       {isMobile ? (
         <div
@@ -467,6 +467,7 @@ export function SettingsContent() {
       <div
         style={{
           flex: 1,
+          minHeight: 0,
           overflowY: "auto",
           padding: isMobile ? "16px 14px" : "24px 28px",
           scrollbarWidth: "none",

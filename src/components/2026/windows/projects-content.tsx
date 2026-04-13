@@ -67,7 +67,7 @@ export function ProjectsContent() {
   });
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", height: "100%", fontFamily: MAC_FONT }}>
+    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
       {/* Mobile: pill strip / Desktop: sidebar */}
       {isMobile ? (
         <div
@@ -124,6 +124,7 @@ export function ProjectsContent() {
       <div
         style={{
           flex: 1,
+          minHeight: 0,
           overflowY: "auto",
           scrollbarWidth: "none",
           padding: "12px 14px",

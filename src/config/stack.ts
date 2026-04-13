@@ -781,3 +781,63 @@ export const REACT_ROUTER_STACK: TechStackInterface = {
   isStudying: false,
   alt: "react-router-stack-icon.svg",
 };
+
+export const VUE_STACK: TechStackInterface = {
+  name: "vue",
+  isFavorite: false,
+  url: "https://vuejs.org",
+  rate: 7,
+  dateStarted: moment("2023-01-01"),
+  dateEnded: "present",
+  isStudying: false,
+  icon: StackIcon.VueStackIcon,
+  alt: "vue-stack-icon.svg",
+};
+
+export const VUEX_STACK: TechStackInterface = {
+  name: "vuex",
+  isFavorite: false,
+  url: "https://vuex.vuejs.org",
+  rate: 7,
+  dateStarted: moment("2023-01-01"),
+  dateEnded: "present",
+  isStudying: false,
+  icon: StackIcon.VuexStackIcon,
+  alt: "vuex-stack-icon.svg",
+};
+
+export const PINIA_STACK: TechStackInterface = {
+  name: "pinia",
+  isFavorite: false,
+  url: "https://pinia.vuejs.org",
+  rate: 7,
+  dateStarted: moment("2023-06-01"),
+  dateEnded: "present",
+  isStudying: false,
+  icon: StackIcon.PiniaStackIcon,
+  alt: "pinia-stack-icon.svg",
+};
+
+export const JSP_STACK: TechStackInterface = {
+  name: "jsp",
+  isFavorite: false,
+  url: "https://www.oracle.com/java/technologies/jspt.html",
+  rate: 6,
+  dateStarted: moment("2023-01-01"),
+  dateEnded: "present",
+  isStudying: false,
+  icon: StackIcon.JavaStackIcon,
+  alt: "java-stack-icon.svg",
+};
+
+export const STRUTS_STACK: TechStackInterface = {
+  name: "struts",
+  isFavorite: false,
+  url: "https://struts.apache.org",
+  rate: 6,
+  dateStarted: moment("2023-01-01"),
+  dateEnded: "present",
+  isStudying: false,
+  icon: StackIcon.SpringBootStackIcon,
+  alt: "spring-boot-stack-icon.svg",
+};

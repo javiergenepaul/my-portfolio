@@ -168,7 +168,12 @@
       "pixelPerfect": "ピクセルパーフェクト",
       "landingPage": "ランディングページ",
       "reactRouter": "反応ルーター",
-      "nextJs": "NextJS"
+      "nextJs": "NextJS",
+      "vue": "Vue.js",
+      "vuex": "Vuex",
+      "pinia": "Pinia",
+      "jsp": "JSP",
+      "struts": "Apache Struts"
     },
     "hoverCard": {
       "years": "年",

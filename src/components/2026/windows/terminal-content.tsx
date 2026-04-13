@@ -144,7 +144,9 @@ export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",
+        flex: 1,
+        minHeight: 0,
+        overflow: "hidden",
         background: "#0D0D0D",
         fontFamily: "'JetBrains Mono','Fira Code','Cascadia Code',monospace",
         fontSize: 12.5,

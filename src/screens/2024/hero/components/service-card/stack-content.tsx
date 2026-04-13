@@ -37,7 +37,12 @@ type BackEndStack =
   | "bootstrap"
   | "mvc"
   | "nextJs"
-  | "microservices";
+  | "microservices"
+  | "vue"
+  | "vuex"
+  | "pinia"
+  | "jsp"
+  | "struts";
 type FrontEndStack =
   | "vite"
   | "react"

@@ -57,6 +57,9 @@ import ThreeJsStackIcon from "./three-js-stack-icon.svg";
 import TypeScriptStackIcon from "./typescript-stack-icon.svg";
 import ViteStackIcon from "./vite-stack-icon.svg";
 import VitestStackIcon from "./vitest-stack-icon.svg";
+import VueStackIcon from "./vue-stack-icon.svg";
+import PiniaStackIcon from "./pinia-stack-icon.svg";
+import VuexStackIcon from "./vuex-stack-icon.svg";
 import YarnStackIcon from "./yarn-stack-icon.svg";
 import ZustandStackIcon from "./zustand-stack-icon.svg";
 
@@ -120,6 +123,9 @@ export {
   TypeScriptStackIcon,
   ViteStackIcon,
   VitestStackIcon,
+  VueStackIcon,
+  PiniaStackIcon,
+  VuexStackIcon,
   YarnStackIcon,
   ZustandStackIcon,
 };

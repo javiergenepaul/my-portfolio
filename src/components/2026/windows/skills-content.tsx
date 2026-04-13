@@ -76,7 +76,7 @@ export function SkillsContent() {
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", height: "100%", fontFamily: MAC_FONT }}>
+    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
       {/* Mobile: horizontal scroll strip / Desktop: sidebar */}
       {isMobile ? (
         <div
@@ -128,6 +128,7 @@ export function SkillsContent() {
       <div
         style={{
           flex: 1,
+          minHeight: 0,
           overflowY: "auto",
           padding: "20px 22px",
           scrollbarWidth: "none",
