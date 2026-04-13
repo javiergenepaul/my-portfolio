@@ -146,7 +146,7 @@ export interface WinDef {
   title: string;
   color: string;
   icon: React.ReactNode;
-  defaultPos: { x: number; y: number };
+  defaultPos: { x: number; y: number } | ((vw: number) => { x: number; y: number });
   defaultSize: { w: number; h: number };
 }
 
@@ -172,7 +172,7 @@ export const WIN_DEFS: WinDef[] = [
     title: "Terminal",
     color: A.green,
     icon: <TerminalSquare size={14} />,
-    defaultPos: { x: 140, y: 90 },
+    defaultPos: (vw: number) => ({ x: vw - 660 - 120, y: 90 }),
     defaultSize: { w: 660, h: 400 },
   },
   {

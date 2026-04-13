@@ -14,7 +14,8 @@ import {
 } from "lucide-react";
 import type { Color } from "@/stores";
 import { MAC_FONT, RESUME_COLORS, RESUME_SWATCHES } from "../constants";
-import { useAurora } from "../use-aurora";
+import { useAurora, useIsDark } from "../use-aurora";
+import { useIsMobile } from "../hooks";
 import { hexRgb } from "../utils";
 
 const ResumeSimple = dynamic(
@@ -44,6 +45,8 @@ const ResumeModern = dynamic(
 
 export function ResumeContent() {
   const A = useAurora();
+  const isSystemDark = useIsDark();
+  const isMobile = useIsMobile();
   type ResumeMode = "simple" | "modern";
   const [mode, setMode] = useState<ResumeMode>("modern");
   const [isDark, setIsDark] = useState(true);
@@ -102,10 +105,106 @@ export function ResumeContent() {
     display: "block",
   };
 
+  const mobileToolbar = isMobile && (
+    <div
+      style={{
+        flexShrink: 0,
+        borderBottom: `1px solid ${A.glassBorder}`,
+        background: A.sidebar,
+        padding: "10px 12px",
+        display: "flex",
+        gap: 10,
+        alignItems: "center",
+        overflowX: "auto",
+        scrollbarWidth: "none",
+      }}
+    >
+      {/* Template pills */}
+      {[
+        { v: "modern" as const, label: "Modern" },
+        { v: "simple" as const, label: "Simple" },
+      ].map((opt) => (
+        <button
+          key={opt.v}
+          onClick={() => setMode(opt.v)}
+          style={{
+            padding: "5px 12px",
+            borderRadius: 20,
+            border: `1.5px solid ${mode === opt.v ? A.teal : A.glassBorder}`,
+            background: mode === opt.v ? `rgba(${hexRgb(A.teal)},0.10)` : "transparent",
+            color: mode === opt.v ? A.teal : A.textMid,
+            fontSize: 12,
+            fontWeight: mode === opt.v ? 600 : 400,
+            cursor: "pointer",
+            fontFamily: MAC_FONT,
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
+        >
+          {opt.label}
+        </button>
+      ))}
+      <div style={{ width: 1, height: 18, background: A.glassBorder, flexShrink: 0 }} />
+      {/* Dark/Light toggle */}
+      {[
+        { v: false, icon: <Sun size={12} />, label: "Light" },
+        { v: true, icon: <Moon size={12} />, label: "Dark" },
+      ].map((opt) => (
+        <button
+          key={String(opt.v)}
+          onClick={() => setIsDark(opt.v)}
+          style={{
+            display: "flex", alignItems: "center", gap: 4,
+            padding: "5px 10px",
+            borderRadius: 20,
+            border: `1.5px solid ${isDark === opt.v ? A.blue : A.glassBorder}`,
+            background: isDark === opt.v ? `rgba(${hexRgb(A.blue)},0.10)` : "transparent",
+            color: isDark === opt.v ? A.blue : A.textMid,
+            fontSize: 12, cursor: "pointer", fontFamily: MAC_FONT,
+            whiteSpace: "nowrap", flexShrink: 0,
+          }}
+        >
+          {opt.icon} {opt.label}
+        </button>
+      ))}
+      <div style={{ width: 1, height: 18, background: A.glassBorder, flexShrink: 0 }} />
+      {/* Color swatches */}
+      {RESUME_SWATCHES.map((s) => (
+        <button
+          key={s.value}
+          onClick={() => setColor(s.value)}
+          title={s.label}
+          style={{
+            width: 20, height: 20, borderRadius: "50%",
+            border: "none", background: s.hex, cursor: "pointer",
+            outline: "none", flexShrink: 0,
+            boxShadow: color === s.value ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}` : "none",
+            transform: color === s.value ? "scale(1.2)" : "scale(1)",
+            transition: "transform 0.13s, box-shadow 0.13s",
+          }}
+        />
+      ))}
+      <div style={{ width: 1, height: 18, background: A.glassBorder, flexShrink: 0 }} />
+      <button
+        onClick={handleExport}
+        style={{
+          display: "flex", alignItems: "center", gap: 5,
+          padding: "5px 12px", borderRadius: 20, border: "none",
+          background: colors.primary, color: colors.text,
+          fontSize: 12, fontWeight: 600, cursor: "pointer",
+          fontFamily: MAC_FONT, whiteSpace: "nowrap", flexShrink: 0,
+        }}
+      >
+        <Download size={11} /> Export
+      </button>
+    </div>
+  );
+
   return (
-    <div style={{ display: "flex", height: "100%", fontFamily: MAC_FONT }}>
-      {/* ── Controls sidebar ── */}
-      <div
+    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", height: "100%", fontFamily: MAC_FONT }}>
+      {mobileToolbar}
+      {/* ── Controls sidebar (desktop only) ── */}
+      {!isMobile && <div
         style={{
           width: 218,
           flexShrink: 0,
@@ -241,7 +340,7 @@ export function ResumeContent() {
                   outline: "none",
                   boxShadow:
                     color === s.value
-                      ? `0 0 0 2px #1C1C1C, 0 0 0 3.5px ${s.hex}`
+                      ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}`
                       : "none",
                   transform: color === s.value ? "scale(1.18)" : "scale(1)",
                   transition: "transform 0.13s, box-shadow 0.13s",
@@ -317,7 +416,7 @@ export function ResumeContent() {
             <b style={{ color: A.text }}>Background graphics</b>.
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* ── Preview panel ── */}
       <div
@@ -327,7 +426,7 @@ export function ResumeContent() {
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
-          background: "rgba(0,0,0,0.18)",
+          background: isSystemDark ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.07)",
         }}
       >
         {/* Zoom toolbar */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, AnimatePresence } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import { MAC_FONT } from "../constants";
@@ -77,8 +77,21 @@ export function AppWindow({
   onOpen: (id: WinId) => void;
 }) {
   const A = useAurora();
-  const x = useMotionValue(def.defaultPos.x);
-  const y = useMotionValue(def.defaultPos.y);
+  // Resolve position: functions use 1440 as SSR fallback, corrected client-side in useEffect
+  const resolvePos = (vw: number) =>
+    typeof def.defaultPos === "function" ? def.defaultPos(vw) : def.defaultPos;
+  const initPos = resolvePos(1440);
+  const x = useMotionValue(initPos.x);
+  const y = useMotionValue(initPos.y);
+
+  useEffect(() => {
+    if (typeof def.defaultPos === "function") {
+      const p = def.defaultPos(window.innerWidth);
+      x.set(p.x);
+      y.set(p.y);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [size, setSize] = useState({
     w: def.defaultSize.w,
     h: def.defaultSize.h,

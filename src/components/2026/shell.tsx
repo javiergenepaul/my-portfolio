@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence } from "framer-motion";
 import { useLocaleRefresh } from "@/i18n";
@@ -8,11 +8,13 @@ import { MAC_FONT, WIN_DEFS } from "./constants";
 import { useAurora, useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
+import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw } from "lucide-react";
 import { MenuBar } from "./components/menu-bar";
 import { DesktopIcon } from "./components/desktop-icon";
 import { AppWindow } from "./components/app-window";
 import { Dock } from "./components/dock";
 import { CommandPalette } from "./components/command-palette";
+import { ContextMenu, type ContextMenuEntry } from "./components/context-menu";
 import { MobilePortfolio } from "./mobile/mobile-portfolio";
 
 const LiveWallpaper = dynamic(
@@ -38,6 +40,29 @@ export function Portfolio2026() {
   const [wins, setWins] = useState<Record<WinId, WinState>>(INIT_WINS);
   const [topZ, setTopZ] = useState(30);
   const [cmdOpen, setCmdOpen] = useState(false);
+  const desktopRef = useRef<HTMLElement>(null);
+  // Use a fixed SSR-safe constant so server and client first-render agree.
+  // A useEffect below corrects the x position to the actual window width after mount.
+  const [iconPositions, setIconPositions] = useState<Record<WinId, { x: number; y: number }>>(() =>
+    Object.fromEntries(
+      WIN_DEFS.map((def, i) => [def.id, { x: 1336, y: 16 + i * 100 }])
+    ) as Record<WinId, { x: number; y: number }>
+  );
+
+  // Snap icons to the right column after mount when we know the real viewport width
+  useEffect(() => {
+    setIconPositions(
+      Object.fromEntries(
+        WIN_DEFS.map((def, i) => [def.id, { x: window.innerWidth - 104, y: 16 + i * 100 }])
+      ) as Record<WinId, { x: number; y: number }>
+    );
+  }, []);
+
+  const updateIconPos = useCallback((id: WinId, x: number, y: number) => {
+    setIconPositions((prev) => ({ ...prev, [id]: { x, y } }));
+  }, []);
+
+  const [ctxMenu, setCtxMenu] = useState<{ x: number; y: number; items: ContextMenuEntry[] } | null>(null);
 
   const openWin = useCallback(
     (id: WinId) => {
@@ -103,6 +128,76 @@ export function Portfolio2026() {
       return next;
     });
   }, [topZ]);
+
+  const defaultIconPositions = useCallback(() =>
+    Object.fromEntries(
+      WIN_DEFS.map((def, i) => [def.id, { x: window.innerWidth - 104, y: 16 + i * 100 }])
+    ) as Record<WinId, { x: number; y: number }>
+  , []);
+
+  const arrangeIcons = useCallback(() => {
+    setIconPositions(defaultIconPositions());
+  }, [defaultIconPositions]);
+
+  const resetIconPos = useCallback((id: WinId) => {
+    const positions = defaultIconPositions();
+    setIconPositions((prev) => ({ ...prev, [id]: positions[id] }));
+  }, [defaultIconPositions]);
+
+  const WIN_ICONS: Record<WinId, React.ReactNode> = {
+    about: <User size={13} />,
+    projects: <FolderGit2 size={13} />,
+    terminal: <Terminal size={13} />,
+    skills: <Layers size={13} />,
+    contact: <Mail size={13} />,
+    resume: <FileText size={13} />,
+    settings: <Settings2 size={13} />,
+  };
+
+  const openDesktopMenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    const items: ContextMenuEntry[] = [
+      { type: "header", label: "Open" },
+      ...WIN_DEFS.map((def) => ({
+        type: "item" as const,
+        label: def.title,
+        icon: WIN_ICONS[def.id],
+        action: () => openWin(def.id),
+        disabled: wins[def.id].open && !wins[def.id].minimized,
+      })),
+      { type: "separator" },
+      {
+        type: "item",
+        label: "Arrange Icons",
+        icon: <Grid2x2 size={13} />,
+        action: arrangeIcons,
+      },
+    ];
+    setCtxMenu({ x: e.clientX, y: e.clientY, items });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wins, openWin, arrangeIcons]);
+
+  const openIconMenu = useCallback((e: React.MouseEvent, id: WinId) => {
+    const def = WIN_DEFS.find((d) => d.id === id)!;
+    const items: ContextMenuEntry[] = [
+      {
+        type: "item",
+        label: `Open ${def.title}`,
+        icon: WIN_ICONS[id],
+        action: () => openWin(id),
+        disabled: wins[id].open && !wins[id].minimized,
+      },
+      { type: "separator" },
+      {
+        type: "item",
+        label: "Reset Position",
+        icon: <RefreshCcw size={13} />,
+        action: () => resetIconPos(id),
+      },
+    ];
+    setCtxMenu({ x: e.clientX, y: e.clientY, items });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wins, openWin, resetIconPos]);
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
@@ -194,33 +289,28 @@ export function Portfolio2026() {
         />
 
         <main
+          ref={desktopRef}
           id="desktop"
           aria-label="Desktop"
+          onContextMenu={openDesktopMenu}
           style={{ position: "absolute", inset: 0, top: 28 }}
         >
-          {/* Desktop icons — right column */}
-          <div
-            style={{
-              position: "absolute",
-              top: 16,
-              right: 14,
-              display: "flex",
-              flexDirection: "column",
-              gap: 4,
-              zIndex: 10,
-            }}
-          >
-            {desktopIcons.map((def) => (
-              <DesktopIcon
-                key={def.id}
-                id={def.id}
-                label={def.title}
-                color={def.color}
-                isOpen={wins[def.id].open}
-                onClick={() => openWin(def.id)}
-              />
-            ))}
-          </div>
+          {/* Desktop icons — draggable */}
+          {desktopIcons.map((def) => (
+            <DesktopIcon
+              key={def.id}
+              id={def.id}
+              label={def.title}
+              color={def.color}
+              isOpen={wins[def.id].open}
+              onClick={() => openWin(def.id)}
+              x={iconPositions[def.id].x}
+              y={iconPositions[def.id].y}
+              constraintRef={desktopRef}
+              onPositionChange={(x, y) => updateIconPos(def.id, x, y)}
+              onContextMenu={(e) => openIconMenu(e, def.id)}
+            />
+          ))}
 
           {/* Windows */}
           <AnimatePresence>
@@ -245,6 +335,14 @@ export function Portfolio2026() {
           onClose={() => setCmdOpen(false)}
           onOpen={openWin}
         />
+        {ctxMenu && (
+          <ContextMenu
+            x={ctxMenu.x}
+            y={ctxMenu.y}
+            items={ctxMenu.items}
+            onClose={() => setCtxMenu(null)}
+          />
+        )}
       </div>
     </>
   );
