@@ -15,7 +15,7 @@ export const ContactSection = () => {
           <img
             src={ContactLogo}
             alt="jav-logo.svg"
-            className="w-[74px] h-[74px]"
+            className="w-18.5 h-18.5"
           />
           <CardTitle>{translate("contact.keepInTouch")}</CardTitle>
         </CardHeader>
