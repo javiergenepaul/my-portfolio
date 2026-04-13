@@ -227,7 +227,7 @@ export function MenuBar({
             padding: "0 8px",
           }}
         >
-          Gene Paul
+          GPM
         </span>
 
         {/* ── File ── */}
