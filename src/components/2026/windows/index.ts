@@ -4,3 +4,4 @@ export * from "./terminal-content";
 export * from "./skills-content";
 export * from "./contact-content";
 export * from "./resume-content";
+export * from "./settings-content";

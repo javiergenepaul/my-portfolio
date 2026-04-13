@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Github, Linkedin, Mail } from "lucide-react";
+import { Search, GithubIcon, LinkedinIcon, Mail } from "lucide-react";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import { EMAIL_ADDRESS } from "@/config";
 import { A, MAC_FONT, WIN_DEFS } from "../constants";
@@ -35,13 +35,13 @@ export function CommandPalette({
     })),
     {
       label: "View GitHub",
-      icon: <Github size={13} />,
+      icon: <GithubIcon size={13} />,
       color: A.text,
       action: () => window.open(GITHUB_URL, "_blank"),
     },
     {
       label: "View LinkedIn",
-      icon: <Linkedin size={13} />,
+      icon: <LinkedinIcon size={13} />,
       color: "#60A5FA",
       action: () => window.open(LINKED_IN_URL, "_blank"),
     },

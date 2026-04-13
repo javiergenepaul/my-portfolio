@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Mail, GithubIcon, LinkedinIcon, ExternalLink } from "lucide-react";
 import { EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import { A, MAC_FONT } from "../constants";
@@ -20,7 +20,7 @@ export function ContactContent() {
       label: "GitHub",
       value: "javiergenepaul",
       href: GITHUB_URL,
-      icon: <Github size={18} />,
+      icon: <GithubIcon size={18} />,
       color: A.text,
       desc: "View open-source work",
     },
@@ -28,7 +28,7 @@ export function ContactContent() {
       label: "LinkedIn",
       value: "gene-paul-mar-javier",
       href: LINKED_IN_URL,
-      icon: <Linkedin size={18} />,
+      icon: <LinkedinIcon size={18} />,
       color: "#60A5FA",
       desc: "Connect professionally",
     },

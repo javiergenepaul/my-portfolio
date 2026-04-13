@@ -8,6 +8,7 @@ import {
   Settings2,
   User,
   FileText,
+  SlidersHorizontal,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -113,7 +114,8 @@ export type WinId =
   | "terminal"
   | "skills"
   | "contact"
-  | "resume";
+  | "resume"
+  | "settings";
 
 export interface WinDef {
   id: WinId;
@@ -172,6 +174,14 @@ export const WIN_DEFS: WinDef[] = [
     icon: <FileText size={14} />,
     defaultPos: { x: 180, y: 85 },
     defaultSize: { w: 1060, h: 760 },
+  },
+  {
+    id: "settings",
+    title: "System Settings",
+    color: "#A0A0A0",
+    icon: <SlidersHorizontal size={14} />,
+    defaultPos: { x: 200, y: 90 },
+    defaultSize: { w: 680, h: 520 },
   },
 ];
 

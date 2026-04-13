@@ -2,14 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import dynamic from "next/dynamic";
-import {
-  FolderOpen,
-  TerminalSquare,
-  Mail,
-  Settings2,
-  User,
-  FileText,
-} from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import { useLocaleRefresh } from "@/i18n";
 import { A, MAC_FONT, WIN_DEFS } from "./constants";
@@ -34,6 +26,7 @@ const INIT_WINS: Record<WinId, WinState> = {
   skills: { open: false, minimized: false, maximized: false, zIndex: 10 },
   contact: { open: false, minimized: false, maximized: false, zIndex: 10 },
   resume: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  settings: { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
 export function Portfolio2026() {
@@ -74,27 +67,71 @@ export function Portfolio2026() {
   );
   const restoreWin = (id: WinId) => openWin(id);
 
+  const closeAll = () =>
+    setWins((w) => {
+      const next = { ...w };
+      (Object.keys(next) as WinId[]).forEach(
+        (id) => (next[id] = { ...next[id], open: false, minimized: false }),
+      );
+      return next;
+    });
+
+  const minimizeAll = () =>
+    setWins((w) => {
+      const next = { ...w };
+      (Object.keys(next) as WinId[]).forEach((id) => {
+        if (next[id].open) next[id] = { ...next[id], minimized: true };
+      });
+      return next;
+    });
+
+  const restoreAll = useCallback(() => {
+    const z = topZ + WIN_DEFS.length;
+    setTopZ(z);
+    setWins((w) => {
+      const next = { ...w };
+      let zi = topZ;
+      (Object.keys(next) as WinId[]).forEach((id) => {
+        if (next[id].minimized || next[id].open) {
+          zi += 1;
+          next[id] = { ...next[id], open: true, minimized: false, zIndex: zi };
+        }
+      });
+      return next;
+    });
+  }, [topZ]);
+
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      const mod = e.metaKey || e.ctrlKey;
+      if (!mod) return;
+
+      if (e.key === "k") {
         e.preventDefault();
         setCmdOpen((v) => !v);
+        return;
       }
+
+      // ⌘1–6 → open corresponding window
+      const idx = parseInt(e.key, 10);
+      if (idx >= 1 && idx <= WIN_DEFS.length) {
+        e.preventDefault();
+        openWin(WIN_DEFS[idx - 1].id);
+        return;
+      }
+
+      // ⌘T → Terminal, ⌘R → Resume, ⌘M → Minimize all
+      if (e.key === "t") { e.preventDefault(); openWin("terminal"); }
+      if (e.key === "r") { e.preventDefault(); openWin("resume"); }
+      if (e.key === "m") { e.preventDefault(); minimizeAll(); }
     };
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
-  }, []);
+  }, [openWin]);
 
   if (isMobile) return <MobilePortfolio />;
 
-  const desktopIcons = [
-    { def: WIN_DEFS[0], icon: <User size={26} /> },
-    { def: WIN_DEFS[1], icon: <FolderOpen size={26} /> },
-    { def: WIN_DEFS[2], icon: <TerminalSquare size={26} /> },
-    { def: WIN_DEFS[3], icon: <Settings2 size={26} /> },
-    { def: WIN_DEFS[4], icon: <Mail size={26} /> },
-    { def: WIN_DEFS[5], icon: <FileText size={26} /> },
-  ];
+  const desktopIcons = WIN_DEFS;
 
   return (
     <>
@@ -133,7 +170,14 @@ export function Portfolio2026() {
           fontFamily: MAC_FONT,
         }}
       >
-        <MenuBar onCmdK={() => setCmdOpen(true)} />
+        <MenuBar
+          onCmdK={() => setCmdOpen(true)}
+          onOpenWin={openWin}
+          onCloseAll={closeAll}
+          onMinimizeAll={minimizeAll}
+          onRestoreAll={restoreAll}
+          wins={wins}
+        />
 
         <main
           id="desktop"
@@ -152,11 +196,11 @@ export function Portfolio2026() {
               zIndex: 10,
             }}
           >
-            {desktopIcons.map(({ def, icon }) => (
+            {desktopIcons.map((def) => (
               <DesktopIcon
                 key={def.id}
+                id={def.id}
                 label={def.title}
-                icon={icon}
                 color={def.color}
                 isOpen={wins[def.id].open}
                 onClick={() => openWin(def.id)}

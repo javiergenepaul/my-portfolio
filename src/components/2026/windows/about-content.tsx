@@ -10,8 +10,8 @@ import {
   Lock,
   MapPin,
   GraduationCap,
-  Github,
-  Linkedin,
+  GithubIcon,
+  LinkedinIcon,
   Mail,
 } from "lucide-react";
 import {
@@ -272,13 +272,13 @@ export function AboutContent() {
                   {[
                     {
                       href: GITHUB_URL,
-                      icon: <Github size={13} />,
+                      icon: <GithubIcon size={13} />,
                       label: "GitHub",
                       c: A.text,
                     },
                     {
                       href: LINKED_IN_URL,
-                      icon: <Linkedin size={13} />,
+                      icon: <LinkedinIcon size={13} />,
                       label: "LinkedIn",
                       c: "#60A5FA",
                     },

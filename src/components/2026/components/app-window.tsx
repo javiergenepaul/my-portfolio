@@ -12,6 +12,7 @@ import { TerminalContent } from "../windows/terminal-content";
 import { SkillsContent } from "../windows/skills-content";
 import { ContactContent } from "../windows/contact-content";
 import { ResumeContent } from "../windows/resume-content";
+import { SettingsContent } from "../windows/settings-content";
 
 // Resize handle edges: n/e/s/w edges + ne/se/sw/nw corners
 export const RESIZE_HANDLES = [
@@ -271,6 +272,7 @@ export function AppWindow({
         {def.id === "skills" && <SkillsContent />}
         {def.id === "contact" && <ContactContent />}
         {def.id === "resume" && <ResumeContent />}
+        {def.id === "settings" && <SettingsContent />}
       </div>
     </motion.div>
   );

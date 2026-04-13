@@ -440,6 +440,8 @@
 
 [data-year="2026"] {
   --year-accent: 262.1 83.3% 57.8%; /* Lavender accent for 2026 */
+  overflow: hidden;
+  height: 100dvh;
 }
 
 /* ─── Smooth year-page transitions ───────────────────────────────────────── */

@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { use2026Settings } from "./settings-store";
 
 export function useTime() {
+  const timeFormat = use2026Settings((s) => s.timeFormat);
   const [t, setT] = useState("");
   useEffect(() => {
     const upd = () =>
@@ -13,13 +15,13 @@ export function useTime() {
           day: "numeric",
           hour: "numeric",
           minute: "2-digit",
-          hour12: true,
+          hour12: timeFormat === "12h",
         }),
       );
     upd();
     const id = setInterval(upd, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [timeFormat]);
   return t;
 }
 
@@ -35,6 +37,7 @@ export function useIsMobile() {
 }
 
 export function useMobileTime() {
+  const timeFormat = use2026Settings((s) => s.timeFormat);
   const [t, setT] = useState("");
   useEffect(() => {
     const upd = () =>
@@ -42,12 +45,12 @@ export function useMobileTime() {
         new Date().toLocaleTimeString("en-US", {
           hour: "numeric",
           minute: "2-digit",
-          hour12: true,
+          hour12: timeFormat === "12h",
         }),
       );
     upd();
     const id = setInterval(upd, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [timeFormat]);
   return t;
 }
