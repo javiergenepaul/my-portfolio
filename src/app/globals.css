@@ -415,6 +415,25 @@
   --year-accent: 217.2 91.2% 59.8%; /* Blue-ish accent for 2025 */
 }
 
+/* ─── 2026 — window scroll areas ────────────────────────────────────────────*/
+.win26-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.win26-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.win26-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
+}
+
+.win26-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
 /* ─── 2025 — custom scrollbar ────────────────────────────────────────────────*/
 #p25-scroll {
   scrollbar-width: thin;

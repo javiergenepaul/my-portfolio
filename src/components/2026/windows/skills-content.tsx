@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/config";
-import { translate } from "@/i18n";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { MAC_FONT } from "../constants";
 import { useAurora } from "../use-aurora";
 import { useIsMobile } from "../hooks";
@@ -15,6 +15,7 @@ const ACCENT = (A: ReturnType<typeof useAurora>) => [
 ];
 
 export function SkillsContent() {
+  useLocaleRefresh();
   const A = useAurora();
   const isMobile = useIsMobile();
   const COLORS = ACCENT(A);
@@ -80,10 +81,12 @@ export function SkillsContent() {
       {/* Mobile: horizontal scroll strip / Desktop: sidebar */}
       {isMobile ? (
         <div
+          className="win26-scroll"
           style={{
             flexShrink: 0,
             overflowX: "auto",
-            scrollbarWidth: "none",
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.18) transparent",
             display: "flex",
             gap: 6,
             padding: "10px 12px",
@@ -95,6 +98,7 @@ export function SkillsContent() {
         </div>
       ) : (
         <div
+          className="win26-scroll"
           style={{
             width: 180,
             flexShrink: 0,
@@ -102,7 +106,8 @@ export function SkillsContent() {
             borderRight: `1px solid ${A.glassBorder}`,
             padding: "14px 8px",
             overflowY: "auto",
-            scrollbarWidth: "none",
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.18) transparent",
             display: "flex",
             flexDirection: "column",
             gap: 2,
@@ -126,12 +131,14 @@ export function SkillsContent() {
 
       {/* Main content */}
       <div
+        className="win26-scroll"
         style={{
           flex: 1,
           minHeight: 0,
           overflowY: "auto",
           padding: "20px 22px",
-          scrollbarWidth: "none",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255,255,255,0.18) transparent",
         }}
       >
         {cat && (

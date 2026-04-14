@@ -848,11 +848,14 @@
       "title": "About Me",
       "description": "test about me description",
       "downloadResume": "Download My Resume",
-      "project": "Project",
-      "ongoing": "Ongoing",
-      "completed": "Completed",
-      "years": "Years",
-      "experience": "Experience"
+      "project": "プロジェクト",
+      "ongoing": "進行中",
+      "completed": "完了",
+      "years": "年",
+      "experience": "経験",
+      "technologies": "技術",
+      "status": "ステータス",
+      "active": "活動中"
     }
   },
   "skills": {

@@ -728,7 +728,10 @@
       "ongoing": "Patuloy",
       "completed": "Nakumpleto",
       "years": "taon",
-      "experience": "Karanasan"
+      "experience": "Karanasan",
+      "technologies": "Mga Teknolohiya",
+      "status": "Katayuan",
+      "active": "Aktibo"
     },
     "education": {
       "title": "Edukasyon"

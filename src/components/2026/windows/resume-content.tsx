@@ -107,6 +107,7 @@ export function ResumeContent() {
 
   const mobileToolbar = isMobile && (
     <div
+      className="win26-scroll"
       style={{
         flexShrink: 0,
         borderBottom: `1px solid ${A.glassBorder}`,
@@ -116,7 +117,8 @@ export function ResumeContent() {
         gap: 10,
         alignItems: "center",
         overflowX: "auto",
-        scrollbarWidth: "none",
+        scrollbarWidth: "thin",
+        scrollbarColor: "rgba(255,255,255,0.18) transparent",
       }}
     >
       {/* Template pills */}
@@ -205,6 +207,7 @@ export function ResumeContent() {
       {mobileToolbar}
       {/* ── Controls sidebar (desktop only) ── */}
       {!isMobile && <div
+        className="win26-scroll"
         style={{
           width: 218,
           flexShrink: 0,
@@ -215,7 +218,8 @@ export function ResumeContent() {
           flexDirection: "column",
           gap: 20,
           overflowY: "auto",
-          scrollbarWidth: "none",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255,255,255,0.18) transparent",
         }}
       >
         {/* Template */}

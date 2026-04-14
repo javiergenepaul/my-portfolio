@@ -28,8 +28,10 @@ import moment from "moment";
 import { MAC_FONT } from "../constants";
 import { useAurora } from "../use-aurora";
 import { hexRgb, formatDate } from "../utils";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 export function AboutContent() {
+  useLocaleRefresh();
   const A = useAurora();
   const [tab, setTab] = useState<"overview" | "experience" | "education">(
     "overview",
@@ -113,11 +115,13 @@ export function AboutContent() {
         ))}
       </div>
       <div
+        className="win26-scroll"
         style={{
           flex: 1,
           overflowY: "auto",
           padding: "24px 28px",
-          scrollbarWidth: "none",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255,255,255,0.18) transparent",
         }}
       >
         <AnimatePresence mode="wait">
@@ -238,12 +242,12 @@ export function AboutContent() {
                   {[
                     {
                       v: `${moment().diff(moment(CAREER_START_DATE), "years")}+`,
-                      l: "Years",
+                      l: translate("about.intro.years"),
                       c: A.teal,
                     },
-                    { v: "10+", l: "Projects", c: A.violet },
-                    { v: "20+", l: "Technologies", c: A.green },
-                    { v: "Active", l: "Status", c: "#FBBF24" },
+                    { v: "10+", l: translate("about.intro.project"), c: A.violet },
+                    { v: "20+", l: translate("about.intro.technologies"), c: A.green },
+                    { v: translate("about.intro.active"), l: translate("about.intro.status"), c: "#FBBF24" },
                   ].map((s) => (
                     <div
                       key={s.l}
@@ -329,7 +333,7 @@ export function AboutContent() {
                     color: A.text,
                   }}
                 >
-                  Work Experience
+                  {translate("about.experience.title")}
                 </h2>
                 {exps.map((exp, i) => (
                   <div key={i} style={{ display: "flex", gap: 14 }}>
@@ -448,7 +452,7 @@ export function AboutContent() {
                     color: A.text,
                   }}
                 >
-                  Education
+                  {translate("about.education.title")}
                 </h2>
                 {edus.map((edu, i) => (
                   <div

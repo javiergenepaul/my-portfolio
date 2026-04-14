@@ -8,7 +8,7 @@ import {
   SKILL_CATEGORIES,
   getProjects,
 } from "@/config";
-import { translate } from "@/i18n";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { MAC_FONT } from "../constants";
 import { useAurora } from "../use-aurora";
 import type { WinId } from "../constants";
@@ -116,6 +116,7 @@ export function TerminalContent({
   onOpen: (id: WinId) => void;
   onClose: () => void;
 }) {
+  useLocaleRefresh();
   const A = useAurora();
   const [history, setHistory] = useState<TermEntry[]>([
     {
@@ -291,11 +292,13 @@ export function TerminalContent({
 
       {/* Output area */}
       <div
+        className="win26-scroll"
         style={{
           flex: 1,
           overflowY: "auto",
           padding: "14px 18px 6px",
-          scrollbarWidth: "none",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255,255,255,0.18) transparent",
         }}
       >
         {history.map((e, i) => (

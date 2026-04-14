@@ -71,10 +71,12 @@ export function ProjectsContent() {
       {/* Mobile: pill strip / Desktop: sidebar */}
       {isMobile ? (
         <div
+          className="win26-scroll"
           style={{
             flexShrink: 0,
             overflowX: "auto",
-            scrollbarWidth: "none",
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.18) transparent",
             display: "flex",
             gap: 6,
             padding: "8px 12px",
@@ -122,11 +124,13 @@ export function ProjectsContent() {
 
       {/* List */}
       <div
+        className="win26-scroll"
         style={{
           flex: 1,
           minHeight: 0,
           overflowY: "auto",
-          scrollbarWidth: "none",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255,255,255,0.18) transparent",
           padding: "12px 14px",
           display: "flex",
           flexDirection: "column",
@@ -150,6 +154,7 @@ export function ProjectsContent() {
                 cursor: "default",
                 position: "relative",
                 overflow: "hidden",
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = `rgba(${hexRgb(col)},0.35)`;

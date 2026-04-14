@@ -11,16 +11,11 @@ import { useIsMobile } from "../hooks";
 import { hexRgb } from "../utils";
 import { use2026Settings } from "../settings-store";
 import type { TimeFormat } from "../settings-store";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 // ── Sidebar item ─────────────────────────────────────────────────────────────
 
 type PaneId = "appearance" | "language" | "datetime";
-
-const PANES: { id: PaneId; label: string; icon: React.ReactNode }[] = [
-  { id: "appearance", label: "Appearance", icon: <Sun size={15} /> },
-  { id: "language", label: "Language & Region", icon: <Globe size={15} /> },
-  { id: "datetime", label: "Date & Time", icon: <Clock size={15} /> },
-];
 
 // ── Option button helper ──────────────────────────────────────────────────────
 
@@ -142,15 +137,15 @@ function AppearancePane() {
   const { theme, setTheme } = useSettingsStore();
 
   const themes: { id: Theme; label: string; icon: React.ReactNode; dark: boolean | null }[] = [
-    { id: "light", label: "Light", icon: <Sun size={14} />, dark: false },
-    { id: "dark", label: "Dark", icon: <Moon size={14} />, dark: true },
-    { id: "system", label: "Auto", icon: <Monitor size={14} />, dark: null },
+    { id: "light", label: translate("settings.theme.mode.light"), icon: <Sun size={14} />, dark: false },
+    { id: "dark", label: translate("settings.theme.mode.dark"), icon: <Moon size={14} />, dark: true },
+    { id: "system", label: translate("settings.theme.mode.system"), icon: <Monitor size={14} />, dark: null },
   ];
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
       <div>
-        <SLabel>Theme</SLabel>
+        <SLabel>{translate("settings.theme.theme")}</SLabel>
         <div style={{ display: "flex", gap: 10 }}>
           {themes.map((t) => {
             const active = theme === t.id;
@@ -236,21 +231,21 @@ function AppearancePane() {
 
 // ── Language pane ─────────────────────────────────────────────────────────────
 
-const LANGUAGES: { code: "en" | "ja" | "fil" | "ceb"; label: string; native: string; flag: string }[] = [
-  { code: "en", label: "English", native: "English", flag: "🇺🇸" },
-  { code: "ja", label: "Japanese", native: "日本語", flag: "🇯🇵" },
-  { code: "fil", label: "Filipino", native: "Filipino", flag: "🇵🇭" },
-  { code: "ceb", label: "Cebuano", native: "Cebuano", flag: "🇵🇭" },
-];
-
 function LanguagePane() {
   const A = useAurora();
   const { language, setLanguage } = useLanguageStore();
 
+  const LANGUAGES: { code: "en" | "ja" | "fil" | "ceb"; label: string; native: string; flag: string }[] = [
+    { code: "en", label: translate("sidebar.languageOption.english"), native: "English", flag: "🇺🇸" },
+    { code: "ja", label: translate("sidebar.languageOption.japanese"), native: "日本語", flag: "🇯🇵" },
+    { code: "fil", label: translate("sidebar.languageOption.tagalog"), native: "Filipino", flag: "🇵🇭" },
+    { code: "ceb", label: translate("sidebar.languageOption.cebuano"), native: "Cebuano", flag: "🇵🇭" },
+  ];
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div>
-        <SLabel>Preferred Language</SLabel>
+        <SLabel>{translate("settings.lang.lang")}</SLabel>
         <div
           style={{
             background: A.card,
@@ -379,9 +374,16 @@ function DateTimePane() {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export function SettingsContent() {
+  useLocaleRefresh();
   const A = useAurora();
   const isMobile = useIsMobile();
   const [pane, setPane] = useState<PaneId>("appearance");
+
+  const PANES: { id: PaneId; label: string; icon: React.ReactNode }[] = [
+    { id: "appearance", label: translate("settings.nav.appearance"), icon: <Sun size={15} /> },
+    { id: "language", label: translate("settings.lang.lang"), icon: <Globe size={15} /> },
+    { id: "datetime", label: "Date & Time", icon: <Clock size={15} /> },
+  ];
 
   const nav = PANES.map((p) => {
     const active = pane === p.id;
@@ -419,10 +421,12 @@ export function SettingsContent() {
       {/* Mobile: tab strip / Desktop: sidebar */}
       {isMobile ? (
         <div
+          className="win26-scroll"
           style={{
             flexShrink: 0,
             overflowX: "auto",
-            scrollbarWidth: "none",
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.18) transparent",
             display: "flex",
             gap: 6,
             padding: "10px 12px",
@@ -434,6 +438,7 @@ export function SettingsContent() {
         </div>
       ) : (
         <div
+          className="win26-scroll"
           style={{
             width: 200,
             flexShrink: 0,
@@ -441,7 +446,8 @@ export function SettingsContent() {
             borderRight: `1px solid ${A.glassBorder}`,
             padding: "16px 8px",
             overflowY: "auto",
-            scrollbarWidth: "none",
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.18) transparent",
             display: "flex",
             flexDirection: "column",
             gap: 2,
@@ -457,7 +463,7 @@ export function SettingsContent() {
               padding: "0 8px 10px",
             }}
           >
-            Settings
+            {translate("settings.settings")}
           </div>
           {nav}
         </div>
@@ -465,12 +471,14 @@ export function SettingsContent() {
 
       {/* Content area */}
       <div
+        className="win26-scroll"
         style={{
           flex: 1,
           minHeight: 0,
           overflowY: "auto",
           padding: isMobile ? "16px 14px" : "24px 28px",
-          scrollbarWidth: "none",
+          scrollbarWidth: "thin",
+          scrollbarColor: "rgba(255,255,255,0.18) transparent",
         }}
       >
         {!isMobile && (

@@ -728,7 +728,10 @@
       "ongoing": "Nagpadayon",
       "completed": "Nakompleto",
       "years": "Mga tuig",
-      "experience": "Kasinatian"
+      "experience": "Kasinatian",
+      "technologies": "Mga Teknolohiya",
+      "status": "Kahimtang",
+      "active": "Aktibo"
     },
     "education": {
       "title": "Edukasyon"

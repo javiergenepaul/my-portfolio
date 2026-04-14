@@ -728,7 +728,10 @@
       "ongoing": "Ongoing",
       "completed": "Completed",
       "years": "Years",
-      "experience": "Experience"
+      "experience": "Experience",
+      "technologies": "Technologies",
+      "status": "Status",
+      "active": "Active"
     },
     "education": {
       "title": "Education"
