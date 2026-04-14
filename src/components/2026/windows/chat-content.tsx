@@ -75,8 +75,8 @@ const KB: KBEntry[] = [
   },
   // About the bot
   {
-    keys: ["who are you", "what are you", "your purpose", "what can you do", "how do you work", "chatgpm", "chat gpm", "are you ai", "are you bot"],
-    reply: `I'm ChatGPM — a built-in AI assistant for ${FULL_NAME}'s portfolio 🤖\n\nNo external API. I know everything about GPM: skills, work history, projects, education, and contact info. Just ask!`,
+    keys: ["who are you", "what are you", "your purpose", "what can you do", "how do you work", "chatgpm", "chat gpm", "are you ai", "are you bot", "what is chatgpm", "what does chatgpm mean", "what does gpm stand for", "generative personal machine", "gene paul model", "what does it stand for", "what is gpm", "meaning of chatgpm", "chatgpm meaning"],
+    reply: `I'm ChatGPM — the built-in AI assistant for ${FULL_NAME}'s portfolio 🤖\n\nThe name has a double meaning:\n• 🧠 Generative Personal Machine — a nod to GPT-style AI\n• 👤 Gene Paul Model — literally powered by knowledge about Gene Paul Mar Javier\n\nNo external API. No hallucinations (hopefully). Just GPM's knowledge, distilled into code. Ask me anything about his skills, experience, projects, or how to hire him!`,
   },
   // About GPM
   {
@@ -256,6 +256,44 @@ const KB: KBEntry[] = [
     keys: ["chatgpt", "openai", "gpt4", "gpt-4", "claude", "gemini", "llm", "ai model", "ai api", "artificial intelligence", "machine learning"],
     reply: `No external AI here! 😄 I'm ChatGPM — hand-crafted with TypeScript and pure pattern matching. No API calls, no tokens, no hallucinations (hopefully).\n\nJust GPM's knowledge, distilled into code.`,
   },
+  // ── Interview questions ──────────────────────────────────────────────────────
+
+  // Why should we hire you
+  {
+    keys: ["why should we hire you", "why hire you", "why hire him", "why should i hire", "why should we hire", "why should we hire gpm", "reason to hire", "why you", "why gpm"],
+    reply: `Why hire GPM? 🚀\n\n✅ 7+ years of proven, full-stack experience — React, Next.js, TypeScript on the frontend; Java & Spring Boot on the backend. He doesn't just know both worlds — he ships production code in both.\n\n✅ He makes UIs feel alive — animations, micro-interactions, and pixel-perfect designs aren't afterthoughts, they're part of his standard.\n\n✅ He holds two production roles simultaneously right now — Kryterion (full-time) + Magic (part-time) — which says a lot about his reliability and output.\n\n✅ Strong Figma → code pipeline. Hand him a design and he'll hand back production-ready, responsive, accessible code.\n\n✅ He mentors, documents, and raises the bar for the whole team — not just an individual contributor.\n\nSimply put: GPM ships quality work, on time, every time. 💼`,
+  },
+  // Strengths and weaknesses
+  {
+    keys: ["strengths and weaknesses", "strength and weakness", "what are his strengths", "what are his weaknesses", "strengths weaknesses", "pros and cons", "strong points", "weak points", "strengths", "weaknesses", "what is he good at", "what is he bad at"],
+    reply: `Strengths & Weaknesses 💪\n\n💪 Strengths:\n• Pixel-perfect UI implementation — he notices the 1px that everyone else misses\n• Full-stack range — seamlessly moves between React frontends and Spring Boot backends\n• Speed without sacrificing quality — ships fast, refactors clean\n• Strong communicator — can explain technical decisions to non-technical stakeholders\n• Self-driven learner — picks up new tech quickly (Nuxt, Vue, Tailwind v4 — all self-studied)\n\n⚠️ Weaknesses (areas he actively works on):\n• Can be a perfectionist — sometimes spends extra time polishing details beyond scope (he's working on time-boxing this)\n• Prefers async communication over long sync meetings — he compensates with thorough written updates\n\nHe knows his edges and works on them — that self-awareness is a strength in itself. 🧠`,
+  },
+  // Explain a project
+  {
+    keys: ["explain a project", "describe a project", "tell me about a project", "project you worked on", "project he worked on", "notable project", "best project", "biggest project", "talk about a project", "project example", "project story"],
+    reply: `Let me walk you through one of GPM's standout projects 🛠\n\n📌 Sirius WebPOS — Enterprise Point-of-Sale System\n\nBuilt at Alliance Software for a large retail client.\n\n🔧 Stack: Java · Spring Boot · React · TypeScript · MySQL\n\n🎯 Challenge: The client needed a real-time POS system that handled high-volume transactions, offline fallback, and role-based access across multiple store branches.\n\n⚙️ What GPM did:\n• Designed and built the React frontend from scratch — fast, responsive, and touch-friendly for cashiers\n• Implemented Spring Boot REST APIs and Spring Security for role-based authentication\n• Built an offline-first transaction queue that synced with the server on reconnect\n• Led frontend architecture decisions and mentored two junior devs on the project\n\n📈 Result: Deployed to production across multiple branches. Zero data loss incidents post-launch.\n\nOpen the Projects app to see more! 📂`,
+  },
+  // Technologies most comfortable with
+  {
+    keys: ["most comfortable with", "comfortable with", "what technologies", "technology comfortable", "preferred technologies", "best technologies", "technologies he uses", "what tech is he comfortable", "go to technologies", "technologies most comfortable"],
+    reply: `Technologies GPM is most comfortable with 🛠\n\n🥇 Frontend (his home turf):\nReact · Next.js · TypeScript · Tailwind CSS · Framer Motion · Zustand · ShadCN/UI\n\n🥇 Backend:\nJava · Spring Boot · Spring Security · MySQL · REST APIs\n\n🥈 Also very comfortable:\nFigma → React (pixel-perfect) · Three.js · GSAP · Vite · Git · Azure\n\n🥉 Familiar & can ship:\nVue.js · Nuxt.js · Laravel · PHP · Firebase · AWS\n\nHis sweet spot is React + Spring Boot — a typed, scalable, full-stack combo he's used in multiple production systems.`,
+  },
+  // Debugging
+  {
+    keys: ["bugs", "debugging", "how do you handle bugs", "handle bugs", "debug", "how does he debug", "bug fixing", "how to handle bugs", "approach to bugs", "handle a bug", "fix bugs", "bug"],
+    reply: `How GPM handles bugs & debugging 🐛\n\n1️⃣ Reproduce first — never guess. He finds the minimum steps to consistently trigger the bug before touching any code.\n\n2️⃣ Isolate the layer — is it the UI, the API contract, the business logic, or the data? He narrows the blast radius fast.\n\n3️⃣ Read the error — stack traces, browser DevTools, and server logs are his first tools. He reads them fully before searching.\n\n4️⃣ Hypothesize → test → confirm — one change at a time. No shotgun fixes.\n\n5️⃣ Root cause, not band-aid — he fixes the underlying issue, not just the symptom. Then asks "where else could this happen?"\n\n6️⃣ Document — after a tricky fix, he leaves a comment or a commit message explaining *why*, not just *what*.\n\nFavorite tools: Chrome DevTools · React DevTools · Postman · IntelliJ debugger · console.log (yes, everyone does it 😄)`,
+  },
+  // Challenge faced
+  {
+    keys: ["challenge you faced", "challenge he faced", "tell me about a challenge", "difficult situation", "hard problem", "tough situation", "biggest challenge", "overcome a challenge", "hardest thing", "difficult project", "challenging project", "challenge faced"],
+    reply: `A challenge GPM faced and overcame 💪\n\n📌 Challenge: Offline-first transaction system at Alliance Software\n\nThe client's stores had unreliable internet. Transactions couldn't fail just because the network dropped — cash and inventory were on the line.\n\n😤 The problem: The existing system crashed on network loss and corrupted transaction records.\n\n🔧 GPM's approach:\n• Implemented a client-side transaction queue using IndexedDB for offline persistence\n• Built a background sync mechanism that retried failed requests on reconnect\n• Added conflict resolution logic for edge cases (e.g., price updates while offline)\n• Wrote integration tests simulating offline/online switching to prevent regressions\n\n✅ Result: The system handled network drops gracefully — transactions queued offline and synced seamlessly when back online. Zero data loss post-deployment.\n\n🧠 Lesson learned: Design for failure from day one. Resilience is a feature, not an afterthought.`,
+  },
+  // 3–5 years
+  {
+    keys: ["3 to 5 years", "3-5 years", "3 5 years", "five years", "three years", "next 5 years", "next 3 years", "future plans", "where do you see", "where does he see himself", "career goals", "long term goal", "goals", "future goal", "vision", "5 years from now", "3 years from now"],
+    reply: `Where GPM sees himself in 3–5 years 🔭\n\n🎯 Short-term (1–2 years):\n• Deepen expertise in distributed systems and cloud-native architecture\n• Lead a full-stack feature team — shipping product, not just code\n• Contribute to open-source projects in the React / Java ecosystem\n\n🚀 Medium-term (3–5 years):\n• Move into a Senior / Lead Engineer or Tech Lead role\n• Architect scalable systems from the ground up — not just contribute to them\n• Potentially explore building his own product or SaaS side project\n• Mentor the next generation of Philippine developers 🇵🇭\n\n💡 His north star:\nBe the engineer who bridges great engineering with great user experience — someone who can talk architecture with a CTO and pixel-perfect design with a designer in the same day.\n\nHe's not just building a career — he's building craft. 🛠`,
+  },
+
   // Thanks
   {
     keys: ["thank", "thanks", "thank you", "ty", "thx", "appreciate", "appreciated", "cheers", "nice", "great", "awesome", "cool", "helpful"],
