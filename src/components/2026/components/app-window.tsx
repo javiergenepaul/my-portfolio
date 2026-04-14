@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import type { WinId, WinDef, WinState } from "../constants";
 import { TrafficLights } from "./traffic-lights";
@@ -161,23 +161,18 @@ export function AppWindow({
       <motion.div
         onPan={handlePan}
         onDoubleClick={onMaximize}
+        className="shrink-0 flex items-center px-3.5 gap-2.5 select-none"
         style={{
           height: 40,
-          flexShrink: 0,
           background: "var(--a26-title-bar)",
           borderBottom: "1px solid var(--a26-title-border)",
-          display: "flex",
-          alignItems: "center",
-          padding: "0 14px",
-          gap: 10,
           cursor: state.maximized ? "default" : "move",
-          userSelect: "none",
         }}
       >
         <TrafficLights onClose={onClose} onMinimize={onMinimize} onMaximize={onMaximize} />
-        <div className="flex-1 flex items-center justify-center" style={{ gap: 6 }}>
+        <div className="flex-1 flex items-center justify-center gap-1.5">
           <span style={{ color: def.color, opacity: 0.85 }}>{def.icon}</span>
-          <span className="text-a26-mid" style={{ fontSize: 13, fontWeight: 500, letterSpacing: "0.01em" }}>
+          <span className="text-a26-mid text-[13px] font-medium tracking-[0.01em]">
             {def.title}
           </span>
         </div>

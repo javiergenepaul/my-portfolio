@@ -18,7 +18,7 @@ interface MenuBarProps {
 }
 
 function Separator() {
-  return <div style={{ height: 1, background: "rgba(255,255,255,0.10)", margin: "4px 0" }} />;
+  return <div className="h-px bg-white/10 my-1" />;
 }
 
 function MenuItem({
@@ -40,24 +40,19 @@ function MenuItem({
       onClick={disabled ? undefined : onClick}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      className="font-mac flex items-center w-full text-left relative whitespace-nowrap"
+      className="font-mac flex items-center w-full text-left relative whitespace-nowrap py-1.25 pr-3 pl-6.5 border-none rounded-[5px] text-[13px]"
       style={{
-        padding: "5px 12px 5px 26px",
-        border: "none",
         background: hov && !disabled ? "var(--a26-glass)" : "transparent",
-        borderRadius: 5,
         color: disabled ? "var(--a26-text-muted)" : "var(--a26-text)",
-        fontSize: 13,
         cursor: disabled ? "default" : "pointer",
-        gap: 0,
       }}
     >
       {checked && (
-        <span className="absolute text-a26-teal" style={{ left: 9, fontSize: 11 }}>✓</span>
+        <span className="absolute text-a26-teal left-2.25 text-[11px]">✓</span>
       )}
-      <span style={{ flex: 1 }}>{label}</span>
+      <span className="flex-1">{label}</span>
       {shortcut && (
-        <span className="text-a26-muted font-mac" style={{ fontSize: 12, marginLeft: 20 }}>
+        <span className="text-a26-muted font-mac text-xs ml-5">
           {shortcut}
         </span>
       )}
@@ -74,17 +69,9 @@ function Dropdown({
 }) {
   return (
     <div
-      className="bg-a26-window border border-a26-window-border"
+      className="bg-a26-window border border-a26-window-border absolute top-[calc(100%+2px)] left-0 min-w-55 rounded-lg backdrop-blur-xl py-1 px-1.5 z-9999"
       style={{
-        position: "absolute",
-        top: "calc(100% + 2px)",
-        left: 0,
-        minWidth: 220,
-        borderRadius: 8,
         boxShadow: "0 8px 32px rgba(0,0,0,0.40), 0 2px 8px rgba(0,0,0,0.30)",
-        backdropFilter: "blur(24px)",
-        padding: "4px 6px",
-        zIndex: 9999,
         ...style,
       }}
     >
@@ -132,39 +119,25 @@ export function MenuBar({
     else document.exitFullscreen?.();
   };
 
-  const menuBtnStyle = (id: MenuId): React.CSSProperties => ({
-    height: 28,
-    padding: "0 9px",
+  const menuBtnCls = "font-mac h-7 px-2.25 rounded border-none text-[13px] cursor-pointer";
+  const menuBtnDyn = (id: MenuId): React.CSSProperties => ({
     background: activeMenu === id ? "rgba(255,255,255,0.14)" : "transparent",
-    borderRadius: 4,
-    border: "none",
     color: activeMenu === id ? "var(--a26-text)" : "var(--a26-text-mid)",
-    fontSize: 13,
-    cursor: "pointer",
   });
 
   return (
     <div
       ref={barRef}
-      className="font-mac bg-a26-menu-bar border-b border-a26-menu-border select-none"
+      className="font-mac bg-a26-menu-bar border-b border-a26-menu-border select-none fixed top-0 left-0 right-0 z-9000 h-7 flex items-center px-3"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9000,
-        height: 28,
         backdropFilter: "blur(24px) saturate(1.4)",
         WebkitBackdropFilter: "blur(24px) saturate(1.4)",
-        display: "flex",
-        alignItems: "center",
-        padding: "0 12px",
       }}
     >
       {/* Left side */}
-      <div className="flex items-center flex-1" style={{ gap: 0 }}>
+      <div className="flex items-center flex-1">
         {/* Logo */}
-        <div className="flex items-center" style={{ padding: "0 8px", height: 28 }}>
+        <div className="flex items-center px-2 h-7">
           <svg width="13" height="13" viewBox="0 0 69 69" fill="none">
             <path
               d="M30.0798 25.1276V18C13.3577 18.89 10.27 45.55 31.11 47.33C43.33 47.33 48.51 34.72 44.27 26.09H31.18V33.49H38.85C38.99 37.33 35.15 41.37 29.6 40.34C20.28 38.08 21.79 26.02 30.08 25.13Z"
@@ -177,13 +150,11 @@ export function MenuBar({
           </svg>
         </div>
 
-        <span className="text-a26-text" style={{ fontSize: 13, fontWeight: 600, padding: "0 8px" }}>
-          GPM
-        </span>
+        <span className="text-a26-text text-[13px] font-semibold px-2">GPM</span>
 
         {/* File */}
         <div className="relative">
-          <button onClick={() => toggle("file")} className="font-mac" style={menuBtnStyle("file")}>File</button>
+          <button onClick={() => toggle("file")} className={menuBtnCls} style={menuBtnDyn("file")}>File</button>
           {activeMenu === "file" && (
             <Dropdown>
               <MenuItem label="New Terminal Window" shortcut="⌘T" onClick={() => act(() => onOpenWin("terminal"))} />
@@ -196,7 +167,7 @@ export function MenuBar({
 
         {/* View */}
         <div className="relative">
-          <button onClick={() => toggle("view")} className="font-mac" style={menuBtnStyle("view")}>View</button>
+          <button onClick={() => toggle("view")} className={menuBtnCls} style={menuBtnDyn("view")}>View</button>
           {activeMenu === "view" && (
             <Dropdown>
               <MenuItem
@@ -214,7 +185,7 @@ export function MenuBar({
 
         {/* Go */}
         <div className="relative">
-          <button onClick={() => toggle("go")} className="font-mac" style={menuBtnStyle("go")}>Go</button>
+          <button onClick={() => toggle("go")} className={menuBtnCls} style={menuBtnDyn("go")}>Go</button>
           {activeMenu === "go" && (
             <Dropdown>
               {WIN_DEFS.map((def, i) => (
@@ -232,7 +203,7 @@ export function MenuBar({
 
         {/* Window */}
         <div className="relative">
-          <button onClick={() => toggle("window")} className="font-mac" style={menuBtnStyle("window")}>Window</button>
+          <button onClick={() => toggle("window")} className={menuBtnCls} style={menuBtnDyn("window")}>Window</button>
           {activeMenu === "window" && (
             <Dropdown>
               <MenuItem label="Cycle Windows" shortcut="⌃`" disabled={!anyOpen} onClick={() => act(() => {})} />
@@ -258,28 +229,26 @@ export function MenuBar({
       </div>
 
       {/* Right side */}
-      <div className="flex items-center" style={{ gap: 6 }}>
+      <div className="flex items-center gap-1.5">
         <button
           onClick={onCmdK}
-          className="font-mac flex items-center bg-a26-glass border border-a26-glass-border text-a26-mid"
-          style={{ height: 20, padding: "0 7px", gap: 4, borderRadius: 5, fontSize: 11, cursor: "pointer" }}
+          className="font-mac flex items-center bg-a26-glass border border-a26-glass-border text-a26-mid h-5 px-1.75 gap-1 rounded-[5px] text-[11px] cursor-pointer"
           title="Command Palette (⌘K)"
           aria-label="Open command palette"
         >
           <Search size={10} />
           <Command size={9} />
-          <span style={{ fontSize: 10 }}>K</span>
+          <span className="text-[10px]">K</span>
         </button>
         <button
           onClick={toggleFullscreen}
-          className="flex items-center justify-center bg-a26-glass border border-a26-glass-border text-a26-mid"
-          style={{ height: 20, width: 22, borderRadius: 5, border: "none", cursor: "pointer" }}
+          className="flex items-center justify-center bg-a26-glass text-a26-mid h-5 w-5.5 rounded-[5px] cursor-pointer border-none"
           title="Toggle Full Screen (⌃⌘F)"
           aria-label="Toggle full screen"
         >
           <Monitor size={10} />
         </button>
-        <span className="text-a26-text" style={{ fontSize: 12, fontWeight: 400 }}>{time}</span>
+        <span className="text-a26-text text-xs font-normal">{time}</span>
       </div>
     </div>
   );

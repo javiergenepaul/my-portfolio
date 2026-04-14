@@ -31,18 +31,12 @@ function OptionBtn({
   return (
     <button
       onClick={onClick}
-      className="font-mac flex-1 flex flex-col items-center"
+      className="font-mac flex-1 flex flex-col items-center gap-1.5 py-2.5 px-2 rounded-[9px] text-xs transition-all duration-[140ms] cursor-pointer"
       style={{
-        gap: 6,
-        padding: "10px 8px",
-        borderRadius: 9,
-        cursor: "pointer",
         border: `1.5px solid ${active ? `color-mix(in srgb, ${col} 55%, transparent)` : "var(--a26-glass-border)"}`,
         background: active ? `color-mix(in srgb, ${col} 10%, transparent)` : "var(--a26-glass)",
         color: active ? col : "var(--a26-text-mid)",
-        fontSize: 12,
         fontWeight: active ? 600 : 400,
-        transition: "all 0.14s",
       }}
     >
       {children}
@@ -54,16 +48,7 @@ function OptionBtn({
 
 function SLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className="text-a26-muted"
-      style={{
-        fontSize: 10,
-        fontWeight: 700,
-        letterSpacing: "0.08em",
-        textTransform: "uppercase",
-        marginBottom: 10,
-      }}
-    >
+    <div className="text-a26-muted text-[10px] font-bold tracking-[0.08em] uppercase mb-2.5">
       {children}
     </div>
   );
@@ -74,46 +59,36 @@ function SLabel({ children }: { children: React.ReactNode }) {
 function ThemePreview({ dark }: { dark: boolean }) {
   return (
     <div
-      style={{
-        width: "100%",
-        height: 64,
-        borderRadius: 7,
-        overflow: "hidden",
-        background: dark ? "#141414" : "#D8D8D8",
-        marginBottom: 8,
-        position: "relative",
-        flexShrink: 0,
-      }}
+      className="w-full h-16 rounded-[7px] overflow-hidden mb-2 relative shrink-0"
+      style={{ background: dark ? "#141414" : "#D8D8D8" }}
     >
       <div
-        style={{
-          height: 10,
-          background: dark ? "rgba(40,40,40,0.95)" : "rgba(210,210,210,0.95)",
-          display: "flex",
-          alignItems: "center",
-          padding: "0 6px",
-          gap: 3,
-        }}
+        className="h-[10px] flex items-center px-1.5 gap-0.75"
+        style={{ background: dark ? "rgba(40,40,40,0.95)" : "rgba(210,210,210,0.95)" }}
       >
         {["#FF5F57", "#FFBD2E", "#28C840"].map((c) => (
-          <div key={c} style={{ width: 4, height: 4, borderRadius: "50%", background: c }} />
+          <div key={c} className="w-1 h-1 rounded-full" style={{ background: c }} />
         ))}
       </div>
-      <div style={{ position: "absolute", top: 16, left: 8, right: 8, bottom: 8, display: "flex", gap: 5 }}>
-        <div style={{ flex: 2, borderRadius: 4, background: dark ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.80)", border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.10)"}` }} />
-        <div style={{ flex: 1, borderRadius: 4, background: dark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.70)", border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)"}` }} />
+      <div className="absolute top-4 left-2 right-2 bottom-2 flex gap-1.25">
+        <div
+          className="flex-[2] rounded"
+          style={{
+            background: dark ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.80)",
+            border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.10)"}`,
+          }}
+        />
+        <div
+          className="flex-1 rounded"
+          style={{
+            background: dark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.70)",
+            border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)"}`,
+          }}
+        />
       </div>
       <div
-        style={{
-          position: "absolute",
-          bottom: 4,
-          left: "50%",
-          transform: "translateX(-50%)",
-          height: 8,
-          width: 50,
-          borderRadius: 4,
-          background: dark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.14)",
-        }}
+        className="absolute bottom-1 left-1/2 -translate-x-1/2 h-2 w-[50px] rounded"
+        style={{ background: dark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.14)" }}
       />
     </div>
   );
@@ -129,43 +104,51 @@ function AppearancePane() {
   ];
 
   return (
-    <div className="flex flex-col" style={{ gap: 20 }}>
+    <div className="flex flex-col gap-5">
       <div>
         <SLabel>{translate("settings.theme.theme")}</SLabel>
-        <div className="flex" style={{ gap: 10 }}>
+        <div className="flex gap-2.5">
           {themes.map((t) => {
             const active = theme === t.id;
             return (
               <button
                 key={t.id}
                 onClick={() => setTheme(t.id)}
-                className="font-mac flex-1 flex flex-col items-stretch"
+                className="font-mac flex-1 flex flex-col items-stretch pt-2.5 px-2.5 pb-2 rounded-[11px] cursor-pointer transition-all duration-[140ms]"
                 style={{
-                  padding: "10px 10px 8px",
-                  borderRadius: 11,
                   border: `2px solid ${active ? "var(--a26-teal)" : "var(--a26-glass-border)"}`,
                   background: active ? "color-mix(in srgb, var(--a26-teal) 6%, transparent)" : "var(--a26-card)",
-                  cursor: "pointer",
-                  transition: "all 0.14s",
                 }}
               >
                 {t.dark === null ? (
-                  <div style={{ width: "100%", height: 64, borderRadius: 7, overflow: "hidden", marginBottom: 8, position: "relative" }}>
-                    <div style={{ position: "absolute", inset: 0, clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)", background: "#F0F0F0" }}>
-                      <div style={{ height: 10, background: "rgba(210,210,210,0.95)" }} />
+                  <div className="w-full h-16 rounded-[7px] overflow-hidden mb-2 relative">
+                    <div
+                      className="absolute inset-0 bg-[#F0F0F0]"
+                      style={{ clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)" }}
+                    >
+                      <div className="h-[10px]" style={{ background: "rgba(210,210,210,0.95)" }} />
                     </div>
-                    <div style={{ position: "absolute", inset: 0, clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)", background: "#141414" }}>
-                      <div style={{ height: 10, background: "rgba(40,40,40,0.95)" }} />
+                    <div
+                      className="absolute inset-0 bg-[#141414]"
+                      style={{ clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" }}
+                    >
+                      <div className="h-[10px]" style={{ background: "rgba(40,40,40,0.95)" }} />
                     </div>
-                    <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 1, height: "80%", background: "rgba(128,128,128,0.4)" }} />
+                    <div
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-[80%]"
+                      style={{ background: "rgba(128,128,128,0.4)" }}
+                    />
                   </div>
                 ) : (
                   <ThemePreview dark={t.dark} />
                 )}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center" style={{ gap: 5 }}>
+                  <div className="flex items-center gap-1.25">
                     <span style={{ color: active ? "var(--a26-teal)" : "var(--a26-text-muted)" }}>{t.icon}</span>
-                    <span style={{ fontSize: 12, fontWeight: active ? 600 : 400, color: active ? "var(--a26-text)" : "var(--a26-text-mid)" }}>
+                    <span
+                      className="text-xs"
+                      style={{ fontWeight: active ? 600 : 400, color: active ? "var(--a26-text)" : "var(--a26-text-mid)" }}
+                    >
                       {t.label}
                     </span>
                   </div>
@@ -179,13 +162,10 @@ function AppearancePane() {
 
       <div>
         <SLabel>About</SLabel>
-        <div
-          className="bg-a26-card border border-a26-card-border flex items-start"
-          style={{ borderRadius: 10, padding: "12px 14px", gap: 10 }}
-        >
-          <Palette size={14} color="var(--a26-teal)" style={{ flexShrink: 0, marginTop: 1 }} />
-          <p className="text-a26-mid" style={{ margin: 0, fontSize: 12, lineHeight: 1.65 }}>
-            <em className="text-a26-teal" style={{ fontStyle: "normal", fontWeight: 600 }}>Auto</em> follows your system setting.
+        <div className="bg-a26-card border border-a26-card-border flex items-start rounded-[10px] py-3 px-3.5 gap-2.5">
+          <Palette size={14} color="var(--a26-teal)" className="shrink-0 mt-px" />
+          <p className="text-a26-mid m-0 text-xs leading-[1.65]">
+            <em className="text-a26-teal not-italic font-semibold">Auto</em> follows your system setting.
             This preference applies across all portfolio years including 2024, 2025, and 2026.
           </p>
         </div>
@@ -207,38 +187,31 @@ function LanguagePane() {
   ];
 
   return (
-    <div className="flex flex-col" style={{ gap: 24 }}>
+    <div className="flex flex-col gap-6">
       <div>
         <SLabel>{translate("settings.lang.lang")}</SLabel>
-        <div
-          className="bg-a26-card border border-a26-card-border overflow-hidden"
-          style={{ borderRadius: 12 }}
-        >
+        <div className="bg-a26-card border border-a26-card-border overflow-hidden rounded-xl">
           {LANGUAGES.map((lang, i) => {
             const active = language === lang.code;
             return (
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
-                className="font-mac flex items-center w-full text-left"
+                className="font-mac flex items-center w-full text-left gap-3 py-[13px] px-4 border-none cursor-pointer transition-colors duration-[120ms]"
                 style={{
-                  gap: 12,
-                  padding: "13px 16px",
-                  border: "none",
                   borderBottom: i < LANGUAGES.length - 1 ? "1px solid var(--a26-glass-border)" : "none",
                   background: active ? "color-mix(in srgb, var(--a26-teal) 8%, transparent)" : "transparent",
-                  cursor: "pointer",
-                  transition: "background 0.12s",
                 }}
               >
-                <span style={{ fontSize: 22, lineHeight: 1 }}>{lang.flag}</span>
-                <div style={{ flex: 1 }}>
-                  <div className="text-a26-text" style={{ fontSize: 13, fontWeight: active ? 600 : 400 }}>
+                <span className="text-[22px] leading-none">{lang.flag}</span>
+                <div className="flex-1">
+                  <div
+                    className="text-a26-text text-[13px]"
+                    style={{ fontWeight: active ? 600 : 400 }}
+                  >
                     {lang.label}
                   </div>
-                  <div className="text-a26-muted" style={{ fontSize: 11, marginTop: 1 }}>
-                    {lang.native}
-                  </div>
+                  <div className="text-a26-muted text-[11px] mt-px">{lang.native}</div>
                 </div>
                 {active && <Check size={15} color="var(--a26-teal)" strokeWidth={2.5} />}
               </button>
@@ -265,24 +238,21 @@ function DateTimePane() {
   const preview24 = now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
 
   return (
-    <div className="flex flex-col" style={{ gap: 24 }}>
+    <div className="flex flex-col gap-6">
       <div>
         <SLabel>Clock Format</SLabel>
-        <div
-          className="bg-a26-card border border-a26-card-border"
-          style={{ borderRadius: 12, padding: "18px 16px" }}
-        >
-          <p className="text-a26-mid" style={{ margin: "0 0 14px", fontSize: 13, lineHeight: 1.6 }}>
+        <div className="bg-a26-card border border-a26-card-border rounded-xl py-4.5 px-4">
+          <p className="text-a26-mid m-0 mb-3.5 text-[13px] leading-[1.6]">
             Controls the time displayed in the menu bar and mobile status bar.
           </p>
-          <div className="flex" style={{ gap: 8 }}>
+          <div className="flex gap-2">
             {formats.map((f) => (
               <OptionBtn
                 key={f.id}
                 active={timeFormat === f.id}
                 onClick={() => setTimeFormat(f.id)}
               >
-                <span style={{ fontSize: 16, fontWeight: 600, fontFamily: "monospace" }}>
+                <span className="text-base font-semibold font-mono">
                   {f.id === "12h" ? preview12 : preview24}
                 </span>
                 {f.label}
@@ -294,16 +264,11 @@ function DateTimePane() {
 
       <div>
         <SLabel>Preview</SLabel>
-        <div
-          className="bg-a26-card border border-a26-card-border flex items-center"
-          style={{ borderRadius: 12, padding: "16px", gap: 14 }}
-        >
+        <div className="bg-a26-card border border-a26-card-border flex items-center rounded-xl p-4 gap-3.5">
           <Clock size={20} color="var(--a26-teal)" />
           <div>
-            <div className="text-a26-muted" style={{ fontSize: 11, marginBottom: 3 }}>
-              Menu bar clock will show
-            </div>
-            <div className="text-a26-text" style={{ fontSize: 15, fontWeight: 600, fontFamily: "monospace" }}>
+            <div className="text-a26-muted text-[11px] mb-0.75">Menu bar clock will show</div>
+            <div className="text-a26-text text-[15px] font-semibold font-mono">
               {timeFormat === "12h" ? preview12 : preview24}
             </div>
           </div>
@@ -332,7 +297,7 @@ export function SettingsContent() {
       <button
         key={p.id}
         onClick={() => setPane(p.id)}
-        className="font-mac"
+        className="font-mac whitespace-nowrap shrink-0 cursor-pointer transition-all duration-[120ms]"
         style={{
           display: "flex",
           alignItems: "center",
@@ -346,10 +311,6 @@ export function SettingsContent() {
           color: active ? "var(--a26-teal)" : "var(--a26-text-mid)",
           fontSize: isMobile ? 12 : 13,
           fontWeight: active ? 600 : 400,
-          cursor: "pointer",
-          transition: "all 0.12s",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
           ...(isMobile ? {} : { width: "100%", textAlign: "left" as const }),
         }}
       >
@@ -360,64 +321,32 @@ export function SettingsContent() {
   });
 
   return (
-    <div
-      className="font-mac flex-1 min-h-0 overflow-hidden flex"
-      style={{ flexDirection: isMobile ? "column" : "row" }}
-    >
+    <div className={`font-mac flex-1 min-h-0 overflow-hidden flex ${isMobile ? "flex-col" : "flex-row"}`}>
       {isMobile ? (
         <div
-          className="win26-scroll shrink-0 border-b bg-a26-sidebar border-a26-glass-border flex"
-          style={{
-            overflowX: "auto",
-            scrollbarWidth: "thin",
-            scrollbarColor: "rgba(255,255,255,0.18) transparent",
-            gap: 6,
-            padding: "10px 12px",
-          }}
+          className="win26-scroll shrink-0 border-b bg-a26-sidebar border-a26-glass-border flex overflow-x-auto [scrollbar-width:thin] gap-1.5 py-2.5 px-3"
+          style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
         >
           {nav}
         </div>
       ) : (
         <div
-          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col overflow-y-auto"
-          style={{
-            width: 200,
-            padding: "16px 8px",
-            scrollbarWidth: "thin",
-            scrollbarColor: "rgba(255,255,255,0.18) transparent",
-            gap: 2,
-          }}
+          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col overflow-y-auto w-50 py-4 px-2 [scrollbar-width:thin] gap-0.5"
+          style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
         >
-          <div
-            className="text-a26-muted"
-            style={{
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              padding: "0 8px 10px",
-            }}
-          >
+          <div className="text-a26-muted text-[10px] font-bold tracking-[0.08em] uppercase px-2 pb-2.5">
             {translate("settings.settings")}
           </div>
           {nav}
         </div>
       )}
 
-      {/* Content area */}
       <div
-        className="win26-scroll flex-1 min-h-0 overflow-y-auto"
-        style={{
-          padding: isMobile ? "16px 14px" : "24px 28px",
-          scrollbarWidth: "thin",
-          scrollbarColor: "rgba(255,255,255,0.18) transparent",
-        }}
+        className={`win26-scroll flex-1 min-h-0 overflow-y-auto [scrollbar-width:thin] ${isMobile ? "py-4 px-3.5" : "py-6 px-7"}`}
+        style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
       >
         {!isMobile && (
-          <h2
-            className="text-a26-text"
-            style={{ margin: "0 0 20px", fontSize: 18, fontWeight: 700, letterSpacing: "-0.01em" }}
-          >
+          <h2 className="text-a26-text m-0 mb-5 text-[18px] font-bold tracking-[-0.01em]">
             {PANES.find((p) => p.id === pane)?.label}
           </h2>
         )}

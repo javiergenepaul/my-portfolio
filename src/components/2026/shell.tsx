@@ -246,17 +246,8 @@ export function Portfolio2026() {
     <>
       <a
         href="#desktop"
-        className="font-mac text-[#05090E] font-semibold no-underline bg-a26-teal"
-        style={{
-          position: "fixed",
-          top: -40,
-          left: 16,
-          zIndex: 99999,
-          borderRadius: 6,
-          padding: "5px 12px",
-          fontSize: 13,
-          transition: "top 0.15s",
-        }}
+        className="font-mac text-[#05090E] font-semibold no-underline bg-a26-teal fixed left-4 z-99999 rounded-md py-1.25 px-3 text-[13px] transition-[top] duration-150"
+        style={{ top: -40 }}
         onFocus={(e) => (e.currentTarget.style.top = "34px")}
         onBlur={(e) => (e.currentTarget.style.top = "-40px")}
       >
@@ -265,20 +256,11 @@ export function Portfolio2026() {
 
       <LiveWallpaper />
       {!isDark && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(255,255,255,0.70)",
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        />
+        <div className="fixed inset-0 bg-white/70 z-0 pointer-events-none" />
       )}
 
       <div
-        className="font-mac relative overflow-hidden"
-        style={{ zIndex: 1, width: "100vw", height: "100dvh" }}
+        className="font-mac relative overflow-hidden z-1 w-screen h-dvh"
       >
         <MenuBar
           onCmdK={() => setCmdOpen(true)}
@@ -294,7 +276,7 @@ export function Portfolio2026() {
           id="desktop"
           aria-label="Desktop"
           onContextMenu={openDesktopMenu}
-          style={{ position: "absolute", inset: 0, top: 28 }}
+          className="absolute inset-0 top-7"
         >
           {WIN_DEFS.map((def) => (
             <DesktopIcon

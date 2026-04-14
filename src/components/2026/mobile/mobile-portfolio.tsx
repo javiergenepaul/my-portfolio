@@ -8,7 +8,6 @@ import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import { WIN_DEFS } from "../constants";
-import { useIsDark } from "../use-aurora";
 import type { WinId } from "../constants";
 import { useMobileTime } from "../hooks";
 import { LiveWallpaper } from "../live-wallpaper";
@@ -22,7 +21,6 @@ import { ResumeContent } from "../windows/resume-content";
 import { SettingsContent } from "../windows/settings-content";
 
 export function MobilePortfolio() {
-  const isDark = useIsDark();
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const time = useMobileTime();
 
@@ -45,30 +43,23 @@ export function MobilePortfolio() {
   const activeDef = WIN_DEFS.find((d) => d.id === activeApp);
 
   return (
-    <div
-      className="font-mac relative overflow-hidden"
-      style={{ width: "100vw", height: "100dvh" }}
-    >
+    <div className="font-mac relative overflow-hidden w-screen h-dvh">
       <LiveWallpaper />
 
       {/* Home screen */}
-      <div className="absolute inset-0 flex flex-col" style={{ zIndex: 2 }}>
+      <div className="absolute inset-0 flex flex-col z-2">
         {/* Status bar */}
         <div
-          className="shrink-0 flex items-center justify-between"
+          className="shrink-0 flex items-center justify-between h-12 px-5.5"
           style={{
-            height: 48,
-            padding: "0 22px",
             background: "rgba(0,0,0,0.18)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
           }}
         >
-          <span className="text-a26-text" style={{ fontSize: 15, fontWeight: 600, minWidth: 60 }}>
-            {time}
-          </span>
-          <div className="flex items-center" style={{ gap: 7 }}>
-            <div className="flex items-end" style={{ gap: 2 }}>
+          <span className="text-a26-text text-[15px] font-semibold min-w-15">{time}</span>
+          <div className="flex items-center gap-1.75">
+            <div className="flex items-end gap-0.5">
               {[7, 10, 13, 16].map((h, i) => (
                 <div
                   key={i}
@@ -84,30 +75,22 @@ export function MobilePortfolio() {
               <path d="M4.8 7.6 A4.5 4.5 0 0 1 11.2 7.6" stroke="var(--a26-text)" strokeWidth="1.4" strokeLinecap="round" fill="none" />
               <path d="M2.2 5 A8 8 0 0 1 13.8 5" stroke="var(--a26-text)" strokeWidth="1.4" strokeLinecap="round" fill="none" />
             </svg>
-            <div className="flex items-center" style={{ gap: 1 }}>
+            <div className="flex items-center gap-px">
               <div
-                style={{
-                  width: 22, height: 12, borderRadius: 3,
-                  border: "1.5px solid rgba(255,255,255,0.7)",
-                  padding: 1.5, display: "flex", alignItems: "stretch",
-                }}
+                className="flex items-stretch p-px rounded-[3px]"
+                style={{ width: 22, height: 12, border: "1.5px solid rgba(255,255,255,0.7)" }}
               >
-                <div className="bg-a26-green" style={{ width: "75%", borderRadius: 1.5 }} />
+                <div className="bg-a26-green rounded-[1.5px]" style={{ width: "75%" }} />
               </div>
-              <div style={{ width: 2, height: 6, borderRadius: 1, background: "rgba(255,255,255,0.5)" }} />
+              <div className="rounded-[1px]" style={{ width: 2, height: 6, background: "rgba(255,255,255,0.5)" }} />
             </div>
           </div>
         </div>
 
         {/* Scrollable body */}
         <div
-          style={{
-            flex: 1,
-            overflowY: "auto",
-            overflowX: "hidden",
-            padding: `${compact ? 16 : 24}px 24px 100px`,
-            scrollbarWidth: "none",
-          }}
+          className="flex-1 overflow-y-auto overflow-x-hidden [scrollbar-width:none]"
+          style={{ padding: `${compact ? 16 : 24}px 24px 100px` }}
         >
           {/* Profile header */}
           <div className="text-center" style={{ marginBottom: profileMB }}>
@@ -124,16 +107,16 @@ export function MobilePortfolio() {
                 alt={FULL_NAME}
                 width={72}
                 height={72}
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                className="object-cover w-full h-full"
               />
             </div>
-            <h1 className="text-a26-text" style={{ margin: 0, fontSize: 20, fontWeight: 700, letterSpacing: "-0.01em" }}>
+            <h1 className="text-a26-text m-0 text-[20px] font-bold tracking-[-0.01em]">
               {FULL_NAME}
             </h1>
-            <p className="text-a26-teal" style={{ margin: "4px 0 0", fontSize: 13, fontWeight: 500 }}>
+            <p className="text-a26-teal m-0 mt-1 text-[13px] font-medium">
               {JOB_TITLE}
             </p>
-            <p className="text-a26-muted flex items-center justify-center" style={{ margin: "4px 0 0", fontSize: 12, gap: 4 }}>
+            <p className="text-a26-muted flex items-center justify-center m-0 mt-1 text-xs gap-1">
               <MapPin size={11} color="var(--a26-text-muted)" /> Cebu, Philippines
             </p>
           </div>
@@ -153,13 +136,12 @@ export function MobilePortfolio() {
                 key={app.id}
                 whileTap={{ scale: 0.88 }}
                 onClick={() => setActiveApp(app.id)}
-                className="font-mac flex flex-col items-center"
-                style={{ gap: 7, background: "none", border: "none", padding: 4, cursor: "pointer" }}
+                className="font-mac flex flex-col items-center gap-1.75 bg-transparent border-none p-1 cursor-pointer"
               >
                 <MacAppIcon id={app.id} size={iconSize} />
                 <span
-                  className="text-a26-text"
-                  style={{ fontSize: 11, fontWeight: 500, textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
+                  className="text-a26-text text-[11px] font-medium"
+                  style={{ textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   {app.title}
                 </span>
@@ -168,7 +150,7 @@ export function MobilePortfolio() {
           </div>
 
           {/* Social links row */}
-          <div className="flex justify-center" style={{ gap: 12 }}>
+          <div className="flex justify-center gap-3">
             {[
               { href: GITHUB_URL, icon: <GithubIcon size={17} />, color: "var(--a26-text)", label: "GitHub" },
               { href: LINKED_IN_URL, icon: <LinkedinIcon size={17} />, color: "#60A5FA", label: "LinkedIn" },
@@ -179,11 +161,11 @@ export function MobilePortfolio() {
                 href={l.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center bg-a26-glass border border-a26-glass-border no-underline"
-                style={{ gap: 5, width: 68, padding: "10px 0", borderRadius: 16, color: l.color }}
+                className="flex flex-col items-center bg-a26-glass border border-a26-glass-border no-underline gap-1.25 w-17 py-2.5 rounded-2xl"
+                style={{ color: l.color }}
               >
                 {l.icon}
-                <span className="text-a26-mid" style={{ fontSize: 10 }}>{l.label}</span>
+                <span className="text-a26-mid text-[10px]">{l.label}</span>
               </a>
             ))}
           </div>
@@ -191,17 +173,14 @@ export function MobilePortfolio() {
 
         {/* Bottom dock */}
         <div
-          className="absolute bg-a26-dock border border-a26-dock-border flex justify-around items-center"
+          className="absolute bg-a26-dock border border-a26-dock-border flex justify-around items-center rounded-[26px] py-2.5 px-5 z-50"
           style={{
             bottom: 16,
             left: 20,
             right: 20,
-            borderRadius: 26,
-            padding: "10px 20px",
             backdropFilter: "blur(32px) saturate(1.5)",
             WebkitBackdropFilter: "blur(32px) saturate(1.5)",
             boxShadow: "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
-            zIndex: 50,
           }}
         >
           {dockApps.map((app) => (
@@ -209,7 +188,7 @@ export function MobilePortfolio() {
               key={app.id}
               whileTap={{ scale: 0.88 }}
               onClick={() => setActiveApp(app.id)}
-              style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+              className="bg-transparent border-none p-0 cursor-pointer"
               aria-label={app.title}
             >
               <MacAppIcon id={app.id} size={dockSize} />
@@ -227,43 +206,30 @@ export function MobilePortfolio() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0.6 }}
             transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.9 }}
-            className="font-mac absolute inset-0 flex flex-col"
+            className="font-mac absolute inset-0 flex flex-col z-200"
             style={{
-              zIndex: 200,
               background: "var(--a26-window)",
               backdropFilter: "blur(32px) saturate(1.3)",
               WebkitBackdropFilter: "blur(32px) saturate(1.3)",
             }}
           >
             {/* iOS navigation bar */}
-            <div
-              className="shrink-0 flex items-center border-b bg-a26-title-bar border-a26-glass-border"
-              style={{ height: 54, padding: "0 16px" }}
-            >
+            <div className="shrink-0 flex items-center border-b bg-a26-title-bar border-a26-glass-border h-13.5 px-4">
               <button
                 onClick={() => setActiveApp(null)}
-                className="font-mac flex items-center"
-                style={{
-                  gap: 3,
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: activeDef?.color ?? "var(--a26-teal)",
-                  fontSize: 15,
-                  padding: "4px 0",
-                  minWidth: 70,
-                }}
+                className="font-mac flex items-center gap-0.75 bg-transparent border-none cursor-pointer text-[15px] py-1 px-0 min-w-17.5"
+                style={{ color: activeDef?.color ?? "var(--a26-teal)" }}
               >
                 <ChevronLeft size={20} />
                 <span>Home</span>
               </button>
-              <div className="flex-1 flex items-center justify-center" style={{ gap: 8 }}>
+              <div className="flex-1 flex items-center justify-center gap-2">
                 {activeApp && <MacAppIcon id={activeApp} size={26} />}
-                <span className="text-a26-text" style={{ fontSize: 14, fontWeight: 600 }}>
+                <span className="text-a26-text text-[14px] font-semibold">
                   {activeDef?.title}
                 </span>
               </div>
-              <div style={{ minWidth: 70 }} />
+              <div className="min-w-17.5" />
             </div>
 
             {/* Content */}
