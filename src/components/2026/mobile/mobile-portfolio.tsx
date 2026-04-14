@@ -267,7 +267,7 @@ export function MobilePortfolio() {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden flex flex-col">
               {activeApp === "about"    && <AboutContent />}
               {activeApp === "projects" && <ProjectsContent />}
               {activeApp === "terminal" && (
