@@ -18,7 +18,7 @@ export function Dock({
 }) {
   const [hov, setHov] = useState<string | null>(null);
 
-  const dockApps = WIN_DEFS.map((d) => ({
+  const dockApps = WIN_DEFS.filter((d) => !d.hideIcon).map((d) => ({
     ...d,
     isOpen: windows[d.id].open,
     isMinimized: windows[d.id].minimized,

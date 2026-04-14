@@ -50,7 +50,8 @@ export function MobilePortfolio() {
   const profileMB  = compact ? 14 : 26;
   const gridMB     = compact ? 14 : 26;
 
-  const dockApps = WIN_DEFS.slice(0, 4);
+  const visibleApps = WIN_DEFS.filter((d) => !d.hideIcon);
+  const dockApps = visibleApps.slice(0, 4);
   const activeDef = WIN_DEFS.find((d) => d.id === activeApp);
 
   return (
@@ -142,7 +143,7 @@ export function MobilePortfolio() {
               margin: `0 auto ${gridMB}px`,
             }}
           >
-            {WIN_DEFS.map((app) => (
+            {visibleApps.map((app) => (
               <motion.button
                 key={app.id}
                 whileTap={{ scale: 0.88 }}

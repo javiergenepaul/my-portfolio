@@ -27,7 +27,7 @@ export function CommandPalette({
   }, [open]);
 
   const items = [
-    ...WIN_DEFS.map((d) => ({
+    ...WIN_DEFS.filter((d) => !d.hideIcon).map((d) => ({
       label: `Open ${d.title}`,
       icon: d.icon,
       color: d.color,

@@ -188,7 +188,7 @@ export function MenuBar({
           <button onClick={() => toggle("go")} className={menuBtnCls} style={menuBtnDyn("go")}>Go</button>
           {activeMenu === "go" && (
             <Dropdown>
-              {WIN_DEFS.map((def, i) => (
+              {WIN_DEFS.filter((d) => !d.hideIcon).map((def, i) => (
                 <MenuItem
                   key={def.id}
                   label={def.title}
@@ -211,7 +211,7 @@ export function MenuBar({
               <MenuItem label="Minimize All" shortcut="⌘M" disabled={!anyOpen} onClick={() => act(onMinimizeAll)} />
               <MenuItem label="Restore All" disabled={!anyMinimized} onClick={() => act(onRestoreAll)} />
               <Separator />
-              {WIN_DEFS.map((def) => (
+              {WIN_DEFS.filter((d) => !d.hideIcon).map((def) => (
                 <MenuItem
                   key={def.id}
                   label={def.title}
