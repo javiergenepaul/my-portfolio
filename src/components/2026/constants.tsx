@@ -12,6 +12,7 @@ import {
   Sparkles,
   Gamepad2,
   Zap,
+  Layers3,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -145,7 +146,8 @@ export type WinId =
   | "settings"
   | "chat"
   | "games"
-  | "snake";
+  | "snake"
+  | "hanoi";
 
 export interface WinDef {
   id: WinId;
@@ -238,6 +240,15 @@ export const WIN_DEFS: WinDef[] = [
     icon: <Zap size={14} />,
     defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 260), y: 80 }),
     defaultSize: { w: 520, h: 520 },
+    hideIcon: true,
+  },
+  {
+    id: "hanoi",
+    title: "Tower of Hanoi",
+    color: "#C084FC",
+    icon: <Layers3 size={14} />,
+    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 280), y: 70 }),
+    defaultSize: { w: 560, h: 500 },
     hideIcon: true,
   },
 ];

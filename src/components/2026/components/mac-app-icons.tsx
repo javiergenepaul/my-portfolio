@@ -333,6 +333,41 @@ function SnakeArt({ s }: { s: number }) {
   );
 }
 
+// Tower of Hanoi — 3 pegs with stacked coloured discs
+function HanoiArt({ s }: { s: number }) {
+  const p = s * 0.66;
+  const pegs = [18, 40, 62]; // x centres
+  const discs = [
+    { w: 36, y: 62, color: "#F87171" },
+    { w: 28, y: 52, color: "#F97316" },
+    { w: 20, y: 42, color: "#FBBF24" },
+    { w: 13, y: 32, color: "#34D399" },
+  ];
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      {/* Base plate */}
+      <rect x="8" y="68" width="64" height="5" rx="2.5" fill="white" opacity="0.85" />
+      {/* Peg sticks */}
+      {pegs.map((cx) => (
+        <rect key={cx} x={cx - 2} y="20" width="4" height="48" rx="2" fill="white" opacity="0.55" />
+      ))}
+      {/* Discs on first peg (cx=18) */}
+      {discs.map((d) => (
+        <rect
+          key={d.y}
+          x={pegs[0] - d.w / 2}
+          y={d.y}
+          width={d.w}
+          height={8}
+          rx="4"
+          fill={d.color}
+          opacity="0.92"
+        />
+      ))}
+    </svg>
+  );
+}
+
 // GitHub — dark squircle with octocat-inspired silhouette
 function GitHubArt({ s }: { s: number }) {
   const p = s * 0.60;
@@ -414,6 +449,11 @@ const ICON_MAP: Record<
     g1: "#4ADE80",
     g2: "#166534",
     art: (s) => <SnakeArt s={s} />,
+  },
+  hanoi: {
+    g1: "#D8B4FE",
+    g2: "#7C3AED",
+    art: (s) => <HanoiArt s={s} />,
   },
   github: {
     g1: "#484848",

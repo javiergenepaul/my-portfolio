@@ -15,6 +15,7 @@ import { SettingsContent } from "../windows/settings-content";
 import { ChatContent } from "../windows/chat-content";
 import { GamesContent } from "../windows/games-content";
 import { SnakeContent } from "../windows/snake-content";
+import { HanoiContent } from "../windows/hanoi-content";
 
 // Resize handle edges: n/e/s/w edges + ne/se/sw/nw corners
 export const RESIZE_HANDLES = [
@@ -193,6 +194,7 @@ export function AppWindow({
         {def.id === "chat"     && <ChatContent />}
         {def.id === "games"    && <GamesContent onOpen={onOpen} />}
         {def.id === "snake"    && <SnakeContent />}
+        {def.id === "hanoi"    && <HanoiContent />}
       </div>
     </motion.div>
   );
