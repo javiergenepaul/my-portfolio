@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins, Work_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Providers } from "@/providers";
 
@@ -341,6 +342,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
         />
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
