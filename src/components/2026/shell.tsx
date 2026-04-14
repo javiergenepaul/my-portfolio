@@ -65,12 +65,29 @@ export function Portfolio2026() {
 
   const updateIconPos = useCallback((id: WinId, rawX: number, rawY: number) => {
     setIconPositions((prev) => {
-      const snapped = snapToGrid(rawX, rawY);
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      // Keep icons within the visible desktop area (below menu bar, above dock)
+      const maxX = Math.floor((vw - CELL_W) / CELL_W) * CELL_W;
+      const maxY = Math.floor((vh - 28 - CELL_H - 20) / CELL_H) * CELL_H;
+
+      const clampCell = (x: number, y: number) => ({
+        x: Math.max(0, Math.min(maxX, Math.round(x / CELL_W) * CELL_W)),
+        y: Math.max(0, Math.min(maxY, Math.round(y / CELL_H) * CELL_H)),
+      });
+
+      const snapped = clampCell(rawX, rawY);
+
       const others = (Object.entries(prev) as [WinId, { x: number; y: number }][])
         .filter(([k]) => k !== id)
-        .map(([, p]) => snapToGrid(p.x, p.y));
-      const isFree = (sx: number, sy: number) => !others.some((o) => o.x === sx && o.y === sy);
+        .map(([, p]) => clampCell(p.x, p.y));
+
+      const inBounds = (x: number, y: number) => x >= 0 && y >= 0 && x <= maxX && y <= maxY;
+      const isFree = (x: number, y: number) =>
+        inBounds(x, y) && !others.some((o) => o.x === x && o.y === y);
+
       if (isFree(snapped.x, snapped.y)) return { ...prev, [id]: snapped };
+
       const visited = new Set<string>();
       const queue = [snapped];
       while (queue.length) {
@@ -78,7 +95,7 @@ export function Portfolio2026() {
         const key = `${cell.x},${cell.y}`;
         if (visited.has(key)) continue;
         visited.add(key);
-        if (cell.x < -CELL_W || cell.y < -CELL_H || cell.x > 4000 || cell.y > 4000) continue;
+        if (!inBounds(cell.x, cell.y)) continue;
         if (isFree(cell.x, cell.y)) return { ...prev, [id]: cell };
         queue.push(
           { x: cell.x + CELL_W, y: cell.y },
@@ -87,6 +104,7 @@ export function Portfolio2026() {
           { x: cell.x, y: cell.y - CELL_H },
         );
       }
+      // Fallback: clamped original position
       return { ...prev, [id]: snapped };
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
