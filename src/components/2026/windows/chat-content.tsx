@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Send, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config/data/personal";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 
@@ -315,12 +315,37 @@ const KB: KBEntry[] = [
 const SUGGESTIONS = [
   "Who is GPM?",
   "What are his skills?",
-  "First job?",
+  "What are his strengths?",
+  "Why should we hire GPM?",
+  "What services does he offer?",
+  "What are his certifications?",
+  "Favourite stack?",
   "Greatest achievements?",
+  "How does he handle bugs?",
+  "Tell me about a challenge he faced",
   "Affiliated companies?",
   "Key contributions?",
-  "Favourite stack?",
+  "Where does he see himself in 5 years?",
   "How to contact?",
+  "What is ChatGPM?",
+  "What projects has he built?",
+];
+
+// Groups of 4 shown at a time, cycling automatically
+const SUGGESTION_PAGE_SIZE = 4;
+
+// Placeholder lines that cycle in the input field
+const PLACEHOLDER_CYCLE = [
+  "Ask anything about GPM…",
+  "Why should we hire GPM?",
+  "What technologies is he comfortable with?",
+  "Tell me about a challenge he faced…",
+  "What services does he offer?",
+  "Where does he see himself in 5 years?",
+  "What are his strengths and weaknesses?",
+  "How does he handle debugging?",
+  "What certifications does he have?",
+  "What is ChatGPM?",
 ];
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -340,6 +365,37 @@ export function ChatContent() {
   const [typewriterLen, setTypewriterLen] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Cycling suggestion page
+  const totalPages = Math.ceil(SUGGESTIONS.length / SUGGESTION_PAGE_SIZE);
+  const [suggPage, setSuggPage] = useState(0);
+  const [suggDir, setSuggDir] = useState(1); // 1 = forward, -1 = backward
+
+  // Cycling placeholder
+  const [phIdx, setPhIdx] = useState(0);
+  const [phVisible, setPhVisible] = useState(true);
+
+  // Auto-advance suggestion page every 4 s
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSuggDir(1);
+      setSuggPage((p) => (p + 1) % totalPages);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [totalPages]);
+
+  // Fade-cycle placeholder every 3 s (only when input is empty)
+  useEffect(() => {
+    if (input) return;
+    const id = setInterval(() => {
+      setPhVisible(false);
+      setTimeout(() => {
+        setPhIdx((i) => (i + 1) % PLACEHOLDER_CYCLE.length);
+        setPhVisible(true);
+      }, 350);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [input]);
 
   // Scroll on new messages, typing state, or typewriter progress
   useEffect(() => {
@@ -381,6 +437,10 @@ export function ChatContent() {
   }, [typing]);
 
   const showSuggestions = messages.length === 1 && !typing;
+  const currentSuggs = SUGGESTIONS.slice(
+    suggPage * SUGGESTION_PAGE_SIZE,
+    suggPage * SUGGESTION_PAGE_SIZE + SUGGESTION_PAGE_SIZE,
+  );
 
   return (
     <div
@@ -490,25 +550,51 @@ export function ChatContent() {
         {/* Quick suggestions — shown only after welcome message */}
         {showSuggestions && (
           <div className="mt-1 mb-2">
-            <div className="text-a26-muted text-[10px] font-semibold uppercase tracking-[0.08em] mb-2">
-              Quick questions
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-a26-muted text-[10px] font-semibold uppercase tracking-[0.08em]">
+                Quick questions
+              </div>
+              <div className="flex items-center gap-1">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setSuggDir(i > suggPage ? 1 : -1); setSuggPage(i); }}
+                    className="border-none cursor-pointer p-0 transition-all duration-200"
+                    style={{
+                      width: i === suggPage ? 14 : 5,
+                      height: 5,
+                      borderRadius: 3,
+                      background: i === suggPage ? "#A855F7" : "rgba(255,255,255,0.18)",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-1.5">
-              {SUGGESTIONS.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => send(s)}
-                  className="font-mac text-[11px] px-2.5 py-1 rounded-full cursor-pointer transition-all duration-120"
-                  style={{
-                    background: "var(--a26-glass)",
-                    border: "1px solid var(--a26-glass-border)",
-                    color: "var(--a26-text-mid)",
-                  }}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={suggPage}
+                initial={{ opacity: 0, x: suggDir * 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: suggDir * -24 }}
+                transition={{ duration: 0.22, ease: "easeOut" }}
+                className="flex flex-wrap gap-1.5"
+              >
+                {currentSuggs.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => send(s)}
+                    className="font-mac text-[11px] px-2.5 py-1 rounded-full cursor-pointer transition-all duration-120"
+                    style={{
+                      background: "var(--a26-glass)",
+                      border: "1px solid var(--a26-glass-border)",
+                      color: "var(--a26-text-mid)",
+                    }}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         )}
 
@@ -517,24 +603,44 @@ export function ChatContent() {
 
       {/* Input */}
       <div className="shrink-0 flex items-center gap-2 px-3.5 py-3 border-t border-a26-glass-border">
-        <input
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(input); }
-          }}
-          placeholder="Ask anything about GPM…"
-          spellCheck={false}
-          autoFocus
-          disabled={typing}
-          className="flex-1 text-a26-text text-[12.5px] rounded-[20px] px-3.5 py-2 outline-none font-mac placeholder:text-a26-muted transition-colors duration-120"
-          style={{
-            background: "var(--a26-glass)",
-            border: "1px solid var(--a26-glass-border)",
-            caretColor: "#A855F7",
-          }}
-        />
+        <div className="relative flex-1">
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(input); }
+            }}
+            placeholder=""
+            spellCheck={false}
+            autoFocus
+            disabled={typing}
+            className="w-full text-a26-text text-[12.5px] rounded-[20px] px-3.5 py-2 outline-none font-mac transition-colors duration-120"
+            style={{
+              background: "var(--a26-glass)",
+              border: "1px solid var(--a26-glass-border)",
+              caretColor: "#A855F7",
+            }}
+          />
+          {/* Animated placeholder overlay */}
+          {!input && (
+            <div className="pointer-events-none absolute inset-0 flex items-center px-3.5 overflow-hidden">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={phIdx}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: phVisible ? 1 : 0, y: phVisible ? 0 : -6 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="text-[12.5px] truncate"
+                  style={{ color: "var(--a26-text-muted)" }}
+                >
+                  {PLACEHOLDER_CYCLE[phIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          )}
+        </div>
         <button
           onClick={() => send(input)}
           disabled={!input.trim() || typing}
