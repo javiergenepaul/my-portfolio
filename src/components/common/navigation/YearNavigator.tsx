@@ -17,6 +17,7 @@ import {
   getNextYear,
   type YearConfig,
 } from "@/config/years";
+import { useMobileAppStore } from "@/stores";
 import { cn } from "@/lib/utils";
 
 /**
@@ -35,6 +36,7 @@ export function YearNavigator() {
   const activeYear = deriveYear(pathname);
   const prev = activeYear ? getPrevYear(activeYear) : undefined;
   const next = activeYear ? getNextYear(activeYear) : undefined;
+  const isMobileAppOpen = useMobileAppStore((s) => s.isAppOpen);
 
   const [navigating, setNavigating] = useState(false);
 
@@ -88,7 +90,7 @@ export function YearNavigator() {
 
       {/* ── Previous year mini screen (bottom-left) ─────────────────────── */}
       <AnimatePresence>
-        {prev && (
+        {prev && !isMobileAppOpen && (
           <motion.button
             key={`prev-${prev.year}`}
             className="year-nav-screen year-nav-screen-prev"
@@ -110,7 +112,7 @@ export function YearNavigator() {
 
       {/* ── Next year mini screen (bottom-right) ────────────────────────── */}
       <AnimatePresence>
-        {next && (
+        {next && !isMobileAppOpen && (
           <motion.button
             key={`next-${next.year}`}
             className="year-nav-screen year-nav-screen-next"
@@ -136,7 +138,7 @@ export function YearNavigator() {
           className="year-timeline"
           role="tablist"
           aria-label="Year timeline"
-          style={activeYear === 2026 ? { display: "none" } : undefined}
+          style={activeYear === 2026 || isMobileAppOpen ? { display: "none" } : undefined}
         >
           {enabledYears.map((y) => (
             <Tooltip key={y.year}>

@@ -176,7 +176,7 @@ export function SnakeContent() {
       {/* Score bar */}
       <div className="flex items-center gap-3 w-full" style={{ maxWidth: 400 }}>
         <span
-          className="text-[10px] font-bold tracking-[0.1em] uppercase"
+          className="text-[10px] font-bold tracking-widest uppercase"
           style={{ color: "rgba(255,255,255,0.30)" }}
         >
           Score

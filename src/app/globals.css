@@ -681,37 +681,67 @@
 
 /* ─── Year nav — mobile ───────────────────────────────────────────────────── */
 @media (max-width: 639px) {
+  /* Reposition from bottom corners → side edges, vertically centred */
   .year-nav-screen {
-    bottom: 1.25rem;
+    bottom: auto;
+    top: 50%;
   }
 
   .year-nav-screen-prev {
-    left: 0.75rem;
+    left: 0;
+    transform: translateY(-50%);
   }
 
   .year-nav-screen-next {
-    right: 0.75rem;
+    right: 0;
+    transform: translateY(-50%);
   }
 
-  /* Hide iframe thumbnail on touch devices — hover doesn't work anyway */
+  /* Keep vertical centering on hover — no upward float on mobile */
+  .year-nav-screen-prev:hover,
+  .year-nav-screen-prev:active {
+    transform: translateY(-50%);
+  }
+
+  .year-nav-screen-next:hover,
+  .year-nav-screen-next:active {
+    transform: translateY(-50%);
+  }
+
+  /* Hide iframe thumbnail — hover doesn't work on touch */
   .year-mini-screen {
     display: none;
   }
 
-  /* Promote the label into a standalone pill */
+  /* Base label reset */
   .year-nav-screen-label {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.45rem 0.875rem;
-    border-radius: 9999px;
+    gap: 0.2rem;
     border: 1.5px solid hsl(var(--border));
-    background-color: hsl(var(--background) / 0.85);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgb(0 0 0 / 0.12);
+    background-color: hsl(var(--background) / 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.18);
     color: hsl(var(--foreground));
     transition:
       border-color 0.2s,
-      background-color 0.2s;
+      background-color 0.2s,
+      transform 0.2s;
+  }
+
+  /* Prev — tab flush with left edge, open side on the right */
+  .year-nav-screen-prev .year-nav-screen-label {
+    padding: 0.55rem 0.7rem 0.55rem 0.45rem;
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+  }
+
+  /* Next — tab flush with right edge, open side on the left */
+  .year-nav-screen-next .year-nav-screen-label {
+    padding: 0.55rem 0.45rem 0.55rem 0.7rem;
+    border-radius: 10px 0 0 10px;
+    border-right: none;
   }
 
   .year-nav-screen:active .year-nav-screen-label {
@@ -722,4 +752,5 @@
   .year-timeline {
     bottom: 1.25rem;
   }
+
 }

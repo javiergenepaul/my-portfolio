@@ -7,6 +7,7 @@ import { MapPin, GithubIcon, LinkedinIcon, Mail, ChevronLeft } from "lucide-reac
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
+import { useMobileAppStore } from "@/stores";
 import { WIN_DEFS } from "../constants";
 import type { WinId } from "../constants";
 import { useMobileTime } from "../hooks";
@@ -25,6 +26,7 @@ import { SnakeContent } from "../windows/snake-content";
 
 export function MobilePortfolio() {
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
+  const setIsAppOpen = useMobileAppStore((s) => s.setIsAppOpen);
   const time = useMobileTime();
 
   const [viewportH, setViewportH] = useState(844);
@@ -34,6 +36,12 @@ export function MobilePortfolio() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
+
+  // Signal YearNavigator to hide its pills while a mobile app sheet is open.
+  useEffect(() => {
+    setIsAppOpen(!!activeApp);
+    return () => setIsAppOpen(false);
+  }, [activeApp, setIsAppOpen]);
   const compact = viewportH < 750;
   const iconSize   = compact ? 50 : 62;
   const dockSize   = compact ? 46 : 52;
