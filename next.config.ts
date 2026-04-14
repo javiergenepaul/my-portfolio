@@ -30,9 +30,22 @@ const nextConfig: NextConfig = {
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
 
   // Webpack tweaks needed for three.js server-side suppression
-  webpack(config) {
+  webpack(config, { isServer }) {
     // Suppress "Can't resolve 'fs'" warnings from three.js in SSR
     config.resolve.fallback = { fs: false, path: false };
+
+    // ─── Deduplicate Three.js ───────────────────────────────────────────────
+    // @react-three/fiber, @react-three/drei, maath, and any direct `three`
+    // imports must all resolve to the SAME instance.  Without this alias,
+    // webpack produces multiple copies → "Multiple instances" warning →
+    // shared globals like THREE.Object3D.DEFAULT_UP diverge → WebGL context
+    // errors and context loss on pages that mix Three.js consumers.
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        three: require.resolve("three"),
+      };
+    }
 
     // ─── Image / asset imports → plain URL strings ──────────────────────────
     // This codebase uses <img src={importedAsset}> everywhere (Vite-style).

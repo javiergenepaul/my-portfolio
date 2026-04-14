@@ -44,6 +44,15 @@ export const YEARS: YearConfig[] = [
     description:
       "A MacBook-inspired portfolio with Aurora theme — dock, windows, terminal, and more.",
   },
+  {
+    year: 2027,
+    enabled: true,
+    label: "2027",
+    path: "/2027",
+    theme: "Coming Soon",
+    journey: "The next chapter is still being written.",
+    description: "Something new is on the horizon — stay tuned.",
+  },
 ];
 
 /** The latest enabled year, used as the default redirect target. */

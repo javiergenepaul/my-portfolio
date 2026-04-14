@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { MapPin, GithubIcon, LinkedinIcon, Mail, ChevronLeft } from "lucide-react";
@@ -26,6 +26,22 @@ export function MobilePortfolio() {
   const A = useAurora();
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const time = useMobileTime();
+
+  // Adapt icon/spacing sizes to viewport height so everything fits without scrolling
+  const [viewportH, setViewportH] = useState(844);
+  useEffect(() => {
+    const update = () => setViewportH(window.innerHeight);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  const compact = viewportH < 750;
+  const iconSize   = compact ? 50 : 62;
+  const dockSize   = compact ? 46 : 52;
+  const avatarSize = compact ? 56 : 68;
+  const gridGap    = compact ? 10 : 16;
+  const profileMB  = compact ? 14 : 26;
+  const gridMB     = compact ? 14 : 26;
 
   const dockApps = WIN_DEFS.slice(0, 4);
   const activeDef = WIN_DEFS.find((d) => d.id === activeApp);
@@ -112,18 +128,18 @@ export function MobilePortfolio() {
             flex: 1,
             overflowY: "auto",
             overflowX: "hidden",
-            padding: "28px 24px 110px",
+            padding: `${compact ? 16 : 24}px 24px 100px`,
             scrollbarWidth: "none",
           }}
         >
           {/* Profile header */}
-          <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ textAlign: "center", marginBottom: profileMB }}>
             <div
               style={{
-                width: 72, height: 72, borderRadius: "50%", overflow: "hidden",
+                width: avatarSize, height: avatarSize, borderRadius: "50%", overflow: "hidden",
                 border: `2.5px solid ${A.teal}`,
                 boxShadow: `0 0 24px rgba(${hexRgb(A.teal)},0.35)`,
-                margin: "0 auto 12px",
+                margin: "0 auto 10px",
               }}
             >
               <Image
@@ -150,9 +166,9 @@ export function MobilePortfolio() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 20,
+              gap: gridGap,
               maxWidth: 320,
-              margin: "0 auto 32px",
+              margin: `0 auto ${gridMB}px`,
             }}
           >
             {WIN_DEFS.map((app) => (
@@ -172,7 +188,7 @@ export function MobilePortfolio() {
                   fontFamily: MAC_FONT,
                 }}
               >
-                <MacAppIcon id={app.id} size={68} />
+                <MacAppIcon id={app.id} size={iconSize} />
                 <span
                   style={{
                     fontSize: 11,
@@ -253,7 +269,7 @@ export function MobilePortfolio() {
               }}
               aria-label={app.title}
             >
-              <MacAppIcon id={app.id} size={52} />
+              <MacAppIcon id={app.id} size={dockSize} />
             </motion.button>
           ))}
         </div>
