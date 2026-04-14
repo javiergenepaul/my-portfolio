@@ -55,14 +55,6 @@ export function Portfolio2025() {
 
   return (
     <CContext.Provider value={C}>
-      {/* Skip to main content — screen reader / keyboard shortcut */}
-      <a
-        href="#p25-scroll"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-99999 focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold focus:no-underline"
-        style={{ backgroundColor: "#E11D48", color: "#fff" }}
-      >
-        Skip to content
-      </a>
       <div
         className="min-h-screen lg:h-screen lg:overflow-hidden flex items-start lg:items-center justify-center p-4 sm:p-6 lg:py-10 lg:px-6"
         style={{

@@ -3,9 +3,7 @@ import { Inter, Poppins, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/providers";
 
-// ─── Font definitions (replaces typeface-* npm packages) ─────────────────────
-// Variable names use a distinct suffix (-variable) to avoid circular reference
-// when Tailwind v4 @theme maps --font-inter → var(--font-inter-variable).
+// ─── Font definitions ─────────────────────────────────────────────────────────
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter-variable",
@@ -25,26 +23,147 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
+const BASE_URL = "https://gene-paul-mar-javier.dev";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
+    default: "Gene Paul Mar Javier — Full-Stack Software Engineer",
     template: "%s | Gene Paul Mar Javier",
-    default: "Gene Paul Mar Javier — Full-Stack Engineer",
   },
   description:
-    "Full-stack software engineer specializing in React, Spring Boot, and modern web technologies.",
-  metadataBase: new URL("https://genepaulmarjavier.dev"),
+    "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java. Explore my interactive portfolio.",
+  applicationName: "Gene Paul Mar Javier Portfolio",
+  authors: [{ name: "Gene Paul Mar Javier", url: BASE_URL }],
+  creator: "Gene Paul Mar Javier",
+  publisher: "Gene Paul Mar Javier",
+  keywords: [
+    "Gene Paul Mar Javier",
+    "Gene Paul Javier",
+    "Paul Javier",
+    "Mar Javier",
+    "GPM Javier",
+    "Gene Javier",
+    "Gene Paul Mar Javier portfolio",
+    "Gene Paul Javier developer",
+    "full-stack developer",
+    "software engineer",
+    "React developer",
+    "Next.js developer",
+    "Spring Boot developer",
+    "TypeScript developer",
+    "Java developer",
+    "web developer Philippines",
+    "Cebu developer",
+    "frontend developer",
+    "backend developer",
+    "portfolio",
+    "Vue.js",
+    "Zustand",
+    "REST API",
+    "microservices",
+  ],
   icons: {
-    icon: "/javi-logo.svg",
+    icon: "/jav-profile.png",
+    apple: "/jav-profile.png",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Gene Paul Mar Javier Portfolio",
+    url: BASE_URL,
+    siteName: "Gene Paul Mar Javier — Portfolio",
+    title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
+    description:
+      "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
+    description:
+      "Gene Paul Mar Javier — React, Next.js, Spring Boot, TypeScript, Java. Full-Stack Engineer from Cebu, Philippines.",
+    creator: "@genepaulmar",
+    site: "@genepaulmar",
+  },
+  alternates: {
+    canonical: BASE_URL,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  category: "technology",
+};
+
+const jsonLdWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Gene Paul Mar Javier — Portfolio",
+  alternateName: [
+    "Gene Paul Javier Portfolio",
+    "GPM Javier Portfolio",
+    "Gene Javier Portfolio",
+  ],
+  url: BASE_URL,
+  author: {
+    "@type": "Person",
+    name: "Gene Paul Mar Javier",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${BASE_URL}/2026?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const jsonLdPerson = {
+  "@context": "https://schema.org",
+  "@type": ["Person", "ProfilePage"],
+  name: "Gene Paul Mar Javier",
+  alternateName: [
+    "Gene Paul Javier",
+    "Paul Javier",
+    "Mar Javier",
+    "GPM Javier",
+    "Gene Javier",
+    "Gene Paul Mar Javier",
+  ],
+  url: BASE_URL,
+  image: `${BASE_URL}/jav-profile.png`,
+  jobTitle: "Full-Stack Software Engineer",
+  description:
+    "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cebu City",
+    addressRegion: "Cebu",
+    addressCountry: "PH",
+  },
+  sameAs: [
+    "https://github.com/javiergenepaul",
+    "https://linkedin.com/in/gene-paul-mar-javier",
+    BASE_URL,
+  ],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "Spring Boot",
+    "TypeScript",
+    "Java",
+    "Vue.js",
+    "PostgreSQL",
+    "MySQL",
+    "REST API",
+    "Microservices",
+  ],
 };
 
 export default function RootLayout({
@@ -55,7 +174,6 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      // Class is hydrated client-side by ThemeProvider (e.g. "dark emerald")
       suppressHydrationWarning
     >
       <body
@@ -145,7 +263,6 @@ export default function RootLayout({
 
         <div id="__splash">
           <div className="__splash-content">
-            {/* Logo — uses currentColor so it adapts to dark/light */}
             <div className="__splash-logo">
               <svg
                 width="72"
@@ -196,8 +313,6 @@ export default function RootLayout({
           </div>
         </div>
 
-        {/* Reads saved theme from localStorage before React runs — prevents
-            a flash of the wrong background on themed (non-dark) sessions.  */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -217,6 +332,14 @@ export default function RootLayout({
           }}
         />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

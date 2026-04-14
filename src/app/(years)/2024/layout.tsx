@@ -1,37 +1,45 @@
 import type { Metadata } from "next";
 import { Layout2024Client } from "./layout-client";
 
-const BASE_URL = "https://genepaulmarjavier.dev";
+const BASE_URL = "https://gene-paul-mar-javier.dev";
 const TITLE = "Gene Paul Mar Javier — 2024 Portfolio";
 const DESCRIPTION =
-  "Full-stack software engineer portfolio for 2024. Featuring projects, skills, and experience in React, Spring Boot, and modern web technologies.";
+  "Gene Paul Mar Javier's 2024 portfolio — Full-Stack Engineer from Cebu, Philippines. Projects and skills in React, Spring Boot, TypeScript, Java, and Ant Design.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: TITLE,
-    template: "%s — Gene Paul Mar Javier",
+    template: "%s | Gene Paul Mar Javier 2024",
   },
   description: DESCRIPTION,
   authors: [{ name: "Gene Paul Mar Javier", url: BASE_URL }],
   creator: "Gene Paul Mar Javier",
-  metadataBase: new URL(BASE_URL),
-  alternates: { canonical: "/2024" },
   keywords: [
     "Gene Paul Mar Javier",
-    "full-stack developer",
-    "React",
-    "Next.js",
-    "Spring Boot",
-    "TypeScript",
-    "Java",
-    "software engineer",
-    "portfolio 2024",
-    "Cebu Philippines developer",
+    "Gene Paul Javier",
+    "Paul Javier",
+    "Mar Javier",
+    "GPM Javier",
+    "Gene Javier",
+    "Gene Paul Javier portfolio 2024",
+    "full-stack developer 2024",
+    "React developer Cebu",
+    "Spring Boot developer Philippines",
+    "TypeScript developer",
+    "Java software engineer",
+    "web developer portfolio",
+    "frontend developer",
+    "backend developer",
+    "Ant Design",
+    "MobX",
+    "REST API",
+    "microservices",
   ],
   icons: {
-    icon: "/favicons/2024.ico",
-    apple: "/favicons/2024-apple.png",
+    icon: [{ url: "/favicons/2024.svg", type: "image/svg+xml" }],
   },
+  alternates: { canonical: `${BASE_URL}/2024` },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -39,39 +47,42 @@ export const metadata: Metadata = {
     siteName: "Gene Paul Mar Javier Portfolio",
     title: TITLE,
     description: DESCRIPTION,
-    images: [
-      {
-        url: "/og/2024.png",
-        width: 1200,
-        height: 630,
-        alt: "Gene Paul Mar Javier — 2024 Portfolio",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og/2024.png"],
     creator: "@genepaulmar",
+    site: "@genepaulmar",
   },
+  robots: { index: true, follow: true },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Gene Paul Mar Javier",
+  alternateName: [
+    "Gene Paul Javier",
+    "Paul Javier",
+    "Mar Javier",
+    "GPM Javier",
+    "Gene Javier",
+  ],
   url: `${BASE_URL}/2024`,
+  image: `${BASE_URL}/jav-profile.png`,
   jobTitle: "Full-Stack Software Engineer",
   description: DESCRIPTION,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Cebu",
+    addressLocality: "Cebu City",
+    addressRegion: "Cebu",
     addressCountry: "PH",
   },
   sameAs: [
     "https://github.com/javiergenepaul",
     "https://linkedin.com/in/gene-paul-mar-javier",
+    BASE_URL,
   ],
   knowsAbout: [
     "React",
@@ -79,8 +90,11 @@ const jsonLd = {
     "Spring Boot",
     "TypeScript",
     "Java",
+    "Vue.js",
     "PostgreSQL",
-    "Docker",
+    "MySQL",
+    "REST API",
+    "Microservices",
   ],
 };
 

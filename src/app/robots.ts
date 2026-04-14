@@ -1,8 +1,17 @@
 import type { MetadataRoute } from "next";
 
+const BASE = "https://gene-paul-mar-javier.dev";
+
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://genepaulmarjavier.dev/sitemap.xml",
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/_next/"],
+      },
+    ],
+    sitemap: `${BASE}/sitemap.xml`,
+    host: BASE,
   };
 }
