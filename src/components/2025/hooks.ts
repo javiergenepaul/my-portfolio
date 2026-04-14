@@ -12,3 +12,16 @@ export function useIsMobile() {
   }, []);
   return isMobile;
 }
+
+/** True on small laptop screens (< 1400px wide or < 820px tall) */
+export function useIsCompact() {
+  const [compact, setCompact] = useState(true);
+  useEffect(() => {
+    const check = () =>
+      setCompact(window.innerWidth < 1400 || window.innerHeight < 820);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return compact;
+}

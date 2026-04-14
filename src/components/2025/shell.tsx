@@ -13,7 +13,7 @@ import { useLocaleRefresh } from "@/i18n";
 import { useSettingsStore } from "@/stores/settings-store";
 import { CContext, makePalette } from "./context";
 import { ease, pageAnim } from "./animation";
-import { useIsMobile } from "./hooks";
+import { useIsMobile, useIsCompact } from "./hooks";
 import { SidebarPanel } from "./components";
 import {
   AboutSection,
@@ -40,6 +40,7 @@ export function Portfolio2025() {
       !window.matchMedia("(prefers-color-scheme: dark)").matches);
   const C = makePalette(isLight);
   const isMobile = useIsMobile();
+  const isCompact = useIsCompact();
 
   const experience = getExperience().filter((e) => e.isWork);
   const education = getEducation().filter(
@@ -56,7 +57,7 @@ export function Portfolio2025() {
   return (
     <CContext.Provider value={C}>
       <div
-        className="min-h-screen lg:h-screen lg:overflow-hidden flex items-start lg:items-center justify-center p-4 sm:p-6 lg:py-10 lg:px-6"
+        className="min-h-screen lg:h-screen lg:overflow-hidden flex items-start lg:items-center justify-center p-4 sm:p-6 lg:py-3 lg:px-3 2xl:py-10 2xl:px-6"
         style={{
           position: "relative",
           background: `radial-gradient(ellipse 80% 60% at 20% 40%, rgba(190,18,60,0.22) 0%, transparent 60%),
@@ -70,7 +71,7 @@ export function Portfolio2025() {
 
         {/* Card */}
         <motion.div
-          className="w-full max-w-xl lg:max-w-7xl rounded-3xl flex flex-col lg:flex-row overflow-hidden"
+          className="w-full max-w-xl lg:max-w-6xl 2xl:max-w-7xl rounded-3xl flex flex-col lg:flex-row overflow-hidden"
           style={{ position: "relative", zIndex: 1 }}
           initial={{ opacity: 0, scale: 0.96, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -103,7 +104,7 @@ export function Portfolio2025() {
           >
             {/* Sidebar */}
             <div
-              className="lg:w-80 shrink-0 flex flex-col lg:overflow-y-auto"
+              className="lg:w-64 2xl:w-80 shrink-0 flex flex-col lg:overflow-y-auto"
               style={
                 {
                   backgroundColor: C.sidebar,
@@ -117,7 +118,7 @@ export function Portfolio2025() {
             {/* Main */}
             <main
               id="p25-scroll"
-              className="flex-1 overflow-y-auto lg:max-h-[90vh]"
+              className="flex-1 overflow-y-auto lg:max-h-[94vh] 2xl:max-h-[90vh]"
               style={{ backgroundColor: C.main }}
               aria-label="Portfolio content"
             >
@@ -126,7 +127,7 @@ export function Portfolio2025() {
                   key={active}
                   {...pageAnim}
                   style={{
-                    padding: isMobile ? "20px 16px 28px" : "48px 52px 44px",
+                    padding: isMobile ? "20px 16px 28px" : isCompact ? "28px 32px 28px" : "48px 52px 44px",
                   }}
                 >
                   {active === "about" && <AboutSection />}

@@ -6,7 +6,7 @@ import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import { useC } from "../context";
-import { useIsMobile } from "../hooks";
+import { useIsMobile, useIsCompact } from "../hooks";
 import { NAV_ITEMS, SIDEBAR_STATS } from "../constants";
 import { Separator } from "./helpers";
 import { ThemeToggle } from "./theme-toggle";
@@ -20,12 +20,13 @@ export function SidebarPanel({
 }) {
   const C = useC();
   const isMobile = useIsMobile();
+  const isCompact = useIsCompact();
   return (
     <>
       {/* Profile */}
       <div
         style={{
-          padding: isMobile ? "16px 16px 12px" : "36px 24px 20px",
+          padding: isMobile ? "16px 16px 12px" : isCompact ? "18px 20px 12px" : "36px 24px 20px",
           textAlign: "center",
         }}
       >
@@ -67,8 +68,8 @@ export function SidebarPanel({
           >
             <div
               style={{
-                width: isMobile ? "72px" : "108px",
-                height: isMobile ? "72px" : "108px",
+                width: isMobile ? "72px" : isCompact ? "88px" : "108px",
+                height: isMobile ? "72px" : isCompact ? "88px" : "108px",
                 borderRadius: "50%",
                 overflow: "hidden",
               }}
@@ -123,7 +124,7 @@ export function SidebarPanel({
           transition={{ delay: 0.45, duration: 0.4 }}
           style={{
             display: "flex",
-            marginTop: "18px",
+            marginTop: isCompact ? "10px" : "18px",
             gap: "1px",
             borderRadius: "12px",
             overflow: "hidden",
@@ -135,7 +136,7 @@ export function SidebarPanel({
               key={label}
               style={{
                 flex: 1,
-                padding: "10px 6px",
+                padding: isCompact ? "6px 6px" : "10px 6px",
                 textAlign: "center",
                 backgroundColor: C.sidebarHover,
               }}
@@ -176,7 +177,7 @@ export function SidebarPanel({
           display: "flex",
           justifyContent: "center",
           gap: "10px",
-          padding: "14px 0",
+          padding: isCompact ? "8px 0" : "14px 0",
         }}
       >
         {[
@@ -224,7 +225,7 @@ export function SidebarPanel({
                 flexDirection: "row",
                 scrollbarWidth: "none",
               }
-            : { padding: "14px 10px", flex: 1 }
+            : { padding: isCompact ? "8px 8px" : "14px 10px", flex: 1 }
         }
       >
         {NAV_ITEMS.map(({ id, label, num }, i) => {
@@ -269,8 +270,8 @@ export function SidebarPanel({
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "12px",
-                padding: "11px 14px",
+                gap: "10px",
+                padding: isCompact ? "7px 12px" : "11px 14px",
                 borderRadius: "10px",
                 width: "100%",
                 textAlign: "left",

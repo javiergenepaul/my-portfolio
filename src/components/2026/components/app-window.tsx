@@ -85,11 +85,31 @@ export function AppWindow({
   const y = useMotionValue(initPos.y);
 
   useEffect(() => {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // Correct function-based positions
     if (typeof def.defaultPos === "function") {
-      const p = def.defaultPos(window.innerWidth);
+      const p = def.defaultPos(vw);
       x.set(p.x);
       y.set(p.y);
     }
+
+    // Clamp window size so it fits the viewport on small screens
+    // Reserve: 28px menu bar + 80px dock area + 12px gap = 120px
+    const maxW = Math.floor(vw * 0.88);
+    const maxH = Math.floor(vh - 120);
+    const clampedW = Math.min(def.defaultSize.w, maxW);
+    const clampedH = Math.min(def.defaultSize.h, maxH);
+    if (clampedW !== def.defaultSize.w || clampedH !== def.defaultSize.h) {
+      setSize({ w: clampedW, h: clampedH });
+    }
+
+    // Clamp position so the window stays within visible area after size clamping
+    const curX = x.get();
+    const curY = y.get();
+    if (curX + clampedW > vw - 10) x.set(Math.max(0, vw - clampedW - 10));
+    if (curY + clampedH > vh - 80) y.set(Math.max(28, vh - clampedH - 90));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [size, setSize] = useState({
