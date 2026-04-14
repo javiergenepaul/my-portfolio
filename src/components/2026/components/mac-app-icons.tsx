@@ -279,6 +279,60 @@ function ChatArt({ s }: { s: number }) {
   );
 }
 
+// Games — orange folder with gamepad inside
+function GamesArt({ s }: { s: number }) {
+  const p = s * 0.62;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      {/* Folder tab */}
+      <path d="M 7 33 L 7 27 Q 7 21 13 21 L 30 21 Q 35 21 37 25 L 40 33 Z" fill="white" opacity="0.82" />
+      {/* Folder body */}
+      <rect x="7" y="33" width="66" height="38" rx="7" fill="white" opacity="0.95" />
+      {/* Gamepad body */}
+      <rect x="18" y="42" width="44" height="22" rx="11" fill="rgba(249,115,22,0.32)" />
+      {/* D-pad horizontal */}
+      <rect x="24" y="51" width="12" height="4" rx="2" fill="rgba(234,88,12,0.65)" />
+      {/* D-pad vertical */}
+      <rect x="28" y="47" width="4" height="12" rx="2" fill="rgba(234,88,12,0.65)" />
+      {/* Action buttons */}
+      <circle cx="47" cy="50" r="2.8" fill="rgba(234,88,12,0.55)" />
+      <circle cx="53" cy="53" r="2.8" fill="rgba(234,88,12,0.55)" />
+      <circle cx="47" cy="56" r="2.8" fill="rgba(234,88,12,0.55)" />
+      <circle cx="41" cy="53" r="2.8" fill="rgba(234,88,12,0.55)" />
+      {/* Center button */}
+      <circle cx="37" cy="53" r="2" fill="rgba(234,88,12,0.4)" />
+    </svg>
+  );
+}
+
+// Snake — winding snake on dark bg
+function SnakeArt({ s }: { s: number }) {
+  const p = s * 0.64;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      {/* Snake body — winding S-curve */}
+      <path
+        d="M 18 62 Q 8 62 8 50 Q 8 38 40 38 Q 72 38 72 26 Q 72 14 58 14"
+        stroke="white"
+        strokeWidth="13"
+        strokeLinecap="round"
+        fill="none"
+        opacity="0.90"
+      />
+      {/* Head */}
+      <circle cx="58" cy="14" r="9" fill="white" opacity="0.95" />
+      {/* Eyes */}
+      <circle cx="55" cy="11" r="2.2" fill="rgba(20,83,45,0.85)" />
+      <circle cx="62" cy="11" r="2.2" fill="rgba(20,83,45,0.85)" />
+      {/* Tongue */}
+      <path d="M 58 22 L 56 27 M 58 22 L 60 27" stroke="rgba(248,113,113,0.9)" strokeWidth="1.5" strokeLinecap="round" />
+      {/* Food dot */}
+      <circle cx="16" cy="68" r="5.5" fill="#F87171" opacity="0.92" />
+      <circle cx="16" cy="66" r="2" fill="white" opacity="0.4" />
+    </svg>
+  );
+}
+
 // GitHub — dark squircle with octocat-inspired silhouette
 function GitHubArt({ s }: { s: number }) {
   const p = s * 0.60;
@@ -350,6 +404,16 @@ const ICON_MAP: Record<
     g1: "#C084FC",
     g2: "#7C3AED",
     art: (s) => <ChatArt s={s} />,
+  },
+  games: {
+    g1: "#FB923C",
+    g2: "#EA580C",
+    art: (s) => <GamesArt s={s} />,
+  },
+  snake: {
+    g1: "#4ADE80",
+    g2: "#166534",
+    art: (s) => <SnakeArt s={s} />,
   },
   github: {
     g1: "#484848",

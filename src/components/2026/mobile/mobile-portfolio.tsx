@@ -20,6 +20,8 @@ import { ContactContent } from "../windows/contact-content";
 import { ResumeContent } from "../windows/resume-content";
 import { SettingsContent } from "../windows/settings-content";
 import { ChatContent } from "../windows/chat-content";
+import { GamesContent } from "../windows/games-content";
+import { SnakeContent } from "../windows/snake-content";
 
 export function MobilePortfolio() {
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
@@ -248,6 +250,8 @@ export function MobilePortfolio() {
               {activeApp === "resume"   && <ResumeContent />}
               {activeApp === "settings" && <SettingsContent />}
               {activeApp === "chat"     && <ChatContent />}
+              {activeApp === "games"    && <GamesContent onOpen={(id) => setActiveApp(id)} />}
+              {activeApp === "snake"    && <SnakeContent />}
             </div>
           </motion.div>
         )}

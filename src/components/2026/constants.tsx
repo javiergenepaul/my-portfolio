@@ -10,6 +10,8 @@ import {
   FileText,
   SlidersHorizontal,
   Sparkles,
+  Gamepad2,
+  Zap,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -141,7 +143,9 @@ export type WinId =
   | "contact"
   | "resume"
   | "settings"
-  | "chat";
+  | "chat"
+  | "games"
+  | "snake";
 
 export interface WinDef {
   id: WinId;
@@ -150,6 +154,8 @@ export interface WinDef {
   icon: React.ReactNode;
   defaultPos: { x: number; y: number } | ((vw: number) => { x: number; y: number });
   defaultSize: { w: number; h: number };
+  /** If true, no desktop icon is rendered — window only accessible programmatically */
+  hideIcon?: boolean;
 }
 
 export const WIN_DEFS: WinDef[] = [
@@ -216,6 +222,23 @@ export const WIN_DEFS: WinDef[] = [
     icon: <Sparkles size={14} />,
     defaultPos: (vw: number) => ({ x: vw - 620, y: 510 }),
     defaultSize: { w: 520, h: 500 },
+  },
+  {
+    id: "games",
+    title: "Games",
+    color: "#F97316",
+    icon: <Gamepad2 size={14} />,
+    defaultPos: { x: 220, y: 95 },
+    defaultSize: { w: 580, h: 440 },
+  },
+  {
+    id: "snake",
+    title: "Snake",
+    color: "#4ADE80",
+    icon: <Zap size={14} />,
+    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 260), y: 80 }),
+    defaultSize: { w: 520, h: 520 },
+    hideIcon: true,
   },
 ];
 

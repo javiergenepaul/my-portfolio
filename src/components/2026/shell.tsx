@@ -8,7 +8,7 @@ import { WIN_DEFS } from "./constants";
 import { useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
-import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw, Sparkles } from "lucide-react";
+import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw, Sparkles, Gamepad2, Zap } from "lucide-react";
 import { MenuBar } from "./components/menu-bar";
 import { DesktopIcon } from "./components/desktop-icon";
 import { AppWindow } from "./components/app-window";
@@ -31,7 +31,12 @@ const INIT_WINS: Record<WinId, WinState> = {
   resume:   { open: false, minimized: false, maximized: false, zIndex: 10 },
   settings: { open: false, minimized: false, maximized: false, zIndex: 10 },
   chat:     { open: true,  minimized: false, maximized: false, zIndex: 22 },
+  games:    { open: false, minimized: false, maximized: false, zIndex: 10 },
+  snake:    { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
+
+// Only defs that get a desktop icon (excludes hideIcon: true entries)
+const VISIBLE_DEFS = WIN_DEFS.filter((d) => !d.hideIcon);
 
 export function Portfolio2026() {
   useLocaleRefresh();
@@ -49,22 +54,22 @@ export function Portfolio2026() {
     y: Math.round(y / CELL_H) * CELL_H,
   });
 
-  // 4-column × 2-row grid along the right edge
+  // Icon grid — only visible defs (no hideIcon)
   const calcIconGrid = (vw: number) => {
     const colBase = Math.round((vw - CELL_W) / CELL_W) * CELL_W; // rightmost snap column
     const COLS = 2;
     return Object.fromEntries(
-      WIN_DEFS.map((def, i) => ({
-        key: def.id,
-        value: {
+      VISIBLE_DEFS.map((def, i) => [
+        def.id,
+        {
           x: colBase - (i % COLS) * CELL_W,
           y: Math.floor(i / COLS) * CELL_H,
         },
-      })).map(({ key, value }) => [key, value])
-    ) as Record<WinId, { x: number; y: number }>;
+      ])
+    ) as Partial<Record<WinId, { x: number; y: number }>>;
   };
 
-  const [iconPositions, setIconPositions] = useState<Record<WinId, { x: number; y: number }>>(
+  const [iconPositions, setIconPositions] = useState<Partial<Record<WinId, { x: number; y: number }>>>(
     () => calcIconGrid(1440)
   );
 
@@ -87,9 +92,9 @@ export function Portfolio2026() {
 
       const snapped = clampCell(rawX, rawY);
 
-      const others = (Object.entries(prev) as [WinId, { x: number; y: number }][])
-        .filter(([k]) => k !== id)
-        .map(([, p]) => clampCell(p.x, p.y));
+      const others = (Object.entries(prev) as [WinId, { x: number; y: number } | undefined][])
+        .filter(([k, v]) => k !== id && v !== undefined)
+        .map(([, p]) => clampCell(p!.x, p!.y));
 
       const inBounds = (x: number, y: number) => x >= 0 && y >= 0 && x <= maxX && y <= maxY;
       const isFree = (x: number, y: number) =>
@@ -198,13 +203,15 @@ export function Portfolio2026() {
     resume:   <FileText size={13} />,
     settings: <Settings2 size={13} />,
     chat:     <Sparkles size={13} />,
+    games:    <Gamepad2 size={13} />,
+    snake:    <Zap size={13} />,
   };
 
   const openDesktopMenu = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     const items: ContextMenuEntry[] = [
       { type: "header", label: "Open" },
-      ...WIN_DEFS.map((def) => ({
+      ...VISIBLE_DEFS.map((def) => ({
         type: "item" as const,
         label: def.title,
         icon: WIN_ICONS[def.id],
@@ -303,7 +310,7 @@ export function Portfolio2026() {
           onContextMenu={openDesktopMenu}
           className="absolute inset-0 top-7"
         >
-          {WIN_DEFS.map((def) => (
+          {VISIBLE_DEFS.map((def) => (
             <DesktopIcon
               key={def.id}
               id={def.id}
@@ -311,8 +318,8 @@ export function Portfolio2026() {
               color={def.color}
               isOpen={wins[def.id].open}
               onClick={() => openWin(def.id)}
-              x={iconPositions[def.id].x}
-              y={iconPositions[def.id].y}
+              x={iconPositions[def.id]?.x ?? 0}
+              y={iconPositions[def.id]?.y ?? 0}
               constraintRef={desktopRef}
               onPositionChange={(x, y) => updateIconPos(def.id, x, y)}
               onContextMenu={(e) => openIconMenu(e, def.id)}

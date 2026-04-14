@@ -13,6 +13,8 @@ import { ContactContent } from "../windows/contact-content";
 import { ResumeContent } from "../windows/resume-content";
 import { SettingsContent } from "../windows/settings-content";
 import { ChatContent } from "../windows/chat-content";
+import { GamesContent } from "../windows/games-content";
+import { SnakeContent } from "../windows/snake-content";
 
 // Resize handle edges: n/e/s/w edges + ne/se/sw/nw corners
 export const RESIZE_HANDLES = [
@@ -189,6 +191,8 @@ export function AppWindow({
         {def.id === "resume"   && <ResumeContent />}
         {def.id === "settings" && <SettingsContent />}
         {def.id === "chat"     && <ChatContent />}
+        {def.id === "games"    && <GamesContent onOpen={onOpen} />}
+        {def.id === "snake"    && <SnakeContent />}
       </div>
     </motion.div>
   );
