@@ -8,7 +8,7 @@ import { WIN_DEFS } from "./constants";
 import { useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
-import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw, Sparkles, Gamepad2, Zap, Layers3 as HanoiIcon } from "lucide-react";
+import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw, Sparkles, Gamepad2, Zap, Layers3 as HanoiIcon, LayoutGrid } from "lucide-react";
 import { MenuBar } from "./components/menu-bar";
 import { DesktopIcon } from "./components/desktop-icon";
 import { AppWindow } from "./components/app-window";
@@ -34,6 +34,7 @@ const INIT_WINS: Record<WinId, WinState> = {
   games:    { open: false, minimized: false, maximized: false, zIndex: 10 },
   snake:    { open: false, minimized: false, maximized: false, zIndex: 10 },
   hanoi:    { open: false, minimized: false, maximized: false, zIndex: 10 },
+  tetris:   { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
 // Only defs that get a desktop icon (excludes hideIcon: true entries)
@@ -207,6 +208,7 @@ export function Portfolio2026() {
     games:    <Gamepad2 size={13} />,
     snake:    <Zap size={13} />,
     hanoi:    <HanoiIcon size={13} />,
+  tetris:   <LayoutGrid size={13} />,
   };
 
   const openDesktopMenu = useCallback((e: React.MouseEvent) => {

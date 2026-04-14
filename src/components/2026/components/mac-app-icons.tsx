@@ -368,6 +368,40 @@ function HanoiArt({ s }: { s: number }) {
   );
 }
 
+// Tetris — colourful stacked blocks
+function TetrisArt({ s }: { s: number }) {
+  const p = s * 0.66;
+  // A small arrangement of tetromino-style blocks
+  const blocks: { x: number; y: number; color: string }[] = [
+    // I piece (cyan) — horizontal row near bottom
+    { x: 8,  y: 58, color: "#00E5FF" }, { x: 20, y: 58, color: "#00E5FF" },
+    { x: 32, y: 58, color: "#00E5FF" }, { x: 44, y: 58, color: "#00E5FF" },
+    // O piece (yellow) — 2×2 square
+    { x: 56, y: 46, color: "#FFD600" }, { x: 68, y: 46, color: "#FFD600" },
+    { x: 56, y: 58, color: "#FFD600" }, { x: 68, y: 58, color: "#FFD600" },
+    // T piece (purple)
+    { x: 20, y: 34, color: "#D500F9" }, { x: 32, y: 34, color: "#D500F9" },
+    { x: 44, y: 34, color: "#D500F9" }, { x: 32, y: 46, color: "#D500F9" },
+    // S piece (green)
+    { x: 44, y: 10, color: "#00E676" }, { x: 56, y: 10, color: "#00E676" },
+    { x: 32, y: 22, color: "#00E676" }, { x: 44, y: 22, color: "#00E676" },
+    // L piece (orange)
+    { x: 8,  y: 10, color: "#FF6D00" }, { x: 8, y: 22, color: "#FF6D00" },
+    { x: 8,  y: 34, color: "#FF6D00" }, { x: 20, y: 34, color: "#FF6D00" },
+  ];
+  const bsz = 10;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      {blocks.map((b, i) => (
+        <g key={i}>
+          <rect x={b.x} y={b.y} width={bsz} height={bsz} rx="2" fill={b.color} opacity="0.92" />
+          <rect x={b.x + 1} y={b.y + 1} width={bsz - 2} height={(bsz - 2) * 0.35} rx="1" fill="rgba(255,255,255,0.30)" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 // GitHub — dark squircle with octocat-inspired silhouette
 function GitHubArt({ s }: { s: number }) {
   const p = s * 0.60;
@@ -454,6 +488,12 @@ const ICON_MAP: Record<
     g1: "#D8B4FE",
     g2: "#7C3AED",
     art: (s) => <HanoiArt s={s} />,
+  },
+  tetris: {
+    g1: "#1A1A2E",
+    g2: "#0D0D1A",
+    shadow: "0 3px 14px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 0 1px rgba(0,229,255,0.15)",
+    art: (s) => <TetrisArt s={s} />,
   },
   github: {
     g1: "#484848",

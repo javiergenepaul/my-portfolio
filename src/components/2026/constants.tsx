@@ -13,6 +13,7 @@ import {
   Gamepad2,
   Zap,
   Layers3,
+  LayoutGrid,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -147,7 +148,8 @@ export type WinId =
   | "chat"
   | "games"
   | "snake"
-  | "hanoi";
+  | "hanoi"
+  | "tetris";
 
 export interface WinDef {
   id: WinId;
@@ -249,6 +251,15 @@ export const WIN_DEFS: WinDef[] = [
     icon: <Layers3 size={14} />,
     defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 280), y: 70 }),
     defaultSize: { w: 560, h: 500 },
+    hideIcon: true,
+  },
+  {
+    id: "tetris",
+    title: "Tetris",
+    color: "#00E5FF",
+    icon: <LayoutGrid size={14} />,
+    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 240), y: 60 }),
+    defaultSize: { w: 480, h: 560 },
     hideIcon: true,
   },
 ];

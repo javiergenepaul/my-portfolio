@@ -4,8 +4,9 @@ import type { WinId } from "../constants";
 import { MacAppIcon } from "../components/mac-app-icons";
 
 const GAMES: { id: WinId; name: string; desc: string }[] = [
-  { id: "snake", name: "Snake",           desc: "Classic retro snake game"       },
-  { id: "hanoi", name: "Tower of Hanoi",  desc: "Move all discs from A to C"     },
+  { id: "snake",  name: "Snake",           desc: "Classic retro snake game"       },
+  { id: "hanoi",  name: "Tower of Hanoi",  desc: "Move all discs from A to C"     },
+  { id: "tetris", name: "Tetris",          desc: "Stack & clear falling blocks"   },
 ];
 
 export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {

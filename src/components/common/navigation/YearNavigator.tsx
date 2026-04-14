@@ -54,15 +54,6 @@ export function YearNavigator() {
     setNavigating(false);
   }, [pathname]);
 
-  // ── Keyboard navigation ──────────────────────────────────────────────
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft" && prev) navigate(prev);
-      if (e.key === "ArrowRight" && next) navigate(next);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [prev, next, navigate]);
 
   if (!activeYear) return null;
 

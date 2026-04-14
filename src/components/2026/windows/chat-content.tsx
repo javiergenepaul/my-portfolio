@@ -211,6 +211,16 @@ const KB: KBEntry[] = [
     keys: ["hire", "hiring", "available", "open to work", "freelance", "opportunity", "opportunities", "for hire", "looking for work", "job offer", "collaborate", "consulting"],
     reply: `Yes! GPM is open to new opportunities 🟢\n\nWhether it's full-time, freelance, or consulting — he's interested in impactful projects. Reach out at ${EMAIL_ADDRESS} to start a conversation!`,
   },
+  // Services
+  {
+    keys: ["services", "what services", "what does he offer", "what can he do for me", "offerings", "offer", "service", "what he offers", "hire him for", "what to hire him for", "service offerings"],
+    reply: `GPM offers 3 core services 🛠\n\n⚙️ Backend Development\nScalable server-side systems built with Java · Spring Boot · Spring Security · MySQL · REST APIs · Microservices · Laravel · PHP · Azure · Firebase\n\n🎨 Frontend Development\nPolished, performant UIs with React · Next.js · TypeScript · Tailwind CSS · ShadCN/UI · Framer Motion · Three.js · GSAP · Zustand · Vite · and more\n\n🖼 Design Implementation\nPixel-perfect Figma → React/HTML conversion with meticulous attention to detail — landing pages, interactive UIs, responsive layouts\n\nNeed something built? Reach out at ${EMAIL_ADDRESS}!`,
+  },
+  // Certificates
+  {
+    keys: ["certificate", "certificates", "certification", "certifications", "credential", "credentials", "certified", "courses", "course", "linkedin learning", "udemy", "training", "what courses", "what certifications"],
+    reply: `GPM's certifications 📜\n\n🔷 LinkedIn Learning (Jan 2025)\n• Learning Nuxt.js\n• Building Modern Projects with React\n• Spring Boot 3 Essential Training\n• Microservices Foundations\n• Tailwind CSS 4 Essential Training\n• Agile Software Development: Code Quality\n• Learning Vue.js\n• Learning Next.js\n• Learning TypeScript\n\n🟠 Udemy\n• React - The Complete Guide (Feb 2024)\n• Spring Boot 3, Spring 6 & Hibernate (Dec 2022)\n\n🏢 Lilolele Incorporated\n• Business Communication Certificate (Jul 2024)\n\nHe keeps sharpening his skills — always learning!`,
+  },
   // Projects
   {
     keys: ["projects", "project", "portfolio projects", "what he built", "what he created", "what he developed", "showcase", "sirius", "palette shift", "yooph", "hoobank", "iqmk", "exo portal"],
