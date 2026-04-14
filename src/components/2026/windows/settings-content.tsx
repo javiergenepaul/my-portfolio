@@ -31,7 +31,7 @@ function OptionBtn({
   return (
     <button
       onClick={onClick}
-      className="font-mac flex-1 flex flex-col items-center gap-1.5 py-2.5 px-2 rounded-[9px] text-xs transition-all duration-[140ms] cursor-pointer"
+      className="font-mac flex-1 flex flex-col items-center gap-1.5 py-2.5 px-2 rounded-[9px] text-xs transition-all duration-140 cursor-pointer"
       style={{
         border: `1.5px solid ${active ? `color-mix(in srgb, ${col} 55%, transparent)` : "var(--a26-glass-border)"}`,
         background: active ? `color-mix(in srgb, ${col} 10%, transparent)` : "var(--a26-glass)",
@@ -63,7 +63,7 @@ function ThemePreview({ dark }: { dark: boolean }) {
       style={{ background: dark ? "#141414" : "#D8D8D8" }}
     >
       <div
-        className="h-[10px] flex items-center px-1.5 gap-0.75"
+        className="h-2.5 flex items-center px-1.5 gap-0.75"
         style={{ background: dark ? "rgba(40,40,40,0.95)" : "rgba(210,210,210,0.95)" }}
       >
         {["#FF5F57", "#FFBD2E", "#28C840"].map((c) => (
@@ -72,7 +72,7 @@ function ThemePreview({ dark }: { dark: boolean }) {
       </div>
       <div className="absolute top-4 left-2 right-2 bottom-2 flex gap-1.25">
         <div
-          className="flex-[2] rounded"
+          className="flex-2 rounded"
           style={{
             background: dark ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.80)",
             border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.10)"}`,
@@ -87,7 +87,7 @@ function ThemePreview({ dark }: { dark: boolean }) {
         />
       </div>
       <div
-        className="absolute bottom-1 left-1/2 -translate-x-1/2 h-2 w-[50px] rounded"
+        className="absolute bottom-1 left-1/2 -translate-x-1/2 h-2 w-12.5 rounded"
         style={{ background: dark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.14)" }}
       />
     </div>
@@ -114,7 +114,7 @@ function AppearancePane() {
               <button
                 key={t.id}
                 onClick={() => setTheme(t.id)}
-                className="font-mac flex-1 flex flex-col items-stretch pt-2.5 px-2.5 pb-2 rounded-[11px] cursor-pointer transition-all duration-[140ms]"
+                className="font-mac flex-1 flex flex-col items-stretch pt-2.5 px-2.5 pb-2 rounded-[11px] cursor-pointer transition-all duration-140"
                 style={{
                   border: `2px solid ${active ? "var(--a26-teal)" : "var(--a26-glass-border)"}`,
                   background: active ? "color-mix(in srgb, var(--a26-teal) 6%, transparent)" : "var(--a26-card)",
@@ -126,13 +126,13 @@ function AppearancePane() {
                       className="absolute inset-0 bg-[#F0F0F0]"
                       style={{ clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)" }}
                     >
-                      <div className="h-[10px]" style={{ background: "rgba(210,210,210,0.95)" }} />
+                      <div className="h-2.5" style={{ background: "rgba(210,210,210,0.95)" }} />
                     </div>
                     <div
                       className="absolute inset-0 bg-[#141414]"
                       style={{ clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)" }}
                     >
-                      <div className="h-[10px]" style={{ background: "rgba(40,40,40,0.95)" }} />
+                      <div className="h-2.5" style={{ background: "rgba(40,40,40,0.95)" }} />
                     </div>
                     <div
                       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-[80%]"
@@ -197,7 +197,7 @@ function LanguagePane() {
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
-                className="font-mac flex items-center w-full text-left gap-3 py-[13px] px-4 border-none cursor-pointer transition-colors duration-[120ms]"
+                className="font-mac flex items-center w-full text-left gap-3 py-3.25 px-4 border-none cursor-pointer transition-colors duration-120"
                 style={{
                   borderBottom: i < LANGUAGES.length - 1 ? "1px solid var(--a26-glass-border)" : "none",
                   background: active ? "color-mix(in srgb, var(--a26-teal) 8%, transparent)" : "transparent",
@@ -297,7 +297,7 @@ export function SettingsContent() {
       <button
         key={p.id}
         onClick={() => setPane(p.id)}
-        className="font-mac whitespace-nowrap shrink-0 cursor-pointer transition-all duration-[120ms]"
+        className="font-mac whitespace-nowrap shrink-0 cursor-pointer transition-all duration-120"
         style={{
           display: "flex",
           alignItems: "center",
