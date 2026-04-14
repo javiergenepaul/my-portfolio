@@ -22,7 +22,7 @@ export function SidebarPanel({
   const isMobile = useIsMobile();
   const isCompact = useIsCompact();
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0 }}>
       {/* Profile */}
       <div
         style={{
@@ -225,7 +225,13 @@ export function SidebarPanel({
                 flexDirection: "row",
                 scrollbarWidth: "none",
               }
-            : { padding: isCompact ? "8px 8px" : "14px 10px", flex: 1 }
+            : {
+                padding: isCompact ? "8px 8px" : "14px 10px",
+                flex: 1,
+                overflowY: "auto",
+                minHeight: 0,
+                scrollbarWidth: "none",
+              }
         }
       >
         {NAV_ITEMS.map(({ id, label, num }, i) => {
@@ -341,6 +347,6 @@ export function SidebarPanel({
           <MapPin size={9} /> Cebu, Philippines
         </span>
       </div>
-    </>
+    </div>
   );
 }

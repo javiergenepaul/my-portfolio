@@ -69,7 +69,7 @@ const jsonLd = {
     "Gene Javier",
   ],
   url: `${BASE_URL}/2025`,
-  image: `${BASE_URL}/jav-profile.png`,
+  image: `${BASE_URL}/ghibli-avatar.png`,
   jobTitle: "Full-Stack Software Engineer",
   description: DESCRIPTION,
   address: {

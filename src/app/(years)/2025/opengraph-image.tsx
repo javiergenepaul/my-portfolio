@@ -8,7 +8,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const profileImg = await readFile(join(process.cwd(), "public/jav-profile.png"));
+  const profileImg = await readFile(join(process.cwd(), "public/ghibli-avatar.png"));
   const profileSrc = `data:image/png;base64,${profileImg.toString("base64")}`;
 
   return new ImageResponse(

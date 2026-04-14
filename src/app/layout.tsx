@@ -64,8 +64,8 @@ export const metadata: Metadata = {
     "microservices",
   ],
   icons: {
-    icon: "/jav-profile.png",
-    apple: "/jav-profile.png",
+    icon: "/ghibli-avatar.png",
+    apple: "/ghibli-avatar.png",
   },
   openGraph: {
     type: "website",
@@ -137,7 +137,7 @@ const jsonLdPerson = {
     "Gene Paul Mar Javier",
   ],
   url: BASE_URL,
-  image: `${BASE_URL}/jav-profile.png`,
+  image: `${BASE_URL}/ghibli-avatar.png`,
   jobTitle: "Full-Stack Software Engineer",
   description:
     "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",

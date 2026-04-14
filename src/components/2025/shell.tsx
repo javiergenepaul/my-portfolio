@@ -104,11 +104,11 @@ export function Portfolio2025() {
           >
             {/* Sidebar */}
             <div
-              className="lg:w-64 2xl:w-80 shrink-0 flex flex-col lg:overflow-y-auto"
+              className="lg:w-64 2xl:w-80 shrink-0 flex flex-col"
               style={
                 {
                   backgroundColor: C.sidebar,
-                  scrollbarWidth: "none",
+                  overflow: "hidden",
                 } as React.CSSProperties
               }
             >
