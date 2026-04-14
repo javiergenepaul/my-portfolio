@@ -8,7 +8,7 @@ import { WIN_DEFS } from "./constants";
 import { useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
-import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw } from "lucide-react";
+import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw, Sparkles } from "lucide-react";
 import { MenuBar } from "./components/menu-bar";
 import { DesktopIcon } from "./components/desktop-icon";
 import { AppWindow } from "./components/app-window";
@@ -30,6 +30,7 @@ const INIT_WINS: Record<WinId, WinState> = {
   contact:  { open: false, minimized: false, maximized: false, zIndex: 10 },
   resume:   { open: false, minimized: false, maximized: false, zIndex: 10 },
   settings: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  chat:     { open: true,  minimized: false, maximized: false, zIndex: 22 },
 };
 
 export function Portfolio2026() {
@@ -41,26 +42,34 @@ export function Portfolio2026() {
   const [cmdOpen, setCmdOpen] = useState(false);
   const desktopRef = useRef<HTMLElement>(null);
   const CELL_W = 96;
-  const CELL_H = 100;
+  const CELL_H = 96;
 
   const snapToGrid = (x: number, y: number) => ({
     x: Math.round(x / CELL_W) * CELL_W,
     y: Math.round(y / CELL_H) * CELL_H,
   });
 
-  const [iconPositions, setIconPositions] = useState<Record<WinId, { x: number; y: number }>>(() =>
-    Object.fromEntries(
-      WIN_DEFS.map((def, i) => [def.id, { x: 1344, y: i * 100 }])
-    ) as Record<WinId, { x: number; y: number }>
+  // 4-column × 2-row grid along the right edge
+  const calcIconGrid = (vw: number) => {
+    const colBase = Math.round((vw - CELL_W) / CELL_W) * CELL_W; // rightmost snap column
+    const COLS = 2;
+    return Object.fromEntries(
+      WIN_DEFS.map((def, i) => ({
+        key: def.id,
+        value: {
+          x: colBase - (i % COLS) * CELL_W,
+          y: Math.floor(i / COLS) * CELL_H,
+        },
+      })).map(({ key, value }) => [key, value])
+    ) as Record<WinId, { x: number; y: number }>;
+  };
+
+  const [iconPositions, setIconPositions] = useState<Record<WinId, { x: number; y: number }>>(
+    () => calcIconGrid(1440)
   );
 
   useEffect(() => {
-    const snappedX = Math.round((window.innerWidth - 104) / CELL_W) * CELL_W;
-    setIconPositions(
-      Object.fromEntries(
-        WIN_DEFS.map((def, i) => [def.id, { x: snappedX, y: i * CELL_H }])
-      ) as Record<WinId, { x: number; y: number }>
-    );
+    setIconPositions(calcIconGrid(window.innerWidth));
   }, []);
 
   const updateIconPos = useCallback((id: WinId, rawX: number, rawY: number) => {
@@ -169,13 +178,10 @@ export function Portfolio2026() {
     });
   }, [topZ]);
 
-  const defaultIconPositions = useCallback(() => {
-    const snappedX = Math.round((window.innerWidth - 104) / CELL_W) * CELL_W;
-    return Object.fromEntries(
-      WIN_DEFS.map((def, i) => [def.id, { x: snappedX, y: i * CELL_H }])
-    ) as Record<WinId, { x: number; y: number }>;
+  const defaultIconPositions = useCallback(
+    () => calcIconGrid(window.innerWidth),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  []);
 
   const arrangeIcons = useCallback(() => setIconPositions(defaultIconPositions()), [defaultIconPositions]);
   const resetIconPos = useCallback((id: WinId) => {
@@ -191,6 +197,7 @@ export function Portfolio2026() {
     contact:  <Mail size={13} />,
     resume:   <FileText size={13} />,
     settings: <Settings2 size={13} />,
+    chat:     <Sparkles size={13} />,
   };
 
   const openDesktopMenu = useCallback((e: React.MouseEvent) => {

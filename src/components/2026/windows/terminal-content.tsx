@@ -22,7 +22,7 @@ interface TermEntry {
 const CMDS: Record<string, () => string[]> = {
   help: () => [
     "┌─ Available Commands ────────────────────────────────┐",
-    "│  whoami           personal info                     │",
+    "│  gpm              personal info                     │",
     "│  ls               list recent projects              │",
     "│  cat skills.json  print full tech stack             │",
     "│  open <app>       about / projects / skills /       │",
@@ -33,13 +33,13 @@ const CMDS: Record<string, () => string[]> = {
     "└─────────────────────────────────────────────────────┘",
     "",
   ],
-  whoami: () => [
+  gpm: () => [
     `  Name     ${FULL_NAME}`,
     `  Role     ${JOB_TITLE}`,
     "  Location Cebu, Philippines",
     `  Email    ${EMAIL_ADDRESS}`,
     "  GitHub   github.com/javiergenepaul",
-    "  Status   ● Open to opportunities",
+    "  Status   ● Building cool stuff, one commit at a time",
     "",
   ],
   ls: () => {
@@ -122,7 +122,7 @@ export function TerminalContent({
         `   ╚═════╝ ╚═╝     ╚═╝     ╚═╝`,
         "",
         `  Portfolio Terminal  v2026.0.0`,
-        `  Connected as visitor  ·  ${FULL_NAME}`,
+        `  Connected as gpm  ·  ${FULL_NAME}`,
         `  Type 'help' for available commands`,
         "",
       ],
@@ -255,7 +255,7 @@ export function TerminalContent({
         <div className="flex items-center gap-3">
           <span className="text-a26-green text-[11px]">● connected</span>
           <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.30)" }}>
-            visitor@portfolio:~/
+            gpm@portfolio:~/
           </span>
         </div>
         <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.20)" }}>

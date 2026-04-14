@@ -9,6 +9,7 @@ import {
   User,
   FileText,
   SlidersHorizontal,
+  Sparkles,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -139,7 +140,8 @@ export type WinId =
   | "skills"
   | "contact"
   | "resume"
-  | "settings";
+  | "settings"
+  | "chat";
 
 export interface WinDef {
   id: WinId;
@@ -206,6 +208,14 @@ export const WIN_DEFS: WinDef[] = [
     icon: <SlidersHorizontal size={14} />,
     defaultPos: { x: 200, y: 90 },
     defaultSize: { w: 680, h: 520 },
+  },
+  {
+    id: "chat",
+    title: "Chat GPM",
+    color: "#A855F7",
+    icon: <Sparkles size={14} />,
+    defaultPos: (vw: number) => ({ x: vw - 620, y: 510 }),
+    defaultSize: { w: 520, h: 500 },
   },
 ];
 

@@ -255,6 +255,30 @@ function SettingsArt({ s }: { s: number }) {
   );
 }
 
+// Chat GPM — purple chat bubble with sparkle star
+function ChatArt({ s }: { s: number }) {
+  const p = s * 0.62;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      {/* Main bubble */}
+      <rect x="7" y="8" width="58" height="43" rx="13" fill="white" opacity="0.95" />
+      {/* Bubble tail */}
+      <path d="M 17 51 L 11 67 L 33 55" fill="white" opacity="0.95" />
+      {/* 4-point sparkle star */}
+      <path
+        d="M 36 17 L 38.8 25.2 L 47 28 L 38.8 30.8 L 36 39 L 33.2 30.8 L 25 28 L 33.2 25.2 Z"
+        fill="rgba(139,92,246,0.82)"
+      />
+      {/* Small accent dots */}
+      <circle cx="16" cy="35" r="3.2" fill="rgba(139,92,246,0.38)" />
+      <circle cx="56" cy="35" r="3.2" fill="rgba(139,92,246,0.38)" />
+      {/* Top-right sparkle pip */}
+      <circle cx="61" cy="12" r="2.4" fill="rgba(255,255,255,0.75)" />
+      <circle cx="68" cy="8" r="1.5" fill="rgba(255,255,255,0.50)" />
+    </svg>
+  );
+}
+
 // GitHub — dark squircle with octocat-inspired silhouette
 function GitHubArt({ s }: { s: number }) {
   const p = s * 0.60;
@@ -321,6 +345,11 @@ const ICON_MAP: Record<
     g1: "#8E9EBA",
     g2: "#5A6880",
     art: (s) => <SettingsArt s={s} />,
+  },
+  chat: {
+    g1: "#C084FC",
+    g2: "#7C3AED",
+    art: (s) => <ChatArt s={s} />,
   },
   github: {
     g1: "#484848",

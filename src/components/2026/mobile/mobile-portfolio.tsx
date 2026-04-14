@@ -19,6 +19,7 @@ import { SkillsContent } from "../windows/skills-content";
 import { ContactContent } from "../windows/contact-content";
 import { ResumeContent } from "../windows/resume-content";
 import { SettingsContent } from "../windows/settings-content";
+import { ChatContent } from "../windows/chat-content";
 
 export function MobilePortfolio() {
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
@@ -246,6 +247,7 @@ export function MobilePortfolio() {
               {activeApp === "contact"  && <ContactContent />}
               {activeApp === "resume"   && <ResumeContent />}
               {activeApp === "settings" && <SettingsContent />}
+              {activeApp === "chat"     && <ChatContent />}
             </div>
           </motion.div>
         )}
