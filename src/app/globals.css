@@ -36,6 +36,31 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
+  /* ── 2026 Aurora — solid accent colors (light/dark values in @layer base) ── */
+  --color-a26-teal: var(--a26-teal);
+  --color-a26-violet: var(--a26-violet);
+  --color-a26-green: var(--a26-green);
+  --color-a26-blue: var(--a26-blue);
+  --color-a26-text: var(--a26-text);
+  --color-a26-mid: var(--a26-text-mid);
+  --color-a26-muted: var(--a26-text-muted);
+  /* surface/glass tokens — used as bg-[var(--a26-*)] arbitrary values */
+  --color-a26-window: var(--a26-window);
+  --color-a26-window-border: var(--a26-window-border);
+  --color-a26-title-bar: var(--a26-title-bar);
+  --color-a26-title-border: var(--a26-title-border);
+  --color-a26-menu-bar: var(--a26-menu-bar);
+  --color-a26-menu-border: var(--a26-menu-border);
+  --color-a26-dock: var(--a26-dock);
+  --color-a26-dock-border: var(--a26-dock-border);
+  --color-a26-sidebar: var(--a26-sidebar);
+  --color-a26-glass: var(--a26-glass);
+  --color-a26-glass-border: var(--a26-glass-border);
+  --color-a26-card: var(--a26-card);
+  --color-a26-card-border: var(--a26-card-border);
+  --color-a26-input-bg: var(--a26-input-bg);
+  --color-a26-term-bg: var(--a26-term-bg);
+
   /* Palette accent colors */
   --color-azure: #3b82f6;
   --color-emerald: #22c55e;
@@ -54,6 +79,8 @@
   --font-inter: var(--font-inter-variable), sans-serif;
   --font-poppins: var(--font-poppins-variable), sans-serif;
   --font-work-sans: var(--font-work-sans-variable), sans-serif;
+  /* 2026 macOS-style system font stack */
+  --font-mac: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
 
   /* Accordion animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -393,6 +420,58 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+  }
+
+  /* ── 2026 Aurora — light mode ─────────────────────────────────────────── */
+  :root {
+    --a26-teal: #0D9488;
+    --a26-violet: #7C3AED;
+    --a26-green: #16A34A;
+    --a26-blue: #2563EB;
+    --a26-text: #111827;
+    --a26-text-mid: #6B7280;
+    --a26-text-muted: #9CA3AF;
+    --a26-window: rgba(250, 250, 250, 0.97);
+    --a26-window-border: rgba(0, 0, 0, 0.10);
+    --a26-title-bar: rgba(220, 220, 220, 0.92);
+    --a26-title-border: rgba(0, 0, 0, 0.07);
+    --a26-menu-bar: rgba(232, 232, 232, 0.90);
+    --a26-menu-border: rgba(0, 0, 0, 0.10);
+    --a26-dock: rgba(200, 200, 200, 0.82);
+    --a26-dock-border: rgba(0, 0, 0, 0.15);
+    --a26-sidebar: rgba(0, 0, 0, 0.03);
+    --a26-glass: rgba(0, 0, 0, 0.04);
+    --a26-glass-border: rgba(0, 0, 0, 0.09);
+    --a26-card: rgba(0, 0, 0, 0.03);
+    --a26-card-border: rgba(0, 0, 0, 0.08);
+    --a26-input-bg: rgba(0, 0, 0, 0.05);
+    --a26-term-bg: #0A0A0A;
+  }
+
+  /* ── 2026 Aurora — dark mode ───────────────────────────────────────────── */
+  .dark {
+    --a26-teal: #2DD4BF;
+    --a26-violet: #A78BFA;
+    --a26-green: #4ADE80;
+    --a26-blue: #60A5FA;
+    --a26-text: #F0F2F5;
+    --a26-text-mid: #9BA3AF;
+    --a26-text-muted: #4B5563;
+    --a26-window: rgba(28, 28, 28, 0.93);
+    --a26-window-border: rgba(255, 255, 255, 0.09);
+    --a26-title-bar: rgba(44, 44, 44, 0.72);
+    --a26-title-border: rgba(255, 255, 255, 0.07);
+    --a26-menu-bar: rgba(20, 20, 20, 0.86);
+    --a26-menu-border: rgba(255, 255, 255, 0.06);
+    --a26-dock: rgba(30, 30, 30, 0.74);
+    --a26-dock-border: rgba(255, 255, 255, 0.10);
+    --a26-sidebar: rgba(255, 255, 255, 0.018);
+    --a26-glass: rgba(255, 255, 255, 0.048);
+    --a26-glass-border: rgba(255, 255, 255, 0.08);
+    --a26-card: rgba(255, 255, 255, 0.032);
+    --a26-card-border: rgba(255, 255, 255, 0.07);
+    --a26-input-bg: rgba(255, 255, 255, 0.06);
+    --a26-term-bg: #0A0A0A;
   }
 
   * {

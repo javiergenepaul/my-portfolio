@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, GithubIcon, LinkedinIcon, Mail } from "lucide-react";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import { EMAIL_ADDRESS } from "@/config";
-import { MAC_FONT, WIN_DEFS } from "../constants";
-import { useAurora } from "../use-aurora";
+import { WIN_DEFS } from "../constants";
 import type { WinId } from "../constants";
 
 export function CommandPalette({
@@ -18,7 +17,6 @@ export function CommandPalette({
   onClose: () => void;
   onOpen: (id: WinId) => void;
 }) {
-  const A = useAurora();
   const [q, setQ] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -38,7 +36,7 @@ export function CommandPalette({
     {
       label: "View GitHub",
       icon: <GithubIcon size={13} />,
-      color: A.text,
+      color: "var(--a26-text)",
       action: () => window.open(GITHUB_URL, "_blank"),
     },
     {
@@ -50,7 +48,7 @@ export function CommandPalette({
     {
       label: "Send Email",
       icon: <Mail size={13} />,
-      color: A.teal,
+      color: "var(--a26-teal)",
       action: () => window.open(`mailto:${EMAIL_ADDRESS}`, "_blank"),
     },
   ];
@@ -68,13 +66,8 @@ export function CommandPalette({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 9500,
-              background: "rgba(0,0,0,0.55)",
-              backdropFilter: "blur(4px)",
-            }}
+            className="fixed inset-0 z-9500 backdrop-blur-xs"
+            style={{ background: "rgba(0,0,0,0.55)" }}
           />
           <motion.div
             key="pl"
@@ -82,111 +75,39 @@ export function CommandPalette({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.17 }}
-            style={{
-              position: "fixed",
-              top: "18%",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "min(540px,calc(100vw-32px))",
-              background: A.window,
-              border: `1px solid ${A.windowBorder}`,
-              borderRadius: 13,
-              overflow: "hidden",
-              zIndex: 9501,
-              boxShadow: "0 28px 64px rgba(0,0,0,0.78)",
-              fontFamily: MAC_FONT,
-            }}
+            className="font-mac bg-a26-window border border-a26-window-border overflow-hidden fixed top-[18%] left-1/2 -translate-x-1/2 w-[min(540px,calc(100vw-32px))] rounded-[13px] z-9501"
+            style={{ boxShadow: "0 28px 64px rgba(0,0,0,0.78)" }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 9,
-                padding: "11px 14px",
-                borderBottom: `1px solid ${A.glassBorder}`,
-              }}
-            >
-              <Search size={14} color={A.textMuted} />
+            <div className="flex items-center border-b border-a26-glass-border gap-2.25 py-2.75 px-3.5">
+              <Search size={14} color="var(--a26-text-muted)" />
               <input
                 ref={inputRef}
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 onKeyDown={(e) => e.key === "Escape" && onClose()}
                 placeholder="Search commands..."
-                style={{
-                  flex: 1,
-                  background: "none",
-                  border: "none",
-                  outline: "none",
-                  color: A.text,
-                  fontSize: 14,
-                  fontFamily: MAC_FONT,
-                }}
+                className="flex-1 bg-transparent border-none outline-none text-a26-text font-mac text-sm"
                 aria-label="Command search"
               />
-              <kbd
-                style={{
-                  fontSize: 10,
-                  color: A.textMuted,
-                  background: A.glass,
-                  border: `1px solid ${A.glassBorder}`,
-                  borderRadius: 4,
-                  padding: "1px 5px",
-                }}
-              >
+              <kbd className="text-a26-muted bg-a26-glass border border-a26-glass-border text-[10px] rounded py-px px-1.25">
                 ESC
               </kbd>
             </div>
-            <div
-              style={{
-                padding: "5px 6px 6px",
-                maxHeight: 300,
-                overflowY: "auto",
-                scrollbarWidth: "none",
-              }}
-            >
+            <div className="py-1.25 px-1.5 pb-1.5 max-h-75 overflow-y-auto [scrollbar-width:none]">
               {filtered.map((item, i) => (
                 <button
                   key={i}
-                  onClick={() => {
-                    item.action();
-                    onClose();
-                  }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 9,
-                    width: "100%",
-                    padding: "8px 9px",
-                    borderRadius: 7,
-                    border: "none",
-                    background: "transparent",
-                    color: A.text,
-                    fontSize: 13,
-                    cursor: "pointer",
-                    textAlign: "left",
-                    transition: "background 0.1s",
-                    fontFamily: MAC_FONT,
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = A.glass)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = "transparent")
-                  }
+                  onClick={() => { item.action(); onClose(); }}
+                  className="flex items-center w-full text-left font-mac text-a26-text gap-2.25 py-2 px-2.25 rounded-[7px] border-none bg-transparent text-[13px] cursor-pointer transition-[background] duration-100"
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--a26-glass)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   <span style={{ color: item.color }}>{item.icon}</span>
                   {item.label}
                 </button>
               ))}
               {!filtered.length && (
-                <div
-                  style={{
-                    padding: "14px 9px",
-                    color: A.textMuted,
-                    fontSize: 13,
-                  }}
-                >
+                <div className="text-a26-muted py-3.5 px-2.25 text-[13px]">
                   No results found.
                 </div>
               )}

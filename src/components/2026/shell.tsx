@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence } from "framer-motion";
 import { useLocaleRefresh } from "@/i18n";
-import { MAC_FONT, WIN_DEFS } from "./constants";
-import { useAurora, useIsDark } from "./use-aurora";
+import { WIN_DEFS } from "./constants";
+import { useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
 import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw } from "lucide-react";
@@ -23,25 +23,23 @@ const LiveWallpaper = dynamic(
 );
 
 const INIT_WINS: Record<WinId, WinState> = {
-  about: { open: true, minimized: false, maximized: false, zIndex: 20 },
+  about:    { open: true,  minimized: false, maximized: false, zIndex: 20 },
   projects: { open: false, minimized: false, maximized: false, zIndex: 10 },
-  terminal: { open: true, minimized: false, maximized: false, zIndex: 21 },
-  skills: { open: false, minimized: false, maximized: false, zIndex: 10 },
-  contact: { open: false, minimized: false, maximized: false, zIndex: 10 },
-  resume: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  terminal: { open: true,  minimized: false, maximized: false, zIndex: 21 },
+  skills:   { open: false, minimized: false, maximized: false, zIndex: 10 },
+  contact:  { open: false, minimized: false, maximized: false, zIndex: 10 },
+  resume:   { open: false, minimized: false, maximized: false, zIndex: 10 },
   settings: { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
 export function Portfolio2026() {
   useLocaleRefresh();
-  const A = useAurora();
   const isDark = useIsDark();
   const isMobile = useIsMobile();
   const [wins, setWins] = useState<Record<WinId, WinState>>(INIT_WINS);
   const [topZ, setTopZ] = useState(30);
   const [cmdOpen, setCmdOpen] = useState(false);
   const desktopRef = useRef<HTMLElement>(null);
-  // Grid cell size for icon snapping
   const CELL_W = 96;
   const CELL_H = 100;
 
@@ -50,15 +48,12 @@ export function Portfolio2026() {
     y: Math.round(y / CELL_H) * CELL_H,
   });
 
-  // Use a fixed SSR-safe constant so server and client first-render agree.
-  // A useEffect below corrects the x position to the actual window width after mount.
   const [iconPositions, setIconPositions] = useState<Record<WinId, { x: number; y: number }>>(() =>
     Object.fromEntries(
       WIN_DEFS.map((def, i) => [def.id, { x: 1344, y: i * 100 }])
     ) as Record<WinId, { x: number; y: number }>
   );
 
-  // Snap icons to the right column after mount when we know the real viewport width
   useEffect(() => {
     const snappedX = Math.round((window.innerWidth - 104) / CELL_W) * CELL_W;
     setIconPositions(
@@ -71,20 +66,11 @@ export function Portfolio2026() {
   const updateIconPos = useCallback((id: WinId, rawX: number, rawY: number) => {
     setIconPositions((prev) => {
       const snapped = snapToGrid(rawX, rawY);
-
-      // Positions of all other icons (snapped) for overlap detection
       const others = (Object.entries(prev) as [WinId, { x: number; y: number }][])
         .filter(([k]) => k !== id)
         .map(([, p]) => snapToGrid(p.x, p.y));
-
-      const isFree = (sx: number, sy: number) =>
-        !others.some((o) => o.x === sx && o.y === sy);
-
-      if (isFree(snapped.x, snapped.y)) {
-        return { ...prev, [id]: snapped };
-      }
-
-      // BFS: find nearest free grid cell to the snapped position
+      const isFree = (sx: number, sy: number) => !others.some((o) => o.x === sx && o.y === sy);
+      if (isFree(snapped.x, snapped.y)) return { ...prev, [id]: snapped };
       const visited = new Set<string>();
       const queue = [snapped];
       while (queue.length) {
@@ -101,7 +87,6 @@ export function Portfolio2026() {
           { x: cell.x, y: cell.y - CELL_H },
         );
       }
-
       return { ...prev, [id]: snapped };
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,19 +98,13 @@ export function Portfolio2026() {
     (id: WinId) => {
       const z = topZ + 1;
       setTopZ(z);
-      setWins((w) => ({
-        ...w,
-        [id]: { ...w[id], open: true, minimized: false, zIndex: z },
-      }));
+      setWins((w) => ({ ...w, [id]: { ...w[id], open: true, minimized: false, zIndex: z } }));
     },
     [topZ],
   );
 
   const closeWin = (id: WinId) =>
-    setWins((w) => ({
-      ...w,
-      [id]: { ...w[id], open: false, minimized: false },
-    }));
+    setWins((w) => ({ ...w, [id]: { ...w[id], open: false, minimized: false } }));
   const minimizeWin = (id: WinId) =>
     setWins((w) => ({ ...w, [id]: { ...w[id], minimized: true } }));
   const maximizeWin = (id: WinId) =>
@@ -143,9 +122,7 @@ export function Portfolio2026() {
   const closeAll = () =>
     setWins((w) => {
       const next = { ...w };
-      (Object.keys(next) as WinId[]).forEach(
-        (id) => (next[id] = { ...next[id], open: false, minimized: false }),
-      );
+      (Object.keys(next) as WinId[]).forEach((id) => (next[id] = { ...next[id], open: false, minimized: false }));
       return next;
     });
 
@@ -182,22 +159,19 @@ export function Portfolio2026() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const arrangeIcons = useCallback(() => {
-    setIconPositions(defaultIconPositions());
-  }, [defaultIconPositions]);
-
+  const arrangeIcons = useCallback(() => setIconPositions(defaultIconPositions()), [defaultIconPositions]);
   const resetIconPos = useCallback((id: WinId) => {
     const positions = defaultIconPositions();
     setIconPositions((prev) => ({ ...prev, [id]: positions[id] }));
   }, [defaultIconPositions]);
 
   const WIN_ICONS: Record<WinId, React.ReactNode> = {
-    about: <User size={13} />,
+    about:    <User size={13} />,
     projects: <FolderGit2 size={13} />,
     terminal: <Terminal size={13} />,
-    skills: <Layers size={13} />,
-    contact: <Mail size={13} />,
-    resume: <FileText size={13} />,
+    skills:   <Layers size={13} />,
+    contact:  <Mail size={13} />,
+    resume:   <FileText size={13} />,
     settings: <Settings2 size={13} />,
   };
 
@@ -213,12 +187,7 @@ export function Portfolio2026() {
         disabled: wins[def.id].open && !wins[def.id].minimized,
       })),
       { type: "separator" },
-      {
-        type: "item",
-        label: "Arrange Icons",
-        icon: <Grid2x2 size={13} />,
-        action: arrangeIcons,
-      },
+      { type: "item", label: "Arrange Icons", icon: <Grid2x2 size={13} />, action: arrangeIcons },
     ];
     setCtxMenu({ x: e.clientX, y: e.clientY, items });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -235,12 +204,7 @@ export function Portfolio2026() {
         disabled: wins[id].open && !wins[id].minimized,
       },
       { type: "separator" },
-      {
-        type: "item",
-        label: "Reset Position",
-        icon: <RefreshCcw size={13} />,
-        action: () => resetIconPos(id),
-      },
+      { type: "item", label: "Reset Position", icon: <RefreshCcw size={13} />, action: () => resetIconPos(id) },
     ];
     setCtxMenu({ x: e.clientX, y: e.clientY, items });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -250,22 +214,9 @@ export function Portfolio2026() {
     const h = (e: KeyboardEvent) => {
       const mod = e.metaKey || e.ctrlKey;
       if (!mod) return;
-
-      if (e.key === "k") {
-        e.preventDefault();
-        setCmdOpen((v) => !v);
-        return;
-      }
-
-      // ⌘1–6 → open corresponding window
+      if (e.key === "k") { e.preventDefault(); setCmdOpen((v) => !v); return; }
       const idx = parseInt(e.key, 10);
-      if (idx >= 1 && idx <= WIN_DEFS.length) {
-        e.preventDefault();
-        openWin(WIN_DEFS[idx - 1].id);
-        return;
-      }
-
-      // ⌘T → Terminal, ⌘R → Resume, ⌘M → Minimize all
+      if (idx >= 1 && idx <= WIN_DEFS.length) { e.preventDefault(); openWin(WIN_DEFS[idx - 1].id); return; }
       if (e.key === "t") { e.preventDefault(); openWin("terminal"); }
       if (e.key === "r") { e.preventDefault(); openWin("resume"); }
       if (e.key === "m") { e.preventDefault(); minimizeAll(); }
@@ -274,18 +225,14 @@ export function Portfolio2026() {
     return () => window.removeEventListener("keydown", h);
   }, [openWin]);
 
-  // Ctrl+` — cycle through open windows (browser-safe, no OS conflict)
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (!e.ctrlKey || e.key !== "`") return;
       e.preventDefault();
-
       const visible = WIN_DEFS
         .filter((def) => wins[def.id].open && !wins[def.id].minimized)
         .sort((a, b) => wins[b.id].zIndex - wins[a.id].zIndex);
-
       if (visible.length < 2) return;
-
       const next = e.shiftKey ? visible[visible.length - 1] : visible[1];
       focusWin(next.id);
     };
@@ -295,26 +242,20 @@ export function Portfolio2026() {
 
   if (isMobile) return <MobilePortfolio />;
 
-  const desktopIcons = WIN_DEFS;
-
   return (
     <>
       <a
         href="#desktop"
+        className="font-mac text-[#05090E] font-semibold no-underline bg-a26-teal"
         style={{
           position: "fixed",
           top: -40,
           left: 16,
           zIndex: 99999,
-          background: A.teal,
-          color: "#05090E",
           borderRadius: 6,
           padding: "5px 12px",
           fontSize: 13,
-          fontWeight: 600,
-          textDecoration: "none",
           transition: "top 0.15s",
-          fontFamily: MAC_FONT,
         }}
         onFocus={(e) => (e.currentTarget.style.top = "34px")}
         onBlur={(e) => (e.currentTarget.style.top = "-40px")}
@@ -336,14 +277,8 @@ export function Portfolio2026() {
       )}
 
       <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          width: "100vw",
-          height: "100dvh",
-          overflow: "hidden",
-          fontFamily: MAC_FONT,
-        }}
+        className="font-mac relative overflow-hidden"
+        style={{ zIndex: 1, width: "100vw", height: "100dvh" }}
       >
         <MenuBar
           onCmdK={() => setCmdOpen(true)}
@@ -361,8 +296,7 @@ export function Portfolio2026() {
           onContextMenu={openDesktopMenu}
           style={{ position: "absolute", inset: 0, top: 28 }}
         >
-          {/* Desktop icons — draggable */}
-          {desktopIcons.map((def) => (
+          {WIN_DEFS.map((def) => (
             <DesktopIcon
               key={def.id}
               id={def.id}
@@ -378,7 +312,6 @@ export function Portfolio2026() {
             />
           ))}
 
-          {/* Windows */}
           <AnimatePresence>
             {WIN_DEFS.map((def) => (
               <AppWindow
@@ -396,11 +329,7 @@ export function Portfolio2026() {
         </main>
 
         <Dock windows={wins} onOpen={openWin} onRestore={restoreWin} />
-        <CommandPalette
-          open={cmdOpen}
-          onClose={() => setCmdOpen(false)}
-          onOpen={openWin}
-        />
+        <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} onOpen={openWin} />
         {ctxMenu && (
           <ContextMenu
             x={ctxMenu.x}

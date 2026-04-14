@@ -5,15 +5,12 @@ import { Sun, Moon, Monitor, Globe, Clock, Check, Palette } from "lucide-react";
 import { useSettingsStore } from "@/stores";
 import { useLanguageStore } from "@/stores";
 import type { Theme } from "@/stores";
-import { MAC_FONT } from "../constants";
-import { useAurora } from "../use-aurora";
 import { useIsMobile } from "../hooks";
-import { hexRgb } from "../utils";
 import { use2026Settings } from "../settings-store";
 import type { TimeFormat } from "../settings-store";
 import { translate, useLocaleRefresh } from "@/i18n";
 
-// ── Sidebar item ─────────────────────────────────────────────────────────────
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 type PaneId = "appearance" | "language" | "datetime";
 
@@ -30,24 +27,19 @@ function OptionBtn({
   children: React.ReactNode;
   accent?: string;
 }) {
-  const A = useAurora();
-  const col = accent ?? A.teal;
+  const col = accent ?? "var(--a26-teal)";
   return (
     <button
       onClick={onClick}
+      className="font-mac flex-1 flex flex-col items-center"
       style={{
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         gap: 6,
         padding: "10px 8px",
         borderRadius: 9,
         cursor: "pointer",
-        border: `1.5px solid ${active ? `rgba(${hexRgb(col)},0.55)` : A.glassBorder}`,
-        background: active ? `rgba(${hexRgb(col)},0.10)` : A.glass,
-        color: active ? col : A.textMid,
-        fontFamily: MAC_FONT,
+        border: `1.5px solid ${active ? `color-mix(in srgb, ${col} 55%, transparent)` : "var(--a26-glass-border)"}`,
+        background: active ? `color-mix(in srgb, ${col} 10%, transparent)` : "var(--a26-glass)",
+        color: active ? col : "var(--a26-text-mid)",
         fontSize: 12,
         fontWeight: active ? 600 : 400,
         transition: "all 0.14s",
@@ -61,15 +53,14 @@ function OptionBtn({
 // ── Section label ─────────────────────────────────────────────────────────────
 
 function SLabel({ children }: { children: React.ReactNode }) {
-  const A = useAurora();
   return (
     <div
+      className="text-a26-muted"
       style={{
         fontSize: 10,
         fontWeight: 700,
         letterSpacing: "0.08em",
         textTransform: "uppercase",
-        color: A.textMuted,
         marginBottom: 10,
       }}
     >
@@ -80,7 +71,6 @@ function SLabel({ children }: { children: React.ReactNode }) {
 
 // ── Appearance pane ───────────────────────────────────────────────────────────
 
-// Mini macOS desktop thumbnail
 function ThemePreview({ dark }: { dark: boolean }) {
   return (
     <div
@@ -95,7 +85,6 @@ function ThemePreview({ dark }: { dark: boolean }) {
         flexShrink: 0,
       }}
     >
-      {/* Menu bar */}
       <div
         style={{
           height: 10,
@@ -110,12 +99,10 @@ function ThemePreview({ dark }: { dark: boolean }) {
           <div key={c} style={{ width: 4, height: 4, borderRadius: "50%", background: c }} />
         ))}
       </div>
-      {/* Windows */}
       <div style={{ position: "absolute", top: 16, left: 8, right: 8, bottom: 8, display: "flex", gap: 5 }}>
         <div style={{ flex: 2, borderRadius: 4, background: dark ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.80)", border: `1px solid ${dark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.10)"}` }} />
         <div style={{ flex: 1, borderRadius: 4, background: dark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.70)", border: `1px solid ${dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)"}` }} />
       </div>
-      {/* Dock */}
       <div
         style={{
           position: "absolute",
@@ -133,7 +120,6 @@ function ThemePreview({ dark }: { dark: boolean }) {
 }
 
 function AppearancePane() {
-  const A = useAurora();
   const { theme, setTheme } = useSettingsStore();
 
   const themes: { id: Theme; label: string; icon: React.ReactNode; dark: boolean | null }[] = [
@@ -143,42 +129,28 @@ function AppearancePane() {
   ];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+    <div className="flex flex-col" style={{ gap: 20 }}>
       <div>
         <SLabel>{translate("settings.theme.theme")}</SLabel>
-        <div style={{ display: "flex", gap: 10 }}>
+        <div className="flex" style={{ gap: 10 }}>
           {themes.map((t) => {
             const active = theme === t.id;
             return (
               <button
                 key={t.id}
                 onClick={() => setTheme(t.id)}
+                className="font-mac flex-1 flex flex-col items-stretch"
                 style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "stretch",
                   padding: "10px 10px 8px",
                   borderRadius: 11,
-                  border: `2px solid ${active ? A.teal : A.glassBorder}`,
-                  background: active ? `rgba(${hexRgb(A.teal)},0.06)` : A.card,
+                  border: `2px solid ${active ? "var(--a26-teal)" : "var(--a26-glass-border)"}`,
+                  background: active ? "color-mix(in srgb, var(--a26-teal) 6%, transparent)" : "var(--a26-card)",
                   cursor: "pointer",
-                  fontFamily: MAC_FONT,
                   transition: "all 0.14s",
                 }}
               >
                 {t.dark === null ? (
-                  // Auto — split preview
-                  <div
-                    style={{
-                      width: "100%",
-                      height: 64,
-                      borderRadius: 7,
-                      overflow: "hidden",
-                      marginBottom: 8,
-                      position: "relative",
-                    }}
-                  >
+                  <div style={{ width: "100%", height: 64, borderRadius: 7, overflow: "hidden", marginBottom: 8, position: "relative" }}>
                     <div style={{ position: "absolute", inset: 0, clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)", background: "#F0F0F0" }}>
                       <div style={{ height: 10, background: "rgba(210,210,210,0.95)" }} />
                     </div>
@@ -190,14 +162,14 @@ function AppearancePane() {
                 ) : (
                   <ThemePreview dark={t.dark} />
                 )}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                    <span style={{ color: active ? A.teal : A.textMuted }}>{t.icon}</span>
-                    <span style={{ fontSize: 12, fontWeight: active ? 600 : 400, color: active ? A.text : A.textMid }}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center" style={{ gap: 5 }}>
+                    <span style={{ color: active ? "var(--a26-teal)" : "var(--a26-text-muted)" }}>{t.icon}</span>
+                    <span style={{ fontSize: 12, fontWeight: active ? 600 : 400, color: active ? "var(--a26-text)" : "var(--a26-text-mid)" }}>
                       {t.label}
                     </span>
                   </div>
-                  {active && <Check size={12} color={A.teal} strokeWidth={2.5} />}
+                  {active && <Check size={12} color="var(--a26-teal)" strokeWidth={2.5} />}
                 </div>
               </button>
             );
@@ -208,19 +180,12 @@ function AppearancePane() {
       <div>
         <SLabel>About</SLabel>
         <div
-          style={{
-            background: A.card,
-            border: `1px solid ${A.cardBorder}`,
-            borderRadius: 10,
-            padding: "12px 14px",
-            display: "flex",
-            gap: 10,
-            alignItems: "flex-start",
-          }}
+          className="bg-a26-card border border-a26-card-border flex items-start"
+          style={{ borderRadius: 10, padding: "12px 14px", gap: 10 }}
         >
-          <Palette size={14} color={A.teal} style={{ flexShrink: 0, marginTop: 1 }} />
-          <p style={{ margin: 0, fontSize: 12, color: A.textMid, lineHeight: 1.65 }}>
-            <em style={{ color: A.teal, fontStyle: "normal", fontWeight: 600 }}>Auto</em> follows your system setting.
+          <Palette size={14} color="var(--a26-teal)" style={{ flexShrink: 0, marginTop: 1 }} />
+          <p className="text-a26-mid" style={{ margin: 0, fontSize: 12, lineHeight: 1.65 }}>
+            <em className="text-a26-teal" style={{ fontStyle: "normal", fontWeight: 600 }}>Auto</em> follows your system setting.
             This preference applies across all portfolio years including 2024, 2025, and 2026.
           </p>
         </div>
@@ -232,7 +197,6 @@ function AppearancePane() {
 // ── Language pane ─────────────────────────────────────────────────────────────
 
 function LanguagePane() {
-  const A = useAurora();
   const { language, setLanguage } = useLanguageStore();
 
   const LANGUAGES: { code: "en" | "ja" | "fil" | "ceb"; label: string; native: string; flag: string }[] = [
@@ -243,16 +207,12 @@ function LanguagePane() {
   ];
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col" style={{ gap: 24 }}>
       <div>
         <SLabel>{translate("settings.lang.lang")}</SLabel>
         <div
-          style={{
-            background: A.card,
-            border: `1px solid ${A.cardBorder}`,
-            borderRadius: 12,
-            overflow: "hidden",
-          }}
+          className="bg-a26-card border border-a26-card-border overflow-hidden"
+          style={{ borderRadius: 12 }}
         >
           {LANGUAGES.map((lang, i) => {
             const active = language === lang.code;
@@ -260,33 +220,27 @@ function LanguagePane() {
               <button
                 key={lang.code}
                 onClick={() => setLanguage(lang.code)}
+                className="font-mac flex items-center w-full text-left"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
                   gap: 12,
-                  width: "100%",
                   padding: "13px 16px",
                   border: "none",
-                  borderBottom: i < LANGUAGES.length - 1 ? `1px solid ${A.glassBorder}` : "none",
-                  background: active ? `rgba(${hexRgb(A.teal)},0.08)` : "transparent",
+                  borderBottom: i < LANGUAGES.length - 1 ? "1px solid var(--a26-glass-border)" : "none",
+                  background: active ? "color-mix(in srgb, var(--a26-teal) 8%, transparent)" : "transparent",
                   cursor: "pointer",
-                  fontFamily: MAC_FONT,
-                  textAlign: "left",
                   transition: "background 0.12s",
                 }}
               >
                 <span style={{ fontSize: 22, lineHeight: 1 }}>{lang.flag}</span>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: active ? 600 : 400, color: A.text }}>
+                  <div className="text-a26-text" style={{ fontSize: 13, fontWeight: active ? 600 : 400 }}>
                     {lang.label}
                   </div>
-                  <div style={{ fontSize: 11, color: A.textMuted, marginTop: 1 }}>
+                  <div className="text-a26-muted" style={{ fontSize: 11, marginTop: 1 }}>
                     {lang.native}
                   </div>
                 </div>
-                {active && (
-                  <Check size={15} color={A.teal} strokeWidth={2.5} />
-                )}
+                {active && <Check size={15} color="var(--a26-teal)" strokeWidth={2.5} />}
               </button>
             );
           })}
@@ -299,7 +253,6 @@ function LanguagePane() {
 // ── Date & Time pane ──────────────────────────────────────────────────────────
 
 function DateTimePane() {
-  const A = useAurora();
   const { timeFormat, setTimeFormat } = use2026Settings();
 
   const formats: { id: TimeFormat; label: string; example: string }[] = [
@@ -312,21 +265,17 @@ function DateTimePane() {
   const preview24 = now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+    <div className="flex flex-col" style={{ gap: 24 }}>
       <div>
         <SLabel>Clock Format</SLabel>
         <div
-          style={{
-            background: A.card,
-            border: `1px solid ${A.cardBorder}`,
-            borderRadius: 12,
-            padding: "18px 16px",
-          }}
+          className="bg-a26-card border border-a26-card-border"
+          style={{ borderRadius: 12, padding: "18px 16px" }}
         >
-          <p style={{ margin: "0 0 14px", fontSize: 13, color: A.textMid, lineHeight: 1.6 }}>
+          <p className="text-a26-mid" style={{ margin: "0 0 14px", fontSize: 13, lineHeight: 1.6 }}>
             Controls the time displayed in the menu bar and mobile status bar.
           </p>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div className="flex" style={{ gap: 8 }}>
             {formats.map((f) => (
               <OptionBtn
                 key={f.id}
@@ -346,22 +295,15 @@ function DateTimePane() {
       <div>
         <SLabel>Preview</SLabel>
         <div
-          style={{
-            background: A.card,
-            border: `1px solid ${A.cardBorder}`,
-            borderRadius: 12,
-            padding: "16px",
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-          }}
+          className="bg-a26-card border border-a26-card-border flex items-center"
+          style={{ borderRadius: 12, padding: "16px", gap: 14 }}
         >
-          <Clock size={20} color={A.teal} />
+          <Clock size={20} color="var(--a26-teal)" />
           <div>
-            <div style={{ fontSize: 11, color: A.textMuted, marginBottom: 3 }}>
+            <div className="text-a26-muted" style={{ fontSize: 11, marginBottom: 3 }}>
               Menu bar clock will show
             </div>
-            <div style={{ fontSize: 15, fontWeight: 600, color: A.text, fontFamily: "monospace" }}>
+            <div className="text-a26-text" style={{ fontSize: 15, fontWeight: 600, fontFamily: "monospace" }}>
               {timeFormat === "12h" ? preview12 : preview24}
             </div>
           </div>
@@ -375,7 +317,6 @@ function DateTimePane() {
 
 export function SettingsContent() {
   useLocaleRefresh();
-  const A = useAurora();
   const isMobile = useIsMobile();
   const [pane, setPane] = useState<PaneId>("appearance");
 
@@ -391,19 +332,21 @@ export function SettingsContent() {
       <button
         key={p.id}
         onClick={() => setPane(p.id)}
+        className="font-mac"
         style={{
           display: "flex",
           alignItems: "center",
           gap: isMobile ? 5 : 9,
           padding: isMobile ? "6px 12px" : "8px 10px",
           borderRadius: isMobile ? 20 : 7,
-          border: isMobile ? `1.5px solid ${active ? A.teal : A.glassBorder}` : "none",
-          background: active ? `rgba(${hexRgb(A.teal)},0.13)` : "transparent",
-          color: active ? A.teal : A.textMid,
+          border: isMobile
+            ? `1.5px solid ${active ? "var(--a26-teal)" : "var(--a26-glass-border)"}`
+            : "none",
+          background: active ? "color-mix(in srgb, var(--a26-teal) 13%, transparent)" : "transparent",
+          color: active ? "var(--a26-teal)" : "var(--a26-text-mid)",
           fontSize: isMobile ? 12 : 13,
           fontWeight: active ? 600 : 400,
           cursor: "pointer",
-          fontFamily: MAC_FONT,
           transition: "all 0.12s",
           whiteSpace: "nowrap",
           flexShrink: 0,
@@ -417,49 +360,41 @@ export function SettingsContent() {
   });
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
-      {/* Mobile: tab strip / Desktop: sidebar */}
+    <div
+      className="font-mac flex-1 min-h-0 overflow-hidden flex"
+      style={{ flexDirection: isMobile ? "column" : "row" }}
+    >
       {isMobile ? (
         <div
-          className="win26-scroll"
+          className="win26-scroll shrink-0 border-b bg-a26-sidebar border-a26-glass-border flex"
           style={{
-            flexShrink: 0,
             overflowX: "auto",
             scrollbarWidth: "thin",
             scrollbarColor: "rgba(255,255,255,0.18) transparent",
-            display: "flex",
             gap: 6,
             padding: "10px 12px",
-            borderBottom: `1px solid ${A.glassBorder}`,
-            background: A.sidebar,
           }}
         >
           {nav}
         </div>
       ) : (
         <div
-          className="win26-scroll"
+          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col overflow-y-auto"
           style={{
             width: 200,
-            flexShrink: 0,
-            background: A.sidebar,
-            borderRight: `1px solid ${A.glassBorder}`,
             padding: "16px 8px",
-            overflowY: "auto",
             scrollbarWidth: "thin",
             scrollbarColor: "rgba(255,255,255,0.18) transparent",
-            display: "flex",
-            flexDirection: "column",
             gap: 2,
           }}
         >
           <div
+            className="text-a26-muted"
             style={{
               fontSize: 10,
               fontWeight: 700,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: A.textMuted,
               padding: "0 8px 10px",
             }}
           >
@@ -471,11 +406,8 @@ export function SettingsContent() {
 
       {/* Content area */}
       <div
-        className="win26-scroll"
+        className="win26-scroll flex-1 min-h-0 overflow-y-auto"
         style={{
-          flex: 1,
-          minHeight: 0,
-          overflowY: "auto",
           padding: isMobile ? "16px 14px" : "24px 28px",
           scrollbarWidth: "thin",
           scrollbarColor: "rgba(255,255,255,0.18) transparent",
@@ -483,13 +415,8 @@ export function SettingsContent() {
       >
         {!isMobile && (
           <h2
-            style={{
-              margin: "0 0 20px",
-              fontSize: 18,
-              fontWeight: 700,
-              color: A.text,
-              letterSpacing: "-0.01em",
-            }}
+            className="text-a26-text"
+            style={{ margin: "0 0 20px", fontSize: 18, fontWeight: 700, letterSpacing: "-0.01em" }}
           >
             {PANES.find((p) => p.id === pane)?.label}
           </h2>

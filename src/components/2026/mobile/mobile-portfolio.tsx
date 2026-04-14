@@ -7,10 +7,9 @@ import { MapPin, GithubIcon, LinkedinIcon, Mail, ChevronLeft } from "lucide-reac
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
-import { MAC_FONT, WIN_DEFS } from "../constants";
-import { useAurora } from "../use-aurora";
+import { WIN_DEFS } from "../constants";
+import { useIsDark } from "../use-aurora";
 import type { WinId } from "../constants";
-import { hexRgb } from "../utils";
 import { useMobileTime } from "../hooks";
 import { LiveWallpaper } from "../live-wallpaper";
 import { MacAppIcon } from "../components/mac-app-icons";
@@ -23,11 +22,10 @@ import { ResumeContent } from "../windows/resume-content";
 import { SettingsContent } from "../windows/settings-content";
 
 export function MobilePortfolio() {
-  const A = useAurora();
+  const isDark = useIsDark();
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const time = useMobileTime();
 
-  // Adapt icon/spacing sizes to viewport height so everything fits without scrolling
   const [viewportH, setViewportH] = useState(844);
   useEffect(() => {
     const update = () => setViewportH(window.innerHeight);
@@ -48,66 +46,45 @@ export function MobilePortfolio() {
 
   return (
     <div
-      style={{
-        position: "relative",
-        width: "100vw",
-        height: "100dvh",
-        overflow: "hidden",
-        fontFamily: MAC_FONT,
-      }}
+      className="font-mac relative overflow-hidden"
+      style={{ width: "100vw", height: "100dvh" }}
     >
       <LiveWallpaper />
 
-      {/* ── Home screen ── */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 2,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      {/* Home screen */}
+      <div className="absolute inset-0 flex flex-col" style={{ zIndex: 2 }}>
         {/* Status bar */}
         <div
+          className="shrink-0 flex items-center justify-between"
           style={{
             height: 48,
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
             padding: "0 22px",
             background: "rgba(0,0,0,0.18)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
           }}
         >
-          <span
-            style={{ fontSize: 15, fontWeight: 600, color: A.text, minWidth: 60 }}
-          >
+          <span className="text-a26-text" style={{ fontSize: 15, fontWeight: 600, minWidth: 60 }}>
             {time}
           </span>
-          {/* Signal + WiFi + Battery */}
-          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-            <div style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
+          <div className="flex items-center" style={{ gap: 7 }}>
+            <div className="flex items-end" style={{ gap: 2 }}>
               {[7, 10, 13, 16].map((h, i) => (
                 <div
                   key={i}
                   style={{
-                    width: 3,
-                    height: h,
-                    borderRadius: 1.5,
-                    background: i < 3 ? A.text : "rgba(255,255,255,0.3)",
+                    width: 3, height: h, borderRadius: 1.5,
+                    background: i < 3 ? "var(--a26-text)" : "rgba(255,255,255,0.3)",
                   }}
                 />
               ))}
             </div>
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ overflow: "visible" }}>
-              <circle cx="8" cy="11" r="1.5" fill={A.text} />
-              <path d="M4.8 7.6 A4.5 4.5 0 0 1 11.2 7.6" stroke={A.text} strokeWidth="1.4" strokeLinecap="round" fill="none" />
-              <path d="M2.2 5 A8 8 0 0 1 13.8 5" stroke={A.text} strokeWidth="1.4" strokeLinecap="round" fill="none" />
+              <circle cx="8" cy="11" r="1.5" fill="var(--a26-text)" />
+              <path d="M4.8 7.6 A4.5 4.5 0 0 1 11.2 7.6" stroke="var(--a26-text)" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+              <path d="M2.2 5 A8 8 0 0 1 13.8 5" stroke="var(--a26-text)" strokeWidth="1.4" strokeLinecap="round" fill="none" />
             </svg>
-            <div style={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <div className="flex items-center" style={{ gap: 1 }}>
               <div
                 style={{
                   width: 22, height: 12, borderRadius: 3,
@@ -115,7 +92,7 @@ export function MobilePortfolio() {
                   padding: 1.5, display: "flex", alignItems: "stretch",
                 }}
               >
-                <div style={{ width: "75%", borderRadius: 1.5, background: A.green }} />
+                <div className="bg-a26-green" style={{ width: "75%", borderRadius: 1.5 }} />
               </div>
               <div style={{ width: 2, height: 6, borderRadius: 1, background: "rgba(255,255,255,0.5)" }} />
             </div>
@@ -133,12 +110,12 @@ export function MobilePortfolio() {
           }}
         >
           {/* Profile header */}
-          <div style={{ textAlign: "center", marginBottom: profileMB }}>
+          <div className="text-center" style={{ marginBottom: profileMB }}>
             <div
+              className="overflow-hidden border-[2.5px] border-a26-teal"
               style={{
-                width: avatarSize, height: avatarSize, borderRadius: "50%", overflow: "hidden",
-                border: `2.5px solid ${A.teal}`,
-                boxShadow: `0 0 24px rgba(${hexRgb(A.teal)},0.35)`,
+                width: avatarSize, height: avatarSize, borderRadius: "50%",
+                boxShadow: "0 0 24px color-mix(in srgb, var(--a26-teal) 35%, transparent)",
                 margin: "0 auto 10px",
               }}
             >
@@ -150,18 +127,18 @@ export function MobilePortfolio() {
                 style={{ objectFit: "cover", width: "100%", height: "100%" }}
               />
             </div>
-            <h1 style={{ margin: 0, fontSize: 20, fontWeight: 700, color: A.text, letterSpacing: "-0.01em" }}>
+            <h1 className="text-a26-text" style={{ margin: 0, fontSize: 20, fontWeight: 700, letterSpacing: "-0.01em" }}>
               {FULL_NAME}
             </h1>
-            <p style={{ margin: "4px 0 0", fontSize: 13, color: A.teal, fontWeight: 500 }}>
+            <p className="text-a26-teal" style={{ margin: "4px 0 0", fontSize: 13, fontWeight: 500 }}>
               {JOB_TITLE}
             </p>
-            <p style={{ margin: "4px 0 0", fontSize: 12, color: A.textMuted, display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
-              <MapPin size={11} color={A.textMuted} /> Cebu, Philippines
+            <p className="text-a26-muted flex items-center justify-center" style={{ margin: "4px 0 0", fontSize: 12, gap: 4 }}>
+              <MapPin size={11} color="var(--a26-text-muted)" /> Cebu, Philippines
             </p>
           </div>
 
-          {/* App icon grid — 3 columns */}
+          {/* App icon grid */}
           <div
             style={{
               display: "grid",
@@ -176,26 +153,13 @@ export function MobilePortfolio() {
                 key={app.id}
                 whileTap={{ scale: 0.88 }}
                 onClick={() => setActiveApp(app.id)}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 7,
-                  background: "none",
-                  border: "none",
-                  padding: 4,
-                  cursor: "pointer",
-                  fontFamily: MAC_FONT,
-                }}
+                className="font-mac flex flex-col items-center"
+                style={{ gap: 7, background: "none", border: "none", padding: 4, cursor: "pointer" }}
               >
                 <MacAppIcon id={app.id} size={iconSize} />
                 <span
-                  style={{
-                    fontSize: 11,
-                    color: A.text,
-                    fontWeight: 500,
-                    textShadow: "0 1px 4px rgba(0,0,0,0.9)",
-                  }}
+                  className="text-a26-text"
+                  style={{ fontSize: 11, fontWeight: 500, textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   {app.title}
                 </span>
@@ -204,33 +168,22 @@ export function MobilePortfolio() {
           </div>
 
           {/* Social links row */}
-          <div style={{ display: "flex", justifyContent: "center", gap: 12 }}>
+          <div className="flex justify-center" style={{ gap: 12 }}>
             {[
-              { href: GITHUB_URL, icon: <GithubIcon size={17} />, color: A.text, label: "GitHub" },
+              { href: GITHUB_URL, icon: <GithubIcon size={17} />, color: "var(--a26-text)", label: "GitHub" },
               { href: LINKED_IN_URL, icon: <LinkedinIcon size={17} />, color: "#60A5FA", label: "LinkedIn" },
-              { href: `mailto:${EMAIL_ADDRESS}`, icon: <Mail size={17} />, color: A.teal, label: "Email" },
+              { href: `mailto:${EMAIL_ADDRESS}`, icon: <Mail size={17} />, color: "var(--a26-teal)", label: "Email" },
             ].map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 5,
-                  width: 68,
-                  padding: "10px 0",
-                  background: A.glass,
-                  border: `1px solid ${A.glassBorder}`,
-                  borderRadius: 16,
-                  color: l.color,
-                  textDecoration: "none",
-                }}
+                className="flex flex-col items-center bg-a26-glass border border-a26-glass-border no-underline"
+                style={{ gap: 5, width: 68, padding: "10px 0", borderRadius: 16, color: l.color }}
               >
                 {l.icon}
-                <span style={{ fontSize: 10, color: A.textMid }}>{l.label}</span>
+                <span className="text-a26-mid" style={{ fontSize: 10 }}>{l.label}</span>
               </a>
             ))}
           </div>
@@ -238,20 +191,15 @@ export function MobilePortfolio() {
 
         {/* Bottom dock */}
         <div
+          className="absolute bg-a26-dock border border-a26-dock-border flex justify-around items-center"
           style={{
-            position: "absolute",
             bottom: 16,
             left: 20,
             right: 20,
-            background: A.dock,
-            border: `1px solid ${A.dockBorder}`,
             borderRadius: 26,
             padding: "10px 20px",
             backdropFilter: "blur(32px) saturate(1.5)",
             WebkitBackdropFilter: "blur(32px) saturate(1.5)",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
             boxShadow: "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
             zIndex: 50,
           }}
@@ -261,12 +209,7 @@ export function MobilePortfolio() {
               key={app.id}
               whileTap={{ scale: 0.88 }}
               onClick={() => setActiveApp(app.id)}
-              style={{
-                background: "none",
-                border: "none",
-                padding: 0,
-                cursor: "pointer",
-              }}
+              style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
               aria-label={app.title}
             >
               <MacAppIcon id={app.id} size={dockSize} />
@@ -275,7 +218,7 @@ export function MobilePortfolio() {
         </div>
       </div>
 
-      {/* ── App sheet — slides up ── */}
+      {/* App sheet — slides up */}
       <AnimatePresence>
         {activeApp && (
           <motion.div
@@ -284,42 +227,29 @@ export function MobilePortfolio() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0.6 }}
             transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.9 }}
+            className="font-mac absolute inset-0 flex flex-col"
             style={{
-              position: "absolute",
-              inset: 0,
               zIndex: 200,
-              background: A.window,
+              background: "var(--a26-window)",
               backdropFilter: "blur(32px) saturate(1.3)",
               WebkitBackdropFilter: "blur(32px) saturate(1.3)",
-              display: "flex",
-              flexDirection: "column",
-              fontFamily: MAC_FONT,
             }}
           >
             {/* iOS navigation bar */}
             <div
-              style={{
-                height: 54,
-                flexShrink: 0,
-                display: "flex",
-                alignItems: "center",
-                padding: "0 16px",
-                borderBottom: `1px solid ${A.glassBorder}`,
-                background: A.titleBar,
-              }}
+              className="shrink-0 flex items-center border-b bg-a26-title-bar border-a26-glass-border"
+              style={{ height: 54, padding: "0 16px" }}
             >
               <button
                 onClick={() => setActiveApp(null)}
+                className="font-mac flex items-center"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
                   gap: 3,
                   background: "none",
                   border: "none",
                   cursor: "pointer",
-                  color: activeDef?.color ?? A.teal,
+                  color: activeDef?.color ?? "var(--a26-teal)",
                   fontSize: 15,
-                  fontFamily: MAC_FONT,
                   padding: "4px 0",
                   minWidth: 70,
                 }}
@@ -327,17 +257,9 @@ export function MobilePortfolio() {
                 <ChevronLeft size={20} />
                 <span>Home</span>
               </button>
-              <div
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                }}
-              >
+              <div className="flex-1 flex items-center justify-center" style={{ gap: 8 }}>
                 {activeApp && <MacAppIcon id={activeApp} size={26} />}
-                <span style={{ fontSize: 14, fontWeight: 600, color: A.text }}>
+                <span className="text-a26-text" style={{ fontSize: 14, fontWeight: 600 }}>
                   {activeDef?.title}
                 </span>
               </div>
@@ -345,8 +267,8 @@ export function MobilePortfolio() {
             </div>
 
             {/* Content */}
-            <div style={{ flex: 1, overflow: "hidden" }}>
-              {activeApp === "about" && <AboutContent />}
+            <div className="flex-1 overflow-hidden">
+              {activeApp === "about"    && <AboutContent />}
               {activeApp === "projects" && <ProjectsContent />}
               {activeApp === "terminal" && (
                 <TerminalContent
@@ -354,9 +276,9 @@ export function MobilePortfolio() {
                   onClose={() => setActiveApp(null)}
                 />
               )}
-              {activeApp === "skills" && <SkillsContent />}
-              {activeApp === "contact" && <ContactContent />}
-              {activeApp === "resume" && <ResumeContent />}
+              {activeApp === "skills"   && <SkillsContent />}
+              {activeApp === "contact"  && <ContactContent />}
+              {activeApp === "resume"   && <ResumeContent />}
               {activeApp === "settings" && <SettingsContent />}
             </div>
           </motion.div>

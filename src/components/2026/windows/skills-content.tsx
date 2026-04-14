@@ -5,24 +5,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 import { SKILL_CATEGORIES } from "@/config";
 import { translate, useLocaleRefresh } from "@/i18n";
-import { MAC_FONT } from "../constants";
-import { useAurora } from "../use-aurora";
 import { useIsMobile } from "../hooks";
-import { hexRgb } from "../utils";
 
-const ACCENT = (A: ReturnType<typeof useAurora>) => [
-  A.teal, A.violet, A.green, A.blue, "#FBBF24", "#FB7185",
+const ACCENT_VARS = [
+  "var(--a26-teal)",
+  "var(--a26-violet)",
+  "var(--a26-green)",
+  "var(--a26-blue)",
+  "#FBBF24",
+  "#FB7185",
 ];
 
 export function SkillsContent() {
   useLocaleRefresh();
-  const A = useAurora();
   const isMobile = useIsMobile();
-  const COLORS = ACCENT(A);
   const [active, setActive] = useState(SKILL_CATEGORIES[0]?.key ?? "");
   const cat = SKILL_CATEGORIES.find((c) => c.key === active);
   const catIdx = SKILL_CATEGORIES.findIndex((c) => c.key === active);
-  const col = COLORS[catIdx % COLORS.length];
+  const col = ACCENT_VARS[catIdx % ACCENT_VARS.length];
 
   const skillLevel = (s: { isFavorite?: boolean; isStudying?: boolean }) =>
     s.isFavorite ? 90 : s.isStudying ? 35 : 68;
@@ -30,12 +30,13 @@ export function SkillsContent() {
   const categoryTabs = (
     <>
       {SKILL_CATEGORIES.map((c, i) => {
-        const color = COLORS[i % COLORS.length];
+        const color = ACCENT_VARS[i % ACCENT_VARS.length];
         const isActive = active === c.key;
         return (
           <button
             key={c.key}
             onClick={() => setActive(c.key)}
+            className="font-mac"
             style={{
               display: "flex",
               alignItems: "center",
@@ -43,26 +44,25 @@ export function SkillsContent() {
               padding: isMobile ? "6px 12px" : "8px 10px",
               borderRadius: isMobile ? 20 : 7,
               border: isMobile
-                ? `1.5px solid ${isActive ? color : A.glassBorder}`
+                ? `1.5px solid ${isActive ? color : "var(--a26-glass-border)"}`
                 : "none",
-              background: isActive ? `rgba(${hexRgb(color)},0.13)` : "transparent",
-              color: isActive ? color : A.textMid,
+              background: isActive ? `color-mix(in srgb, ${color} 13%, transparent)` : "transparent",
+              color: isActive ? color : "var(--a26-text-mid)",
               fontSize: 12,
               fontWeight: isActive ? 600 : 400,
               cursor: "pointer",
-              fontFamily: MAC_FONT,
               transition: "all 0.12s",
               whiteSpace: "nowrap",
               flexShrink: 0,
-              ...(isMobile ? {} : { width: "100%", justifyContent: "space-between", textAlign: "left" }),
+              ...(isMobile ? {} : { width: "100%", justifyContent: "space-between", textAlign: "left" as const }),
             }}
           >
             <span>{c.label}</span>
             <span
               style={{
                 fontSize: 10,
-                background: isActive ? `rgba(${hexRgb(color)},0.18)` : A.glass,
-                color: isActive ? color : A.textMuted,
+                background: isActive ? `color-mix(in srgb, ${color} 18%, transparent)` : "var(--a26-glass)",
+                color: isActive ? color : "var(--a26-text-muted)",
                 borderRadius: 10,
                 padding: "1px 6px",
                 fontWeight: 600,
@@ -77,52 +77,24 @@ export function SkillsContent() {
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
+    <div
+      className="font-mac flex-1 min-h-0 overflow-hidden flex"
+      style={{ flexDirection: isMobile ? "column" : "row" }}
+    >
       {/* Mobile: horizontal scroll strip / Desktop: sidebar */}
       {isMobile ? (
         <div
-          className="win26-scroll"
-          style={{
-            flexShrink: 0,
-            overflowX: "auto",
-            scrollbarWidth: "thin",
-            scrollbarColor: "rgba(255,255,255,0.18) transparent",
-            display: "flex",
-            gap: 6,
-            padding: "10px 12px",
-            borderBottom: `1px solid ${A.glassBorder}`,
-            background: A.sidebar,
-          }}
+          className="win26-scroll shrink-0 border-b bg-a26-sidebar border-a26-glass-border flex gap-1.5 py-2.5 px-3 overflow-x-auto [scrollbar-width:thin]"
+          style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
         >
           {categoryTabs}
         </div>
       ) : (
         <div
-          className="win26-scroll"
-          style={{
-            width: 180,
-            flexShrink: 0,
-            background: A.sidebar,
-            borderRight: `1px solid ${A.glassBorder}`,
-            padding: "14px 8px",
-            overflowY: "auto",
-            scrollbarWidth: "thin",
-            scrollbarColor: "rgba(255,255,255,0.18) transparent",
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-          }}
+          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col w-45 py-3.5 px-2 gap-0.5 overflow-y-auto [scrollbar-width:thin]"
+          style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
         >
-          <div
-            style={{
-              fontSize: 10,
-              fontWeight: 700,
-              color: A.textMuted,
-              padding: "0 8px 10px",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-            }}
-          >
+          <div className="text-a26-muted text-[10px] font-bold px-2 pb-2.5 tracking-[0.08em] uppercase">
             Categories
           </div>
           {categoryTabs}
@@ -131,15 +103,8 @@ export function SkillsContent() {
 
       {/* Main content */}
       <div
-        className="win26-scroll"
-        style={{
-          flex: 1,
-          minHeight: 0,
-          overflowY: "auto",
-          padding: "20px 22px",
-          scrollbarWidth: "thin",
-          scrollbarColor: "rgba(255,255,255,0.18) transparent",
-        }}
+        className="win26-scroll flex-1 min-h-0 overflow-y-auto py-5 px-5.5 [scrollbar-width:thin]"
+        style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
       >
         {cat && (
           <AnimatePresence mode="wait">
@@ -152,113 +117,75 @@ export function SkillsContent() {
             >
               {/* Category header */}
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  marginBottom: 18,
-                  paddingBottom: 14,
-                  borderBottom: `1px solid ${A.glassBorder}`,
-                }}
+                className="flex items-center border-b border-a26-glass-border gap-2.5 mb-4.5 pb-3.5"
               >
                 <div
+                  className="flex items-center justify-center shrink-0 w-9 h-9 rounded-[9px] text-lg"
                   style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 9,
-                    background: `rgba(${hexRgb(col)},0.13)`,
-                    border: `1px solid rgba(${hexRgb(col)},0.25)`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 18,
+                    background: `color-mix(in srgb, ${col} 13%, transparent)`,
+                    border: `1px solid color-mix(in srgb, ${col} 25%, transparent)`,
                   }}
                 >
                   {cat.key === "frontend" ? "🎨" : cat.key === "backend" ? "⚙️" : cat.key === "database" ? "🗄️" : cat.key === "devops" ? "🚀" : cat.key === "mobile" ? "📱" : "🧩"}
                 </div>
                 <div>
-                  <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: A.text }}>
+                  <h2 className="text-a26-text m-0 text-base font-bold">
                     {cat.label}
                   </h2>
-                  <div style={{ fontSize: 11, color: A.textMuted, marginTop: 1 }}>
+                  <div className="text-a26-muted text-[11px] mt-px">
                     {cat.stacks.filter((s) => s.isFavorite).length} favorite · {cat.stacks.filter((s) => s.isStudying).length} learning · {cat.stacks.length} total
                   </div>
                 </div>
               </div>
 
               {/* Skill rows with bar */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <div className="flex flex-col gap-3">
                 {cat.stacks.map((s) => {
                   const level = skillLevel(s);
                   const name = translate(`services.stack.${s.name}` as any) || s.name;
                   return (
                     <div key={s.name}>
                       {/* Name row */}
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 6,
-                          marginBottom: 5,
-                          minWidth: 0,
-                        }}
-                      >
+                      <div className="flex items-center min-w-0 gap-1.5 mb-1.25">
                         {s.isFavorite && (
-                          <Star size={10} color={col} fill={col} style={{ flexShrink: 0 }} />
+                          <Star size={10} color={col} fill={col} className="shrink-0" />
                         )}
                         <span
+                          className="flex-1 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-xs"
                           style={{
-                            fontSize: 12,
                             fontWeight: s.isFavorite ? 600 : 400,
-                            color: s.isFavorite ? A.text : A.textMid,
-                            flex: 1,
-                            minWidth: 0,
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap",
+                            color: s.isFavorite ? "var(--a26-text)" : "var(--a26-text-mid)",
                           }}
                         >
                           {name}
                         </span>
                         {s.isStudying && (
                           <span
+                            className="shrink-0 text-[9px] font-semibold rounded py-px px-1.25"
                             style={{
-                              fontSize: 9,
-                              fontWeight: 600,
-                              background: `rgba(${hexRgb(A.violet)},0.12)`,
-                              color: A.violet,
-                              border: `1px solid rgba(${hexRgb(A.violet)},0.25)`,
-                              borderRadius: 4,
-                              padding: "1px 5px",
-                              flexShrink: 0,
+                              background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
+                              color: "var(--a26-violet)",
+                              border: "1px solid color-mix(in srgb, var(--a26-violet) 25%, transparent)",
                             }}
                           >
                             learning
                           </span>
                         )}
-                        <span style={{ fontSize: 10, color: A.textMuted, fontFamily: "monospace", flexShrink: 0 }}>
+                        <span className="text-a26-muted shrink-0 text-[10px] font-mono">
                           {level}%
                         </span>
                       </div>
                       {/* Progress bar */}
-                      <div
-                        style={{
-                          height: 5,
-                          borderRadius: 3,
-                          background: A.glass,
-                          overflow: "hidden",
-                        }}
-                      >
+                      <div className="bg-a26-glass overflow-hidden h-1.25 rounded-[3px]">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${level}%` }}
                           transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
+                          className="h-full rounded-[3px]"
                           style={{
-                            height: "100%",
-                            borderRadius: 3,
                             background: s.isStudying
-                              ? `rgba(${hexRgb(A.violet)},0.55)`
-                              : `linear-gradient(90deg, rgba(${hexRgb(col)},0.7) 0%, ${col} 100%)`,
+                              ? "color-mix(in srgb, var(--a26-violet) 55%, transparent)"
+                              : `linear-gradient(90deg, color-mix(in srgb, ${col} 70%, transparent) 0%, ${col} 100%)`,
                           }}
                         />
                       </div>

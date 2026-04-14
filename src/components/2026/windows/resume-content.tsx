@@ -13,10 +13,9 @@ import {
   LayoutTemplate,
 } from "lucide-react";
 import type { Color } from "@/stores";
-import { MAC_FONT, RESUME_COLORS, RESUME_SWATCHES } from "../constants";
-import { useAurora, useIsDark } from "../use-aurora";
+import { RESUME_COLORS, RESUME_SWATCHES } from "../constants";
+import { useIsDark } from "../use-aurora";
 import { useIsMobile } from "../hooks";
-import { hexRgb } from "../utils";
 
 const ResumeSimple = dynamic(
   () =>
@@ -44,7 +43,6 @@ const ResumeModern = dynamic(
 );
 
 export function ResumeContent() {
-  const A = useAurora();
   const isSystemDark = useIsDark();
   const isMobile = useIsMobile();
   type ResumeMode = "simple" | "modern";
@@ -54,7 +52,6 @@ export function ResumeContent() {
   const [zoom, setZoom] = useState(0.55);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-fit zoom to available preview width on mount
   useLayoutEffect(() => {
     if (!containerRef.current) return;
     const w = containerRef.current.clientWidth - 48;
@@ -74,15 +71,11 @@ export function ResumeContent() {
   const handleExport = useCallback(() => {
     const el = document.getElementById("resume-preview-2026");
     if (!el) return;
-
-    // Clone and strip the zoom transform — printing the scaled-down preview
-    // would add white margins; we want the natural 794px-wide 1:1 render.
     const clone = el.cloneNode(true) as HTMLElement;
     clone.style.transform = "none";
     clone.style.marginBottom = "0";
     clone.style.boxShadow = "none";
     clone.style.width = "794px";
-
     const styles = [
       ...Array.from(document.querySelectorAll("style")).map((s) => s.outerHTML),
       ...Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(
@@ -95,33 +88,25 @@ export function ResumeContent() {
     setTimeout(() => URL.revokeObjectURL(url), 10_000);
   }, []);
 
-  const sectionLabel: React.CSSProperties = {
+  const sectionLabelCls = "text-a26-muted font-mac block mb-2";
+  const sectionLabelStyle = {
     fontSize: 9,
     fontWeight: 700,
-    textTransform: "uppercase",
+    textTransform: "uppercase" as const,
     letterSpacing: "0.10em",
-    color: A.textMuted,
-    marginBottom: 8,
-    display: "block",
   };
 
   const mobileToolbar = isMobile && (
     <div
-      className="win26-scroll"
+      className="win26-scroll shrink-0 border-b bg-a26-sidebar border-a26-glass-border flex items-center"
       style={{
-        flexShrink: 0,
-        borderBottom: `1px solid ${A.glassBorder}`,
-        background: A.sidebar,
         padding: "10px 12px",
-        display: "flex",
         gap: 10,
-        alignItems: "center",
         overflowX: "auto",
         scrollbarWidth: "thin",
         scrollbarColor: "rgba(255,255,255,0.18) transparent",
       }}
     >
-      {/* Template pills */}
       {[
         { v: "modern" as const, label: "Modern" },
         { v: "simple" as const, label: "Simple" },
@@ -129,25 +114,23 @@ export function ResumeContent() {
         <button
           key={opt.v}
           onClick={() => setMode(opt.v)}
+          className="font-mac shrink-0"
           style={{
             padding: "5px 12px",
             borderRadius: 20,
-            border: `1.5px solid ${mode === opt.v ? A.teal : A.glassBorder}`,
-            background: mode === opt.v ? `rgba(${hexRgb(A.teal)},0.10)` : "transparent",
-            color: mode === opt.v ? A.teal : A.textMid,
+            border: `1.5px solid ${mode === opt.v ? "var(--a26-teal)" : "var(--a26-glass-border)"}`,
+            background: mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 10%, transparent)" : "transparent",
+            color: mode === opt.v ? "var(--a26-teal)" : "var(--a26-text-mid)",
             fontSize: 12,
             fontWeight: mode === opt.v ? 600 : 400,
             cursor: "pointer",
-            fontFamily: MAC_FONT,
             whiteSpace: "nowrap",
-            flexShrink: 0,
           }}
         >
           {opt.label}
         </button>
       ))}
-      <div style={{ width: 1, height: 18, background: A.glassBorder, flexShrink: 0 }} />
-      {/* Dark/Light toggle */}
+      <div className="shrink-0 bg-a26-glass-border" style={{ width: 1, height: 18 }} />
       {[
         { v: false, icon: <Sun size={12} />, label: "Light" },
         { v: true, icon: <Moon size={12} />, label: "Dark" },
@@ -155,46 +138,48 @@ export function ResumeContent() {
         <button
           key={String(opt.v)}
           onClick={() => setIsDark(opt.v)}
+          className="font-mac shrink-0"
           style={{
             display: "flex", alignItems: "center", gap: 4,
             padding: "5px 10px",
             borderRadius: 20,
-            border: `1.5px solid ${isDark === opt.v ? A.blue : A.glassBorder}`,
-            background: isDark === opt.v ? `rgba(${hexRgb(A.blue)},0.10)` : "transparent",
-            color: isDark === opt.v ? A.blue : A.textMid,
-            fontSize: 12, cursor: "pointer", fontFamily: MAC_FONT,
-            whiteSpace: "nowrap", flexShrink: 0,
+            border: `1.5px solid ${isDark === opt.v ? "var(--a26-blue)" : "var(--a26-glass-border)"}`,
+            background: isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 10%, transparent)" : "transparent",
+            color: isDark === opt.v ? "var(--a26-blue)" : "var(--a26-text-mid)",
+            fontSize: 12, cursor: "pointer",
+            whiteSpace: "nowrap",
           }}
         >
           {opt.icon} {opt.label}
         </button>
       ))}
-      <div style={{ width: 1, height: 18, background: A.glassBorder, flexShrink: 0 }} />
-      {/* Color swatches */}
+      <div className="shrink-0 bg-a26-glass-border" style={{ width: 1, height: 18 }} />
       {RESUME_SWATCHES.map((s) => (
         <button
           key={s.value}
           onClick={() => setColor(s.value)}
           title={s.label}
+          className="shrink-0"
           style={{
             width: 20, height: 20, borderRadius: "50%",
             border: "none", background: s.hex, cursor: "pointer",
-            outline: "none", flexShrink: 0,
+            outline: "none",
             boxShadow: color === s.value ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}` : "none",
             transform: color === s.value ? "scale(1.2)" : "scale(1)",
             transition: "transform 0.13s, box-shadow 0.13s",
           }}
         />
       ))}
-      <div style={{ width: 1, height: 18, background: A.glassBorder, flexShrink: 0 }} />
+      <div className="shrink-0 bg-a26-glass-border" style={{ width: 1, height: 18 }} />
       <button
         onClick={handleExport}
+        className="font-mac flex items-center shrink-0"
         style={{
-          display: "flex", alignItems: "center", gap: 5,
+          gap: 5,
           padding: "5px 12px", borderRadius: 20, border: "none",
           background: colors.primary, color: colors.text,
           fontSize: 12, fontWeight: 600, cursor: "pointer",
-          fontFamily: MAC_FONT, whiteSpace: "nowrap", flexShrink: 0,
+          whiteSpace: "nowrap",
         }}
       >
         <Download size={11} /> Export
@@ -203,295 +188,178 @@ export function ResumeContent() {
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", flex: 1, minHeight: 0, overflow: "hidden", fontFamily: MAC_FONT }}>
+    <div
+      className="font-mac flex-1 min-h-0 overflow-hidden flex"
+      style={{ flexDirection: isMobile ? "column" : "row" }}
+    >
       {mobileToolbar}
+
       {/* ── Controls sidebar (desktop only) ── */}
-      {!isMobile && <div
-        className="win26-scroll"
-        style={{
-          width: 218,
-          flexShrink: 0,
-          background: A.sidebar,
-          borderRight: `1px solid ${A.glassBorder}`,
-          padding: "16px 14px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 20,
-          overflowY: "auto",
-          scrollbarWidth: "thin",
-          scrollbarColor: "rgba(255,255,255,0.18) transparent",
-        }}
-      >
-        {/* Template */}
-        <div>
-          <span style={sectionLabel}>Template</span>
-          <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-            {[
-              {
-                v: "modern" as ResumeMode,
-                icon: <Sparkles size={12} />,
-                label: "Modern",
-                desc: "Styled sidebar",
-              },
-              {
-                v: "simple" as ResumeMode,
-                icon: <LayoutTemplate size={12} />,
-                label: "Simple",
-                desc: "Classic & clean",
-              },
-            ].map((opt) => (
-              <button
-                key={opt.v}
-                onClick={() => setMode(opt.v)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 9,
-                  padding: "8px 10px",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                  border: `1px solid ${mode === opt.v ? `rgba(${hexRgb(A.teal)},0.40)` : A.glassBorder}`,
-                  background:
-                    mode === opt.v ? `rgba(${hexRgb(A.teal)},0.08)` : A.glass,
-                  transition: "all 0.14s",
-                  fontFamily: MAC_FONT,
-                  textAlign: "left",
-                }}
-              >
-                <span style={{ color: mode === opt.v ? A.teal : A.textMuted }}>
-                  {opt.icon}
-                </span>
-                <div>
-                  <div
-                    style={{
-                      fontSize: 12,
-                      fontWeight: 600,
-                      color: mode === opt.v ? A.text : A.textMid,
-                    }}
-                  >
-                    {opt.label}
-                  </div>
-                  <div style={{ fontSize: 10, color: A.textMuted }}>
-                    {opt.desc}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Appearance */}
-        <div>
-          <span style={sectionLabel}>Appearance</span>
-          <div style={{ display: "flex", gap: 6 }}>
-            {[
-              { v: false, icon: <Sun size={13} />, label: "Light" },
-              { v: true, icon: <Moon size={13} />, label: "Dark" },
-            ].map((opt) => (
-              <button
-                key={String(opt.v)}
-                onClick={() => setIsDark(opt.v)}
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 5,
-                  padding: "9px 6px",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                  border: `1px solid ${isDark === opt.v ? `rgba(${hexRgb(A.blue)},0.40)` : A.glassBorder}`,
-                  background:
-                    isDark === opt.v ? `rgba(${hexRgb(A.blue)},0.08)` : A.glass,
-                  transition: "all 0.14s",
-                  fontFamily: MAC_FONT,
-                }}
-              >
-                <span
-                  style={{ color: isDark === opt.v ? A.blue : A.textMuted }}
-                >
-                  {opt.icon}
-                </span>
-                <span
-                  style={{
-                    fontSize: 11,
-                    color: isDark === opt.v ? A.text : A.textMuted,
-                  }}
-                >
-                  {opt.label}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Color */}
-        <div>
-          <span style={sectionLabel}>Accent Color</span>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {RESUME_SWATCHES.map((s) => (
-              <button
-                key={s.value}
-                onClick={() => setColor(s.value)}
-                title={s.label}
-                style={{
-                  width: 24,
-                  height: 24,
-                  borderRadius: "50%",
-                  border: "none",
-                  background: s.hex,
-                  cursor: "pointer",
-                  outline: "none",
-                  boxShadow:
-                    color === s.value
-                      ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}`
-                      : "none",
-                  transform: color === s.value ? "scale(1.18)" : "scale(1)",
-                  transition: "transform 0.13s, box-shadow 0.13s",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {color === s.value && (
-                  <Check size={11} color="#fff" strokeWidth={3} />
-                )}
-              </button>
-            ))}
-          </div>
-          <div
-            style={{
-              fontSize: 11,
-              color: A.textMuted,
-              marginTop: 7,
-              textTransform: "capitalize",
-            }}
-          >
-            {color}
-          </div>
-        </div>
-
-        {/* Export — pinned to bottom */}
+      {!isMobile && (
         <div
+          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col overflow-y-auto"
           style={{
-            marginTop: "auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
+            width: 218,
+            padding: "16px 14px",
+            gap: 20,
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgba(255,255,255,0.18) transparent",
           }}
         >
-          <button
-            onClick={handleExport}
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 7,
-              padding: "9px 0",
-              borderRadius: 9,
-              border: "none",
-              background: colors.primary,
-              color: colors.text,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: "pointer",
-              fontFamily: MAC_FONT,
-            }}
-          >
-            <Download size={14} /> Export PDF
-          </button>
-          <div
-            style={{
-              fontSize: 10,
-              color: A.textMuted,
-              lineHeight: 1.65,
-              padding: "8px 10px",
-              background: A.glass,
-              borderRadius: 7,
-              border: `1px solid ${A.glassBorder}`,
-            }}
-          >
-            <div style={{ fontWeight: 600, color: A.textMid, marginBottom: 3 }}>
-              Tips
+          {/* Template */}
+          <div>
+            <span className={sectionLabelCls} style={sectionLabelStyle}>Template</span>
+            <div className="flex flex-col" style={{ gap: 5 }}>
+              {[
+                { v: "modern" as ResumeMode, icon: <Sparkles size={12} />, label: "Modern", desc: "Styled sidebar" },
+                { v: "simple" as ResumeMode, icon: <LayoutTemplate size={12} />, label: "Simple", desc: "Classic & clean" },
+              ].map((opt) => (
+                <button
+                  key={opt.v}
+                  onClick={() => setMode(opt.v)}
+                  className="font-mac flex items-center"
+                  style={{
+                    gap: 9,
+                    padding: "8px 10px",
+                    borderRadius: 8,
+                    cursor: "pointer",
+                    border: `1px solid ${mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 40%, transparent)" : "var(--a26-glass-border)"}`,
+                    background: mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 8%, transparent)" : "var(--a26-glass)",
+                    transition: "all 0.14s",
+                    textAlign: "left",
+                  }}
+                >
+                  <span style={{ color: mode === opt.v ? "var(--a26-teal)" : "var(--a26-text-muted)" }}>
+                    {opt.icon}
+                  </span>
+                  <div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: mode === opt.v ? "var(--a26-text)" : "var(--a26-text-mid)" }}>
+                      {opt.label}
+                    </div>
+                    <div className="text-a26-muted" style={{ fontSize: 10 }}>{opt.desc}</div>
+                  </div>
+                </button>
+              ))}
             </div>
-            Select <b style={{ color: A.text }}>Save as PDF</b>, margins →{" "}
-            <b style={{ color: A.text }}>None</b>, enable{" "}
-            <b style={{ color: A.text }}>Background graphics</b>.
+          </div>
+
+          {/* Appearance */}
+          <div>
+            <span className={sectionLabelCls} style={sectionLabelStyle}>Appearance</span>
+            <div className="flex" style={{ gap: 6 }}>
+              {[
+                { v: false, icon: <Sun size={13} />, label: "Light" },
+                { v: true, icon: <Moon size={13} />, label: "Dark" },
+              ].map((opt) => (
+                <button
+                  key={String(opt.v)}
+                  onClick={() => setIsDark(opt.v)}
+                  className="font-mac flex-1 flex flex-col items-center"
+                  style={{
+                    gap: 5,
+                    padding: "9px 6px",
+                    borderRadius: 8,
+                    cursor: "pointer",
+                    border: `1px solid ${isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 40%, transparent)" : "var(--a26-glass-border)"}`,
+                    background: isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 8%, transparent)" : "var(--a26-glass)",
+                    transition: "all 0.14s",
+                  }}
+                >
+                  <span style={{ color: isDark === opt.v ? "var(--a26-blue)" : "var(--a26-text-muted)" }}>
+                    {opt.icon}
+                  </span>
+                  <span style={{ fontSize: 11, color: isDark === opt.v ? "var(--a26-text)" : "var(--a26-text-muted)" }}>
+                    {opt.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Color */}
+          <div>
+            <span className={sectionLabelCls} style={sectionLabelStyle}>Accent Color</span>
+            <div className="flex flex-wrap" style={{ gap: 8 }}>
+              {RESUME_SWATCHES.map((s) => (
+                <button
+                  key={s.value}
+                  onClick={() => setColor(s.value)}
+                  title={s.label}
+                  className="flex items-center justify-center"
+                  style={{
+                    width: 24, height: 24, borderRadius: "50%",
+                    border: "none", background: s.hex, cursor: "pointer", outline: "none",
+                    boxShadow: color === s.value
+                      ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}`
+                      : "none",
+                    transform: color === s.value ? "scale(1.18)" : "scale(1)",
+                    transition: "transform 0.13s, box-shadow 0.13s",
+                  }}
+                >
+                  {color === s.value && <Check size={11} color="#fff" strokeWidth={3} />}
+                </button>
+              ))}
+            </div>
+            <div className="text-a26-muted" style={{ fontSize: 11, marginTop: 7, textTransform: "capitalize" }}>
+              {color}
+            </div>
+          </div>
+
+          {/* Export — pinned to bottom */}
+          <div className="flex flex-col" style={{ marginTop: "auto", gap: 10 }}>
+            <button
+              onClick={handleExport}
+              className="font-mac flex items-center justify-center w-full"
+              style={{
+                gap: 7, padding: "9px 0", borderRadius: 9, border: "none",
+                background: colors.primary, color: colors.text,
+                fontSize: 13, fontWeight: 600, cursor: "pointer",
+              }}
+            >
+              <Download size={14} /> Export PDF
+            </button>
+            <div
+              className="bg-a26-glass border border-a26-glass-border"
+              style={{ fontSize: 10, color: "var(--a26-text-muted)", lineHeight: 1.65, padding: "8px 10px", borderRadius: 7 }}
+            >
+              <div style={{ fontWeight: 600, color: "var(--a26-text-mid)", marginBottom: 3 }}>Tips</div>
+              Select <b style={{ color: "var(--a26-text)" }}>Save as PDF</b>, margins →{" "}
+              <b style={{ color: "var(--a26-text)" }}>None</b>, enable{" "}
+              <b style={{ color: "var(--a26-text)" }}>Background graphics</b>.
+            </div>
           </div>
         </div>
-      </div>}
+      )}
 
       {/* ── Preview panel ── */}
       <div
         ref={containerRef}
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          overflow: "hidden",
-          background: isSystemDark ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.07)",
-        }}
+        className="flex-1 flex flex-col overflow-hidden"
+        style={{ background: isSystemDark ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.07)" }}
       >
         {/* Zoom toolbar */}
         <div
-          style={{
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-            padding: "6px 12px",
-            borderBottom: `1px solid ${A.glassBorder}`,
-            background: A.titleBar,
-          }}
+          className="shrink-0 flex items-center border-b bg-a26-title-bar border-a26-glass-border"
+          style={{ gap: 2, padding: "6px 12px" }}
         >
           <button
             onClick={() => stepZoom(-0.1)}
-            style={{
-              width: 26,
-              height: 22,
-              borderRadius: 5,
-              border: "none",
-              background: "transparent",
-              color: A.textMuted,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            className="text-a26-muted flex items-center justify-center"
+            style={{ width: 26, height: 22, borderRadius: 5, border: "none", background: "transparent", cursor: "pointer" }}
           >
             <ZoomOut size={13} />
           </button>
           <button
             onClick={resetZoom}
-            style={{
-              padding: "0 6px",
-              height: 22,
-              borderRadius: 5,
-              border: "none",
-              background: "transparent",
-              color: A.textMid,
-              fontSize: 11,
-              fontFamily: "monospace",
-              cursor: "pointer",
-            }}
+            className="text-a26-mid"
+            style={{ padding: "0 6px", height: 22, borderRadius: 5, border: "none", background: "transparent", fontSize: 11, fontFamily: "monospace", cursor: "pointer" }}
           >
             {Math.round(zoom * 100)}%
           </button>
           <button
             onClick={() => stepZoom(0.1)}
-            style={{
-              width: 26,
-              height: 22,
-              borderRadius: 5,
-              border: "none",
-              background: "transparent",
-              color: A.textMuted,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            className="text-a26-muted flex items-center justify-center"
+            style={{ width: 26, height: 22, borderRadius: 5, border: "none", background: "transparent", cursor: "pointer" }}
           >
             <ZoomIn size={13} />
           </button>
@@ -506,10 +374,10 @@ export function ResumeContent() {
             overflowX: "auto",
             padding: "20px",
             scrollbarWidth: "thin",
-            scrollbarColor: `${A.glassBorder} transparent`,
+            scrollbarColor: "var(--a26-glass-border) transparent",
           }}
         >
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="flex justify-center">
             <div
               id="resume-preview-2026"
               style={{

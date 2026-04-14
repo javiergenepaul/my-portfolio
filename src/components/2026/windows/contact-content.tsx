@@ -3,19 +3,15 @@
 import { Mail, GithubIcon, LinkedinIcon, ExternalLink } from "lucide-react";
 import { EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
-import { MAC_FONT } from "../constants";
-import { useAurora } from "../use-aurora";
-import { hexRgb } from "../utils";
 
 export function ContactContent() {
-  const A = useAurora();
   const links = [
     {
       label: "Email",
       value: EMAIL_ADDRESS,
       href: `mailto:${EMAIL_ADDRESS}`,
       icon: <Mail size={18} />,
-      color: A.teal,
+      color: "var(--a26-teal)",
       desc: "Drop a message any time",
     },
     {
@@ -23,7 +19,7 @@ export function ContactContent() {
       value: "javiergenepaul",
       href: GITHUB_URL,
       icon: <GithubIcon size={18} />,
-      color: A.text,
+      color: "var(--a26-text)",
       desc: "View open-source work",
     },
     {
@@ -35,76 +31,45 @@ export function ContactContent() {
       desc: "Connect professionally",
     },
   ];
+
   return (
-    <div
-      style={{
-        padding: "28px 32px",
-        display: "flex",
-        flexDirection: "column",
-        gap: 14,
-        fontFamily: MAC_FONT,
-      }}
-    >
-      <div style={{ marginBottom: 4 }}>
-        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: A.text }}>
-          Get in Touch
-        </h2>
-        <p style={{ margin: "4px 0 0", fontSize: 13, color: A.textMid }}>
-          Open to new opportunities, collaborations, and interesting
-          conversations.
+    <div className="font-mac flex flex-col py-7 px-8 gap-3.5">
+      <div className="mb-1">
+        <h2 className="text-a26-text text-lg font-bold m-0">Get in Touch</h2>
+        <p className="text-a26-mid text-[13px] mt-1 m-0">
+          Open to new opportunities, collaborations, and interesting conversations.
         </p>
       </div>
+
       {links.map((l) => (
         <a
           key={l.label}
           href={l.href}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            background: A.card,
-            border: `1px solid ${A.cardBorder}`,
-            borderRadius: 10,
-            padding: "14px 18px",
-            textDecoration: "none",
-            transition: "border-color 0.15s",
-          }}
+          className="flex items-center gap-3.5 bg-a26-card border border-a26-card-border rounded-[10px] py-3.5 px-4.5 no-underline transition-[border-color] duration-150"
           onMouseEnter={(e) =>
-            (e.currentTarget.style.borderColor = `rgba(${hexRgb(l.color)},0.35)`)
+            (e.currentTarget.style.borderColor = `color-mix(in srgb, ${l.color} 35%, transparent)`)
           }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.borderColor = A.cardBorder)
-          }
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")}
         >
           <div
+            className="flex items-center justify-center shrink-0 w-10.5 h-10.5 rounded-[10px]"
             style={{
-              width: 42,
-              height: 42,
-              borderRadius: 10,
-              background: `rgba(${hexRgb(l.color)},0.10)`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              background: `color-mix(in srgb, ${l.color} 10%, transparent)`,
               color: l.color,
-              flexShrink: 0,
             }}
           >
             {l.icon}
           </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: A.text }}>
-              {l.label}
-            </div>
-            <div style={{ fontSize: 12, color: l.color, marginTop: 1 }}>
-              {l.value}
-            </div>
-            <div style={{ fontSize: 11, color: A.textMuted, marginTop: 1 }}>
-              {l.desc}
-            </div>
+
+          <div className="flex-1">
+            <div className="text-a26-text text-[13px] font-semibold">{l.label}</div>
+            <div className="text-xs mt-px" style={{ color: l.color }}>{l.value}</div>
+            <div className="text-a26-muted text-[11px] mt-px">{l.desc}</div>
           </div>
-          <ExternalLink size={14} color={A.textMuted} />
+
+          <ExternalLink size={14} color="var(--a26-text-muted)" />
         </a>
       ))}
     </div>

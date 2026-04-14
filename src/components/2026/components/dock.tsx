@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GITHUB_URL } from "@/config/url";
-import { MAC_FONT, WIN_DEFS } from "../constants";
-import { useAurora } from "../use-aurora";
+import { WIN_DEFS } from "../constants";
 import type { WinId, WinState } from "../constants";
 import { MacAppIcon } from "./mac-app-icons";
 
@@ -17,7 +16,6 @@ export function Dock({
   onOpen: (id: WinId) => void;
   onRestore: (id: WinId) => void;
 }) {
-  const A = useAurora();
   const [hov, setHov] = useState<string | null>(null);
 
   const dockApps = WIN_DEFS.map((d) => ({
@@ -36,42 +34,27 @@ export function Dock({
     return 46;
   };
 
+  const tooltipCls = "font-mac absolute pointer-events-none whitespace-nowrap rounded-[7px] py-1 px-[9px] text-xs text-a26-text backdrop-blur-[12px]";
+  const tooltipStyle = {
+    bottom: "calc(100% + 10px)",
+    background: "rgba(28,28,28,0.94)",
+    border: "1px solid rgba(255,255,255,0.10)",
+    boxShadow: "0 4px 14px rgba(0,0,0,0.50)",
+  };
+
   return (
     <div
+      className="font-mac fixed bottom-2.5 left-1/2 -translate-x-1/2 z-8000 flex items-end gap-2 bg-a26-dock border border-a26-dock-border rounded-[22px] py-2 px-3.5 backdrop-blur-[32px] backdrop-saturate-150"
       style={{
-        position: "fixed",
-        bottom: 10,
-        left: "50%",
-        transform: "translateX(-50%)",
-        zIndex: 8000,
-        background: A.dock,
-        border: `1px solid ${A.dockBorder}`,
-        borderRadius: 22,
-        padding: "8px 14px",
-        backdropFilter: "blur(32px) saturate(1.5)",
+        boxShadow: "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
         WebkitBackdropFilter: "blur(32px) saturate(1.5)",
-        display: "flex",
-        gap: 8,
-        alignItems: "flex-end",
-        boxShadow:
-          "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
-        fontFamily: MAC_FONT,
       }}
     >
       {dockApps.map((app) => {
         const size = getSize(app.id);
         const isHov = hov === app.id;
         return (
-          <div
-            key={app.id}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 4,
-              position: "relative",
-            }}
-          >
+          <div key={app.id} className="flex flex-col items-center relative gap-1">
             {/* Hover label */}
             <AnimatePresence>
               {isHov && (
@@ -80,20 +63,8 @@ export function Dock({
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.11 }}
-                  style={{
-                    position: "absolute",
-                    bottom: "calc(100% + 10px)",
-                    background: "rgba(28,28,28,0.94)",
-                    border: "1px solid rgba(255,255,255,0.10)",
-                    borderRadius: 7,
-                    padding: "4px 9px",
-                    fontSize: 12,
-                    color: A.text,
-                    whiteSpace: "nowrap",
-                    backdropFilter: "blur(12px)",
-                    pointerEvents: "none",
-                    boxShadow: "0 4px 14px rgba(0,0,0,0.50)",
-                  }}
+                  className={tooltipCls}
+                  style={tooltipStyle}
                 >
                   {app.title}
                 </motion.div>
@@ -103,24 +74,13 @@ export function Dock({
             <motion.button
               animate={{ width: size, height: size }}
               transition={{ type: "spring", stiffness: 480, damping: 30 }}
-              onClick={() =>
-                app.isMinimized ? onRestore(app.id) : onOpen(app.id)
-              }
+              onClick={() => app.isMinimized ? onRestore(app.id) : onOpen(app.id)}
               onMouseEnter={() => setHov(app.id)}
               onMouseLeave={() => setHov(null)}
+              className="relative flex items-center justify-center shrink-0 cursor-pointer border-none p-0"
               style={{
                 background: "none",
-                border: "none",
-                padding: 0,
-                cursor: "pointer",
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                filter: app.isOpen
-                  ? "drop-shadow(0 0 6px rgba(255,255,255,0.18))"
-                  : "none",
+                filter: app.isOpen ? "drop-shadow(0 0 6px rgba(255,255,255,0.18))" : "none",
                 opacity: app.isMinimized ? 0.65 : 1,
                 transition: "opacity 0.15s, filter 0.15s",
               }}
@@ -128,15 +88,9 @@ export function Dock({
             >
               {app.isMinimized && (
                 <div
+                  className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full z-2"
                   style={{
-                    position: "absolute",
-                    top: 2,
-                    right: 2,
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
                     background: "#FFBD2E",
-                    zIndex: 2,
                     boxShadow: "0 0 4px rgba(255,189,46,0.6)",
                   }}
                 />
@@ -146,16 +100,9 @@ export function Dock({
 
             {/* Running dot */}
             <div
+              className="w-1 h-1 rounded-full shrink-0 transition-[background] duration-150"
               style={{
-                width: 4,
-                height: 4,
-                borderRadius: "50%",
-                background:
-                  app.isOpen && !app.isMinimized
-                    ? "rgba(255,255,255,0.80)"
-                    : "transparent",
-                transition: "background 0.15s",
-                flexShrink: 0,
+                background: app.isOpen && !app.isMinimized ? "rgba(255,255,255,0.80)" : "transparent",
               }}
             />
           </div>
@@ -163,26 +110,10 @@ export function Dock({
       })}
 
       {/* Separator */}
-      <div
-        style={{
-          width: 1,
-          height: 34,
-          background: A.glassBorder,
-          margin: "0 4px 8px",
-          alignSelf: "center",
-        }}
-      />
+      <div className="bg-a26-glass-border w-px h-8.5 mx-1 self-center mb-2" />
 
       {/* GitHub */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 4,
-          position: "relative",
-        }}
-      >
+      <div className="flex flex-col items-center relative gap-1">
         <AnimatePresence>
           {hov === "gh" && (
             <motion.div
@@ -190,20 +121,8 @@ export function Dock({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.11 }}
-              style={{
-                position: "absolute",
-                bottom: "calc(100% + 10px)",
-                background: "rgba(28,28,28,0.94)",
-                border: "1px solid rgba(255,255,255,0.10)",
-                borderRadius: 7,
-                padding: "4px 9px",
-                fontSize: 12,
-                color: A.text,
-                whiteSpace: "nowrap",
-                backdropFilter: "blur(12px)",
-                pointerEvents: "none",
-                boxShadow: "0 4px 14px rgba(0,0,0,0.50)",
-              }}
+              className={tooltipCls}
+              style={tooltipStyle}
             >
               GitHub
             </motion.div>
@@ -216,25 +135,12 @@ export function Dock({
           rel="noopener noreferrer"
           onMouseEnter={() => setHov("gh")}
           onMouseLeave={() => setHov(null)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textDecoration: "none",
-            flexShrink: 0,
-          }}
+          className="flex items-center justify-center shrink-0 no-underline"
           aria-label="GitHub"
         >
           <MacAppIcon id="github" size={46} />
         </motion.a>
-        <div
-          style={{
-            width: 4,
-            height: 4,
-            borderRadius: "50%",
-            background: "transparent",
-          }}
-        />
+        <div className="w-1 h-1 rounded-full" style={{ background: "transparent" }} />
       </div>
     </div>
   );

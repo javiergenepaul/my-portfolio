@@ -9,8 +9,6 @@ import {
   getProjects,
 } from "@/config";
 import { translate, useLocaleRefresh } from "@/i18n";
-import { MAC_FONT } from "../constants";
-import { useAurora } from "../use-aurora";
 import type { WinId } from "../constants";
 
 interface TermEntry {
@@ -32,10 +30,6 @@ const CMDS: Record<string, () => string[]> = {
     "│                   terminal                          │",
     "│  clear            clear terminal                    │",
     "│  exit             close terminal                    │",
-    "├─ Desktop Shortcuts ─────────────────────────────────┤",
-    "│  Ctrl+`           cycle open windows                │",
-    "│  Ctrl+Shift+`     cycle windows (reverse)           │",
-    "│  ⌘K / Ctrl+K      command palette                   │",
     "└─────────────────────────────────────────────────────┘",
     "",
   ],
@@ -117,7 +111,6 @@ export function TerminalContent({
   onClose: () => void;
 }) {
   useLocaleRefresh();
-  const A = useAurora();
   const [history, setHistory] = useState<TermEntry[]>([
     {
       output: [
@@ -160,19 +153,16 @@ export function TerminalContent({
       const t = cmd.trim().toLowerCase();
       if (t === "") return;
 
-      // clear
       if (t === "clear") {
         setHistory([]);
         return;
       }
 
-      // exit / quit
       if (t === "exit" || t === "quit") {
         onClose();
         return;
       }
 
-      // open <app>
       if (t.startsWith("open")) {
         const appName = t.slice(4).trim();
 
@@ -207,7 +197,6 @@ export function TerminalContent({
         return;
       }
 
-      // built-in commands
       const fn = CMDS[t];
       const isKnown = Boolean(fn);
       const out = isKnown
@@ -229,19 +218,16 @@ export function TerminalContent({
     if (!matches.length) return;
 
     if (matches.length === 1) {
-      // Exact single match — complete it
       setInput(matches[0]);
       return;
     }
 
     const prefix = commonPrefix(matches);
     if (prefix.length > lower.length) {
-      // Can advance the common prefix without listing yet
       setInput(prefix);
       return;
     }
 
-    // Already at common prefix — show options
     setHistory((h) => [
       ...h,
       {
@@ -255,64 +241,38 @@ export function TerminalContent({
   return (
     <div
       onClick={() => inputRef.current?.focus()}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        minHeight: 0,
-        overflow: "hidden",
-        background: "#0D0D0D",
-        fontFamily: "'JetBrains Mono','Fira Code','Cascadia Code',monospace",
-        fontSize: 12.5,
-        cursor: "text",
-      }}
+      className="font-mac flex flex-col flex-1 min-h-0 overflow-hidden cursor-text text-[12.5px]"
+      style={{ background: "#0D0D0D" }}
     >
       {/* Status bar */}
       <div
+        className="shrink-0 flex items-center justify-between border-b py-1.25 px-4"
         style={{
-          flexShrink: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "5px 16px",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          borderBottomColor: "rgba(255,255,255,0.06)",
           background: "rgba(255,255,255,0.03)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ color: A.green, fontSize: 11 }}>● connected</span>
-          <span style={{ color: "rgba(255,255,255,0.30)", fontSize: 11 }}>
+        <div className="flex items-center gap-3">
+          <span className="text-a26-green text-[11px]">● connected</span>
+          <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.30)" }}>
             visitor@portfolio:~/
           </span>
         </div>
-        <span style={{ color: "rgba(255,255,255,0.20)", fontSize: 10 }}>
+        <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.20)" }}>
           bash 5.2.26 · {cmdHist.length} cmds
         </span>
       </div>
 
       {/* Output area */}
       <div
-        className="win26-scroll"
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          padding: "14px 18px 6px",
-          scrollbarWidth: "thin",
-          scrollbarColor: "rgba(255,255,255,0.18) transparent",
-        }}
+        className="win26-scroll flex-1 overflow-y-auto pt-3.5 px-4.5 pb-1.5 [scrollbar-width:thin]"
+        style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
       >
         {history.map((e, i) => (
-          <div key={i} style={{ marginBottom: 2 }}>
+          <div key={i} className="mb-0.5">
             {e.input !== undefined && (
-              <div
-                style={{
-                  display: "flex",
-                  gap: 8,
-                  marginBottom: 4,
-                  alignItems: "center",
-                }}
-              >
-                <span style={{ color: A.green, fontSize: 13 }}>❯</span>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-a26-green text-[13px]">❯</span>
                 <span style={{ color: "#5BA3F5" }}>~/portfolio</span>
                 <span style={{ color: "rgba(255,255,255,0.85)" }}>
                   {e.input}
@@ -322,24 +282,22 @@ export function TerminalContent({
             {e.output.map((l, j) => (
               <div
                 key={j}
+                className="font-mono leading-[1.7] whitespace-pre"
                 style={{
                   color: l.startsWith("  bash:") || l.startsWith("bash:") || l.startsWith("  open:")
                     ? "#F87171"
                     : l.startsWith("  ●")
-                      ? A.green
+                      ? "var(--a26-green)"
                       : l.startsWith("  Opening") || l.startsWith("  Closing")
-                        ? A.teal
+                        ? "var(--a26-teal)"
                         : l.startsWith("  ██") ||
                             l.startsWith("  ╚") ||
                             l.startsWith("  ║") ||
                             l.startsWith("  └") ||
                             l.startsWith("  ┌") ||
                             l.startsWith("  │")
-                          ? A.teal
+                          ? "var(--a26-teal)"
                           : "rgba(255,255,255,0.62)",
-                  lineHeight: 1.7,
-                  whiteSpace: "pre",
-                  fontFamily: "inherit",
                 }}
               >
                 {l || "\u00A0"}
@@ -349,15 +307,8 @@ export function TerminalContent({
         ))}
 
         {/* Active prompt */}
-        <div
-          style={{
-            display: "flex",
-            gap: 8,
-            alignItems: "center",
-            marginTop: 4,
-          }}
-        >
-          <span style={{ color: A.green, fontSize: 13 }}>❯</span>
+        <div className="flex items-center gap-2 mt-1">
+          <span className="text-a26-green text-[13px]">❯</span>
           <span style={{ color: "#5BA3F5" }}>~/portfolio</span>
           <input
             ref={inputRef}
@@ -387,16 +338,8 @@ export function TerminalContent({
             }}
             autoFocus
             spellCheck={false}
-            style={{
-              flex: 1,
-              background: "none",
-              border: "none",
-              outline: "none",
-              color: "rgba(255,255,255,0.90)",
-              fontFamily: "inherit",
-              fontSize: "inherit",
-              caretColor: A.teal,
-            }}
+            className="flex-1 bg-transparent border-none outline-none font-[inherit] text-inherit caret-a26-teal"
+            style={{ color: "rgba(255,255,255,0.90)" }}
             aria-label="Terminal input"
           />
         </div>

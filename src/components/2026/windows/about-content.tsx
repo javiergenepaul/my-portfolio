@@ -25,14 +25,11 @@ import {
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import moment from "moment";
-import { MAC_FONT } from "../constants";
-import { useAurora } from "../use-aurora";
-import { hexRgb, formatDate } from "../utils";
+import { formatDate } from "../utils";
 import { translate, useLocaleRefresh } from "@/i18n";
 
 export function AboutContent() {
   useLocaleRefresh();
-  const A = useAurora();
   const [tab, setTab] = useState<"overview" | "experience" | "education">(
     "overview",
   );
@@ -40,89 +37,44 @@ export function AboutContent() {
   const edus = getEducation();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        minHeight: 0,
-        overflow: "hidden",
-        fontFamily: MAC_FONT,
-      }}
-    >
+    <div className="font-mac flex flex-col flex-1 min-h-0 overflow-hidden">
       {/* Safari-style address bar */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "6px 12px",
-          borderBottom: `1px solid ${A.glassBorder}`,
-          background: A.titleBar,
-          flexShrink: 0,
-        }}
-      >
-        <ChevronLeft size={13} color={A.textMuted} />
-        <ChevronRight size={13} color={A.textMuted} />
-        <RefreshCw size={12} color={A.textMuted} />
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            background: A.inputBg,
-            borderRadius: 7,
-            padding: "3px 10px",
-            border: `1px solid ${A.glassBorder}`,
-            fontSize: 12,
-            color: A.textMid,
-          }}
-        >
-          <Lock size={10} color={A.teal} /> genepaulmarjavier.dev/2026/about
+      <div className="flex items-center shrink-0 border-b bg-a26-title-bar border-a26-glass-border gap-2 py-1.5 px-3">
+        <ChevronLeft size={13} color="var(--a26-text-muted)" />
+        <ChevronRight size={13} color="var(--a26-text-muted)" />
+        <RefreshCw size={12} color="var(--a26-text-muted)" />
+        <div className="flex items-center flex-1 gap-1.25 bg-a26-input-bg border border-a26-glass-border text-a26-mid rounded-[7px] py-0.75 px-2.5 text-xs">
+          <Lock size={10} color="var(--a26-teal)" /> genepaulmarjavier.dev/2026/about
         </div>
       </div>
+
       {/* Tabs */}
-      <div
-        style={{
-          display: "flex",
-          gap: 2,
-          padding: "6px 14px 0",
-          borderBottom: `1px solid ${A.glassBorder}`,
-          flexShrink: 0,
-        }}
-      >
+      <div className="flex shrink-0 border-b border-a26-glass-border gap-0.5 px-3.5 pt-1.5 pb-0">
         {(["overview", "experience", "education"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
+            className="font-mac cursor-pointer text-xs"
             style={{
               padding: "4px 12px",
               borderRadius: "7px 7px 0 0",
               border: "none",
-              background: tab === t ? A.window : "transparent",
-              color: tab === t ? A.text : A.textMid,
-              fontSize: 12,
+              background: tab === t ? "var(--a26-window)" : "transparent",
+              color: tab === t ? "var(--a26-text)" : "var(--a26-text-mid)",
               fontWeight: tab === t ? 600 : 400,
-              cursor: "pointer",
-              borderBottom:
-                tab === t ? `2px solid ${A.teal}` : "2px solid transparent",
-              fontFamily: MAC_FONT,
+              borderBottom: tab === t
+                ? "2px solid var(--a26-teal)"
+                : "2px solid transparent",
             }}
           >
             {t.charAt(0).toUpperCase() + t.slice(1)}
           </button>
         ))}
       </div>
+
       <div
-        className="win26-scroll"
-        style={{
-          flex: 1,
-          overflowY: "auto",
-          padding: "24px 28px",
-          scrollbarWidth: "thin",
-          scrollbarColor: "rgba(255,255,255,0.18) transparent",
-        }}
+        className="win26-scroll flex-1 overflow-y-auto py-6 px-7 [scrollbar-width:thin]"
+        style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -133,19 +85,13 @@ export function AboutContent() {
             transition={{ duration: 0.16 }}
           >
             {tab === "overview" && (
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 22 }}
-              >
-                <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-                  <div style={{ position: "relative", flexShrink: 0 }}>
+              <div className="flex flex-col gap-5.5">
+                <div className="flex items-center gap-5">
+                  <div className="relative shrink-0">
                     <div
+                      className="overflow-hidden border-2 border-a26-teal w-22 h-22 rounded-full"
                       style={{
-                        width: 88,
-                        height: 88,
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        border: `2px solid ${A.teal}`,
-                        boxShadow: `0 0 22px rgba(${hexRgb(A.teal)},0.28)`,
+                        boxShadow: "0 0 22px color-mix(in srgb, var(--a26-teal) 28%, transparent)",
                       }}
                     >
                       <Image
@@ -153,167 +99,73 @@ export function AboutContent() {
                         alt={FULL_NAME}
                         width={88}
                         height={88}
-                        style={{
-                          objectFit: "cover",
-                          width: "100%",
-                          height: "100%",
-                        }}
+                        className="object-cover w-full h-full"
                       />
                     </div>
                     <div
-                      style={{
-                        position: "absolute",
-                        bottom: 2,
-                        right: 2,
-                        width: 12,
-                        height: 12,
-                        borderRadius: "50%",
-                        background: A.green,
-                        border: "2px solid #1C1C1C",
-                      }}
+                      className="absolute bg-a26-green border-2 bottom-0.5 right-0.5 w-3 h-3 rounded-full"
+                      style={{ borderColor: "#1C1C1C" }}
                     />
                   </div>
                   <div>
-                    <h1
-                      style={{
-                        margin: 0,
-                        fontSize: 24,
-                        fontWeight: 700,
-                        color: A.text,
-                      }}
-                    >
+                    <h1 className="text-a26-text m-0 text-2xl font-bold">
                       {FULL_NAME}
                     </h1>
-                    <p
-                      style={{
-                        margin: "3px 0 8px",
-                        fontSize: 14,
-                        color: A.teal,
-                        fontWeight: 500,
-                      }}
-                    >
+                    <p className="text-a26-teal mt-0.75 mb-2 text-sm font-medium">
                       {JOB_TITLE}
                     </p>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 5,
-                        fontSize: 12,
-                        color: A.textMid,
-                      }}
-                    >
-                      <MapPin size={12} color={A.textMuted} /> Cebu, Philippines
+                    <div className="flex items-center text-a26-mid gap-1.25 text-xs">
+                      <MapPin size={12} color="var(--a26-text-muted)" /> Cebu, Philippines
                     </div>
                   </div>
                 </div>
-                <div
-                  style={{
-                    background: A.card,
-                    border: `1px solid ${A.cardBorder}`,
-                    borderRadius: 10,
-                    padding: "14px 18px",
-                  }}
-                >
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: 13.5,
-                      lineHeight: 1.8,
-                      color: A.textMid,
-                    }}
-                  >
+
+                <div className="bg-a26-card border border-a26-card-border rounded-[10px] py-3.5 px-4.5">
+                  <p className="text-a26-mid m-0 text-[13.5px] leading-[1.8]">
                     Full-stack software engineer crafting production-ready
                     applications with{" "}
-                    <span style={{ color: A.teal }}>React & Next.js</span> on
+                    <span className="text-a26-teal">React & Next.js</span> on
                     the frontend and{" "}
-                    <span style={{ color: A.violet }}>Spring Boot & Java</span>{" "}
+                    <span className="text-a26-violet">Spring Boot & Java</span>{" "}
                     on the backend. Passionate about clean architecture,
                     developer experience, and shipping things that matter.
                   </p>
                 </div>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(4, 1fr)",
-                    gap: 10,
-                  }}
-                >
+
+                <div className="grid grid-cols-4 gap-2.5">
                   {[
                     {
                       v: `${moment().diff(moment(CAREER_START_DATE), "years")}+`,
                       l: translate("about.intro.years"),
-                      c: A.teal,
+                      c: "var(--a26-teal)",
                     },
-                    { v: "10+", l: translate("about.intro.project"), c: A.violet },
-                    { v: "20+", l: translate("about.intro.technologies"), c: A.green },
+                    { v: "10+", l: translate("about.intro.project"), c: "var(--a26-violet)" },
+                    { v: "20+", l: translate("about.intro.technologies"), c: "var(--a26-green)" },
                     { v: translate("about.intro.active"), l: translate("about.intro.status"), c: "#FBBF24" },
                   ].map((s) => (
                     <div
                       key={s.l}
-                      style={{
-                        background: A.card,
-                        border: `1px solid ${A.cardBorder}`,
-                        borderRadius: 9,
-                        padding: "12px",
-                        textAlign: "center",
-                      }}
+                      className="bg-a26-card border border-a26-card-border text-center rounded-[9px] p-3"
                     >
-                      <div
-                        style={{ fontSize: 20, fontWeight: 700, color: s.c }}
-                      >
-                        {s.v}
-                      </div>
-                      <div
-                        style={{
-                          fontSize: 10,
-                          color: A.textMuted,
-                          marginTop: 1,
-                        }}
-                      >
-                        {s.l}
-                      </div>
+                      <div className="text-xl font-bold" style={{ color: s.c }}>{s.v}</div>
+                      <div className="text-a26-muted text-[10px] mt-px">{s.l}</div>
                     </div>
                   ))}
                 </div>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+
+                <div className="flex flex-wrap gap-2">
                   {[
-                    {
-                      href: GITHUB_URL,
-                      icon: <GithubIcon size={13} />,
-                      label: "GitHub",
-                      c: A.text,
-                    },
-                    {
-                      href: LINKED_IN_URL,
-                      icon: <LinkedinIcon size={13} />,
-                      label: "LinkedIn",
-                      c: "#60A5FA",
-                    },
-                    {
-                      href: `mailto:${EMAIL_ADDRESS}`,
-                      icon: <Mail size={13} />,
-                      label: EMAIL_ADDRESS,
-                      c: A.teal,
-                    },
+                    { href: GITHUB_URL, icon: <GithubIcon size={13} />, label: "GitHub", c: "var(--a26-text)" },
+                    { href: LINKED_IN_URL, icon: <LinkedinIcon size={13} />, label: "LinkedIn", c: "#60A5FA" },
+                    { href: `mailto:${EMAIL_ADDRESS}`, icon: <Mail size={13} />, label: EMAIL_ADDRESS, c: "var(--a26-teal)" },
                   ].map((l) => (
                     <a
                       key={l.label}
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 6,
-                        background: A.glass,
-                        border: `1px solid ${A.glassBorder}`,
-                        borderRadius: 7,
-                        padding: "6px 12px",
-                        fontSize: 12,
-                        color: l.c,
-                        textDecoration: "none",
-                      }}
+                      className="flex items-center bg-a26-glass border border-a26-glass-border gap-1.5 rounded-[7px] py-1.5 px-3 text-xs no-underline"
+                      style={{ color: l.c }}
                     >
                       {l.icon} {l.label}
                     </a>
@@ -321,99 +173,45 @@ export function AboutContent() {
                 </div>
               </div>
             )}
+
             {tab === "experience" && (
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 12 }}
-              >
-                <h2
-                  style={{
-                    margin: "0 0 4px",
-                    fontSize: 16,
-                    fontWeight: 700,
-                    color: A.text,
-                  }}
-                >
+              <div className="flex flex-col gap-3">
+                <h2 className="text-a26-text mb-1 text-base font-bold">
                   {translate("about.experience.title")}
                 </h2>
                 {exps.map((exp, i) => (
-                  <div key={i} style={{ display: "flex", gap: 14 }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        width: 18,
-                        flexShrink: 0,
-                      }}
-                    >
+                  <div key={i} className="flex gap-3.5">
+                    <div className="flex flex-col items-center shrink-0 w-4.5">
                       <div
-                        style={{
-                          width: 9,
-                          height: 9,
-                          borderRadius: "50%",
-                          background: A.teal,
-                          boxShadow: `0 0 7px ${A.teal}`,
-                          marginTop: 6,
-                          flexShrink: 0,
-                        }}
+                        className="bg-a26-teal shrink-0 w-2.25 h-2.25 rounded-full mt-1.5"
+                        style={{ boxShadow: "0 0 7px var(--a26-teal)" }}
                       />
                       {i < exps.length - 1 && (
                         <div
+                          className="flex-1 w-px mt-1.25"
                           style={{
-                            flex: 1,
-                            width: 1,
-                            background: `linear-gradient(to bottom, rgba(${hexRgb(A.teal)},0.35), transparent)`,
-                            marginTop: 5,
+                            background: "linear-gradient(to bottom, color-mix(in srgb, var(--a26-teal) 35%, transparent), transparent)",
                           }}
                         />
                       )}
                     </div>
-                    <div
-                      style={{
-                        flex: 1,
-                        background: A.card,
-                        border: `1px solid ${A.cardBorder}`,
-                        borderRadius: 9,
-                        padding: "12px 14px",
-                        marginBottom: 6,
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          gap: 8,
-                          flexWrap: "wrap",
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 13.5,
-                            fontWeight: 600,
-                            color: A.text,
-                          }}
-                        >
+                    <div className="flex-1 bg-a26-card border border-a26-card-border rounded-[9px] py-3 px-3.5 mb-1.5">
+                      <div className="flex justify-between flex-wrap gap-2">
+                        <span className="text-a26-text text-[13.5px] font-semibold">
                           {exp.title}
                         </span>
-                        <span style={{ fontSize: 11, color: A.textMuted }}>
-                          {formatDate(exp.startYear)} —{" "}
-                          {formatDate(exp.endYear)}
+                        <span className="text-a26-muted text-[11px]">
+                          {formatDate(exp.startYear)} — {formatDate(exp.endYear)}
                         </span>
                       </div>
                       {exp.subtitle && (
-                        <div
-                          style={{ fontSize: 12, color: A.teal, marginTop: 2 }}
-                        >
+                        <div className="text-a26-teal text-xs mt-0.5">
                           {exp.subtitle}
                           {exp.employmentType && (
                             <span
+                              className="text-a26-violet ml-1.5 text-[11px] rounded py-px px-1.25"
                               style={{
-                                marginLeft: 6,
-                                fontSize: 11,
-                                color: A.violet,
-                                background: `rgba(${hexRgb(A.violet)},0.12)`,
-                                borderRadius: 4,
-                                padding: "1px 5px",
+                                background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
                               }}
                             >
                               {exp.employmentType}
@@ -421,18 +219,7 @@ export function AboutContent() {
                           )}
                         </div>
                       )}
-                      <p
-                        style={{
-                          margin: "7px 0 0",
-                          fontSize: 12,
-                          lineHeight: 1.65,
-                          color: A.textMid,
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                          overflow: "hidden",
-                        }}
-                      >
+                      <p className="text-a26-mid mt-1.75 text-xs leading-[1.65] line-clamp-3">
                         {exp.description}
                       </p>
                     </div>
@@ -440,74 +227,35 @@ export function AboutContent() {
                 ))}
               </div>
             )}
+
             {tab === "education" && (
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 10 }}
-              >
-                <h2
-                  style={{
-                    margin: "0 0 4px",
-                    fontSize: 16,
-                    fontWeight: 700,
-                    color: A.text,
-                  }}
-                >
+              <div className="flex flex-col gap-2.5">
+                <h2 className="text-a26-text mb-1 text-base font-bold">
                   {translate("about.education.title")}
                 </h2>
                 {edus.map((edu, i) => (
                   <div
                     key={i}
-                    style={{
-                      display: "flex",
-                      gap: 12,
-                      background: A.card,
-                      border: `1px solid ${A.cardBorder}`,
-                      borderRadius: 9,
-                      padding: "12px 14px",
-                    }}
+                    className="flex bg-a26-card border border-a26-card-border gap-3 rounded-[9px] py-3 px-3.5"
                   >
                     <div
+                      className="flex items-center justify-center shrink-0 w-8.5 h-8.5 rounded-lg"
                       style={{
-                        width: 34,
-                        height: 34,
-                        borderRadius: 8,
-                        background: `rgba(${hexRgb(A.violet)},0.12)`,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
+                        background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
                       }}
                     >
-                      <GraduationCap size={16} color={A.violet} />
+                      <GraduationCap size={16} color="var(--a26-violet)" />
                     </div>
                     <div>
-                      <div
-                        style={{
-                          fontSize: 13.5,
-                          fontWeight: 600,
-                          color: A.text,
-                        }}
-                      >
+                      <div className="text-a26-text text-[13.5px] font-semibold">
                         {edu.title}
                       </div>
                       {edu.subtitle && (
-                        <div
-                          style={{
-                            fontSize: 12,
-                            color: A.violet,
-                            marginTop: 1,
-                          }}
-                        >
+                        <div className="text-a26-violet text-xs mt-px">
                           {edu.subtitle}
                         </div>
                       )}
-                      <div
-                        style={{
-                          fontSize: 11,
-                          color: A.textMuted,
-                          marginTop: 3,
-                        }}
-                      >
+                      <div className="text-a26-muted text-[11px] mt-0.75">
                         {formatDate(edu.startYear)} — {formatDate(edu.endYear)}
                       </div>
                     </div>
