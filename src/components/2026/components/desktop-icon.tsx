@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { MAC_FONT } from "../constants";
 import { useAurora, useIsDark } from "../use-aurora";
 import type { WinId } from "../constants";
@@ -40,13 +40,13 @@ export function DesktopIcon({
   const mx = useMotionValue(initX);
   const my = useMotionValue(initY);
 
-  // Sync motion values when the parent updates positions (e.g. after mount correction
-  // or Arrange Icons / Reset Position). Skip update while the user is dragging.
+  // Animate to new position when parent updates (snap after drag, arrange, reset).
+  // Skip while dragging — framer-motion owns the value during drag.
   useEffect(() => {
-    if (!dragging) mx.set(initX);
+    if (!dragging) animate(mx, initX, { type: "spring", stiffness: 380, damping: 28, mass: 0.7 });
   }, [initX]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (!dragging) my.set(initY);
+    if (!dragging) animate(my, initY, { type: "spring", stiffness: 380, damping: 28, mass: 0.7 });
   }, [initY]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

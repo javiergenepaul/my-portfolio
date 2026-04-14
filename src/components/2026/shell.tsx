@@ -41,25 +41,70 @@ export function Portfolio2026() {
   const [topZ, setTopZ] = useState(30);
   const [cmdOpen, setCmdOpen] = useState(false);
   const desktopRef = useRef<HTMLElement>(null);
+  // Grid cell size for icon snapping
+  const CELL_W = 96;
+  const CELL_H = 100;
+
+  const snapToGrid = (x: number, y: number) => ({
+    x: Math.round(x / CELL_W) * CELL_W,
+    y: Math.round(y / CELL_H) * CELL_H,
+  });
+
   // Use a fixed SSR-safe constant so server and client first-render agree.
   // A useEffect below corrects the x position to the actual window width after mount.
   const [iconPositions, setIconPositions] = useState<Record<WinId, { x: number; y: number }>>(() =>
     Object.fromEntries(
-      WIN_DEFS.map((def, i) => [def.id, { x: 1336, y: 16 + i * 100 }])
+      WIN_DEFS.map((def, i) => [def.id, { x: 1344, y: i * 100 }])
     ) as Record<WinId, { x: number; y: number }>
   );
 
   // Snap icons to the right column after mount when we know the real viewport width
   useEffect(() => {
+    const snappedX = Math.round((window.innerWidth - 104) / CELL_W) * CELL_W;
     setIconPositions(
       Object.fromEntries(
-        WIN_DEFS.map((def, i) => [def.id, { x: window.innerWidth - 104, y: 16 + i * 100 }])
+        WIN_DEFS.map((def, i) => [def.id, { x: snappedX, y: i * CELL_H }])
       ) as Record<WinId, { x: number; y: number }>
     );
   }, []);
 
-  const updateIconPos = useCallback((id: WinId, x: number, y: number) => {
-    setIconPositions((prev) => ({ ...prev, [id]: { x, y } }));
+  const updateIconPos = useCallback((id: WinId, rawX: number, rawY: number) => {
+    setIconPositions((prev) => {
+      const snapped = snapToGrid(rawX, rawY);
+
+      // Positions of all other icons (snapped) for overlap detection
+      const others = (Object.entries(prev) as [WinId, { x: number; y: number }][])
+        .filter(([k]) => k !== id)
+        .map(([, p]) => snapToGrid(p.x, p.y));
+
+      const isFree = (sx: number, sy: number) =>
+        !others.some((o) => o.x === sx && o.y === sy);
+
+      if (isFree(snapped.x, snapped.y)) {
+        return { ...prev, [id]: snapped };
+      }
+
+      // BFS: find nearest free grid cell to the snapped position
+      const visited = new Set<string>();
+      const queue = [snapped];
+      while (queue.length) {
+        const cell = queue.shift()!;
+        const key = `${cell.x},${cell.y}`;
+        if (visited.has(key)) continue;
+        visited.add(key);
+        if (cell.x < -CELL_W || cell.y < -CELL_H || cell.x > 4000 || cell.y > 4000) continue;
+        if (isFree(cell.x, cell.y)) return { ...prev, [id]: cell };
+        queue.push(
+          { x: cell.x + CELL_W, y: cell.y },
+          { x: cell.x - CELL_W, y: cell.y },
+          { x: cell.x, y: cell.y + CELL_H },
+          { x: cell.x, y: cell.y - CELL_H },
+        );
+      }
+
+      return { ...prev, [id]: snapped };
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [ctxMenu, setCtxMenu] = useState<{ x: number; y: number; items: ContextMenuEntry[] } | null>(null);
@@ -129,11 +174,13 @@ export function Portfolio2026() {
     });
   }, [topZ]);
 
-  const defaultIconPositions = useCallback(() =>
-    Object.fromEntries(
-      WIN_DEFS.map((def, i) => [def.id, { x: window.innerWidth - 104, y: 16 + i * 100 }])
-    ) as Record<WinId, { x: number; y: number }>
-  , []);
+  const defaultIconPositions = useCallback(() => {
+    const snappedX = Math.round((window.innerWidth - 104) / CELL_W) * CELL_W;
+    return Object.fromEntries(
+      WIN_DEFS.map((def, i) => [def.id, { x: snappedX, y: i * CELL_H }])
+    ) as Record<WinId, { x: number; y: number }>;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const arrangeIcons = useCallback(() => {
     setIconPositions(defaultIconPositions());
@@ -226,6 +273,25 @@ export function Portfolio2026() {
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
   }, [openWin]);
+
+  // Ctrl+` — cycle through open windows (browser-safe, no OS conflict)
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if (!e.ctrlKey || e.key !== "`") return;
+      e.preventDefault();
+
+      const visible = WIN_DEFS
+        .filter((def) => wins[def.id].open && !wins[def.id].minimized)
+        .sort((a, b) => wins[b.id].zIndex - wins[a.id].zIndex);
+
+      if (visible.length < 2) return;
+
+      const next = e.shiftKey ? visible[visible.length - 1] : visible[1];
+      focusWin(next.id);
+    };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [wins, focusWin]);
 
   if (isMobile) return <MobilePortfolio />;
 

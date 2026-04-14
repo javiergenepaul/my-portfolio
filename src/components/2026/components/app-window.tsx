@@ -303,7 +303,7 @@ export function AppWindow({
       <div style={{ flex: 1, minHeight: 0, overflow: "hidden", display: "flex", flexDirection: "column" }}>
         {def.id === "about" && <AboutContent />}
         {def.id === "projects" && <ProjectsContent />}
-        {def.id === "terminal" && <TerminalContent onOpen={onOpen} />}
+        {def.id === "terminal" && <TerminalContent onOpen={onOpen} onClose={onClose} />}
         {def.id === "skills" && <SkillsContent />}
         {def.id === "contact" && <ContactContent />}
         {def.id === "resume" && <ResumeContent />}

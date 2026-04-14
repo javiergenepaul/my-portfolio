@@ -333,7 +333,10 @@ export function MobilePortfolio() {
               {activeApp === "about" && <AboutContent />}
               {activeApp === "projects" && <ProjectsContent />}
               {activeApp === "terminal" && (
-                <TerminalContent onOpen={(id) => setActiveApp(id)} />
+                <TerminalContent
+                  onOpen={(id) => setActiveApp(id)}
+                  onClose={() => setActiveApp(null)}
+                />
               )}
               {activeApp === "skills" && <SkillsContent />}
               {activeApp === "contact" && <ContactContent />}

@@ -19,6 +19,8 @@ interface TermEntry {
   type?: "error" | "success" | "info";
 }
 
+// ── Static commands ────────────────────────────────────────────────────────────
+
 const CMDS: Record<string, () => string[]> = {
   help: () => [
     "┌─ Available Commands ────────────────────────────────┐",
@@ -26,8 +28,14 @@ const CMDS: Record<string, () => string[]> = {
     "│  ls               list recent projects              │",
     "│  cat skills.json  print full tech stack             │",
     "│  open <app>       about / projects / skills /       │",
-    "│                   contact / resume / settings       │",
+    "│                   contact / resume / settings /     │",
+    "│                   terminal                          │",
     "│  clear            clear terminal                    │",
+    "│  exit             close terminal                    │",
+    "├─ Desktop Shortcuts ─────────────────────────────────┤",
+    "│  Ctrl+`           cycle open windows                │",
+    "│  Ctrl+Shift+`     cycle windows (reverse)           │",
+    "│  ⌘K / Ctrl+K      command palette                   │",
     "└─────────────────────────────────────────────────────┘",
     "",
   ],
@@ -54,7 +62,10 @@ const CMDS: Record<string, () => string[]> = {
     SKILL_CATEGORIES.forEach((c, i) => {
       const names = c.stacks
         .slice(0, 5)
-        .map((s) => `"${translate(`services.stack.${s.name}` as any) || s.name}"`)
+        .map(
+          (s) =>
+            `"${translate(`services.stack.${s.name}` as any) || s.name}"`,
+        )
         .join(", ");
       lines.push(
         `  "${c.label}": [${names}${c.stacks.length > 5 ? ", ..." : ""}]${
@@ -66,16 +77,45 @@ const CMDS: Record<string, () => string[]> = {
   },
 };
 
-const OPEN_MAP: Record<string, WinId> = {
-  "open about": "about",
-  "open projects": "projects",
-  "open skills": "skills",
-  "open contact": "contact",
-  "open resume": "resume",
-  "open settings": "settings",
+// ── App name → WinId mapping ───────────────────────────────────────────────────
+
+const APP_MAP: Record<string, WinId> = {
+  about: "about",
+  projects: "projects",
+  skills: "skills",
+  contact: "contact",
+  resume: "resume",
+  settings: "settings",
+  terminal: "terminal",
 };
 
-export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
+// ── All completable tokens (for Tab) ──────────────────────────────────────────
+
+const ALL_COMPLETIONS = [
+  ...Object.keys(CMDS),
+  "clear",
+  "exit",
+  ...Object.keys(APP_MAP).map((a) => `open ${a}`),
+];
+
+function commonPrefix(strs: string[]): string {
+  if (!strs.length) return "";
+  let prefix = strs[0];
+  for (let i = 1; i < strs.length; i++) {
+    while (!strs[i].startsWith(prefix)) prefix = prefix.slice(0, -1);
+  }
+  return prefix;
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
+export function TerminalContent({
+  onOpen,
+  onClose,
+}: {
+  onOpen: (id: WinId) => void;
+  onClose: () => void;
+}) {
   const A = useAurora();
   const [history, setHistory] = useState<TermEntry[]>([
     {
@@ -105,38 +145,111 @@ export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
+  const pushEntry = useCallback(
+    (cmd: string, output: string[], type?: TermEntry["type"]) => {
+      setHistory((h) => [...h, { input: cmd, output, type }]);
+      setCmdHist((h) => [cmd, ...h]);
+      setHistIdx(-1);
+    },
+    [],
+  );
+
   const run = useCallback(
     (cmd: string) => {
       const t = cmd.trim().toLowerCase();
       if (t === "") return;
+
+      // clear
       if (t === "clear") {
         setHistory([]);
         return;
       }
-      if (OPEN_MAP[t]) {
-        onOpen(OPEN_MAP[t]);
-        setHistory((h) => [
-          ...h,
-          { input: cmd, output: [`  Opening ${OPEN_MAP[t]}…`, ""], type: "success" },
-        ]);
-        setCmdHist((h) => [cmd, ...h]);
-        setHistIdx(-1);
+
+      // exit / quit
+      if (t === "exit" || t === "quit") {
+        onClose();
         return;
       }
+
+      // open <app>
+      if (t.startsWith("open")) {
+        const appName = t.slice(4).trim();
+
+        if (!appName) {
+          pushEntry(
+            cmd,
+            [
+              "  Usage: open <app>",
+              `  Apps: ${Object.keys(APP_MAP).join(", ")}`,
+              "",
+            ],
+            "error",
+          );
+          return;
+        }
+
+        const winId = APP_MAP[appName];
+        if (winId) {
+          onOpen(winId);
+          pushEntry(cmd, [`  Opening ${winId}…`, ""], "success");
+        } else {
+          pushEntry(
+            cmd,
+            [
+              `  open: no app named '${appName}'`,
+              `  Available: ${Object.keys(APP_MAP).join(", ")}`,
+              "",
+            ],
+            "error",
+          );
+        }
+        return;
+      }
+
+      // built-in commands
       const fn = CMDS[t];
       const isKnown = Boolean(fn);
       const out = isKnown
         ? fn()
-        : [`  bash: ${t}: command not found`, "  Type 'help' for available commands.", ""];
-      setHistory((h) => [
-        ...h,
-        { input: cmd, output: out, type: isKnown ? "info" : "error" },
-      ]);
-      setCmdHist((h) => [cmd, ...h]);
-      setHistIdx(-1);
+        : [
+            `  bash: ${t}: command not found`,
+            "  Type 'help' for available commands.",
+            "",
+          ];
+      pushEntry(cmd, out, isKnown ? "info" : "error");
     },
-    [onOpen],
+    [onOpen, onClose, pushEntry],
   );
+
+  const handleTab = useCallback(() => {
+    const lower = input.toLowerCase();
+    const matches = ALL_COMPLETIONS.filter((c) => c.startsWith(lower));
+
+    if (!matches.length) return;
+
+    if (matches.length === 1) {
+      // Exact single match — complete it
+      setInput(matches[0]);
+      return;
+    }
+
+    const prefix = commonPrefix(matches);
+    if (prefix.length > lower.length) {
+      // Can advance the common prefix without listing yet
+      setInput(prefix);
+      return;
+    }
+
+    // Already at common prefix — show options
+    setHistory((h) => [
+      ...h,
+      {
+        input: input,
+        output: ["  " + matches.join("   "), ""],
+        type: "info",
+      },
+    ]);
+  }, [input]);
 
   return (
     <div
@@ -167,7 +280,9 @@ export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{ color: A.green, fontSize: 11 }}>● connected</span>
-          <span style={{ color: "rgba(255,255,255,0.30)", fontSize: 11 }}>visitor@portfolio:~/</span>
+          <span style={{ color: "rgba(255,255,255,0.30)", fontSize: 11 }}>
+            visitor@portfolio:~/
+          </span>
         </div>
         <span style={{ color: "rgba(255,255,255,0.20)", fontSize: 10 }}>
           bash 5.2.26 · {cmdHist.length} cmds
@@ -186,23 +301,37 @@ export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
         {history.map((e, i) => (
           <div key={i} style={{ marginBottom: 2 }}>
             {e.input !== undefined && (
-              <div style={{ display: "flex", gap: 8, marginBottom: 4, alignItems: "center" }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 8,
+                  marginBottom: 4,
+                  alignItems: "center",
+                }}
+              >
                 <span style={{ color: A.green, fontSize: 13 }}>❯</span>
                 <span style={{ color: "#5BA3F5" }}>~/portfolio</span>
-                <span style={{ color: "rgba(255,255,255,0.85)" }}>{e.input}</span>
+                <span style={{ color: "rgba(255,255,255,0.85)" }}>
+                  {e.input}
+                </span>
               </div>
             )}
             {e.output.map((l, j) => (
               <div
                 key={j}
                 style={{
-                  color: l.startsWith("  bash:") || l.startsWith("bash:")
+                  color: l.startsWith("  bash:") || l.startsWith("bash:") || l.startsWith("  open:")
                     ? "#F87171"
                     : l.startsWith("  ●")
                       ? A.green
-                      : l.startsWith("  Opening")
+                      : l.startsWith("  Opening") || l.startsWith("  Closing")
                         ? A.teal
-                        : l.startsWith("  ██") || l.startsWith("  ╚") || l.startsWith("  ║") || l.startsWith("  └") || l.startsWith("  ┌") || l.startsWith("  │")
+                        : l.startsWith("  ██") ||
+                            l.startsWith("  ╚") ||
+                            l.startsWith("  ║") ||
+                            l.startsWith("  └") ||
+                            l.startsWith("  ┌") ||
+                            l.startsWith("  │")
                           ? A.teal
                           : "rgba(255,255,255,0.62)",
                   lineHeight: 1.7,
@@ -217,13 +346,23 @@ export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
         ))}
 
         {/* Active prompt */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 4 }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            alignItems: "center",
+            marginTop: 4,
+          }}
+        >
           <span style={{ color: A.green, fontSize: 13 }}>❯</span>
           <span style={{ color: "#5BA3F5" }}>~/portfolio</span>
           <input
             ref={inputRef}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              setHistIdx(-1);
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 run(input);
@@ -240,12 +379,7 @@ export function TerminalContent({ onOpen }: { onOpen: (id: WinId) => void }) {
                 setInput(n === -1 ? "" : (cmdHist[n] ?? ""));
               } else if (e.key === "Tab") {
                 e.preventDefault();
-                const completions = [
-                  ...Object.keys(CMDS),
-                  ...Object.keys(OPEN_MAP),
-                  "clear",
-                ].filter((c) => c.startsWith(input.toLowerCase()));
-                if (completions.length === 1) setInput(completions[0]);
+                handleTab();
               }
             }}
             autoFocus

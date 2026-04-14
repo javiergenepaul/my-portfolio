@@ -377,6 +377,13 @@ export function MenuBar({
           {activeMenu === "window" && (
             <Dropdown>
               <MenuItem
+                label="Cycle Windows"
+                shortcut="⌃`"
+                disabled={!anyOpen}
+                onClick={() => act(() => {})}
+              />
+              <Separator />
+              <MenuItem
                 label="Minimize All"
                 shortcut="⌘M"
                 disabled={!anyOpen}
