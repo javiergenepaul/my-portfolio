@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useIsMobile } from "../hooks";
 
 const GRID = 20;
-const CELL = 400 / GRID; // 20 px
 const TICK_MS = 130;
 
 type Pos = { x: number; y: number };
@@ -21,8 +21,35 @@ const INIT_SNAKE: Pos[] = [{ x: 10, y: 11 }, { x: 10, y: 12 }, { x: 10, y: 13 }]
 
 export function SnakeContent() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
-  // All mutable game state lives in a ref to avoid stale closures in the tick
+  // Responsive canvas size — fits the container width, max 400
+  const [canvasSize, setCanvasSize] = useState(400);
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const calc = () => {
+      const available = el.clientWidth - (isMobile ? 24 : 32);
+      const size = Math.min(Math.max(260, available), 400);
+      setCanvasSize(size);
+    };
+    calc();
+    const ro = new ResizeObserver(calc);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [isMobile]);
+
+  // Sync canvas element dimensions whenever canvasSize changes
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = canvasSize;
+    canvas.height = canvasSize;
+    draw();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [canvasSize]);
+
   const gs = useRef({
     snake: [...INIT_SNAKE],
     dir: { x: 0, y: -1 },
@@ -38,19 +65,21 @@ export function SnakeContent() {
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
-    if (!ctx) return;
+    if (!ctx || !canvas) return;
+
+    const SIZE = canvas.width;
+    const CELL = SIZE / GRID;
     const { snake, food } = gs.current;
 
-    // Background
     ctx.fillStyle = "#0D0D0D";
-    ctx.fillRect(0, 0, 400, 400);
+    ctx.fillRect(0, 0, SIZE, SIZE);
 
-    // Subtle grid lines
+    // Grid lines
     ctx.strokeStyle = "rgba(255,255,255,0.04)";
     ctx.lineWidth = 0.5;
     for (let i = 1; i < GRID; i++) {
-      ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, 400); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(400, i * CELL); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, SIZE); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(SIZE, i * CELL); ctx.stroke();
     }
 
     // Food
@@ -58,27 +87,20 @@ export function SnakeContent() {
     ctx.beginPath();
     ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.36, 0, Math.PI * 2);
     ctx.fill();
-    // Food shine
     ctx.fillStyle = "rgba(255,255,255,0.35)";
     ctx.beginPath();
     ctx.arc(food.x * CELL + CELL * 0.38, food.y * CELL + CELL * 0.34, CELL * 0.14, 0, Math.PI * 2);
     ctx.fill();
 
-    // Snake segments
+    // Snake
     snake.forEach((seg, i) => {
       const ratio = i / Math.max(snake.length - 1, 1);
       const alpha = 1 - ratio * 0.55;
-      ctx.fillStyle = i === 0
-        ? `rgba(74,222,128,${alpha})`
-        : `rgba(34,197,94,${alpha})`;
-      const pad = 1.5;
-      const x = seg.x * CELL + pad;
-      const y = seg.y * CELL + pad;
-      const w = CELL - pad * 2;
-      const h = CELL - pad * 2;
+      ctx.fillStyle = i === 0 ? `rgba(74,222,128,${alpha})` : `rgba(34,197,94,${alpha})`;
+      const pad = Math.max(1, CELL * 0.075);
       const rx = CELL * 0.3;
       ctx.beginPath();
-      ctx.roundRect(x, y, w, h, rx);
+      ctx.roundRect(seg.x * CELL + pad, seg.y * CELL + pad, CELL - pad * 2, CELL - pad * 2, rx);
       ctx.fill();
     });
   }, []);
@@ -90,34 +112,24 @@ export function SnakeContent() {
     const head = g.snake[0];
     const nh = { x: head.x + g.dir.x, y: head.y + g.dir.y };
 
-    const hitWall = nh.x < 0 || nh.x >= GRID || nh.y < 0 || nh.y >= GRID;
-    const hitSelf = g.snake.some((p) => p.x === nh.x && p.y === nh.y);
-
-    if (hitWall || hitSelf) {
+    if (nh.x < 0 || nh.x >= GRID || nh.y < 0 || nh.y >= GRID || g.snake.some((p) => p.x === nh.x && p.y === nh.y)) {
       setPhase("dead");
       return;
     }
 
     const ate = nh.x === g.food.x && nh.y === g.food.y;
     g.snake = [nh, ...g.snake];
-    if (!ate) {
-      g.snake.pop();
-    } else {
-      g.food = randFood(g.snake);
-      g.score += 10;
-      setScore(g.score);
-    }
+    if (!ate) g.snake.pop();
+    else { g.food = randFood(g.snake); g.score += 10; setScore(g.score); }
     draw();
   }, [draw]);
 
-  // Game loop
   useEffect(() => {
     if (phase !== "playing") return;
     const id = setInterval(tick, TICK_MS);
     return () => clearInterval(id);
   }, [phase, tick]);
 
-  // Initial draw
   useEffect(() => { draw(); }, [draw]);
 
   // ── Restart ───────────────────────────────────────────────────────────────────
@@ -135,9 +147,15 @@ export function SnakeContent() {
     requestAnimationFrame(draw);
   }, [draw]);
 
-  // ── Key handler — scoped to the container so it doesn't conflict with year nav ─
-  const containerRef = useRef<HTMLDivElement>(null);
+  // ── Steer (shared by keyboard + D-pad + swipe) ────────────────────────────────
+  const steer = useCallback((d: Pos) => {
+    const g = gs.current;
+    if (d.x === -g.dir.x && d.y === -g.dir.y) return; // no 180°
+    g.nextDir = d;
+    setPhase((p) => (p === "idle" ? "playing" : p));
+  }, []);
 
+  // ── Keyboard ──────────────────────────────────────────────────────────────────
   const handleKey = useCallback((e: KeyboardEvent) => {
     const MAP: Record<string, Pos> = {
       ArrowUp: { x: 0, y: -1 }, w: { x: 0, y: -1 },
@@ -145,17 +163,13 @@ export function SnakeContent() {
       ArrowLeft: { x: -1, y: 0 }, a: { x: -1, y: 0 },
       ArrowRight: { x: 1, y: 0 }, d: { x: 1, y: 0 },
     };
-    const d = MAP[e.key];
-    if (!d) return;
+    const dir = MAP[e.key];
+    if (!dir) return;
     e.preventDefault();
     e.stopPropagation();
-    const g = gs.current;
-    if (d.x === -g.dir.x && d.y === -g.dir.y) return;
-    g.nextDir = d;
-    setPhase((p) => p === "idle" ? "playing" : p);
-  }, []);
+    steer(dir);
+  }, [steer]);
 
-  // Attach listener to the container element only — keys are ignored when blurred
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -163,27 +177,67 @@ export function SnakeContent() {
     return () => el.removeEventListener("keydown", handleKey);
   }, [handleKey]);
 
-  // Auto-focus on mount so the player doesn't need to click first
   useEffect(() => { containerRef.current?.focus(); }, []);
+
+  // ── Touch / swipe ─────────────────────────────────────────────────────────────
+  const touchOrigin = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchOrigin.current = { x: t.clientX, y: t.clientY };
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (!touchOrigin.current) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchOrigin.current.x;
+    const dy = t.clientY - touchOrigin.current.y;
+    touchOrigin.current = null;
+
+    const MIN = 28;
+    if (Math.abs(dx) < MIN && Math.abs(dy) < MIN) {
+      // Tap — start game
+      setPhase((p) => (p === "idle" ? "playing" : p));
+      return;
+    }
+    if (Math.abs(dx) > Math.abs(dy)) {
+      steer(dx > 0 ? { x: 1, y: 0 } : { x: -1, y: 0 });
+    } else {
+      steer(dy > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 });
+    }
+  }, [steer]);
+
+  // ── D-pad button ──────────────────────────────────────────────────────────────
+  const DPadBtn = ({ dir, label }: { dir: Pos; label: string }) => (
+    <button
+      onPointerDown={(e) => { e.preventDefault(); steer(dir); }}
+      className="font-mac flex items-center justify-center w-12 h-12 rounded-xl border-none cursor-pointer select-none active:scale-90 transition-transform duration-75"
+      style={{
+        background: "rgba(255,255,255,0.07)",
+        color: "rgba(255,255,255,0.70)",
+        fontSize: 20,
+        WebkitUserSelect: "none",
+        touchAction: "none",
+      }}
+      aria-label={label}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <div
       ref={containerRef}
       tabIndex={0}
-      className="font-mac flex flex-col flex-1 min-h-0 items-center justify-center gap-3 p-4 outline-none"
-      style={{ background: "#0D0D0D" }}
+      className="font-mac flex flex-col flex-1 min-h-0 items-center outline-none overflow-y-auto"
+      style={{ background: "#0D0D0D", gap: isMobile ? 12 : 12, padding: isMobile ? "12px 12px 20px" : "16px 16px 20px" }}
     >
       {/* Score bar */}
-      <div className="flex items-center gap-3 w-full" style={{ maxWidth: 400 }}>
-        <span
-          className="text-[10px] font-bold tracking-widest uppercase"
-          style={{ color: "rgba(255,255,255,0.30)" }}
-        >
+      <div className="flex items-center gap-3 w-full" style={{ maxWidth: canvasSize }}>
+        <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.30)" }}>
           Score
         </span>
-        <span className="text-a26-green text-[20px] font-bold font-mono leading-none">
-          {score}
-        </span>
+        <span className="text-a26-green text-[20px] font-bold font-mono leading-none">{score}</span>
         <div className="flex-1" />
         <button
           onClick={() => restart(false)}
@@ -194,20 +248,21 @@ export function SnakeContent() {
         </button>
       </div>
 
-      {/* Canvas + overlays */}
-      <div className="relative shrink-0" style={{ width: 400, height: 400 }}>
+      {/* Canvas */}
+      <div
+        className="relative shrink-0"
+        style={{ width: canvasSize, height: canvasSize }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <canvas
           ref={canvasRef}
-          width={400}
-          height={400}
-          style={{
-            display: "block",
-            borderRadius: 8,
-            border: "1px solid rgba(255,255,255,0.07)",
-          }}
+          width={canvasSize}
+          height={canvasSize}
+          style={{ display: "block", borderRadius: 8, border: "1px solid rgba(255,255,255,0.07)", touchAction: "none" }}
         />
 
-        {/* Start screen */}
+        {/* Start overlay */}
         {phase === "idle" && (
           <div
             className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 rounded-[8px]"
@@ -215,13 +270,13 @@ export function SnakeContent() {
           >
             <span style={{ fontSize: 40 }}>🐍</span>
             <div className="text-white text-[16px] font-semibold">Snake</div>
-            <div className="text-[12px]" style={{ color: "rgba(255,255,255,0.42)" }}>
-              Press ↑ ↓ ← → or WASD to start
+            <div className="text-[12px] text-center px-4" style={{ color: "rgba(255,255,255,0.42)" }}>
+              {isMobile ? "Tap or swipe to start" : "Press ↑ ↓ ← → or WASD to start"}
             </div>
           </div>
         )}
 
-        {/* Game over */}
+        {/* Game over overlay */}
         {phase === "dead" && (
           <div
             className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-[8px]"
@@ -229,9 +284,7 @@ export function SnakeContent() {
           >
             <span style={{ fontSize: 36 }}>💀</span>
             <div className="text-white text-[15px] font-semibold">Game Over</div>
-            <div className="font-mono text-[14px]" style={{ color: "var(--a26-green)" }}>
-              Score: {score}
-            </div>
+            <div className="font-mono text-[14px]" style={{ color: "var(--a26-green)" }}>Score: {score}</div>
             <button
               onClick={() => restart(true)}
               className="font-mac text-[12px] px-5 py-1.5 rounded-[8px] border-none cursor-pointer font-semibold mt-1"
@@ -243,9 +296,22 @@ export function SnakeContent() {
         )}
       </div>
 
-      <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.20)" }}>
-        ↑ ↓ ← → or W A S D to move
-      </div>
+      {/* D-pad — always visible on mobile, hint text on desktop */}
+      {isMobile ? (
+        <div className="flex flex-col items-center gap-1 shrink-0" style={{ touchAction: "none" }}>
+          <DPadBtn dir={{ x: 0, y: -1 }} label="▲" />
+          <div className="flex gap-1">
+            <DPadBtn dir={{ x: -1, y: 0 }} label="◀" />
+            <div className="w-12 h-12" />
+            <DPadBtn dir={{ x: 1, y: 0 }} label="▶" />
+          </div>
+          <DPadBtn dir={{ x: 0, y: 1 }} label="▼" />
+        </div>
+      ) : (
+        <div className="text-[11px]" style={{ color: "rgba(255,255,255,0.20)" }}>
+          ↑ ↓ ← → or W A S D to move
+        </div>
+      )}
     </div>
   );
 }
