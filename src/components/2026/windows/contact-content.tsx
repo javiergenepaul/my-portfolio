@@ -3,8 +3,10 @@
 import { Mail, GithubIcon, LinkedinIcon, ExternalLink } from "lucide-react";
 import { EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 export function ContactContent() {
+  useLocaleRefresh();
   const links = [
     {
       label: "Email",
@@ -12,7 +14,7 @@ export function ContactContent() {
       href: `mailto:${EMAIL_ADDRESS}`,
       icon: <Mail size={18} />,
       color: "var(--a26-teal)",
-      desc: "Drop a message any time",
+      desc: translate("win26.contact.emailDesc"),
     },
     {
       label: "GitHub",
@@ -20,7 +22,7 @@ export function ContactContent() {
       href: GITHUB_URL,
       icon: <GithubIcon size={18} />,
       color: "var(--a26-text)",
-      desc: "View open-source work",
+      desc: translate("win26.contact.githubDesc"),
     },
     {
       label: "LinkedIn",
@@ -28,16 +30,16 @@ export function ContactContent() {
       href: LINKED_IN_URL,
       icon: <LinkedinIcon size={18} />,
       color: "#60A5FA",
-      desc: "Connect professionally",
+      desc: translate("win26.contact.linkedinDesc"),
     },
   ];
 
   return (
     <div className="font-mac flex flex-col py-7 px-8 gap-3.5">
       <div className="mb-1">
-        <h2 className="text-a26-text text-lg font-bold m-0">Get in Touch</h2>
+        <h2 className="text-a26-text text-lg font-bold m-0">{translate("win26.contact.title")}</h2>
         <p className="text-a26-mid text-[13px] mt-1 m-0">
-          Open to new opportunities, collaborations, and interesting conversations.
+          {translate("win26.contact.subtitle")}
         </p>
       </div>
 

@@ -16,6 +16,7 @@ import type { Color } from "@/stores";
 import { RESUME_COLORS, RESUME_SWATCHES } from "../constants";
 import { useIsDark } from "../use-aurora";
 import { useIsMobile } from "../hooks";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 const ResumeSimple = dynamic(
   () =>
@@ -43,6 +44,7 @@ const ResumeModern = dynamic(
 );
 
 export function ResumeContent() {
+  useLocaleRefresh();
   const isSystemDark = useIsDark();
   const isMobile = useIsMobile();
   type ResumeMode = "simple" | "modern";
@@ -124,8 +126,8 @@ export function ResumeContent() {
       </div>
       <div className="shrink-0 bg-a26-glass-border w-px h-4.5" />
       {[
-        { v: "modern" as const, label: "Modern" },
-        { v: "simple" as const, label: "Simple" },
+        { v: "modern" as const, label: translate("win26.resume.modern") },
+        { v: "simple" as const, label: translate("win26.resume.simple") },
       ].map((opt) => (
         <button
           key={opt.v}
@@ -143,8 +145,8 @@ export function ResumeContent() {
       ))}
       <div className="shrink-0 bg-a26-glass-border w-px h-4.5" />
       {[
-        { v: false, icon: <Sun size={12} />, label: "Light" },
-        { v: true, icon: <Moon size={12} />, label: "Dark" },
+        { v: false, icon: <Sun size={12} />, label: translate("win26.resume.light") },
+        { v: true, icon: <Moon size={12} />, label: translate("win26.resume.dark") },
       ].map((opt) => (
         <button
           key={String(opt.v)}
@@ -180,7 +182,7 @@ export function ResumeContent() {
         className="font-mac flex items-center shrink-0 gap-1.25 py-1.25 px-3 rounded-[20px] border-none text-xs font-semibold cursor-pointer whitespace-nowrap"
         style={{ background: colors.primary, color: colors.text }}
       >
-        <Download size={11} /> Export
+        <Download size={11} /> {translate("win26.resume.exportShort")}
       </button>
     </div>
   );
@@ -197,11 +199,11 @@ export function ResumeContent() {
         >
           {/* Template */}
           <div>
-            <span className={sectionLabelCls}>Template</span>
+            <span className={sectionLabelCls}>{translate("win26.resume.template")}</span>
             <div className="flex flex-col gap-1.25">
               {[
-                { v: "modern" as ResumeMode, icon: <Sparkles size={12} />, label: "Modern", desc: "Styled sidebar" },
-                { v: "simple" as ResumeMode, icon: <LayoutTemplate size={12} />, label: "Simple", desc: "Classic & clean" },
+                { v: "modern" as ResumeMode, icon: <Sparkles size={12} />, label: translate("win26.resume.modern"), desc: translate("win26.resume.modernDesc") },
+                { v: "simple" as ResumeMode, icon: <LayoutTemplate size={12} />, label: translate("win26.resume.simple"), desc: translate("win26.resume.simpleDesc") },
               ].map((opt) => (
                 <button
                   key={opt.v}
@@ -231,11 +233,11 @@ export function ResumeContent() {
 
           {/* Appearance */}
           <div>
-            <span className={sectionLabelCls}>Appearance</span>
+            <span className={sectionLabelCls}>{translate("win26.resume.appearance")}</span>
             <div className="flex gap-1.5">
               {[
-                { v: false, icon: <Sun size={13} />, label: "Light" },
-                { v: true, icon: <Moon size={13} />, label: "Dark" },
+                { v: false, icon: <Sun size={13} />, label: translate("win26.resume.light") },
+                { v: true, icon: <Moon size={13} />, label: translate("win26.resume.dark") },
               ].map((opt) => (
                 <button
                   key={String(opt.v)}
@@ -262,7 +264,7 @@ export function ResumeContent() {
 
           {/* Color */}
           <div>
-            <span className={sectionLabelCls}>Accent Color</span>
+            <span className={sectionLabelCls}>{translate("win26.resume.accentColor")}</span>
             <div className="flex flex-wrap gap-2">
               {RESUME_SWATCHES.map((s) => (
                 <button
@@ -293,16 +295,17 @@ export function ResumeContent() {
               className="font-mac flex items-center justify-center w-full gap-1.75 py-2.25 rounded-[9px] border-none text-[13px] font-semibold cursor-pointer"
               style={{ background: colors.primary, color: colors.text }}
             >
-              <Download size={14} /> Export PDF
+              <Download size={14} /> {translate("win26.resume.export")}
             </button>
             <div
               className="bg-a26-glass border border-a26-glass-border text-[10px] leading-[1.65] py-2 px-2.5 rounded-[7px]"
               style={{ color: "var(--a26-text-muted)" }}
             >
-              <div className="font-semibold mb-0.75" style={{ color: "var(--a26-text-mid)" }}>Tips</div>
-              Select <b style={{ color: "var(--a26-text)" }}>Save as PDF</b>, margins →{" "}
-              <b style={{ color: "var(--a26-text)" }}>None</b>, enable{" "}
-              <b style={{ color: "var(--a26-text)" }}>Background graphics</b>.
+              <div className="font-semibold mb-0.75" style={{ color: "var(--a26-text-mid)" }}>{translate("win26.resume.tips")}</div>
+              {translate("win26.resume.tipsC1" as any)}<b style={{ color: "var(--a26-text)" }}>{translate("win26.resume.tipsSave")}</b>
+              {translate("win26.resume.tipsC2" as any)}<b style={{ color: "var(--a26-text)" }}>{translate("win26.resume.tipsMargins")}</b>
+              {translate("win26.resume.tipsC3" as any)}<b style={{ color: "var(--a26-text)" }}>{translate("win26.resume.tipsBg")}</b>
+              {translate("win26.resume.tipsC4" as any)}
             </div>
           </div>
         </div>

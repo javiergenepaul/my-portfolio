@@ -2,15 +2,20 @@
 
 import type { WinId } from "../constants";
 import { MacAppIcon } from "../components/mac-app-icons";
+import { translate, useLocaleRefresh } from "@/i18n";
 
-const GAMES: { id: WinId; name: string; desc: string }[] = [
-  { id: "snake",  name: "Snake",           desc: "Classic retro snake game"       },
-  { id: "hanoi",  name: "Tower of Hanoi",  desc: "Move all discs from A to C"     },
-  { id: "tetris", name: "Tetris",          desc: "Stack & clear falling blocks"   },
-  { id: "jump",   name: "Endless Jump",   desc: "Climb platforms, don't fall!"   },
-];
+function getGames(): { id: WinId; name: string; desc: string }[] {
+  return [
+    { id: "snake",  name: translate("win26.games.snake.name" as any), desc: translate("win26.games.snake.desc" as any) },
+    { id: "hanoi",  name: translate("win26.games.hanoi.name" as any), desc: translate("win26.games.hanoi.desc" as any) },
+    { id: "tetris", name: translate("win26.games.tetris.name" as any), desc: translate("win26.games.tetris.desc" as any) },
+    { id: "jump",   name: translate("win26.games.jump.name" as any),  desc: translate("win26.games.jump.desc" as any) },
+  ];
+}
 
 export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {
+  useLocaleRefresh();
+  const GAMES = getGames();
   return (
     <div className="font-mac flex flex-col flex-1 min-h-0" style={{ background: "var(--a26-window)" }}>
       {/* Toolbar */}
@@ -18,7 +23,7 @@ export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {
         className="shrink-0 flex items-center gap-2 px-5 py-2.5 border-b border-a26-glass-border"
         style={{ background: "var(--a26-glass)" }}
       >
-        <span className="text-a26-text text-[13px] font-semibold">Games</span>
+        <span className="text-a26-text text-[13px] font-semibold">{translate("win26.games.title" as any)}</span>
         <span
           className="text-[10px] px-1.5 py-0.5 rounded-full"
           style={{
@@ -27,7 +32,7 @@ export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {
             border: "1px solid color-mix(in srgb, #F97316 28%, transparent)",
           }}
         >
-          {GAMES.length} apps
+          {translate("win26.games.apps" as any).replace("{count}", String(GAMES.length))}
         </span>
       </div>
 
@@ -75,8 +80,8 @@ export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {
             >
               🎮
             </div>
-            <div className="text-a26-muted text-[11px] font-medium">More coming</div>
-            <div className="text-a26-muted text-[10px]">soon...</div>
+            <div className="text-a26-muted text-[11px] font-medium">{translate("win26.games.moreComing" as any)}</div>
+            <div className="text-a26-muted text-[10px]">{translate("win26.games.soon" as any)}</div>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import type { WinId, WinDef, WinState } from "../constants";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { TrafficLights } from "./traffic-lights";
 import { AboutContent } from "../windows/about-content";
 import { ProjectsContent } from "../windows/projects-content";
@@ -48,6 +49,7 @@ export function AppWindow({
   onMaximize: () => void;
   onOpen: (id: WinId) => void;
 }) {
+  useLocaleRefresh();
   const resolvePos = (vw: number) =>
     typeof def.defaultPos === "function" ? def.defaultPos(vw) : def.defaultPos;
   const initPos = resolvePos(1440);
@@ -179,7 +181,7 @@ export function AppWindow({
         <div className="flex-1 flex items-center justify-center gap-1.5">
           <span style={{ color: def.color, opacity: 0.85 }}>{def.icon}</span>
           <span className="text-a26-mid text-[13px] font-medium tracking-[0.01em]">
-            {def.title}
+            {translate(`win26.windows.${def.id}` as any) || def.title}
           </span>
         </div>
       </motion.div>

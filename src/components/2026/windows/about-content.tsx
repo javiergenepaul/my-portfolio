@@ -67,7 +67,7 @@ export function AboutContent() {
                 : "2px solid transparent",
             }}
           >
-            {t.charAt(0).toUpperCase() + t.slice(1)}
+            {translate(`win26.about.tabs.${t}`)}
           </button>
         ))}
       </div>
@@ -115,20 +115,14 @@ export function AboutContent() {
                       {JOB_TITLE}
                     </p>
                     <div className="flex items-center text-a26-mid gap-1.25 text-xs">
-                      <MapPin size={12} color="var(--a26-text-muted)" /> Cebu, Philippines
+                      <MapPin size={12} color="var(--a26-text-muted)" /> {translate("win26.about.location")}
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-a26-card border border-a26-card-border rounded-[10px] py-3.5 px-4.5">
                   <p className="text-a26-mid m-0 text-[13.5px] leading-[1.8]">
-                    Full-stack software engineer crafting production-ready
-                    applications with{" "}
-                    <span className="text-a26-teal">React & Next.js</span> on
-                    the frontend and{" "}
-                    <span className="text-a26-violet">Spring Boot & Java</span>{" "}
-                    on the backend. Passionate about clean architecture,
-                    developer experience, and shipping things that matter.
+                    {translate("win26.about.bio")}
                   </p>
                 </div>
 
@@ -214,7 +208,9 @@ export function AboutContent() {
                                 background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
                               }}
                             >
-                              {exp.employmentType}
+                              {exp.employmentType === "Full-time"
+                                ? translate("win26.employment.fullTime")
+                                : translate("win26.employment.partTime")}
                             </span>
                           )}
                         </div>

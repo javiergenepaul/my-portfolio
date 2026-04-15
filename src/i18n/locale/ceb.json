@@ -488,6 +488,14 @@
           "saas": "Software As A Service"
         }
       }
+    },
+    "projectFlux": {
+      "title": "Project Flux",
+      "description": "Usa ka kumpidensyal nga UI revamp project nga naglakip sa migration ug pagpalambo sa mga legacy enterprise interface gamit ang modernong Vue.js ecosystem tooling."
+    },
+    "magicUi": {
+      "title": "Magic UI",
+      "description": "Usa ka kumpidensyal nga UI platform nga naglakip sa bug-os nga revamp, pagpalambo, ug pagpauswag sa mga bag-ong feature sa Spring Boot Java backend ug Next.js / React frontend."
     }
   },
   "contact": {
@@ -720,7 +728,7 @@
       "hello": "Hello ako nga",
       "name": "Gene Paul Mar Javier",
       "slogan": "Paghimo sa mga Ideya Ngadto sa Realidad",
-      "intruduction": "Nagsugod ang akong tech journey sa University of Cebu. ",
+      "intruduction": "Nagsugod ang akong tech journey sa University of Cebu. Ingon usa ka batikang full-stack developer, nagespesyalidad ako sa mga modernong himan sama sa React, TypeScript, Tailwind CSS, ug Spring Boot. Kanunay akong sabaan nga mag-explore sa bag-ong mga teknolohiya alang sa mga makabagong solusyon. Ang matag proyekto nagpalig-on sa akong pagmahal sa inobasyon, gihimo ang mga ideya ngadto sa katinuoran ug gipalawak ang digital nga mga utlanan.",
       "title": "Mahitungod Kanako",
       "description": "test about nako description",
       "downloadResume": "I-download ang Akong Resume",
@@ -769,59 +777,51 @@
         }
       },
       "experience": {
+        "magic": {
+          "title": "Full Stack Software Developer",
+          "subtitle": "Magic",
+          "description": "Nagtukod ug nagmintinar sa mga full-stack nga feature para sa platform sa Magic — usa ka modernong SaaS nga produkto. Nagtrabaho sa tibuok stack nga adunay pagtutok sa paghatod og limpyo nga production-ready nga code sa usa ka remote, async nga palibot.",
+          "alt": "Magic Logo"
+        },
         "alliance": {
-          "ts1": {
-            "title": "Software Engineer - Espesyalista sa Teknikal I",
-            "subtitle": "Alliance Software Inc.",
-            "abb": "TS ko",
-            "description": "Ang eksperyensiyado nga Full Stack Developer hanas sa Spring Boot ug React TypeScript, nga gipahinungod sa pagtukod og lig-on nga mga aplikasyon nga adunay pagtutok sa mga seamless frontend nga mga kasinatian ug episyente nga mga operasyon sa backend. ",
-            "alt": "Logo sa Alliance Software Inc"
-          },
-          "ats1": {
-            "title": "Software Engineer - Associate Technical Specialist I",
-            "subtitle": "Alliance Software Inc.",
-            "abb": "ATS I",
-            "description": "Ang eksperyensiyado nga Full-stack Developer nga hanas sa Vite, React, TypeScript, ug Spring Boot, nga nailhan sa pagpatuman sa lig-on nga mga lakang sa seguridad ug pagpaayo sa performance para sa mga web application. ",
-            "alt": "Logo sa Alliance Software Inc"
-          },
           "title": "Software Engineer",
           "subtitle": "Alliance Software Inc.",
-          "description": "As a Full Stack Engineer at Alliance, I developed and maintained both front-end interfaces and back-end functionality, ensuring seamless user experiences and efficient data handling. I collaborated with cross-functional teams to deliver scalable, user-focused solutions.",
+          "description": "Isip usa ka Full Stack Engineer sa Alliance, nag-develop ug nagmintinar ko sa frontend ug backend, nga nagtitiyak og maayos nga kasinatian sa tiggamit ug episyente nga pagdumala sa datos. Nagtinabangay ako sa mga cross-functional nga team aron mahatod ang mga scalable nga solusyon.",
           "promotion": {
             "ts1": {
-              "title": "Software Engineer - Technical Specialist I",
+              "title": "Software Engineer - Espesyalista sa Teknikal I",
               "subtitle": "Alliance Software Inc.",
               "abb": "TS I",
-              "description": "Experienced Full Stack Developer proficient in Spring Boot and React TypeScript, dedicated to building robust applications with a focus on seamless frontend experiences and efficient backend operations. Specializes in creating foundational codebases and shared components to streamline development workflows for cross-functional teams. Well-versed in Agile methodologies, delivering results in dynamic, fast-paced environments.",
-              "alt": "Alliance Software Inc. Logo"
+              "description": "Ang eksperyensiyado nga Full Stack Developer hanas sa Spring Boot ug React TypeScript, nga gipahinungod sa pagtukod og lig-on nga mga aplikasyon nga adunay pagtutok sa mga seamless frontend nga mga kasinatian ug episyente nga mga operasyon sa backend.",
+              "alt": "Logo sa Alliance Software Inc"
             },
             "ats1": {
               "title": "Software Engineer - Associate Technical Specialist I",
               "subtitle": "Alliance Software Inc.",
               "abb": "ATS I",
-              "description": "Experienced Full-stack Developer adept in Vite, React, TypeScript, and Spring Boot, known for implementing robust security measures and enhancing performance for web applications. Skilled in managing server environments on Linux-based systems like CentOS and configuring web servers such as HTTPD and Nginx. Additionally, attended the LAMPP program to apply leadership processes and manage teams effectively, passionate about delivering high-quality solutions and fostering collaboration.",
-              "alt": "Alliance Software Inc. Logo"
+              "description": "Ang eksperyensiyado nga Full-stack Developer nga hanas sa Vite, React, TypeScript, ug Spring Boot, nga nailhan sa pagpatuman sa lig-on nga mga lakang sa seguridad ug pagpaayo sa performance para sa mga web application.",
+              "alt": "Logo sa Alliance Software Inc"
             }
           }
         },
         "mach95": {
           "title": "Software Developer",
-          "description": "Ang eksperyensiyado nga Tibuok Stack Developer nga hanas sa Laravel 8 ug CodeIgniter, madasigon sa paghimo ug dinamikong mga solusyon sa web ug pagpaayo sa mga aplikasyon. ",
+          "description": "Ang eksperyensiyado nga Tibuok Stack Developer nga hanas sa Laravel 8 ug CodeIgniter, madasigon sa paghimo ug dinamikong mga solusyon sa web ug pagpaayo sa mga aplikasyon.",
           "subtitle": "Mach95 Software Development Corporation",
           "alt": "Mach95 Software Development Logo"
         },
         "exodia": {
           "title": "VR/AR Developer ug 3D Modeler",
-          "description": "Madasigon nga 3D Environmental Designer nga nag-espesyalisar sa paghimo og immersive nga digital nga mga kasinatian para sa Virtual Reality (VR) ug Augmented Reality (AR) nga mga proyekto. ",
+          "description": "Madasigon nga 3D Environmental Designer nga nag-espesyalisar sa paghimo og immersive nga digital nga mga kasinatian para sa Virtual Reality (VR) ug Augmented Reality (AR) nga mga proyekto.",
           "subtitle": "Pag-uswag sa Dula sa Exodia",
           "abb": "Part Time",
           "alt": "Exodia Game Development Logo"
         },
         "kryterion": {
           "title": "Software Engineer",
-          "subtitle": "Kryterion by Drake International",
-          "description": "As a Software Engineer in training at Drake International, I am learning to develop scalable web applications using Spring Boot for the back-end and Vue.js for the front-end. I have gained knowledge of transitioning from a monolithic architecture to microservices and am familiar with the technology stack and system design. Additionally, I collaborate using Slack for communication with cross-functional teams.",
-          "alt": "Drake International Logo"
+          "subtitle": "Kryterion sa Drake International",
+          "description": "Isip usa ka Software Engineer sa Drake International, nagatuon ko sa pag-develop og scalable nga mga web application gamit ang Spring Boot para sa back-end ug Vue.js para sa front-end. Nakabaton na ko og kahibalo sa pagbalhin gikan sa monolithic ngadto sa microservices ug pamilyar ko sa technology stack ug system design. Nagtinabangay usab ko gamit ang Slack para sa komunikasyon sa mga cross-functional nga team.",
+          "alt": "Logo sa Drake International"
         }
       }
     },
@@ -854,5 +854,108 @@
     "title": "Mga kahanas",
     "description": "Pag-navigate sa Kalawom sa Imong Daghag Gamit nga Kahanas nga Gitakda sa Pagpalig-on sa Pag-uswag ug Kalampusan"
   },
-  "availableSoon": "Magamit sa Dili madugay"
+  "availableSoon": "Magamit sa Dili madugay",
+  "win26": {
+    "windows": {
+      "about": "Mahitungod Kanako",
+      "projects": "Mga Proyekto",
+      "terminal": "Terminal",
+      "skills": "Mga Kahanas & Stack",
+      "contact": "Makig-ugnon",
+      "resume": "Tigbuhat sa Resume",
+      "settings": "Mga Setting sa Sistema",
+      "chat": "Chat GPM",
+      "games": "Mga Dula",
+      "snake": "Snake",
+      "hanoi": "Torre sa Hanoi",
+      "tetris": "Tetris",
+      "jump": "Walay Katapusang Paglukso"
+    },
+    "about": {
+      "tabs": {
+        "overview": "Pagsabot",
+        "experience": "Kasinatian",
+        "education": "Edukasyon"
+      },
+      "bio": "Full-stack software engineer nga nagbuhat og mga production-ready nga aplikasyon gamit ang React & Next.js sa frontend ug Spring Boot & Java sa backend. Madasigon sa limpyo nga arkitektura, kasinatian sa developer, ug pagpadala sa mga butang nga importante.",
+      "location": "Sugbo, Pilipinas"
+    },
+    "skills": {
+      "categories": "Mga Kategorya",
+      "learning": "nagatuon",
+      "stats": "{{fav}} paboritong · {{learning}} nagatuon · {{total}} tanan"
+    },
+    "contact": {
+      "title": "Makig-ugnon",
+      "subtitle": "Bukas sa mga bag-ong oportunidad, kolaborasyon, ug makapaikag nga mga pakigsulti.",
+      "emailDesc": "Magpadala ug mensahe bisan kanus-a",
+      "githubDesc": "Tan-awa ang open-source nga trabaho",
+      "linkedinDesc": "Magkonektar sa propesyonal nga paagi"
+    },
+    "projects": {
+      "filter": "Filter",
+      "all": "Tanan nga Proyekto",
+      "web": "Mga Web App",
+      "open": "Open Source",
+      "confidential": "Kumpidensyal",
+      "live": "Live",
+      "code": "Code",
+      "project": "proyekto",
+      "projects": "mga proyekto"
+    },
+    "settings": {
+      "dateTime": "Petsa ug Oras",
+      "clockFormat": "Format sa Orasan",
+      "clockDesc": "Gikontrol ang oras nga gipakita sa menu bar ug mobile status bar.",
+      "12h": "12-Oras",
+      "24h": "24-Oras",
+      "preview": "Preview",
+      "previewDesc": "Ang menu bar nga orasan magpakita sa",
+      "aboutTheme": "Mahitungod",
+      "aboutThemeDesc": "Ang 'Auto' nagsunod sa imong setting sa sistema. Kini nga kagustuhan magamit sa tanan nga tuig sa portfolio lakip ang 2024, 2025, ug 2026."
+    },
+    "present": "Karon",
+    "employment": {
+      "fullTime": "Full-time",
+      "partTime": "Part-time"
+    },
+    "resume": {
+      "template": "Template",
+      "appearance": "Hitsura",
+      "accentColor": "Kulay sa Accent",
+      "export": "I-export ang PDF",
+      "exportShort": "I-export",
+      "tips": "Mga Tips",
+      "tipsSave": "I-save isip PDF",
+      "tipsMargins": "Wala",
+      "tipsBg": "Background graphics",
+      "tipsC1": "Pilia ang ",
+      "tipsC2": ", margins → ",
+      "tipsC3": ", i-enable ang ",
+      "tipsC4": ".",
+      "sectionAbout": "Bahin Nako",
+      "sectionEducation": "Edukasyon",
+      "sectionWorkExp": "Kasinatian sa Trabaho",
+      "sectionProjects": "Mga Proyekto",
+      "sectionContact": "Makig-ugnaw",
+      "sectionCoreComp": "Mga Pangunahing Kahanas",
+      "sectionQualSummary": "Buod sa mga Kwalipikasyon",
+      "modern": "Moderno",
+      "modernDesc": "May sidebar nga may istilo",
+      "simple": "Simple",
+      "simpleDesc": "Klasiko ug malinis",
+      "light": "Hayag",
+      "dark": "Ngitngit"
+    },
+    "games": {
+      "title": "Mga Dula",
+      "apps": "{count} apps",
+      "moreComing": "Daghang moabot pa",
+      "soon": "sa wala madugay...",
+      "snake": { "name": "Snake", "desc": "Klasikong retro snake game" },
+      "hanoi": { "name": "Tower of Hanoi", "desc": "Ibalhin ang tanan nga disc gikan A ngadto C" },
+      "tetris": { "name": "Tetris", "desc": "Mag-stack ug mag-clear sa mga bloke" },
+      "jump": { "name": "Endless Jump", "desc": "Sumakyad sa mga platform, ayaw pagkahulog!" }
+    }
+  }
 }

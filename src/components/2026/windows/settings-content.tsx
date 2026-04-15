@@ -161,12 +161,11 @@ function AppearancePane() {
       </div>
 
       <div>
-        <SLabel>About</SLabel>
+        <SLabel>{translate("win26.settings.aboutTheme")}</SLabel>
         <div className="bg-a26-card border border-a26-card-border flex items-start rounded-[10px] py-3 px-3.5 gap-2.5">
           <Palette size={14} color="var(--a26-teal)" className="shrink-0 mt-px" />
           <p className="text-a26-mid m-0 text-xs leading-[1.65]">
-            <em className="text-a26-teal not-italic font-semibold">Auto</em> follows your system setting.
-            This preference applies across all portfolio years including 2024, 2025, and 2026.
+            {translate("win26.settings.aboutThemeDesc")}
           </p>
         </div>
       </div>
@@ -229,8 +228,8 @@ function DateTimePane() {
   const { timeFormat, setTimeFormat } = use2026Settings();
 
   const formats: { id: TimeFormat; label: string; example: string }[] = [
-    { id: "12h", label: "12-Hour", example: "3:45 PM" },
-    { id: "24h", label: "24-Hour", example: "15:45" },
+    { id: "12h", label: translate("win26.settings.12h"), example: "3:45 PM" },
+    { id: "24h", label: translate("win26.settings.24h"), example: "15:45" },
   ];
 
   const now = new Date();
@@ -240,10 +239,10 @@ function DateTimePane() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <SLabel>Clock Format</SLabel>
+        <SLabel>{translate("win26.settings.clockFormat")}</SLabel>
         <div className="bg-a26-card border border-a26-card-border rounded-xl py-4.5 px-4">
           <p className="text-a26-mid m-0 mb-3.5 text-[13px] leading-[1.6]">
-            Controls the time displayed in the menu bar and mobile status bar.
+            {translate("win26.settings.clockDesc")}
           </p>
           <div className="flex gap-2">
             {formats.map((f) => (
@@ -263,11 +262,11 @@ function DateTimePane() {
       </div>
 
       <div>
-        <SLabel>Preview</SLabel>
+        <SLabel>{translate("win26.settings.preview")}</SLabel>
         <div className="bg-a26-card border border-a26-card-border flex items-center rounded-xl p-4 gap-3.5">
           <Clock size={20} color="var(--a26-teal)" />
           <div>
-            <div className="text-a26-muted text-[11px] mb-0.75">Menu bar clock will show</div>
+            <div className="text-a26-muted text-[11px] mb-0.75">{translate("win26.settings.previewDesc")}</div>
             <div className="text-a26-text text-[15px] font-semibold font-mono">
               {timeFormat === "12h" ? preview12 : preview24}
             </div>
@@ -288,7 +287,7 @@ export function SettingsContent() {
   const PANES: { id: PaneId; label: string; icon: React.ReactNode }[] = [
     { id: "appearance", label: translate("settings.nav.appearance"), icon: <Sun size={15} /> },
     { id: "language", label: translate("settings.lang.lang"), icon: <Globe size={15} /> },
-    { id: "datetime", label: "Date & Time", icon: <Clock size={15} /> },
+    { id: "datetime", label: translate("win26.settings.dateTime"), icon: <Clock size={15} /> },
   ];
 
   const nav = PANES.map((p) => {

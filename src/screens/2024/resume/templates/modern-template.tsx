@@ -1,8 +1,10 @@
 "use client";
 
 import moment from "moment";
+import "moment/locale/ja";
 import { Mail, Phone, Github, Linkedin, MapPin } from "lucide-react";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores";
 import {
   FULL_NAME,
   JOB_TITLE,
@@ -21,13 +23,18 @@ interface ModernTemplateProps {
   isDark?: boolean;
 }
 
+const MOMENT_LOCALE: Record<string, string> = { en: "en", ja: "ja", fil: "en", ceb: "en" };
+const DATE_FMT: Record<string, string> = { en: "MMM YYYY", ja: "YYYY年M月", fil: "MMM YYYY", ceb: "MMM YYYY" };
+
 function formatDateRange(
   start: moment.Moment,
   end: moment.Moment | "present",
 ): string {
-  const s = start.format("MMM YYYY");
-  const e =
-    end === "present" ? "Present" : (end as moment.Moment).format("MMM YYYY");
+  const lang = useLanguageStore.getState().language ?? "en";
+  const locale = MOMENT_LOCALE[lang] ?? "en";
+  const fmt = DATE_FMT[lang] ?? "MMM YYYY";
+  const s = start.clone().locale(locale).format(fmt);
+  const e = end === "present" ? translate("win26.present") : (end as moment.Moment).clone().locale(locale).format(fmt);
   return `${s} – ${e}`;
 }
 
@@ -121,7 +128,7 @@ export function ModernTemplate({
           style={{ backgroundColor: sidebarBg }}
         >
           {/* Summary */}
-          <SideSection title="About" primary={primary} dark={dark}>
+          <SideSection title={translate("win26.resume.sectionAbout")} primary={primary} dark={dark}>
             <p
               className="text-[10px] leading-relaxed"
               style={{ color: textMed }}
@@ -168,7 +175,7 @@ export function ModernTemplate({
           ))}
 
           {/* Education */}
-          <SideSection title="Education" primary={primary} dark={dark}>
+          <SideSection title={translate("win26.resume.sectionEducation")} primary={primary} dark={dark}>
             <div className="flex flex-col gap-3">
               {education.map((edu, i) => (
                 <div key={i}>
@@ -196,7 +203,7 @@ export function ModernTemplate({
         {/* Main content */}
         <div className="flex-1 px-7 py-6 flex flex-col gap-5">
           {/* Experience */}
-          <MainSection title="Work Experience" primary={primary}>
+          <MainSection title={translate("win26.resume.sectionWorkExp")} primary={primary}>
             <div className="flex flex-col gap-4">
               {experience.map((exp, i) => (
                 <div key={i}>
@@ -216,7 +223,7 @@ export function ModernTemplate({
                         {exp.employmentType && (
                           <span style={{ color: textMuted }}>
                             {" "}
-                            · {exp.employmentType}
+                            · {exp.employmentType === "Full-time" ? translate("win26.employment.fullTime") : translate("win26.employment.partTime")}
                           </span>
                         )}
                       </p>
@@ -263,7 +270,7 @@ export function ModernTemplate({
           </MainSection>
 
           {/* Projects */}
-          <MainSection title="Featured Projects" primary={primary}>
+          <MainSection title={translate("win26.resume.sectionProjects")} primary={primary}>
             <div className="flex flex-col gap-3">
               {projects.map((p) => (
                 <div

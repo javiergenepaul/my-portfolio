@@ -488,6 +488,14 @@
           "saas": "Software As A Service"
         }
       }
+    },
+    "projectFlux": {
+      "title": "Project Flux",
+      "description": "レガシーエンタープライズインターフェースを現代のVue.jsエコシステムを使って移行・強化する、機密UIリニューアルプロジェクトです。"
+    },
+    "magicUi": {
+      "title": "Magic UI",
+      "description": "Spring Boot JavaバックエンドとNext.js / Reactフロントエンドを対象とした、完全なリニューアル・機能強化・新機能開発を包括する機密UIプラットフォームです。"
     }
   },
   "contact": {
@@ -717,13 +725,6 @@
     "settingsUpdated": "設定が更新されました"
   },
   "about": {
-    "hello": "こんにちは私は",
-    "name": "ジーン・ポール・マー・ハビエル",
-    "slogan": "アイデアを現実に変える",
-    "intruduction": "私のテクノロジーの旅はセブ大学から始まりました。",
-    "title": "私について",
-    "description": "私についての説明をテストする",
-    "downloadResume": "履歴書をダウンロード",
     "education": {
       "title": "教育"
     },
@@ -760,38 +761,30 @@
         }
       },
       "experience": {
+        "magic": {
+          "title": "フルスタック ソフトウェア デベロッパー",
+          "subtitle": "Magic",
+          "description": "Magicのプラットフォームのフルスタック機能を構築・保守しています。リモート・非同期環境でクリーンで本番対応のコードを届けることに注力し、スタック全体にわたって作業しています。",
+          "alt": "Magic ロゴ"
+        },
         "alliance": {
-          "ts1": {
-            "title": "ソフトウェア エンジニア - テクニカル スペシャリスト I",
-            "subtitle": "アライアンスソフトウェア株式会社",
-            "abb": "TS I",
-            "description": "Spring Boot と React TypeScript に精通した経験豊富なフルスタック開発者。シームレスなフロントエンド エクスペリエンスと効率的なバックエンド操作に焦点を当てた堅牢なアプリケーションの構築に専念しています。",
-            "alt": "アライアンスソフトウェア株式会社のロゴ"
-          },
-          "ats1": {
-            "title": "ソフトウェア エンジニア - アソシエイト テクニカル スペシャリスト I",
-            "subtitle": "アライアンスソフトウェア株式会社",
-            "abb": "ATS I",
-            "description": "Vite、React、TypeScript、Spring Boot に精通した経験豊富なフルスタック開発者であり、堅牢なセキュリティ対策を実装し、Web アプリケーションのパフォーマンスを向上させることで知られています。 ",
-            "alt": "アライアンスソフトウェア株式会社のロゴ"
-          },
-          "title": "Software Engineer",
-          "subtitle": "Alliance Software Inc.",
-          "description": "As a Full Stack Engineer at Alliance, I developed and maintained both front-end interfaces and back-end functionality, ensuring seamless user experiences and efficient data handling. I collaborated with cross-functional teams to deliver scalable, user-focused solutions.",
+          "title": "ソフトウェアエンジニア",
+          "subtitle": "アライアンスソフトウェア株式会社",
+          "description": "アライアンスでフルスタックエンジニアとして、フロントエンドとバックエンドの両方を開発・保守し、シームレスなユーザー体験と効率的なデータ処理を実現しました。クロスファンクショナルチームと協力し、スケーラブルなソリューションを提供しました。",
           "promotion": {
             "ts1": {
-              "title": "Software Engineer - Technical Specialist I",
-              "subtitle": "Alliance Software Inc.",
+              "title": "ソフトウェア エンジニア - テクニカル スペシャリスト I",
+              "subtitle": "アライアンスソフトウェア株式会社",
               "abb": "TS I",
-              "description": "Experienced Full Stack Developer proficient in Spring Boot and React TypeScript, dedicated to building robust applications with a focus on seamless frontend experiences and efficient backend operations. Specializes in creating foundational codebases and shared components to streamline development workflows for cross-functional teams. Well-versed in Agile methodologies, delivering results in dynamic, fast-paced environments.",
-              "alt": "Alliance Software Inc. Logo"
+              "description": "Spring Boot と React TypeScript に精通した経験豊富なフルスタック開発者。シームレスなフロントエンド エクスペリエンスと効率的なバックエンド操作に焦点を当てた堅牢なアプリケーションの構築に専念しています。",
+              "alt": "アライアンスソフトウェア株式会社のロゴ"
             },
             "ats1": {
-              "title": "Software Engineer - Associate Technical Specialist I",
-              "subtitle": "Alliance Software Inc.",
+              "title": "ソフトウェア エンジニア - アソシエイト テクニカル スペシャリスト I",
+              "subtitle": "アライアンスソフトウェア株式会社",
               "abb": "ATS I",
-              "description": "Experienced Full-stack Developer adept in Vite, React, TypeScript, and Spring Boot, known for implementing robust security measures and enhancing performance for web applications. Skilled in managing server environments on Linux-based systems like CentOS and configuring web servers such as HTTPD and Nginx. Additionally, attended the LAMPP program to apply leadership processes and manage teams effectively, passionate about delivering high-quality solutions and fostering collaboration.",
-              "alt": "Alliance Software Inc. Logo"
+              "description": "Vite、React、TypeScript、Spring Boot に精通した経験豊富なフルスタック開発者であり、堅牢なセキュリティ対策を実装し、Web アプリケーションのパフォーマンスを向上させることで知られています。",
+              "alt": "アライアンスソフトウェア株式会社のロゴ"
             }
           }
         },
@@ -803,16 +796,16 @@
         },
         "exodia": {
           "title": "VR/AR 開発者 & 3D モデラー",
-          "description": "仮想現実 (VR) および拡張現実 (AR) プロジェクト向けの没入型デジタル エクスペリエンスの作成を専門とする、情熱的な 3D 環境デザイナー。 ",
+          "description": "仮想現実 (VR) および拡張現実 (AR) プロジェクト向けの没入型デジタル エクスペリエンスの作成を専門とする、情熱的な 3D 環境デザイナー。",
           "subtitle": "エクゾディア ゲーム開発",
           "abb": "パートタイム",
           "alt": "Exodia ゲーム開発ロゴ"
         },
         "kryterion": {
-          "title": "Software Engineer",
-          "subtitle": "Kryterion by Drake International",
-          "description": "As a Software Engineer in training at Drake International, I am learning to develop scalable web applications using Spring Boot for the back-end and Vue.js for the front-end. I have gained knowledge of transitioning from a monolithic architecture to microservices and am familiar with the technology stack and system design. Additionally, I collaborate using Slack for communication with cross-functional teams.",
-          "alt": "Drake International Logo"
+          "title": "ソフトウェアエンジニア",
+          "subtitle": "クライテリオン（ドレーク インターナショナル）",
+          "description": "ドレーク インターナショナルのソフトウェアエンジニアとして、Spring Bootバックエンド・Vue.jsフロントエンドを用いたスケーラブルなWebアプリケーション開発を学んでいます。モノリシックからマイクロサービスへの移行知識を習得し、Slackでクロスファンクショナルチームとコラボレーションしています。",
+          "alt": "ドレーク インターナショナル ロゴ"
         }
       }
     },
@@ -841,13 +834,13 @@
       "getInTouch": "連絡する"
     },
     "intro": {
-      "hello": "Hello I'm",
-      "name": "Gene Paul Mar Javier",
-      "slogan": "Turning Ideas Into Reality",
-      "intruduction": "My tech journey started at the University of Cebu. Now a seasoned full-stack developer, I specialize in modern tools like React, TypeScript, Tailwind CSS, and Spring Boot. I'm always hungry to explore new stacks for innovative solutions. Each project fuels my passion for innovation, turning ideas into reality and pushing digital boundaries. Welcome to my portfolio, where creativity thrives, and challenges drive growth.",
-      "title": "About Me",
-      "description": "test about me description",
-      "downloadResume": "Download My Resume",
+      "hello": "こんにちは私は",
+      "name": "ジーン・ポール・マー・ハビエル",
+      "slogan": "アイデアを現実に変える",
+      "intruduction": "テクノロジーの旅はセブ大学から始まりました。現在はフルスタック開発者として、React、TypeScript、Tailwind CSS、Spring Bootなどのモダンツールを専門としています。常に新しい技術を探求し、革新的なソリューションに取り組んでいます。各プロジェクトが私のイノベーションへの情熱を高め、アイデアを現実に変え、デジタルの可能性を広げています。",
+      "title": "私について",
+      "description": "私についての説明をテストする",
+      "downloadResume": "履歴書をダウンロード",
       "project": "プロジェクト",
       "ongoing": "進行中",
       "completed": "完了",
@@ -862,5 +855,108 @@
     "title": "スキル",
     "description": "成長と成功を促進するために、多彩なスキルセットを奥深くまでナビゲートする"
   },
-  "availableSoon": "近日発売予定"
+  "availableSoon": "近日発売予定",
+  "win26": {
+    "windows": {
+      "about": "私について",
+      "projects": "プロジェクト",
+      "terminal": "ターミナル",
+      "skills": "スキル & スタック",
+      "contact": "連絡先",
+      "resume": "履歴書ビルダー",
+      "settings": "システム設定",
+      "chat": "チャット GPM",
+      "games": "ゲーム",
+      "snake": "スネーク",
+      "hanoi": "ハノイの塔",
+      "tetris": "テトリス",
+      "jump": "エンドレスジャンプ"
+    },
+    "about": {
+      "tabs": {
+        "overview": "概要",
+        "experience": "経験",
+        "education": "学歴"
+      },
+      "bio": "React & Next.jsでフロントエンド、Spring Boot & Javaでバックエンドの本番対応アプリケーションを構築するフルスタックエンジニアです。クリーンなアーキテクチャ、開発者体験、そして価値あるものを届けることに情熱を注いでいます。",
+      "location": "フィリピン・セブ"
+    },
+    "skills": {
+      "categories": "カテゴリ",
+      "learning": "学習中",
+      "stats": "{{fav}}個のお気に入り · {{learning}}個学習中 · {{total}}個合計"
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "subtitle": "新しい機会、コラボレーション、興味深い会話に開かれています。",
+      "emailDesc": "いつでもメッセージをどうぞ",
+      "githubDesc": "オープンソースの作品を見る",
+      "linkedinDesc": "プロフェッショナルとして繋がる"
+    },
+    "projects": {
+      "filter": "フィルター",
+      "all": "すべてのプロジェクト",
+      "web": "Webアプリ",
+      "open": "オープンソース",
+      "confidential": "機密",
+      "live": "デモ",
+      "code": "コード",
+      "project": "プロジェクト",
+      "projects": "プロジェクト"
+    },
+    "settings": {
+      "dateTime": "日付と時刻",
+      "clockFormat": "時刻形式",
+      "clockDesc": "メニューバーとモバイルステータスバーに表示される時刻を制御します。",
+      "12h": "12時間制",
+      "24h": "24時間制",
+      "preview": "プレビュー",
+      "previewDesc": "メニューバーの時計の表示",
+      "aboutTheme": "について",
+      "aboutThemeDesc": "「自動」はシステム設定に従います。この設定は2024、2025、2026を含むすべてのポートフォリオ年に適用されます。"
+    },
+    "present": "現在",
+    "employment": {
+      "fullTime": "フルタイム",
+      "partTime": "パートタイム"
+    },
+    "resume": {
+      "template": "テンプレート",
+      "appearance": "外観",
+      "accentColor": "アクセントカラー",
+      "export": "PDFを書き出す",
+      "exportShort": "書き出す",
+      "tips": "ヒント",
+      "tipsSave": "PDFとして保存",
+      "tipsMargins": "なし",
+      "tipsBg": "背景グラフィック",
+      "tipsC1": "「",
+      "tipsC2": "」を選択。余白 → 「",
+      "tipsC3": "」に設定。「",
+      "tipsC4": "」を有効にする。",
+      "sectionAbout": "自己紹介",
+      "sectionEducation": "学歴",
+      "sectionWorkExp": "職務経歴",
+      "sectionProjects": "主なプロジェクト",
+      "sectionContact": "連絡先",
+      "sectionCoreComp": "主なスキル",
+      "sectionQualSummary": "スキル概要",
+      "modern": "モダン",
+      "modernDesc": "スタイルサイドバー",
+      "simple": "シンプル",
+      "simpleDesc": "クラシック＆クリーン",
+      "light": "ライト",
+      "dark": "ダーク"
+    },
+    "games": {
+      "title": "ゲーム",
+      "apps": "{count}本のアプリ",
+      "moreComing": "近日公開",
+      "soon": "お楽しみに...",
+      "snake": { "name": "スネーク", "desc": "クラシックなレトロスネークゲーム" },
+      "hanoi": { "name": "ハノイの塔", "desc": "全ての円盤をAからCへ移動" },
+      "tetris": { "name": "テトリス", "desc": "落ちるブロックを積み上げてクリア" },
+      "jump": { "name": "エンドレスジャンプ", "desc": "プラットフォームを登って落ちるな！" }
+    }
+  }
 }

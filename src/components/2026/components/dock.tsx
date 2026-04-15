@@ -6,6 +6,7 @@ import { GITHUB_URL } from "@/config/url";
 import { WIN_DEFS } from "../constants";
 import type { WinId, WinState } from "../constants";
 import { MacAppIcon } from "./mac-app-icons";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 export function Dock({
   windows,
@@ -16,6 +17,7 @@ export function Dock({
   onOpen: (id: WinId) => void;
   onRestore: (id: WinId) => void;
 }) {
+  useLocaleRefresh();
   const [hov, setHov] = useState<string | null>(null);
 
   const dockApps = WIN_DEFS.filter((d) => !d.hideIcon).map((d) => ({
@@ -66,7 +68,7 @@ export function Dock({
                   className={tooltipCls}
                   style={tooltipStyle}
                 >
-                  {app.title}
+                  {translate(`win26.windows.${app.id}` as any) || app.title}
                 </motion.div>
               )}
             </AnimatePresence>

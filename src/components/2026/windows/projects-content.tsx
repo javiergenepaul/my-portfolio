@@ -4,19 +4,21 @@ import { useState } from "react";
 import { ExternalLink, FolderGit2, Lock, Code2, Globe } from "lucide-react";
 import { getProjects } from "@/config";
 import { useIsMobile } from "../hooks";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 type ProjFilter = "all" | "web" | "open" | "confidential";
 
-const FILTERS: { id: ProjFilter; label: string; icon: React.ReactNode }[] = [
-  { id: "all", label: "All Projects", icon: <FolderGit2 size={13} /> },
-  { id: "web", label: "Web Apps", icon: <Globe size={13} /> },
-  { id: "open", label: "Open Source", icon: <Code2 size={13} /> },
-  { id: "confidential", label: "Confidential", icon: <Lock size={13} /> },
-];
-
 export function ProjectsContent() {
+  useLocaleRefresh();
   const isMobile = useIsMobile();
   const [filter, setFilter] = useState<ProjFilter>("all");
+
+  const FILTERS: { id: ProjFilter; label: string; icon: React.ReactNode }[] = [
+    { id: "all", label: translate("win26.projects.all"), icon: <FolderGit2 size={13} /> },
+    { id: "web", label: translate("win26.projects.web"), icon: <Globe size={13} /> },
+    { id: "open", label: translate("win26.projects.open"), icon: <Code2 size={13} /> },
+    { id: "confidential", label: translate("win26.projects.confidential"), icon: <Lock size={13} /> },
+  ];
   const all = getProjects().filter((p) => !p.hidden).slice(0, 20);
 
   const filtered =
@@ -83,11 +85,11 @@ export function ProjectsContent() {
       ) : (
         <div className="shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col w-40 py-3.5 px-2 gap-0.5">
           <div className="text-a26-muted text-[10px] font-bold px-2 pb-2 tracking-[0.08em] uppercase">
-            Filter
+            {translate("win26.projects.filter")}
           </div>
           {filterBar}
           <div className="text-a26-muted mt-auto pt-2.5 px-2 text-[11px]">
-            {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+            {filtered.length} {filtered.length !== 1 ? translate("win26.projects.projects") : translate("win26.projects.project")}
           </div>
         </div>
       )}
@@ -185,7 +187,7 @@ export function ProjectsContent() {
                       border: "1px solid color-mix(in srgb, var(--a26-teal) 22%, transparent)",
                     }}
                   >
-                    <ExternalLink size={10} /> Live
+                    <ExternalLink size={10} /> {translate("win26.projects.live")}
                   </a>
                 )}
                 {p.codeUrl && (
@@ -195,7 +197,7 @@ export function ProjectsContent() {
                     rel="noopener noreferrer"
                     className="font-mac flex items-center bg-a26-glass border border-a26-glass-border text-a26-mid gap-1 py-1 px-2.25 rounded-[6px] text-[11px] font-medium no-underline"
                   >
-                    <Code2 size={10} /> Code
+                    <Code2 size={10} /> {translate("win26.projects.code")}
                   </a>
                 )}
               </div>

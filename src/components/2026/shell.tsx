@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence } from "framer-motion";
-import { useLocaleRefresh } from "@/i18n";
+import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores";
 import { WIN_DEFS } from "./constants";
 import { useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
@@ -45,6 +46,13 @@ export function Portfolio2026() {
   useLocaleRefresh();
   const isDark = useIsDark();
   const isMobile = useIsMobile();
+  const { setLanguage } = useLanguageStore();
+
+  // Reset to English each time the 2026 portfolio loads
+  useEffect(() => {
+    setLanguage("en");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [wins, setWins] = useState<Record<WinId, WinState>>(INIT_WINS);
   const [topZ, setTopZ] = useState(30);
   const [cmdOpen, setCmdOpen] = useState(false);
@@ -219,7 +227,7 @@ export function Portfolio2026() {
       { type: "header", label: "Open" },
       ...VISIBLE_DEFS.map((def) => ({
         type: "item" as const,
-        label: def.title,
+        label: translate(`win26.windows.${def.id}` as any) || def.title,
         icon: WIN_ICONS[def.id],
         action: () => openWin(def.id),
         disabled: wins[def.id].open && !wins[def.id].minimized,
@@ -236,7 +244,7 @@ export function Portfolio2026() {
     const items: ContextMenuEntry[] = [
       {
         type: "item",
-        label: `Open ${def.title}`,
+        label: `Open ${translate(`win26.windows.${def.id}` as any) || def.title}`,
         icon: WIN_ICONS[id],
         action: () => openWin(id),
         disabled: wins[id].open && !wins[id].minimized,
@@ -320,7 +328,7 @@ export function Portfolio2026() {
             <DesktopIcon
               key={def.id}
               id={def.id}
-              label={def.title}
+              label={translate(`win26.windows.${def.id}` as any) || def.title}
               color={def.color}
               isOpen={wins[def.id].open}
               onClick={() => openWin(def.id)}

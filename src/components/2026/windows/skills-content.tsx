@@ -95,7 +95,7 @@ export function SkillsContent() {
           style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
         >
           <div className="text-a26-muted text-[10px] font-bold px-2 pb-2.5 tracking-[0.08em] uppercase">
-            Categories
+            {translate("win26.skills.categories")}
           </div>
           {categoryTabs}
         </div>
@@ -133,7 +133,11 @@ export function SkillsContent() {
                     {cat.label}
                   </h2>
                   <div className="text-a26-muted text-[11px] mt-px">
-                    {cat.stacks.filter((s) => s.isFavorite).length} favorite · {cat.stacks.filter((s) => s.isStudying).length} learning · {cat.stacks.length} total
+                    {translate("win26.skills.stats", {
+                      fav: cat.stacks.filter((s) => s.isFavorite).length,
+                      learning: cat.stacks.filter((s) => s.isStudying).length,
+                      total: cat.stacks.length,
+                    })}
                   </div>
                 </div>
               </div>
@@ -168,7 +172,7 @@ export function SkillsContent() {
                               border: "1px solid color-mix(in srgb, var(--a26-violet) 25%, transparent)",
                             }}
                           >
-                            learning
+                            {translate("win26.skills.learning")}
                           </span>
                         )}
                         <span className="text-a26-muted shrink-0 text-[10px] font-mono">

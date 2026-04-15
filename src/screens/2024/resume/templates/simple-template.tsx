@@ -1,8 +1,10 @@
 "use client";
 
 import moment from "moment";
+import "moment/locale/ja";
 import { Mail, Phone, Github, Linkedin, MapPin } from "lucide-react";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores";
 import {
   FULL_NAME,
   JOB_TITLE,
@@ -21,13 +23,18 @@ interface SimpleTemplateProps {
   isDark?: boolean;
 }
 
+const MOMENT_LOCALE: Record<string, string> = { en: "en", ja: "ja", fil: "en", ceb: "en" };
+const DATE_FMT: Record<string, string> = { en: "MMM YYYY", ja: "YYYY年M月", fil: "MMM YYYY", ceb: "MMM YYYY" };
+
 function formatDateRange(
   start: moment.Moment,
   end: moment.Moment | "present",
 ): string {
-  const s = start.format("MMM YYYY");
-  const e =
-    end === "present" ? "Present" : (end as moment.Moment).format("MMM YYYY");
+  const lang = useLanguageStore.getState().language ?? "en";
+  const locale = MOMENT_LOCALE[lang] ?? "en";
+  const fmt = DATE_FMT[lang] ?? "MMM YYYY";
+  const s = start.clone().locale(locale).format(fmt);
+  const e = end === "present" ? translate("win26.present") : (end as moment.Moment).clone().locale(locale).format(fmt);
   return `${s} – ${e}`;
 }
 
@@ -197,7 +204,7 @@ export function SimpleTemplate({
               className="text-[9px] font-bold tracking-[0.2em] uppercase mb-2"
               style={{ color: accent }}
             >
-              Contact
+              {translate("win26.resume.sectionContact")}
             </p>
             <div className="flex flex-col gap-1.5">
               {[
@@ -252,7 +259,7 @@ export function SimpleTemplate({
               className="text-[9px] font-bold tracking-[0.2em] uppercase mb-2"
               style={{ color: accent }}
             >
-              Core Competencies
+              {translate("win26.resume.sectionCoreComp")}
             </p>
             <div className="flex flex-col gap-1">
               {coreCompetencies.map((skill) => (
@@ -279,7 +286,7 @@ export function SimpleTemplate({
               className="text-[9px] font-bold tracking-[0.2em] uppercase mb-2"
               style={{ color: accent }}
             >
-              Education
+              {translate("win26.resume.sectionEducation")}
             </p>
             <div className="flex flex-col gap-3">
               {education.map((edu, i) => (
@@ -309,7 +316,7 @@ export function SimpleTemplate({
         {/* RIGHT COLUMN */}
         <div className="flex-1 px-6 py-4">
           {/* Qualifications Summary */}
-          <SectionDivider title="Qualifications Summary" accent={accent} />
+          <SectionDivider title={translate("win26.resume.sectionQualSummary")} accent={accent} />
           <p
             className="text-[9.5px] leading-relaxed"
             style={{ color: textMed }}
@@ -318,13 +325,13 @@ export function SimpleTemplate({
           </p>
 
           {/* Work Experience */}
-          <SectionDivider title="Work Experience" accent={accent} />
+          <SectionDivider title={translate("win26.resume.sectionWorkExp")} accent={accent} />
           <div className="flex flex-col gap-3">
             {experience.map((exp, i) => (
               <div key={i}>
                 <EntryHeader
                   title={exp.title}
-                  subtitle={`${exp.subtitle ?? ""}${exp.employmentType ? " · " + exp.employmentType : ""}`}
+                  subtitle={`${exp.subtitle ?? ""}${exp.employmentType ? " · " + (exp.employmentType === "Full-time" ? translate("win26.employment.fullTime") : translate("win26.employment.partTime")) : ""}`}
                   date={formatDateRange(exp.startYear, exp.endYear)}
                   accent={accent}
                   textDark={textDark}
@@ -353,7 +360,7 @@ export function SimpleTemplate({
           </div>
 
           {/* Featured Projects */}
-          <SectionDivider title="Featured Projects" accent={accent} />
+          <SectionDivider title={translate("win26.resume.sectionProjects")} accent={accent} />
           <div className="flex flex-col gap-3">
             {projects.map((p) => (
               <div key={p.projectId}>

@@ -488,6 +488,14 @@
           "saas": "Software As A Service"
         }
       }
+    },
+    "projectFlux": {
+      "title": "Project Flux",
+      "description": "A confidential UI revamp project involving migration and enhancement of legacy enterprise interfaces using modern Vue.js ecosystem tooling."
+    },
+    "magicUi": {
+      "title": "Magic UI",
+      "description": "A confidential UI platform encompassing full revamp, enhancement, and new feature development across a Spring Boot Java backend and Next.js / React frontend."
     }
   },
   "contact": {
@@ -769,6 +777,12 @@
         }
       },
       "experience": {
+        "magic": {
+          "title": "Full Stack Software Developer",
+          "subtitle": "Magic",
+          "description": "Building and maintaining full-stack features for Magic's platform — a modern SaaS product. Working across the stack with a focus on delivering clean, production-ready code in a remote, async environment.",
+          "alt": "Magic Logo"
+        },
         "kryterion": {
           "title": "Software Engineer",
           "subtitle": "Kryterion by Drake International",
@@ -841,5 +855,108 @@
     "description": "Navigating the Depths of Your Versatile Skill Set to Empower Growth and Success"
   },
 
-  "availableSoon": "Available Soon"
+  "availableSoon": "Available Soon",
+  "win26": {
+    "windows": {
+      "about": "About Me",
+      "projects": "Projects",
+      "terminal": "Terminal",
+      "skills": "Skills & Stack",
+      "contact": "Contact",
+      "resume": "Resume Builder",
+      "settings": "System Settings",
+      "chat": "Chat GPM",
+      "games": "Games",
+      "snake": "Snake",
+      "hanoi": "Tower of Hanoi",
+      "tetris": "Tetris",
+      "jump": "Endless Jump"
+    },
+    "about": {
+      "tabs": {
+        "overview": "Overview",
+        "experience": "Experience",
+        "education": "Education"
+      },
+      "bio": "Full-stack software engineer crafting production-ready applications with React & Next.js on the frontend and Spring Boot & Java on the backend. Passionate about clean architecture, developer experience, and shipping things that matter.",
+      "location": "Cebu, Philippines"
+    },
+    "skills": {
+      "categories": "Categories",
+      "learning": "learning",
+      "stats": "{{fav}} favorite · {{learning}} learning · {{total}} total"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "subtitle": "Open to new opportunities, collaborations, and interesting conversations.",
+      "emailDesc": "Drop a message any time",
+      "githubDesc": "View open-source work",
+      "linkedinDesc": "Connect professionally"
+    },
+    "projects": {
+      "filter": "Filter",
+      "all": "All Projects",
+      "web": "Web Apps",
+      "open": "Open Source",
+      "confidential": "Confidential",
+      "live": "Live",
+      "code": "Code",
+      "project": "project",
+      "projects": "projects"
+    },
+    "settings": {
+      "dateTime": "Date & Time",
+      "clockFormat": "Clock Format",
+      "clockDesc": "Controls the time displayed in the menu bar and mobile status bar.",
+      "12h": "12-Hour",
+      "24h": "24-Hour",
+      "preview": "Preview",
+      "previewDesc": "Menu bar clock will show",
+      "aboutTheme": "About",
+      "aboutThemeDesc": "Auto follows your system setting. This preference applies across all portfolio years including 2024, 2025, and 2026."
+    },
+    "present": "Present",
+    "employment": {
+      "fullTime": "Full-time",
+      "partTime": "Part-time"
+    },
+    "resume": {
+      "template": "Template",
+      "appearance": "Appearance",
+      "accentColor": "Accent Color",
+      "export": "Export PDF",
+      "exportShort": "Export",
+      "tips": "Tips",
+      "tipsSave": "Save as PDF",
+      "tipsMargins": "None",
+      "tipsBg": "Background graphics",
+      "tipsC1": "Select ",
+      "tipsC2": ", margins → ",
+      "tipsC3": ", enable ",
+      "tipsC4": ".",
+      "sectionAbout": "About",
+      "sectionEducation": "Education",
+      "sectionWorkExp": "Work Experience",
+      "sectionProjects": "Featured Projects",
+      "sectionContact": "Contact",
+      "sectionCoreComp": "Core Competencies",
+      "sectionQualSummary": "Qualifications Summary",
+      "modern": "Modern",
+      "modernDesc": "Styled sidebar",
+      "simple": "Simple",
+      "simpleDesc": "Classic & clean",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "games": {
+      "title": "Games",
+      "apps": "{count} apps",
+      "moreComing": "More coming",
+      "soon": "soon...",
+      "snake": { "name": "Snake", "desc": "Classic retro snake game" },
+      "hanoi": { "name": "Tower of Hanoi", "desc": "Move all discs from A to C" },
+      "tetris": { "name": "Tetris", "desc": "Stack & clear falling blocks" },
+      "jump": { "name": "Endless Jump", "desc": "Climb platforms, don't fall!" }
+    }
+  }
 }

@@ -21,15 +21,14 @@ import {
  */
 export const getExperience = (): ContentBodyInterface[] => [
   {
-    title: "Full Stack Software Developer",
-    subtitle: "Magic",
-    description:
-      "Building and maintaining full-stack features for Magic's platform — a modern SaaS product. Working across the stack with a focus on delivering clean, production-ready code in a remote, async environment.",
+    title: translate("about.experience.experience.magic.title"),
+    subtitle: translate("about.experience.experience.magic.subtitle"),
+    description: translate("about.experience.experience.magic.description"),
     startYear: moment("2025-08-01"),
     endYear: "present",
     watermark:
       "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
-    watermarkAlt: "Magic",
+    watermarkAlt: translate("about.experience.experience.magic.alt"),
     subtitleUrl: MAGIC_COMPANY_URL,
     waterMarkWidth: 120,
     isWork: true,

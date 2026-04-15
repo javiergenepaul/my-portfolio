@@ -113,10 +113,10 @@ export const getProjects = (): ProjectInterface[] => [
   },
   // ── Project Flux ──────────────────────────────────────────────────────────
   {
-    title: "Project Flux",
+    title: translate("projects.projectFlux.title" as any),
     company: undefined,
     date: new Date(),
-    description: "A confidential UI revamp project involving migration and enhancement of legacy enterprise interfaces using modern Vue.js ecosystem tooling.",
+    description: translate("projects.projectFlux.description" as any),
     category: ["UI Revamp", "Enterprise"],
     previewUrl: undefined,
     codeUrl: undefined,
@@ -135,10 +135,10 @@ export const getProjects = (): ProjectInterface[] => [
   },
   // ── Magic UI ──────────────────────────────────────────────────────────────
   {
-    title: "Magic UI",
+    title: translate("projects.magicUi.title" as any),
     company: undefined,
     date: new Date(),
-    description: "A confidential UI platform encompassing full revamp, enhancement, and new feature development across a Spring Boot Java backend and Next.js / React frontend.",
+    description: translate("projects.magicUi.description" as any),
     category: ["UI Revamp", "UI Enhancement", "New Features"],
     previewUrl: undefined,
     codeUrl: undefined,
