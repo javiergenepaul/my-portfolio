@@ -1120,6 +1120,80 @@
         "name": "GPM Jump",
         "desc": "Sumakyad sa mga platform, ayaw pagkahulog!"
       }
+    },
+    "gameUi": {
+      "newHighScore": "Bag-ong High Score",
+      "highScores": "Mga High Score",
+      "current": "Karon",
+      "namePlaceholder": "Isulat ang imong ngalan",
+      "defaultPlayer": "Player",
+      "saveScore": "I-save ang Score",
+      "saved": "Na-save na",
+      "savedForRun": "Na-save na para niining run.",
+      "finishRunToSave": "Humana ang run aron maka-save og score.",
+      "saveNewRecord": "Bag-ong high score. I-save kini aron mapabilin.",
+      "saveRunDefault": "I-save kini nga run sa persistent leaderboard.",
+      "noSavedScoresYet": "Wala pay naka-save nga score",
+      "playAgain": "Duwa Pag-usab",
+      "restart": "Sugdi Pag-usab",
+      "menu": "Menu",
+      "gameOver": "Game Over",
+      "best": "Pinakamaayo",
+      "startGame": "Sugdi ang Dula",
+      "paused": "Napahunong",
+      "resume": "Padayon",
+      "hold": "Hold",
+      "next": "Sunod",
+      "score": "Score",
+      "level": "Level",
+      "lines": "Mga Linya"
+    },
+    "snakeUi": {
+      "startMobile": "Tap o swipe aron magsugod",
+      "startDesktop": "Pislita ang ↑ ↓ ← → o WASD aron magsugod",
+      "saveNote": "I-save ang imong run human sa game over.",
+      "moveDesktop": "↑ ↓ ← → o W A S D aron molihok"
+    },
+    "jumpUi": {
+      "easy": "Sayon",
+      "hard": "Lisod",
+      "easyMobile": "Auto-jump · lihok gamit ang ← →",
+      "easyDesktop": "Auto-bounce · lihok gamit ang ← →",
+      "hardMobile": "Mosaka ang camera · auto-jump · lihok aron mabuhi",
+      "hardDesktop": "Mosaka ang camera · SPACE aron molukso · usa ka lukso matag landing",
+      "movingPlatforms": "Naay moving platforms sa mas taas nga lebel",
+      "saveNote": "Lahi-lahi ang saved score para sa Easy ug Hard.",
+      "titleWithDifficulty": "{{title}} · {{difficulty}}"
+    },
+    "hanoiUi": {
+      "objective": "Ibalhin ang tanan nga disc gikan sa peg A ngadto sa C",
+      "difficulties": {
+        "easy": { "label": "Sayon", "sublabel": "{{count}} lihok min" },
+        "medium": { "label": "Tunga-tunga", "sublabel": "{{count}} lihok min" },
+        "hard": { "label": "Lisod", "sublabel": "{{count}} lihok min" },
+        "expert": { "label": "Eksperto", "sublabel": "{{count}} lihok min" }
+      },
+      "idleHelpMobile": "I-drag ang disc ngadto sa lain nga peg · o tap aron mopili ug ibutang",
+      "idleHelpDesktop": "I-drag ang disc · o i-click / pislita ang 1 2 3 aron molihok",
+      "moves": "Lihok",
+      "optimal": "pinakamaayo",
+      "solved": "Nasulbad!",
+      "movesCount": "{{count}} ka lihok",
+      "optimalBadge": "✓ pinakamaayo!",
+      "bestMoves": "(pinakamaayo: {{count}})",
+      "changeDifficulty": "Usba ang Lisod",
+      "titleWithDiscs": "{{title}} · {{count}} ka Disc",
+      "saveNote": "Ang mas gamay nga lihok mas taas og ranggo sa matag ihap sa disc.",
+      "emptyLabel": "Wala pay naka-save nga solved board para niining kalisdanan",
+      "dropOnPeg": "Ihulog sa peg {{peg}}",
+      "pegSelected": "Napili ang peg {{peg}} — i-click ang laing peg aron ibutang",
+      "playingHelpMobile": "I-drag ang disc · o i-tap ang peg aron mopili",
+      "playingHelpDesktop": "I-drag ang disc · o i-click / pislita ang 1 2 3"
+    },
+    "tetrisUi": {
+      "instructionsMobile": "Tap: liko · Swipe ←→: lihok · Swipe ↓: soft drop · Paspas nga ↓: hard drop",
+      "instructionsDesktop": "← → lihok · ↑ o Z: liko · ↓ soft drop · Space: hard drop · C: hold",
+      "saveNote": "I-save ang board human sa game over."
     }
   }
 }

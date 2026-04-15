@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useIsMobile } from "../hooks";
 import { GameHighScorePanel } from "../components/game-high-score-panel";
 import { isBetterScore, useGameHighScoresStore } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 const GRID = 20;
 const TICK_MS = 130;
@@ -29,18 +30,22 @@ const INIT_SNAKE: Pos[] = [
 ];
 
 export function SnakeContent() {
+  useLocaleRefresh();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
-  // Responsive canvas size — fits the container width, max 400
+  // Responsive canvas size — fits the available width and height so maximized
+  // windows can scale the board up instead of staying near its original size.
   const [canvasSize, setCanvasSize] = useState(400);
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const calc = () => {
-      const available = el.clientWidth - (isMobile ? 24 : 32);
-      const size = Math.min(Math.max(260, available), 400);
+      const availableW = el.clientWidth - (isMobile ? 24 : 32);
+      const reservedH = isMobile ? 170 : 96;
+      const availableH = el.clientHeight - reservedH;
+      const size = Math.max(260, Math.min(availableW, availableH, 780));
       setCanvasSize(size);
     };
     calc();
@@ -315,7 +320,7 @@ export function SnakeContent() {
           className="text-[10px] font-bold tracking-widest uppercase"
           style={{ color: "rgba(255,255,255,0.30)" }}
         >
-          Score
+          {translate("win26.gameUi.score" as any)}
         </span>
         <span className="text-a26-green text-[20px] font-bold font-mono leading-none">
           {score}
@@ -329,7 +334,7 @@ export function SnakeContent() {
             color: "rgba(255,255,255,0.45)",
           }}
         >
-          Restart
+          {translate("win26.gameUi.restart" as any)}
         </button>
       </div>
 
@@ -359,14 +364,16 @@ export function SnakeContent() {
             style={{ background: "rgba(0,0,0,0.72)" }}
           >
             <span style={{ fontSize: 40 }}>🐍</span>
-            <div className="text-white text-[16px] font-semibold">GPM Snake</div>
+            <div className="text-white text-[16px] font-semibold">
+              {translate("win26.games.snake.name" as any)}
+            </div>
             <div
               className="text-[12px] text-center px-4"
               style={{ color: "rgba(255,255,255,0.42)" }}
             >
               {isMobile
-                ? "Tap or swipe to start"
-                : "Press ↑ ↓ ← → or WASD to start"}
+                ? translate("win26.snakeUi.startMobile" as any)
+                : translate("win26.snakeUi.startDesktop" as any)}
             </div>
           </div>
         )}
@@ -379,7 +386,7 @@ export function SnakeContent() {
           >
             <span style={{ fontSize: 36 }}>💀</span>
             <div className="text-white text-[15px] font-semibold">
-              Game Over
+              {translate("win26.gameUi.gameOver" as any)}
             </div>
             <div
               className="font-mono text-[14px]"
@@ -390,14 +397,14 @@ export function SnakeContent() {
             <div style={{ width: "100%", maxWidth: 320 }}>
               <GameHighScorePanel
                 scoreKey="snake"
-                title="GPM Snake"
+                title={translate("win26.games.snake.name" as any)}
                 accentColor="var(--a26-green)"
                 currentValue={score}
                 currentDisplayValue={`${score} pts`}
                 runToken={runToken}
                 canSubmit={phase === "dead" && score > 0}
                 isRecord={isNewRecord}
-                note="Save your run after a game over."
+                note={translate("win26.snakeUi.saveNote" as any)}
               />
             </div>
             <button
@@ -405,7 +412,7 @@ export function SnakeContent() {
               className="font-mac text-[12px] px-5 py-1.5 rounded-[8px] border-none cursor-pointer font-semibold mt-1"
               style={{ background: "var(--a26-green)", color: "#0A0A0A" }}
             >
-              Play Again
+              {translate("win26.gameUi.playAgain" as any)}
             </button>
           </div>
         )}
@@ -430,7 +437,7 @@ export function SnakeContent() {
           className="text-[11px]"
           style={{ color: "rgba(255,255,255,0.20)" }}
         >
-          ↑ ↓ ← → or W A S D to move
+          {translate("win26.snakeUi.moveDesktop" as any)}
         </div>
       )}
     </div>

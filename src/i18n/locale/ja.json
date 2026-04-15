@@ -1121,6 +1121,80 @@
         "name": "GPMジャンプ",
         "desc": "プラットフォームを登って落ちるな！"
       }
+    },
+    "gameUi": {
+      "newHighScore": "新記録",
+      "highScores": "ハイスコア",
+      "current": "現在",
+      "namePlaceholder": "名前を入力",
+      "defaultPlayer": "プレイヤー",
+      "saveScore": "スコアを保存",
+      "saved": "保存済み",
+      "savedForRun": "このプレイは保存済みです。",
+      "finishRunToSave": "スコアを保存するにはプレイを完了してください。",
+      "saveNewRecord": "新記録です。保存して残しましょう。",
+      "saveRunDefault": "このプレイを永続リーダーボードに保存します。",
+      "noSavedScoresYet": "保存されたスコアはまだありません",
+      "playAgain": "もう一度遊ぶ",
+      "restart": "やり直す",
+      "menu": "メニュー",
+      "gameOver": "ゲームオーバー",
+      "best": "ベスト",
+      "startGame": "ゲーム開始",
+      "paused": "一時停止中",
+      "resume": "再開",
+      "hold": "ホールド",
+      "next": "次",
+      "score": "スコア",
+      "level": "レベル",
+      "lines": "ライン"
+    },
+    "snakeUi": {
+      "startMobile": "タップまたはスワイプで開始",
+      "startDesktop": "↑ ↓ ← → または WASD で開始",
+      "saveNote": "ゲームオーバー後にこのプレイを保存できます。",
+      "moveDesktop": "↑ ↓ ← → または W A S D で移動"
+    },
+    "jumpUi": {
+      "easy": "かんたん",
+      "hard": "むずかしい",
+      "easyMobile": "自動ジャンプ · ← → で操作",
+      "easyDesktop": "自動バウンド · ← → で操作",
+      "hardMobile": "カメラ上昇 · 自動ジャンプ · 操作して生き残る",
+      "hardDesktop": "カメラ上昇 · SPACEでジャンプ · 着地ごとに1回ジャンプ",
+      "movingPlatforms": "上のレベルほど動く足場が現れます",
+      "saveNote": "スコアは Easy と Hard で別々に保存されます。",
+      "titleWithDifficulty": "{{title}} · {{difficulty}}"
+    },
+    "hanoiUi": {
+      "objective": "すべての円盤を A から C に移動する",
+      "difficulties": {
+        "easy": { "label": "かんたん", "sublabel": "最短 {{count}} 手" },
+        "medium": { "label": "ふつう", "sublabel": "最短 {{count}} 手" },
+        "hard": { "label": "むずかしい", "sublabel": "最短 {{count}} 手" },
+        "expert": { "label": "エキスパート", "sublabel": "最短 {{count}} 手" }
+      },
+      "idleHelpMobile": "円盤を別の棒へドラッグ · またはタップで持ち上げて置く",
+      "idleHelpDesktop": "円盤をドラッグ · またはクリック / 1 2 3 キーで移動",
+      "moves": "手数",
+      "optimal": "最短",
+      "solved": "クリア！",
+      "movesCount": "{{count}} 手",
+      "optimalBadge": "✓ 最短！",
+      "bestMoves": "(最短: {{count}})",
+      "changeDifficulty": "難易度を変更",
+      "titleWithDiscs": "{{title}} · 円盤 {{count}} 枚",
+      "saveNote": "少ない手数ほど高く評価されます。",
+      "emptyLabel": "この難易度のクリア記録はまだありません",
+      "dropOnPeg": "{{peg}} にドロップ",
+      "pegSelected": "{{peg}} を選択中 — 別の棒をクリックして置く",
+      "playingHelpMobile": "円盤をドラッグ · または棒をタップして持ち上げる",
+      "playingHelpDesktop": "円盤をドラッグ · またはクリック / 1 2 3 キー"
+    },
+    "tetrisUi": {
+      "instructionsMobile": "タップ: 回転 · スワイプ ←→: 移動 · スワイプ ↓: ソフトドロップ · 素早い ↓: ハードドロップ",
+      "instructionsDesktop": "← → 移動 · ↑ または Z: 回転 · ↓ ソフトドロップ · Space: ハードドロップ · C: ホールド",
+      "saveNote": "ゲームオーバー後に盤面スコアを保存できます。"
     }
   }
 }

@@ -5,6 +5,7 @@ import {
   useGameHighScoresStore,
   type GameScoreKey,
 } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 export function GameHighScorePanel({
   scoreKey,
@@ -29,6 +30,7 @@ export function GameHighScorePanel({
   note?: string;
   emptyLabel?: string;
 }) {
+  useLocaleRefresh();
   const playerName = useGameHighScoresStore((state) => state.playerName);
   const setPlayerName = useGameHighScoresStore((state) => state.setPlayerName);
   const saveScore = useGameHighScoresStore((state) => state.saveScore);
@@ -44,10 +46,10 @@ export function GameHighScorePanel({
   const isDisabled = !canSubmit || currentValue <= 0 || hasSaved;
 
   const helperText = useMemo(() => {
-    if (hasSaved) return "Saved for this run.";
-    if (!canSubmit) return "Finish the run to save a score.";
-    if (isRecord) return "New high score. Save it to lock it in.";
-    return note ?? "Save this run to the persistent leaderboard.";
+    if (hasSaved) return translate("win26.gameUi.savedForRun" as any);
+    if (!canSubmit) return translate("win26.gameUi.finishRunToSave" as any);
+    if (isRecord) return translate("win26.gameUi.saveNewRecord" as any);
+    return note ?? translate("win26.gameUi.saveRunDefault" as any);
   }, [canSubmit, hasSaved, isRecord, note]);
 
   return (
@@ -64,7 +66,9 @@ export function GameHighScorePanel({
             className="text-[10px] font-bold uppercase tracking-[0.18em]"
             style={{ color: isRecord ? accentColor : "rgba(255,255,255,0.34)" }}
           >
-            {isRecord ? "New High Score" : "High Scores"}
+            {isRecord
+              ? translate("win26.gameUi.newHighScore" as any)
+              : translate("win26.gameUi.highScores" as any)}
           </div>
           <div className="mt-1 text-[13px] font-semibold text-white">{title}</div>
         </div>
@@ -73,7 +77,7 @@ export function GameHighScorePanel({
             className="text-[10px] font-bold uppercase tracking-[0.16em]"
             style={{ color: "rgba(255,255,255,0.28)" }}
           >
-            Current
+            {translate("win26.gameUi.current" as any)}
           </div>
           <div
             className="mt-1 font-mono text-[14px] font-bold"
@@ -89,7 +93,7 @@ export function GameHighScorePanel({
           value={playerName}
           maxLength={24}
           onChange={(event) => setPlayerName(event.target.value)}
-          placeholder="Type your name"
+          placeholder={translate("win26.gameUi.namePlaceholder" as any)}
           className="font-mac min-w-0 flex-1 rounded-[9px] border px-3 py-2 text-[12px] text-white outline-none"
           style={{
             background: "rgba(0,0,0,0.24)",
@@ -99,7 +103,7 @@ export function GameHighScorePanel({
         <button
           onClick={() => {
             saveScore(scoreKey, {
-              name: trimmedName || "Player",
+              name: trimmedName || translate("win26.gameUi.defaultPlayer" as any),
               value: currentValue,
               displayValue: currentDisplayValue,
             });
@@ -114,7 +118,9 @@ export function GameHighScorePanel({
             opacity: isDisabled ? 0.72 : 1,
           }}
         >
-          {hasSaved ? "Saved" : "Save Score"}
+          {hasSaved
+            ? translate("win26.gameUi.saved" as any)
+            : translate("win26.gameUi.saveScore" as any)}
         </button>
       </div>
 
@@ -155,7 +161,7 @@ export function GameHighScorePanel({
               color: "rgba(255,255,255,0.28)",
             }}
           >
-            {emptyLabel}
+            {emptyLabel || translate("win26.gameUi.noSavedScoresYet" as any)}
           </div>
         )}
       </div>

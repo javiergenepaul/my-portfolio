@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "../hooks";
 import { GameHighScorePanel } from "../components/game-high-score-panel";
 import { isBetterScore, useGameHighScoresStore } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 // ── Board constants ────────────────────────────────────────────────────────────
 
@@ -144,6 +145,7 @@ const pullBag = (): string => {
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export function TetrisContent() {
+  useLocaleRefresh();
   const isMobile = useIsMobile();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -455,7 +457,7 @@ export function TetrisContent() {
       const padControl = isMobile ? 140 : 0;
       const byW = Math.floor((el.clientWidth - padPanel - 8) / COLS);
       const byH = Math.floor((el.clientHeight - padControl - 8) / ROWS);
-      setCellSz(Math.max(14, Math.min(byW, byH, 32)));
+      setCellSz(Math.max(14, Math.min(byW, byH, 44)));
     };
     calc();
     const ro = new ResizeObserver(calc);
@@ -652,7 +654,7 @@ export function TetrisContent() {
               marginTop: 8,
             }}
           >
-            GPM Tetris
+            {translate("win26.games.tetris.name" as any)}
           </div>
           <div
             style={{
@@ -663,8 +665,8 @@ export function TetrisContent() {
             }}
           >
             {isMobile
-              ? "Tap: rotate · Swipe ←→: move · Swipe ↓: soft drop · Fast swipe ↓: hard drop"
-              : "← → move · ↑ or Z: rotate · ↓ soft drop · Space: hard drop · C: hold"}
+              ? translate("win26.tetrisUi.instructionsMobile" as any)
+              : translate("win26.tetrisUi.instructionsDesktop" as any)}
           </div>
         </div>
         <button
@@ -680,7 +682,7 @@ export function TetrisContent() {
             cursor: "pointer",
           }}
         >
-          Start Game
+          {translate("win26.gameUi.startGame" as any)}
         </button>
       </div>
     );
@@ -755,7 +757,7 @@ export function TetrisContent() {
               }}
             >
               <div style={{ color: "white", fontWeight: 700, fontSize: 22 }}>
-                Paused
+                {translate("win26.gameUi.paused" as any)}
               </div>
               <button
                 onClick={togglePause}
@@ -770,7 +772,7 @@ export function TetrisContent() {
                   cursor: "pointer",
                 }}
               >
-                Resume
+                {translate("win26.gameUi.resume" as any)}
               </button>
               <button
                 onClick={startGame}
@@ -784,7 +786,7 @@ export function TetrisContent() {
                   cursor: "pointer",
                 }}
               >
-                Restart
+                {translate("win26.gameUi.restart" as any)}
               </button>
             </div>
           )}
@@ -806,7 +808,7 @@ export function TetrisContent() {
             >
               <div style={{ fontSize: 38 }}>💀</div>
               <div style={{ color: "white", fontWeight: 700, fontSize: 20 }}>
-                Game Over
+                {translate("win26.gameUi.gameOver" as any)}
               </div>
               <div
                 style={{
@@ -821,14 +823,14 @@ export function TetrisContent() {
               <div style={{ width: "100%", maxWidth: 320 }}>
                 <GameHighScorePanel
                   scoreKey="tetris"
-                  title="GPM Tetris"
+                  title={translate("win26.games.tetris.name" as any)}
                   accentColor="#D500F9"
                   currentValue={score}
                   currentDisplayValue={score.toLocaleString()}
                   runToken={runToken}
                   canSubmit={phase === "dead" && score > 0}
                   isRecord={isNewRecord}
-                  note="Save the board after a game over."
+                  note={translate("win26.tetrisUi.saveNote" as any)}
                 />
               </div>
               <button
@@ -845,7 +847,7 @@ export function TetrisContent() {
                   marginTop: 4,
                 }}
               >
-                Play Again
+                {translate("win26.gameUi.playAgain" as any)}
               </button>
             </div>
           )}
@@ -865,7 +867,7 @@ export function TetrisContent() {
         >
           {/* Hold */}
           <div>
-            <PanelLabel>Hold</PanelLabel>
+            <PanelLabel>{translate("win26.gameUi.hold" as any)}</PanelLabel>
             <div
               style={{
                 background: "rgba(255,255,255,0.04)",
@@ -883,7 +885,7 @@ export function TetrisContent() {
 
           {/* Next */}
           <div>
-            <PanelLabel>Next</PanelLabel>
+            <PanelLabel>{translate("win26.gameUi.next" as any)}</PanelLabel>
             <div
               style={{
                 background: "rgba(255,255,255,0.04)",
@@ -901,9 +903,9 @@ export function TetrisContent() {
 
           {/* Stats */}
           {[
-            { label: "Score", val: score.toLocaleString() },
-            { label: "Level", val: String(level) },
-            { label: "Lines", val: String(lines) },
+            { label: translate("win26.gameUi.score" as any), val: score.toLocaleString() },
+            { label: translate("win26.gameUi.level" as any), val: String(level) },
+            { label: translate("win26.gameUi.lines" as any), val: String(lines) },
           ].map(({ label, val }) => (
             <div key={label}>
               <PanelLabel>{label}</PanelLabel>

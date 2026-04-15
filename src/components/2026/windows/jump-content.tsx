@@ -4,11 +4,12 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useIsMobile } from "../hooks";
 import { GameHighScorePanel } from "../components/game-high-score-panel";
 import { isBetterScore, useGameHighScoresStore, type GameScoreKey } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const W = 320;
-const H = 480;
+const BASE_W = 320;
+const BASE_H = 480;
 const GRAVITY = 0.44;
 const JUMP_VY = -11.8;
 const PLAYER_W = 26;
@@ -33,6 +34,8 @@ interface Plat {
 }
 
 interface GS {
+  vw: number;
+  vh: number;
   px: number;
   py: number;
   pvx: number;
@@ -63,14 +66,19 @@ function makePlat(x: number, y: number, w: number, score: number): Plat {
   };
 }
 
-function genAbove(fromY: number, count: number, score: number): Plat[] {
+function genAbove(
+  fromY: number,
+  count: number,
+  score: number,
+  stageW: number,
+): Plat[] {
   const out: Plat[] = [];
   let y = fromY;
   for (let i = 0; i < count; i++) {
     const gap = 56 + Math.random() * 38 + Math.min(score * 0.07, 28);
     y -= gap;
     const w = Math.max(38, 78 - score * 0.12);
-    const x = Math.random() * (W - w);
+    const x = Math.random() * Math.max(1, stageW - w);
     out.push(makePlat(x, y, w, score));
   }
   return out;
@@ -120,10 +128,15 @@ function MobileBtn({
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export function JumpContent() {
+  useLocaleRefresh();
   const isMobile = useIsMobile();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
+  const [layout, setLayout] = useState({
+    scale: 1,
+    stageW: BASE_W,
+    stageH: BASE_H,
+  });
   const [phase, setPhase] = useState<"idle" | "playing" | "dead">("idle");
   const [difficulty, setDifficulty] = useState<"easy" | "hard">("easy");
   const [score, setScore] = useState(0);
@@ -137,8 +150,10 @@ export function JumpContent() {
   );
 
   const gs = useRef<GS>({
-    px: W / 2 - PLAYER_W / 2,
-    py: H - 120,
+    vw: BASE_W,
+    vh: BASE_H,
+    px: BASE_W / 2 - PLAYER_W / 2,
+    py: BASE_H - 120,
     pvx: 0,
     pvy: 0,
     camY: 0,
@@ -156,14 +171,27 @@ export function JumpContent() {
     const el = containerRef.current;
     if (!el) return;
     const calc = () => {
-      const avH = isMobile ? el.clientHeight - 80 : el.clientHeight;
-      setScale(Math.min(el.clientWidth / W, avH / H, 1.8));
+      const avW = Math.max(220, el.clientWidth - 16);
+      const avH = Math.max(
+        300,
+        isMobile ? el.clientHeight - 80 : el.clientHeight - 16,
+      );
+      const nextScale = Math.max(0.8, Math.min(avW / BASE_W, avH / BASE_H));
+      const stageW = Math.max(BASE_W, Math.round(avW / nextScale));
+      const stageH = Math.max(BASE_H, Math.round(avH / nextScale));
+      gs.current.vw = stageW;
+      gs.current.vh = stageH;
+      setLayout({ scale: nextScale, stageW, stageH });
     };
     calc();
     const ro = new ResizeObserver(calc);
     ro.observe(el);
     return () => ro.disconnect();
   }, [isMobile]);
+
+  const { scale, stageW, stageH } = layout;
+  const renderW = Math.round(stageW * scale);
+  const renderH = Math.round(stageH * scale);
 
   // ── Keyboard ──────────────────────────────────────────────────────────────
 
@@ -199,8 +227,9 @@ export function JumpContent() {
   // ── Draw ──────────────────────────────────────────────────────────────────
 
   const draw = useCallback((ctx: CanvasRenderingContext2D, g: GS) => {
+    const { vw, vh } = g;
     // Background — warmer tint in hard mode
-    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    const bg = ctx.createLinearGradient(0, 0, 0, vh);
     if (g.difficulty === "hard") {
       bg.addColorStop(0, "#100408");
       bg.addColorStop(1, "#1e0608");
@@ -209,7 +238,7 @@ export function JumpContent() {
       bg.addColorStop(1, "#0e0620");
     }
     ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, W, H);
+    ctx.fillRect(0, 0, vw, vh);
 
     // Grid lines
     ctx.strokeStyle =
@@ -217,16 +246,16 @@ export function JumpContent() {
         ? "rgba(200,60,60,0.05)"
         : "rgba(120,80,200,0.05)";
     ctx.lineWidth = 1;
-    for (let i = 0; i < W; i += 32) {
+    for (let i = 0; i < vw; i += 32) {
       ctx.beginPath();
       ctx.moveTo(i, 0);
-      ctx.lineTo(i, H);
+      ctx.lineTo(i, vh);
       ctx.stroke();
     }
-    for (let j = 0; j < H; j += 32) {
+    for (let j = 0; j < vh; j += 32) {
       ctx.beginPath();
       ctx.moveTo(0, j);
-      ctx.lineTo(W, j);
+      ctx.lineTo(vw, j);
       ctx.stroke();
     }
 
@@ -236,7 +265,7 @@ export function JumpContent() {
     for (let b = 0; b < 8; b++) {
       const worldY = firstBand + b * bandH;
       const sy = worldY - g.camY;
-      if (sy < 0 || sy > H) continue;
+      if (sy < 0 || sy > vh) continue;
       const lv = Math.round(-worldY / bandH);
       ctx.strokeStyle =
         g.difficulty === "hard"
@@ -246,7 +275,7 @@ export function JumpContent() {
       ctx.setLineDash([4, 6]);
       ctx.beginPath();
       ctx.moveTo(0, sy);
-      ctx.lineTo(W, sy);
+      ctx.lineTo(vw, sy);
       ctx.stroke();
       ctx.setLineDash([]);
       if (lv > 0) {
@@ -262,7 +291,7 @@ export function JumpContent() {
     // Platforms
     for (const p of g.plats) {
       const sy = p.y - g.camY;
-      if (sy > H + 20 || sy < -20) continue;
+      if (sy > vh + 20 || sy < -20) continue;
 
       ctx.shadowBlur = 10;
       ctx.shadowColor = `hsl(${p.hue},85%,55%)`;
@@ -289,7 +318,7 @@ export function JumpContent() {
     // Player
     const psx = g.px;
     const psy = g.py - g.camY;
-    if (psy > -PLAYER_H && psy < H + PLAYER_H) {
+    if (psy > -PLAYER_H && psy < vh + PLAYER_H) {
       ctx.shadowBlur = 18;
       ctx.shadowColor = g.isGrounded ? "#F87171" : "#60A5FA";
 
@@ -356,12 +385,12 @@ export function JumpContent() {
       const badge = "● HARD";
       ctx.fillStyle = "rgba(0,0,0,0.55)";
       ctx.beginPath();
-      ctx.roundRect(W - 62, 8, 54, 20, 6);
+      ctx.roundRect(vw - 62, 8, 54, 20, 6);
       ctx.fill();
       ctx.fillStyle = "rgba(248,113,113,0.9)";
       ctx.font = "bold 9px system-ui";
       ctx.textAlign = "right";
-      ctx.fillText(badge, W - 10, 21);
+      ctx.fillText(badge, vw - 10, 21);
       ctx.textAlign = "left";
     }
   }, []);
@@ -372,9 +401,9 @@ export function JumpContent() {
     (diff: "easy" | "hard") => {
       setRunToken((token) => token + 1);
       const g = gs.current;
-      const startY = H - 100;
+      const startY = g.vh - 100;
       const first: Plat = {
-        x: W / 2 - 60,
+        x: g.vw / 2 - 60,
         y: startY,
         w: 120,
         hue: 142,
@@ -382,8 +411,8 @@ export function JumpContent() {
         dir: 1,
         speed: 1,
       };
-      g.plats = [first, ...genAbove(startY, 50, 0)];
-      g.px = W / 2 - PLAYER_W / 2;
+      g.plats = [first, ...genAbove(startY, 50, 0, g.vw)];
+      g.px = g.vw / 2 - PLAYER_W / 2;
       g.py = startY - PLAYER_H;
       g.pvx = 0;
       g.pvy = JUMP_VY;
@@ -437,7 +466,7 @@ export function JumpContent() {
       for (const p of g.plats) {
         if (!p.moving) continue;
         p.x += p.dir * p.speed;
-        if (p.x <= 0 || p.x + p.w >= W) p.dir *= -1;
+        if (p.x <= 0 || p.x + p.w >= g.vw) p.dir *= -1;
       }
 
       // Physics
@@ -446,8 +475,8 @@ export function JumpContent() {
       g.py += g.pvy;
 
       // Wrap horizontally
-      if (g.px + PLAYER_W < 0) g.px = W;
-      if (g.px > W) g.px = -PLAYER_W;
+      if (g.px + PLAYER_W < 0) g.px = g.vw;
+      if (g.px > g.vw) g.px = -PLAYER_W;
 
       // Platform collision (falling, or grounded in hard desktop to stick to platform)
       const checkCollision =
@@ -482,7 +511,7 @@ export function JumpContent() {
       }
 
       // Camera — follow player if they go higher than the auto-scroll
-      const targetCam = g.py - H * 0.42;
+      const targetCam = g.py - g.vh * 0.42;
       if (targetCam < g.camY) g.camY = targetCam;
 
       // Score
@@ -494,15 +523,15 @@ export function JumpContent() {
 
       // Generate more platforms above the camera's top edge
       const topY = g.plats.length ? Math.min(...g.plats.map((p) => p.y)) : g.py;
-      if (topY > g.camY + H * 0.5) {
-        g.plats.push(...genAbove(topY, 12, g.score));
+      if (topY > g.camY + g.vh * 0.5) {
+        g.plats.push(...genAbove(topY, 12, g.score, g.vw));
       }
 
       // Cull platforms far below
-      g.plats = g.plats.filter((p) => p.y - g.camY < H + 250);
+      g.plats = g.plats.filter((p) => p.y - g.camY < g.vh + 250);
 
       // Death — player fell below the visible screen bottom
-      if (g.py - g.camY > H + 100) {
+      if (g.py - g.camY > g.vh + 100) {
         g.phase = "dead";
         setPhase("dead");
         draw(ctx, g);
@@ -535,7 +564,7 @@ export function JumpContent() {
               marginTop: 8,
             }}
           >
-            GPM Jump
+            {translate("win26.games.jump.name" as any)}
           </div>
         </div>
 
@@ -561,7 +590,9 @@ export function JumpContent() {
               minWidth: 130,
             }}
           >
-            <div style={{ fontWeight: 700, fontSize: 15 }}>Easy</div>
+            <div style={{ fontWeight: 700, fontSize: 15 }}>
+              {translate("win26.jumpUi.easy" as any)}
+            </div>
             <div
               style={{
                 fontSize: 10,
@@ -571,12 +602,12 @@ export function JumpContent() {
               }}
             >
               {isMobile
-                ? "Auto-jump · steer with ← →"
-                : "Auto-bounce · steer with ← →"}
+                ? translate("win26.jumpUi.easyMobile" as any)
+                : translate("win26.jumpUi.easyDesktop" as any)}
             </div>
             {easyBest > 0 && (
               <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>
-                Best: {easyBest}
+                {translate("win26.gameUi.best" as any)}: {easyBest}
               </div>
             )}
           </button>
@@ -595,7 +626,9 @@ export function JumpContent() {
               minWidth: 130,
             }}
           >
-            <div style={{ fontWeight: 700, fontSize: 15 }}>Hard</div>
+            <div style={{ fontWeight: 700, fontSize: 15 }}>
+              {translate("win26.jumpUi.hard" as any)}
+            </div>
             <div
               style={{
                 fontSize: 10,
@@ -605,12 +638,12 @@ export function JumpContent() {
               }}
             >
               {isMobile
-                ? "Camera rises · auto-jump · steer to survive"
-                : "Camera rises · SPACE to jump · one jump per land"}
+                ? translate("win26.jumpUi.hardMobile" as any)
+                : translate("win26.jumpUi.hardDesktop" as any)}
             </div>
             {hardBest > 0 && (
               <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>
-                Best: {hardBest}
+                {translate("win26.gameUi.best" as any)}: {hardBest}
               </div>
             )}
           </button>
@@ -623,7 +656,7 @@ export function JumpContent() {
             textAlign: "center",
           }}
         >
-          Moving platforms appear at higher levels
+          {translate("win26.jumpUi.movingPlatforms" as any)}
         </div>
       </div>
     );
@@ -653,20 +686,22 @@ export function JumpContent() {
       <div
         style={{
           position: "relative",
-          width: W * scale,
-          height: H * scale,
+          width: renderW,
+          height: renderH,
+          maxWidth: "100%",
+          maxHeight: "100%",
           flexShrink: 0,
         }}
       >
         <canvas
           ref={canvasRef}
-          width={W}
-          height={H}
+          width={stageW}
+          height={stageH}
           style={{
             display: "block",
             borderRadius: 10,
-            width: W * scale,
-            height: H * scale,
+            width: renderW,
+            height: renderH,
           }}
         />
 
@@ -688,7 +723,7 @@ export function JumpContent() {
           >
             <div style={{ fontSize: 40 }}>💀</div>
             <div style={{ color: "white", fontWeight: 700, fontSize: 20 }}>
-              Game Over
+              {translate("win26.gameUi.gameOver" as any)}
             </div>
             <div
               style={{
@@ -702,20 +737,27 @@ export function JumpContent() {
             </div>
             {jumpBest > 0 && (
               <div style={{ color: "rgba(255,255,255,0.35)", fontSize: 11 }}>
-                Best: {jumpBest}
+                {translate("win26.gameUi.best" as any)}: {jumpBest}
               </div>
             )}
             <div style={{ width: "100%", maxWidth: 320 }}>
               <GameHighScorePanel
                 scoreKey={scoreKey}
-                title={`GPM Jump · ${difficulty === "hard" ? "Hard" : "Easy"}`}
+                title={translate("win26.jumpUi.titleWithDifficulty" as any, {
+                  title: translate("win26.games.jump.name" as any),
+                  difficulty: translate(
+                    difficulty === "hard"
+                      ? ("win26.jumpUi.hard" as any)
+                      : ("win26.jumpUi.easy" as any),
+                  ),
+                })}
                 accentColor={difficulty === "hard" ? "#F87171" : "#818CF8"}
                 currentValue={score}
                 currentDisplayValue={`${score}`}
                 runToken={runToken}
                 canSubmit={phase === "dead" && score > 0}
                 isRecord={isNewRecord}
-                note="Scores are saved separately for Easy and Hard."
+                note={translate("win26.jumpUi.saveNote" as any)}
               />
             </div>
             <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
@@ -735,7 +777,7 @@ export function JumpContent() {
                   cursor: "pointer",
                 }}
               >
-                Play Again
+                {translate("win26.gameUi.playAgain" as any)}
               </button>
               <button
                 onClick={() => setPhase("idle")}
@@ -750,7 +792,7 @@ export function JumpContent() {
                   cursor: "pointer",
                 }}
               >
-                Menu
+                {translate("win26.gameUi.menu" as any)}
               </button>
             </div>
           </div>

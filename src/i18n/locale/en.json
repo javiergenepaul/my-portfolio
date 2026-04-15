@@ -1115,6 +1115,80 @@
       },
       "tetris": { "name": "GPM Tetris", "desc": "Stack & clear falling blocks" },
       "jump": { "name": "GPM Jump", "desc": "Climb platforms, don't fall!" }
+    },
+    "gameUi": {
+      "newHighScore": "New High Score",
+      "highScores": "High Scores",
+      "current": "Current",
+      "namePlaceholder": "Type your name",
+      "defaultPlayer": "Player",
+      "saveScore": "Save Score",
+      "saved": "Saved",
+      "savedForRun": "Saved for this run.",
+      "finishRunToSave": "Finish the run to save a score.",
+      "saveNewRecord": "New high score. Save it to lock it in.",
+      "saveRunDefault": "Save this run to the persistent leaderboard.",
+      "noSavedScoresYet": "No saved scores yet",
+      "playAgain": "Play Again",
+      "restart": "Restart",
+      "menu": "Menu",
+      "gameOver": "Game Over",
+      "best": "Best",
+      "startGame": "Start Game",
+      "paused": "Paused",
+      "resume": "Resume",
+      "hold": "Hold",
+      "next": "Next",
+      "score": "Score",
+      "level": "Level",
+      "lines": "Lines"
+    },
+    "snakeUi": {
+      "startMobile": "Tap or swipe to start",
+      "startDesktop": "Press ↑ ↓ ← → or WASD to start",
+      "saveNote": "Save your run after a game over.",
+      "moveDesktop": "↑ ↓ ← → or W A S D to move"
+    },
+    "jumpUi": {
+      "easy": "Easy",
+      "hard": "Hard",
+      "easyMobile": "Auto-jump · steer with ← →",
+      "easyDesktop": "Auto-bounce · steer with ← →",
+      "hardMobile": "Camera rises · auto-jump · steer to survive",
+      "hardDesktop": "Camera rises · SPACE to jump · one jump per land",
+      "movingPlatforms": "Moving platforms appear at higher levels",
+      "saveNote": "Scores are saved separately for Easy and Hard.",
+      "titleWithDifficulty": "{{title}} · {{difficulty}}"
+    },
+    "hanoiUi": {
+      "objective": "Move all discs from peg A to peg C",
+      "difficulties": {
+        "easy": { "label": "Easy", "sublabel": "{{count}} moves min" },
+        "medium": { "label": "Medium", "sublabel": "{{count}} moves min" },
+        "hard": { "label": "Hard", "sublabel": "{{count}} moves min" },
+        "expert": { "label": "Expert", "sublabel": "{{count}} moves min" }
+      },
+      "idleHelpMobile": "Drag a disc onto another peg · or tap to pick up & place",
+      "idleHelpDesktop": "Drag a disc · or click / press 1 2 3 to move",
+      "moves": "Moves",
+      "optimal": "optimal",
+      "solved": "Solved!",
+      "movesCount": "{{count}} moves",
+      "optimalBadge": "✓ optimal!",
+      "bestMoves": "(best: {{count}})",
+      "changeDifficulty": "Change Difficulty",
+      "titleWithDiscs": "{{title}} · {{count}} Discs",
+      "saveNote": "Fewer moves rank higher for each disc count.",
+      "emptyLabel": "No solved boards saved for this difficulty yet",
+      "dropOnPeg": "Drop on peg {{peg}}",
+      "pegSelected": "Peg {{peg}} selected — click another peg to place",
+      "playingHelpMobile": "Drag a disc · or tap a peg to pick up",
+      "playingHelpDesktop": "Drag a disc · or click / press 1 2 3"
+    },
+    "tetrisUi": {
+      "instructionsMobile": "Tap: rotate · Swipe ←→: move · Swipe ↓: soft drop · Fast swipe ↓: hard drop",
+      "instructionsDesktop": "← → move · ↑ or Z: rotate · ↓ soft drop · Space: hard drop · C: hold",
+      "saveNote": "Save the board after a game over."
     }
   }
 }

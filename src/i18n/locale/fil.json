@@ -1120,6 +1120,80 @@
         "name": "GPM Jump",
         "desc": "Umakyat sa mga platform, huwag mahulog!"
       }
+    },
+    "gameUi": {
+      "newHighScore": "Bagong High Score",
+      "highScores": "Mga High Score",
+      "current": "Kasalukuyan",
+      "namePlaceholder": "I-type ang pangalan mo",
+      "defaultPlayer": "Player",
+      "saveScore": "I-save ang Score",
+      "saved": "Na-save na",
+      "savedForRun": "Na-save na para sa run na ito.",
+      "finishRunToSave": "Tapusin muna ang run bago mag-save ng score.",
+      "saveNewRecord": "Bagong high score. I-save ito para manatili.",
+      "saveRunDefault": "I-save ang run na ito sa persistent leaderboard.",
+      "noSavedScoresYet": "Wala pang naka-save na score",
+      "playAgain": "Maglaro Muli",
+      "restart": "Ulitin",
+      "menu": "Menu",
+      "gameOver": "Game Over",
+      "best": "Pinakamataas",
+      "startGame": "Simulan ang Laro",
+      "paused": "Naka-pause",
+      "resume": "Ipagpatuloy",
+      "hold": "Hold",
+      "next": "Susunod",
+      "score": "Score",
+      "level": "Level",
+      "lines": "Mga Linya"
+    },
+    "snakeUi": {
+      "startMobile": "Tap o swipe para magsimula",
+      "startDesktop": "Pindutin ang ↑ ↓ ← → o WASD para magsimula",
+      "saveNote": "I-save ang run mo pagkatapos ng game over.",
+      "moveDesktop": "↑ ↓ ← → o W A S D para gumalaw"
+    },
+    "jumpUi": {
+      "easy": "Madali",
+      "hard": "Mahirap",
+      "easyMobile": "Auto-jump · gumalaw gamit ang ← →",
+      "easyDesktop": "Auto-bounce · gumalaw gamit ang ← →",
+      "hardMobile": "Tumataas ang camera · auto-jump · gumalaw para mabuhay",
+      "hardDesktop": "Tumataas ang camera · SPACE para tumalon · isang talon bawat landing",
+      "movingPlatforms": "May lumalabas na moving platforms sa mas mataas na level",
+      "saveNote": "Magkahiwalay ang saved score para sa Easy at Hard.",
+      "titleWithDifficulty": "{{title}} · {{difficulty}}"
+    },
+    "hanoiUi": {
+      "objective": "Ilipat ang lahat ng disc mula peg A papuntang C",
+      "difficulties": {
+        "easy": { "label": "Madali", "sublabel": "{{count}} galaw min" },
+        "medium": { "label": "Katamtaman", "sublabel": "{{count}} galaw min" },
+        "hard": { "label": "Mahirap", "sublabel": "{{count}} galaw min" },
+        "expert": { "label": "Eksperto", "sublabel": "{{count}} galaw min" }
+      },
+      "idleHelpMobile": "I-drag ang disc sa ibang peg · o tap para pumili at ilagay",
+      "idleHelpDesktop": "I-drag ang disc · o i-click / pindutin ang 1 2 3 para gumalaw",
+      "moves": "Galaw",
+      "optimal": "pinakamainam",
+      "solved": "Solved!",
+      "movesCount": "{{count}} galaw",
+      "optimalBadge": "✓ pinakamainam!",
+      "bestMoves": "(pinakamabuti: {{count}})",
+      "changeDifficulty": "Palitan ang Hirap",
+      "titleWithDiscs": "{{title}} · {{count}} Disc",
+      "saveNote": "Mas kaunting galaw ang mas mataas ang ranggo sa bawat bilang ng disc.",
+      "emptyLabel": "Wala pang naka-save na solved board para sa hirap na ito",
+      "dropOnPeg": "I-drop sa peg {{peg}}",
+      "pegSelected": "Napili ang peg {{peg}} — i-click ang ibang peg para ilagay",
+      "playingHelpMobile": "I-drag ang disc · o i-tap ang peg para pumili",
+      "playingHelpDesktop": "I-drag ang disc · o i-click / pindutin ang 1 2 3"
+    },
+    "tetrisUi": {
+      "instructionsMobile": "Tap: ikutin · Swipe ←→: galaw · Swipe ↓: soft drop · Mabilis na ↓: hard drop",
+      "instructionsDesktop": "← → galaw · ↑ o Z: ikutin · ↓ soft drop · Space: hard drop · C: hold",
+      "saveNote": "I-save ang board pagkatapos ng game over."
     }
   }
 }

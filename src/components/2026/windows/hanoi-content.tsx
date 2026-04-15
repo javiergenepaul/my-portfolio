@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useIsMobile } from "../hooks";
 import { GameHighScorePanel } from "../components/game-high-score-panel";
 import { isBetterScore, type GameScoreKey, useGameHighScoresStore } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -18,11 +19,11 @@ const DISC_COLORS = [
 ];
 
 const DIFFICULTIES = [
-  { label: "Easy", discs: 3, sublabel: "7 moves min" },
-  { label: "Medium", discs: 4, sublabel: "15 moves min" },
-  { label: "Hard", discs: 5, sublabel: "31 moves min" },
-  { label: "Expert", discs: 6, sublabel: "63 moves min" },
-];
+  { key: "easy", discs: 3, minMoves: 7 },
+  { key: "medium", discs: 4, minMoves: 15 },
+  { key: "hard", discs: 5, minMoves: 31 },
+  { key: "expert", discs: 6, minMoves: 63 },
+] as const;
 
 const PEG_LABELS = ["A", "B", "C"];
 const BASE_H = 5; // base plate height px
@@ -54,6 +55,7 @@ const optimal = (n: number) => (1 << n) - 1;
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export function HanoiContent() {
+  useLocaleRefresh();
   const isMobile = useIsMobile();
 
   // Measure board width for responsive disc sizing
@@ -94,7 +96,7 @@ export function HanoiContent() {
   // ── Layout ───────────────────────────────────────────────────────────────────
   const DISC_H = isMobile ? 17 : 21;
   const COL_W = boardW / 3;
-  const MAX_DISC = Math.min(COL_W * 0.86, 180);
+  const MAX_DISC = COL_W * 0.86;
   const MIN_DISC = Math.max(24, COL_W * 0.17);
   const PEG_H = Math.max(1, numDiscs) * DISC_H + 64;
   const PEG_THICK = isMobile ? 4 : 5;
@@ -272,6 +274,16 @@ export function HanoiContent() {
     setDragging(null);
   }, []);
 
+  const opt = optimal(numDiscs);
+  const scoreKey = (
+    numDiscs >= 3 && numDiscs <= 6 ? `hanoi-${numDiscs}` : "hanoi-3"
+  ) as GameScoreKey;
+  const hanoiBest = useGameHighScoresStore(
+    (state) => state.scores[scoreKey]?.[0]?.value ?? null,
+  );
+  const isNewRecord =
+    phase === "won" && isBetterScore(scoreKey, moves, hanoiBest);
+
   // ── Idle screen ───────────────────────────────────────────────────────────────
 
   if (phase === "idle") {
@@ -286,7 +298,7 @@ export function HanoiContent() {
             className="text-white font-bold mt-2"
             style={{ fontSize: isMobile ? 20 : 24 }}
           >
-            Tower of GPM
+            {translate("win26.games.hanoi.name" as any)}
           </div>
           <div
             style={{
@@ -295,7 +307,7 @@ export function HanoiContent() {
               marginTop: 4,
             }}
           >
-            Move all discs from peg A to peg C
+            {translate("win26.hanoiUi.objective" as any)}
           </div>
         </div>
 
@@ -329,7 +341,7 @@ export function HanoiContent() {
                   fontSize: 13,
                 }}
               >
-                {d.label}
+                {translate(`win26.hanoiUi.difficulties.${d.key}.label` as any)}
               </span>
               <div className="flex items-center gap-2">
                 <div className="flex items-end gap-0.5">
@@ -347,7 +359,9 @@ export function HanoiContent() {
                   ))}
                 </div>
                 <span style={{ color: "rgba(255,255,255,0.32)", fontSize: 11 }}>
-                  {d.sublabel}
+                  {translate(`win26.hanoiUi.difficulties.${d.key}.sublabel` as any, {
+                    count: d.minMoves,
+                  })}
                 </span>
               </div>
             </button>
@@ -362,21 +376,12 @@ export function HanoiContent() {
           }}
         >
           {isMobile
-            ? "Drag a disc onto another peg · or tap to pick up & place"
-            : "Drag a disc · or click / press 1 2 3 to move"}
+            ? translate("win26.hanoiUi.idleHelpMobile" as any)
+            : translate("win26.hanoiUi.idleHelpDesktop" as any)}
         </div>
       </div>
     );
   }
-
-  // ── Playing / Won ─────────────────────────────────────────────────────────────
-
-  const opt = optimal(numDiscs);
-  const scoreKey = `hanoi-${numDiscs}` as GameScoreKey;
-  const hanoiBest = useGameHighScoresStore(
-    (state) => state.scores[scoreKey]?.[0]?.value ?? null,
-  );
-  const isNewRecord = phase === "won" && isBetterScore(scoreKey, moves, hanoiBest);
 
   return (
     <div
@@ -399,7 +404,7 @@ export function HanoiContent() {
               textTransform: "uppercase",
             }}
           >
-            Moves
+            {translate("win26.hanoiUi.moves" as any)}
           </span>
           <span
             style={{
@@ -413,7 +418,7 @@ export function HanoiContent() {
             {moves}
           </span>
           <span style={{ color: "rgba(255,255,255,0.22)", fontSize: 11 }}>
-            / {opt} optimal
+            / {opt} {translate("win26.hanoiUi.optimal" as any)}
           </span>
         </div>
         <div className="flex-1" />
@@ -425,7 +430,7 @@ export function HanoiContent() {
             color: "rgba(255,255,255,0.35)",
           }}
         >
-          Menu
+          {translate("win26.gameUi.menu" as any)}
         </button>
         <button
           onClick={restart}
@@ -435,7 +440,7 @@ export function HanoiContent() {
             color: "rgba(255,255,255,0.45)",
           }}
         >
-          Restart
+          {translate("win26.gameUi.restart" as any)}
         </button>
       </div>
 
@@ -646,7 +651,7 @@ export function HanoiContent() {
               className="text-white font-bold"
               style={{ fontSize: isMobile ? 18 : 22 }}
             >
-              Solved!
+              {translate("win26.hanoiUi.solved" as any)}
             </div>
             <div
               style={{
@@ -655,16 +660,16 @@ export function HanoiContent() {
                 textAlign: "center",
               }}
             >
-              {moves} moves
+              {translate("win26.hanoiUi.movesCount" as any, { count: moves })}
               {moves <= opt ? (
                 <span style={{ color: "#4ADE80", marginLeft: 6 }}>
-                  ✓ optimal!
+                  {translate("win26.hanoiUi.optimalBadge" as any)}
                 </span>
               ) : (
                 <span
                   style={{ color: "rgba(255,255,255,0.35)", marginLeft: 6 }}
                 >
-                  (best: {opt})
+                  {translate("win26.hanoiUi.bestMoves" as any, { count: opt })}
                 </span>
               )}
             </div>
@@ -674,7 +679,7 @@ export function HanoiContent() {
                 className="font-mac text-[12px] px-4 py-1.5 rounded-[8px] border-none cursor-pointer font-semibold"
                 style={{ background: "#C084FC", color: "#0A0A0A" }}
               >
-                Play Again
+                {translate("win26.gameUi.playAgain" as any)}
               </button>
               <button
                 onClick={() => setPhase("idle")}
@@ -684,21 +689,26 @@ export function HanoiContent() {
                   color: "rgba(255,255,255,0.60)",
                 }}
               >
-                Change Difficulty
+                {translate("win26.hanoiUi.changeDifficulty" as any)}
               </button>
             </div>
             <div style={{ width: "100%", maxWidth: 340 }}>
               <GameHighScorePanel
                 scoreKey={scoreKey}
-                title={`Tower of GPM · ${numDiscs} Discs`}
+                title={translate("win26.hanoiUi.titleWithDiscs" as any, {
+                  title: translate("win26.games.hanoi.name" as any),
+                  count: numDiscs,
+                })}
                 accentColor="#C084FC"
                 currentValue={moves}
-                currentDisplayValue={`${moves} moves`}
+                currentDisplayValue={translate("win26.hanoiUi.movesCount" as any, {
+                  count: moves,
+                })}
                 runToken={runToken}
                 canSubmit={phase === "won" && moves > 0}
                 isRecord={isNewRecord}
-                note="Fewer moves rank higher for each disc count."
-                emptyLabel="No solved boards saved for this difficulty yet"
+                note={translate("win26.hanoiUi.saveNote" as any)}
+                emptyLabel={translate("win26.hanoiUi.emptyLabel" as any)}
               />
             </div>
           </div>
@@ -714,7 +724,6 @@ export function HanoiContent() {
           return (
             <div
               style={{
-                position: "fixed",
                 left: dragging.x - w / 2,
                 top: dragging.y - (DISC_H - 3) / 2,
                 width: w,
@@ -722,6 +731,7 @@ export function HanoiContent() {
                 background: color,
                 borderRadius: (DISC_H - 3) * 0.42,
                 boxShadow: `0 10px 32px ${color}99, 0 0 0 2px ${color}66`,
+                position: "fixed",
                 pointerEvents: "none",
                 userSelect: "none",
                 zIndex: 9999,
@@ -739,12 +749,16 @@ export function HanoiContent() {
           style={{ color: "rgba(255,255,255,0.18)", fontSize: 11 }}
         >
           {dragging?.moved
-            ? `Drop on peg ${PEG_LABELS[dragging.hovered]}`
+            ? translate("win26.hanoiUi.dropOnPeg" as any, {
+                peg: PEG_LABELS[dragging.hovered],
+              })
             : selected !== null
-              ? `Peg ${PEG_LABELS[selected]} selected — click another peg to place`
+              ? translate("win26.hanoiUi.pegSelected" as any, {
+                  peg: PEG_LABELS[selected],
+                })
               : isMobile
-                ? "Drag a disc · or tap a peg to pick up"
-                : "Drag a disc · or click / press 1 2 3"}
+                ? translate("win26.hanoiUi.playingHelpMobile" as any)
+                : translate("win26.hanoiUi.playingHelpDesktop" as any)}
         </div>
       )}
     </div>
