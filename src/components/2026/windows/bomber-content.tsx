@@ -19,6 +19,7 @@ type Bomb = Pos & { placedAt: number; power: number };
 type Blast = Pos & { expiresAt: number };
 type PowerUpType = "range" | "stock";
 type PowerUp = Pos & { type: PowerUpType };
+type BomberEmotion = "calm" | "happy" | "scared" | "angry" | "sad" | "cool";
 
 interface GameState {
   board: Cell[][];
@@ -135,6 +136,26 @@ function hasClearedStage(state: GameState) {
     state.player.x === state.exit.x &&
     state.player.y === state.exit.y
   );
+}
+
+function getBomberEmotion(state: GameState, activeBombCount: number): BomberEmotion {
+  if (state.phase === "dead") return "sad";
+  if (state.phase === "won") return "cool";
+  const enemyDistance = state.enemy
+    ? Math.abs(state.enemy.x - state.player.x) + Math.abs(state.enemy.y - state.player.y)
+    : Infinity;
+  const inDanger =
+    state.blasts.some(
+      (blast) =>
+        Math.abs(blast.x - state.player.x) + Math.abs(blast.y - state.player.y) <= 1,
+    ) || enemyDistance <= 1;
+  if (inDanger) return "scared";
+  if (activeBombCount > 0) return "angry";
+  if (state.powerUps.some((powerUp) => powerUp.x === state.player.x && powerUp.y === state.player.y)) {
+    return "happy";
+  }
+  if (state.bombPower >= 4 || state.bombCapacity >= 3) return "cool";
+  return "calm";
 }
 
 export function BomberContent() {
@@ -408,6 +429,7 @@ export function BomberContent() {
         : ("win26.bomberUi.bombDroppedMultiple" as any);
   const stockPowerUp = game.powerUps.find((powerUp) => powerUp.type === "stock") ?? null;
   const rangePowerUp = game.powerUps.find((powerUp) => powerUp.type === "range") ?? null;
+  const bomberEmotion = getBomberEmotion(game, activeBombCount);
 
   const renderCell = (x: number, y: number) => {
     const tile = game.board[y][x];
@@ -488,7 +510,7 @@ export function BomberContent() {
                 left: "24%",
                 top: "28%",
                 width: "18%",
-                height: "20%",
+                height: bomberEmotion === "scared" ? "22%" : bomberEmotion === "sad" ? "18%" : "20%",
                 borderRadius: "50%",
                 background: "white",
               }}
@@ -499,7 +521,7 @@ export function BomberContent() {
                 right: "24%",
                 top: "28%",
                 width: "18%",
-                height: "20%",
+                height: bomberEmotion === "scared" ? "22%" : bomberEmotion === "sad" ? "18%" : "20%",
                 borderRadius: "50%",
                 background: "white",
               }}
@@ -507,10 +529,10 @@ export function BomberContent() {
             <div
               style={{
                 position: "absolute",
-                left: "30%",
-                top: "36%",
-                width: "8%",
-                height: "9%",
+                left: bomberEmotion === "scared" ? "31%" : "30%",
+                top: bomberEmotion === "sad" ? "37%" : "36%",
+                width: bomberEmotion === "scared" ? "7%" : "8%",
+                height: bomberEmotion === "scared" ? "8%" : "9%",
                 borderRadius: "50%",
                 background: "#1E3A8A",
               }}
@@ -518,27 +540,76 @@ export function BomberContent() {
             <div
               style={{
                 position: "absolute",
-                right: "30%",
-                top: "36%",
-                width: "8%",
-                height: "9%",
+                right: bomberEmotion === "scared" ? "31%" : "30%",
+                top: bomberEmotion === "sad" ? "37%" : "36%",
+                width: bomberEmotion === "scared" ? "7%" : "8%",
+                height: bomberEmotion === "scared" ? "8%" : "9%",
                 borderRadius: "50%",
                 background: "#1E3A8A",
               }}
             />
+            {(bomberEmotion === "angry" || bomberEmotion === "sad" || bomberEmotion === "cool") && (
+              <>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "16%",
+                    top: bomberEmotion === "sad" ? "19%" : "21%",
+                    width: "26%",
+                    height: 2,
+                    borderRadius: 999,
+                    background: "rgba(15,23,42,0.85)",
+                    transform:
+                      bomberEmotion === "angry"
+                        ? "rotate(-16deg)"
+                        : bomberEmotion === "sad"
+                          ? "rotate(12deg)"
+                          : "rotate(-8deg)",
+                    transformOrigin: "left center",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    right: "16%",
+                    top: bomberEmotion === "sad" ? "19%" : "21%",
+                    width: "26%",
+                    height: 2,
+                    borderRadius: 999,
+                    background: "rgba(15,23,42,0.85)",
+                    transform:
+                      bomberEmotion === "angry"
+                        ? "rotate(16deg)"
+                        : bomberEmotion === "sad"
+                          ? "rotate(-12deg)"
+                          : "rotate(8deg)",
+                    transformOrigin: "right center",
+                  }}
+                />
+              </>
+            )}
             <div
               style={{
                 position: "absolute",
-                left: "33%",
-                right: "33%",
-                bottom: "23%",
-                height: "10%",
+                left: bomberEmotion === "scared" ? "39%" : bomberEmotion === "angry" ? "29%" : "33%",
+                right: bomberEmotion === "scared" ? "39%" : bomberEmotion === "angry" ? "29%" : "33%",
+                bottom: bomberEmotion === "sad" ? "19%" : "23%",
+                height: bomberEmotion === "angry" ? 0 : bomberEmotion === "scared" ? "14%" : "10%",
                 border: "1.5px solid rgba(255,255,255,0.88)",
-                borderTop: "none",
+                borderTop:
+                  bomberEmotion === "sad"
+                    ? "1.5px solid rgba(255,255,255,0.88)"
+                    : "none",
                 borderLeftColor: "transparent",
                 borderRightColor: "transparent",
+                borderBottomColor:
+                  bomberEmotion === "sad"
+                    ? "transparent"
+                    : "rgba(255,255,255,0.88)",
                 borderBottomLeftRadius: 999,
                 borderBottomRightRadius: 999,
+                borderTopLeftRadius: bomberEmotion === "sad" ? 999 : 0,
+                borderTopRightRadius: bomberEmotion === "sad" ? 999 : 0,
               }}
             />
             {activeBombCount > 0 && game.phase === "playing" && (

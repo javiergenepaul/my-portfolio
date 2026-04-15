@@ -302,10 +302,10 @@ export const WIN_DEFS: WinDef[] = [
     color: "#818CF8",
     icon: <Zap size={14} />,
     defaultPos: (vw: number) => ({
-      x: Math.max(60, Math.floor(vw / 2) - 200),
+      x: Math.max(60, Math.floor(vw / 2) - 280),
       y: 55,
     }),
-    defaultSize: { w: 420, h: 560 },
+    defaultSize: { w: 620, h: 720 },
     hideIcon: true,
   },
   {
@@ -317,7 +317,7 @@ export const WIN_DEFS: WinDef[] = [
       x: Math.max(60, Math.floor(vw / 2) - 280),
       y: 72,
     }),
-    defaultSize: { w: 580, h: 560 },
+    defaultSize: { w: 700, h: 640 },
     hideIcon: true,
   },
 ];

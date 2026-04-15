@@ -49,6 +49,8 @@ interface GS {
   isMobile: boolean; // captured at game start, used in loop
 }
 
+type JumpEmotion = "happy" | "focused" | "scared" | "angry" | "sad" | "cool";
+
 // ── Platform generation ────────────────────────────────────────────────────────
 
 const HUES = [142, 38, 271, 22, 160, 245, 340];
@@ -82,6 +84,15 @@ function genAbove(
     out.push(makePlat(x, y, w, score));
   }
   return out;
+}
+
+function getJumpEmotion(g: GS): JumpEmotion {
+  if (g.phase === "dead") return "sad";
+  if (g.score >= 160) return "cool";
+  if (g.pvy > 8) return "scared";
+  if (g.difficulty === "hard" && g.isGrounded) return "angry";
+  if (g.pvy < -7) return "happy";
+  return "focused";
 }
 
 // ── Mobile button ──────────────────────────────────────────────────────────────
@@ -176,9 +187,13 @@ export function JumpContent() {
         300,
         isMobile ? el.clientHeight - 80 : el.clientHeight - 16,
       );
-      const nextScale = Math.max(0.8, Math.min(avW / BASE_W, avH / BASE_H));
-      const stageW = Math.max(BASE_W, Math.round(avW / nextScale));
-      const stageH = Math.max(BASE_H, Math.round(avH / nextScale));
+      // Let the stage grow a bit on larger windows, but cap it so the player
+      // and platforms still become visibly larger instead of only adding more empty space.
+      const maxStageW = Math.round(BASE_W * (isMobile ? 1.08 : 1.28));
+      const maxStageH = Math.round(BASE_H * (isMobile ? 1.08 : 1.24));
+      const stageW = Math.min(maxStageW, Math.max(BASE_W, Math.round(avW / 1.6)));
+      const stageH = Math.min(maxStageH, Math.max(BASE_H, Math.round(avH / 1.6)));
+      const nextScale = Math.max(0.8, Math.min(avW / stageW, avH / stageH));
       gs.current.vw = stageW;
       gs.current.vh = stageH;
       setLayout({ scale: nextScale, stageW, stageH });
@@ -319,6 +334,7 @@ export function JumpContent() {
     const psx = g.px;
     const psy = g.py - g.camY;
     if (psy > -PLAYER_H && psy < vh + PLAYER_H) {
+      const emotion = getJumpEmotion(g);
       ctx.shadowBlur = 18;
       ctx.shadowColor = g.isGrounded ? "#F87171" : "#60A5FA";
 
@@ -333,12 +349,35 @@ export function JumpContent() {
 
       ctx.fillStyle = "white";
       ctx.beginPath();
-      ctx.ellipse(psx + 8, psy + 11, 3.5, 4, 0, 0, Math.PI * 2);
+      ctx.ellipse(
+        psx + 8,
+        psy + 11,
+        emotion === "angry" ? 3.6 : 3.5,
+        emotion === "scared" ? 4.8 : emotion === "sad" ? 3.2 : 4,
+        0,
+        0,
+        Math.PI * 2,
+      );
       ctx.fill();
       ctx.beginPath();
-      ctx.ellipse(psx + PLAYER_W - 8, psy + 11, 3.5, 4, 0, 0, Math.PI * 2);
+      ctx.ellipse(
+        psx + PLAYER_W - 8,
+        psy + 11,
+        emotion === "angry" ? 3.6 : 3.5,
+        emotion === "scared" ? 4.8 : emotion === "sad" ? 3.2 : 4,
+        0,
+        0,
+        Math.PI * 2,
+      );
       ctx.fill();
-      const pupilLean = g.pvx > 0.5 ? 1 : g.pvx < -0.5 ? -1 : 0;
+      const pupilLean =
+        emotion === "scared"
+          ? 0
+          : g.pvx > 0.5
+            ? 1
+            : g.pvx < -0.5
+              ? -1
+              : 0;
       ctx.fillStyle = "#1e3a8a";
       ctx.beginPath();
       ctx.arc(psx + 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2);
@@ -346,16 +385,37 @@ export function JumpContent() {
       ctx.beginPath();
       ctx.arc(psx + PLAYER_W - 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2);
       ctx.fill();
+
+      ctx.strokeStyle = "rgba(15,23,42,0.9)";
+      ctx.lineWidth = 1.25;
+      if (emotion === "angry" || emotion === "focused" || emotion === "sad") {
+        const leftBrowY = emotion === "sad" ? psy + 8.5 : psy + 7.5;
+        const rightBrowY = emotion === "sad" ? psy + 8.5 : psy + 7.5;
+        ctx.beginPath();
+        ctx.moveTo(psx + 4.8, leftBrowY + (emotion === "angry" ? 1.5 : 0));
+        ctx.lineTo(psx + 11.4, leftBrowY + (emotion === "angry" ? -0.8 : emotion === "sad" ? 1.2 : -0.2));
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(psx + PLAYER_W - 11.4, rightBrowY + (emotion === "angry" ? -0.8 : emotion === "sad" ? 1.2 : -0.2));
+        ctx.lineTo(psx + PLAYER_W - 4.8, rightBrowY + (emotion === "angry" ? 1.5 : 0));
+        ctx.stroke();
+      }
+
       ctx.strokeStyle = "rgba(255,255,255,0.85)";
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(
-        psx + PLAYER_W / 2,
-        psy + PLAYER_H * 0.62,
-        5,
-        0.15,
-        Math.PI - 0.15,
-      );
+      if (emotion === "sad") {
+        ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.78, 4.8, Math.PI + 0.25, Math.PI * 2 - 0.25);
+      } else if (emotion === "angry") {
+        ctx.moveTo(psx + 8, psy + PLAYER_H * 0.68);
+        ctx.lineTo(psx + PLAYER_W - 8, psy + PLAYER_H * 0.68);
+      } else if (emotion === "scared") {
+        ctx.ellipse(psx + PLAYER_W / 2, psy + PLAYER_H * 0.7, 3.2, 4.3, 0, 0, Math.PI * 2);
+      } else if (emotion === "cool") {
+        ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.62, 5.5, 0.1, Math.PI - 0.1);
+      } else {
+        ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.62, 5, 0.15, Math.PI - 0.15);
+      }
       ctx.stroke();
 
       // SPACE hint bubble when grounded (hard desktop)
