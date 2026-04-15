@@ -7,6 +7,14 @@ import {
 } from "@/stores";
 import { translate, useLocaleRefresh } from "@/i18n";
 
+const EMPTY_SCORES: ReadonlyArray<{
+  id: string;
+  name: string;
+  value: number;
+  displayValue: string;
+  createdAt: number;
+}> = [];
+
 export function GameHighScorePanel({
   scoreKey,
   title,
@@ -34,7 +42,9 @@ export function GameHighScorePanel({
   const playerName = useGameHighScoresStore((state) => state.playerName);
   const setPlayerName = useGameHighScoresStore((state) => state.setPlayerName);
   const saveScore = useGameHighScoresStore((state) => state.saveScore);
-  const scores = useGameHighScoresStore((state) => state.scores[scoreKey] ?? []);
+  const scores = useGameHighScoresStore(
+    (state) => state.scores[scoreKey] ?? EMPTY_SCORES,
+  );
   const [savedRunToken, setSavedRunToken] = useState<number | null>(null);
 
   useEffect(() => {

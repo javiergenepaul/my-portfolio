@@ -26,6 +26,11 @@ function getGames(): { id: WinId; name: string; desc: string }[] {
       name: translate("win26.games.jump.name" as any),
       desc: translate("win26.games.jump.desc" as any),
     },
+    {
+      id: "bomber",
+      name: translate("win26.games.bomber.name" as any),
+      desc: translate("win26.games.bomber.desc" as any),
+    },
   ];
 }
 

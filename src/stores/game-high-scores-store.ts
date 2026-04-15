@@ -4,6 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export type GameScoreKey =
   | "snake"
   | "tetris"
+  | "bomber"
   | "jump-easy"
   | "jump-hard"
   | "hanoi-3"
@@ -31,6 +32,7 @@ const SCORE_LIMIT = 10;
 const DEFAULT_SCORES: Record<GameScoreKey, GameHighScoreEntry[]> = {
   snake: [],
   tetris: [],
+  bomber: [],
   "jump-easy": [],
   "jump-hard": [],
   "hanoi-3": [],

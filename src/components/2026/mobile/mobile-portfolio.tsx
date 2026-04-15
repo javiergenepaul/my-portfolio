@@ -35,6 +35,7 @@ import { SnakeContent } from "../windows/snake-content";
 import { HanoiContent } from "../windows/hanoi-content";
 import { TetrisContent } from "../windows/tetris-content";
 import { JumpContent } from "../windows/jump-content";
+import { BomberContent } from "../windows/bomber-content";
 
 export function MobilePortfolio() {
   useLocaleRefresh();
@@ -348,6 +349,7 @@ export function MobilePortfolio() {
               {activeApp === "hanoi" && <HanoiContent />}
               {activeApp === "tetris" && <TetrisContent />}
               {activeApp === "jump" && <JumpContent />}
+              {activeApp === "bomber" && <BomberContent />}
             </div>
           </motion.div>
         )}

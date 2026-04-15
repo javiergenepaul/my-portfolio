@@ -16,6 +16,7 @@ import {
   Zap,
   Layers3,
   LayoutGrid,
+  Flame,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -154,7 +155,8 @@ export type WinId =
   | "snake"
   | "hanoi"
   | "tetris"
-  | "jump";
+  | "jump"
+  | "bomber";
 
 export interface WinDef {
   id: WinId;
@@ -304,6 +306,18 @@ export const WIN_DEFS: WinDef[] = [
       y: 55,
     }),
     defaultSize: { w: 420, h: 560 },
+    hideIcon: true,
+  },
+  {
+    id: "bomber",
+    title: "Bomber GPM",
+    color: "#F97316",
+    icon: <Flame size={14} />,
+    defaultPos: (vw: number) => ({
+      x: Math.max(60, Math.floor(vw / 2) - 280),
+      y: 72,
+    }),
+    defaultSize: { w: 580, h: 560 },
     hideIcon: true,
   },
 ];

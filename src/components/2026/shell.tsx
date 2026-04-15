@@ -27,6 +27,7 @@ import {
   Zap,
   Layers3 as HanoiIcon,
   LayoutGrid,
+  Flame,
 } from "lucide-react";
 import { MenuBar } from "./components/menu-bar";
 import { DesktopIcon } from "./components/desktop-icon";
@@ -57,6 +58,7 @@ const INIT_WINS: Record<WinId, WinState> = {
   hanoi: { open: false, minimized: false, maximized: false, zIndex: 10 },
   tetris: { open: false, minimized: false, maximized: false, zIndex: 10 },
   jump: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  bomber: { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
 // Only defs that get a desktop icon (excludes hideIcon: true entries)
@@ -300,6 +302,7 @@ export function Portfolio2026() {
     hanoi: <HanoiIcon size={13} />,
     tetris: <LayoutGrid size={13} />,
     jump: <Zap size={13} />,
+    bomber: <Flame size={13} />,
   };
 
   const openDesktopMenu = useCallback(

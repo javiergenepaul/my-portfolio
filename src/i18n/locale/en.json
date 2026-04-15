@@ -917,7 +917,8 @@
       "snake": "Snake",
       "hanoi": "Tower of Hanoi",
       "tetris": "Tetris",
-      "jump": "Endless Jump"
+      "jump": "Endless Jump",
+      "bomber": "Bomber GPM"
     },
     "about": {
       "tabs": {
@@ -1114,7 +1115,11 @@
         "desc": "Move all discs from A to C"
       },
       "tetris": { "name": "GPM Tetris", "desc": "Stack & clear falling blocks" },
-      "jump": { "name": "GPM Jump", "desc": "Climb platforms, don't fall!" }
+      "jump": { "name": "GPM Jump", "desc": "Climb platforms, don't fall!" },
+      "bomber": {
+        "name": "Bomber GPM",
+        "desc": "Plant bombs, crack crates, reach the exit"
+      }
     },
     "gameUi": {
       "newHighScore": "New High Score",
@@ -1189,6 +1194,24 @@
       "instructionsMobile": "Tap: rotate · Swipe ←→: move · Swipe ↓: soft drop · Fast swipe ↓: hard drop",
       "instructionsDesktop": "← → move · ↑ or Z: rotate · ↓ soft drop · Space: hard drop · C: hold",
       "saveNote": "Save the board after a game over."
+    },
+    "bomberUi": {
+      "subtitle": "A Bomberman-inspired maze run. Blast crates, dodge your own explosions, and clear the path to the exit.",
+      "instructionsMobile": "Tap arrows to move · tap 💣 to place a bomb · reveal the exit and make it out alive",
+      "instructionsDesktop": "Arrow keys or WASD to move · Space or Enter to place a bomb · reveal the exit and escape",
+      "bombReady": "Bomb ready",
+      "bombDroppedSingle": "Bomb dropped",
+      "bombDroppedMultiple": "{{count}} bombs dropped",
+      "bombFuse": "Fuse",
+      "bubbleRun": "RUN! {{time}}s",
+      "rangePower": "Blast",
+      "stockPower": "Bombs",
+      "rangeDrop": "🔥 range pickup on board",
+      "stockDrop": "💣 extra bomb pickup on board",
+      "cleared": "Stage Cleared!",
+      "winBody": "The enemy is down, the exit is open, and the maze is yours.",
+      "loseBody": "One blast too close. Try a cleaner route and time the bomb better.",
+      "saveNote": "Winning runs are saved to the Bomber GPM leaderboard."
     }
   }
 }

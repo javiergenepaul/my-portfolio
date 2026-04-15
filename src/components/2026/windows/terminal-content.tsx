@@ -30,8 +30,7 @@ const CMDS: Record<string, () => string[]> = {
     "│  open <app>       about / books / testimonials /    │",
     "│                   projects / skills / contact /     │",
     "│                   resume / settings /               │",
-    "│                   settings /                        │",
-    "│                   terminal                          │",
+    "│                   terminal / bomber                 │",
     "│  clear            clear terminal                    │",
     "│  exit             close terminal                    │",
     "└─────────────────────────────────────────────────────┘",
@@ -88,6 +87,7 @@ const APP_MAP: Record<string, WinId> = {
   resume: "resume",
   settings: "settings",
   terminal: "terminal",
+  bomber: "bomber",
 };
 
 // ── All completable tokens (for Tab) ──────────────────────────────────────────

@@ -916,7 +916,8 @@
       "snake": "Snake",
       "hanoi": "Torre sa Hanoi",
       "tetris": "Tetris",
-      "jump": "Walay Katapusang Paglukso"
+      "jump": "Walay Katapusang Paglukso",
+      "bomber": "Bomber GPM"
     },
     "about": {
       "tabs": {
@@ -1119,6 +1120,10 @@
       "jump": {
         "name": "GPM Jump",
         "desc": "Sumakyad sa mga platform, ayaw pagkahulog!"
+      },
+      "bomber": {
+        "name": "Bomber GPM",
+        "desc": "Mopamutok og bomba, bungkagon ang mga kahon, ug ablihi ang exit"
       }
     },
     "gameUi": {
@@ -1194,6 +1199,24 @@
       "instructionsMobile": "Tap: liko · Swipe ←→: lihok · Swipe ↓: soft drop · Paspas nga ↓: hard drop",
       "instructionsDesktop": "← → lihok · ↑ o Z: liko · ↓ soft drop · Space: hard drop · C: hold",
       "saveNote": "I-save ang board human sa game over."
+    },
+    "bomberUi": {
+      "subtitle": "Usa ka Bomberman-inspired nga maze run. Pabuthon ang mga kahon, likayi ang imong kaugalingong pagbuto, ug ablihi ang agianan paingon sa exit.",
+      "instructionsMobile": "Tap ang mga arrow aron molihok · tap 💣 aron magbutang og bomba · ablihi ang exit ug makaikyas",
+      "instructionsDesktop": "Arrow keys o WASD aron molihok · Space o Enter aron magbutang og bomba · pangitaa ang exit ug makaikyas",
+      "bombReady": "Andam ang bomba",
+      "bombDroppedSingle": "Nabutang ang bomba",
+      "bombDroppedMultiple": "{{count}} ka bomba ang nabutang",
+      "bombFuse": "Mobuto sa",
+      "bubbleRun": "DAGAN! {{time}}s",
+      "rangePower": "Kusog",
+      "stockPower": "Bomba",
+      "rangeDrop": "🔥 naa nay pickup sa kusog sa pagbuto",
+      "stockDrop": "💣 naa nay pickup nga dugang bomba",
+      "cleared": "Nahuman ang Stage!",
+      "winBody": "Patay na ang kaaway, bukas na ang exit, ug imo na ang maze.",
+      "loseBody": "Duol ra kaayo sa pagbuto. Sulayi pag-usab nga mas limpyo ang ruta ug timing.",
+      "saveNote": "Ang mga daog nga run ra ang ma-save sa Bomber GPM leaderboard."
     }
   }
 }

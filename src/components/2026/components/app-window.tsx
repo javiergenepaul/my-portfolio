@@ -21,6 +21,7 @@ import { SnakeContent } from "../windows/snake-content";
 import { HanoiContent } from "../windows/hanoi-content";
 import { TetrisContent } from "../windows/tetris-content";
 import { JumpContent } from "../windows/jump-content";
+import { BomberContent } from "../windows/bomber-content";
 
 // Resize handle edges: n/e/s/w edges + ne/se/sw/nw corners
 export const RESIZE_HANDLES = [
@@ -287,6 +288,7 @@ export function AppWindow({
         {def.id === "hanoi" && <HanoiContent />}
         {def.id === "tetris" && <TetrisContent />}
         {def.id === "jump" && <JumpContent />}
+        {def.id === "bomber" && <BomberContent />}
       </div>
     </motion.div>
   );

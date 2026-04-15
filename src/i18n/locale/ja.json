@@ -917,7 +917,8 @@
       "snake": "スネーク",
       "hanoi": "ハノイの塔",
       "tetris": "テトリス",
-      "jump": "エンドレスジャンプ"
+      "jump": "エンドレスジャンプ",
+      "bomber": "Bomber GPM"
     },
     "about": {
       "tabs": {
@@ -1120,6 +1121,10 @@
       "jump": {
         "name": "GPMジャンプ",
         "desc": "プラットフォームを登って落ちるな！"
+      },
+      "bomber": {
+        "name": "Bomber GPM",
+        "desc": "爆弾で木箱を壊し、出口へたどり着け"
       }
     },
     "gameUi": {
@@ -1195,6 +1200,24 @@
       "instructionsMobile": "タップ: 回転 · スワイプ ←→: 移動 · スワイプ ↓: ソフトドロップ · 素早い ↓: ハードドロップ",
       "instructionsDesktop": "← → 移動 · ↑ または Z: 回転 · ↓ ソフトドロップ · Space: ハードドロップ · C: ホールド",
       "saveNote": "ゲームオーバー後に盤面スコアを保存できます。"
+    },
+    "bomberUi": {
+      "subtitle": "ボンバーマン風の迷路アクション。木箱を壊し、自爆を避け、出口までの道を開こう。",
+      "instructionsMobile": "矢印で移動 · 💣で爆弾設置 · 出口を見つけて生還する",
+      "instructionsDesktop": "矢印キーまたは WASD で移動 · Space または Enter で爆弾設置 · 出口を見つけて脱出",
+      "bombReady": "爆弾スタンバイ",
+      "bombDroppedSingle": "爆弾を設置",
+      "bombDroppedMultiple": "爆弾 {{count}} 個を設置",
+      "bombFuse": "起爆まで",
+      "bubbleRun": "にげて！ {{time}}秒",
+      "rangePower": "爆風",
+      "stockPower": "爆弾数",
+      "rangeDrop": "🔥 爆風アップが出現中",
+      "stockDrop": "💣 爆弾数アップが出現中",
+      "cleared": "ステージクリア！",
+      "winBody": "敵を倒し、出口を開き、迷路を突破した。",
+      "loseBody": "爆風に近づきすぎた。動線と起爆タイミングを見直そう。",
+      "saveNote": "勝利したプレイのみ Bomber GPM のリーダーボードに保存されます。"
     }
   }
 }
