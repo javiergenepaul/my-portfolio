@@ -537,7 +537,7 @@ export function Portfolio2026() {
               <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
                 <button
                   onClick={enableFullscreenExperience}
-                  className="font-mac min-w-48 rounded-xl border px-4 py-3 text-[12px] font-semibold"
+                  className="font-mac min-w-48 cursor-pointer rounded-xl border px-4 py-3 text-[12px] font-semibold"
                   style={{
                     background:
                       "color-mix(in srgb, var(--a26-teal) 18%, transparent)",
@@ -550,7 +550,7 @@ export function Portfolio2026() {
                 </button>
                 <button
                   onClick={dismissIntroSplash}
-                  className="font-mac min-w-40 rounded-xl border border-white/10 bg-white/6 px-4 py-3 text-[12px] text-white/72"
+                  className="font-mac min-w-40 cursor-pointer rounded-xl border border-white/10 bg-white/6 px-4 py-3 text-[12px] text-white/72"
                 >
                   {translate("win26.fullscreenPrompt.skip")}
                 </button>
