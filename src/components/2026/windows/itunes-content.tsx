@@ -14,6 +14,10 @@ import {
 } from "lucide-react";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { useIsMobile } from "../hooks";
+import {
+  getSharedGpmTunesAudio,
+  resumeGpmTunesAudioContext,
+} from "../gpmtunes-audio";
 
 type MusicTrack = {
   id: string;
@@ -30,7 +34,6 @@ type MusicResponse = {
   tracks: MusicTrack[];
 };
 
-let sharedItunesAudio: HTMLAudioElement | null = null;
 const itunesSessionState: {
   didInitialize: boolean;
   activeCollection: string;
@@ -80,17 +83,6 @@ function isDefaultTrack(track: MusicTrack) {
   return DEFAULT_TRACK_MATCHERS.some((needle) =>
     haystacks.some((haystack) => haystack.includes(needle)),
   );
-}
-
-function getSharedItunesAudio() {
-  if (typeof window === "undefined") return null;
-
-  if (!sharedItunesAudio) {
-    sharedItunesAudio = new Audio();
-    sharedItunesAudio.preload = "metadata";
-  }
-
-  return sharedItunesAudio;
 }
 
 export function ItunesContent() {
@@ -160,7 +152,7 @@ export function ItunesContent() {
   };
 
   useEffect(() => {
-    const audio = getSharedItunesAudio();
+    const audio = getSharedGpmTunesAudio();
     if (!audio) return;
 
     audioRef.current = audio;
@@ -207,7 +199,9 @@ export function ItunesContent() {
 
     if (isPlaying) {
       if (audio.paused) {
-        void audio.play().catch(() => setIsPlaying(false));
+        void resumeGpmTunesAudioContext()
+          .then(() => audio.play())
+          .catch(() => setIsPlaying(false));
       }
     } else {
       audio.pause();

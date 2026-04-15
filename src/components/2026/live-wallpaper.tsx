@@ -9,6 +9,7 @@
  */
 
 import { useEffect, useRef } from "react";
+import { getGpmTunesVisualizerState } from "./gpmtunes-audio";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type Drop = {
@@ -47,6 +48,7 @@ function drawClock(
   oy: number,
   fs: number,
   now: Date,
+  beat: { isPlaying: boolean; level: number; bins: number[] },
 ) {
   const DAYS = [
     "SUNDAY",
@@ -93,6 +95,42 @@ function drawClock(
   const cr = fs * 1.3;
   const cx = ox + cr;
   const cy = oy + fs * 2.45;
+
+  if (beat.isPlaying) {
+    const ringRadius = cr * 1.62;
+    const minBar = fs * 0.14;
+    const maxBar = fs * 0.82;
+    const barCount = Math.min(beat.bins.length, 48);
+
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.shadowColor = `rgba(255,255,255,${0.16 + beat.level * 0.34})`;
+    ctx.shadowBlur = 10 + beat.level * 16;
+
+    for (let i = 0; i < barCount; i += 1) {
+      const angle = (i / barCount) * Math.PI * 2 - Math.PI / 2;
+      const normalized = beat.bins[i] ?? 0;
+      const barLength = minBar + normalized * maxBar + beat.level * fs * 0.1;
+      const innerRadius = ringRadius - fs * 0.14;
+      const outerRadius = innerRadius + barLength;
+      const alpha = 0.2 + normalized * 0.58 + beat.level * 0.1;
+
+      ctx.beginPath();
+      ctx.moveTo(
+        cx + Math.cos(angle) * innerRadius,
+        cy + Math.sin(angle) * innerRadius,
+      );
+      ctx.lineTo(
+        cx + Math.cos(angle) * outerRadius,
+        cy + Math.sin(angle) * outerRadius,
+      );
+      ctx.strokeStyle = `rgba(255,255,255,${Math.min(alpha, 0.92)})`;
+      ctx.lineWidth = i % 6 === 0 ? 2.8 : 2.1;
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
 
   ctx.beginPath();
   ctx.arc(cx, cy, cr, 0, Math.PI * 2);
@@ -149,7 +187,9 @@ function drawClock(
   ctx.fill();
 
   ctx.font = `300 ${Math.round(fs * 0.55)}px 'Inter','Segoe UI',sans-serif`;
-  ctx.fillStyle = "rgba(255,255,255,0.55)";
+  ctx.fillStyle = beat.isPlaying
+    ? `rgba(255,255,255,${0.55 + Math.min(beat.level * 0.35, 0.25)})`
+    : "rgba(255,255,255,0.55)";
   ctx.textAlign = "center";
   ctx.fillText(`${hh}:${mm}`, cx, cy + cr + fs * 0.7);
   ctx.textAlign = "left";
@@ -445,7 +485,14 @@ function CanvasOverlay() {
 
       // ── Clock ─────────────────────────────────────────────────────────
       const fs = Math.max(12, Math.round(Math.min(W, H) * 0.018));
-      drawClock(ctx, W * 0.032, H * 0.065, fs, clockRef.current);
+      drawClock(
+        ctx,
+        W * 0.032,
+        H * 0.065,
+        fs,
+        clockRef.current,
+        getGpmTunesVisualizerState(),
+      );
 
       raf = requestAnimationFrame(draw);
     };
