@@ -40,7 +40,7 @@ import { BomberContent } from "../windows/bomber-content";
 
 export function MobilePortfolio() {
   useLocaleRefresh();
-  const [activeApp, setActiveApp] = useState<WinId | null>("itunes");
+  const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const setIsAppOpen = useMobileAppStore((s) => s.setIsAppOpen);
   const time = useMobileTime();
 
