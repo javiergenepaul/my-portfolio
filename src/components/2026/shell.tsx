@@ -14,6 +14,7 @@ import {
   User,
   BookOpen,
   Quote,
+  Maximize2,
   FolderGit2,
   Layers,
   Mail,
@@ -66,6 +67,7 @@ export function Portfolio2026() {
   const isDark = useIsDark();
   const isMobile = useIsMobile();
   const { setLanguage } = useLanguageStore();
+  const [showIntroSplash, setShowIntroSplash] = useState(false);
 
   // Reset to English each time the 2026 portfolio loads
   useEffect(() => {
@@ -106,6 +108,42 @@ export function Portfolio2026() {
   useEffect(() => {
     setIconPositions(calcIconGrid(window.innerWidth));
   }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+    if (typeof window === "undefined") return;
+    if (document.fullscreenElement) return;
+
+    const timer = window.setTimeout(() => {
+      setShowIntroSplash(true);
+    }, 120);
+
+    return () => window.clearTimeout(timer);
+  }, [isMobile]);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (document.fullscreenElement) {
+        setShowIntroSplash(false);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  const dismissIntroSplash = useCallback(() => {
+    setShowIntroSplash(false);
+  }, []);
+
+  const enableFullscreenExperience = useCallback(async () => {
+    try {
+      await document.documentElement.requestFullscreen?.();
+    } finally {
+      dismissIntroSplash();
+    }
+  }, [dismissIntroSplash]);
 
   const updateIconPos = useCallback((id: WinId, rawX: number, rawY: number) => {
     setIconPositions((prev) => {
@@ -443,6 +481,82 @@ export function Portfolio2026() {
             items={ctxMenu.items}
             onClose={() => setCtxMenu(null)}
           />
+        )}
+        {showIntroSplash && (
+          <div
+            className="fixed inset-0 z-9700 flex items-center justify-center overflow-hidden px-6 py-10"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="win26-fullscreen-title"
+            aria-describedby="win26-fullscreen-desc"
+          >
+            <div className="absolute inset-0 bg-[#08111a]/90 backdrop-blur-xl" />
+            <div className="absolute inset-0 opacity-70">
+              <div className="absolute left-1/2 top-[18%] h-56 w-56 -translate-x-1/2 rounded-full bg-(--a26-teal)/20 blur-3xl" />
+              <div className="absolute bottom-[14%] right-[16%] h-48 w-48 rounded-full bg-white/8 blur-3xl" />
+            </div>
+
+            <div className="relative z-10 flex w-full max-w-xl flex-col items-center text-center">
+              <div
+                className="mb-5 flex h-16 w-16 items-center justify-center rounded-3xl border"
+                style={{
+                  background:
+                    "color-mix(in srgb, var(--a26-teal) 16%, transparent)",
+                  borderColor:
+                    "color-mix(in srgb, var(--a26-teal) 24%, transparent)",
+                }}
+              >
+                <Maximize2 size={28} color="var(--a26-teal)" />
+              </div>
+
+              <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.34em] text-white/45">
+                2026 Experience
+              </div>
+              <h2
+                id="win26-fullscreen-title"
+                className="m-0 max-w-lg text-[28px] font-semibold leading-tight text-white sm:text-[34px]"
+              >
+                {translate("win26.fullscreenPrompt.title")}
+              </h2>
+              <p
+                id="win26-fullscreen-desc"
+                className="mt-4 mb-0 max-w-md text-[13px] leading-7 text-white/62 sm:text-[14px]"
+              >
+                {translate("win26.fullscreenPrompt.description")}
+              </p>
+
+              <div className="mt-6 w-full max-w-md rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left backdrop-blur">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/45">
+                  {translate("win26.fullscreenPrompt.tipLabel")}
+                </div>
+                <div className="mt-2 text-[12px] leading-6 text-white/72">
+                  {translate("win26.fullscreenPrompt.tipBody")}
+                </div>
+              </div>
+
+              <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
+                <button
+                  onClick={enableFullscreenExperience}
+                  className="font-mac min-w-48 rounded-xl border px-4 py-3 text-[12px] font-semibold"
+                  style={{
+                    background:
+                      "color-mix(in srgb, var(--a26-teal) 18%, transparent)",
+                    borderColor:
+                      "color-mix(in srgb, var(--a26-teal) 30%, transparent)",
+                    color: "var(--a26-teal)",
+                  }}
+                >
+                  {translate("win26.fullscreenPrompt.enable")}
+                </button>
+                <button
+                  onClick={dismissIntroSplash}
+                  className="font-mac min-w-40 rounded-xl border border-white/10 bg-white/6 px-4 py-3 text-[12px] text-white/72"
+                >
+                  {translate("win26.fullscreenPrompt.skip")}
+                </button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </>

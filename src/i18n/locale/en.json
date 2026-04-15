@@ -1027,6 +1027,14 @@
         }
       }
     },
+    "fullscreenPrompt": {
+      "title": "Enable fullscreen for the full experience",
+      "description": "Year 2026 is designed as a desktop-like environment. Fullscreen gives the layout more room to breathe and makes the experience feel more immersive.",
+      "tipLabel": "Recommended",
+      "tipBody": "Use fullscreen if you want the windows, dock, wallpaper, and motion to feel closer to the intended scale.",
+      "skip": "Maybe later",
+      "enable": "Enable Fullscreen"
+    },
     "skills": {
       "categories": "Categories",
       "learning": "learning",

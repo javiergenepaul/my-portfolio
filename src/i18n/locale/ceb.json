@@ -1026,6 +1026,14 @@
         }
       }
     },
+    "fullscreenPrompt": {
+      "title": "I-enable ang fullscreen para sa tibuok nga experience",
+      "description": "Ang Year 2026 gidisenyo isip usa ka desktop-like nga environment. Ang fullscreen mohatag og mas luag nga layout ug mas immersive nga pagbati.",
+      "tipLabel": "Girekomenda",
+      "tipBody": "Gamita ang fullscreen kung gusto nimo nga mas duol sa gituyo nga scale ang mga window, dock, wallpaper, ug motion.",
+      "skip": "Sunod na lang",
+      "enable": "I-enable ang Fullscreen"
+    },
     "skills": {
       "categories": "Mga Kategorya",
       "learning": "nagatuon",
