@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Send, Sparkles } from "lucide-react";
+import { Send, Sparkles, Square } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config/data/personal";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
@@ -16,7 +16,6 @@ interface Message {
 
 // ── Knowledge base engine ─────────────────────────────────────────────────────
 
-const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
 /**
  * Token-based scoring matcher.
@@ -24,8 +23,16 @@ const pick = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
  * The input is normalised → tokenised into words + bigrams.
  * Phrases (multi-word keys) count for 2 points; single words count for 1.
  * The entry with the highest score wins; ties go to the first entry (priority order).
+ *
+ * Array replies cycle in order — asking the same question again always gives
+ * the next reply instead of repeating randomly.
  */
 type KBEntry = { keys: string[]; reply: string | string[] };
+
+// Tracks how many times each KB index has been matched, for reply cycling
+const kbCounters = new Map<number, number>();
+// Cycles fallbacks too
+let fallbackCounter = 0;
 
 function tokenize(raw: string): Set<string> {
   const s = raw.toLowerCase().replace(/[''`]/g, "").replace(/[^a-z0-9\s]/g, " ");
@@ -38,22 +45,29 @@ function tokenize(raw: string): Set<string> {
 function matchKB(raw: string): string {
   const tokens = tokenize(raw);
   const norm = raw.toLowerCase();
-  let bestEntry: KBEntry | null = null;
+  let bestIdx = -1;
   let bestScore = 0;
-  for (const entry of KB) {
+  for (let i = 0; i < KB.length; i++) {
     let score = 0;
-    for (const key of entry.keys) {
+    for (const key of KB[i].keys) {
       if (key.includes(" ")) {
         if (norm.includes(key)) score += 2;
       } else {
         if (tokens.has(key)) score += 1;
       }
     }
-    if (score > bestScore) { bestScore = score; bestEntry = entry; }
+    if (score > bestScore) { bestScore = score; bestIdx = i; }
   }
-  if (!bestEntry) return pick(FALLBACKS);
-  const r = bestEntry.reply;
-  return typeof r === "string" ? r : pick(r);
+  if (bestIdx === -1) {
+    const reply = FALLBACKS[fallbackCounter % FALLBACKS.length];
+    fallbackCounter++;
+    return reply;
+  }
+  const r = KB[bestIdx].reply;
+  if (typeof r === "string") return r;
+  const count = kbCounters.get(bestIdx) ?? 0;
+  kbCounters.set(bestIdx, count + 1);
+  return r[count % r.length];
 }
 
 const FALLBACKS = [
@@ -234,31 +248,51 @@ const KB: KBEntry[] = [
   // Hobbies
   {
     keys: ["hobby", "hobbies", "free time", "interest", "interests", "passion", "outside work", "personal life", "fun", "leisure", "gaming", "travel"],
-    reply: `GPM's hobbies — buckle up 🎒\n\n💻 Coding for fun — yes, he codes at work AND at home. By choice. Voluntarily.\n📚 Learning for fun — tutorials, docs, random rabbit holes at midnight\n🎮 Gaming — Tekken 8 specifically, and he will beat you\n🏍️ Motorcycle rides — the only time he's not in front of a screen\n📖 Reading manga & manhwa — the other time he's not in front of a screen (he's still on a screen)\n\nEssentially: he found a way to monetize his hobbies and still does them for free after hours. The dream.`,
+    reply: [
+      `GPM's hobbies — buckle up 🎒\n\n💻 Coding for fun — yes, he codes at work AND at home. By choice. Voluntarily.\n📚 Learning for fun — tutorials, docs, random rabbit holes at midnight\n🎮 Gaming — Tekken 8 specifically, and he will beat you\n🏍️ Motorcycle rides — the only time he's not in front of a screen\n📖 Reading manga & manhwa — the other time he's not in front of a screen (he's still on a screen)\n\nEssentially: he found a way to monetize his hobbies and still does them for free after hours. The dream.`,
+      `What does GPM do for fun? 🤔\n\nCode. He codes for fun. He is aware this is unhinged.\n\nBeyond that: learning random tech at midnight, gaming (Tekken 8, send help), ripping through manhwa chapters, and motorcycle rides when he needs a break from screens — which immediately become ideas for new side projects he codes when he gets home.\n\nThe cycle never ends. He has made peace with it.`,
+      `GPM's hobby tier list 🏆\n\nS tier: Writing code that nobody asked for at 2am\nA tier: Finishing a manhwa arc at 3am on a workday\nB tier: Motorcycle ride that "clears his head" and somehow generates 3 new project ideas\nC tier: Gaming sessions that were meant to be 30 minutes\nD tier: Sleep\n\nSleep is on the list. It just isn't winning.`,
+    ],
   },
 
   // Age / birthday
   {
     keys: ["age", "how old", "birthday", "birth", "born", "when born", "how old is he", "how old is gpm", "date of birth", "birth date", "birth year", "year born", "old is gpm"],
-    reply: `🎂 GPM was born on July 20, 1998 — making him 27 years old (turning 28 this July).\n\nThat means he's been writing code for roughly a third of his life and somehow still finds it fun. The diagnosis: incurable. The prognosis: more side projects.\n\nAlso a Cancer ♋ — which explains the attachment to his editor theme and the inability to delete old branches.`,
+    reply: [
+      `🎂 GPM was born on July 20, 1998 — making him 27 years old (turning 28 this July).\n\nThat means he's been writing code for roughly a third of his life and somehow still finds it fun. The diagnosis: incurable. The prognosis: more side projects.\n\nAlso a Cancer ♋ — which explains the attachment to his editor theme and the inability to delete old branches.`,
+      `Born: July 20, 1998. Age: 27. 🎂\n\nHe entered the world, looked around, decided everything could use better UI, and has been shipping pixels ever since.\n\nFun fact: by his next birthday on July 20, he'll have released at least two new side projects and rewritten this portfolio once. Statistically speaking.`,
+      `GPM is 27, born July 20, 1998. ♋ Cancer season. 🦀\n\nCancer traits that apply to him: deeply loyal, surprisingly emotional about clean code, will NOT let go of a project until it's perfect, and lowkey offended when someone pushes to main without a PR.\n\nCancer traits that don't apply: he does not cry. He opens an issue instead.`,
+    ],
   },
 
   // Hometown
   {
     keys: ["hometown", "home town", "where is he from", "where he from", "where does he live", "where he lives", "location", "cebu", "philippines", "from where", "where is gpm from", "city", "origin"],
-    reply: `📍 Cebu City, Philippines — the Queen City of the South.\n\nYes, the same Cebu famous for lechon, beaches, and Sinulog. GPM grew up there, absorbed the culture, and then spent the rest of his life staring at monitors instead of the ocean.\n\nThe beaches are right there. He is inside. Writing code. This is fine.`,
+    reply: [
+      `📍 Cebu City, Philippines — the Queen City of the South.\n\nYes, the same Cebu famous for lechon, beaches, and Sinulog. GPM grew up there, absorbed the culture, and then spent the rest of his life staring at monitors instead of the ocean.\n\nThe beaches are right there. He is inside. Writing code. This is fine.`,
+      `Cebu City, Philippines. 🇵🇭\n\nHome of the best lechon in the world, the Sinulog festival, and apparently — GPM. The Queen City of the South has produced many great things. He is one of them. He will not be modest about this.\n\nIf you ever visit Cebu, eat the lechon. Then hire GPM. In that order.`,
+      `📍 Born and raised in Cebu City, Philippines.\n\nCebu is a 7,107-island nation's second most important city, and GPM chose to represent it by becoming a full-stack engineer who ships code at 2am. The city is proud. Probably.\n\nFun fact: the timezone is PST (Philippine Standard Time, UTC+8) — so when you send that message at 9am your time, he might already be deep in a debugging session or fast asleep. Likely the former.`,
+    ],
   },
 
   // Food preferences
   {
     keys: ["food", "favourite food", "favorite food", "eat", "what does he eat", "food preference", "diet", "spicy", "what food", "cuisine", "meal", "hungry"],
-    reply: `🌶️ GPM's food rule: if it's not spicy, what's even the point?\n\nThe man treats Scoville units the same way he treats code complexity — the higher the better. Mild salsa? An insult. Ghost pepper? Getting somewhere.\n\nSide note: he's lactose intolerant. So cheese is off the table. Quite literally. The spice remains non-negotiable. He will eat the spicy thing and he will be fine. Probably.`,
+    reply: [
+      `🌶️ GPM's food rule: if it's not spicy, what's even the point?\n\nThe man treats Scoville units the same way he treats code complexity — the higher the better. Mild salsa? An insult. Ghost pepper? Getting somewhere.\n\nSide note: he's lactose intolerant. So cheese is off the table. Quite literally. The spice remains non-negotiable. He will eat the spicy thing and he will be fine. Probably.`,
+      `Spicy food only. No exceptions. 🌶️🔥\n\nGPM's heat tolerance is legendary. "Mild" doesn't exist in his vocabulary — that's just food that hasn't tried hard enough.\n\nAlso: lactose intolerant. No milk, no cheese, no cream. His body said no to dairy and he said fine, more spice.\n\nHydration of choice: water. Always water. The man is aggressively consistent.`,
+      `Food personality type: chaotic spicy. 🌶️\n\nIf the dish isn't making him slightly sweat, he's not interested. Cebu raised him on real flavors and his palate never recovered — in the best way.\n\nDairy? Lactose intolerant. Caffeine? Just water, thanks. Spice? Unlimited. No cap.\n\nHis diet is basically: water + anything that could be considered a weapon in another context.`,
+    ],
   },
 
   // Manga / manhwa
   {
     keys: ["manga", "manhwa", "manhua", "read", "reading", "comic", "anime", "webtoon", "what does he read", "books", "book"],
-    reply: `📖 GPM reads manga and manhwa — and yes, he stays up past midnight for chapter releases.\n\nHe approaches a good series the same way he approaches a good codebase: gets deeply invested, can't stop until he reaches the end, and is personally offended when it goes on hiatus.\n\nThe manhwa-to-side-project pipeline is real. Chapter inspires idea. Idea becomes repo. Repo becomes 2am commit. This is the way.`,
+    reply: [
+      `📖 GPM reads manga and manhwa — and yes, he stays up past midnight for chapter releases.\n\nHe approaches a good series the same way he approaches a good codebase: gets deeply invested, can't stop until he reaches the end, and is personally offended when it goes on hiatus.\n\nThe manhwa-to-side-project pipeline is real. Chapter inspires idea. Idea becomes repo. Repo becomes 2am commit. This is the way.`,
+      `Manga and manhwa — certified reader. 📖\n\nGPM treats a new chapter drop the same way he treats a new framework release: drops everything, reads it immediately, forms strong opinions, tells no one.\n\nHe's currently juggling at least 3 ongoing series, 2 that went on hiatus and hurt him personally, and 1 he keeps "planning to start" but hasn't. Very relatable energy.`,
+      `Yes, GPM reads manga and manhwa. 📚\n\nHe won't tell you which ones (shy) but the reading habits are very much there. The pattern is: find a series, binge the entire backlog in one night, go to work like a normal human, repeat.\n\nThe manhwa habit and the coding habit share the same brain region — once he starts, he doesn't stop until it's finished or it's 4am. Sometimes both.`,
+    ],
   },
   // Favourite stack (highest priority — many specific keys)
   {
@@ -323,49 +357,81 @@ const KB: KBEntry[] = [
   // Favourite game
   {
     keys: ["favourite game", "favorite game", "fav game", "what game", "what games", "tekken", "plays game", "gaming", "game he plays", "what does he play"],
-    reply: `🎮 Tekken 8. No debate.\n\nWhile other devs are out there touching grass, GPM is in the lab perfecting combos. He picks characters the same way he picks his tech stack — with full commitment and a suspiciously high win rate.\n\nDon't challenge him. Seriously.`,
+    reply: [
+      `🎮 Tekken 8. No debate.\n\nWhile other devs are out there touching grass, GPM is in the lab perfecting combos. He picks characters the same way he picks his tech stack — with full commitment and a suspiciously high win rate.\n\nDon't challenge him. Seriously.`,
+      `Tekken 8. That's the answer. That's always the answer. 🥊\n\nGPM approaches fighting games the same way he approaches coding: studies the fundamentals, learns the edge cases, and slowly becomes someone you don't want to run into online.\n\nHe has probably lab'd more combos than he's written unit tests. This is not a criticism. This is respect.`,
+      `The game is Tekken 8. 🎮\n\nAsk him his main and watch his eyes light up. He will explain the matchup. You did not ask about the matchup. He will explain it anyway.\n\nHis Tekken mindset and his dev mindset are surprisingly similar: identify the pattern, find the optimal response, execute consistently. Iron Fist is basically a production environment. He is built for this.`,
+    ],
   },
 
   // Coffee or tea
   {
     keys: ["coffee", "tea", "coffee or tea", "drink", "caffeine", "beverage", "what does he drink", "what he drink"],
-    reply: `☕ Neither. GPM is lactose intolerant AND caffeine-free by necessity.\n\nHis secret weapon? Water. Plain, unfiltered, boring, legendary water. 💧\n\nWhile the rest of the dev world is jittering on their 4th espresso, GPM is out here hydrated and shipping features. Hydration is his superpower. Don't knock it.`,
+    reply: [
+      `☕ Neither. GPM is lactose intolerant AND caffeine-free by necessity.\n\nHis secret weapon? Water. Plain, unfiltered, boring, legendary water. 💧\n\nWhile the rest of the dev world is jittering on their 4th espresso, GPM is out here hydrated and shipping features. Hydration is his superpower. Don't knock it.`,
+      `GPM does not drink coffee. GPM does not drink tea. 💧\n\nLactose intolerant (bye milk-based drinks) and apparently doesn't need caffeine to function at 2am — which is somehow more terrifying than if he did.\n\nHis drink: water. Still water. Not sparkling. Not flavored. Water water. The developer who runs on pure discipline and H₂O.`,
+      `The answer is water. Just water. 💧\n\nNo coffee — lactose intolerant and apparently immune to the need for caffeine, which should be studied by scientists.\n\nWhile entire engineering teams require 3 espressos before standup, GPM rolls in powered by sleep deprivation and pure will. The water is just for hydration. The motivation is internal. Slightly concerning. Highly effective.`,
+    ],
   },
 
   // Coding playlist
   {
     keys: ["playlist", "music", "coding music", "what he listens", "what does he listen", "listen to", "song", "songs", "coding playlist", "background music"],
-    reply: `🎵 GPM's coding playlist is a certified mood.\n\nWhen he's in the zone:\n• Lo-fi hip hop (obviously — it's practically a dev requirement)\n• J-pop / anime OSTs when things get intense\n• Occasional video game soundtracks because of course\n\nIf the music is too loud, the bugs can't hear him coming. That's the strategy.`,
+    reply: [
+      `🎵 GPM's coding playlist is a certified mood.\n\nWhen he's in the zone:\n• Lo-fi hip hop (obviously — it's practically a dev requirement)\n• J-pop / anime OSTs when things get intense\n• Occasional video game soundtracks because of course\n\nIf the music is too loud, the bugs can't hear him coming. That's the strategy.`,
+      `Coding music selection by phase 🎵\n\n🟢 Normal feature work: lo-fi, chill beats, nothing distracting\n🟡 Complex problem: anime OST, something dramatic with violins\n🔴 Production bug at 2am: full video game final boss soundtrack\n\nThe music escalates with the urgency. Colleagues who have seen his Spotify history have concerns. He is fine. The bug got fixed.`,
+      `GPM's playlist basically goes: lo-fi → J-pop → game OST → full anime final arc energy depending on how bad the codebase is. 🎵\n\nCalm lo-fi = normal day. Dramatic orchestral = something is on fire. Tekken character select music = he's given up caring and is just shipping it.\n\nYou can diagnose the severity of the bug by what's playing. This is a useful skill.`,
+    ],
   },
 
   // Introvert or extrovert
   {
     keys: ["introvert", "extrovert", "shy", "social", "personality", "introvert or extrovert", "social anxiety", "is he shy", "is he quiet"],
-    reply: `🧠 Certified introvert. Social anxiety disorder and everything.\n\nIn the wild, GPM is a man of few words. In a meeting, he is also a man of few words. At a party, he is the guy near the snacks who just wants to go home and code.\n\nBUT — put him in front of a codebase? Absolute god. The keyboard is his natural habitat. He doesn't need to talk much when the code speaks for itself. 👑`,
+    reply: [
+      `🧠 Certified introvert. Social anxiety disorder and everything.\n\nIn the wild, GPM is a man of few words. In a meeting, he is also a man of few words. At a party, he is the guy near the snacks who just wants to go home and code.\n\nBUT — put him in front of a codebase? Absolute god. The keyboard is his natural habitat. He doesn't need to talk much when the code speaks for itself. 👑`,
+      `Introvert. Hard introvert. 🧠\n\nSocial anxiety disorder — officially diagnosed by the vibes. In social settings he is quiet, careful, and calculating the earliest polite moment to leave.\n\nAt the keyboard? Different person entirely. Confident, decisive, opinionated about tabs vs spaces (spaces, final answer). The code is where he communicates best. His PRs have better storytelling than most people's conversations.`,
+      `GPM personality type: introvert with a god complex specifically inside an IDE. 👑\n\nIn real life: man of few words, avoids unnecessary social interaction, would rather send a Slack message than walk 5 meters to talk to someone.\n\nIn code: leaves detailed comments, writes thorough PRs, mentors juniors, carries the team. Same brain. Different environment. The keyboard unlocks something.`,
+    ],
   },
 
   // What does he do when stuck
   {
     keys: ["stuck", "when stuck", "what does he do when stuck", "debugging strategy", "problem solving", "how does he solve", "what does he do", "when he gets stuck", "approach to problems"],
-    reply: `😤 GPM's "I'm stuck" protocol:\n\n1. Stare at the screen for 5 more minutes (mandatory)\n2. Set a new goal — use the pressure of a deadline to kick the brain into gear\n3. Pressure is the point. No urgency = no breakthrough\n\nHe doesn't wait for motivation. He manufactures it. Nothing debugs faster than the feeling of being slightly behind schedule. Fear is a feature, not a bug. 💀`,
+    reply: [
+      `😤 GPM's "I'm stuck" protocol:\n\n1. Stare at the screen for 5 more minutes (mandatory)\n2. Set a new goal — use the pressure of a deadline to kick the brain into gear\n3. Pressure is the point. No urgency = no breakthrough\n\nHe doesn't wait for motivation. He manufactures it. Nothing debugs faster than the feeling of being slightly behind schedule. Fear is a feature, not a bug. 💀`,
+      `When GPM is stuck, he sets a new goal. 🎯\n\nNot to fix the bug. Not to unblock himself. A new goal — one that creates pressure, urgency, a reason to push through.\n\nHe doesn't believe in waiting for inspiration. He manufactures the conditions for it. Mild panic is his most productive state. This is not advice. This is a confession. It works.`,
+      `GPM's stuck routine: 😤\n\n• 5 more minutes of staring (this is mandatory and non-negotiable)\n• Create artificial pressure — set a goal, make a bet with himself, invent a deadline\n• Let the pressure do the work\n\nHe has found that comfort = stagnation and discomfort = breakthroughs. So he voluntarily makes things uncomfortable until his brain has no choice but to solve the problem. Unhinged. Effective. 10/10 would recommend (with caution).`,
+    ],
   },
 
   // Guilty pleasure tech
   {
     keys: ["guilty pleasure", "guilty pleasure tech", "outside coding", "non coding", "what else", "other than coding", "motorcycle", "side project", "side projects", "personal project"],
-    reply: `🏍️ GPM's guilty pleasures, in no particular order:\n\n1. Motorcycle rides — full send, no hesitation\n2. Gaming sessions that were "just 30 minutes"\n3. Starting new side projects at 11pm like it's a great idea\n\nThe side projects especially. He has more unfinished personal projects than browser tabs. Every one of them started with "this'll only take a weekend." None of them took only a weekend. 💀`,
+    reply: [
+      `🏍️ GPM's guilty pleasures, in no particular order:\n\n1. Motorcycle rides — full send, no hesitation\n2. Gaming sessions that were "just 30 minutes"\n3. Starting new side projects at 11pm like it's a great idea\n\nThe side projects especially. He has more unfinished personal projects than browser tabs. Every one of them started with "this'll only take a weekend." None of them took only a weekend. 💀`,
+      `Guilty pleasures, ranked by how often they derail his sleep schedule 🏍️\n\n🥇 New side project at 11pm — it's always a great idea at 11pm. It is never a great idea at 11pm.\n🥈 Motorcycle ride that turns into 3 hours and 2 new project ideas\n🥉 "One more game" in Tekken 8 — said at least 7 times per session\n\nHe regrets none of it. This is the problem. He will never stop.`,
+      `GPM's guilty pleasures are very on brand. 🏍️\n\nMotorcycle rides to "clear his head" — which really means stew on a new feature idea for 45 minutes at 80km/h. Dangerous for bugs. Dangerous in general.\n\nThen he gets home, opens his laptop, and starts the repo. At 11pm. On a Wednesday. The side project graveyard grows. He visits it lovingly. One day he'll ship one. Today is not that day.`,
+    ],
   },
 
   // What would he build
   {
     keys: ["build if money", "money wasn't a concern", "money was no object", "unlimited budget", "dream project", "what would he build", "if he could build", "dream build", "build anything"],
-    reply: `💸 If money was no concern?\n\nGPM would build the ultimate bug resolver — an AI that reads your codebase, understands your intention, finds every bug, fixes it, writes the tests, and opens the PR.\n\nBasically himself, but faster and without the social anxiety. A clone, essentially. A GPM instance that doesn't need water breaks. 🤖\n\nHe'd call it ChatGPM Pro. It would be terrifying. He would ship it anyway.`,
+    reply: [
+      `💸 If money was no concern?\n\nGPM would build the ultimate bug resolver — an AI that reads your codebase, understands your intention, finds every bug, fixes it, writes the tests, and opens the PR.\n\nBasically himself, but faster and without the social anxiety. A clone, essentially. A GPM instance that doesn't need water breaks. 🤖\n\nHe'd call it ChatGPM Pro. It would be terrifying. He would ship it anyway.`,
+      `Dream project with unlimited budget? 🤔💸\n\nAn AI that resolves bugs before you even know they exist. Reads your intent, not just your code. Predicts failure modes. Writes the fix, the test, the docs, and the commit message.\n\nEssentially: GPM, but running 24/7 without the motorcycle breaks and the Tekken sessions. A distilled, caffeinated (on water) version of himself. He'd name it something humble. Like GPM Pro Max Ultra. Or just let it name itself. That's either brilliant or a disaster. He'd ship it regardless.`,
+      `Money no object? 💸\n\nHe'd build the tool that ends debugging as a profession. Not a helper — a resolver. Something that takes the bug, understands the context of the entire system, and eliminates it completely.\n\nWhy? Because GPM has spent a significant portion of his 27 years on this planet staring at error messages. He'd like a refund on that time. The tool is the refund. Failing that, he'd build this portfolio but bigger. Much bigger. Unnecessarily bigger.`,
+    ],
   },
 
   // Night owl or early bird
   {
     keys: ["night owl", "early bird", "morning person", "night person", "sleep", "what time", "when does he work", "when does he code", "work at night", "work in the morning"],
-    reply: `🦉 Night owl. Deeply, unrepentantly, a night owl.\n\nGPM's best code is written when normal humans are unconscious. The hours between midnight and 3am hit different — no meetings, no notifications, just GPM and the terminal.\n\nHis commits at 2am are statistically better than his commits at 9am. This is not a theory. This is peer-reviewed data from a sample size of one.`,
+    reply: [
+      `🦉 Night owl. Deeply, unrepentantly, a night owl.\n\nGPM's best code is written when normal humans are unconscious. The hours between midnight and 3am hit different — no meetings, no notifications, just GPM and the terminal.\n\nHis commits at 2am are statistically better than his commits at 9am. This is not a theory. This is peer-reviewed data from a sample size of one.`,
+      `Night owl, no contest. 🌙\n\nThe 9am version of GPM is functional. Hydrated. Present. Fine.\n\nThe 1am version of GPM is in a flow state so deep that time stops being real, the terminal output becomes readable in his native language, and he has accidentally solved 3 problems he didn't know existed.\n\nMorning is a social construct. Midnight is when the real work happens.`,
+      `🦉 He has seen more sunrises from the wrong side than the right side.\n\nGPM's peak hours: 11pm–3am. No distractions, no meetings, just the hum of the fan and the glow of the monitor.\n\nHe would be a menace if he ever fixed his sleep schedule. The software industry is quietly relieved that he hasn't.`,
+    ],
   },
 
   // Thanks
@@ -452,6 +518,10 @@ export function ChatContent() {
   const [typewriterLen, setTypewriterLen] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const botTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // True while bot is thinking OR while typewriter is still animating
+  const isBusy = typing || !!typewriterId;
 
   // Cycling suggestion page
   const totalPages = Math.ceil(SUGGESTIONS.length / SUGGESTION_PAGE_SIZE);
@@ -501,7 +571,7 @@ export function ChatContent() {
 
   const send = useCallback((text: string) => {
     const trimmed = text.trim();
-    if (!trimmed || typing) return;
+    if (!trimmed || isBusy) return;
 
     setMessages((m) => [
       ...m,
@@ -511,7 +581,8 @@ export function ChatContent() {
     setTyping(true);
 
     const delay = 700 + Math.min(trimmed.length * 8, 800);
-    setTimeout(() => {
+    botTimeoutRef.current = setTimeout(() => {
+      botTimeoutRef.current = null;
       setTyping(false);
       const botId = `b-${Date.now()}`;
       setMessages((m) => [
@@ -521,7 +592,27 @@ export function ChatContent() {
       setTypewriterId(botId);
       setTypewriterLen(0);
     }, delay);
-  }, [typing]);
+  }, [isBusy]);
+
+  const handleStop = useCallback(() => {
+    // Cancel pending bot response (thinking phase)
+    if (botTimeoutRef.current) {
+      clearTimeout(botTimeoutRef.current);
+      botTimeoutRef.current = null;
+      setTyping(false);
+    }
+    // Freeze typewriter exactly where it is — truncate the message to current length
+    if (typewriterId) {
+      setMessages((msgs) =>
+        msgs.map((m) =>
+          m.id === typewriterId
+            ? { ...m, text: m.text.slice(0, typewriterLen) }
+            : m
+        )
+      );
+      setTypewriterId(null);
+    }
+  }, [typewriterId, typewriterLen]);
 
   const showSuggestions = messages.length === 1 && !typing;
   const currentSuggs = SUGGESTIONS.slice(
@@ -701,48 +792,80 @@ export function ChatContent() {
             placeholder=""
             spellCheck={false}
             autoFocus
-            disabled={typing}
+            disabled={isBusy}
             className="w-full text-a26-text text-[12.5px] rounded-[20px] px-3.5 py-2 outline-none font-mac transition-colors duration-120"
             style={{
               background: "var(--a26-glass)",
-              border: "1px solid var(--a26-glass-border)",
+              border: `1px solid ${isBusy ? "color-mix(in srgb, #A855F7 30%, transparent)" : "var(--a26-glass-border)"}`,
               caretColor: "#A855F7",
+              opacity: isBusy ? 0.6 : 1,
             }}
           />
           {/* Animated placeholder overlay */}
           {!input && (
             <div className="pointer-events-none absolute inset-0 flex items-center px-3.5 overflow-hidden">
               <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={phIdx}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: phVisible ? 1 : 0, y: phVisible ? 0 : -6 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="text-[12.5px] truncate"
-                  style={{ color: "var(--a26-text-muted)" }}
-                >
-                  {PLACEHOLDER_CYCLE[phIdx]}
-                </motion.span>
+                {isBusy ? (
+                  <motion.span
+                    key="busy"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-[12.5px] truncate"
+                    style={{ color: "#A855F7" }}
+                  >
+                    ChatGPM is typing…
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key={phIdx}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: phVisible ? 1 : 0, y: phVisible ? 0 : -6 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="text-[12.5px] truncate"
+                    style={{ color: "var(--a26-text-muted)" }}
+                  >
+                    {PLACEHOLDER_CYCLE[phIdx]}
+                  </motion.span>
+                )}
               </AnimatePresence>
             </div>
           )}
         </div>
-        <button
-          onClick={() => send(input)}
-          disabled={!input.trim() || typing}
-          className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border-none transition-all duration-120 cursor-pointer"
-          style={{
-            background: input.trim() && !typing
-              ? "linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)"
-              : "var(--a26-glass)",
-            color: input.trim() && !typing ? "white" : "var(--a26-text-muted)",
-            opacity: !input.trim() || typing ? 0.6 : 1,
-          }}
-          aria-label="Send message"
-        >
-          <Send size={13} />
-        </button>
+
+        {/* Stop button while busy, send button otherwise */}
+        {isBusy ? (
+          <button
+            onClick={handleStop}
+            className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border-none cursor-pointer transition-all duration-120"
+            style={{
+              background: "color-mix(in srgb, #A855F7 18%, transparent)",
+              color: "#C084FC",
+              border: "1px solid color-mix(in srgb, #A855F7 35%, transparent)",
+            }}
+            aria-label="Stop"
+          >
+            <Square size={11} fill="#C084FC" />
+          </button>
+        ) : (
+          <button
+            onClick={() => send(input)}
+            disabled={!input.trim()}
+            className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 border-none transition-all duration-120 cursor-pointer"
+            style={{
+              background: input.trim()
+                ? "linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)"
+                : "var(--a26-glass)",
+              color: input.trim() ? "white" : "var(--a26-text-muted)",
+              opacity: !input.trim() ? 0.6 : 1,
+            }}
+            aria-label="Send message"
+          >
+            <Send size={13} />
+          </button>
+        )}
       </div>
     </div>
   );
