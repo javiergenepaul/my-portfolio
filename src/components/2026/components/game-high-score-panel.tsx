@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  useGameHighScoresStore,
-  type GameScoreKey,
-} from "@/stores";
+import { useGameHighScoresStore, type GameScoreKey } from "@/stores";
 import { translate, useLocaleRefresh } from "@/i18n";
 
 const EMPTY_SCORES: ReadonlyArray<{
@@ -80,7 +77,9 @@ export function GameHighScorePanel({
               ? translate("win26.gameUi.newHighScore" as any)
               : translate("win26.gameUi.highScores" as any)}
           </div>
-          <div className="mt-1 text-[13px] font-semibold text-white">{title}</div>
+          <div className="mt-1 text-[13px] font-semibold text-white">
+            {title}
+          </div>
         </div>
         <div className="text-right">
           <div
@@ -113,7 +112,8 @@ export function GameHighScorePanel({
         <button
           onClick={() => {
             saveScore(scoreKey, {
-              name: trimmedName || translate("win26.gameUi.defaultPlayer" as any),
+              name:
+                trimmedName || translate("win26.gameUi.defaultPlayer" as any),
               value: currentValue,
               displayValue: currentDisplayValue,
             });
@@ -153,7 +153,9 @@ export function GameHighScorePanel({
                 >
                   #{index + 1}
                 </span>
-                <span className="truncate text-[12px] text-white">{entry.name}</span>
+                <span className="truncate text-[12px] text-white">
+                  {entry.name}
+                </span>
               </div>
               <span
                 className="shrink-0 font-mono text-[11px] font-semibold"

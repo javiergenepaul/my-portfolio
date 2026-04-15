@@ -880,16 +880,64 @@ function BomberArt({ s }: { s: number }) {
   const p = s * 0.66;
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
-      <rect x="14" y="14" width="16" height="16" rx="4" fill="rgba(255,255,255,0.22)" />
-      <rect x="50" y="14" width="16" height="16" rx="4" fill="rgba(255,255,255,0.14)" />
-      <rect x="14" y="50" width="16" height="16" rx="4" fill="rgba(255,255,255,0.14)" />
-      <rect x="50" y="50" width="16" height="16" rx="4" fill="rgba(255,255,255,0.22)" />
-      <path d="M40 18 L44 12" stroke="white" strokeWidth="3" strokeLinecap="round" />
-      <path d="M44 12 C48 8, 54 8, 57 12" stroke="#FDE68A" strokeWidth="3" strokeLinecap="round" />
+      <rect
+        x="14"
+        y="14"
+        width="16"
+        height="16"
+        rx="4"
+        fill="rgba(255,255,255,0.22)"
+      />
+      <rect
+        x="50"
+        y="14"
+        width="16"
+        height="16"
+        rx="4"
+        fill="rgba(255,255,255,0.14)"
+      />
+      <rect
+        x="14"
+        y="50"
+        width="16"
+        height="16"
+        rx="4"
+        fill="rgba(255,255,255,0.14)"
+      />
+      <rect
+        x="50"
+        y="50"
+        width="16"
+        height="16"
+        rx="4"
+        fill="rgba(255,255,255,0.22)"
+      />
+      <path
+        d="M40 18 L44 12"
+        stroke="white"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M44 12 C48 8, 54 8, 57 12"
+        stroke="#FDE68A"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
       <circle cx="40" cy="40" r="16" fill="rgba(15,23,42,0.92)" />
       <circle cx="34" cy="34" r="5" fill="rgba(255,255,255,0.20)" />
-      <path d="M40 20 L43 28 L51 29 L45 35 L47 43 L40 39 L33 43 L35 35 L29 29 L37 28 Z" fill="#FDE047" opacity="0.98" />
-      <path d="M40 24 V56 M24 40 H56" stroke="#FB923C" strokeWidth="5" strokeLinecap="round" opacity="0.9" />
+      <path
+        d="M40 20 L43 28 L51 29 L45 35 L47 43 L40 39 L33 43 L35 35 L29 29 L37 28 Z"
+        fill="#FDE047"
+        opacity="0.98"
+      />
+      <path
+        d="M40 24 V56 M24 40 H56"
+        stroke="#FB923C"
+        strokeWidth="5"
+        strokeLinecap="round"
+        opacity="0.9"
+      />
     </svg>
   );
 }

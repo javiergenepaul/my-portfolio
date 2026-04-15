@@ -1131,7 +1131,10 @@
         "name": "Tower of GPM",
         "desc": "Move all discs from A to C"
       },
-      "tetris": { "name": "GPM Tetris", "desc": "Stack & clear falling blocks" },
+      "tetris": {
+        "name": "GPM Tetris",
+        "desc": "Stack & clear falling blocks"
+      },
       "jump": { "name": "GPM Jump", "desc": "Climb platforms, don't fall!" },
       "bomber": {
         "name": "Bomber GPM",

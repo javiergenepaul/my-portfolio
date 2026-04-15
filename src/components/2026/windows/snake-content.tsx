@@ -78,7 +78,8 @@ export function SnakeContent() {
   const snakeBest = useGameHighScoresStore(
     (state) => state.scores.snake?.[0]?.value ?? null,
   );
-  const isNewRecord = phase === "dead" && isBetterScore("snake", score, snakeBest);
+  const isNewRecord =
+    phase === "dead" && isBetterScore("snake", score, snakeBest);
 
   // ── Draw ──────────────────────────────────────────────────────────────────────
   const draw = useCallback(() => {

@@ -3,7 +3,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useIsMobile } from "../hooks";
 import { GameHighScorePanel } from "../components/game-high-score-panel";
-import { isBetterScore, useGameHighScoresStore, type GameScoreKey } from "@/stores";
+import {
+  isBetterScore,
+  useGameHighScoresStore,
+  type GameScoreKey,
+} from "@/stores";
 import { translate, useLocaleRefresh } from "@/i18n";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -191,8 +195,14 @@ export function JumpContent() {
       // and platforms still become visibly larger instead of only adding more empty space.
       const maxStageW = Math.round(BASE_W * (isMobile ? 1.08 : 1.28));
       const maxStageH = Math.round(BASE_H * (isMobile ? 1.08 : 1.24));
-      const stageW = Math.min(maxStageW, Math.max(BASE_W, Math.round(avW / 1.6)));
-      const stageH = Math.min(maxStageH, Math.max(BASE_H, Math.round(avH / 1.6)));
+      const stageW = Math.min(
+        maxStageW,
+        Math.max(BASE_W, Math.round(avW / 1.6)),
+      );
+      const stageH = Math.min(
+        maxStageH,
+        Math.max(BASE_H, Math.round(avH / 1.6)),
+      );
       const nextScale = Math.max(0.8, Math.min(avW / stageW, avH / stageH));
       gs.current.vw = stageW;
       gs.current.vh = stageH;
@@ -371,13 +381,7 @@ export function JumpContent() {
       );
       ctx.fill();
       const pupilLean =
-        emotion === "scared"
-          ? 0
-          : g.pvx > 0.5
-            ? 1
-            : g.pvx < -0.5
-              ? -1
-              : 0;
+        emotion === "scared" ? 0 : g.pvx > 0.5 ? 1 : g.pvx < -0.5 ? -1 : 0;
       ctx.fillStyle = "#1e3a8a";
       ctx.beginPath();
       ctx.arc(psx + 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2);
@@ -393,11 +397,22 @@ export function JumpContent() {
         const rightBrowY = emotion === "sad" ? psy + 8.5 : psy + 7.5;
         ctx.beginPath();
         ctx.moveTo(psx + 4.8, leftBrowY + (emotion === "angry" ? 1.5 : 0));
-        ctx.lineTo(psx + 11.4, leftBrowY + (emotion === "angry" ? -0.8 : emotion === "sad" ? 1.2 : -0.2));
+        ctx.lineTo(
+          psx + 11.4,
+          leftBrowY +
+            (emotion === "angry" ? -0.8 : emotion === "sad" ? 1.2 : -0.2),
+        );
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(psx + PLAYER_W - 11.4, rightBrowY + (emotion === "angry" ? -0.8 : emotion === "sad" ? 1.2 : -0.2));
-        ctx.lineTo(psx + PLAYER_W - 4.8, rightBrowY + (emotion === "angry" ? 1.5 : 0));
+        ctx.moveTo(
+          psx + PLAYER_W - 11.4,
+          rightBrowY +
+            (emotion === "angry" ? -0.8 : emotion === "sad" ? 1.2 : -0.2),
+        );
+        ctx.lineTo(
+          psx + PLAYER_W - 4.8,
+          rightBrowY + (emotion === "angry" ? 1.5 : 0),
+        );
         ctx.stroke();
       }
 
@@ -405,16 +420,42 @@ export function JumpContent() {
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       if (emotion === "sad") {
-        ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.78, 4.8, Math.PI + 0.25, Math.PI * 2 - 0.25);
+        ctx.arc(
+          psx + PLAYER_W / 2,
+          psy + PLAYER_H * 0.78,
+          4.8,
+          Math.PI + 0.25,
+          Math.PI * 2 - 0.25,
+        );
       } else if (emotion === "angry") {
         ctx.moveTo(psx + 8, psy + PLAYER_H * 0.68);
         ctx.lineTo(psx + PLAYER_W - 8, psy + PLAYER_H * 0.68);
       } else if (emotion === "scared") {
-        ctx.ellipse(psx + PLAYER_W / 2, psy + PLAYER_H * 0.7, 3.2, 4.3, 0, 0, Math.PI * 2);
+        ctx.ellipse(
+          psx + PLAYER_W / 2,
+          psy + PLAYER_H * 0.7,
+          3.2,
+          4.3,
+          0,
+          0,
+          Math.PI * 2,
+        );
       } else if (emotion === "cool") {
-        ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.62, 5.5, 0.1, Math.PI - 0.1);
+        ctx.arc(
+          psx + PLAYER_W / 2,
+          psy + PLAYER_H * 0.62,
+          5.5,
+          0.1,
+          Math.PI - 0.1,
+        );
       } else {
-        ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.62, 5, 0.15, Math.PI - 0.15);
+        ctx.arc(
+          psx + PLAYER_W / 2,
+          psy + PLAYER_H * 0.62,
+          5,
+          0.15,
+          Math.PI - 0.15,
+        );
       }
       ctx.stroke();
 
@@ -726,7 +767,8 @@ export function JumpContent() {
 
   const scoreKey = `jump-${difficulty}` as GameScoreKey;
   const jumpBest = difficulty === "hard" ? hardBest : easyBest;
-  const isNewRecord = phase === "dead" && isBetterScore(scoreKey, score, jumpBest);
+  const isNewRecord =
+    phase === "dead" && isBetterScore(scoreKey, score, jumpBest);
 
   return (
     <div

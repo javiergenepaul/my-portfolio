@@ -164,7 +164,8 @@ export function TetrisContent() {
   const tetrisBest = useGameHighScoresStore(
     (state) => state.scores.tetris?.[0]?.value ?? null,
   );
-  const isNewRecord = phase === "dead" && isBetterScore("tetris", score, tetrisBest);
+  const isNewRecord =
+    phase === "dead" && isBetterScore("tetris", score, tetrisBest);
 
   // Mutable game state (no re-renders on change)
   const gs = useRef({
@@ -903,9 +904,18 @@ export function TetrisContent() {
 
           {/* Stats */}
           {[
-            { label: translate("win26.gameUi.score" as any), val: score.toLocaleString() },
-            { label: translate("win26.gameUi.level" as any), val: String(level) },
-            { label: translate("win26.gameUi.lines" as any), val: String(lines) },
+            {
+              label: translate("win26.gameUi.score" as any),
+              val: score.toLocaleString(),
+            },
+            {
+              label: translate("win26.gameUi.level" as any),
+              val: String(level),
+            },
+            {
+              label: translate("win26.gameUi.lines" as any),
+              val: String(lines),
+            },
           ].map(({ label, val }) => (
             <div key={label}>
               <PanelLabel>{label}</PanelLabel>

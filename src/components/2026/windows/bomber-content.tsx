@@ -92,12 +92,16 @@ function buildBoard() {
     (candidate) => candidate.x !== exit.x || candidate.y !== exit.y,
   );
 
-  let enemy = enemyCandidates[Math.floor(Math.random() * enemyCandidates.length)] ?? {
+  let enemy = enemyCandidates[
+    Math.floor(Math.random() * enemyCandidates.length)
+  ] ?? {
     x: COLS - 2,
     y: 1,
   };
   while (Math.abs(enemy.x - 1) + Math.abs(enemy.y - 1) < 6) {
-    enemy = enemyCandidates[Math.floor(Math.random() * enemyCandidates.length)] ?? enemy;
+    enemy =
+      enemyCandidates[Math.floor(Math.random() * enemyCandidates.length)] ??
+      enemy;
   }
   if (board[enemy.y][enemy.x] === "crate") board[enemy.y][enemy.x] = "floor";
 
@@ -140,20 +144,30 @@ function hasClearedStage(state: GameState) {
   );
 }
 
-function getBomberEmotion(state: GameState, activeBombCount: number): BomberEmotion {
+function getBomberEmotion(
+  state: GameState,
+  activeBombCount: number,
+): BomberEmotion {
   if (state.phase === "dead") return "sad";
   if (state.phase === "won") return "cool";
   const enemyDistance = state.enemy
-    ? Math.abs(state.enemy.x - state.player.x) + Math.abs(state.enemy.y - state.player.y)
+    ? Math.abs(state.enemy.x - state.player.x) +
+      Math.abs(state.enemy.y - state.player.y)
     : Infinity;
   const inDanger =
     state.blasts.some(
       (blast) =>
-        Math.abs(blast.x - state.player.x) + Math.abs(blast.y - state.player.y) <= 1,
+        Math.abs(blast.x - state.player.x) +
+          Math.abs(blast.y - state.player.y) <=
+        1,
     ) || enemyDistance <= 1;
   if (inDanger) return "scared";
   if (activeBombCount > 0) return "angry";
-  if (state.powerUps.some((powerUp) => powerUp.x === state.player.x && powerUp.y === state.player.y)) {
+  if (
+    state.powerUps.some(
+      (powerUp) => powerUp.x === state.player.x && powerUp.y === state.player.y,
+    )
+  ) {
     return "happy";
   }
   if (state.bombPower >= 4 || state.bombCapacity >= 3) return "cool";
@@ -234,7 +248,11 @@ export function BomberContent() {
       if (state.bombs.length >= state.bombCapacity) {
         return state;
       }
-      if (state.bombs.some((bomb) => bomb.x === state.player.x && bomb.y === state.player.y)) {
+      if (
+        state.bombs.some(
+          (bomb) => bomb.x === state.player.x && bomb.y === state.player.y,
+        )
+      ) {
         return state;
       }
       return {
@@ -259,7 +277,9 @@ export function BomberContent() {
         if (nextPhase !== "playing") return state;
         const nextPos = { x: state.player.x + dx, y: state.player.y + dy };
         if (!canMoveTo(nextPos, state)) {
-          return nextPhase === state.phase ? state : { ...state, phase: nextPhase };
+          return nextPhase === state.phase
+            ? state
+            : { ...state, phase: nextPhase };
         }
         const picked = state.powerUps.find(
           (powerUp) => powerUp.x === nextPos.x && powerUp.y === nextPos.y,
@@ -298,7 +318,11 @@ export function BomberContent() {
         event.preventDefault();
         movePlayer(-1, 0);
       }
-      if (event.key === "ArrowRight" || event.key === "d" || event.key === "D") {
+      if (
+        event.key === "ArrowRight" ||
+        event.key === "d" ||
+        event.key === "D"
+      ) {
         event.preventDefault();
         movePlayer(1, 0);
       }
@@ -326,7 +350,9 @@ export function BomberContent() {
         if (state.phase !== "playing") return state;
         const now = Date.now();
         let board = cloneBoard(state.board);
-        const freshBlasts = state.blasts.filter((blast) => blast.expiresAt > now);
+        const freshBlasts = state.blasts.filter(
+          (blast) => blast.expiresAt > now,
+        );
         let blasts = freshBlasts;
         let score = state.score;
         let exitRevealed = state.exitRevealed;
@@ -343,7 +369,10 @@ export function BomberContent() {
           addBlast(bomb);
           for (const dir of DIRS) {
             for (let step = 1; step <= bomb.power; step++) {
-              const pos = { x: bomb.x + dir.x * step, y: bomb.y + dir.y * step };
+              const pos = {
+                x: bomb.x + dir.x * step,
+                y: bomb.y + dir.y * step,
+              };
               const tile = board[pos.y]?.[pos.x];
               if (!tile || tile === "wall") break;
               addBlast(pos);
@@ -352,7 +381,11 @@ export function BomberContent() {
                 score += 40;
                 if (pos.x === state.exit.x && pos.y === state.exit.y) {
                   exitRevealed = true;
-                } else if (!powerUps.some((powerUp) => powerUp.x === pos.x && powerUp.y === pos.y)) {
+                } else if (
+                  !powerUps.some(
+                    (powerUp) => powerUp.x === pos.x && powerUp.y === pos.y,
+                  )
+                ) {
                   const dropRoll = Math.random();
                   const type =
                     dropRoll < 0.14
@@ -384,16 +417,31 @@ export function BomberContent() {
         }
 
         if (enemy && phase === "playing") {
-          const options = DIRS.map((dir) => ({ x: enemy!.x + dir.x, y: enemy!.y + dir.y }))
+          const options = DIRS.map((dir) => ({
+            x: enemy!.x + dir.x,
+            y: enemy!.y + dir.y,
+          }))
             .filter((pos) => isOpenCell(board, pos))
-            .filter((pos) => !survivingBombs.some((bomb) => bomb.x === pos.x && bomb.y === pos.y));
+            .filter(
+              (pos) =>
+                !survivingBombs.some(
+                  (bomb) => bomb.x === pos.x && bomb.y === pos.y,
+                ),
+            );
           if (options.length) {
             options.sort(
               (left, right) =>
-                Math.abs(left.x - state.player.x) + Math.abs(left.y - state.player.y) -
-                (Math.abs(right.x - state.player.x) + Math.abs(right.y - state.player.y)),
+                Math.abs(left.x - state.player.x) +
+                Math.abs(left.y - state.player.y) -
+                (Math.abs(right.x - state.player.x) +
+                  Math.abs(right.y - state.player.y)),
             );
-            enemy = options[Math.random() < 0.72 ? 0 : Math.floor(Math.random() * options.length)];
+            enemy =
+              options[
+                Math.random() < 0.72
+                  ? 0
+                  : Math.floor(Math.random() * options.length)
+              ];
           }
           if (enemy.x === state.player.x && enemy.y === state.player.y) {
             phase = "dead";
@@ -438,7 +486,9 @@ export function BomberContent() {
       ? Math.max(
           0,
           Math.min(
-            ...game.bombs.map((bomb) => BOMB_FUSE_MS - (Date.now() - bomb.placedAt)),
+            ...game.bombs.map(
+              (bomb) => BOMB_FUSE_MS - (Date.now() - bomb.placedAt),
+            ),
           ),
         )
       : 0;
@@ -449,8 +499,10 @@ export function BomberContent() {
       : activeBombCount === 1
         ? ("win26.bomberUi.bombDroppedSingle" as any)
         : ("win26.bomberUi.bombDroppedMultiple" as any);
-  const stockPowerUp = game.powerUps.find((powerUp) => powerUp.type === "stock") ?? null;
-  const rangePowerUp = game.powerUps.find((powerUp) => powerUp.type === "range") ?? null;
+  const stockPowerUp =
+    game.powerUps.find((powerUp) => powerUp.type === "stock") ?? null;
+  const rangePowerUp =
+    game.powerUps.find((powerUp) => powerUp.type === "range") ?? null;
   const bomberEmotion = getBomberEmotion(game, activeBombCount);
 
   const renderCell = (x: number, y: number) => {
@@ -484,10 +536,25 @@ export function BomberContent() {
         }}
       >
         {isExit && (
-          <div style={{ position: "absolute", inset: "22%", borderRadius: 999, border: "2px solid rgba(255,255,255,0.75)" }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: "22%",
+              borderRadius: 999,
+              border: "2px solid rgba(255,255,255,0.75)",
+            }}
+          />
         )}
         {isBomb && (
-          <div style={{ position: "absolute", inset: "18%", borderRadius: 999, background: "#111827", boxShadow: "inset 0 3px 0 rgba(255,255,255,0.16)" }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: "18%",
+              borderRadius: 999,
+              background: "#111827",
+              boxShadow: "inset 0 3px 0 rgba(255,255,255,0.16)",
+            }}
+          />
         )}
         {powerUp && !isBomb && !isBlast && !isPlayer && (
           <div
@@ -512,7 +579,20 @@ export function BomberContent() {
           </div>
         )}
         {isEnemy && (
-          <div style={{ position: "absolute", inset: "16%", borderRadius: 8, background: "#F43F5E", display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: Math.max(10, cellSize * 0.34), fontWeight: 700 }}>
+          <div
+            style={{
+              position: "absolute",
+              inset: "16%",
+              borderRadius: 8,
+              background: "#F43F5E",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
+              fontSize: Math.max(10, cellSize * 0.34),
+              fontWeight: 700,
+            }}
+          >
             ×
           </div>
         )}
@@ -532,7 +612,12 @@ export function BomberContent() {
                 left: "24%",
                 top: "28%",
                 width: "18%",
-                height: bomberEmotion === "scared" ? "22%" : bomberEmotion === "sad" ? "18%" : "20%",
+                height:
+                  bomberEmotion === "scared"
+                    ? "22%"
+                    : bomberEmotion === "sad"
+                      ? "18%"
+                      : "20%",
                 borderRadius: "50%",
                 background: "white",
               }}
@@ -543,7 +628,12 @@ export function BomberContent() {
                 right: "24%",
                 top: "28%",
                 width: "18%",
-                height: bomberEmotion === "scared" ? "22%" : bomberEmotion === "sad" ? "18%" : "20%",
+                height:
+                  bomberEmotion === "scared"
+                    ? "22%"
+                    : bomberEmotion === "sad"
+                      ? "18%"
+                      : "20%",
                 borderRadius: "50%",
                 background: "white",
               }}
@@ -570,7 +660,9 @@ export function BomberContent() {
                 background: "#1E3A8A",
               }}
             />
-            {(bomberEmotion === "angry" || bomberEmotion === "sad" || bomberEmotion === "cool") && (
+            {(bomberEmotion === "angry" ||
+              bomberEmotion === "sad" ||
+              bomberEmotion === "cool") && (
               <>
                 <div
                   style={{
@@ -613,10 +705,25 @@ export function BomberContent() {
             <div
               style={{
                 position: "absolute",
-                left: bomberEmotion === "scared" ? "39%" : bomberEmotion === "angry" ? "29%" : "33%",
-                right: bomberEmotion === "scared" ? "39%" : bomberEmotion === "angry" ? "29%" : "33%",
+                left:
+                  bomberEmotion === "scared"
+                    ? "39%"
+                    : bomberEmotion === "angry"
+                      ? "29%"
+                      : "33%",
+                right:
+                  bomberEmotion === "scared"
+                    ? "39%"
+                    : bomberEmotion === "angry"
+                      ? "29%"
+                      : "33%",
                 bottom: bomberEmotion === "sad" ? "19%" : "23%",
-                height: bomberEmotion === "angry" ? 0 : bomberEmotion === "scared" ? "14%" : "10%",
+                height:
+                  bomberEmotion === "angry"
+                    ? 0
+                    : bomberEmotion === "scared"
+                      ? "14%"
+                      : "10%",
                 border: "1.5px solid rgba(255,255,255,0.88)",
                 borderTop:
                   bomberEmotion === "sad"
@@ -654,9 +761,12 @@ export function BomberContent() {
                   zIndex: 4,
                 }}
               >
-                {translate("win26.bomberUi.bubbleRun" as any, {
-                  time: nextBombSeconds,
-                } as any)}
+                {translate(
+                  "win26.bomberUi.bubbleRun" as any,
+                  {
+                    time: nextBombSeconds,
+                  } as any,
+                )}
                 <div
                   style={{
                     position: "absolute",
@@ -680,23 +790,57 @@ export function BomberContent() {
 
   if (game.phase === "idle") {
     return (
-      <div className="font-mac flex flex-col flex-1 min-h-0 items-center justify-center gap-5 p-6" style={{ background: "#0B0B0F" }}>
+      <div
+        className="font-mac flex flex-col flex-1 min-h-0 items-center justify-center gap-5 p-6"
+        style={{ background: "#0B0B0F" }}
+      >
         <div className="text-center">
           <div style={{ fontSize: 48 }}>💣</div>
-          <div style={{ color: "white", fontWeight: 700, fontSize: isMobile ? 20 : 24, marginTop: 8 }}>
+          <div
+            style={{
+              color: "white",
+              fontWeight: 700,
+              fontSize: isMobile ? 20 : 24,
+              marginTop: 8,
+            }}
+          >
             {translate("win26.games.bomber.name" as any)}
           </div>
-          <div style={{ color: "rgba(255,255,255,0.42)", fontSize: 12, marginTop: 6, maxWidth: 360, lineHeight: 1.6 }}>
+          <div
+            style={{
+              color: "rgba(255,255,255,0.42)",
+              fontSize: 12,
+              marginTop: 6,
+              maxWidth: 360,
+              lineHeight: 1.6,
+            }}
+          >
             {translate("win26.bomberUi.subtitle" as any)}
           </div>
         </div>
         <button
           onClick={() => resetGame(true)}
-          style={{ background: "#F97316", color: "#111827", border: "none", borderRadius: 10, padding: "12px 34px", fontSize: 14, fontWeight: 700, cursor: "pointer" }}
+          style={{
+            background: "#F97316",
+            color: "#111827",
+            border: "none",
+            borderRadius: 10,
+            padding: "12px 34px",
+            fontSize: 14,
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
         >
           {translate("win26.gameUi.startGame" as any)}
         </button>
-        <div style={{ color: "rgba(255,255,255,0.28)", fontSize: 11, textAlign: "center", maxWidth: 420 }}>
+        <div
+          style={{
+            color: "rgba(255,255,255,0.28)",
+            fontSize: 11,
+            textAlign: "center",
+            maxWidth: 420,
+          }}
+        >
           {isMobile
             ? translate("win26.bomberUi.instructionsMobile" as any)
             : translate("win26.bomberUi.instructionsDesktop" as any)}
@@ -715,15 +859,38 @@ export function BomberContent() {
         gap: isMobile ? 4 : 10,
       }}
     >
-      <div className="flex items-center gap-2 w-full" style={{ maxWidth: isMobile ? "100%" : boardPx.width }}>
-        <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.30)" }}>
+      <div
+        className="flex items-center gap-2 w-full"
+        style={{ maxWidth: isMobile ? "100%" : boardPx.width }}
+      >
+        <span
+          className="text-[10px] font-bold tracking-widest uppercase"
+          style={{ color: "rgba(255,255,255,0.30)" }}
+        >
           {translate("win26.gameUi.score" as any)}
         </span>
-        <span style={{ color: "#F97316", fontFamily: "monospace", fontSize: isMobile ? 16 : 22, fontWeight: 700, lineHeight: 1 }}>
+        <span
+          style={{
+            color: "#F97316",
+            fontFamily: "monospace",
+            fontSize: isMobile ? 16 : 22,
+            fontWeight: 700,
+            lineHeight: 1,
+          }}
+        >
           {game.score}
         </span>
         <div className="flex-1" />
-        <button onClick={() => resetGame(true)} className="font-mac rounded-[6px] border-none cursor-pointer" style={{ background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.45)", fontSize: isMobile ? 10 : 11, padding: isMobile ? "4px 8px" : "4px 10px" }}>
+        <button
+          onClick={() => resetGame(true)}
+          className="font-mac rounded-[6px] border-none cursor-pointer"
+          style={{
+            background: "rgba(255,255,255,0.07)",
+            color: "rgba(255,255,255,0.45)",
+            fontSize: isMobile ? 10 : 11,
+            padding: isMobile ? "4px 8px" : "4px 10px",
+          }}
+        >
           {translate("win26.gameUi.restart" as any)}
         </button>
       </div>
@@ -752,23 +919,34 @@ export function BomberContent() {
               width: 7,
               height: 7,
               borderRadius: 999,
-              background: activeBombCount > 0 ? "#F97316" : "rgba(255,255,255,0.32)",
+              background:
+                activeBombCount > 0 ? "#F97316" : "rgba(255,255,255,0.32)",
               boxShadow:
                 activeBombCount > 0 ? "0 0 8px rgba(249,115,22,0.75)" : "none",
               flexShrink: 0,
             }}
           />
-          <span style={{ color: "white", fontSize: isMobile ? 9 : 12, fontWeight: 700 }}>
+          <span
+            style={{
+              color: "white",
+              fontSize: isMobile ? 9 : 12,
+              fontWeight: 700,
+            }}
+          >
             {translate(bombStatusKey, { count: activeBombCount } as any)}
           </span>
         </div>
 
         {!isMobile && (
-          <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.54)", fontSize: 11 }}>
+          <div
+            className="flex items-center gap-2"
+            style={{ color: "rgba(255,255,255,0.54)", fontSize: 11 }}
+          >
             <span>{translate("win26.bomberUi.bombFuse" as any)}</span>
             <span
               style={{
-                color: activeBombCount > 0 ? "#FDBA74" : "rgba(255,255,255,0.36)",
+                color:
+                  activeBombCount > 0 ? "#FDBA74" : "rgba(255,255,255,0.36)",
                 fontFamily: "monospace",
                 fontSize: 14,
                 fontWeight: 700,
@@ -791,7 +969,13 @@ export function BomberContent() {
             }}
           >
             <span style={{ fontSize: isMobile ? 9 : 12 }}>🔥</span>
-            <span style={{ color: "rgba(255,255,255,0.84)", fontSize: isMobile ? 9 : 11, fontWeight: 700 }}>
+            <span
+              style={{
+                color: "rgba(255,255,255,0.84)",
+                fontSize: isMobile ? 9 : 11,
+                fontWeight: 700,
+              }}
+            >
               {translate("win26.bomberUi.rangePower" as any)} {game.bombPower}
             </span>
           </div>
@@ -804,20 +988,38 @@ export function BomberContent() {
             }}
           >
             <span style={{ fontSize: isMobile ? 9 : 12 }}>💣</span>
-            <span style={{ color: "rgba(255,255,255,0.84)", fontSize: isMobile ? 9 : 11, fontWeight: 700 }}>
-              {translate("win26.bomberUi.stockPower" as any)} {game.bombCapacity}
+            <span
+              style={{
+                color: "rgba(255,255,255,0.84)",
+                fontSize: isMobile ? 9 : 11,
+                fontWeight: 700,
+              }}
+            >
+              {translate("win26.bomberUi.stockPower" as any)}{" "}
+              {game.bombCapacity}
             </span>
           </div>
         </div>
 
         {isMobile && activeBombCount > 0 && (
-          <span style={{ color: "#FDBA74", fontFamily: "monospace", fontSize: 10, fontWeight: 700, marginLeft: "auto" }}>
+          <span
+            style={{
+              color: "#FDBA74",
+              fontFamily: "monospace",
+              fontSize: 10,
+              fontWeight: 700,
+              marginLeft: "auto",
+            }}
+          >
             {nextBombSeconds}s
           </span>
         )}
 
         {!isMobile && (
-          <div className="flex items-center gap-2 flex-wrap justify-end ml-auto" style={{ color: "rgba(255,255,255,0.44)", fontSize: 11 }}>
+          <div
+            className="flex items-center gap-2 flex-wrap justify-end ml-auto"
+            style={{ color: "rgba(255,255,255,0.44)", fontSize: 11 }}
+          >
             {rangePowerUp && (
               <span>{translate("win26.bomberUi.rangeDrop" as any)}</span>
             )}
@@ -863,8 +1065,13 @@ export function BomberContent() {
           </div>
 
           {(game.phase === "won" || game.phase === "dead") && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl px-4" style={{ background: "rgba(0,0,0,0.82)" }}>
-              <div style={{ fontSize: 42 }}>{game.phase === "won" ? "🎉" : "💥"}</div>
+            <div
+              className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl px-4"
+              style={{ background: "rgba(0,0,0,0.82)" }}
+            >
+              <div style={{ fontSize: 42 }}>
+                {game.phase === "won" ? "🎉" : "💥"}
+              </div>
               <div style={{ color: "white", fontWeight: 700, fontSize: 20 }}>
                 {translate(
                   game.phase === "won"
@@ -872,14 +1079,28 @@ export function BomberContent() {
                     : ("win26.gameUi.gameOver" as any),
                 )}
               </div>
-              <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 12, textAlign: "center", maxWidth: 320 }}>
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.45)",
+                  fontSize: 12,
+                  textAlign: "center",
+                  maxWidth: 320,
+                }}
+              >
                 {translate(
                   game.phase === "won"
                     ? ("win26.bomberUi.winBody" as any)
                     : ("win26.bomberUi.loseBody" as any),
                 )}
               </div>
-              <div style={{ color: "#F97316", fontFamily: "monospace", fontSize: 24, fontWeight: 700 }}>
+              <div
+                style={{
+                  color: "#F97316",
+                  fontFamily: "monospace",
+                  fontSize: 24,
+                  fontWeight: 700,
+                }}
+              >
                 {game.score}
               </div>
               <div style={{ width: "100%", maxWidth: 340 }}>
@@ -896,10 +1117,21 @@ export function BomberContent() {
                 />
               </div>
               <div className="flex gap-2 mt-1">
-                <button onClick={() => resetGame(true)} className="font-mac text-[12px] px-4 py-1.5 rounded-[8px] border-none cursor-pointer font-semibold" style={{ background: "#F97316", color: "#111827" }}>
+                <button
+                  onClick={() => resetGame(true)}
+                  className="font-mac text-[12px] px-4 py-1.5 rounded-[8px] border-none cursor-pointer font-semibold"
+                  style={{ background: "#F97316", color: "#111827" }}
+                >
                   {translate("win26.gameUi.playAgain" as any)}
                 </button>
-                <button onClick={() => resetGame(false)} className="font-mac text-[12px] px-4 py-1.5 rounded-[8px] border-none cursor-pointer" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.65)" }}>
+                <button
+                  onClick={() => resetGame(false)}
+                  className="font-mac text-[12px] px-4 py-1.5 rounded-[8px] border-none cursor-pointer"
+                  style={{
+                    background: "rgba(255,255,255,0.08)",
+                    color: "rgba(255,255,255,0.65)",
+                  }}
+                >
                   {translate("win26.gameUi.menu" as any)}
                 </button>
               </div>
@@ -909,21 +1141,109 @@ export function BomberContent() {
       </div>
 
       {isMobile ? (
-        <div className="flex items-center justify-center gap-2 shrink-0" style={{ touchAction: "none", paddingTop: 0 }}>
+        <div
+          className="flex items-center justify-center gap-2 shrink-0"
+          style={{ touchAction: "none", paddingTop: 0 }}
+        >
           <div className="grid grid-cols-3 gap-1" style={{ width: 126 }}>
             <div />
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(0, -1); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▲</button>
+            <button
+              onPointerDown={(e) => {
+                e.preventDefault();
+                movePlayer(0, -1);
+              }}
+              className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer"
+              style={{
+                width: 40,
+                height: 40,
+                background: "rgba(255,255,255,0.07)",
+                color: "rgba(255,255,255,0.72)",
+                fontSize: 16,
+              }}
+            >
+              ▲
+            </button>
             <div />
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(-1, 0); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>◀</button>
-            <button onPointerDown={(e) => { e.preventDefault(); placeBomb(); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer font-semibold" style={{ width: 40, height: 40, background: activeBombCount > 0 ? "rgba(249,115,22,0.34)" : "rgba(249,115,22,0.24)", color: "#FDBA74", fontSize: 15, boxShadow: activeBombCount > 0 ? "0 0 0 1px rgba(249,115,22,0.32) inset, 0 0 18px rgba(249,115,22,0.22)" : "none" }}>💣</button>
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(1, 0); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▶</button>
+            <button
+              onPointerDown={(e) => {
+                e.preventDefault();
+                movePlayer(-1, 0);
+              }}
+              className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer"
+              style={{
+                width: 40,
+                height: 40,
+                background: "rgba(255,255,255,0.07)",
+                color: "rgba(255,255,255,0.72)",
+                fontSize: 16,
+              }}
+            >
+              ◀
+            </button>
+            <button
+              onPointerDown={(e) => {
+                e.preventDefault();
+                placeBomb();
+              }}
+              className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer font-semibold"
+              style={{
+                width: 40,
+                height: 40,
+                background:
+                  activeBombCount > 0
+                    ? "rgba(249,115,22,0.34)"
+                    : "rgba(249,115,22,0.24)",
+                color: "#FDBA74",
+                fontSize: 15,
+                boxShadow:
+                  activeBombCount > 0
+                    ? "0 0 0 1px rgba(249,115,22,0.32) inset, 0 0 18px rgba(249,115,22,0.22)"
+                    : "none",
+              }}
+            >
+              💣
+            </button>
+            <button
+              onPointerDown={(e) => {
+                e.preventDefault();
+                movePlayer(1, 0);
+              }}
+              className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer"
+              style={{
+                width: 40,
+                height: 40,
+                background: "rgba(255,255,255,0.07)",
+                color: "rgba(255,255,255,0.72)",
+                fontSize: 16,
+              }}
+            >
+              ▶
+            </button>
             <div />
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(0, 1); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▼</button>
+            <button
+              onPointerDown={(e) => {
+                e.preventDefault();
+                movePlayer(0, 1);
+              }}
+              className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer"
+              style={{
+                width: 40,
+                height: 40,
+                background: "rgba(255,255,255,0.07)",
+                color: "rgba(255,255,255,0.72)",
+                fontSize: 16,
+              }}
+            >
+              ▼
+            </button>
             <div />
           </div>
         </div>
       ) : (
-        <div className="text-[11px] text-center" style={{ color: "rgba(255,255,255,0.24)" }}>
+        <div
+          className="text-[11px] text-center"
+          style={{ color: "rgba(255,255,255,0.24)" }}
+        >
           {translate("win26.bomberUi.instructionsDesktop" as any)}
         </div>
       )}

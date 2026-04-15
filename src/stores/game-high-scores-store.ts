@@ -24,7 +24,10 @@ interface GameHighScoreState {
   playerName: string;
   scores: Record<GameScoreKey, GameHighScoreEntry[]>;
   setPlayerName: (playerName: string) => void;
-  saveScore: (scoreKey: GameScoreKey, entry: Omit<GameHighScoreEntry, "id" | "createdAt">) => void;
+  saveScore: (
+    scoreKey: GameScoreKey,
+    entry: Omit<GameHighScoreEntry, "id" | "createdAt">,
+  ) => void;
 }
 
 const SCORE_LIMIT = 10;

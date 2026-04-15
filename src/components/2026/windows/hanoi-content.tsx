@@ -4,7 +4,11 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "../hooks";
 import { GameHighScorePanel } from "../components/game-high-score-panel";
-import { isBetterScore, type GameScoreKey, useGameHighScoresStore } from "@/stores";
+import {
+  isBetterScore,
+  type GameScoreKey,
+  useGameHighScoresStore,
+} from "@/stores";
 import { translate, useLocaleRefresh } from "@/i18n";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -359,9 +363,12 @@ export function HanoiContent() {
                   ))}
                 </div>
                 <span style={{ color: "rgba(255,255,255,0.32)", fontSize: 11 }}>
-                  {translate(`win26.hanoiUi.difficulties.${d.key}.sublabel` as any, {
-                    count: d.minMoves,
-                  })}
+                  {translate(
+                    `win26.hanoiUi.difficulties.${d.key}.sublabel` as any,
+                    {
+                      count: d.minMoves,
+                    },
+                  )}
                 </span>
               </div>
             </button>
@@ -701,9 +708,12 @@ export function HanoiContent() {
                 })}
                 accentColor="#C084FC"
                 currentValue={moves}
-                currentDisplayValue={translate("win26.hanoiUi.movesCount" as any, {
-                  count: moves,
-                })}
+                currentDisplayValue={translate(
+                  "win26.hanoiUi.movesCount" as any,
+                  {
+                    count: moves,
+                  },
+                )}
                 runToken={runToken}
                 canSubmit={phase === "won" && moves > 0}
                 isRecord={isNewRecord}
@@ -739,7 +749,6 @@ export function HanoiContent() {
               }}
             />
           );
-
         })()}
 
       {/* Hint */}

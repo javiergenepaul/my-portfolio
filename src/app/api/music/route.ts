@@ -57,10 +57,7 @@ type ItunesResponse = {
 };
 
 function toTitleCase(value: string) {
-  return value
-    .replace(/[_-]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return value.replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
 function parseTrackMeta(fileName: string, collection: string) {

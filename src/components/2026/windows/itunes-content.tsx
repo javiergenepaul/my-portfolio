@@ -120,11 +120,12 @@ export function ItunesContent() {
       const response = await fetch("/api/music", { cache: "no-store" });
       if (!response.ok) throw new Error("request_failed");
       const data = (await response.json()) as MusicResponse;
-      const defaultTrack = data.tracks.find(isDefaultTrack) ?? data.tracks[0] ?? null;
+      const defaultTrack =
+        data.tracks.find(isDefaultTrack) ?? data.tracks[0] ?? null;
       const sessionTrack = itunesSessionState.currentTrackId
-        ? data.tracks.find(
+        ? (data.tracks.find(
             (track) => track.id === itunesSessionState.currentTrackId,
-          ) ?? null
+          ) ?? null)
         : null;
       const nextTrack = sessionTrack ?? defaultTrack;
 
@@ -145,7 +146,9 @@ export function ItunesContent() {
         setIsPlaying(false);
       } else if (nextTrack) {
         setActiveCollection(
-          itunesSessionState.activeCollection || nextTrack.collection || DEFAULT_COLLECTION,
+          itunesSessionState.activeCollection ||
+            nextTrack.collection ||
+            DEFAULT_COLLECTION,
         );
         setIsPlaying(itunesSessionState.isPlaying);
       }
@@ -165,7 +168,6 @@ export function ItunesContent() {
     setCurrentTime(audio.currentTime || 0);
     setDuration(audio.duration || 0);
     setAudioReady(true);
-
   }, []);
 
   useEffect(() => {
@@ -245,7 +247,9 @@ export function ItunesContent() {
         setIsPlaying(false);
         return;
       }
-      const index = visibleTracks.findIndex((track) => track.id === currentTrackId);
+      const index = visibleTracks.findIndex(
+        (track) => track.id === currentTrackId,
+      );
       const nextTrack = visibleTracks[(index + 1) % visibleTracks.length];
       setCurrentTrackId(nextTrack?.id ?? null);
       setIsPlaying(Boolean(nextTrack));
@@ -307,8 +311,12 @@ export function ItunesContent() {
           className="shrink-0 bg-a26-sidebar border-a26-glass-border"
           style={{
             width: isMobile ? "100%" : 220,
-            borderRight: isMobile ? "none" : "1px solid var(--a26-glass-border)",
-            borderBottom: isMobile ? "1px solid var(--a26-glass-border)" : "none",
+            borderRight: isMobile
+              ? "none"
+              : "1px solid var(--a26-glass-border)",
+            borderBottom: isMobile
+              ? "1px solid var(--a26-glass-border)"
+              : "none",
           }}
         >
           <div className="flex items-center gap-2 px-4 py-3 border-b border-a26-glass-border">
@@ -316,7 +324,8 @@ export function ItunesContent() {
               className="flex items-center justify-center w-8 h-8 rounded-[10px]"
               style={{
                 background: "color-mix(in srgb, #EC4899 16%, transparent)",
-                border: "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
+                border:
+                  "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
               }}
             >
               <Headphones size={16} color="#EC4899" />
@@ -386,8 +395,12 @@ export function ItunesContent() {
                       className="w-2 h-2 rounded-full"
                       style={{ background: "#EC4899", opacity: 0.9 }}
                     />
-                    <span className="flex-1 text-[12px] truncate">{collection}</span>
-                    <span className="text-[10px] opacity-70">{collectionCount}</span>
+                    <span className="flex-1 text-[12px] truncate">
+                      {collection}
+                    </span>
+                    <span className="text-[10px] opacity-70">
+                      {collectionCount}
+                    </span>
                   </button>
                 );
               })}
@@ -432,7 +445,9 @@ export function ItunesContent() {
             ) : error ? (
               <div className="flex h-full min-h-52 flex-col items-center justify-center gap-3 text-center px-6">
                 <AlertCircle size={18} color="#FB7185" />
-                <div className="text-a26-text text-[13px] font-medium">{error}</div>
+                <div className="text-a26-text text-[13px] font-medium">
+                  {error}
+                </div>
                 <button
                   onClick={() => void loadTracks()}
                   className="font-mac bg-a26-glass border border-a26-glass-border rounded-[9px] cursor-pointer px-3 py-1.75 text-[11px] text-a26-text"
@@ -446,7 +461,8 @@ export function ItunesContent() {
                   className="flex items-center justify-center w-14 h-14 rounded-[18px]"
                   style={{
                     background: "color-mix(in srgb, #EC4899 12%, transparent)",
-                    border: "1px solid color-mix(in srgb, #EC4899 22%, transparent)",
+                    border:
+                      "1px solid color-mix(in srgb, #EC4899 22%, transparent)",
                   }}
                 >
                   <Headphones size={28} color="#EC4899" />
@@ -488,7 +504,10 @@ export function ItunesContent() {
                         {active && isPlaying ? (
                           <Pause size={15} color="white" />
                         ) : (
-                          <Play size={15} color={active ? "white" : "#EC4899"} />
+                          <Play
+                            size={15}
+                            color={active ? "white" : "#EC4899"}
+                          />
                         )}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -496,14 +515,18 @@ export function ItunesContent() {
                           <span className="text-a26-text text-[13px] font-semibold truncate">
                             {track.title}
                           </span>
-                          <span className="text-a26-muted text-[10px] shrink-0">#{index + 1}</span>
+                          <span className="text-a26-muted text-[10px] shrink-0">
+                            #{index + 1}
+                          </span>
                           {track.preview && (
                             <span
                               className="shrink-0 rounded-[5px] px-1.5 py-0.5 text-[9px] font-semibold tracking-wide"
                               style={{
-                                background: "color-mix(in srgb, #EC4899 14%, transparent)",
+                                background:
+                                  "color-mix(in srgb, #EC4899 14%, transparent)",
                                 color: "#EC4899",
-                                border: "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
+                                border:
+                                  "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
                               }}
                             >
                               30s
@@ -529,7 +552,8 @@ export function ItunesContent() {
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <div className="min-w-0 flex-1">
                 <div className="text-a26-text text-[13px] font-semibold truncate">
-                  {currentTrack?.title ?? translate("win26.itunes.nothingPlaying")}
+                  {currentTrack?.title ??
+                    translate("win26.itunes.nothingPlaying")}
                 </div>
                 <div className="text-a26-mid text-[11px] mt-1 truncate">
                   {currentTrack
@@ -551,7 +575,8 @@ export function ItunesContent() {
                   disabled={!currentTrack}
                   className="font-mac border-none flex h-10 w-10 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
                   style={{
-                    background: "linear-gradient(160deg, #FB7185 0%, #C026D3 100%)",
+                    background:
+                      "linear-gradient(160deg, #FB7185 0%, #C026D3 100%)",
                     color: "white",
                   }}
                 >
@@ -589,7 +614,8 @@ export function ItunesContent() {
                   className="h-full rounded-full"
                   style={{
                     width: `${Math.min(progress, 100)}%`,
-                    background: "linear-gradient(90deg, #FB7185 0%, #C026D3 100%)",
+                    background:
+                      "linear-gradient(90deg, #FB7185 0%, #C026D3 100%)",
                   }}
                 />
               </div>
