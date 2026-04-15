@@ -186,7 +186,8 @@ export function BomberContent() {
     (state) => state.scores.bomber?.[0]?.value ?? null,
   );
   const isNewRecord =
-    game.phase === "won" && isBetterScore("bomber", game.score, bomberBest);
+    (game.phase === "won" || game.phase === "dead") &&
+    isBetterScore("bomber", game.score, bomberBest);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -1111,7 +1112,10 @@ export function BomberContent() {
                   currentValue={game.score}
                   currentDisplayValue={`${game.score}`}
                   runToken={runToken}
-                  canSubmit={game.phase === "won" && game.score > 0}
+                  canSubmit={
+                    (game.phase === "won" || game.phase === "dead") &&
+                    game.score > 0
+                  }
                   isRecord={isNewRecord}
                   note={translate("win26.bomberUi.saveNote" as any)}
                 />

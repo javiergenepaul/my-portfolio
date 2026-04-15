@@ -1243,7 +1243,7 @@
       "cleared": "Stage Cleared!",
       "winBody": "The enemy is down, the exit is open, and the maze is yours.",
       "loseBody": "One blast too close. Try a cleaner route and time the bomb better.",
-      "saveNote": "Winning runs are saved to the Bomber GPM leaderboard."
+      "saveNote": "Finished runs with a score can be saved to the Bomber GPM leaderboard."
     }
   }
 }
