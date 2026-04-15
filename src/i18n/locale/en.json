@@ -857,6 +857,51 @@
 
   "availableSoon": "Available Soon",
   "win26": {
+    "menu": {
+      "file": "File",
+      "newTerminalWindow": "New Terminal Window",
+      "openResumeBuilder": "Open Resume Builder",
+      "closeAllWindows": "Close All Windows",
+      "view": "View",
+      "exitFullScreen": "Exit Full Screen",
+      "enterFullScreen": "Enter Full Screen",
+      "commandPalette": "Command Palette",
+      "restoreAllWindows": "Restore All Windows",
+      "go": "Go",
+      "window": "Window",
+      "cycleWindows": "Cycle Windows",
+      "minimizeAll": "Minimize All",
+      "restoreAll": "Restore All"
+    },
+    "commandPalette": {
+      "open": "Open {title}",
+      "viewGithub": "View GitHub",
+      "viewLinkedin": "View LinkedIn",
+      "sendEmail": "Send Email",
+      "searchPlaceholder": "Search commands...",
+      "noResults": "No results found."
+    },
+    "contextMenu": {
+      "open": "Open",
+      "arrangeIcons": "Arrange Icons",
+      "resetPosition": "Reset Position"
+    },
+    "trafficLights": {
+      "close": "Close",
+      "minimize": "Minimize",
+      "maximize": "Maximize"
+    },
+    "dock": {
+      "github": "GitHub"
+    },
+    "mobile": {
+      "location": "Cebu, Philippines",
+      "home": "Home",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    },
+    "skipToContent": "Skip to content",
     "windows": {
       "about": "About Me",
       "projects": "Projects",

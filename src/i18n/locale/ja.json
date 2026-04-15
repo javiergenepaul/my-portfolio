@@ -857,6 +857,51 @@
   },
   "availableSoon": "近日発売予定",
   "win26": {
+    "menu": {
+      "file": "ファイル",
+      "newTerminalWindow": "新しいターミナルウィンドウ",
+      "openResumeBuilder": "履歴書ビルダーを開く",
+      "closeAllWindows": "すべてのウィンドウを閉じる",
+      "view": "表示",
+      "exitFullScreen": "フルスクリーン終了",
+      "enterFullScreen": "フルスクリーン",
+      "commandPalette": "コマンドパレット",
+      "restoreAllWindows": "すべてのウィンドウを復元",
+      "go": "移動",
+      "window": "ウィンドウ",
+      "cycleWindows": "ウィンドウを切り替え",
+      "minimizeAll": "すべて最小化",
+      "restoreAll": "すべて復元"
+    },
+    "commandPalette": {
+      "open": "{title}を開く",
+      "viewGithub": "GitHubを見る",
+      "viewLinkedin": "LinkedInを見る",
+      "sendEmail": "メールを送る",
+      "searchPlaceholder": "コマンドを検索...",
+      "noResults": "結果が見つかりません。"
+    },
+    "contextMenu": {
+      "open": "開く",
+      "arrangeIcons": "アイコンを整列",
+      "resetPosition": "位置をリセット"
+    },
+    "trafficLights": {
+      "close": "閉じる",
+      "minimize": "最小化",
+      "maximize": "最大化"
+    },
+    "dock": {
+      "github": "GitHub"
+    },
+    "mobile": {
+      "location": "フィリピン、セブ",
+      "home": "ホーム",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "メール"
+    },
+    "skipToContent": "コンテンツへスキップ",
     "windows": {
       "about": "私について",
       "projects": "プロジェクト",
