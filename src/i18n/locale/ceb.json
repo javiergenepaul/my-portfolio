@@ -1216,7 +1216,18 @@
       "instructionsMobile": "Tap: liko · Swipe ←→: lihok · Swipe ↓: soft drop · Paspas nga ↓: hard drop",
       "instructionsDesktop": "← → lihok · ↑ o Z: liko · ↓ soft drop · Space: hard drop · C: hold",
       "holdHint": "Pindota ang C aron mag-hold",
-      "saveNote": "I-save ang board human sa game over."
+      "saveNote": "I-save ang board human sa game over.",
+      "comboStat": "Combo",
+      "comboCount": "Combo x{{count}}",
+      "comboLines": "{{count}} line clear",
+      "comboBonus": "+{{points}} bonus",
+      "comboLabels": {
+        "1": "Combo",
+        "2": "Smash",
+        "3": "Crusher",
+        "4": "Frenzy",
+        "5": "Unstoppable"
+      }
     },
     "bomberUi": {
       "subtitle": "Usa ka Bomberman-inspired nga maze run. Pabuthon ang mga kahon, likayi ang imong kaugalingong pagbuto, ug ablihi ang agianan paingon sa exit.",

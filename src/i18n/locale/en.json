@@ -1214,7 +1214,18 @@
       "instructionsMobile": "Tap: rotate · Swipe ←→: move · Swipe ↓: soft drop · Fast swipe ↓: hard drop",
       "instructionsDesktop": "← → move · ↑ or Z: rotate · ↓ soft drop · Space: hard drop · C: hold",
       "holdHint": "Press C to hold",
-      "saveNote": "Save the board after a game over."
+      "saveNote": "Save the board after a game over.",
+      "comboStat": "Combo",
+      "comboCount": "Combo x{{count}}",
+      "comboLines": "{{count}} line clear",
+      "comboBonus": "+{{points}} bonus",
+      "comboLabels": {
+        "1": "Combo",
+        "2": "Smash",
+        "3": "Crusher",
+        "4": "Frenzy",
+        "5": "Unstoppable"
+      }
     },
     "bomberUi": {
       "subtitle": "A Bomberman-inspired maze run. Blast crates, dodge your own explosions, and clear the path to the exit.",

@@ -149,14 +149,21 @@ export function TetrisContent() {
   const isMobile = useIsMobile();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const comboTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [cellSz, setCellSz] = useState(22);
 
   // Display state (drives UI re-renders)
   const [score, setScore] = useState(0);
   const [level, setLevel] = useState(1);
   const [lines, setLines] = useState(0);
+  const [combo, setCombo] = useState(0);
   const [nextT, setNextT] = useState("I");
   const [holdT, setHoldT] = useState<string | null>(null);
+  const [comboBanner, setComboBanner] = useState<{
+    title: string;
+    detail: string;
+    accent: string;
+  } | null>(null);
   const [phase, setPhase] = useState<"idle" | "playing" | "paused" | "dead">(
     "idle",
   );
@@ -177,6 +184,7 @@ export function TetrisContent() {
     score: 0,
     level: 1,
     lines: 0,
+    combo: 0,
     phase: "idle" as "idle" | "playing" | "paused" | "dead",
   });
 
@@ -275,8 +283,34 @@ export function TetrisContent() {
     setScore(g.score);
     setLevel(g.level);
     setLines(g.lines);
+    setCombo(g.combo);
     setNextT(g.next);
     setHoldT(g.hold);
+  };
+
+  const showComboBanner = (streak: number, cleared: number, bonus: number) => {
+    const tier = Math.min(Math.max(streak, 1), 5);
+    const title = translate(`win26.tetrisUi.comboLabels.${tier}` as any);
+    const detailParts = [
+      translate("win26.tetrisUi.comboCount" as any, { count: streak }),
+      translate("win26.tetrisUi.comboLines" as any, { count: cleared }),
+    ];
+
+    if (bonus > 0) {
+      detailParts.push(
+        translate("win26.tetrisUi.comboBonus" as any, { points: bonus }),
+      );
+    }
+
+    const accentByTier = ["#D500F9", "#FF4FD8", "#FF7A18", "#FFD600", "#00E5FF"];
+    setComboBanner({
+      title,
+      detail: detailParts.join(" • "),
+      accent: accentByTier[tier - 1],
+    });
+
+    if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+    comboTimeoutRef.current = setTimeout(() => setComboBanner(null), 1350);
   };
 
   // ── Lock current piece ──────────────────────────────────────────────────────
@@ -299,9 +333,15 @@ export function TetrisContent() {
       } else r--;
     }
     if (cleared) {
-      g.score += LINE_PTS[cleared] * g.level;
+      const nextCombo = g.combo + 1;
+      const comboBonus = nextCombo > 1 ? (nextCombo - 1) * 50 * g.level : 0;
+      g.combo = nextCombo;
+      g.score += LINE_PTS[cleared] * g.level + comboBonus;
       g.lines += cleared;
       g.level = Math.floor(g.lines / 10) + 1;
+      showComboBanner(nextCombo, cleared, comboBonus);
+    } else {
+      g.combo = 0;
     }
 
     g.canHold = true;
@@ -475,6 +515,12 @@ export function TetrisContent() {
     act.current.draw();
   }, [cellSz]);
 
+  useEffect(() => {
+    return () => {
+      if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+    };
+  }, []);
+
   // ── Start / restart ──────────────────────────────────────────────────────────
 
   const startGame = () => {
@@ -489,7 +535,9 @@ export function TetrisContent() {
     g.score = 0;
     g.level = 1;
     g.lines = 0;
+    g.combo = 0;
     g.phase = "playing";
+    setComboBanner(null);
     setPhase("playing");
     act.current.draw();
     act.current.sync();
@@ -756,6 +804,48 @@ export function TetrisContent() {
             style={{ display: "block" }}
           />
 
+          {comboBanner && phase === "playing" && (
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: isMobile ? 12 : 18,
+                transform: "translateX(-50%)",
+                padding: isMobile ? "8px 12px" : "10px 14px",
+                borderRadius: 14,
+                border: `1px solid color-mix(in srgb, ${comboBanner.accent} 44%, transparent)`,
+                background: "rgba(6,6,6,0.84)",
+                boxShadow: `0 12px 24px color-mix(in srgb, ${comboBanner.accent} 22%, transparent)`,
+                backdropFilter: "blur(10px)",
+                textAlign: "center",
+                pointerEvents: "none",
+                minWidth: isMobile ? 150 : 180,
+              }}
+            >
+              <div
+                style={{
+                  color: comboBanner.accent,
+                  fontSize: isMobile ? 16 : 18,
+                  fontWeight: 800,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {comboBanner.title}
+              </div>
+              <div
+                style={{
+                  color: "rgba(255,255,255,0.62)",
+                  fontSize: isMobile ? 10 : 11,
+                  marginTop: 4,
+                  letterSpacing: "0.03em",
+                }}
+              >
+                {comboBanner.detail}
+              </div>
+            </div>
+          )}
+
           {/* Pause overlay */}
           {phase === "paused" && (
             <div
@@ -942,6 +1032,10 @@ export function TetrisContent() {
               label: translate("win26.gameUi.lines" as any),
               val: String(lines),
             },
+            {
+              label: translate("win26.tetrisUi.comboStat" as any),
+              val: combo > 0 ? `x${combo}` : "-",
+            },
           ].map(({ label, val }) => (
             <div key={label}>
               <PanelLabel>{label}</PanelLabel>
@@ -1049,6 +1143,10 @@ export function TetrisContent() {
                 { label: "Score", val: score.toLocaleString() },
                 { label: "Level", val: String(level) },
                 { label: "Lines", val: String(lines) },
+                {
+                  label: translate("win26.tetrisUi.comboStat" as any),
+                  val: combo > 0 ? `x${combo}` : "-",
+                },
               ].map(({ label, val }) => (
                 <div key={label} style={{ textAlign: "center" }}>
                   <div
