@@ -25,6 +25,7 @@ import { GamesContent } from "../windows/games-content";
 import { SnakeContent } from "../windows/snake-content";
 import { HanoiContent } from "../windows/hanoi-content";
 import { TetrisContent } from "../windows/tetris-content";
+import { JumpContent } from "../windows/jump-content";
 
 export function MobilePortfolio() {
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
@@ -265,6 +266,7 @@ export function MobilePortfolio() {
               {activeApp === "snake"    && <SnakeContent />}
               {activeApp === "hanoi"    && <HanoiContent />}
               {activeApp === "tetris"   && <TetrisContent />}
+              {activeApp === "jump"     && <JumpContent />}
             </div>
           </motion.div>
         )}

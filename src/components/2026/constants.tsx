@@ -149,7 +149,8 @@ export type WinId =
   | "games"
   | "snake"
   | "hanoi"
-  | "tetris";
+  | "tetris"
+  | "jump";
 
 export interface WinDef {
   id: WinId;
@@ -260,6 +261,15 @@ export const WIN_DEFS: WinDef[] = [
     icon: <LayoutGrid size={14} />,
     defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 240), y: 60 }),
     defaultSize: { w: 480, h: 560 },
+    hideIcon: true,
+  },
+  {
+    id: "jump",
+    title: "Endless Jump",
+    color: "#818CF8",
+    icon: <Zap size={14} />,
+    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 200), y: 55 }),
+    defaultSize: { w: 420, h: 560 },
     hideIcon: true,
   },
 ];

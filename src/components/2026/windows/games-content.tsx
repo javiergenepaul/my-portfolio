@@ -7,6 +7,7 @@ const GAMES: { id: WinId; name: string; desc: string }[] = [
   { id: "snake",  name: "Snake",           desc: "Classic retro snake game"       },
   { id: "hanoi",  name: "Tower of Hanoi",  desc: "Move all discs from A to C"     },
   { id: "tetris", name: "Tetris",          desc: "Stack & clear falling blocks"   },
+  { id: "jump",   name: "Endless Jump",   desc: "Climb platforms, don't fall!"   },
 ];
 
 export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {

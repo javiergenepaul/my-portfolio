@@ -35,6 +35,7 @@ const INIT_WINS: Record<WinId, WinState> = {
   snake:    { open: false, minimized: false, maximized: false, zIndex: 10 },
   hanoi:    { open: false, minimized: false, maximized: false, zIndex: 10 },
   tetris:   { open: false, minimized: false, maximized: false, zIndex: 10 },
+  jump:     { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
 // Only defs that get a desktop icon (excludes hideIcon: true entries)
@@ -209,6 +210,7 @@ export function Portfolio2026() {
     snake:    <Zap size={13} />,
     hanoi:    <HanoiIcon size={13} />,
   tetris:   <LayoutGrid size={13} />,
+  jump:     <Zap size={13} />,
   };
 
   const openDesktopMenu = useCallback((e: React.MouseEvent) => {

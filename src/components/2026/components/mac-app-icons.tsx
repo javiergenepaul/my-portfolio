@@ -402,6 +402,27 @@ function TetrisArt({ s }: { s: number }) {
   );
 }
 
+// Endless Jump — character jumping between platforms
+function JumpArt({ s }: { s: number }) {
+  const p = s * 0.66;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      {/* Platforms */}
+      <rect x="6"  y="68" width="28" height="7" rx="3.5" fill="white" opacity="0.85" />
+      <rect x="44" y="52" width="24" height="7" rx="3.5" fill="#C084FC" opacity="0.85" />
+      <rect x="16" y="36" width="26" height="7" rx="3.5" fill="#60A5FA" opacity="0.85" />
+      <rect x="46" y="20" width="22" height="7" rx="3.5" fill="#4ADE80" opacity="0.85" />
+      {/* Character body */}
+      <rect x="22" y="20" width="14" height="16" rx="5" fill="white" opacity="0.95" />
+      {/* Eyes */}
+      <circle cx="27" cy="26" r="2" fill="rgba(30,58,138,0.75)" />
+      <circle cx="33" cy="26" r="2" fill="rgba(30,58,138,0.75)" />
+      {/* Jump arc trail */}
+      <path d="M 14 64 Q 36 30 36 20" stroke="rgba(255,255,255,0.22)" strokeWidth="2" strokeDasharray="3 4" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 // GitHub — dark squircle with octocat-inspired silhouette
 function GitHubArt({ s }: { s: number }) {
   const p = s * 0.60;
@@ -494,6 +515,11 @@ const ICON_MAP: Record<
     g2: "#0D0D1A",
     shadow: "0 3px 14px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 0 1px rgba(0,229,255,0.15)",
     art: (s) => <TetrisArt s={s} />,
+  },
+  jump: {
+    g1: "#6366F1",
+    g2: "#3730A3",
+    art: (s) => <JumpArt s={s} />,
   },
   github: {
     g1: "#484848",
