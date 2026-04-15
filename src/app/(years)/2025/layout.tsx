@@ -35,9 +35,6 @@ export const metadata: Metadata = {
     "Material UI",
     "REST API developer",
   ],
-  icons: {
-    icon: [{ url: "/favicons/2025.svg", type: "image/svg+xml" }],
-  },
   alternates: { canonical: `${BASE_URL}/2025` },
   openGraph: {
     type: "website",

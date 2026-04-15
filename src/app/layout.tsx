@@ -66,7 +66,6 @@ export const metadata: Metadata = {
     "microservices",
   ],
   icons: {
-    icon: "/ghibli-avatar.png",
     apple: "/ghibli-avatar.png",
   },
   openGraph: {

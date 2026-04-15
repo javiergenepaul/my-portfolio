@@ -36,9 +36,6 @@ export const metadata: Metadata = {
     "Framer Motion",
     "web developer portfolio",
   ],
-  icons: {
-    icon: [{ url: "/favicons/2026.svg", type: "image/svg+xml" }],
-  },
   alternates: { canonical: `${BASE_URL}/2026` },
   openGraph: {
     type: "website",

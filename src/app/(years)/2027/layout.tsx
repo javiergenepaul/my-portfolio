@@ -31,9 +31,6 @@ export const metadata: Metadata = {
     "web developer portfolio",
     "Cebu developer",
   ],
-  icons: {
-    icon: [{ url: "/favicons/2026.svg", type: "image/svg+xml" }],
-  },
   alternates: { canonical: `${BASE_URL}/2027` },
   openGraph: {
     type: "website",

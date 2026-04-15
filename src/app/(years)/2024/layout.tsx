@@ -36,9 +36,6 @@ export const metadata: Metadata = {
     "REST API",
     "microservices",
   ],
-  icons: {
-    icon: [{ url: "/favicons/2024.svg", type: "image/svg+xml" }],
-  },
   alternates: { canonical: `${BASE_URL}/2024` },
   openGraph: {
     type: "website",
