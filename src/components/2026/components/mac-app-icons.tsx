@@ -183,15 +183,77 @@ function BooksArt({ s }: { s: number }) {
         rx="10"
         fill="rgba(255,255,255,0.22)"
       />
-      <rect x="18" y="18" width="10" height="42" rx="4" fill="white" opacity="0.96" />
-      <rect x="31" y="18" width="11" height="42" rx="4" fill="rgba(255,244,214,0.96)" />
-      <rect x="45" y="18" width="8" height="42" rx="4" fill="rgba(255,220,160,0.95)" />
-      <rect x="56" y="18" width="6" height="42" rx="3" fill="rgba(255,255,255,0.88)" />
-      <rect x="20" y="26" width="6" height="2.5" rx="1.25" fill="rgba(249,115,22,0.42)" />
-      <rect x="33" y="30" width="7" height="2.5" rx="1.25" fill="rgba(249,115,22,0.34)" />
-      <rect x="46" y="24" width="4" height="2.5" rx="1.25" fill="rgba(249,115,22,0.38)" />
-      <rect x="58" y="34" width="2.5" height="2.5" rx="1.25" fill="rgba(249,115,22,0.34)" />
-      <path d="M 16 62 H 64" stroke="rgba(255,255,255,0.58)" strokeWidth="2.5" strokeLinecap="round" />
+      <rect
+        x="18"
+        y="18"
+        width="10"
+        height="42"
+        rx="4"
+        fill="white"
+        opacity="0.96"
+      />
+      <rect
+        x="31"
+        y="18"
+        width="11"
+        height="42"
+        rx="4"
+        fill="rgba(255,244,214,0.96)"
+      />
+      <rect
+        x="45"
+        y="18"
+        width="8"
+        height="42"
+        rx="4"
+        fill="rgba(255,220,160,0.95)"
+      />
+      <rect
+        x="56"
+        y="18"
+        width="6"
+        height="42"
+        rx="3"
+        fill="rgba(255,255,255,0.88)"
+      />
+      <rect
+        x="20"
+        y="26"
+        width="6"
+        height="2.5"
+        rx="1.25"
+        fill="rgba(249,115,22,0.42)"
+      />
+      <rect
+        x="33"
+        y="30"
+        width="7"
+        height="2.5"
+        rx="1.25"
+        fill="rgba(249,115,22,0.34)"
+      />
+      <rect
+        x="46"
+        y="24"
+        width="4"
+        height="2.5"
+        rx="1.25"
+        fill="rgba(249,115,22,0.38)"
+      />
+      <rect
+        x="58"
+        y="34"
+        width="2.5"
+        height="2.5"
+        rx="1.25"
+        fill="rgba(249,115,22,0.34)"
+      />
+      <path
+        d="M 16 62 H 64"
+        stroke="rgba(255,255,255,0.58)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

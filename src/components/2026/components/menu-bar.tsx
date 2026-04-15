@@ -241,7 +241,9 @@ export function MenuBar({
               {WIN_DEFS.filter((d) => !d.hideIcon).map((def, i) => (
                 <MenuItem
                   key={def.id}
-                  label={translate(`win26.windows.${def.id}` as any) || def.title}
+                  label={
+                    translate(`win26.windows.${def.id}` as any) || def.title
+                  }
                   shortcut={`⌘${i + 1}`}
                   checked={wins[def.id].open && !wins[def.id].minimized}
                   onClick={() => act(() => onOpenWin(def.id))}
@@ -284,7 +286,9 @@ export function MenuBar({
               {WIN_DEFS.filter((d) => !d.hideIcon).map((def) => (
                 <MenuItem
                   key={def.id}
-                  label={translate(`win26.windows.${def.id}` as any) || def.title}
+                  label={
+                    translate(`win26.windows.${def.id}` as any) || def.title
+                  }
                   checked={wins[def.id].open && !wins[def.id].minimized}
                   onClick={() =>
                     act(() =>

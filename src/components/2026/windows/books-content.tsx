@@ -23,10 +23,8 @@ export function BooksContent() {
         <div
           className="flex items-center justify-center w-7 h-7 rounded-[8px]"
           style={{
-            background:
-              "color-mix(in srgb, #F97316 14%, transparent)",
-            border:
-              "1px solid color-mix(in srgb, #F97316 26%, transparent)",
+            background: "color-mix(in srgb, #F97316 14%, transparent)",
+            border: "1px solid color-mix(in srgb, #F97316 26%, transparent)",
           }}
         >
           <BookOpen size={14} color="#F97316" />
@@ -64,55 +62,62 @@ export function BooksContent() {
               translate(`win26.books.items.${bookId}.reflection` as any) ||
               book.reflection;
 
-            return <article
-              key={bookId}
-              className="bg-a26-card border border-a26-card-border rounded-xl p-4 flex flex-col gap-3"
-              style={{
-                boxShadow: "0 10px 28px rgba(0,0,0,0.18)",
-              }}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h2 className="text-a26-text text-[14px] font-semibold leading-[1.4] m-0">
-                    {title}
-                  </h2>
-                  <p className="text-a26-mid text-[11px] mt-1 mb-0">
-                    {author}
-                  </p>
-                </div>
-                <span
-                  className="shrink-0 text-[10px] font-semibold rounded-full px-2.5 py-1"
-                  style={{
-                    background:
-                      "color-mix(in srgb, #F97316 12%, transparent)",
-                    border:
-                      "1px solid color-mix(in srgb, #F97316 22%, transparent)",
-                    color: "#FDBA74",
-                  }}
-                >
-                  {theme}
-                </span>
-              </div>
-
-              <div
-                className="rounded-lg px-3 py-2.5"
+            return (
+              <article
+                key={bookId}
+                className="bg-a26-card border border-a26-card-border rounded-xl p-4 flex flex-col gap-3"
                 style={{
-                  background: "color-mix(in srgb, var(--a26-glass) 78%, transparent)",
-                  border: "1px solid var(--a26-glass-border)",
+                  boxShadow: "0 10px 28px rgba(0,0,0,0.18)",
                 }}
               >
-                <div className="flex items-start gap-2">
-                  <Quote size={14} color="#F97316" className="shrink-0 mt-0.5" />
-                  <p className="text-a26-text text-[12px] leading-[1.65] m-0 italic">
-                    {quote}
-                  </p>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <h2 className="text-a26-text text-[14px] font-semibold leading-[1.4] m-0">
+                      {title}
+                    </h2>
+                    <p className="text-a26-mid text-[11px] mt-1 mb-0">
+                      {author}
+                    </p>
+                  </div>
+                  <span
+                    className="shrink-0 text-[10px] font-semibold rounded-full px-2.5 py-1"
+                    style={{
+                      background:
+                        "color-mix(in srgb, #F97316 12%, transparent)",
+                      border:
+                        "1px solid color-mix(in srgb, #F97316 22%, transparent)",
+                      color: "#FDBA74",
+                    }}
+                  >
+                    {theme}
+                  </span>
                 </div>
-              </div>
 
-              <p className="text-a26-mid text-[11.5px] leading-[1.7] m-0">
-                {reflection}
-              </p>
-            </article>;
+                <div
+                  className="rounded-lg px-3 py-2.5"
+                  style={{
+                    background:
+                      "color-mix(in srgb, var(--a26-glass) 78%, transparent)",
+                    border: "1px solid var(--a26-glass-border)",
+                  }}
+                >
+                  <div className="flex items-start gap-2">
+                    <Quote
+                      size={14}
+                      color="#F97316"
+                      className="shrink-0 mt-0.5"
+                    />
+                    <p className="text-a26-text text-[12px] leading-[1.65] m-0 italic">
+                      {quote}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-a26-mid text-[11.5px] leading-[1.7] m-0">
+                  {reflection}
+                </p>
+              </article>
+            );
           })}
         </div>
       </div>

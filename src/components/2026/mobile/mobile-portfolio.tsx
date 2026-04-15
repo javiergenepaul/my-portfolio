@@ -270,7 +270,9 @@ export function MobilePortfolio() {
               whileTap={{ scale: 0.88 }}
               onClick={() => setActiveApp(app.id)}
               className="bg-transparent border-none p-0 cursor-pointer"
-              aria-label={translate(`win26.windows.${app.id}` as any) || app.title}
+              aria-label={
+                translate(`win26.windows.${app.id}` as any) || app.title
+              }
             >
               <MacAppIcon id={app.id} size={dockSize} />
             </motion.button>
