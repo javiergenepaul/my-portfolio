@@ -44,7 +44,7 @@ const LiveWallpaper = dynamic(
 );
 
 const INIT_WINS: Record<WinId, WinState> = {
-  about: { open: true, minimized: false, maximized: false, zIndex: 20 },
+  about: { open: true, minimized: false, maximized: false, zIndex: 24 },
   books: { open: false, minimized: false, maximized: false, zIndex: 10 },
   testimonials: { open: false, minimized: false, maximized: false, zIndex: 10 },
   projects: { open: false, minimized: false, maximized: false, zIndex: 10 },

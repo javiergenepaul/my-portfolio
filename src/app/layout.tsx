@@ -145,44 +145,50 @@ const jsonLdWebSite = {
 
 const jsonLdPerson = {
   "@context": "https://schema.org",
-  "@type": ["Person", "ProfilePage"],
-  name: "Gene Paul Mar Javier",
-  alternateName: [
-    "Gene Paul Javier",
-    "Paul Javier",
-    "Mar Javier",
-    "GPM Javier",
-    "Gene Javier",
-    "Gene Paul Mar Javier",
-  ],
+  "@type": "ProfilePage",
+  name: "Gene Paul Mar Javier — Portfolio",
   url: BASE_URL,
-  image: `${BASE_URL}/ghibli-avatar.png`,
-  jobTitle: "Full-Stack Software Engineer",
-  description:
-    "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Cebu City",
-    addressRegion: "Cebu",
-    addressCountry: "PH",
+  mainEntity: {
+    "@id": `${BASE_URL}#person`,
+    "@type": "Person",
+    name: "Gene Paul Mar Javier",
+    alternateName: [
+      "Gene Paul Javier",
+      "Paul Javier",
+      "Mar Javier",
+      "GPM Javier",
+      "Gene Javier",
+      "Gene Paul Mar Javier",
+    ],
+    url: BASE_URL,
+    image: `${BASE_URL}/ghibli-avatar.png`,
+    jobTitle: "Full-Stack Software Engineer",
+    description:
+      "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Cebu City",
+      addressRegion: "Cebu",
+      addressCountry: "PH",
+    },
+    sameAs: [
+      "https://github.com/javiergenepaul",
+      "https://linkedin.com/in/gene-paul-mar-javier",
+      BASE_URL,
+    ],
+    knowsAbout: [
+      "React",
+      "Next.js",
+      "Spring Boot",
+      "TypeScript",
+      "Java",
+      "Vue.js",
+      "PostgreSQL",
+      "MySQL",
+      "REST API",
+      "Microservices",
+    ],
   },
-  sameAs: [
-    "https://github.com/javiergenepaul",
-    "https://linkedin.com/in/gene-paul-mar-javier",
-    BASE_URL,
-  ],
-  knowsAbout: [
-    "React",
-    "Next.js",
-    "Spring Boot",
-    "TypeScript",
-    "Java",
-    "Vue.js",
-    "PostgreSQL",
-    "MySQL",
-    "REST API",
-    "Microservices",
-  ],
 };
 
 export default function RootLayout({

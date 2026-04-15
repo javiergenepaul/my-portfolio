@@ -97,6 +97,7 @@ export function ItunesContent() {
   useLocaleRefresh();
   const isMobile = useIsMobile();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const fetchStartedRef = useRef(false);
   const [audioReady, setAudioReady] = useState(false);
   const [tracks, setTracks] = useState<MusicTrack[]>([]);
   const [loading, setLoading] = useState(true);
@@ -138,10 +139,10 @@ export function ItunesContent() {
         itunesSessionState.activeCollection =
           defaultTrack.collection || DEFAULT_COLLECTION;
         itunesSessionState.currentTrackId = defaultTrack.id;
-        itunesSessionState.isPlaying = true;
+        itunesSessionState.isPlaying = false;
 
         setActiveCollection(defaultTrack.collection || DEFAULT_COLLECTION);
-        setIsPlaying(true);
+        setIsPlaying(false);
       } else if (nextTrack) {
         setActiveCollection(
           itunesSessionState.activeCollection || nextTrack.collection || DEFAULT_COLLECTION,
@@ -165,13 +166,11 @@ export function ItunesContent() {
     setDuration(audio.duration || 0);
     setAudioReady(true);
 
-    return () => {
-      audio.pause();
-      audio.currentTime = 0;
-    };
   }, []);
 
   useEffect(() => {
+    if (fetchStartedRef.current) return;
+    fetchStartedRef.current = true;
     void loadTracks();
   }, []);
 
@@ -205,7 +204,9 @@ export function ItunesContent() {
     }
 
     if (isPlaying) {
-      void audio.play().catch(() => setIsPlaying(false));
+      if (audio.paused) {
+        void audio.play().catch(() => setIsPlaying(false));
+      }
     } else {
       audio.pause();
     }
