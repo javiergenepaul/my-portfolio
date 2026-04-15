@@ -14,12 +14,14 @@ import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import { useMobileAppStore } from "@/stores";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { WIN_DEFS } from "../constants";
 import type { WinId } from "../constants";
 import { useMobileTime } from "../hooks";
 import { LiveWallpaper } from "../live-wallpaper";
 import { MacAppIcon } from "../components/mac-app-icons";
 import { AboutContent } from "../windows/about-content";
+import { BooksContent } from "../windows/books-content";
 import { ProjectsContent } from "../windows/projects-content";
 import { TerminalContent } from "../windows/terminal-content";
 import { SkillsContent } from "../windows/skills-content";
@@ -34,6 +36,7 @@ import { TetrisContent } from "../windows/tetris-content";
 import { JumpContent } from "../windows/jump-content";
 
 export function MobilePortfolio() {
+  useLocaleRefresh();
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const setIsAppOpen = useMobileAppStore((s) => s.setIsAppOpen);
   const time = useMobileTime();
@@ -205,7 +208,7 @@ export function MobilePortfolio() {
                   className="text-a26-text text-[11px] font-medium"
                   style={{ textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
                 >
-                  {app.title}
+                  {translate(`win26.windows.${app.id}` as any) || app.title}
                 </span>
               </motion.button>
             ))}
@@ -267,7 +270,7 @@ export function MobilePortfolio() {
               whileTap={{ scale: 0.88 }}
               onClick={() => setActiveApp(app.id)}
               className="bg-transparent border-none p-0 cursor-pointer"
-              aria-label={app.title}
+              aria-label={translate(`win26.windows.${app.id}` as any) || app.title}
             >
               <MacAppIcon id={app.id} size={dockSize} />
             </motion.button>
@@ -309,7 +312,10 @@ export function MobilePortfolio() {
               <div className="flex-1 flex items-center justify-center gap-2">
                 {activeApp && <MacAppIcon id={activeApp} size={26} />}
                 <span className="text-a26-text text-[14px] font-semibold">
-                  {activeDef?.title}
+                  {activeDef
+                    ? translate(`win26.windows.${activeDef.id}` as any) ||
+                      activeDef.title
+                    : ""}
                 </span>
               </div>
               <div className="min-w-17.5" />
@@ -318,6 +324,7 @@ export function MobilePortfolio() {
             {/* Content */}
             <div className="flex-1 overflow-hidden flex flex-col">
               {activeApp === "about" && <AboutContent />}
+              {activeApp === "books" && <BooksContent />}
               {activeApp === "projects" && <ProjectsContent />}
               {activeApp === "terminal" && (
                 <TerminalContent

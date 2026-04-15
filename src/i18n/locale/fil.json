@@ -903,6 +903,7 @@
     "skipToContent": "Lumaktaw sa nilalaman",
     "windows": {
       "about": "Tungkol sa Akin",
+      "books": "Mga Aklat na Humubog sa Akin",
       "projects": "Mga Proyekto",
       "terminal": "Terminal",
       "skills": "Mga Kasanayan & Stack",
@@ -924,6 +925,61 @@
       },
       "bio": "Full-stack software engineer na gumagawa ng mga production-ready na aplikasyon gamit ang React & Next.js sa frontend at Spring Boot & Java sa backend. Masigasig sa malinis na arkitektura, karanasan ng developer, at pagpapadala ng mga bagay na mahalaga.",
       "location": "Cebu, Pilipinas"
+    },
+    "books": {
+      "title": "Mga Aklat na Humubog sa Akin",
+      "subtitle": "Isang piling istante ng mga aklat na humubog sa paraan ng aking pag-iisip, pamumuno, at pagbuo.",
+      "items": {
+        "startWithWhy": {
+          "title": "Magsimula sa Bakit",
+          "author": "Simon Sinek",
+          "theme": "Layunin",
+          "quote": "Hindi binibili ng mga tao ang ginagawa mo; binibili nila kung bakit mo ito ginagawa. At ang ginagawa mo ay patunay lamang ng pinaniniwalaan mo.",
+          "reflection": "Binago nito kung paano ko ipinapaliwanag ang aking trabaho - inuuna ko na ngayon ang layunin, hindi lang ang output."
+        },
+        "egoIsTheEnemy": {
+          "title": "Ang Ego ang Kaaway",
+          "author": "Ryan Holiday",
+          "theme": "Pagpapakumbaba",
+          "quote": "Nasaan ka man at anuman ang ginagawa mo, ang pinakamasama mong kaaway ay nasa loob mo na: ang iyong ego.",
+          "reflection": "Palaging paalala laban sa yabang - lalo na kapag may inilalabas akong proyektong ipinagmamalaki ko."
+        },
+        "atomicHabits": {
+          "title": "Maliit na Gawi",
+          "author": "James Clear",
+          "theme": "Mga Sistema",
+          "quote": "Kung gagaling ka ng 1% araw-araw sa loob ng isang taon, magiging 37 beses kang mas mahusay sa dulo nito.",
+          "reflection": "Mas mahalaga ang consistency kaysa intensity. Ang maliliit na araw-araw na pagbuti ang bumubuo ng mga resultang dating parang imposible."
+        },
+        "doHardThings": {
+          "title": "Gawin ang Mahihirap na Bagay",
+          "author": "Steve Magness",
+          "theme": "Tatag",
+          "quote": "Ang tibay ay hindi tungkol sa pagpigil ng hirap. Ito ay tungkol sa pagtanggap sa realidad at paggawa ng trabaho kahit ganoon pa man.",
+          "reflection": "Tinuruan ako nitong huminto sa paghihintay ng tamang kondisyon at magsimula na lang gumawa."
+        },
+        "theObstacleIsTheWay": {
+          "title": "Ang Hadlang ang Daan",
+          "author": "Ryan Holiday",
+          "theme": "Stoicism",
+          "quote": "Ang hadlang sa pagkilos ang siyang nagtutulak sa pagkilos. Ang humaharang sa daan ang nagiging daan."
+          ,"reflection": "Binago nito kung paano ko tingnan ang mga bug at blocker - bawat mahirap na problema ay pagkakataong umangat."
+        },
+        "stillnessIsTheKey": {
+          "title": "Ang Katahimikan ang Susi",
+          "author": "Ryan Holiday",
+          "theme": "Pokús",
+          "quote": "Habang mas kaunti ang enerhiyang nasasayang sa takot at pag-aalala, mas marami ang naitutok sa paglutas ng problema.",
+          "reflection": "Pinatatatag ako nito sa mga high-pressure sprint, production incident, at mahihigpit na deadline."
+        },
+        "leadersEatLast": {
+          "title": "Ang mga Lider ay Huling Kumakain",
+          "author": "Simon Sinek",
+          "theme": "Pamumuno",
+          "quote": "Ang pamumuno ay hindi ranggo o titulo. Isa itong pasya - ang pagpiling alagaan ang taong nasa kaliwa at nasa kanan mo.",
+          "reflection": "Ito ang batayan kung paano ako kumikilos sa loob ng team - naglilingkod muna bago maghanap ng pagkilala."
+        }
+      }
     },
     "skills": {
       "categories": "Mga Kategorya",

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Search, Command, Monitor } from "lucide-react";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { WIN_DEFS } from "../constants";
 import type { WinId, WinState } from "../constants";
 import { useTime } from "../hooks";
@@ -86,6 +87,7 @@ export function MenuBar({
   onRestoreAll,
   wins,
 }: MenuBarProps) {
+  useLocaleRefresh();
   const time = useTime();
   const [activeMenu, setActiveMenu] = useState<MenuId | null>(null);
   const barRef = useRef<HTMLDivElement>(null);
@@ -239,7 +241,7 @@ export function MenuBar({
               {WIN_DEFS.filter((d) => !d.hideIcon).map((def, i) => (
                 <MenuItem
                   key={def.id}
-                  label={def.title}
+                  label={translate(`win26.windows.${def.id}` as any) || def.title}
                   shortcut={`⌘${i + 1}`}
                   checked={wins[def.id].open && !wins[def.id].minimized}
                   onClick={() => act(() => onOpenWin(def.id))}
@@ -282,7 +284,7 @@ export function MenuBar({
               {WIN_DEFS.filter((d) => !d.hideIcon).map((def) => (
                 <MenuItem
                   key={def.id}
-                  label={def.title}
+                  label={translate(`win26.windows.${def.id}` as any) || def.title}
                   checked={wins[def.id].open && !wins[def.id].minimized}
                   onClick={() =>
                     act(() =>

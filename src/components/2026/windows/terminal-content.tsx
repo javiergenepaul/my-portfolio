@@ -27,8 +27,9 @@ const CMDS: Record<string, () => string[]> = {
     "│  gpm              personal info                     │",
     "│  ls               list recent projects              │",
     "│  cat skills.json  print full tech stack             │",
-    "│  open <app>       about / projects / skills /       │",
-    "│                   contact / resume / settings /     │",
+    "│  open <app>       about / books / projects /        │",
+    "│                   skills / contact / resume /       │",
+    "│                   settings /                        │",
     "│                   terminal                          │",
     "│  clear            clear terminal                    │",
     "│  exit             close terminal                    │",
@@ -78,6 +79,7 @@ const CMDS: Record<string, () => string[]> = {
 
 const APP_MAP: Record<string, WinId> = {
   about: "about",
+  books: "books",
   projects: "projects",
   skills: "skills",
   contact: "contact",

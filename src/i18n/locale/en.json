@@ -904,6 +904,7 @@
     "skipToContent": "Skip to content",
     "windows": {
       "about": "About Me",
+      "books": "Books That Built Me",
       "projects": "Projects",
       "terminal": "Terminal",
       "skills": "Skills & Stack",
@@ -925,6 +926,61 @@
       },
       "bio": "Full-stack software engineer crafting production-ready applications with React & Next.js on the frontend and Spring Boot & Java on the backend. Passionate about clean architecture, developer experience, and shipping things that matter.",
       "location": "Cebu, Philippines"
+    },
+    "books": {
+      "title": "Books That Built Me",
+      "subtitle": "A curated shelf of titles that shaped how I think, lead, and build.",
+      "items": {
+        "startWithWhy": {
+          "title": "Start With Why",
+          "author": "Simon Sinek",
+          "theme": "Purpose",
+          "quote": "People don't buy what you do; they buy why you do it. And what you do simply proves what you believe.",
+          "reflection": "Reshaped how I communicate my work - I lead with purpose, not just output."
+        },
+        "egoIsTheEnemy": {
+          "title": "Ego Is the Enemy",
+          "author": "Ryan Holiday",
+          "theme": "Humility",
+          "quote": "Wherever you are, whatever you're doing, your worst enemy already lives inside you: your ego.",
+          "reflection": "A constant check on pride - especially when shipping something I'm proud of."
+        },
+        "atomicHabits": {
+          "title": "Atomic Habits",
+          "author": "James Clear",
+          "theme": "Systems",
+          "quote": "If you get 1% better every day for one year, you'll end up 37 times better by the time you're done.",
+          "reflection": "Consistency over intensity. Small daily improvements compound into results that feel impossible at the start."
+        },
+        "doHardThings": {
+          "title": "Do Hard Things",
+          "author": "Steve Magness",
+          "theme": "Resilience",
+          "quote": "Toughness isn't about suppressing discomfort. It's about accepting reality and doing the work anyway.",
+          "reflection": "Taught me to stop waiting for the right conditions and just start building."
+        },
+        "theObstacleIsTheWay": {
+          "title": "The Obstacle Is the Way",
+          "author": "Ryan Holiday",
+          "theme": "Stoicism",
+          "quote": "The impediment to action advances action. What stands in the way becomes the way.",
+          "reflection": "Changed how I see bugs and blockers - every hard problem is a chance to level up."
+        },
+        "stillnessIsTheKey": {
+          "title": "Stillness Is the Key",
+          "author": "Ryan Holiday",
+          "theme": "Focus",
+          "quote": "The less energy we waste on panic and anxiety, the more we have to direct toward solving problems.",
+          "reflection": "Grounds me during high-pressure sprints, production incidents, and tight deadlines."
+        },
+        "leadersEatLast": {
+          "title": "Leaders Eat Last",
+          "author": "Simon Sinek",
+          "theme": "Leadership",
+          "quote": "Leadership is not a rank or a title. It is a choice - the choice to look after the person to the left and the person to the right.",
+          "reflection": "Defines how I show up in team settings - serving before seeking recognition."
+        }
+      }
     },
     "skills": {
       "categories": "Categories",

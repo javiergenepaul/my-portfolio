@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, GithubIcon, LinkedinIcon, Mail } from "lucide-react";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import { EMAIL_ADDRESS } from "@/config";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { WIN_DEFS } from "../constants";
 import type { WinId } from "../constants";
 
@@ -17,6 +18,7 @@ export function CommandPalette({
   onClose: () => void;
   onOpen: (id: WinId) => void;
 }) {
+  useLocaleRefresh();
   const [q, setQ] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -28,7 +30,9 @@ export function CommandPalette({
 
   const items = [
     ...WIN_DEFS.filter((d) => !d.hideIcon).map((d) => ({
-      label: `Open ${d.title}`,
+      label: translate("win26.commandPalette.open", {
+        title: translate(`win26.windows.${d.id}` as any) || d.title,
+      }),
       icon: d.icon,
       color: d.color,
       action: () => onOpen(d.id),

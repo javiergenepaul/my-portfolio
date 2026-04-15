@@ -903,6 +903,7 @@
     "skipToContent": "Laktawi ang sulod",
     "windows": {
       "about": "Mahitungod Kanako",
+      "books": "Mga Libro nga Naghulma Kanako",
       "projects": "Mga Proyekto",
       "terminal": "Terminal",
       "skills": "Mga Kahanas & Stack",
@@ -924,6 +925,61 @@
       },
       "bio": "Full-stack software engineer nga nagbuhat og mga production-ready nga aplikasyon gamit ang React & Next.js sa frontend ug Spring Boot & Java sa backend. Madasigon sa limpyo nga arkitektura, kasinatian sa developer, ug pagpadala sa mga butang nga importante.",
       "location": "Sugbo, Pilipinas"
+    },
+    "books": {
+      "title": "Mga Libro nga Naghulma Kanako",
+      "subtitle": "Usa ka piniling estante sa mga libro nga naghugis sa paagi sa akong panghunahuna, pagpangulo, ug paghimo.",
+      "items": {
+        "startWithWhy": {
+          "title": "Sugdi sa Ngano",
+          "author": "Simon Sinek",
+          "theme": "Katuyoan",
+          "quote": "Dili paliton sa mga tawo ang imong gibuhat; ilang paliton kung nganong gibuhat nimo kini. Ug ang imong gibuhat maoy pamatuod sa imong gituohan.",
+          "reflection": "Gi-usab niini kung giunsa nako paghisgot ang akong trabaho - akong unahon ang katuyoan, dili lang ang output."
+        },
+        "egoIsTheEnemy": {
+          "title": "Ang Ego Mao ang Kaaway",
+          "author": "Ryan Holiday",
+          "theme": "Pagkamapaubsanon",
+          "quote": "Bisan asa ka ug unsa man ang imong gibuhat, ang imong labing dautang kaaway anaa na sa sulod nimo: ang imong ego.",
+          "reflection": "Kanunay kining pahimangno batok sa garbo - labi na kung adunay akong gipagawas nga akong gipanghambog."
+        },
+        "atomicHabits": {
+          "title": "Gagmay nga Batasan",
+          "author": "James Clear",
+          "theme": "Mga Sistema",
+          "quote": "Kung mohusay ka og 1% kada adlaw sulod sa usa ka tuig, mahimong 37 ka pilo kang mas maayo sa katapusan.",
+          "reflection": "Mas importante ang pagkamakanunayon kaysa kalit nga kusog. Ang gagmay nga adlaw-adlaw nga kausaban maoy modala sa mga resulta nga daw imposible sa sinugdanan."
+        },
+        "doHardThings": {
+          "title": "Buhata ang Lisod nga mga Butang",
+          "author": "Steve Magness",
+          "theme": "Kalig-on",
+          "quote": "Ang pagkatig-a dili bahin sa pagpugong sa kahasol. Bahin kini sa pagdawat sa realidad ug pagbuhat sa trabaho bisan pa man.",
+          "reflection": "Nakatudlo kini nako nga undangon ang paghulat sa hustong kondisyon ug magsugod na lang og himo."
+        },
+        "theObstacleIsTheWay": {
+          "title": "Ang Babag Mao ang Dalan",
+          "author": "Ryan Holiday",
+          "theme": "Stoicism",
+          "quote": "Ang babag sa lihok mao usab ang mopadayon sa lihok. Ang nagbarog sa dalan mao ang mahimong dalan.",
+          "reflection": "Gi-usab niini kung giunsa nako pagtan-aw ang mga bug ug blocker - matag lisod nga problema usa ka higayon aron mutubo."
+        },
+        "stillnessIsTheKey": {
+          "title": "Ang Kahilom Mao ang Yawi",
+          "author": "Ryan Holiday",
+          "theme": "Pokús",
+          "quote": "Kon gamay ra ang enerhiyang mausik sa kalisang ug kabalaka, mas daghan ang mahimo natong itutok sa pagsulbad sa problema.",
+          "reflection": "Nagpabilin ko niini nga lig-on sa mga high-pressure sprint, production incident, ug hugot nga deadline."
+        },
+        "leadersEatLast": {
+          "title": "Ang mga Lider Maoy Katapusan Mokaon",
+          "author": "Simon Sinek",
+          "theme": "Pagpangulo",
+          "quote": "Ang pagpangulo dili ranggo o titulo. Usa kini ka pagpili - ang pagpiling moatiman sa tawo sa imong wala ug tuo."
+          ,"reflection": "Kini maoy naghubit kung giunsa ko pagpakita sa team setting - moalagad una sa dili pa mangayo og pag-ila."
+        }
+      }
     },
     "skills": {
       "categories": "Mga Kategorya",

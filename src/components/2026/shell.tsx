@@ -12,6 +12,7 @@ import { useIsMobile } from "./hooks";
 import {
   Terminal,
   User,
+  BookOpen,
   FolderGit2,
   Layers,
   Mail,
@@ -40,6 +41,7 @@ const LiveWallpaper = dynamic(
 
 const INIT_WINS: Record<WinId, WinState> = {
   about: { open: true, minimized: false, maximized: false, zIndex: 20 },
+  books: { open: false, minimized: false, maximized: false, zIndex: 10 },
   projects: { open: false, minimized: false, maximized: false, zIndex: 10 },
   terminal: { open: true, minimized: false, maximized: false, zIndex: 21 },
   skills: { open: false, minimized: false, maximized: false, zIndex: 10 },
@@ -244,6 +246,7 @@ export function Portfolio2026() {
 
   const WIN_ICONS: Record<WinId, React.ReactNode> = {
     about: <User size={13} />,
+    books: <BookOpen size={13} />,
     projects: <FolderGit2 size={13} />,
     terminal: <Terminal size={13} />,
     skills: <Layers size={13} />,
