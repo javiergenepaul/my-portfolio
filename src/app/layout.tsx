@@ -85,6 +85,14 @@ export const metadata: Metadata = {
     title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
     description:
       "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
+    images: [
+      {
+        url: `${BASE_URL}/meta-bg.png`,
+        width: 1200,
+        height: 630,
+        alt: "Gene Paul Mar Javier — Full-Stack Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -93,6 +101,7 @@ export const metadata: Metadata = {
       "Gene Paul Mar Javier — React, Next.js, Spring Boot, TypeScript, Java. Full-Stack Engineer from Cebu, Philippines.",
     creator: "@genepaulmar",
     site: "@genepaulmar",
+    images: [`${BASE_URL}/meta-bg.png`],
   },
   alternates: {
     canonical: BASE_URL,
