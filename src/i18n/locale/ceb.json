@@ -1107,17 +1107,17 @@
       "apps": "{count} apps",
       "moreComing": "Daghang moabot pa",
       "soon": "sa wala madugay...",
-      "snake": { "name": "Snake", "desc": "Klasikong retro snake game" },
+      "snake": { "name": "GPM Snake", "desc": "Klasikong retro snake game" },
       "hanoi": {
-        "name": "Tower of Hanoi",
+        "name": "Tower of GPM",
         "desc": "Ibalhin ang tanan nga disc gikan A ngadto C"
       },
       "tetris": {
-        "name": "Tetris",
+        "name": "GPM Tetris",
         "desc": "Mag-stack ug mag-clear sa mga bloke"
       },
       "jump": {
-        "name": "Endless Jump",
+        "name": "GPM Jump",
         "desc": "Sumakyad sa mga platform, ayaw pagkahulog!"
       }
     }

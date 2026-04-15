@@ -1,4 +1,5 @@
 export * from "./language-store";
+export * from "./game-high-scores-store";
 export * from "./loading-store";
 export * from "./mobile-app-store";
 export * from "./nav-link-store";

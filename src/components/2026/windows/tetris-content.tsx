@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "../hooks";
+import { GameHighScorePanel } from "../components/game-high-score-panel";
+import { isBetterScore, useGameHighScoresStore } from "@/stores";
 
 // ── Board constants ────────────────────────────────────────────────────────────
 
@@ -156,6 +158,11 @@ export function TetrisContent() {
   const [phase, setPhase] = useState<"idle" | "playing" | "paused" | "dead">(
     "idle",
   );
+  const [runToken, setRunToken] = useState(0);
+  const tetrisBest = useGameHighScoresStore(
+    (state) => state.scores.tetris?.[0]?.value ?? null,
+  );
+  const isNewRecord = phase === "dead" && isBetterScore("tetris", score, tetrisBest);
 
   // Mutable game state (no re-renders on change)
   const gs = useRef({
@@ -468,6 +475,7 @@ export function TetrisContent() {
   // ── Start / restart ──────────────────────────────────────────────────────────
 
   const startGame = () => {
+    setRunToken((token) => token + 1);
     _bag = []; // reset bag
     const g = gs.current;
     g.board = mkBoard();
@@ -644,7 +652,7 @@ export function TetrisContent() {
               marginTop: 8,
             }}
           >
-            Tetris
+            GPM Tetris
           </div>
           <div
             style={{
@@ -793,6 +801,7 @@ export function TetrisContent() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 12,
+                padding: 16,
               }}
             >
               <div style={{ fontSize: 38 }}>💀</div>
@@ -808,6 +817,19 @@ export function TetrisContent() {
                 }}
               >
                 {score.toLocaleString()}
+              </div>
+              <div style={{ width: "100%", maxWidth: 320 }}>
+                <GameHighScorePanel
+                  scoreKey="tetris"
+                  title="GPM Tetris"
+                  accentColor="#D500F9"
+                  currentValue={score}
+                  currentDisplayValue={score.toLocaleString()}
+                  runToken={runToken}
+                  canSubmit={phase === "dead" && score > 0}
+                  isRecord={isNewRecord}
+                  note="Save the board after a game over."
+                />
               </div>
               <button
                 onClick={startGame}

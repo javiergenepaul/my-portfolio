@@ -1109,16 +1109,16 @@
       "moreComing": "近日公開",
       "soon": "お楽しみに...",
       "snake": {
-        "name": "スネーク",
+        "name": "GPMスネーク",
         "desc": "クラシックなレトロスネークゲーム"
       },
-      "hanoi": { "name": "ハノイの塔", "desc": "全ての円盤をAからCへ移動" },
+      "hanoi": { "name": "Tower of GPM", "desc": "全ての円盤をAからCへ移動" },
       "tetris": {
-        "name": "テトリス",
+        "name": "GPMテトリス",
         "desc": "落ちるブロックを積み上げてクリア"
       },
       "jump": {
-        "name": "エンドレスジャンプ",
+        "name": "GPMジャンプ",
         "desc": "プラットフォームを登って落ちるな！"
       }
     }

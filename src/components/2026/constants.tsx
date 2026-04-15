@@ -260,7 +260,7 @@ export const WIN_DEFS: WinDef[] = [
   },
   {
     id: "snake",
-    title: "Snake",
+    title: "GPM Snake",
     color: "#4ADE80",
     icon: <Zap size={14} />,
     defaultPos: (vw: number) => ({
@@ -272,7 +272,7 @@ export const WIN_DEFS: WinDef[] = [
   },
   {
     id: "hanoi",
-    title: "Tower of Hanoi",
+    title: "Tower of GPM",
     color: "#C084FC",
     icon: <Layers3 size={14} />,
     defaultPos: (vw: number) => ({
@@ -284,7 +284,7 @@ export const WIN_DEFS: WinDef[] = [
   },
   {
     id: "tetris",
-    title: "Tetris",
+    title: "GPM Tetris",
     color: "#00E5FF",
     icon: <LayoutGrid size={14} />,
     defaultPos: (vw: number) => ({
@@ -296,7 +296,7 @@ export const WIN_DEFS: WinDef[] = [
   },
   {
     id: "jump",
-    title: "Endless Jump",
+    title: "GPM Jump",
     color: "#818CF8",
     icon: <Zap size={14} />,
     defaultPos: (vw: number) => ({

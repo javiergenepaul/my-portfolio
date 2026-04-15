@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useIsMobile } from "../hooks";
+import { GameHighScorePanel } from "../components/game-high-score-panel";
+import { isBetterScore, useGameHighScoresStore } from "@/stores";
 
 const GRID = 20;
 const TICK_MS = 130;
@@ -67,6 +69,11 @@ export function SnakeContent() {
 
   const [score, setScore] = useState(0);
   const [phase, setPhase] = useState<Phase>("idle");
+  const [runToken, setRunToken] = useState(0);
+  const snakeBest = useGameHighScoresStore(
+    (state) => state.scores.snake?.[0]?.value ?? null,
+  );
+  const isNewRecord = phase === "dead" && isBetterScore("snake", score, snakeBest);
 
   // ── Draw ──────────────────────────────────────────────────────────────────────
   const draw = useCallback(() => {
@@ -179,6 +186,7 @@ export function SnakeContent() {
   // ── Restart ───────────────────────────────────────────────────────────────────
   const restart = useCallback(
     (autoStart = false) => {
+      setRunToken((token) => token + 1);
       const initSnake = [...INIT_SNAKE];
       gs.current = {
         snake: initSnake,
@@ -351,7 +359,7 @@ export function SnakeContent() {
             style={{ background: "rgba(0,0,0,0.72)" }}
           >
             <span style={{ fontSize: 40 }}>🐍</span>
-            <div className="text-white text-[16px] font-semibold">Snake</div>
+            <div className="text-white text-[16px] font-semibold">GPM Snake</div>
             <div
               className="text-[12px] text-center px-4"
               style={{ color: "rgba(255,255,255,0.42)" }}
@@ -366,7 +374,7 @@ export function SnakeContent() {
         {/* Game over overlay */}
         {phase === "dead" && (
           <div
-            className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-[8px]"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-[8px] px-4"
             style={{ background: "rgba(0,0,0,0.80)" }}
           >
             <span style={{ fontSize: 36 }}>💀</span>
@@ -378,6 +386,19 @@ export function SnakeContent() {
               style={{ color: "var(--a26-green)" }}
             >
               Score: {score}
+            </div>
+            <div style={{ width: "100%", maxWidth: 320 }}>
+              <GameHighScorePanel
+                scoreKey="snake"
+                title="GPM Snake"
+                accentColor="var(--a26-green)"
+                currentValue={score}
+                currentDisplayValue={`${score} pts`}
+                runToken={runToken}
+                canSubmit={phase === "dead" && score > 0}
+                isRecord={isNewRecord}
+                note="Save your run after a game over."
+              />
             </div>
             <button
               onClick={() => restart(true)}

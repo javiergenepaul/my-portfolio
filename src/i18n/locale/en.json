@@ -1108,13 +1108,13 @@
       "apps": "{count} apps",
       "moreComing": "More coming",
       "soon": "soon...",
-      "snake": { "name": "Snake", "desc": "Classic retro snake game" },
+      "snake": { "name": "GPM Snake", "desc": "Classic retro snake game" },
       "hanoi": {
-        "name": "Tower of Hanoi",
+        "name": "Tower of GPM",
         "desc": "Move all discs from A to C"
       },
-      "tetris": { "name": "Tetris", "desc": "Stack & clear falling blocks" },
-      "jump": { "name": "Endless Jump", "desc": "Climb platforms, don't fall!" }
+      "tetris": { "name": "GPM Tetris", "desc": "Stack & clear falling blocks" },
+      "jump": { "name": "GPM Jump", "desc": "Climb platforms, don't fall!" }
     }
   }
 }

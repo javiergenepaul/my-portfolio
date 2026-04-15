@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useIsMobile } from "../hooks";
+import { GameHighScorePanel } from "../components/game-high-score-panel";
+import { isBetterScore, useGameHighScoresStore, type GameScoreKey } from "@/stores";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -125,11 +127,14 @@ export function JumpContent() {
   const [phase, setPhase] = useState<"idle" | "playing" | "dead">("idle");
   const [difficulty, setDifficulty] = useState<"easy" | "hard">("easy");
   const [score, setScore] = useState(0);
-  const [best, setBest] = useState<Record<"easy" | "hard", number>>({
-    easy: 0,
-    hard: 0,
-  });
+  const [runToken, setRunToken] = useState(0);
   const keys = useRef({ left: false, right: false, jumpPressed: false });
+  const easyBest = useGameHighScoresStore(
+    (state) => state.scores["jump-easy"]?.[0]?.value ?? 0,
+  );
+  const hardBest = useGameHighScoresStore(
+    (state) => state.scores["jump-hard"]?.[0]?.value ?? 0,
+  );
 
   const gs = useRef<GS>({
     px: W / 2 - PLAYER_W / 2,
@@ -365,6 +370,7 @@ export function JumpContent() {
 
   const startGame = useCallback(
     (diff: "easy" | "hard") => {
+      setRunToken((token) => token + 1);
       const g = gs.current;
       const startY = H - 100;
       const first: Plat = {
@@ -499,8 +505,6 @@ export function JumpContent() {
       if (g.py - g.camY > H + 100) {
         g.phase = "dead";
         setPhase("dead");
-        const diff = g.difficulty;
-        setBest((prev) => ({ ...prev, [diff]: Math.max(prev[diff], g.score) }));
         draw(ctx, g);
         return;
       }
@@ -531,7 +535,7 @@ export function JumpContent() {
               marginTop: 8,
             }}
           >
-            Endless Jump
+            GPM Jump
           </div>
         </div>
 
@@ -570,9 +574,9 @@ export function JumpContent() {
                 ? "Auto-jump · steer with ← →"
                 : "Auto-bounce · steer with ← →"}
             </div>
-            {best.easy > 0 && (
+            {easyBest > 0 && (
               <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>
-                Best: {best.easy}
+                Best: {easyBest}
               </div>
             )}
           </button>
@@ -604,9 +608,9 @@ export function JumpContent() {
                 ? "Camera rises · auto-jump · steer to survive"
                 : "Camera rises · SPACE to jump · one jump per land"}
             </div>
-            {best.hard > 0 && (
+            {hardBest > 0 && (
               <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>
-                Best: {best.hard}
+                Best: {hardBest}
               </div>
             )}
           </button>
@@ -626,6 +630,10 @@ export function JumpContent() {
   }
 
   // ── Playing / Dead ────────────────────────────────────────────────────────
+
+  const scoreKey = `jump-${difficulty}` as GameScoreKey;
+  const jumpBest = difficulty === "hard" ? hardBest : easyBest;
+  const isNewRecord = phase === "dead" && isBetterScore(scoreKey, score, jumpBest);
 
   return (
     <div
@@ -675,6 +683,7 @@ export function JumpContent() {
               alignItems: "center",
               justifyContent: "center",
               gap: 10,
+              padding: 16,
             }}
           >
             <div style={{ fontSize: 40 }}>💀</div>
@@ -691,11 +700,24 @@ export function JumpContent() {
             >
               {score}
             </div>
-            {best[difficulty] > 0 && (
+            {jumpBest > 0 && (
               <div style={{ color: "rgba(255,255,255,0.35)", fontSize: 11 }}>
-                Best: {best[difficulty]}
+                Best: {jumpBest}
               </div>
             )}
+            <div style={{ width: "100%", maxWidth: 320 }}>
+              <GameHighScorePanel
+                scoreKey={scoreKey}
+                title={`GPM Jump · ${difficulty === "hard" ? "Hard" : "Easy"}`}
+                accentColor={difficulty === "hard" ? "#F87171" : "#818CF8"}
+                currentValue={score}
+                currentDisplayValue={`${score}`}
+                runToken={runToken}
+                canSubmit={phase === "dead" && score > 0}
+                isRecord={isNewRecord}
+                note="Scores are saved separately for Easy and Hard."
+              />
+            </div>
             <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
               <button
                 onClick={() => startGame(difficulty)}

@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "../hooks";
+import { GameHighScorePanel } from "../components/game-high-score-panel";
+import { isBetterScore, type GameScoreKey, useGameHighScoresStore } from "@/stores";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -75,6 +77,7 @@ export function HanoiContent() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [shake, setShake] = useState<number | null>(null);
   const [dragging, setDragging] = useState<DragState | null>(null);
+  const [runToken, setRunToken] = useState(0);
 
   // ── Render-level refs — always current, no stale closures ────────────────────
   const pegsRef = useRef(pegs);
@@ -250,6 +253,7 @@ export function HanoiContent() {
   // ── Actions ───────────────────────────────────────────────────────────────────
 
   const startGame = useCallback((n: number) => {
+    setRunToken((token) => token + 1);
     setNumDiscs(n);
     setPegs(initPegs(n));
     setSelected(null);
@@ -259,6 +263,7 @@ export function HanoiContent() {
   }, []);
 
   const restart = useCallback(() => {
+    setRunToken((token) => token + 1);
     const n = numDiscsRef.current;
     setPegs(initPegs(n));
     setSelected(null);
@@ -281,7 +286,7 @@ export function HanoiContent() {
             className="text-white font-bold mt-2"
             style={{ fontSize: isMobile ? 20 : 24 }}
           >
-            Tower of Hanoi
+            Tower of GPM
           </div>
           <div
             style={{
@@ -367,6 +372,11 @@ export function HanoiContent() {
   // ── Playing / Won ─────────────────────────────────────────────────────────────
 
   const opt = optimal(numDiscs);
+  const scoreKey = `hanoi-${numDiscs}` as GameScoreKey;
+  const hanoiBest = useGameHighScoresStore(
+    (state) => state.scores[scoreKey]?.[0]?.value ?? null,
+  );
+  const isNewRecord = phase === "won" && isBetterScore(scoreKey, moves, hanoiBest);
 
   return (
     <div
@@ -628,7 +638,7 @@ export function HanoiContent() {
         {/* Won overlay */}
         {phase === "won" && (
           <div
-            className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-[10px]"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-[10px] px-4"
             style={{ background: "rgba(0,0,0,0.82)" }}
           >
             <div style={{ fontSize: isMobile ? 44 : 52 }}>🎉</div>
@@ -677,6 +687,20 @@ export function HanoiContent() {
                 Change Difficulty
               </button>
             </div>
+            <div style={{ width: "100%", maxWidth: 340 }}>
+              <GameHighScorePanel
+                scoreKey={scoreKey}
+                title={`Tower of GPM · ${numDiscs} Discs`}
+                accentColor="#C084FC"
+                currentValue={moves}
+                currentDisplayValue={`${moves} moves`}
+                runToken={runToken}
+                canSubmit={phase === "won" && moves > 0}
+                isRecord={isNewRecord}
+                note="Fewer moves rank higher for each disc count."
+                emptyLabel="No solved boards saved for this difficulty yet"
+              />
+            </div>
           </div>
         )}
       </div>
@@ -705,6 +729,7 @@ export function HanoiContent() {
               }}
             />
           );
+
         })()}
 
       {/* Hint */}
