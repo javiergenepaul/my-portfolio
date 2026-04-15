@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Settings2024 } from "@/components/2024/settings";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Settings — 2024",
 };

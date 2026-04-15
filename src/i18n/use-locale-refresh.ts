@@ -1,17 +1,15 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLanguageStore } from "@/stores";
 
 /**
  * Subscribe a client component to locale changes.
  *
- * Under the hood this calls `useTranslations()` from next-intl, which
- * re-renders the component whenever `NextIntlClientProvider` receives new
- * messages (i.e. when the user switches language).
+ * Under the hood this subscribes to the persisted language Zustand store,
+ * which re-renders the component whenever the current locale changes.
  *
  * Use this in any component that calls `translate()` but doesn't already
- * call `useTranslations()` directly — it replaces the old react-i18next
- * `const {} = useTranslation()` pattern.
+ * read the language store directly.
  *
  * @example
  * ```tsx
@@ -22,5 +20,5 @@ import { useTranslations } from "next-intl";
  * ```
  */
 export function useLocaleRefresh(): void {
-  useTranslations();
+  useLanguageStore((state) => state.language);
 }

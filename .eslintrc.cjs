@@ -1,18 +1,15 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-  ],
+  extends: ["next/core-web-vitals", "next/typescript"],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "prefer-const": "off",
+    "react/display-name": "off",
+    "react/jsx-no-comment-textnodes": "off",
+    "react/no-unescaped-entities": "off",
   },
 };

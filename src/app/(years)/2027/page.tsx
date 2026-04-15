@@ -1,11 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
-const DeskScene = dynamic(
+export const dynamic = "force-dynamic";
+
+const DeskScene = dynamicImport(
   () =>
     import("@/components/2027/desk-scene").then((m) => ({
       default: m.DeskScene,

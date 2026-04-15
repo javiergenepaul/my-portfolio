@@ -7,6 +7,8 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import { YEARS, type YearConfig } from "@/config/years";
 import { cn } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 function SplashScreen({ onDone }: { onDone: () => void }) {
   useEffect(() => {
     const t = setTimeout(onDone, 1800);
