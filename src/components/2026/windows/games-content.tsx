@@ -40,7 +40,11 @@ export function GamesContent({ onOpen }: { onOpen: (id: WinId) => void }) {
   return (
     <div
       className="font-mac flex flex-col flex-1 min-h-0"
-      style={{ background: "var(--a26-window)" }}
+      style={{
+        background: "var(--a26-window)",
+        userSelect: "none",
+        WebkitUserSelect: "none",
+      }}
     >
       {/* Toolbar */}
       <div

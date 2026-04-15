@@ -397,6 +397,8 @@ export function HanoiContent() {
         background: "#0D0D0D",
         padding: isMobile ? "12px 8px 16px" : "16px 12px 20px",
         gap: 12,
+        userSelect: "none",
+        WebkitUserSelect: "none",
       }}
     >
       {/* Info bar */}

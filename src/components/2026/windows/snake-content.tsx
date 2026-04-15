@@ -310,6 +310,8 @@ export function SnakeContent() {
         background: "#0D0D0D",
         gap: isMobile ? 12 : 12,
         padding: isMobile ? "12px 12px 20px" : "16px 16px 20px",
+        userSelect: "none",
+        WebkitUserSelect: "none",
       }}
     >
       {/* Score bar */}

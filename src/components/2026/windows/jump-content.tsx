@@ -782,6 +782,8 @@ export function JumpContent() {
         padding: 8,
         gap: 8,
         justifyContent: isMobile ? "flex-start" : "center",
+        userSelect: "none",
+        WebkitUserSelect: "none",
       }}
     >
       {/* Canvas + overlay wrapper */}

@@ -858,6 +858,8 @@ export function BomberContent() {
         background: "#0B0B0F",
         padding: isMobile ? "6px 6px 10px" : "14px 14px 20px",
         gap: isMobile ? 4 : 10,
+        userSelect: "none",
+        WebkitUserSelect: "none",
       }}
     >
       <div

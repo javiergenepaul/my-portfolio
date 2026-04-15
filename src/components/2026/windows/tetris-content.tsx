@@ -777,6 +777,8 @@ export function TetrisContent() {
         gap: 8,
         padding: 8,
         alignItems: isMobile ? "center" : "stretch",
+        userSelect: "none",
+        WebkitUserSelect: "none",
       }}
     >
       {/* Canvas area */}
