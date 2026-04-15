@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.svg"],
     apple: "/ghibli-avatar.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_US",

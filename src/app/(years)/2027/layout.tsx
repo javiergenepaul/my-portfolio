@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     template: "%s | Gene Paul Mar Javier 2027",
   },
   description: DESCRIPTION,
+  icons: {
+    icon: [{ url: "/favicons/2027.svg", type: "image/svg+xml" }],
+    shortcut: ["/favicons/2027.svg"],
+  },
   authors: [{ name: "Gene Paul Mar Javier", url: BASE_URL }],
   creator: "Gene Paul Mar Javier",
   keywords: [

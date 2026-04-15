@@ -1,3 +1,5 @@
+"use client";
+
 import { getColor } from "@/lib";
 import { useLoadingStore, useSettingsStore } from "@/stores";
 import PuffLoader from "react-spinners/PuffLoader";

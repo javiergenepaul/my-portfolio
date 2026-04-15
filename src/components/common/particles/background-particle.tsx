@@ -1,3 +1,5 @@
+"use client";
+
 import { StarsCanvas } from "./star-canvas";
 
 export const BackgroundParticle = () => {
