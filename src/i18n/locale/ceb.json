@@ -906,7 +906,7 @@
       "books": "Mga Libro nga Naghulma Kanako",
       "testimonials": "Mga Testimonial",
       "projects": "Mga Proyekto",
-      "itunes": "iTunes",
+      "itunes": "gpmTunes",
       "terminal": "Terminal",
       "skills": "Mga Kahanas & Stack",
       "contact": "Makig-ugnon",
@@ -921,7 +921,7 @@
       "bomber": "Bomber GPM"
     },
     "itunes": {
-      "title": "iTunes",
+      "title": "gpmTunes",
       "subtitle": "Lokal nga library",
       "allSongs": "Tanang Kanta",
       "collections": "Mga Koleksyon",

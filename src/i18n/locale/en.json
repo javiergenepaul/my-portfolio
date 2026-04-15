@@ -907,7 +907,7 @@
       "books": "Books That Built Me",
       "testimonials": "Testimonials",
       "projects": "Projects",
-      "itunes": "iTunes",
+      "itunes": "gpmTunes",
       "terminal": "Terminal",
       "skills": "Skills & Stack",
       "contact": "Contact",
@@ -922,7 +922,7 @@
       "bomber": "Bomber GPM"
     },
     "itunes": {
-      "title": "iTunes",
+      "title": "gpmTunes",
       "subtitle": "Local library",
       "allSongs": "All Songs",
       "collections": "Collections",
