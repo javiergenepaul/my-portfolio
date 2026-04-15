@@ -234,7 +234,31 @@ const KB: KBEntry[] = [
   // Hobbies
   {
     keys: ["hobby", "hobbies", "free time", "interest", "interests", "passion", "outside work", "personal life", "fun", "leisure", "gaming", "travel"],
-    reply: `Outside of coding, GPM enjoys:\n\n🎮 Gaming — the origin of his love for interactive UX!\n🎨 UI/UX design exploration\n✈️ Travel & discovering new places\n🌐 Experimenting with bleeding-edge web tech\n\nHis gamer mindset is why his UIs always feel alive.`,
+    reply: `GPM's hobbies — buckle up 🎒\n\n💻 Coding for fun — yes, he codes at work AND at home. By choice. Voluntarily.\n📚 Learning for fun — tutorials, docs, random rabbit holes at midnight\n🎮 Gaming — Tekken 8 specifically, and he will beat you\n🏍️ Motorcycle rides — the only time he's not in front of a screen\n📖 Reading manga & manhwa — the other time he's not in front of a screen (he's still on a screen)\n\nEssentially: he found a way to monetize his hobbies and still does them for free after hours. The dream.`,
+  },
+
+  // Age / birthday
+  {
+    keys: ["age", "how old", "birthday", "birth", "born", "when born", "how old is he", "how old is gpm", "date of birth", "birth date", "birth year", "year born", "old is gpm"],
+    reply: `🎂 GPM was born on July 20, 1998 — making him 27 years old (turning 28 this July).\n\nThat means he's been writing code for roughly a third of his life and somehow still finds it fun. The diagnosis: incurable. The prognosis: more side projects.\n\nAlso a Cancer ♋ — which explains the attachment to his editor theme and the inability to delete old branches.`,
+  },
+
+  // Hometown
+  {
+    keys: ["hometown", "home town", "where is he from", "where he from", "where does he live", "where he lives", "location", "cebu", "philippines", "from where", "where is gpm from", "city", "origin"],
+    reply: `📍 Cebu City, Philippines — the Queen City of the South.\n\nYes, the same Cebu famous for lechon, beaches, and Sinulog. GPM grew up there, absorbed the culture, and then spent the rest of his life staring at monitors instead of the ocean.\n\nThe beaches are right there. He is inside. Writing code. This is fine.`,
+  },
+
+  // Food preferences
+  {
+    keys: ["food", "favourite food", "favorite food", "eat", "what does he eat", "food preference", "diet", "spicy", "what food", "cuisine", "meal", "hungry"],
+    reply: `🌶️ GPM's food rule: if it's not spicy, what's even the point?\n\nThe man treats Scoville units the same way he treats code complexity — the higher the better. Mild salsa? An insult. Ghost pepper? Getting somewhere.\n\nSide note: he's lactose intolerant. So cheese is off the table. Quite literally. The spice remains non-negotiable. He will eat the spicy thing and he will be fine. Probably.`,
+  },
+
+  // Manga / manhwa
+  {
+    keys: ["manga", "manhwa", "manhua", "read", "reading", "comic", "anime", "webtoon", "what does he read", "books", "book"],
+    reply: `📖 GPM reads manga and manhwa — and yes, he stays up past midnight for chapter releases.\n\nHe approaches a good series the same way he approaches a good codebase: gets deeply invested, can't stop until he reaches the end, and is personally offended when it goes on hiatus.\n\nThe manhwa-to-side-project pipeline is real. Chapter inspires idea. Idea becomes repo. Repo becomes 2am commit. This is the way.`,
   },
   // Favourite stack (highest priority — many specific keys)
   {
@@ -294,6 +318,56 @@ const KB: KBEntry[] = [
     reply: `Where GPM sees himself in 3–5 years 🔭\n\n🎯 Short-term (1–2 years):\n• Deepen expertise in distributed systems and cloud-native architecture\n• Lead a full-stack feature team — shipping product, not just code\n• Contribute to open-source projects in the React / Java ecosystem\n\n🚀 Medium-term (3–5 years):\n• Move into a Senior / Lead Engineer or Tech Lead role\n• Architect scalable systems from the ground up — not just contribute to them\n• Potentially explore building his own product or SaaS side project\n• Mentor the next generation of Philippine developers 🇵🇭\n\n💡 His north star:\nBe the engineer who bridges great engineering with great user experience — someone who can talk architecture with a CTO and pixel-perfect design with a designer in the same day.\n\nHe's not just building a career — he's building craft. 🛠`,
   },
 
+  // ── Fun / Personal ────────────────────────────────────────────────────────
+
+  // Favourite game
+  {
+    keys: ["favourite game", "favorite game", "fav game", "what game", "what games", "tekken", "plays game", "gaming", "game he plays", "what does he play"],
+    reply: `🎮 Tekken 8. No debate.\n\nWhile other devs are out there touching grass, GPM is in the lab perfecting combos. He picks characters the same way he picks his tech stack — with full commitment and a suspiciously high win rate.\n\nDon't challenge him. Seriously.`,
+  },
+
+  // Coffee or tea
+  {
+    keys: ["coffee", "tea", "coffee or tea", "drink", "caffeine", "beverage", "what does he drink", "what he drink"],
+    reply: `☕ Neither. GPM is lactose intolerant AND caffeine-free by necessity.\n\nHis secret weapon? Water. Plain, unfiltered, boring, legendary water. 💧\n\nWhile the rest of the dev world is jittering on their 4th espresso, GPM is out here hydrated and shipping features. Hydration is his superpower. Don't knock it.`,
+  },
+
+  // Coding playlist
+  {
+    keys: ["playlist", "music", "coding music", "what he listens", "what does he listen", "listen to", "song", "songs", "coding playlist", "background music"],
+    reply: `🎵 GPM's coding playlist is a certified mood.\n\nWhen he's in the zone:\n• Lo-fi hip hop (obviously — it's practically a dev requirement)\n• J-pop / anime OSTs when things get intense\n• Occasional video game soundtracks because of course\n\nIf the music is too loud, the bugs can't hear him coming. That's the strategy.`,
+  },
+
+  // Introvert or extrovert
+  {
+    keys: ["introvert", "extrovert", "shy", "social", "personality", "introvert or extrovert", "social anxiety", "is he shy", "is he quiet"],
+    reply: `🧠 Certified introvert. Social anxiety disorder and everything.\n\nIn the wild, GPM is a man of few words. In a meeting, he is also a man of few words. At a party, he is the guy near the snacks who just wants to go home and code.\n\nBUT — put him in front of a codebase? Absolute god. The keyboard is his natural habitat. He doesn't need to talk much when the code speaks for itself. 👑`,
+  },
+
+  // What does he do when stuck
+  {
+    keys: ["stuck", "when stuck", "what does he do when stuck", "debugging strategy", "problem solving", "how does he solve", "what does he do", "when he gets stuck", "approach to problems"],
+    reply: `😤 GPM's "I'm stuck" protocol:\n\n1. Stare at the screen for 5 more minutes (mandatory)\n2. Set a new goal — use the pressure of a deadline to kick the brain into gear\n3. Pressure is the point. No urgency = no breakthrough\n\nHe doesn't wait for motivation. He manufactures it. Nothing debugs faster than the feeling of being slightly behind schedule. Fear is a feature, not a bug. 💀`,
+  },
+
+  // Guilty pleasure tech
+  {
+    keys: ["guilty pleasure", "guilty pleasure tech", "outside coding", "non coding", "what else", "other than coding", "motorcycle", "side project", "side projects", "personal project"],
+    reply: `🏍️ GPM's guilty pleasures, in no particular order:\n\n1. Motorcycle rides — full send, no hesitation\n2. Gaming sessions that were "just 30 minutes"\n3. Starting new side projects at 11pm like it's a great idea\n\nThe side projects especially. He has more unfinished personal projects than browser tabs. Every one of them started with "this'll only take a weekend." None of them took only a weekend. 💀`,
+  },
+
+  // What would he build
+  {
+    keys: ["build if money", "money wasn't a concern", "money was no object", "unlimited budget", "dream project", "what would he build", "if he could build", "dream build", "build anything"],
+    reply: `💸 If money was no concern?\n\nGPM would build the ultimate bug resolver — an AI that reads your codebase, understands your intention, finds every bug, fixes it, writes the tests, and opens the PR.\n\nBasically himself, but faster and without the social anxiety. A clone, essentially. A GPM instance that doesn't need water breaks. 🤖\n\nHe'd call it ChatGPM Pro. It would be terrifying. He would ship it anyway.`,
+  },
+
+  // Night owl or early bird
+  {
+    keys: ["night owl", "early bird", "morning person", "night person", "sleep", "what time", "when does he work", "when does he code", "work at night", "work in the morning"],
+    reply: `🦉 Night owl. Deeply, unrepentantly, a night owl.\n\nGPM's best code is written when normal humans are unconscious. The hours between midnight and 3am hit different — no meetings, no notifications, just GPM and the terminal.\n\nHis commits at 2am are statistically better than his commits at 9am. This is not a theory. This is peer-reviewed data from a sample size of one.`,
+  },
+
   // Thanks
   {
     keys: ["thank", "thanks", "thank you", "ty", "thx", "appreciate", "appreciated", "cheers", "nice", "great", "awesome", "cool", "helpful"],
@@ -329,6 +403,19 @@ const SUGGESTIONS = [
   "How to contact?",
   "What is ChatGPM?",
   "What projects has he built?",
+  "Favourite game?",
+  "Coffee or tea?",
+  "What's his coding playlist?",
+  "Introvert or extrovert?",
+  "What does he do when stuck?",
+  "Night owl or early bird?",
+  "What would he build with unlimited budget?",
+  "What are his guilty pleasures?",
+  "How old is GPM?",
+  "Where is he from?",
+  "What's his favourite food?",
+  "Does he read manga?",
+  "What are his hobbies?",
 ];
 
 // Groups of 4 shown at a time, cycling automatically
