@@ -38,10 +38,22 @@ export function DesktopIcon({
   const my = useMotionValue(initY);
 
   useEffect(() => {
-    if (!dragging) animate(mx, initX, { type: "spring", stiffness: 380, damping: 28, mass: 0.7 });
+    if (!dragging)
+      animate(mx, initX, {
+        type: "spring",
+        stiffness: 380,
+        damping: 28,
+        mass: 0.7,
+      });
   }, [initX]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (!dragging) animate(my, initY, { type: "spring", stiffness: 380, damping: 28, mass: 0.7 });
+    if (!dragging)
+      animate(my, initY, {
+        type: "spring",
+        stiffness: 380,
+        damping: 28,
+        mass: 0.7,
+      });
   }, [initY]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -60,13 +72,27 @@ export function DesktopIcon({
         touchAction: "none",
         userSelect: "none",
       }}
-      onDragStart={() => { wasDragged.current = false; setDragging(true); }}
-      onDrag={() => { wasDragged.current = true; }}
-      onDragEnd={() => { setDragging(false); onPositionChange(mx.get(), my.get()); }}
+      onDragStart={() => {
+        wasDragged.current = false;
+        setDragging(true);
+      }}
+      onDrag={() => {
+        wasDragged.current = true;
+      }}
+      onDragEnd={() => {
+        setDragging(false);
+        onPositionChange(mx.get(), my.get());
+      }}
     >
       <button
-        onClick={() => { if (!wasDragged.current) onClick(); }}
-        onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); onContextMenu?.(e); }}
+        onClick={() => {
+          if (!wasDragged.current) onClick();
+        }}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onContextMenu?.(e);
+        }}
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => setHov(false)}
         className="font-mac flex flex-col items-center w-21 gap-1.25 py-2 px-2.5 rounded-lg border-none"
@@ -74,12 +100,17 @@ export function DesktopIcon({
           background: dragging
             ? `color-mix(in srgb, ${color} 14%, transparent)`
             : hov
-              ? isDark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.06)"
+              ? isDark
+                ? "rgba(255,255,255,0.09)"
+                : "rgba(0,0,0,0.06)"
               : isOpen
                 ? `color-mix(in srgb, ${color} 8%, transparent)`
                 : "transparent",
           cursor: dragging ? "grabbing" : "grab",
-          outline: isOpen && !dragging ? `1.5px solid color-mix(in srgb, ${color} 38%, transparent)` : "none",
+          outline:
+            isOpen && !dragging
+              ? `1.5px solid color-mix(in srgb, ${color} 38%, transparent)`
+              : "none",
           boxShadow: dragging ? "0 8px 24px rgba(0,0,0,0.35)" : "none",
           transition: dragging ? "none" : "background 0.12s, box-shadow 0.15s",
         }}
@@ -87,7 +118,7 @@ export function DesktopIcon({
       >
         <motion.div
           animate={dragging ? { scale: 1.08, y: -4 } : { scale: 1, y: 0 }}
-          whileHover={dragging ? {} : { scale: 1.10, y: -2 }}
+          whileHover={dragging ? {} : { scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.93 }}
           transition={{ type: "spring", stiffness: 420, damping: 22 }}
         >

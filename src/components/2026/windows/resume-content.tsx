@@ -60,7 +60,12 @@ export function ResumeContent() {
     const calc = () => {
       const w = el.clientWidth - (isMobile ? 24 : 48);
       if (w > 0)
-        setZoom(Math.min(isMobile ? 0.9 : 0.85, Math.max(0.3, Math.floor((w / 794) * 100) / 100)));
+        setZoom(
+          Math.min(
+            isMobile ? 0.9 : 0.85,
+            Math.max(0.3, Math.floor((w / 794) * 100) / 100),
+          ),
+        );
     };
     calc();
     const ro = new ResizeObserver(calc);
@@ -97,7 +102,8 @@ export function ResumeContent() {
     setTimeout(() => URL.revokeObjectURL(url), 10_000);
   }, []);
 
-  const sectionLabelCls = "text-a26-muted font-mac block mb-2 text-[9px] font-bold tracking-[0.10em] uppercase";
+  const sectionLabelCls =
+    "text-a26-muted font-mac block mb-2 text-[9px] font-bold tracking-[0.10em] uppercase";
 
   const mobileToolbar = isMobile && (
     <div
@@ -135,7 +141,10 @@ export function ResumeContent() {
           className="font-mac shrink-0 text-xs whitespace-nowrap cursor-pointer py-1.25 px-3 rounded-[20px]"
           style={{
             border: `1.5px solid ${mode === opt.v ? "var(--a26-teal)" : "var(--a26-glass-border)"}`,
-            background: mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 10%, transparent)" : "transparent",
+            background:
+              mode === opt.v
+                ? "color-mix(in srgb, var(--a26-teal) 10%, transparent)"
+                : "transparent",
             color: mode === opt.v ? "var(--a26-teal)" : "var(--a26-text-mid)",
             fontWeight: mode === opt.v ? 600 : 400,
           }}
@@ -145,8 +154,16 @@ export function ResumeContent() {
       ))}
       <div className="shrink-0 bg-a26-glass-border w-px h-4.5" />
       {[
-        { v: false, icon: <Sun size={12} />, label: translate("win26.resume.light") },
-        { v: true, icon: <Moon size={12} />, label: translate("win26.resume.dark") },
+        {
+          v: false,
+          icon: <Sun size={12} />,
+          label: translate("win26.resume.light"),
+        },
+        {
+          v: true,
+          icon: <Moon size={12} />,
+          label: translate("win26.resume.dark"),
+        },
       ].map((opt) => (
         <button
           key={String(opt.v)}
@@ -154,7 +171,10 @@ export function ResumeContent() {
           className="font-mac shrink-0 flex items-center gap-1 text-xs whitespace-nowrap cursor-pointer py-1.25 px-2.5 rounded-[20px]"
           style={{
             border: `1.5px solid ${isDark === opt.v ? "var(--a26-blue)" : "var(--a26-glass-border)"}`,
-            background: isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 10%, transparent)" : "transparent",
+            background:
+              isDark === opt.v
+                ? "color-mix(in srgb, var(--a26-blue) 10%, transparent)"
+                : "transparent",
             color: isDark === opt.v ? "var(--a26-blue)" : "var(--a26-text-mid)",
           }}
         >
@@ -170,7 +190,10 @@ export function ResumeContent() {
           className="shrink-0 w-5 h-5 rounded-full border-none cursor-pointer outline-none"
           style={{
             background: s.hex,
-            boxShadow: color === s.value ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}` : "none",
+            boxShadow:
+              color === s.value
+                ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}`
+                : "none",
             transform: color === s.value ? "scale(1.2)" : "scale(1)",
             transition: "transform 0.13s, box-shadow 0.13s",
           }}
@@ -188,7 +211,9 @@ export function ResumeContent() {
   );
 
   return (
-    <div className={`font-mac flex-1 min-h-0 overflow-hidden flex ${isMobile ? "flex-col" : "flex-row"}`}>
+    <div
+      className={`font-mac flex-1 min-h-0 overflow-hidden flex ${isMobile ? "flex-col" : "flex-row"}`}
+    >
       {mobileToolbar}
 
       {/* ── Controls sidebar (desktop only) ── */}
@@ -199,11 +224,23 @@ export function ResumeContent() {
         >
           {/* Template */}
           <div>
-            <span className={sectionLabelCls}>{translate("win26.resume.template")}</span>
+            <span className={sectionLabelCls}>
+              {translate("win26.resume.template")}
+            </span>
             <div className="flex flex-col gap-1.25">
               {[
-                { v: "modern" as ResumeMode, icon: <Sparkles size={12} />, label: translate("win26.resume.modern"), desc: translate("win26.resume.modernDesc") },
-                { v: "simple" as ResumeMode, icon: <LayoutTemplate size={12} />, label: translate("win26.resume.simple"), desc: translate("win26.resume.simpleDesc") },
+                {
+                  v: "modern" as ResumeMode,
+                  icon: <Sparkles size={12} />,
+                  label: translate("win26.resume.modern"),
+                  desc: translate("win26.resume.modernDesc"),
+                },
+                {
+                  v: "simple" as ResumeMode,
+                  icon: <LayoutTemplate size={12} />,
+                  label: translate("win26.resume.simple"),
+                  desc: translate("win26.resume.simpleDesc"),
+                },
               ].map((opt) => (
                 <button
                   key={opt.v}
@@ -211,16 +248,31 @@ export function ResumeContent() {
                   className="font-mac flex items-center gap-2.25 py-2 px-2.5 rounded-lg cursor-pointer transition-all duration-[140ms] text-left"
                   style={{
                     border: `1px solid ${mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 40%, transparent)" : "var(--a26-glass-border)"}`,
-                    background: mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 8%, transparent)" : "var(--a26-glass)",
+                    background:
+                      mode === opt.v
+                        ? "color-mix(in srgb, var(--a26-teal) 8%, transparent)"
+                        : "var(--a26-glass)",
                   }}
                 >
-                  <span style={{ color: mode === opt.v ? "var(--a26-teal)" : "var(--a26-text-muted)" }}>
+                  <span
+                    style={{
+                      color:
+                        mode === opt.v
+                          ? "var(--a26-teal)"
+                          : "var(--a26-text-muted)",
+                    }}
+                  >
                     {opt.icon}
                   </span>
                   <div>
                     <div
                       className="text-xs font-semibold"
-                      style={{ color: mode === opt.v ? "var(--a26-text)" : "var(--a26-text-mid)" }}
+                      style={{
+                        color:
+                          mode === opt.v
+                            ? "var(--a26-text)"
+                            : "var(--a26-text-mid)",
+                      }}
                     >
                       {opt.label}
                     </div>
@@ -233,11 +285,21 @@ export function ResumeContent() {
 
           {/* Appearance */}
           <div>
-            <span className={sectionLabelCls}>{translate("win26.resume.appearance")}</span>
+            <span className={sectionLabelCls}>
+              {translate("win26.resume.appearance")}
+            </span>
             <div className="flex gap-1.5">
               {[
-                { v: false, icon: <Sun size={13} />, label: translate("win26.resume.light") },
-                { v: true, icon: <Moon size={13} />, label: translate("win26.resume.dark") },
+                {
+                  v: false,
+                  icon: <Sun size={13} />,
+                  label: translate("win26.resume.light"),
+                },
+                {
+                  v: true,
+                  icon: <Moon size={13} />,
+                  label: translate("win26.resume.dark"),
+                },
               ].map((opt) => (
                 <button
                   key={String(opt.v)}
@@ -245,15 +307,30 @@ export function ResumeContent() {
                   className="font-mac flex-1 flex flex-col items-center gap-1.25 py-2.25 px-1.5 rounded-lg cursor-pointer transition-all duration-[140ms]"
                   style={{
                     border: `1px solid ${isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 40%, transparent)" : "var(--a26-glass-border)"}`,
-                    background: isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 8%, transparent)" : "var(--a26-glass)",
+                    background:
+                      isDark === opt.v
+                        ? "color-mix(in srgb, var(--a26-blue) 8%, transparent)"
+                        : "var(--a26-glass)",
                   }}
                 >
-                  <span style={{ color: isDark === opt.v ? "var(--a26-blue)" : "var(--a26-text-muted)" }}>
+                  <span
+                    style={{
+                      color:
+                        isDark === opt.v
+                          ? "var(--a26-blue)"
+                          : "var(--a26-text-muted)",
+                    }}
+                  >
                     {opt.icon}
                   </span>
                   <span
                     className="text-[11px]"
-                    style={{ color: isDark === opt.v ? "var(--a26-text)" : "var(--a26-text-muted)" }}
+                    style={{
+                      color:
+                        isDark === opt.v
+                          ? "var(--a26-text)"
+                          : "var(--a26-text-muted)",
+                    }}
                   >
                     {opt.label}
                   </span>
@@ -264,7 +341,9 @@ export function ResumeContent() {
 
           {/* Color */}
           <div>
-            <span className={sectionLabelCls}>{translate("win26.resume.accentColor")}</span>
+            <span className={sectionLabelCls}>
+              {translate("win26.resume.accentColor")}
+            </span>
             <div className="flex flex-wrap gap-2">
               {RESUME_SWATCHES.map((s) => (
                 <button
@@ -274,18 +353,23 @@ export function ResumeContent() {
                   className="flex items-center justify-center w-6 h-6 rounded-full border-none cursor-pointer outline-none"
                   style={{
                     background: s.hex,
-                    boxShadow: color === s.value
-                      ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}`
-                      : "none",
+                    boxShadow:
+                      color === s.value
+                        ? `0 0 0 2px ${isSystemDark ? "#1C1C1C" : "#F5F5F5"}, 0 0 0 3.5px ${s.hex}`
+                        : "none",
                     transform: color === s.value ? "scale(1.18)" : "scale(1)",
                     transition: "transform 0.13s, box-shadow 0.13s",
                   }}
                 >
-                  {color === s.value && <Check size={11} color="#fff" strokeWidth={3} />}
+                  {color === s.value && (
+                    <Check size={11} color="#fff" strokeWidth={3} />
+                  )}
                 </button>
               ))}
             </div>
-            <div className="text-a26-muted text-[11px] mt-1.75 capitalize">{color}</div>
+            <div className="text-a26-muted text-[11px] mt-1.75 capitalize">
+              {color}
+            </div>
           </div>
 
           {/* Export — pinned to bottom */}
@@ -301,10 +385,24 @@ export function ResumeContent() {
               className="bg-a26-glass border border-a26-glass-border text-[10px] leading-[1.65] py-2 px-2.5 rounded-[7px]"
               style={{ color: "var(--a26-text-muted)" }}
             >
-              <div className="font-semibold mb-0.75" style={{ color: "var(--a26-text-mid)" }}>{translate("win26.resume.tips")}</div>
-              {translate("win26.resume.tipsC1" as any)}<b style={{ color: "var(--a26-text)" }}>{translate("win26.resume.tipsSave")}</b>
-              {translate("win26.resume.tipsC2" as any)}<b style={{ color: "var(--a26-text)" }}>{translate("win26.resume.tipsMargins")}</b>
-              {translate("win26.resume.tipsC3" as any)}<b style={{ color: "var(--a26-text)" }}>{translate("win26.resume.tipsBg")}</b>
+              <div
+                className="font-semibold mb-0.75"
+                style={{ color: "var(--a26-text-mid)" }}
+              >
+                {translate("win26.resume.tips")}
+              </div>
+              {translate("win26.resume.tipsC1" as any)}
+              <b style={{ color: "var(--a26-text)" }}>
+                {translate("win26.resume.tipsSave")}
+              </b>
+              {translate("win26.resume.tipsC2" as any)}
+              <b style={{ color: "var(--a26-text)" }}>
+                {translate("win26.resume.tipsMargins")}
+              </b>
+              {translate("win26.resume.tipsC3" as any)}
+              <b style={{ color: "var(--a26-text)" }}>
+                {translate("win26.resume.tipsBg")}
+              </b>
               {translate("win26.resume.tipsC4" as any)}
             </div>
           </div>
@@ -315,7 +413,9 @@ export function ResumeContent() {
       <div
         ref={containerRef}
         className="flex-1 flex flex-col overflow-hidden"
-        style={{ background: isSystemDark ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.07)" }}
+        style={{
+          background: isSystemDark ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.07)",
+        }}
       >
         {/* Zoom toolbar — desktop only */}
         {!isMobile && (
@@ -347,7 +447,9 @@ export function ResumeContent() {
           style={{ scrollbarColor: "var(--a26-glass-border) transparent" }}
         >
           {/* Wrapper matches the visual (scaled) width so no horizontal overflow */}
-          <div style={{ width: `${Math.round(794 * zoom)}px`, margin: "0 auto" }}>
+          <div
+            style={{ width: `${Math.round(794 * zoom)}px`, margin: "0 auto" }}
+          >
             <div
               id="resume-preview-2026"
               style={{

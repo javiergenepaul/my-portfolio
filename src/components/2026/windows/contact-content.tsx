@@ -37,7 +37,9 @@ export function ContactContent() {
   return (
     <div className="font-mac flex flex-col py-7 px-8 gap-3.5">
       <div className="mb-1">
-        <h2 className="text-a26-text text-lg font-bold m-0">{translate("win26.contact.title")}</h2>
+        <h2 className="text-a26-text text-lg font-bold m-0">
+          {translate("win26.contact.title")}
+        </h2>
         <p className="text-a26-mid text-[13px] mt-1 m-0">
           {translate("win26.contact.subtitle")}
         </p>
@@ -66,8 +68,12 @@ export function ContactContent() {
           </div>
 
           <div className="flex-1">
-            <div className="text-a26-text text-[13px] font-semibold">{l.label}</div>
-            <div className="text-xs mt-px" style={{ color: l.color }}>{l.value}</div>
+            <div className="text-a26-text text-[13px] font-semibold">
+              {l.label}
+            </div>
+            <div className="text-xs mt-px" style={{ color: l.color }}>
+              {l.value}
+            </div>
             <div className="text-a26-muted text-[11px] mt-px">{l.desc}</div>
           </div>
 

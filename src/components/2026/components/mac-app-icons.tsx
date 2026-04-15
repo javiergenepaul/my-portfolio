@@ -82,14 +82,24 @@ function AboutArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Compass ring */}
-      <circle cx="40" cy="40" r="30" stroke="white" strokeWidth="1.8" opacity="0.9" />
+      <circle
+        cx="40"
+        cy="40"
+        r="30"
+        stroke="white"
+        strokeWidth="1.8"
+        opacity="0.9"
+      />
       {/* Inner face glow */}
       <circle cx="40" cy="40" r="28" fill="rgba(255,255,255,0.07)" />
       {/* Tick marks */}
       {ticks.map((t, i) => (
         <line
           key={i}
-          x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
+          x1={t.x1}
+          y1={t.y1}
+          x2={t.x2}
+          y2={t.y2}
           stroke="white"
           strokeWidth={t.isCardinal ? 2.4 : 1.4}
           strokeLinecap="round"
@@ -122,11 +132,40 @@ function ProjectsArt({ s }: { s: number }) {
         opacity="0.82"
       />
       {/* Folder body */}
-      <rect x="7" y="33" width="66" height="38" rx="7" fill="white" opacity="0.95" />
+      <rect
+        x="7"
+        y="33"
+        width="66"
+        height="38"
+        rx="7"
+        fill="white"
+        opacity="0.95"
+      />
       {/* Inner lines — code hint */}
-      <rect x="17" y="45" width="24" height="4" rx="2" fill="rgba(20,110,255,0.28)" />
-      <rect x="17" y="54" width="38" height="4" rx="2" fill="rgba(20,110,255,0.20)" />
-      <rect x="17" y="63" width="30" height="4" rx="2" fill="rgba(20,110,255,0.20)" />
+      <rect
+        x="17"
+        y="45"
+        width="24"
+        height="4"
+        rx="2"
+        fill="rgba(20,110,255,0.28)"
+      />
+      <rect
+        x="17"
+        y="54"
+        width="38"
+        height="4"
+        rx="2"
+        fill="rgba(20,110,255,0.20)"
+      />
+      <rect
+        x="17"
+        y="63"
+        width="30"
+        height="4"
+        rx="2"
+        fill="rgba(20,110,255,0.20)"
+      />
     </svg>
   );
 }
@@ -137,9 +176,23 @@ function TerminalArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Window frame */}
-      <rect x="6" y="10" width="68" height="60" rx="9" fill="rgba(0,0,0,0.55)" />
+      <rect
+        x="6"
+        y="10"
+        width="68"
+        height="60"
+        rx="9"
+        fill="rgba(0,0,0,0.55)"
+      />
       {/* Title bar stripe */}
-      <rect x="6" y="10" width="68" height="16" rx="9" fill="rgba(0,0,0,0.35)" />
+      <rect
+        x="6"
+        y="10"
+        width="68"
+        height="16"
+        rx="9"
+        fill="rgba(0,0,0,0.35)"
+      />
       <rect x="6" y="18" width="68" height="8" fill="rgba(0,0,0,0.35)" />
       {/* Traffic dots */}
       <circle cx="21" cy="20" r="3.6" fill="#FF5F57" />
@@ -154,9 +207,23 @@ function TerminalArt({ s }: { s: number }) {
         strokeLinejoin="round"
       />
       {/* Cursor block */}
-      <rect x="28" y="41" width="16" height="6" rx="1.5" fill="rgba(74,222,128,0.75)" />
+      <rect
+        x="28"
+        y="41"
+        width="16"
+        height="6"
+        rx="1.5"
+        fill="rgba(74,222,128,0.75)"
+      />
       {/* Second line hint */}
-      <rect x="14" y="60" width="46" height="3.5" rx="1.5" fill="rgba(255,255,255,0.14)" />
+      <rect
+        x="14"
+        y="60"
+        width="46"
+        height="3.5"
+        rx="1.5"
+        fill="rgba(255,255,255,0.14)"
+      />
     </svg>
   );
 }
@@ -167,32 +234,90 @@ function SkillsArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Left stroke: bottom-left → upper-right tail (crosses right stroke near top) */}
-      <line x1="13" y1="68" x2="50" y2="12" stroke="white" strokeWidth="10.5" strokeLinecap="round" opacity="0.92" />
+      <line
+        x1="13"
+        y1="68"
+        x2="50"
+        y2="12"
+        stroke="white"
+        strokeWidth="10.5"
+        strokeLinecap="round"
+        opacity="0.92"
+      />
       {/* Right stroke: bottom-right → upper-left tail */}
-      <line x1="67" y1="68" x2="30" y2="12" stroke="white" strokeWidth="10.5" strokeLinecap="round" opacity="0.92" />
+      <line
+        x1="67"
+        y1="68"
+        x2="30"
+        y2="12"
+        stroke="white"
+        strokeWidth="10.5"
+        strokeLinecap="round"
+        opacity="0.92"
+      />
       {/* Crossbar */}
-      <line x1="20" y1="50" x2="60" y2="50" stroke="white" strokeWidth="10" strokeLinecap="round" opacity="0.92" />
+      <line
+        x1="20"
+        y1="50"
+        x2="60"
+        y2="50"
+        stroke="white"
+        strokeWidth="10"
+        strokeLinecap="round"
+        opacity="0.92"
+      />
       {/* Gloss overlay on strokes */}
-      <line x1="13" y1="68" x2="50" y2="12" stroke="white" strokeWidth="4" strokeLinecap="round" opacity="0.22" />
-      <line x1="67" y1="68" x2="30" y2="12" stroke="white" strokeWidth="4" strokeLinecap="round" opacity="0.22" />
-      <line x1="20" y1="50" x2="60" y2="50" stroke="white" strokeWidth="3.5" strokeLinecap="round" opacity="0.22" />
+      <line
+        x1="13"
+        y1="68"
+        x2="50"
+        y2="12"
+        stroke="white"
+        strokeWidth="4"
+        strokeLinecap="round"
+        opacity="0.22"
+      />
+      <line
+        x1="67"
+        y1="68"
+        x2="30"
+        y2="12"
+        stroke="white"
+        strokeWidth="4"
+        strokeLinecap="round"
+        opacity="0.22"
+      />
+      <line
+        x1="20"
+        y1="50"
+        x2="60"
+        y2="50"
+        stroke="white"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        opacity="0.22"
+      />
     </svg>
   );
 }
 
 // Contact — Messages-style speech bubble (green)
 function ContactArt({ s }: { s: number }) {
-  const p = s * 0.60;
+  const p = s * 0.6;
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Bubble body */}
-      <rect x="8" y="10" width="64" height="46" rx="14" fill="white" opacity="0.95" />
-      {/* Tail */}
-      <path
-        d="M 18 56 L 10 70 L 34 60"
+      <rect
+        x="8"
+        y="10"
+        width="64"
+        height="46"
+        rx="14"
         fill="white"
         opacity="0.95"
       />
+      {/* Tail */}
+      <path d="M 18 56 L 10 70 L 34 60" fill="white" opacity="0.95" />
       {/* Dots inside */}
       <circle cx="28" cy="33" r="5" fill="rgba(40,180,40,0.5)" />
       <circle cx="40" cy="33" r="5" fill="rgba(40,180,40,0.5)" />
@@ -203,26 +328,66 @@ function ContactArt({ s }: { s: number }) {
 
 // Resume — Pages/iWork–style document (orange-red)
 function ResumeArt({ s }: { s: number }) {
-  const p = s * 0.60;
+  const p = s * 0.6;
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Page */}
-      <rect x="12" y="6" width="56" height="68" rx="8" fill="white" opacity="0.95" />
+      <rect
+        x="12"
+        y="6"
+        width="56"
+        height="68"
+        rx="8"
+        fill="white"
+        opacity="0.95"
+      />
       {/* Folded corner */}
       <path d="M 52 6 L 68 22 L 52 22 Z" fill="rgba(255,120,50,0.35)" />
-      <path d="M 52 6 L 68 22 L 52 22 Z" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+      <path
+        d="M 52 6 L 68 22 L 52 22 Z"
+        stroke="rgba(255,255,255,0.4)"
+        strokeWidth="1"
+      />
       {/* Text lines */}
-      <rect x="20" y="30" width="40" height="4" rx="2" fill="rgba(255,100,40,0.30)" />
-      <rect x="20" y="40" width="34" height="4" rx="2" fill="rgba(0,0,0,0.14)" />
-      <rect x="20" y="50" width="38" height="4" rx="2" fill="rgba(0,0,0,0.14)" />
-      <rect x="20" y="60" width="28" height="4" rx="2" fill="rgba(0,0,0,0.14)" />
+      <rect
+        x="20"
+        y="30"
+        width="40"
+        height="4"
+        rx="2"
+        fill="rgba(255,100,40,0.30)"
+      />
+      <rect
+        x="20"
+        y="40"
+        width="34"
+        height="4"
+        rx="2"
+        fill="rgba(0,0,0,0.14)"
+      />
+      <rect
+        x="20"
+        y="50"
+        width="38"
+        height="4"
+        rx="2"
+        fill="rgba(0,0,0,0.14)"
+      />
+      <rect
+        x="20"
+        y="60"
+        width="28"
+        height="4"
+        rx="2"
+        fill="rgba(0,0,0,0.14)"
+      />
     </svg>
   );
 }
 
 // Settings — macOS System Settings gear
 function SettingsArt({ s }: { s: number }) {
-  const p = s * 0.60;
+  const p = s * 0.6;
   const teeth = 8;
   const cx = 40;
   const cy = 40;
@@ -250,7 +415,14 @@ function SettingsArt({ s }: { s: number }) {
       {/* Gear body */}
       <circle cx={cx} cy={cy} r={bodyR} fill="white" opacity="0.92" />
       {/* Center hole */}
-      <circle cx={cx} cy={cy} r={holeR} fill="transparent" stroke="rgba(90,104,128,0.65)" strokeWidth="12" />
+      <circle
+        cx={cx}
+        cy={cy}
+        r={holeR}
+        fill="transparent"
+        stroke="rgba(90,104,128,0.65)"
+        strokeWidth="12"
+      />
     </svg>
   );
 }
@@ -261,7 +433,15 @@ function ChatArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Main bubble */}
-      <rect x="7" y="8" width="58" height="43" rx="13" fill="white" opacity="0.95" />
+      <rect
+        x="7"
+        y="8"
+        width="58"
+        height="43"
+        rx="13"
+        fill="white"
+        opacity="0.95"
+      />
       {/* Bubble tail */}
       <path d="M 17 51 L 11 67 L 33 55" fill="white" opacity="0.95" />
       {/* 4-point sparkle star */}
@@ -285,15 +465,48 @@ function GamesArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Folder tab */}
-      <path d="M 7 33 L 7 27 Q 7 21 13 21 L 30 21 Q 35 21 37 25 L 40 33 Z" fill="white" opacity="0.82" />
+      <path
+        d="M 7 33 L 7 27 Q 7 21 13 21 L 30 21 Q 35 21 37 25 L 40 33 Z"
+        fill="white"
+        opacity="0.82"
+      />
       {/* Folder body */}
-      <rect x="7" y="33" width="66" height="38" rx="7" fill="white" opacity="0.95" />
+      <rect
+        x="7"
+        y="33"
+        width="66"
+        height="38"
+        rx="7"
+        fill="white"
+        opacity="0.95"
+      />
       {/* Gamepad body */}
-      <rect x="18" y="42" width="44" height="22" rx="11" fill="rgba(249,115,22,0.32)" />
+      <rect
+        x="18"
+        y="42"
+        width="44"
+        height="22"
+        rx="11"
+        fill="rgba(249,115,22,0.32)"
+      />
       {/* D-pad horizontal */}
-      <rect x="24" y="51" width="12" height="4" rx="2" fill="rgba(234,88,12,0.65)" />
+      <rect
+        x="24"
+        y="51"
+        width="12"
+        height="4"
+        rx="2"
+        fill="rgba(234,88,12,0.65)"
+      />
       {/* D-pad vertical */}
-      <rect x="28" y="47" width="4" height="12" rx="2" fill="rgba(234,88,12,0.65)" />
+      <rect
+        x="28"
+        y="47"
+        width="4"
+        height="12"
+        rx="2"
+        fill="rgba(234,88,12,0.65)"
+      />
       {/* Action buttons */}
       <circle cx="47" cy="50" r="2.8" fill="rgba(234,88,12,0.55)" />
       <circle cx="53" cy="53" r="2.8" fill="rgba(234,88,12,0.55)" />
@@ -325,7 +538,12 @@ function SnakeArt({ s }: { s: number }) {
       <circle cx="55" cy="11" r="2.2" fill="rgba(20,83,45,0.85)" />
       <circle cx="62" cy="11" r="2.2" fill="rgba(20,83,45,0.85)" />
       {/* Tongue */}
-      <path d="M 58 22 L 56 27 M 58 22 L 60 27" stroke="rgba(248,113,113,0.9)" strokeWidth="1.5" strokeLinecap="round" />
+      <path
+        d="M 58 22 L 56 27 M 58 22 L 60 27"
+        stroke="rgba(248,113,113,0.9)"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
       {/* Food dot */}
       <circle cx="16" cy="68" r="5.5" fill="#F87171" opacity="0.92" />
       <circle cx="16" cy="66" r="2" fill="white" opacity="0.4" />
@@ -346,10 +564,27 @@ function HanoiArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Base plate */}
-      <rect x="8" y="68" width="64" height="5" rx="2.5" fill="white" opacity="0.85" />
+      <rect
+        x="8"
+        y="68"
+        width="64"
+        height="5"
+        rx="2.5"
+        fill="white"
+        opacity="0.85"
+      />
       {/* Peg sticks */}
       {pegs.map((cx) => (
-        <rect key={cx} x={cx - 2} y="20" width="4" height="48" rx="2" fill="white" opacity="0.55" />
+        <rect
+          key={cx}
+          x={cx - 2}
+          y="20"
+          width="4"
+          height="48"
+          rx="2"
+          fill="white"
+          opacity="0.55"
+        />
       ))}
       {/* Discs on first peg (cx=18) */}
       {discs.map((d) => (
@@ -374,28 +609,53 @@ function TetrisArt({ s }: { s: number }) {
   // A small arrangement of tetromino-style blocks
   const blocks: { x: number; y: number; color: string }[] = [
     // I piece (cyan) — horizontal row near bottom
-    { x: 8,  y: 58, color: "#00E5FF" }, { x: 20, y: 58, color: "#00E5FF" },
-    { x: 32, y: 58, color: "#00E5FF" }, { x: 44, y: 58, color: "#00E5FF" },
+    { x: 8, y: 58, color: "#00E5FF" },
+    { x: 20, y: 58, color: "#00E5FF" },
+    { x: 32, y: 58, color: "#00E5FF" },
+    { x: 44, y: 58, color: "#00E5FF" },
     // O piece (yellow) — 2×2 square
-    { x: 56, y: 46, color: "#FFD600" }, { x: 68, y: 46, color: "#FFD600" },
-    { x: 56, y: 58, color: "#FFD600" }, { x: 68, y: 58, color: "#FFD600" },
+    { x: 56, y: 46, color: "#FFD600" },
+    { x: 68, y: 46, color: "#FFD600" },
+    { x: 56, y: 58, color: "#FFD600" },
+    { x: 68, y: 58, color: "#FFD600" },
     // T piece (purple)
-    { x: 20, y: 34, color: "#D500F9" }, { x: 32, y: 34, color: "#D500F9" },
-    { x: 44, y: 34, color: "#D500F9" }, { x: 32, y: 46, color: "#D500F9" },
+    { x: 20, y: 34, color: "#D500F9" },
+    { x: 32, y: 34, color: "#D500F9" },
+    { x: 44, y: 34, color: "#D500F9" },
+    { x: 32, y: 46, color: "#D500F9" },
     // S piece (green)
-    { x: 44, y: 10, color: "#00E676" }, { x: 56, y: 10, color: "#00E676" },
-    { x: 32, y: 22, color: "#00E676" }, { x: 44, y: 22, color: "#00E676" },
+    { x: 44, y: 10, color: "#00E676" },
+    { x: 56, y: 10, color: "#00E676" },
+    { x: 32, y: 22, color: "#00E676" },
+    { x: 44, y: 22, color: "#00E676" },
     // L piece (orange)
-    { x: 8,  y: 10, color: "#FF6D00" }, { x: 8, y: 22, color: "#FF6D00" },
-    { x: 8,  y: 34, color: "#FF6D00" }, { x: 20, y: 34, color: "#FF6D00" },
+    { x: 8, y: 10, color: "#FF6D00" },
+    { x: 8, y: 22, color: "#FF6D00" },
+    { x: 8, y: 34, color: "#FF6D00" },
+    { x: 20, y: 34, color: "#FF6D00" },
   ];
   const bsz = 10;
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {blocks.map((b, i) => (
         <g key={i}>
-          <rect x={b.x} y={b.y} width={bsz} height={bsz} rx="2" fill={b.color} opacity="0.92" />
-          <rect x={b.x + 1} y={b.y + 1} width={bsz - 2} height={(bsz - 2) * 0.35} rx="1" fill="rgba(255,255,255,0.30)" />
+          <rect
+            x={b.x}
+            y={b.y}
+            width={bsz}
+            height={bsz}
+            rx="2"
+            fill={b.color}
+            opacity="0.92"
+          />
+          <rect
+            x={b.x + 1}
+            y={b.y + 1}
+            width={bsz - 2}
+            height={(bsz - 2) * 0.35}
+            rx="1"
+            fill="rgba(255,255,255,0.30)"
+          />
         </g>
       ))}
     </svg>
@@ -408,24 +668,71 @@ function JumpArt({ s }: { s: number }) {
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
       {/* Platforms */}
-      <rect x="6"  y="68" width="28" height="7" rx="3.5" fill="white" opacity="0.85" />
-      <rect x="44" y="52" width="24" height="7" rx="3.5" fill="#C084FC" opacity="0.85" />
-      <rect x="16" y="36" width="26" height="7" rx="3.5" fill="#60A5FA" opacity="0.85" />
-      <rect x="46" y="20" width="22" height="7" rx="3.5" fill="#4ADE80" opacity="0.85" />
+      <rect
+        x="6"
+        y="68"
+        width="28"
+        height="7"
+        rx="3.5"
+        fill="white"
+        opacity="0.85"
+      />
+      <rect
+        x="44"
+        y="52"
+        width="24"
+        height="7"
+        rx="3.5"
+        fill="#C084FC"
+        opacity="0.85"
+      />
+      <rect
+        x="16"
+        y="36"
+        width="26"
+        height="7"
+        rx="3.5"
+        fill="#60A5FA"
+        opacity="0.85"
+      />
+      <rect
+        x="46"
+        y="20"
+        width="22"
+        height="7"
+        rx="3.5"
+        fill="#4ADE80"
+        opacity="0.85"
+      />
       {/* Character body */}
-      <rect x="22" y="20" width="14" height="16" rx="5" fill="white" opacity="0.95" />
+      <rect
+        x="22"
+        y="20"
+        width="14"
+        height="16"
+        rx="5"
+        fill="white"
+        opacity="0.95"
+      />
       {/* Eyes */}
       <circle cx="27" cy="26" r="2" fill="rgba(30,58,138,0.75)" />
       <circle cx="33" cy="26" r="2" fill="rgba(30,58,138,0.75)" />
       {/* Jump arc trail */}
-      <path d="M 14 64 Q 36 30 36 20" stroke="rgba(255,255,255,0.22)" strokeWidth="2" strokeDasharray="3 4" fill="none" strokeLinecap="round" />
+      <path
+        d="M 14 64 Q 36 30 36 20"
+        stroke="rgba(255,255,255,0.22)"
+        strokeWidth="2"
+        strokeDasharray="3 4"
+        fill="none"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
 // GitHub — dark squircle with octocat-inspired silhouette
 function GitHubArt({ s }: { s: number }) {
-  const p = s * 0.60;
+  const p = s * 0.6;
   // Simple GitHub mark: circle head + body + tentacle hints
   return (
     <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
@@ -451,7 +758,12 @@ function GitHubArt({ s }: { s: number }) {
 
 const ICON_MAP: Record<
   AppIconId,
-  { g1: string; g2: string; art: (s: number) => React.ReactNode; shadow?: string }
+  {
+    g1: string;
+    g2: string;
+    art: (s: number) => React.ReactNode;
+    shadow?: string;
+  }
 > = {
   about: {
     g1: "#5DCDFF",
@@ -513,7 +825,8 @@ const ICON_MAP: Record<
   tetris: {
     g1: "#1A1A2E",
     g2: "#0D0D1A",
-    shadow: "0 3px 14px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 0 1px rgba(0,229,255,0.15)",
+    shadow:
+      "0 3px 14px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 0 0 1px rgba(0,229,255,0.15)",
     art: (s) => <TetrisArt s={s} />,
   },
   jump: {

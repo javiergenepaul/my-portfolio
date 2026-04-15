@@ -52,9 +52,7 @@ function MenuItem({
       )}
       <span className="flex-1">{label}</span>
       {shortcut && (
-        <span className="text-a26-muted font-mac text-xs ml-5">
-          {shortcut}
-        </span>
+        <span className="text-a26-muted font-mac text-xs ml-5">{shortcut}</span>
       )}
     </button>
   );
@@ -95,31 +93,41 @@ export function MenuBar({
   useEffect(() => {
     if (!activeMenu) return;
     const handler = (e: MouseEvent) => {
-      if (barRef.current && !barRef.current.contains(e.target as Node)) setActiveMenu(null);
+      if (barRef.current && !barRef.current.contains(e.target as Node))
+        setActiveMenu(null);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [activeMenu]);
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveMenu(null); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveMenu(null);
+    };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
-  const toggle = (id: MenuId) => setActiveMenu((prev) => (prev === id ? null : id));
-  const act = (fn: () => void) => { setActiveMenu(null); fn(); };
+  const toggle = (id: MenuId) =>
+    setActiveMenu((prev) => (prev === id ? null : id));
+  const act = (fn: () => void) => {
+    setActiveMenu(null);
+    fn();
+  };
 
   const anyOpen = Object.values(wins).some((w) => w.open);
   const anyMinimized = Object.values(wins).some((w) => w.minimized);
-  const isFullscreen = typeof document !== "undefined" && !!document.fullscreenElement;
+  const isFullscreen =
+    typeof document !== "undefined" && !!document.fullscreenElement;
 
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    if (!document.fullscreenElement)
+      document.documentElement.requestFullscreen?.();
     else document.exitFullscreen?.();
   };
 
-  const menuBtnCls = "font-mac h-7 px-2.25 rounded border-none text-[13px] cursor-pointer";
+  const menuBtnCls =
+    "font-mac h-7 px-2.25 rounded border-none text-[13px] cursor-pointer";
   const menuBtnDyn = (id: MenuId): React.CSSProperties => ({
     background: activeMenu === id ? "rgba(255,255,255,0.14)" : "transparent",
     color: activeMenu === id ? "var(--a26-text)" : "var(--a26-text-mid)",
@@ -150,24 +158,50 @@ export function MenuBar({
           </svg>
         </div>
 
-        <span className="text-a26-text text-[13px] font-semibold px-2">GPM</span>
+        <span className="text-a26-text text-[13px] font-semibold px-2">
+          GPM
+        </span>
 
         {/* File */}
         <div className="relative">
-          <button onClick={() => toggle("file")} className={menuBtnCls} style={menuBtnDyn("file")}>File</button>
+          <button
+            onClick={() => toggle("file")}
+            className={menuBtnCls}
+            style={menuBtnDyn("file")}
+          >
+            File
+          </button>
           {activeMenu === "file" && (
             <Dropdown>
-              <MenuItem label="New Terminal Window" shortcut="⌘T" onClick={() => act(() => onOpenWin("terminal"))} />
-              <MenuItem label="Open Resume Builder" shortcut="⌘R" onClick={() => act(() => onOpenWin("resume"))} />
+              <MenuItem
+                label="New Terminal Window"
+                shortcut="⌘T"
+                onClick={() => act(() => onOpenWin("terminal"))}
+              />
+              <MenuItem
+                label="Open Resume Builder"
+                shortcut="⌘R"
+                onClick={() => act(() => onOpenWin("resume"))}
+              />
               <Separator />
-              <MenuItem label="Close All Windows" disabled={!anyOpen} onClick={() => act(onCloseAll)} />
+              <MenuItem
+                label="Close All Windows"
+                disabled={!anyOpen}
+                onClick={() => act(onCloseAll)}
+              />
             </Dropdown>
           )}
         </div>
 
         {/* View */}
         <div className="relative">
-          <button onClick={() => toggle("view")} className={menuBtnCls} style={menuBtnDyn("view")}>View</button>
+          <button
+            onClick={() => toggle("view")}
+            className={menuBtnCls}
+            style={menuBtnDyn("view")}
+          >
+            View
+          </button>
           {activeMenu === "view" && (
             <Dropdown>
               <MenuItem
@@ -176,16 +210,30 @@ export function MenuBar({
                 onClick={() => act(toggleFullscreen)}
               />
               <Separator />
-              <MenuItem label="Command Palette" shortcut="⌘K" onClick={() => act(onCmdK)} />
+              <MenuItem
+                label="Command Palette"
+                shortcut="⌘K"
+                onClick={() => act(onCmdK)}
+              />
               <Separator />
-              <MenuItem label="Restore All Windows" disabled={!anyMinimized} onClick={() => act(onRestoreAll)} />
+              <MenuItem
+                label="Restore All Windows"
+                disabled={!anyMinimized}
+                onClick={() => act(onRestoreAll)}
+              />
             </Dropdown>
           )}
         </div>
 
         {/* Go */}
         <div className="relative">
-          <button onClick={() => toggle("go")} className={menuBtnCls} style={menuBtnDyn("go")}>Go</button>
+          <button
+            onClick={() => toggle("go")}
+            className={menuBtnCls}
+            style={menuBtnDyn("go")}
+          >
+            Go
+          </button>
           {activeMenu === "go" && (
             <Dropdown>
               {WIN_DEFS.filter((d) => !d.hideIcon).map((def, i) => (
@@ -203,13 +251,33 @@ export function MenuBar({
 
         {/* Window */}
         <div className="relative">
-          <button onClick={() => toggle("window")} className={menuBtnCls} style={menuBtnDyn("window")}>Window</button>
+          <button
+            onClick={() => toggle("window")}
+            className={menuBtnCls}
+            style={menuBtnDyn("window")}
+          >
+            Window
+          </button>
           {activeMenu === "window" && (
             <Dropdown>
-              <MenuItem label="Cycle Windows" shortcut="⌃`" disabled={!anyOpen} onClick={() => act(() => {})} />
+              <MenuItem
+                label="Cycle Windows"
+                shortcut="⌃`"
+                disabled={!anyOpen}
+                onClick={() => act(() => {})}
+              />
               <Separator />
-              <MenuItem label="Minimize All" shortcut="⌘M" disabled={!anyOpen} onClick={() => act(onMinimizeAll)} />
-              <MenuItem label="Restore All" disabled={!anyMinimized} onClick={() => act(onRestoreAll)} />
+              <MenuItem
+                label="Minimize All"
+                shortcut="⌘M"
+                disabled={!anyOpen}
+                onClick={() => act(onMinimizeAll)}
+              />
+              <MenuItem
+                label="Restore All"
+                disabled={!anyMinimized}
+                onClick={() => act(onRestoreAll)}
+              />
               <Separator />
               {WIN_DEFS.filter((d) => !d.hideIcon).map((def) => (
                 <MenuItem
@@ -218,7 +286,9 @@ export function MenuBar({
                   checked={wins[def.id].open && !wins[def.id].minimized}
                   onClick={() =>
                     act(() =>
-                      wins[def.id].open && !wins[def.id].minimized ? undefined : onOpenWin(def.id),
+                      wins[def.id].open && !wins[def.id].minimized
+                        ? undefined
+                        : onOpenWin(def.id),
                     )
                   }
                 />

@@ -22,11 +22,22 @@ export function SidebarPanel({
   const isMobile = useIsMobile();
   const isCompact = useIsCompact();
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0 }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        minHeight: 0,
+      }}
+    >
       {/* Profile */}
       <div
         style={{
-          padding: isMobile ? "16px 16px 12px" : isCompact ? "18px 20px 12px" : "36px 24px 20px",
+          padding: isMobile
+            ? "16px 16px 12px"
+            : isCompact
+              ? "18px 20px 12px"
+              : "36px 24px 20px",
           textAlign: "center",
         }}
       >

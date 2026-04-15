@@ -12,11 +12,7 @@ export const ContactSection = () => {
     >
       <Card className="py-8">
         <CardHeader className="gap-10 pb-10 select-none">
-          <img
-            src={ContactLogo}
-            alt="jav-logo.svg"
-            className="w-18.5 h-18.5"
-          />
+          <img src={ContactLogo} alt="jav-logo.svg" className="w-18.5 h-18.5" />
           <CardTitle>{translate("contact.keepInTouch")}</CardTitle>
         </CardHeader>
         <CardContent>

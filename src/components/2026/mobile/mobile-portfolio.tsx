@@ -3,7 +3,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { MapPin, GithubIcon, LinkedinIcon, Mail, ChevronLeft } from "lucide-react";
+import {
+  MapPin,
+  GithubIcon,
+  LinkedinIcon,
+  Mail,
+  ChevronLeft,
+} from "lucide-react";
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
@@ -46,12 +52,12 @@ export function MobilePortfolio() {
     return () => setIsAppOpen(false);
   }, [activeApp, setIsAppOpen]);
   const compact = viewportH < 750;
-  const iconSize   = compact ? 50 : 62;
-  const dockSize   = compact ? 46 : 52;
+  const iconSize = compact ? 50 : 62;
+  const dockSize = compact ? 46 : 52;
   const avatarSize = compact ? 56 : 68;
-  const gridGap    = compact ? 10 : 16;
-  const profileMB  = compact ? 14 : 26;
-  const gridMB     = compact ? 14 : 26;
+  const gridGap = compact ? 10 : 16;
+  const profileMB = compact ? 14 : 26;
+  const gridMB = compact ? 14 : 26;
 
   const visibleApps = WIN_DEFS.filter((d) => !d.hideIcon);
   const dockApps = visibleApps.slice(0, 4);
@@ -72,32 +78,69 @@ export function MobilePortfolio() {
             WebkitBackdropFilter: "blur(10px)",
           }}
         >
-          <span className="text-a26-text text-[15px] font-semibold min-w-15">{time}</span>
+          <span className="text-a26-text text-[15px] font-semibold min-w-15">
+            {time}
+          </span>
           <div className="flex items-center gap-1.75">
             <div className="flex items-end gap-0.5">
               {[7, 10, 13, 16].map((h, i) => (
                 <div
                   key={i}
                   style={{
-                    width: 3, height: h, borderRadius: 1.5,
-                    background: i < 3 ? "var(--a26-text)" : "rgba(255,255,255,0.3)",
+                    width: 3,
+                    height: h,
+                    borderRadius: 1.5,
+                    background:
+                      i < 3 ? "var(--a26-text)" : "rgba(255,255,255,0.3)",
                   }}
                 />
               ))}
             </div>
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ overflow: "visible" }}>
+            <svg
+              width="16"
+              height="12"
+              viewBox="0 0 16 12"
+              fill="none"
+              style={{ overflow: "visible" }}
+            >
               <circle cx="8" cy="11" r="1.5" fill="var(--a26-text)" />
-              <path d="M4.8 7.6 A4.5 4.5 0 0 1 11.2 7.6" stroke="var(--a26-text)" strokeWidth="1.4" strokeLinecap="round" fill="none" />
-              <path d="M2.2 5 A8 8 0 0 1 13.8 5" stroke="var(--a26-text)" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+              <path
+                d="M4.8 7.6 A4.5 4.5 0 0 1 11.2 7.6"
+                stroke="var(--a26-text)"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path
+                d="M2.2 5 A8 8 0 0 1 13.8 5"
+                stroke="var(--a26-text)"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                fill="none"
+              />
             </svg>
             <div className="flex items-center gap-px">
               <div
                 className="flex items-stretch p-px rounded-[3px]"
-                style={{ width: 22, height: 12, border: "1.5px solid rgba(255,255,255,0.7)" }}
+                style={{
+                  width: 22,
+                  height: 12,
+                  border: "1.5px solid rgba(255,255,255,0.7)",
+                }}
               >
-                <div className="bg-a26-green rounded-[1.5px]" style={{ width: "75%" }} />
+                <div
+                  className="bg-a26-green rounded-[1.5px]"
+                  style={{ width: "75%" }}
+                />
               </div>
-              <div className="rounded-[1px]" style={{ width: 2, height: 6, background: "rgba(255,255,255,0.5)" }} />
+              <div
+                className="rounded-[1px]"
+                style={{
+                  width: 2,
+                  height: 6,
+                  background: "rgba(255,255,255,0.5)",
+                }}
+              />
             </div>
           </div>
         </div>
@@ -112,8 +155,11 @@ export function MobilePortfolio() {
             <div
               className="overflow-hidden border-[2.5px] border-a26-teal"
               style={{
-                width: avatarSize, height: avatarSize, borderRadius: "50%",
-                boxShadow: "0 0 24px color-mix(in srgb, var(--a26-teal) 35%, transparent)",
+                width: avatarSize,
+                height: avatarSize,
+                borderRadius: "50%",
+                boxShadow:
+                  "0 0 24px color-mix(in srgb, var(--a26-teal) 35%, transparent)",
                 margin: "0 auto 10px",
               }}
             >
@@ -132,7 +178,8 @@ export function MobilePortfolio() {
               {JOB_TITLE}
             </p>
             <p className="text-a26-muted flex items-center justify-center m-0 mt-1 text-xs gap-1">
-              <MapPin size={11} color="var(--a26-text-muted)" /> Cebu, Philippines
+              <MapPin size={11} color="var(--a26-text-muted)" /> Cebu,
+              Philippines
             </p>
           </div>
 
@@ -167,9 +214,24 @@ export function MobilePortfolio() {
           {/* Social links row */}
           <div className="flex justify-center gap-3">
             {[
-              { href: GITHUB_URL, icon: <GithubIcon size={17} />, color: "var(--a26-text)", label: "GitHub" },
-              { href: LINKED_IN_URL, icon: <LinkedinIcon size={17} />, color: "#60A5FA", label: "LinkedIn" },
-              { href: `mailto:${EMAIL_ADDRESS}`, icon: <Mail size={17} />, color: "var(--a26-teal)", label: "Email" },
+              {
+                href: GITHUB_URL,
+                icon: <GithubIcon size={17} />,
+                color: "var(--a26-text)",
+                label: "GitHub",
+              },
+              {
+                href: LINKED_IN_URL,
+                icon: <LinkedinIcon size={17} />,
+                color: "#60A5FA",
+                label: "LinkedIn",
+              },
+              {
+                href: `mailto:${EMAIL_ADDRESS}`,
+                icon: <Mail size={17} />,
+                color: "var(--a26-teal)",
+                label: "Email",
+              },
             ].map((l) => (
               <a
                 key={l.label}
@@ -195,7 +257,8 @@ export function MobilePortfolio() {
             right: 20,
             backdropFilter: "blur(32px) saturate(1.5)",
             WebkitBackdropFilter: "blur(32px) saturate(1.5)",
-            boxShadow: "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
+            boxShadow:
+              "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
           }}
         >
           {dockApps.map((app) => (
@@ -220,7 +283,12 @@ export function MobilePortfolio() {
             initial={{ y: "100%", opacity: 0.6 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0.6 }}
-            transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.9 }}
+            transition={{
+              type: "spring",
+              stiffness: 380,
+              damping: 36,
+              mass: 0.9,
+            }}
             className="font-mac absolute inset-0 flex flex-col z-200"
             style={{
               background: "var(--a26-window)",
@@ -249,7 +317,7 @@ export function MobilePortfolio() {
 
             {/* Content */}
             <div className="flex-1 overflow-hidden flex flex-col">
-              {activeApp === "about"    && <AboutContent />}
+              {activeApp === "about" && <AboutContent />}
               {activeApp === "projects" && <ProjectsContent />}
               {activeApp === "terminal" && (
                 <TerminalContent
@@ -257,16 +325,18 @@ export function MobilePortfolio() {
                   onClose={() => setActiveApp(null)}
                 />
               )}
-              {activeApp === "skills"   && <SkillsContent />}
-              {activeApp === "contact"  && <ContactContent />}
-              {activeApp === "resume"   && <ResumeContent />}
+              {activeApp === "skills" && <SkillsContent />}
+              {activeApp === "contact" && <ContactContent />}
+              {activeApp === "resume" && <ResumeContent />}
               {activeApp === "settings" && <SettingsContent />}
-              {activeApp === "chat"     && <ChatContent />}
-              {activeApp === "games"    && <GamesContent onOpen={(id) => setActiveApp(id)} />}
-              {activeApp === "snake"    && <SnakeContent />}
-              {activeApp === "hanoi"    && <HanoiContent />}
-              {activeApp === "tetris"   && <TetrisContent />}
-              {activeApp === "jump"     && <JumpContent />}
+              {activeApp === "chat" && <ChatContent />}
+              {activeApp === "games" && (
+                <GamesContent onOpen={(id) => setActiveApp(id)} />
+              )}
+              {activeApp === "snake" && <SnakeContent />}
+              {activeApp === "hanoi" && <HanoiContent />}
+              {activeApp === "tetris" && <TetrisContent />}
+              {activeApp === "jump" && <JumpContent />}
             </div>
           </motion.div>
         )}

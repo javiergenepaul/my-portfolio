@@ -36,7 +36,8 @@ export function Dock({
     return 46;
   };
 
-  const tooltipCls = "font-mac absolute pointer-events-none whitespace-nowrap rounded-[7px] py-1 px-[9px] text-xs text-a26-text backdrop-blur-[12px]";
+  const tooltipCls =
+    "font-mac absolute pointer-events-none whitespace-nowrap rounded-[7px] py-1 px-[9px] text-xs text-a26-text backdrop-blur-[12px]";
   const tooltipStyle = {
     bottom: "calc(100% + 10px)",
     background: "rgba(28,28,28,0.94)",
@@ -48,7 +49,8 @@ export function Dock({
     <div
       className="font-mac fixed bottom-2.5 left-1/2 -translate-x-1/2 z-8000 flex items-end gap-2 bg-a26-dock border border-a26-dock-border rounded-[22px] py-2 px-3.5 backdrop-blur-[32px] backdrop-saturate-150"
       style={{
-        boxShadow: "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
+        boxShadow:
+          "0 10px 36px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.06)",
         WebkitBackdropFilter: "blur(32px) saturate(1.5)",
       }}
     >
@@ -56,7 +58,10 @@ export function Dock({
         const size = getSize(app.id);
         const isHov = hov === app.id;
         return (
-          <div key={app.id} className="flex flex-col items-center relative gap-1">
+          <div
+            key={app.id}
+            className="flex flex-col items-center relative gap-1"
+          >
             {/* Hover label */}
             <AnimatePresence>
               {isHov && (
@@ -76,13 +81,17 @@ export function Dock({
             <motion.button
               animate={{ width: size, height: size }}
               transition={{ type: "spring", stiffness: 480, damping: 30 }}
-              onClick={() => app.isMinimized ? onRestore(app.id) : onOpen(app.id)}
+              onClick={() =>
+                app.isMinimized ? onRestore(app.id) : onOpen(app.id)
+              }
               onMouseEnter={() => setHov(app.id)}
               onMouseLeave={() => setHov(null)}
               className="relative flex items-center justify-center shrink-0 cursor-pointer border-none p-0"
               style={{
                 background: "none",
-                filter: app.isOpen ? "drop-shadow(0 0 6px rgba(255,255,255,0.18))" : "none",
+                filter: app.isOpen
+                  ? "drop-shadow(0 0 6px rgba(255,255,255,0.18))"
+                  : "none",
                 opacity: app.isMinimized ? 0.65 : 1,
                 transition: "opacity 0.15s, filter 0.15s",
               }}
@@ -104,7 +113,10 @@ export function Dock({
             <div
               className="w-1 h-1 rounded-full shrink-0 transition-[background] duration-150"
               style={{
-                background: app.isOpen && !app.isMinimized ? "rgba(255,255,255,0.80)" : "transparent",
+                background:
+                  app.isOpen && !app.isMinimized
+                    ? "rgba(255,255,255,0.80)"
+                    : "transparent",
               }}
             />
           </div>
@@ -142,7 +154,10 @@ export function Dock({
         >
           <MacAppIcon id="github" size={46} />
         </motion.a>
-        <div className="w-1 h-1 rounded-full" style={{ background: "transparent" }} />
+        <div
+          className="w-1 h-1 rounded-full"
+          style={{ background: "transparent" }}
+        />
       </div>
     </div>
   );

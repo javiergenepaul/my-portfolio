@@ -23,8 +23,18 @@ interface SimpleTemplateProps {
   isDark?: boolean;
 }
 
-const MOMENT_LOCALE: Record<string, string> = { en: "en", ja: "ja", fil: "en", ceb: "en" };
-const DATE_FMT: Record<string, string> = { en: "MMM YYYY", ja: "YYYY年M月", fil: "MMM YYYY", ceb: "MMM YYYY" };
+const MOMENT_LOCALE: Record<string, string> = {
+  en: "en",
+  ja: "ja",
+  fil: "en",
+  ceb: "en",
+};
+const DATE_FMT: Record<string, string> = {
+  en: "MMM YYYY",
+  ja: "YYYY年M月",
+  fil: "MMM YYYY",
+  ceb: "MMM YYYY",
+};
 
 function formatDateRange(
   start: moment.Moment,
@@ -34,7 +44,10 @@ function formatDateRange(
   const locale = MOMENT_LOCALE[lang] ?? "en";
   const fmt = DATE_FMT[lang] ?? "MMM YYYY";
   const s = start.clone().locale(locale).format(fmt);
-  const e = end === "present" ? translate("win26.present") : (end as moment.Moment).clone().locale(locale).format(fmt);
+  const e =
+    end === "present"
+      ? translate("win26.present")
+      : (end as moment.Moment).clone().locale(locale).format(fmt);
   return `${s} – ${e}`;
 }
 
@@ -316,7 +329,10 @@ export function SimpleTemplate({
         {/* RIGHT COLUMN */}
         <div className="flex-1 px-6 py-4">
           {/* Qualifications Summary */}
-          <SectionDivider title={translate("win26.resume.sectionQualSummary")} accent={accent} />
+          <SectionDivider
+            title={translate("win26.resume.sectionQualSummary")}
+            accent={accent}
+          />
           <p
             className="text-[9.5px] leading-relaxed"
             style={{ color: textMed }}
@@ -325,7 +341,10 @@ export function SimpleTemplate({
           </p>
 
           {/* Work Experience */}
-          <SectionDivider title={translate("win26.resume.sectionWorkExp")} accent={accent} />
+          <SectionDivider
+            title={translate("win26.resume.sectionWorkExp")}
+            accent={accent}
+          />
           <div className="flex flex-col gap-3">
             {experience.map((exp, i) => (
               <div key={i}>
@@ -360,7 +379,10 @@ export function SimpleTemplate({
           </div>
 
           {/* Featured Projects */}
-          <SectionDivider title={translate("win26.resume.sectionProjects")} accent={accent} />
+          <SectionDivider
+            title={translate("win26.resume.sectionProjects")}
+            accent={accent}
+          />
           <div className="flex flex-col gap-3">
             {projects.map((p) => (
               <div key={p.projectId}>

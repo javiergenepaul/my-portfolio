@@ -9,7 +9,22 @@ import { WIN_DEFS } from "./constants";
 import { useIsDark } from "./use-aurora";
 import type { WinId, WinState } from "./constants";
 import { useIsMobile } from "./hooks";
-import { Terminal, User, FolderGit2, Layers, Mail, FileText, Settings2, Grid2x2, RefreshCcw, Sparkles, Gamepad2, Zap, Layers3 as HanoiIcon, LayoutGrid } from "lucide-react";
+import {
+  Terminal,
+  User,
+  FolderGit2,
+  Layers,
+  Mail,
+  FileText,
+  Settings2,
+  Grid2x2,
+  RefreshCcw,
+  Sparkles,
+  Gamepad2,
+  Zap,
+  Layers3 as HanoiIcon,
+  LayoutGrid,
+} from "lucide-react";
 import { MenuBar } from "./components/menu-bar";
 import { DesktopIcon } from "./components/desktop-icon";
 import { AppWindow } from "./components/app-window";
@@ -24,19 +39,19 @@ const LiveWallpaper = dynamic(
 );
 
 const INIT_WINS: Record<WinId, WinState> = {
-  about:    { open: true,  minimized: false, maximized: false, zIndex: 20 },
+  about: { open: true, minimized: false, maximized: false, zIndex: 20 },
   projects: { open: false, minimized: false, maximized: false, zIndex: 10 },
-  terminal: { open: true,  minimized: false, maximized: false, zIndex: 21 },
-  skills:   { open: false, minimized: false, maximized: false, zIndex: 10 },
-  contact:  { open: false, minimized: false, maximized: false, zIndex: 10 },
-  resume:   { open: false, minimized: false, maximized: false, zIndex: 10 },
+  terminal: { open: true, minimized: false, maximized: false, zIndex: 21 },
+  skills: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  contact: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  resume: { open: false, minimized: false, maximized: false, zIndex: 10 },
   settings: { open: false, minimized: false, maximized: false, zIndex: 10 },
-  chat:     { open: true,  minimized: false, maximized: false, zIndex: 22 },
-  games:    { open: false, minimized: false, maximized: false, zIndex: 10 },
-  snake:    { open: false, minimized: false, maximized: false, zIndex: 10 },
-  hanoi:    { open: false, minimized: false, maximized: false, zIndex: 10 },
-  tetris:   { open: false, minimized: false, maximized: false, zIndex: 10 },
-  jump:     { open: false, minimized: false, maximized: false, zIndex: 10 },
+  chat: { open: true, minimized: false, maximized: false, zIndex: 22 },
+  games: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  snake: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  hanoi: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  tetris: { open: false, minimized: false, maximized: false, zIndex: 10 },
+  jump: { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
 // Only defs that get a desktop icon (excludes hideIcon: true entries)
@@ -51,7 +66,7 @@ export function Portfolio2026() {
   // Reset to English each time the 2026 portfolio loads
   useEffect(() => {
     setLanguage("en");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [wins, setWins] = useState<Record<WinId, WinState>>(INIT_WINS);
   const [topZ, setTopZ] = useState(30);
@@ -76,13 +91,13 @@ export function Portfolio2026() {
           x: colBase - (i % COLS) * CELL_W,
           y: Math.floor(i / COLS) * CELL_H,
         },
-      ])
+      ]),
     ) as Partial<Record<WinId, { x: number; y: number }>>;
   };
 
-  const [iconPositions, setIconPositions] = useState<Partial<Record<WinId, { x: number; y: number }>>>(
-    () => calcIconGrid(1440)
-  );
+  const [iconPositions, setIconPositions] = useState<
+    Partial<Record<WinId, { x: number; y: number }>>
+  >(() => calcIconGrid(1440));
 
   useEffect(() => {
     setIconPositions(calcIconGrid(window.innerWidth));
@@ -103,11 +118,14 @@ export function Portfolio2026() {
 
       const snapped = clampCell(rawX, rawY);
 
-      const others = (Object.entries(prev) as [WinId, { x: number; y: number } | undefined][])
+      const others = (
+        Object.entries(prev) as [WinId, { x: number; y: number } | undefined][]
+      )
         .filter(([k, v]) => k !== id && v !== undefined)
         .map(([, p]) => clampCell(p!.x, p!.y));
 
-      const inBounds = (x: number, y: number) => x >= 0 && y >= 0 && x <= maxX && y <= maxY;
+      const inBounds = (x: number, y: number) =>
+        x >= 0 && y >= 0 && x <= maxX && y <= maxY;
       const isFree = (x: number, y: number) =>
         inBounds(x, y) && !others.some((o) => o.x === x && o.y === y);
 
@@ -132,22 +150,32 @@ export function Portfolio2026() {
       // Fallback: clamped original position
       return { ...prev, [id]: snapped };
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [ctxMenu, setCtxMenu] = useState<{ x: number; y: number; items: ContextMenuEntry[] } | null>(null);
+  const [ctxMenu, setCtxMenu] = useState<{
+    x: number;
+    y: number;
+    items: ContextMenuEntry[];
+  } | null>(null);
 
   const openWin = useCallback(
     (id: WinId) => {
       const z = topZ + 1;
       setTopZ(z);
-      setWins((w) => ({ ...w, [id]: { ...w[id], open: true, minimized: false, zIndex: z } }));
+      setWins((w) => ({
+        ...w,
+        [id]: { ...w[id], open: true, minimized: false, zIndex: z },
+      }));
     },
     [topZ],
   );
 
   const closeWin = (id: WinId) =>
-    setWins((w) => ({ ...w, [id]: { ...w[id], open: false, minimized: false } }));
+    setWins((w) => ({
+      ...w,
+      [id]: { ...w[id], open: false, minimized: false },
+    }));
   const minimizeWin = (id: WinId) =>
     setWins((w) => ({ ...w, [id]: { ...w[id], minimized: true } }));
   const maximizeWin = (id: WinId) =>
@@ -165,7 +193,9 @@ export function Portfolio2026() {
   const closeAll = () =>
     setWins((w) => {
       const next = { ...w };
-      (Object.keys(next) as WinId[]).forEach((id) => (next[id] = { ...next[id], open: false, minimized: false }));
+      (Object.keys(next) as WinId[]).forEach(
+        (id) => (next[id] = { ...next[id], open: false, minimized: false }),
+      );
       return next;
     });
 
@@ -196,76 +226,116 @@ export function Portfolio2026() {
 
   const defaultIconPositions = useCallback(
     () => calcIconGrid(window.innerWidth),
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
-  const arrangeIcons = useCallback(() => setIconPositions(defaultIconPositions()), [defaultIconPositions]);
-  const resetIconPos = useCallback((id: WinId) => {
-    const positions = defaultIconPositions();
-    setIconPositions((prev) => ({ ...prev, [id]: positions[id] }));
-  }, [defaultIconPositions]);
+  const arrangeIcons = useCallback(
+    () => setIconPositions(defaultIconPositions()),
+    [defaultIconPositions],
+  );
+  const resetIconPos = useCallback(
+    (id: WinId) => {
+      const positions = defaultIconPositions();
+      setIconPositions((prev) => ({ ...prev, [id]: positions[id] }));
+    },
+    [defaultIconPositions],
+  );
 
   const WIN_ICONS: Record<WinId, React.ReactNode> = {
-    about:    <User size={13} />,
+    about: <User size={13} />,
     projects: <FolderGit2 size={13} />,
     terminal: <Terminal size={13} />,
-    skills:   <Layers size={13} />,
-    contact:  <Mail size={13} />,
-    resume:   <FileText size={13} />,
+    skills: <Layers size={13} />,
+    contact: <Mail size={13} />,
+    resume: <FileText size={13} />,
     settings: <Settings2 size={13} />,
-    chat:     <Sparkles size={13} />,
-    games:    <Gamepad2 size={13} />,
-    snake:    <Zap size={13} />,
-    hanoi:    <HanoiIcon size={13} />,
-  tetris:   <LayoutGrid size={13} />,
-  jump:     <Zap size={13} />,
+    chat: <Sparkles size={13} />,
+    games: <Gamepad2 size={13} />,
+    snake: <Zap size={13} />,
+    hanoi: <HanoiIcon size={13} />,
+    tetris: <LayoutGrid size={13} />,
+    jump: <Zap size={13} />,
   };
 
-  const openDesktopMenu = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    const items: ContextMenuEntry[] = [
-      { type: "header", label: "Open" },
-      ...VISIBLE_DEFS.map((def) => ({
-        type: "item" as const,
-        label: translate(`win26.windows.${def.id}` as any) || def.title,
-        icon: WIN_ICONS[def.id],
-        action: () => openWin(def.id),
-        disabled: wins[def.id].open && !wins[def.id].minimized,
-      })),
-      { type: "separator" },
-      { type: "item", label: "Arrange Icons", icon: <Grid2x2 size={13} />, action: arrangeIcons },
-    ];
-    setCtxMenu({ x: e.clientX, y: e.clientY, items });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wins, openWin, arrangeIcons]);
+  const openDesktopMenu = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      const items: ContextMenuEntry[] = [
+        { type: "header", label: "Open" },
+        ...VISIBLE_DEFS.map((def) => ({
+          type: "item" as const,
+          label: translate(`win26.windows.${def.id}` as any) || def.title,
+          icon: WIN_ICONS[def.id],
+          action: () => openWin(def.id),
+          disabled: wins[def.id].open && !wins[def.id].minimized,
+        })),
+        { type: "separator" },
+        {
+          type: "item",
+          label: "Arrange Icons",
+          icon: <Grid2x2 size={13} />,
+          action: arrangeIcons,
+        },
+      ];
+      setCtxMenu({ x: e.clientX, y: e.clientY, items });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [wins, openWin, arrangeIcons],
+  );
 
-  const openIconMenu = useCallback((e: React.MouseEvent, id: WinId) => {
-    const def = WIN_DEFS.find((d) => d.id === id)!;
-    const items: ContextMenuEntry[] = [
-      {
-        type: "item",
-        label: `Open ${translate(`win26.windows.${def.id}` as any) || def.title}`,
-        icon: WIN_ICONS[id],
-        action: () => openWin(id),
-        disabled: wins[id].open && !wins[id].minimized,
-      },
-      { type: "separator" },
-      { type: "item", label: "Reset Position", icon: <RefreshCcw size={13} />, action: () => resetIconPos(id) },
-    ];
-    setCtxMenu({ x: e.clientX, y: e.clientY, items });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wins, openWin, resetIconPos]);
+  const openIconMenu = useCallback(
+    (e: React.MouseEvent, id: WinId) => {
+      const def = WIN_DEFS.find((d) => d.id === id)!;
+      const items: ContextMenuEntry[] = [
+        {
+          type: "item",
+          label: `Open ${translate(`win26.windows.${def.id}` as any) || def.title}`,
+          icon: WIN_ICONS[id],
+          action: () => openWin(id),
+          disabled: wins[id].open && !wins[id].minimized,
+        },
+        { type: "separator" },
+        {
+          type: "item",
+          label: "Reset Position",
+          icon: <RefreshCcw size={13} />,
+          action: () => resetIconPos(id),
+        },
+      ];
+      setCtxMenu({ x: e.clientX, y: e.clientY, items });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [wins, openWin, resetIconPos],
+  );
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       const mod = e.metaKey || e.ctrlKey;
       if (!mod) return;
-      if (e.key === "k") { e.preventDefault(); setCmdOpen((v) => !v); return; }
+      if (e.key === "k") {
+        e.preventDefault();
+        setCmdOpen((v) => !v);
+        return;
+      }
       const idx = parseInt(e.key, 10);
-      if (idx >= 1 && idx <= WIN_DEFS.length) { e.preventDefault(); openWin(WIN_DEFS[idx - 1].id); return; }
-      if (e.key === "t") { e.preventDefault(); openWin("terminal"); }
-      if (e.key === "r") { e.preventDefault(); openWin("resume"); }
-      if (e.key === "m") { e.preventDefault(); minimizeAll(); }
+      if (idx >= 1 && idx <= WIN_DEFS.length) {
+        e.preventDefault();
+        openWin(WIN_DEFS[idx - 1].id);
+        return;
+      }
+      if (e.key === "t") {
+        e.preventDefault();
+        openWin("terminal");
+      }
+      if (e.key === "r") {
+        e.preventDefault();
+        openWin("resume");
+      }
+      if (e.key === "m") {
+        e.preventDefault();
+        minimizeAll();
+      }
     };
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
@@ -275,9 +345,9 @@ export function Portfolio2026() {
     const h = (e: KeyboardEvent) => {
       if (!e.ctrlKey || e.key !== "`") return;
       e.preventDefault();
-      const visible = WIN_DEFS
-        .filter((def) => wins[def.id].open && !wins[def.id].minimized)
-        .sort((a, b) => wins[b.id].zIndex - wins[a.id].zIndex);
+      const visible = WIN_DEFS.filter(
+        (def) => wins[def.id].open && !wins[def.id].minimized,
+      ).sort((a, b) => wins[b.id].zIndex - wins[a.id].zIndex);
       if (visible.length < 2) return;
       const next = e.shiftKey ? visible[visible.length - 1] : visible[1];
       focusWin(next.id);
@@ -305,9 +375,7 @@ export function Portfolio2026() {
         <div className="fixed inset-0 bg-white/70 z-0 pointer-events-none" />
       )}
 
-      <div
-        className="font-mac relative overflow-hidden z-1 w-screen h-dvh"
-      >
+      <div className="font-mac relative overflow-hidden z-1 w-screen h-dvh">
         <MenuBar
           onCmdK={() => setCmdOpen(true)}
           onOpenWin={openWin}
@@ -357,7 +425,11 @@ export function Portfolio2026() {
         </main>
 
         <Dock windows={wins} onOpen={openWin} onRestore={restoreWin} />
-        <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} onOpen={openWin} />
+        <CommandPalette
+          open={cmdOpen}
+          onClose={() => setCmdOpen(false)}
+          onOpen={openWin}
+        />
         {ctxMenu && (
           <ContextMenu
             x={ctxMenu.x}

@@ -20,15 +20,28 @@ const CAM_SPEED_SCALE = 0.003;
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-interface Plat { x: number; y: number; w: number; hue: number; moving: boolean; dir: number; speed: number; }
+interface Plat {
+  x: number;
+  y: number;
+  w: number;
+  hue: number;
+  moving: boolean;
+  dir: number;
+  speed: number;
+}
 
 interface GS {
-  px: number; py: number; pvx: number; pvy: number;
-  camY: number; plats: Plat[];
-  score: number; phase: "idle" | "playing" | "dead";
+  px: number;
+  py: number;
+  pvx: number;
+  pvy: number;
+  camY: number;
+  plats: Plat[];
+  score: number;
+  phase: "idle" | "playing" | "dead";
   difficulty: "easy" | "hard";
   isGrounded: boolean; // hard + desktop only
-  isMobile: boolean;   // captured at game start, used in loop
+  isMobile: boolean; // captured at game start, used in loop
 }
 
 // ── Platform generation ────────────────────────────────────────────────────────
@@ -38,7 +51,9 @@ const HUES = [142, 38, 271, 22, 160, 245, 340];
 function makePlat(x: number, y: number, w: number, score: number): Plat {
   const moving = score > 30 && Math.random() < 0.25;
   return {
-    x, y, w,
+    x,
+    y,
+    w,
     hue: HUES[Math.floor(Math.random() * HUES.length)],
     moving,
     dir: Math.random() < 0.5 ? 1 : -1,
@@ -72,17 +87,27 @@ function MobileBtn({
 }) {
   return (
     <button
-      onPointerDown={(e) => { e.preventDefault(); onDown(); }}
+      onPointerDown={(e) => {
+        e.preventDefault();
+        onDown();
+      }}
       onPointerUp={onUp}
       onPointerLeave={onUp}
       style={{
-        touchAction: "none", border: "none", borderRadius: 14,
+        touchAction: "none",
+        border: "none",
+        borderRadius: 14,
         background: "rgba(255,255,255,0.08)",
         color: "rgba(255,255,255,0.80)",
-        fontSize: 22, fontWeight: 700,
-        width: 80, height: 52,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        cursor: "pointer", fontFamily: "inherit",
+        fontSize: 22,
+        fontWeight: 700,
+        width: 80,
+        height: 52,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        fontFamily: "inherit",
       }}
     >
       {label}
@@ -100,14 +125,24 @@ export function JumpContent() {
   const [phase, setPhase] = useState<"idle" | "playing" | "dead">("idle");
   const [difficulty, setDifficulty] = useState<"easy" | "hard">("easy");
   const [score, setScore] = useState(0);
-  const [best, setBest] = useState<Record<"easy" | "hard", number>>({ easy: 0, hard: 0 });
+  const [best, setBest] = useState<Record<"easy" | "hard", number>>({
+    easy: 0,
+    hard: 0,
+  });
   const keys = useRef({ left: false, right: false, jumpPressed: false });
 
   const gs = useRef<GS>({
-    px: W / 2 - PLAYER_W / 2, py: H - 120,
-    pvx: 0, pvy: 0, camY: 0, plats: [],
-    score: 0, phase: "idle",
-    difficulty: "easy", isGrounded: false, isMobile: false,
+    px: W / 2 - PLAYER_W / 2,
+    py: H - 120,
+    pvx: 0,
+    pvy: 0,
+    camY: 0,
+    plats: [],
+    score: 0,
+    phase: "idle",
+    difficulty: "easy",
+    isGrounded: false,
+    isMobile: false,
   });
 
   // ── Scale canvas to container ─────────────────────────────────────────────
@@ -131,9 +166,18 @@ export function JumpContent() {
     const L = ["ArrowLeft", "a", "A"];
     const R = ["ArrowRight", "d", "D"];
     const dn = (e: KeyboardEvent) => {
-      if (L.includes(e.key)) { e.preventDefault(); keys.current.left = true; }
-      if (R.includes(e.key)) { e.preventDefault(); keys.current.right = true; }
-      if (e.key === " ") { e.preventDefault(); keys.current.jumpPressed = true; }
+      if (L.includes(e.key)) {
+        e.preventDefault();
+        keys.current.left = true;
+      }
+      if (R.includes(e.key)) {
+        e.preventDefault();
+        keys.current.right = true;
+      }
+      if (e.key === " ") {
+        e.preventDefault();
+        keys.current.jumpPressed = true;
+      }
     };
     const up = (e: KeyboardEvent) => {
       if (L.includes(e.key)) keys.current.left = false;
@@ -141,7 +185,10 @@ export function JumpContent() {
     };
     window.addEventListener("keydown", dn);
     window.addEventListener("keyup", up);
-    return () => { window.removeEventListener("keydown", dn); window.removeEventListener("keyup", up); };
+    return () => {
+      window.removeEventListener("keydown", dn);
+      window.removeEventListener("keyup", up);
+    };
   }, []);
 
   // ── Draw ──────────────────────────────────────────────────────────────────
@@ -160,12 +207,23 @@ export function JumpContent() {
     ctx.fillRect(0, 0, W, H);
 
     // Grid lines
-    ctx.strokeStyle = g.difficulty === "hard"
-      ? "rgba(200,60,60,0.05)"
-      : "rgba(120,80,200,0.05)";
+    ctx.strokeStyle =
+      g.difficulty === "hard"
+        ? "rgba(200,60,60,0.05)"
+        : "rgba(120,80,200,0.05)";
     ctx.lineWidth = 1;
-    for (let i = 0; i < W; i += 32) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, H); ctx.stroke(); }
-    for (let j = 0; j < H; j += 32) { ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(W, j); ctx.stroke(); }
+    for (let i = 0; i < W; i += 32) {
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i, H);
+      ctx.stroke();
+    }
+    for (let j = 0; j < H; j += 32) {
+      ctx.beginPath();
+      ctx.moveTo(0, j);
+      ctx.lineTo(W, j);
+      ctx.stroke();
+    }
 
     // Height bands
     const bandH = 50 * 8;
@@ -175,17 +233,22 @@ export function JumpContent() {
       const sy = worldY - g.camY;
       if (sy < 0 || sy > H) continue;
       const lv = Math.round(-worldY / bandH);
-      ctx.strokeStyle = g.difficulty === "hard"
-        ? "rgba(255,100,100,0.12)"
-        : "rgba(160,120,255,0.12)";
+      ctx.strokeStyle =
+        g.difficulty === "hard"
+          ? "rgba(255,100,100,0.12)"
+          : "rgba(160,120,255,0.12)";
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 6]);
-      ctx.beginPath(); ctx.moveTo(0, sy); ctx.lineTo(W, sy); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, sy);
+      ctx.lineTo(W, sy);
+      ctx.stroke();
       ctx.setLineDash([]);
       if (lv > 0) {
-        ctx.fillStyle = g.difficulty === "hard"
-          ? "rgba(255,100,100,0.22)"
-          : "rgba(160,120,255,0.22)";
+        ctx.fillStyle =
+          g.difficulty === "hard"
+            ? "rgba(255,100,100,0.22)"
+            : "rgba(160,120,255,0.22)";
         ctx.font = "9px system-ui";
         ctx.fillText(`× ${lv * 50}`, 4, sy - 3);
       }
@@ -235,16 +298,30 @@ export function JumpContent() {
       ctx.shadowBlur = 0;
 
       ctx.fillStyle = "white";
-      ctx.beginPath(); ctx.ellipse(psx + 8, psy + 11, 3.5, 4, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.ellipse(psx + PLAYER_W - 8, psy + 11, 3.5, 4, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(psx + 8, psy + 11, 3.5, 4, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(psx + PLAYER_W - 8, psy + 11, 3.5, 4, 0, 0, Math.PI * 2);
+      ctx.fill();
       const pupilLean = g.pvx > 0.5 ? 1 : g.pvx < -0.5 ? -1 : 0;
       ctx.fillStyle = "#1e3a8a";
-      ctx.beginPath(); ctx.arc(psx + 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.arc(psx + PLAYER_W - 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath();
+      ctx.arc(psx + 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(psx + PLAYER_W - 8 + pupilLean, psy + 11.5, 2, 0, Math.PI * 2);
+      ctx.fill();
       ctx.strokeStyle = "rgba(255,255,255,0.85)";
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(psx + PLAYER_W / 2, psy + PLAYER_H * 0.62, 5, 0.15, Math.PI - 0.15);
+      ctx.arc(
+        psx + PLAYER_W / 2,
+        psy + PLAYER_H * 0.62,
+        5,
+        0.15,
+        Math.PI - 0.15,
+      );
       ctx.stroke();
 
       // SPACE hint bubble when grounded (hard desktop)
@@ -262,9 +339,10 @@ export function JumpContent() {
     ctx.beginPath();
     ctx.roundRect(8, 8, 96, 26, 8);
     ctx.fill();
-    ctx.fillStyle = g.difficulty === "hard"
-      ? "rgba(248,113,113,0.9)"
-      : "rgba(160,120,255,0.9)";
+    ctx.fillStyle =
+      g.difficulty === "hard"
+        ? "rgba(248,113,113,0.9)"
+        : "rgba(160,120,255,0.9)";
     ctx.font = "bold 11px system-ui";
     ctx.fillText(`⬆  ${g.score}`, 16, 25);
 
@@ -285,26 +363,37 @@ export function JumpContent() {
 
   // ── Start / Restart ───────────────────────────────────────────────────────
 
-  const startGame = useCallback((diff: "easy" | "hard") => {
-    const g = gs.current;
-    const startY = H - 100;
-    const first: Plat = { x: W / 2 - 60, y: startY, w: 120, hue: 142, moving: false, dir: 1, speed: 1 };
-    g.plats = [first, ...genAbove(startY, 50, 0)];
-    g.px = W / 2 - PLAYER_W / 2;
-    g.py = startY - PLAYER_H;
-    g.pvx = 0;
-    g.pvy = JUMP_VY;
-    g.camY = 0;
-    g.score = 0;
-    g.phase = "playing";
-    g.difficulty = diff;
-    g.isGrounded = false;
-    g.isMobile = isMobile;
-    keys.current.jumpPressed = false;
-    setDifficulty(diff);
-    setPhase("playing");
-    setScore(0);
-  }, [isMobile]);
+  const startGame = useCallback(
+    (diff: "easy" | "hard") => {
+      const g = gs.current;
+      const startY = H - 100;
+      const first: Plat = {
+        x: W / 2 - 60,
+        y: startY,
+        w: 120,
+        hue: 142,
+        moving: false,
+        dir: 1,
+        speed: 1,
+      };
+      g.plats = [first, ...genAbove(startY, 50, 0)];
+      g.px = W / 2 - PLAYER_W / 2;
+      g.py = startY - PLAYER_H;
+      g.pvx = 0;
+      g.pvy = JUMP_VY;
+      g.camY = 0;
+      g.score = 0;
+      g.phase = "playing";
+      g.difficulty = diff;
+      g.isGrounded = false;
+      g.isMobile = isMobile;
+      keys.current.jumpPressed = false;
+      setDifficulty(diff);
+      setPhase("playing");
+      setScore(0);
+    },
+    [isMobile],
+  );
 
   // ── Game loop ─────────────────────────────────────────────────────────────
 
@@ -355,7 +444,8 @@ export function JumpContent() {
       if (g.px > W) g.px = -PLAYER_W;
 
       // Platform collision (falling, or grounded in hard desktop to stick to platform)
-      const checkCollision = g.pvy >= 0 || (g.difficulty === "hard" && !g.isMobile && g.pvy === 0);
+      const checkCollision =
+        g.pvy >= 0 || (g.difficulty === "hard" && !g.isMobile && g.pvy === 0);
       if (checkCollision) {
         for (const p of g.plats) {
           const playerBottom = g.py + PLAYER_H;
@@ -391,23 +481,26 @@ export function JumpContent() {
 
       // Score
       const newScore = Math.max(0, Math.floor(-g.camY / 8));
-      if (newScore > g.score) { g.score = newScore; setScore(newScore); }
+      if (newScore > g.score) {
+        g.score = newScore;
+        setScore(newScore);
+      }
 
       // Generate more platforms above the camera's top edge
-      const topY = g.plats.length ? Math.min(...g.plats.map(p => p.y)) : g.py;
+      const topY = g.plats.length ? Math.min(...g.plats.map((p) => p.y)) : g.py;
       if (topY > g.camY + H * 0.5) {
         g.plats.push(...genAbove(topY, 12, g.score));
       }
 
       // Cull platforms far below
-      g.plats = g.plats.filter(p => p.y - g.camY < H + 250);
+      g.plats = g.plats.filter((p) => p.y - g.camY < H + 250);
 
       // Death — player fell below the visible screen bottom
       if (g.py - g.camY > H + 100) {
         g.phase = "dead";
         setPhase("dead");
         const diff = g.difficulty;
-        setBest(prev => ({ ...prev, [diff]: Math.max(prev[diff], g.score) }));
+        setBest((prev) => ({ ...prev, [diff]: Math.max(prev[diff], g.score) }));
         draw(ctx, g);
         return;
       }
@@ -430,31 +523,57 @@ export function JumpContent() {
       >
         <div className="text-center">
           <div style={{ fontSize: 52 }}>🏃</div>
-          <div style={{ color: "white", fontWeight: 700, fontSize: isMobile ? 20 : 24, marginTop: 8 }}>
+          <div
+            style={{
+              color: "white",
+              fontWeight: 700,
+              fontSize: isMobile ? 20 : 24,
+              marginTop: 8,
+            }}
+          >
             Endless Jump
           </div>
         </div>
 
         {/* Difficulty cards */}
-        <div style={{ display: "flex", gap: 12, flexDirection: isMobile ? "column" : "row" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            flexDirection: isMobile ? "column" : "row",
+          }}
+        >
           {/* Easy */}
           <button
             onClick={() => startGame("easy")}
             style={{
               background: "linear-gradient(135deg, #818CF8, #4F46E5)",
-              color: "white", border: "none", borderRadius: 12,
-              padding: "14px 28px", cursor: "pointer",
-              textAlign: "left", minWidth: 130,
+              color: "white",
+              border: "none",
+              borderRadius: 12,
+              padding: "14px 28px",
+              cursor: "pointer",
+              textAlign: "left",
+              minWidth: 130,
             }}
           >
             <div style={{ fontWeight: 700, fontSize: 15 }}>Easy</div>
-            <div style={{ fontSize: 10, opacity: 0.75, marginTop: 4, lineHeight: 1.6 }}>
+            <div
+              style={{
+                fontSize: 10,
+                opacity: 0.75,
+                marginTop: 4,
+                lineHeight: 1.6,
+              }}
+            >
               {isMobile
                 ? "Auto-jump · steer with ← →"
                 : "Auto-bounce · steer with ← →"}
             </div>
             {best.easy > 0 && (
-              <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>Best: {best.easy}</div>
+              <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>
+                Best: {best.easy}
+              </div>
             )}
           </button>
 
@@ -463,24 +582,43 @@ export function JumpContent() {
             onClick={() => startGame("hard")}
             style={{
               background: "linear-gradient(135deg, #F87171, #B91C1C)",
-              color: "white", border: "none", borderRadius: 12,
-              padding: "14px 28px", cursor: "pointer",
-              textAlign: "left", minWidth: 130,
+              color: "white",
+              border: "none",
+              borderRadius: 12,
+              padding: "14px 28px",
+              cursor: "pointer",
+              textAlign: "left",
+              minWidth: 130,
             }}
           >
             <div style={{ fontWeight: 700, fontSize: 15 }}>Hard</div>
-            <div style={{ fontSize: 10, opacity: 0.75, marginTop: 4, lineHeight: 1.6 }}>
+            <div
+              style={{
+                fontSize: 10,
+                opacity: 0.75,
+                marginTop: 4,
+                lineHeight: 1.6,
+              }}
+            >
               {isMobile
                 ? "Camera rises · auto-jump · steer to survive"
                 : "Camera rises · SPACE to jump · one jump per land"}
             </div>
             {best.hard > 0 && (
-              <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>Best: {best.hard}</div>
+              <div style={{ fontSize: 9, opacity: 0.5, marginTop: 4 }}>
+                Best: {best.hard}
+              </div>
             )}
           </button>
         </div>
 
-        <div style={{ color: "rgba(160,120,255,0.4)", fontSize: 10, textAlign: "center" }}>
+        <div
+          style={{
+            color: "rgba(160,120,255,0.4)",
+            fontSize: 10,
+            textAlign: "center",
+          }}
+        >
           Moving platforms appear at higher levels
         </div>
       </div>
@@ -494,39 +632,63 @@ export function JumpContent() {
       ref={containerRef}
       className="font-mac flex flex-col flex-1 min-h-0 items-center overflow-hidden"
       style={{
-        background: difficulty === "hard"
-          ? "linear-gradient(to bottom, #100408, #1e0608)"
-          : "linear-gradient(to bottom, #04040f, #0e0620)",
+        background:
+          difficulty === "hard"
+            ? "linear-gradient(to bottom, #100408, #1e0608)"
+            : "linear-gradient(to bottom, #04040f, #0e0620)",
         padding: 8,
         gap: 8,
         justifyContent: isMobile ? "flex-start" : "center",
       }}
     >
       {/* Canvas + overlay wrapper */}
-      <div style={{ position: "relative", width: W * scale, height: H * scale, flexShrink: 0 }}>
+      <div
+        style={{
+          position: "relative",
+          width: W * scale,
+          height: H * scale,
+          flexShrink: 0,
+        }}
+      >
         <canvas
           ref={canvasRef}
           width={W}
           height={H}
-          style={{ display: "block", borderRadius: 10, width: W * scale, height: H * scale }}
+          style={{
+            display: "block",
+            borderRadius: 10,
+            width: W * scale,
+            height: H * scale,
+          }}
         />
 
         {/* Game-over overlay */}
         {phase === "dead" && (
           <div
             style={{
-              position: "absolute", inset: 0, borderRadius: 10,
+              position: "absolute",
+              inset: 0,
+              borderRadius: 10,
               background: "rgba(0,0,0,0.84)",
-              display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center", gap: 10,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
             }}
           >
             <div style={{ fontSize: 40 }}>💀</div>
-            <div style={{ color: "white", fontWeight: 700, fontSize: 20 }}>Game Over</div>
-            <div style={{
-              color: difficulty === "hard" ? "#F87171" : "#818CF8",
-              fontFamily: "monospace", fontSize: 26, fontWeight: 700,
-            }}>
+            <div style={{ color: "white", fontWeight: 700, fontSize: 20 }}>
+              Game Over
+            </div>
+            <div
+              style={{
+                color: difficulty === "hard" ? "#F87171" : "#818CF8",
+                fontFamily: "monospace",
+                fontSize: 26,
+                fontWeight: 700,
+              }}
+            >
               {score}
             </div>
             {best[difficulty] > 0 && (
@@ -538,11 +700,17 @@ export function JumpContent() {
               <button
                 onClick={() => startGame(difficulty)}
                 style={{
-                  background: difficulty === "hard"
-                    ? "linear-gradient(135deg, #F87171, #B91C1C)"
-                    : "linear-gradient(135deg, #818CF8, #4F46E5)",
-                  color: "white", border: "none", borderRadius: 9,
-                  padding: "10px 24px", fontSize: 13, fontWeight: 700, cursor: "pointer",
+                  background:
+                    difficulty === "hard"
+                      ? "linear-gradient(135deg, #F87171, #B91C1C)"
+                      : "linear-gradient(135deg, #818CF8, #4F46E5)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 9,
+                  padding: "10px 24px",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  cursor: "pointer",
                 }}
               >
                 Play Again
@@ -551,8 +719,13 @@ export function JumpContent() {
                 onClick={() => setPhase("idle")}
                 style={{
                   background: "rgba(255,255,255,0.08)",
-                  color: "rgba(255,255,255,0.7)", border: "none", borderRadius: 9,
-                  padding: "10px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer",
+                  color: "rgba(255,255,255,0.7)",
+                  border: "none",
+                  borderRadius: 9,
+                  padding: "10px 16px",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  cursor: "pointer",
                 }}
               >
                 Menu
@@ -564,16 +737,31 @@ export function JumpContent() {
 
       {/* Mobile controls */}
       {isMobile && (
-        <div style={{ flexShrink: 0, display: "flex", gap: 24, justifyContent: "center" }}>
+        <div
+          style={{
+            flexShrink: 0,
+            display: "flex",
+            gap: 24,
+            justifyContent: "center",
+          }}
+        >
           <MobileBtn
             label="◀"
-            onDown={() => { keys.current.left = true; }}
-            onUp={() => { keys.current.left = false; }}
+            onDown={() => {
+              keys.current.left = true;
+            }}
+            onUp={() => {
+              keys.current.left = false;
+            }}
           />
           <MobileBtn
             label="▶"
-            onDown={() => { keys.current.right = true; }}
-            onUp={() => { keys.current.right = false; }}
+            onDown={() => {
+              keys.current.right = true;
+            }}
+            onUp={() => {
+              keys.current.right = false;
+            }}
           />
         </div>
       )}

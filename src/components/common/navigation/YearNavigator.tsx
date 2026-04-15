@@ -54,7 +54,6 @@ export function YearNavigator() {
     setNavigating(false);
   }, [pathname]);
 
-
   if (!activeYear) return null;
 
   const enabledYears = YEARS.filter((y) => y.enabled).sort(
@@ -129,7 +128,11 @@ export function YearNavigator() {
           className="year-timeline"
           role="tablist"
           aria-label="Year timeline"
-          style={activeYear === 2026 || isMobileAppOpen ? { display: "none" } : undefined}
+          style={
+            activeYear === 2026 || isMobileAppOpen
+              ? { display: "none" }
+              : undefined
+          }
         >
           {enabledYears.map((y) => (
             <Tooltip key={y.year}>

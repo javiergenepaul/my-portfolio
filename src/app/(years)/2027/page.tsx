@@ -6,7 +6,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
 const DeskScene = dynamic(
-  () => import("@/components/2027/desk-scene").then((m) => ({ default: m.DeskScene })),
+  () =>
+    import("@/components/2027/desk-scene").then((m) => ({
+      default: m.DeskScene,
+    })),
   { ssr: false },
 );
 

@@ -127,7 +127,11 @@ export function Portfolio2025() {
                   key={active}
                   {...pageAnim}
                   style={{
-                    padding: isMobile ? "20px 16px 28px" : isCompact ? "28px 32px 28px" : "48px 52px 44px",
+                    padding: isMobile
+                      ? "20px 16px 28px"
+                      : isCompact
+                        ? "28px 32px 28px"
+                        : "48px 52px 44px",
                   }}
                 >
                   {active === "about" && <AboutSection />}

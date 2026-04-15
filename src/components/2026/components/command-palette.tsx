@@ -97,10 +97,17 @@ export function CommandPalette({
               {filtered.map((item, i) => (
                 <button
                   key={i}
-                  onClick={() => { item.action(); onClose(); }}
+                  onClick={() => {
+                    item.action();
+                    onClose();
+                  }}
                   className="flex items-center w-full text-left font-mac text-a26-text gap-2.25 py-2 px-2.25 rounded-[7px] border-none bg-transparent text-[13px] cursor-pointer transition-[background] duration-100"
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--a26-glass)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "var(--a26-glass)")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "transparent")
+                  }
                 >
                   <span style={{ color: item.color }}>{item.icon}</span>
                   {item.label}

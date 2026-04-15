@@ -44,7 +44,8 @@ export function AboutContent() {
         <ChevronRight size={13} color="var(--a26-text-muted)" />
         <RefreshCw size={12} color="var(--a26-text-muted)" />
         <div className="flex items-center flex-1 gap-1.25 bg-a26-input-bg border border-a26-glass-border text-a26-mid rounded-[7px] py-0.75 px-2.5 text-xs">
-          <Lock size={10} color="var(--a26-teal)" /> genepaulmarjavier.dev/2026/about
+          <Lock size={10} color="var(--a26-teal)" />{" "}
+          genepaulmarjavier.dev/2026/about
         </div>
       </div>
 
@@ -62,9 +63,10 @@ export function AboutContent() {
               background: tab === t ? "var(--a26-window)" : "transparent",
               color: tab === t ? "var(--a26-text)" : "var(--a26-text-mid)",
               fontWeight: tab === t ? 600 : 400,
-              borderBottom: tab === t
-                ? "2px solid var(--a26-teal)"
-                : "2px solid transparent",
+              borderBottom:
+                tab === t
+                  ? "2px solid var(--a26-teal)"
+                  : "2px solid transparent",
             }}
           >
             {translate(`win26.about.tabs.${t}`)}
@@ -91,7 +93,8 @@ export function AboutContent() {
                     <div
                       className="overflow-hidden border-2 border-a26-teal w-22 h-22 rounded-full"
                       style={{
-                        boxShadow: "0 0 22px color-mix(in srgb, var(--a26-teal) 28%, transparent)",
+                        boxShadow:
+                          "0 0 22px color-mix(in srgb, var(--a26-teal) 28%, transparent)",
                       }}
                     >
                       <Image
@@ -115,7 +118,8 @@ export function AboutContent() {
                       {JOB_TITLE}
                     </p>
                     <div className="flex items-center text-a26-mid gap-1.25 text-xs">
-                      <MapPin size={12} color="var(--a26-text-muted)" /> {translate("win26.about.location")}
+                      <MapPin size={12} color="var(--a26-text-muted)" />{" "}
+                      {translate("win26.about.location")}
                     </div>
                   </div>
                 </div>
@@ -133,25 +137,56 @@ export function AboutContent() {
                       l: translate("about.intro.years"),
                       c: "var(--a26-teal)",
                     },
-                    { v: "10+", l: translate("about.intro.project"), c: "var(--a26-violet)" },
-                    { v: "20+", l: translate("about.intro.technologies"), c: "var(--a26-green)" },
-                    { v: translate("about.intro.active"), l: translate("about.intro.status"), c: "#FBBF24" },
+                    {
+                      v: "10+",
+                      l: translate("about.intro.project"),
+                      c: "var(--a26-violet)",
+                    },
+                    {
+                      v: "20+",
+                      l: translate("about.intro.technologies"),
+                      c: "var(--a26-green)",
+                    },
+                    {
+                      v: translate("about.intro.active"),
+                      l: translate("about.intro.status"),
+                      c: "#FBBF24",
+                    },
                   ].map((s) => (
                     <div
                       key={s.l}
                       className="bg-a26-card border border-a26-card-border text-center rounded-[9px] p-3"
                     >
-                      <div className="text-xl font-bold" style={{ color: s.c }}>{s.v}</div>
-                      <div className="text-a26-muted text-[10px] mt-px">{s.l}</div>
+                      <div className="text-xl font-bold" style={{ color: s.c }}>
+                        {s.v}
+                      </div>
+                      <div className="text-a26-muted text-[10px] mt-px">
+                        {s.l}
+                      </div>
                     </div>
                   ))}
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                   {[
-                    { href: GITHUB_URL, icon: <GithubIcon size={13} />, label: "GitHub", c: "var(--a26-text)" },
-                    { href: LINKED_IN_URL, icon: <LinkedinIcon size={13} />, label: "LinkedIn", c: "#60A5FA" },
-                    { href: `mailto:${EMAIL_ADDRESS}`, icon: <Mail size={13} />, label: EMAIL_ADDRESS, c: "var(--a26-teal)" },
+                    {
+                      href: GITHUB_URL,
+                      icon: <GithubIcon size={13} />,
+                      label: "GitHub",
+                      c: "var(--a26-text)",
+                    },
+                    {
+                      href: LINKED_IN_URL,
+                      icon: <LinkedinIcon size={13} />,
+                      label: "LinkedIn",
+                      c: "#60A5FA",
+                    },
+                    {
+                      href: `mailto:${EMAIL_ADDRESS}`,
+                      icon: <Mail size={13} />,
+                      label: EMAIL_ADDRESS,
+                      c: "var(--a26-teal)",
+                    },
                   ].map((l) => (
                     <a
                       key={l.label}
@@ -184,7 +219,8 @@ export function AboutContent() {
                         <div
                           className="flex-1 w-px mt-1.25"
                           style={{
-                            background: "linear-gradient(to bottom, color-mix(in srgb, var(--a26-teal) 35%, transparent), transparent)",
+                            background:
+                              "linear-gradient(to bottom, color-mix(in srgb, var(--a26-teal) 35%, transparent), transparent)",
                           }}
                         />
                       )}
@@ -195,7 +231,8 @@ export function AboutContent() {
                           {exp.title}
                         </span>
                         <span className="text-a26-muted text-[11px]">
-                          {formatDate(exp.startYear)} — {formatDate(exp.endYear)}
+                          {formatDate(exp.startYear)} —{" "}
+                          {formatDate(exp.endYear)}
                         </span>
                       </div>
                       {exp.subtitle && (
@@ -205,7 +242,8 @@ export function AboutContent() {
                             <span
                               className="text-a26-violet ml-1.5 text-[11px] rounded py-px px-1.25"
                               style={{
-                                background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
+                                background:
+                                  "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
                               }}
                             >
                               {exp.employmentType === "Full-time"
@@ -237,7 +275,8 @@ export function AboutContent() {
                     <div
                       className="flex items-center justify-center shrink-0 w-8.5 h-8.5 rounded-lg"
                       style={{
-                        background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
+                        background:
+                          "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
                       }}
                     >
                       <GraduationCap size={16} color="var(--a26-violet)" />

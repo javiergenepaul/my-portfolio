@@ -954,9 +954,18 @@
       "moreComing": "Daghang moabot pa",
       "soon": "sa wala madugay...",
       "snake": { "name": "Snake", "desc": "Klasikong retro snake game" },
-      "hanoi": { "name": "Tower of Hanoi", "desc": "Ibalhin ang tanan nga disc gikan A ngadto C" },
-      "tetris": { "name": "Tetris", "desc": "Mag-stack ug mag-clear sa mga bloke" },
-      "jump": { "name": "Endless Jump", "desc": "Sumakyad sa mga platform, ayaw pagkahulog!" }
+      "hanoi": {
+        "name": "Tower of Hanoi",
+        "desc": "Ibalhin ang tanan nga disc gikan A ngadto C"
+      },
+      "tetris": {
+        "name": "Tetris",
+        "desc": "Mag-stack ug mag-clear sa mga bloke"
+      },
+      "jump": {
+        "name": "Endless Jump",
+        "desc": "Sumakyad sa mga platform, ayaw pagkahulog!"
+      }
     }
   }
 }

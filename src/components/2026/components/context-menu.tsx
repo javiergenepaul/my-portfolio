@@ -42,7 +42,9 @@ export function ContextMenu({ x, y, items, onClose }: Props) {
     const onDown = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) onClose();
     };
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
     return () => {
@@ -65,9 +67,7 @@ export function ContextMenu({ x, y, items, onClose }: Props) {
     >
       {items.map((item, i) => {
         if (item.type === "separator") {
-          return (
-            <div key={i} className="bg-a26-glass-border h-px my-0.75" />
-          );
+          return <div key={i} className="bg-a26-glass-border h-px my-0.75" />;
         }
 
         if (item.type === "header") {
@@ -86,16 +86,26 @@ export function ContextMenu({ x, y, items, onClose }: Props) {
             key={i}
             disabled={item.disabled}
             onClick={() => {
-              if (!item.disabled) { item.action(); onClose(); }
+              if (!item.disabled) {
+                item.action();
+                onClose();
+              }
             }}
             onMouseEnter={(e) => {
               if (!item.disabled)
-                e.currentTarget.style.background = "color-mix(in srgb, var(--a26-blue) 18%, transparent)";
+                e.currentTarget.style.background =
+                  "color-mix(in srgb, var(--a26-blue) 18%, transparent)";
             }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
             className="font-mac flex items-center text-left gap-2 w-[calc(100%-8px)] mx-1 py-1.25 px-2.5 border-none bg-transparent text-[13px] rounded-[6px] transition-[background] duration-80"
             style={{
-              color: item.disabled ? "var(--a26-text-muted)" : item.danger ? "#FF453A" : "var(--a26-text)",
+              color: item.disabled
+                ? "var(--a26-text-muted)"
+                : item.danger
+                  ? "#FF453A"
+                  : "var(--a26-text)",
               cursor: item.disabled ? "default" : "pointer",
               opacity: item.disabled ? 0.45 : 1,
             }}

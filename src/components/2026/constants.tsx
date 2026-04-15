@@ -157,7 +157,9 @@ export interface WinDef {
   title: string;
   color: string;
   icon: React.ReactNode;
-  defaultPos: { x: number; y: number } | ((vw: number) => { x: number; y: number });
+  defaultPos:
+    | { x: number; y: number }
+    | ((vw: number) => { x: number; y: number });
   defaultSize: { w: number; h: number };
   /** If true, no desktop icon is rendered — window only accessible programmatically */
   hideIcon?: boolean;
@@ -241,7 +243,10 @@ export const WIN_DEFS: WinDef[] = [
     title: "Snake",
     color: "#4ADE80",
     icon: <Zap size={14} />,
-    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 260), y: 80 }),
+    defaultPos: (vw: number) => ({
+      x: Math.max(60, Math.floor(vw / 2) - 260),
+      y: 80,
+    }),
     defaultSize: { w: 520, h: 520 },
     hideIcon: true,
   },
@@ -250,7 +255,10 @@ export const WIN_DEFS: WinDef[] = [
     title: "Tower of Hanoi",
     color: "#C084FC",
     icon: <Layers3 size={14} />,
-    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 280), y: 70 }),
+    defaultPos: (vw: number) => ({
+      x: Math.max(60, Math.floor(vw / 2) - 280),
+      y: 70,
+    }),
     defaultSize: { w: 560, h: 500 },
     hideIcon: true,
   },
@@ -259,7 +267,10 @@ export const WIN_DEFS: WinDef[] = [
     title: "Tetris",
     color: "#00E5FF",
     icon: <LayoutGrid size={14} />,
-    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 240), y: 60 }),
+    defaultPos: (vw: number) => ({
+      x: Math.max(60, Math.floor(vw / 2) - 240),
+      y: 60,
+    }),
     defaultSize: { w: 480, h: 560 },
     hideIcon: true,
   },
@@ -268,7 +279,10 @@ export const WIN_DEFS: WinDef[] = [
     title: "Endless Jump",
     color: "#818CF8",
     icon: <Zap size={14} />,
-    defaultPos: (vw: number) => ({ x: Math.max(60, Math.floor(vw / 2) - 200), y: 55 }),
+    defaultPos: (vw: number) => ({
+      x: Math.max(60, Math.floor(vw / 2) - 200),
+      y: 55,
+    }),
     defaultSize: { w: 420, h: 560 },
     hideIcon: true,
   },

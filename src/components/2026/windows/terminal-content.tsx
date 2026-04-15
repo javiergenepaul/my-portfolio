@@ -45,7 +45,9 @@ const CMDS: Record<string, () => string[]> = {
     "",
   ],
   ls: () => {
-    const p = getProjects().filter((x) => !x.hidden).slice(0, 8);
+    const p = getProjects()
+      .filter((x) => !x.hidden)
+      .slice(0, 8);
     return [
       `total ${p.length}`,
       ...p.map((x) => `  drwxr-xr-x  ${x.title ?? x.projectId}`),
@@ -59,8 +61,7 @@ const CMDS: Record<string, () => string[]> = {
       const names = c.stacks
         .slice(0, 5)
         .map(
-          (s) =>
-            `"${translate(`services.stack.${s.name}` as any) || s.name}"`,
+          (s) => `"${translate(`services.stack.${s.name}` as any) || s.name}"`,
         )
         .join(", ");
       lines.push(
@@ -254,7 +255,8 @@ export function TerminalContent({
           className="shrink-0 flex items-center gap-2 px-4 py-2 text-[11px]"
           style={{
             background: "color-mix(in srgb, #F59E0B 12%, transparent)",
-            borderBottom: "1px solid color-mix(in srgb, #F59E0B 30%, transparent)",
+            borderBottom:
+              "1px solid color-mix(in srgb, #F59E0B 30%, transparent)",
             color: "#FCD34D",
           }}
         >
@@ -272,11 +274,17 @@ export function TerminalContent({
       >
         <div className="flex items-center gap-3">
           <span className="text-a26-green text-[11px]">● connected</span>
-          <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.30)" }}>
+          <span
+            className="text-[11px]"
+            style={{ color: "rgba(255,255,255,0.30)" }}
+          >
             gpm@portfolio:~/
           </span>
         </div>
-        <span className="text-[10px]" style={{ color: "rgba(255,255,255,0.20)" }}>
+        <span
+          className="text-[10px]"
+          style={{ color: "rgba(255,255,255,0.20)" }}
+        >
           bash 5.2.26 · {cmdHist.length} cmds
         </span>
       </div>
@@ -302,20 +310,23 @@ export function TerminalContent({
                 key={j}
                 className="font-mono leading-[1.7] whitespace-pre"
                 style={{
-                  color: l.startsWith("  bash:") || l.startsWith("bash:") || l.startsWith("  open:")
-                    ? "#F87171"
-                    : l.startsWith("  ●")
-                      ? "var(--a26-green)"
-                      : l.startsWith("  Opening") || l.startsWith("  Closing")
-                        ? "var(--a26-teal)"
-                        : l.startsWith("  ██") ||
-                            l.startsWith("  ╚") ||
-                            l.startsWith("  ║") ||
-                            l.startsWith("  └") ||
-                            l.startsWith("  ┌") ||
-                            l.startsWith("  │")
+                  color:
+                    l.startsWith("  bash:") ||
+                    l.startsWith("bash:") ||
+                    l.startsWith("  open:")
+                      ? "#F87171"
+                      : l.startsWith("  ●")
+                        ? "var(--a26-green)"
+                        : l.startsWith("  Opening") || l.startsWith("  Closing")
                           ? "var(--a26-teal)"
-                          : "rgba(255,255,255,0.62)",
+                          : l.startsWith("  ██") ||
+                              l.startsWith("  ╚") ||
+                              l.startsWith("  ║") ||
+                              l.startsWith("  └") ||
+                              l.startsWith("  ┌") ||
+                              l.startsWith("  │")
+                            ? "var(--a26-teal)"
+                            : "rgba(255,255,255,0.62)",
                 }}
               >
                 {l || "\u00A0"}

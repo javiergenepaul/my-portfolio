@@ -1000,7 +1000,10 @@
       "moreComing": "More coming",
       "soon": "soon...",
       "snake": { "name": "Snake", "desc": "Classic retro snake game" },
-      "hanoi": { "name": "Tower of Hanoi", "desc": "Move all discs from A to C" },
+      "hanoi": {
+        "name": "Tower of Hanoi",
+        "desc": "Move all discs from A to C"
+      },
       "tetris": { "name": "Tetris", "desc": "Stack & clear falling blocks" },
       "jump": { "name": "Endless Jump", "desc": "Climb platforms, don't fall!" }
     }

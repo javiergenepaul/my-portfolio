@@ -22,14 +22,46 @@ import { JumpContent } from "../windows/jump-content";
 
 // Resize handle edges: n/e/s/w edges + ne/se/sw/nw corners
 export const RESIZE_HANDLES = [
-  { edge: "n",  cursor: "n-resize",  style: { top: 0,    left: 6,   right: 6,  height: 5 } },
-  { edge: "ne", cursor: "ne-resize", style: { top: 0,    right: 0,  width: 10, height: 10 } },
-  { edge: "e",  cursor: "e-resize",  style: { top: 6,    right: 0,  width: 5,  bottom: 6 } },
-  { edge: "se", cursor: "se-resize", style: { bottom: 0, right: 0,  width: 10, height: 10 } },
-  { edge: "s",  cursor: "s-resize",  style: { bottom: 0, left: 6,   right: 6,  height: 5 } },
-  { edge: "sw", cursor: "sw-resize", style: { bottom: 0, left: 0,   width: 10, height: 10 } },
-  { edge: "w",  cursor: "w-resize",  style: { top: 6,    left: 0,   width: 5,  bottom: 6 } },
-  { edge: "nw", cursor: "nw-resize", style: { top: 0,    left: 0,   width: 10, height: 10 } },
+  {
+    edge: "n",
+    cursor: "n-resize",
+    style: { top: 0, left: 6, right: 6, height: 5 },
+  },
+  {
+    edge: "ne",
+    cursor: "ne-resize",
+    style: { top: 0, right: 0, width: 10, height: 10 },
+  },
+  {
+    edge: "e",
+    cursor: "e-resize",
+    style: { top: 6, right: 0, width: 5, bottom: 6 },
+  },
+  {
+    edge: "se",
+    cursor: "se-resize",
+    style: { bottom: 0, right: 0, width: 10, height: 10 },
+  },
+  {
+    edge: "s",
+    cursor: "s-resize",
+    style: { bottom: 0, left: 6, right: 6, height: 5 },
+  },
+  {
+    edge: "sw",
+    cursor: "sw-resize",
+    style: { bottom: 0, left: 0, width: 10, height: 10 },
+  },
+  {
+    edge: "w",
+    cursor: "w-resize",
+    style: { top: 6, left: 0, width: 5, bottom: 6 },
+  },
+  {
+    edge: "nw",
+    cursor: "nw-resize",
+    style: { top: 0, left: 0, width: 10, height: 10 },
+  },
 ] as const;
 
 export function AppWindow({
@@ -75,13 +107,21 @@ export function AppWindow({
     const curY = y.get();
     if (curX + clampedW > vw - 10) x.set(Math.max(0, vw - clampedW - 10));
     if (curY + clampedH > vh - 80) y.set(Math.max(28, vh - clampedH - 90));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [size, setSize] = useState({ w: def.defaultSize.w, h: def.defaultSize.h });
+  const [size, setSize] = useState({
+    w: def.defaultSize.w,
+    h: def.defaultSize.h,
+  });
   const resizing = useRef<{
-    edge: string; startX: number; startY: number;
-    startW: number; startH: number; startPX: number; startPY: number;
+    edge: string;
+    startX: number;
+    startY: number;
+    startW: number;
+    startH: number;
+    startPX: number;
+    startPY: number;
   } | null>(null);
 
   if (!state.open) return null;
@@ -99,20 +139,35 @@ export function AppWindow({
     e.stopPropagation();
     onFocus();
     resizing.current = {
-      edge, startX: e.clientX, startY: e.clientY,
-      startW: size.w, startH: size.h, startPX: x.get(), startPY: y.get(),
+      edge,
+      startX: e.clientX,
+      startY: e.clientY,
+      startW: size.w,
+      startH: size.h,
+      startPX: x.get(),
+      startPY: y.get(),
     };
-    const MIN_W = 340, MIN_H = 220;
+    const MIN_W = 340,
+      MIN_H = 220;
     const onMove = (ev: MouseEvent) => {
       const r = resizing.current;
       if (!r) return;
       const dx = ev.clientX - r.startX;
       const dy = ev.clientY - r.startY;
-      let nw = r.startW, nh = r.startH, nx = r.startPX, ny = r.startPY;
+      let nw = r.startW,
+        nh = r.startH,
+        nx = r.startPX,
+        ny = r.startPY;
       if (r.edge.includes("e")) nw = Math.max(MIN_W, r.startW + dx);
       if (r.edge.includes("s")) nh = Math.max(MIN_H, r.startH + dy);
-      if (r.edge.includes("w")) { nw = Math.max(MIN_W, r.startW - dx); nx = r.startPX + (r.startW - nw); }
-      if (r.edge.includes("n")) { nh = Math.max(MIN_H, r.startH - dy); ny = r.startPY + (r.startH - nh); }
+      if (r.edge.includes("w")) {
+        nw = Math.max(MIN_W, r.startW - dx);
+        nx = r.startPX + (r.startW - nw);
+      }
+      if (r.edge.includes("n")) {
+        nh = Math.max(MIN_H, r.startH - dy);
+        ny = r.startPY + (r.startH - nh);
+      }
       setSize({ w: nw, h: nh });
       if (r.edge.includes("w")) x.set(Math.max(0, nx));
       if (r.edge.includes("n")) y.set(Math.max(28, ny));
@@ -130,8 +185,24 @@ export function AppWindow({
   };
 
   const winStyle: React.CSSProperties = state.maximized
-    ? { position: "fixed", top: 28, left: 0, right: 0, bottom: 80, width: "auto", height: "auto", borderRadius: 0 }
-    : { position: "fixed", top: 0, left: 0, width: size.w, height: size.h, borderRadius: 12 };
+    ? {
+        position: "fixed",
+        top: 28,
+        left: 0,
+        right: 0,
+        bottom: 80,
+        width: "auto",
+        height: "auto",
+        borderRadius: 0,
+      }
+    : {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: size.w,
+        height: size.h,
+        borderRadius: 12,
+      };
 
   return (
     <motion.div
@@ -146,12 +217,17 @@ export function AppWindow({
         border: "1px solid var(--a26-window-border)",
         backdropFilter: "blur(32px) saturate(1.3)",
         WebkitBackdropFilter: "blur(32px) saturate(1.3)",
-        boxShadow: "0 32px 80px rgba(0,0,0,0.70), 0 0 0 0.5px rgba(255,255,255,0.04)",
+        boxShadow:
+          "0 32px 80px rgba(0,0,0,0.70), 0 0 0 0.5px rgba(255,255,255,0.04)",
         overflow: "hidden",
         fontFamily: "var(--font-mac)",
       }}
       initial={{ scale: 0.94, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1, transition: { duration: 0.18, ease: [0.2, 0, 0, 1] } }}
+      animate={{
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.18, ease: [0.2, 0, 0, 1] },
+      }}
       exit={{ scale: 0.9, opacity: 0, transition: { duration: 0.16 } }}
       onClick={onFocus}
     >
@@ -177,7 +253,11 @@ export function AppWindow({
           cursor: state.maximized ? "default" : "move",
         }}
       >
-        <TrafficLights onClose={onClose} onMinimize={onMinimize} onMaximize={onMaximize} />
+        <TrafficLights
+          onClose={onClose}
+          onMinimize={onMinimize}
+          onMaximize={onMaximize}
+        />
         <div className="flex-1 flex items-center justify-center gap-1.5">
           <span style={{ color: def.color, opacity: 0.85 }}>{def.icon}</span>
           <span className="text-a26-mid text-[13px] font-medium tracking-[0.01em]">
@@ -188,19 +268,21 @@ export function AppWindow({
 
       {/* Content */}
       <div className="flex-1 min-h-0 overflow-hidden flex flex-col">
-        {def.id === "about"    && <AboutContent />}
+        {def.id === "about" && <AboutContent />}
         {def.id === "projects" && <ProjectsContent />}
-        {def.id === "terminal" && <TerminalContent onOpen={onOpen} onClose={onClose} />}
-        {def.id === "skills"   && <SkillsContent />}
-        {def.id === "contact"  && <ContactContent />}
-        {def.id === "resume"   && <ResumeContent />}
+        {def.id === "terminal" && (
+          <TerminalContent onOpen={onOpen} onClose={onClose} />
+        )}
+        {def.id === "skills" && <SkillsContent />}
+        {def.id === "contact" && <ContactContent />}
+        {def.id === "resume" && <ResumeContent />}
         {def.id === "settings" && <SettingsContent />}
-        {def.id === "chat"     && <ChatContent />}
-        {def.id === "games"    && <GamesContent onOpen={onOpen} />}
-        {def.id === "snake"    && <SnakeContent />}
-        {def.id === "hanoi"    && <HanoiContent />}
-        {def.id === "tetris"   && <TetrisContent />}
-        {def.id === "jump"     && <JumpContent />}
+        {def.id === "chat" && <ChatContent />}
+        {def.id === "games" && <GamesContent onOpen={onOpen} />}
+        {def.id === "snake" && <SnakeContent />}
+        {def.id === "hanoi" && <HanoiContent />}
+        {def.id === "tetris" && <TetrisContent />}
+        {def.id === "jump" && <JumpContent />}
       </div>
     </motion.div>
   );

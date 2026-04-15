@@ -9,7 +9,9 @@ import { SplashRemover } from "@/components/common/splash/SplashRemover";
 
 const LoadingMask = dynamic(
   () =>
-    import("@/components/common/loading-mask/loading-mask").then((m) => m.LoadingMask),
+    import("@/components/common/loading-mask/loading-mask").then(
+      (m) => m.LoadingMask,
+    ),
   { ssr: false },
 );
 

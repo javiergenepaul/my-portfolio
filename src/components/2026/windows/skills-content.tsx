@@ -46,7 +46,9 @@ export function SkillsContent() {
               border: isMobile
                 ? `1.5px solid ${isActive ? color : "var(--a26-glass-border)"}`
                 : "none",
-              background: isActive ? `color-mix(in srgb, ${color} 13%, transparent)` : "transparent",
+              background: isActive
+                ? `color-mix(in srgb, ${color} 13%, transparent)`
+                : "transparent",
               color: isActive ? color : "var(--a26-text-mid)",
               fontSize: 12,
               fontWeight: isActive ? 600 : 400,
@@ -54,14 +56,22 @@ export function SkillsContent() {
               transition: "all 0.12s",
               whiteSpace: "nowrap",
               flexShrink: 0,
-              ...(isMobile ? {} : { width: "100%", justifyContent: "space-between", textAlign: "left" as const }),
+              ...(isMobile
+                ? {}
+                : {
+                    width: "100%",
+                    justifyContent: "space-between",
+                    textAlign: "left" as const,
+                  }),
             }}
           >
             <span>{c.label}</span>
             <span
               style={{
                 fontSize: 10,
-                background: isActive ? `color-mix(in srgb, ${color} 18%, transparent)` : "var(--a26-glass)",
+                background: isActive
+                  ? `color-mix(in srgb, ${color} 18%, transparent)`
+                  : "var(--a26-glass)",
                 color: isActive ? color : "var(--a26-text-muted)",
                 borderRadius: 10,
                 padding: "1px 6px",
@@ -116,9 +126,7 @@ export function SkillsContent() {
               transition={{ duration: 0.15 }}
             >
               {/* Category header */}
-              <div
-                className="flex items-center border-b border-a26-glass-border gap-2.5 mb-4.5 pb-3.5"
-              >
+              <div className="flex items-center border-b border-a26-glass-border gap-2.5 mb-4.5 pb-3.5">
                 <div
                   className="flex items-center justify-center shrink-0 w-9 h-9 rounded-[9px] text-lg"
                   style={{
@@ -126,7 +134,17 @@ export function SkillsContent() {
                     border: `1px solid color-mix(in srgb, ${col} 25%, transparent)`,
                   }}
                 >
-                  {cat.key === "frontend" ? "🎨" : cat.key === "backend" ? "⚙️" : cat.key === "database" ? "🗄️" : cat.key === "devops" ? "🚀" : cat.key === "mobile" ? "📱" : "🧩"}
+                  {cat.key === "frontend"
+                    ? "🎨"
+                    : cat.key === "backend"
+                      ? "⚙️"
+                      : cat.key === "database"
+                        ? "🗄️"
+                        : cat.key === "devops"
+                          ? "🚀"
+                          : cat.key === "mobile"
+                            ? "📱"
+                            : "🧩"}
                 </div>
                 <div>
                   <h2 className="text-a26-text m-0 text-base font-bold">
@@ -146,19 +164,27 @@ export function SkillsContent() {
               <div className="flex flex-col gap-3">
                 {cat.stacks.map((s) => {
                   const level = skillLevel(s);
-                  const name = translate(`services.stack.${s.name}` as any) || s.name;
+                  const name =
+                    translate(`services.stack.${s.name}` as any) || s.name;
                   return (
                     <div key={s.name}>
                       {/* Name row */}
                       <div className="flex items-center min-w-0 gap-1.5 mb-1.25">
                         {s.isFavorite && (
-                          <Star size={10} color={col} fill={col} className="shrink-0" />
+                          <Star
+                            size={10}
+                            color={col}
+                            fill={col}
+                            className="shrink-0"
+                          />
                         )}
                         <span
                           className="flex-1 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-xs"
                           style={{
                             fontWeight: s.isFavorite ? 600 : 400,
-                            color: s.isFavorite ? "var(--a26-text)" : "var(--a26-text-mid)",
+                            color: s.isFavorite
+                              ? "var(--a26-text)"
+                              : "var(--a26-text-mid)",
                           }}
                         >
                           {name}
@@ -167,9 +193,11 @@ export function SkillsContent() {
                           <span
                             className="shrink-0 text-[9px] font-semibold rounded py-px px-1.25"
                             style={{
-                              background: "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
+                              background:
+                                "color-mix(in srgb, var(--a26-violet) 12%, transparent)",
                               color: "var(--a26-violet)",
-                              border: "1px solid color-mix(in srgb, var(--a26-violet) 25%, transparent)",
+                              border:
+                                "1px solid color-mix(in srgb, var(--a26-violet) 25%, transparent)",
                             }}
                           >
                             {translate("win26.skills.learning")}
@@ -184,7 +212,11 @@ export function SkillsContent() {
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${level}%` }}
-                          transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
+                          transition={{
+                            duration: 0.5,
+                            ease: "easeOut",
+                            delay: 0.05,
+                          }}
                           className="h-full rounded-[3px]"
                           style={{
                             background: s.isStudying
