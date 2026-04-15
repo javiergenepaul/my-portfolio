@@ -68,8 +68,14 @@ export const metadata: Metadata = {
     "microservices",
   ],
   icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/ghibli-avatar.png", type: "image/png" },
+    ],
+    shortcut: ["/favicon.svg"],
     apple: "/ghibli-avatar.png",
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_US",

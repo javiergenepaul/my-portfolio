@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="root-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7DD3FC" />
+      <stop offset="52%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#34D399" />
+    </linearGradient>
+    <radialGradient id="root-glow" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.22" />
+      <stop offset="55%" stop-color="#22D3EE" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#081018" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="48" height="48" rx="12" fill="#081018" />
+  <circle cx="24" cy="22" r="20" fill="url(#root-glow)" />
+  <path d="M11 15.5h10" stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" opacity="0.72" />
+  <path d="M27 32.5h10" stroke="#34D399" stroke-width="2" stroke-linecap="round" opacity="0.72" />
+  <text
+    x="24"
+    y="30.5"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+    font-size="18"
+    font-weight="800"
+    text-anchor="middle"
+    fill="url(#root-grad)"
+    letter-spacing="-0.6"
+  >GP</text>
+  <circle cx="14" cy="36.5" r="1.6" fill="#7DD3FC" opacity="0.7" />
+  <circle cx="24" cy="36.5" r="1.6" fill="#A78BFA" opacity="0.7" />
+  <circle cx="34" cy="36.5" r="1.6" fill="#34D399" opacity="0.7" />
+</svg>
