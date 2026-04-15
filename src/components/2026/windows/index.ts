@@ -1,4 +1,6 @@
 export * from "./about-content";
+export * from "./books-content";
+export * from "./testimonials-content";
 export * from "./projects-content";
 export * from "./terminal-content";
 export * from "./skills-content";

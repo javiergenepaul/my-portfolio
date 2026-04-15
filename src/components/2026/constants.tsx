@@ -4,6 +4,7 @@ import React from "react";
 import {
   FolderOpen,
   BookOpen,
+  Quote,
   TerminalSquare,
   Mail,
   Settings2,
@@ -141,6 +142,7 @@ export const MAC_FONT =
 export type WinId =
   | "about"
   | "books"
+  | "testimonials"
   | "projects"
   | "terminal"
   | "skills"
@@ -175,6 +177,14 @@ export const WIN_DEFS: WinDef[] = [
     icon: <User size={14} />,
     defaultPos: { x: 80, y: 50 },
     defaultSize: { w: 720, h: 580 },
+  },
+  {
+    id: "testimonials",
+    title: "Testimonials",
+    color: "#EC4899",
+    icon: <Quote size={14} />,
+    defaultPos: { x: 150, y: 78 },
+    defaultSize: { w: 860, h: 560 },
   },
   {
     id: "books",

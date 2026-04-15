@@ -904,6 +904,7 @@
     "windows": {
       "about": "Mahitungod Kanako",
       "books": "Mga Libro nga Naghulma Kanako",
+      "testimonials": "Mga Testimonial",
       "projects": "Mga Proyekto",
       "terminal": "Terminal",
       "skills": "Mga Kahanas & Stack",
@@ -978,6 +979,50 @@
           "theme": "Pagpangulo",
           "quote": "Ang pagpangulo dili ranggo o titulo. Usa kini ka pagpili - ang pagpiling moatiman sa tawo sa imong wala ug tuo.",
           "reflection": "Kini maoy naghubit kung giunsa ko pagpakita sa team setting - moalagad una sa dili pa mangayo og pag-ila."
+        }
+      }
+    },
+    "testimonials": {
+      "title": "Ang Ilang Giingon",
+      "subtitle": "Mga puna gikan sa mga kauban ug kolaborator nga nakatrabaho ko og duol.",
+      "filters": {
+        "all": "Tanan",
+        "relationship": "Relasyon",
+        "service": "Serbisyo",
+        "noResultsTitle": "Walay nagtugbang nga testimonial",
+        "noResultsSubtitle": "Sulayi og tangtang ang usa sa mga filter aron makita ang uban pang feedback."
+      },
+      "relationships": {
+        "colleague": "Kauban",
+        "manager": "Manager",
+        "peer": "Kaparas",
+        "mentor": "Mentor",
+        "client": "Kliyente"
+      },
+      "services": {
+        "fullStackDevelopment": "Full-Stack Development",
+        "uiImplementation": "Pagpatuman sa UI",
+        "agileCollaboration": "Agile nga Kolaborasyon",
+        "backendMicroservices": "Backend ug Microservices"
+      },
+      "items": {
+        "sarah": {
+          "text": "Kanunay nga naghatod si Gene og limpyo ug scalable nga code ug bug-os nga nagpanag-iya sa mga feature gikan sa disenyo hangtod deployment. Usa siya sa labing kasaligan nga engineer nga akong nakatrabaho."
+        },
+        "david": {
+          "text": "Talagsaon kaayo ang iyang abilidad sa pagdugtong sa front-end ug back-end nga walay putol. Nakapagawas si Gene og production-ready nga Spring Boot ug React features nga walay kinahanglang paggiya sa matag lakang - tinuod nga full-stack contributor."
+        },
+        "maria": {
+          "text": "Si Gene mao ang klase sa engineer nga tinuod nga mobasa pag-ayo sa design specs. Ang matag pixel handoff mobalik nga eksakto kaayo, ug kanunay siyang mangutana og maayong pangutana bahin sa edge cases."
+        },
+        "kevin": {
+          "text": "Nindot kaayo katrabaho si Gene - klaro, organisado, ug sayon tistingan ang iyang code. Ang bug count sa iyang mga feature pirmi naa sa pinakagamay sa team."
+        },
+        "lyn": {
+          "text": "Natural nga maayo mokomunikar si Gene ug kasaligan nga team player. Sayo niya nga gipakita ang mga blocker ug mitabang siya sa pag-unblock sa mga kauban. Sa dihang siya ang nag-una sa usa ka story, mosaka pirmi ang sprint velocity."
+        },
+        "james": {
+          "text": "Mas paspas nasabtan ni Gene ang among microservices architecture kaysa bisan kinsa nga intern o junior nga akong na-mentor. Sulod pa lang sa iyang unang buwan, nangutana na siya sa lebel sa architecture - makapahinganghang growth mindset."
         }
       }
     },

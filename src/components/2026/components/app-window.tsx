@@ -8,6 +8,7 @@ import { translate, useLocaleRefresh } from "@/i18n";
 import { TrafficLights } from "./traffic-lights";
 import { AboutContent } from "../windows/about-content";
 import { BooksContent } from "../windows/books-content";
+import { TestimonialsContent } from "../windows/testimonials-content";
 import { ProjectsContent } from "../windows/projects-content";
 import { TerminalContent } from "../windows/terminal-content";
 import { SkillsContent } from "../windows/skills-content";
@@ -271,6 +272,7 @@ export function AppWindow({
       <div className="flex-1 min-h-0 overflow-hidden flex flex-col">
         {def.id === "about" && <AboutContent />}
         {def.id === "books" && <BooksContent />}
+        {def.id === "testimonials" && <TestimonialsContent />}
         {def.id === "projects" && <ProjectsContent />}
         {def.id === "terminal" && (
           <TerminalContent onOpen={onOpen} onClose={onClose} />

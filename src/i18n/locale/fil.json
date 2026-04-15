@@ -904,6 +904,7 @@
     "windows": {
       "about": "Tungkol sa Akin",
       "books": "Mga Aklat na Humubog sa Akin",
+      "testimonials": "Mga Testimonial",
       "projects": "Mga Proyekto",
       "terminal": "Terminal",
       "skills": "Mga Kasanayan & Stack",
@@ -978,6 +979,50 @@
           "theme": "Pamumuno",
           "quote": "Ang pamumuno ay hindi ranggo o titulo. Isa itong pasya - ang pagpiling alagaan ang taong nasa kaliwa at nasa kanan mo.",
           "reflection": "Ito ang batayan kung paano ako kumikilos sa loob ng team - naglilingkod muna bago maghanap ng pagkilala."
+        }
+      }
+    },
+    "testimonials": {
+      "title": "Ang Sinasabi Nila",
+      "subtitle": "Mga puna mula sa mga kasamahan at katuwang na malapit kong nakatrabaho.",
+      "filters": {
+        "all": "Lahat",
+        "relationship": "Ugnayan",
+        "service": "Serbisyo",
+        "noResultsTitle": "Walang tumugmang testimonial",
+        "noResultsSubtitle": "Subukang alisin ang isa sa mga filter para makita ang iba pang feedback."
+      },
+      "relationships": {
+        "colleague": "Kasamahan",
+        "manager": "Manager",
+        "peer": "Kapantay",
+        "mentor": "Mentor",
+        "client": "Kliyente"
+      },
+      "services": {
+        "fullStackDevelopment": "Full-Stack Development",
+        "uiImplementation": "Pagpapatupad ng UI",
+        "agileCollaboration": "Agile na Pakikipagtulungan",
+        "backendMicroservices": "Backend at Microservices"
+      },
+      "items": {
+        "sarah": {
+          "text": "Palaging naghahatid si Gene ng malinis at scalable na code at buong pananagutang hinahawakan ang mga feature mula disenyo hanggang deployment. Isa siya sa pinaka-maaasahang engineer na nakatrabaho ko."
+        },
+        "david": {
+          "text": "Bihira ang kakayahang pagdugtungin nang maayos ang front-end at back-end. Nakakapaglabas si Gene ng production-ready na Spring Boot at React features nang hindi kailangang bantayan sa bawat hakbang - isang tunay na full-stack contributor."
+        },
+        "maria": {
+          "text": "Si Gene ang tipo ng engineer na talagang binabasa nang mabuti ang design specs. Lahat ng pixel handoff ay bumabalik na eksaktong tama, at lagi siyang may matinong tanong tungkol sa edge cases."
+        },
+        "kevin": {
+          "text": "Masarap katrabaho si Gene - malinaw, maayos, at madaling i-test ang code niya. Ang bug count ng mga feature niya ay palaging kabilang sa pinakamababa sa team."
+        },
+        "lyn": {
+          "text": "Natural na communicator si Gene at maaasahang kalaro sa team. Maaga niyang pinapakita ang mga blocker at tumutulong siyang mag-unblock ng mga kasama. Kapag siya ang nangunguna sa isang story, laging gumaganda ang sprint velocity."
+        },
+        "james": {
+          "text": "Mas mabilis natutunan ni Gene ang microservices architecture namin kaysa sa sinumang intern o junior na na-mentor ko. Sa unang buwan pa lang niya, nagtatanong na siya sa antas ng architecture - kahanga-hangang growth mindset iyon."
         }
       }
     },

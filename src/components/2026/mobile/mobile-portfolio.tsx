@@ -22,6 +22,7 @@ import { LiveWallpaper } from "../live-wallpaper";
 import { MacAppIcon } from "../components/mac-app-icons";
 import { AboutContent } from "../windows/about-content";
 import { BooksContent } from "../windows/books-content";
+import { TestimonialsContent } from "../windows/testimonials-content";
 import { ProjectsContent } from "../windows/projects-content";
 import { TerminalContent } from "../windows/terminal-content";
 import { SkillsContent } from "../windows/skills-content";
@@ -327,6 +328,7 @@ export function MobilePortfolio() {
             <div className="flex-1 overflow-hidden flex flex-col">
               {activeApp === "about" && <AboutContent />}
               {activeApp === "books" && <BooksContent />}
+              {activeApp === "testimonials" && <TestimonialsContent />}
               {activeApp === "projects" && <ProjectsContent />}
               {activeApp === "terminal" && (
                 <TerminalContent

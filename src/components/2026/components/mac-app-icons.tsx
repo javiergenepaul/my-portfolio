@@ -258,6 +258,41 @@ function BooksArt({ s }: { s: number }) {
   );
 }
 
+// Testimonials - speech bubble with quote marks
+function TestimonialsArt({ s }: { s: number }) {
+  const p = s * 0.64;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      <rect
+        x="10"
+        y="12"
+        width="60"
+        height="42"
+        rx="14"
+        fill="white"
+        opacity="0.95"
+      />
+      <path d="M 20 54 L 15 67 L 33 56" fill="white" opacity="0.95" />
+      <path
+        d="M 25 33 C 25 26, 29 22, 36 22 L 36 27 C 32 27, 30 29, 30 33 L 35 33 L 35 43 L 25 43 Z"
+        fill="rgba(236,72,153,0.78)"
+      />
+      <path
+        d="M 44 33 C 44 26, 48 22, 55 22 L 55 27 C 51 27, 49 29, 49 33 L 54 33 L 54 43 L 44 43 Z"
+        fill="rgba(236,72,153,0.78)"
+      />
+      <rect
+        x="18"
+        y="60"
+        width="44"
+        height="3"
+        rx="1.5"
+        fill="rgba(255,255,255,0.42)"
+      />
+    </svg>
+  );
+}
+
 // Terminal — Terminal.app (near-black bg with colored title dots + prompt)
 function TerminalArt({ s }: { s: number }) {
   const p = s * 0.66;
@@ -862,6 +897,11 @@ const ICON_MAP: Record<
     g1: "#FB923C",
     g2: "#EA580C",
     art: (s) => <BooksArt s={s} />,
+  },
+  testimonials: {
+    g1: "#F472B6",
+    g2: "#DB2777",
+    art: (s) => <TestimonialsArt s={s} />,
   },
   projects: {
     g1: "#66CBFF",
