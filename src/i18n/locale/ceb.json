@@ -856,6 +856,51 @@
   },
   "availableSoon": "Magamit sa Dili madugay",
   "win26": {
+    "menu": {
+      "file": "File",
+      "newTerminalWindow": "Bag-ong Window sa Terminal",
+      "openResumeBuilder": "Ablihi ang Resume Builder",
+      "closeAllWindows": "Isira ang Tanan nga Window",
+      "view": "View",
+      "exitFullScreen": "Gawas sa Full Screen",
+      "enterFullScreen": "I-full Screen",
+      "commandPalette": "Command Palette",
+      "restoreAllWindows": "Ibalik ang Tanan nga Window",
+      "go": "Go",
+      "window": "Window",
+      "cycleWindows": "Mag-ilis-ilis sa Window",
+      "minimizeAll": "I-minimize ang Tanan",
+      "restoreAll": "Ibalik ang Tanan"
+    },
+    "commandPalette": {
+      "open": "Ablihi ang {title}",
+      "viewGithub": "Tan-awa ang GitHub",
+      "viewLinkedin": "Tan-awa ang LinkedIn",
+      "sendEmail": "Magpadala og Email",
+      "searchPlaceholder": "Pangitaa ang mga command...",
+      "noResults": "Walay nakit-an nga resulta."
+    },
+    "contextMenu": {
+      "open": "Ablihi",
+      "arrangeIcons": "Han-aya ang mga Icon",
+      "resetPosition": "I-reset ang Posisyon"
+    },
+    "trafficLights": {
+      "close": "Isira",
+      "minimize": "I-minimize",
+      "maximize": "I-maximize"
+    },
+    "dock": {
+      "github": "GitHub"
+    },
+    "mobile": {
+      "location": "Sugbo, Pilipinas",
+      "home": "Home",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    },
+    "skipToContent": "Laktawi ang sulod",
     "windows": {
       "about": "Mahitungod Kanako",
       "projects": "Mga Proyekto",
