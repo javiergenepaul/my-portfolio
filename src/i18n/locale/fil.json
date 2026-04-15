@@ -1215,6 +1215,7 @@
     "tetrisUi": {
       "instructionsMobile": "Tap: ikutin · Swipe ←→: galaw · Swipe ↓: soft drop · Mabilis na ↓: hard drop",
       "instructionsDesktop": "← → galaw · ↑ o Z: ikutin · ↓ soft drop · Space: hard drop · C: hold",
+      "holdHint": "Pindutin ang C para mag-hold",
       "saveNote": "I-save ang board pagkatapos ng game over."
     },
     "bomberUi": {

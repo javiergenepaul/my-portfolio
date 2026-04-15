@@ -669,6 +669,19 @@ export function TetrisContent() {
               ? translate("win26.tetrisUi.instructionsMobile" as any)
               : translate("win26.tetrisUi.instructionsDesktop" as any)}
           </div>
+          {!isMobile && (
+            <div
+              style={{
+                color: "rgba(255,255,255,0.58)",
+                fontSize: 12,
+                fontWeight: 700,
+                marginTop: 10,
+                letterSpacing: "0.01em",
+              }}
+            >
+              {translate("win26.tetrisUi.holdHint" as any)}
+            </div>
+          )}
         </div>
         <button
           onClick={startGame}
@@ -869,6 +882,19 @@ export function TetrisContent() {
           {/* Hold */}
           <div>
             <PanelLabel>{translate("win26.gameUi.hold" as any)}</PanelLabel>
+            <div
+              style={{
+                color: "rgba(255,255,255,0.42)",
+                fontSize: 9,
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                marginTop: -1,
+                marginBottom: 6,
+              }}
+            >
+              {translate("win26.tetrisUi.holdHint" as any)}
+            </div>
             <div
               style={{
                 background: "rgba(255,255,255,0.04)",

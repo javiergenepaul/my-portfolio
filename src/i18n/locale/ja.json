@@ -1216,6 +1216,7 @@
     "tetrisUi": {
       "instructionsMobile": "タップ: 回転 · スワイプ ←→: 移動 · スワイプ ↓: ソフトドロップ · 素早い ↓: ハードドロップ",
       "instructionsDesktop": "← → 移動 · ↑ または Z: 回転 · ↓ ソフトドロップ · Space: ハードドロップ · C: ホールド",
+      "holdHint": "Cキーでホールド",
       "saveNote": "ゲームオーバー後に盤面スコアを保存できます。"
     },
     "bomberUi": {

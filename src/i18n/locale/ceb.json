@@ -1215,6 +1215,7 @@
     "tetrisUi": {
       "instructionsMobile": "Tap: liko · Swipe ←→: lihok · Swipe ↓: soft drop · Paspas nga ↓: hard drop",
       "instructionsDesktop": "← → lihok · ↑ o Z: liko · ↓ soft drop · Space: hard drop · C: hold",
+      "holdHint": "Pindota ang C aron mag-hold",
       "saveNote": "I-save ang board human sa game over."
     },
     "bomberUi": {

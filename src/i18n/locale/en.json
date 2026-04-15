@@ -1213,6 +1213,7 @@
     "tetrisUi": {
       "instructionsMobile": "Tap: rotate · Swipe ←→: move · Swipe ↓: soft drop · Fast swipe ↓: hard drop",
       "instructionsDesktop": "← → move · ↑ or Z: rotate · ↓ soft drop · Space: hard drop · C: hold",
+      "holdHint": "Press C to hold",
       "saveNote": "Save the board after a game over."
     },
     "bomberUi": {
