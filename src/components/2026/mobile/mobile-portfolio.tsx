@@ -24,6 +24,7 @@ import { AboutContent } from "../windows/about-content";
 import { BooksContent } from "../windows/books-content";
 import { TestimonialsContent } from "../windows/testimonials-content";
 import { ProjectsContent } from "../windows/projects-content";
+import { ItunesContent } from "../windows/itunes-content";
 import { TerminalContent } from "../windows/terminal-content";
 import { SkillsContent } from "../windows/skills-content";
 import { ContactContent } from "../windows/contact-content";
@@ -39,7 +40,7 @@ import { BomberContent } from "../windows/bomber-content";
 
 export function MobilePortfolio() {
   useLocaleRefresh();
-  const [activeApp, setActiveApp] = useState<WinId | null>(null);
+  const [activeApp, setActiveApp] = useState<WinId | null>("itunes");
   const setIsAppOpen = useMobileAppStore((s) => s.setIsAppOpen);
   const time = useMobileTime();
 
@@ -331,6 +332,7 @@ export function MobilePortfolio() {
               {activeApp === "books" && <BooksContent />}
               {activeApp === "testimonials" && <TestimonialsContent />}
               {activeApp === "projects" && <ProjectsContent />}
+              {activeApp === "itunes" && <ItunesContent />}
               {activeApp === "terminal" && (
                 <TerminalContent
                   onOpen={(id) => setActiveApp(id)}

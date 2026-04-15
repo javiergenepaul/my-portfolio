@@ -170,6 +170,28 @@ function ProjectsArt({ s }: { s: number }) {
   );
 }
 
+// iTunes - glossy note on a circular disc
+function ItunesArt({ s }: { s: number }) {
+  const p = s * 0.68;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      <circle cx="40" cy="40" r="28" fill="rgba(255,255,255,0.24)" />
+      <circle
+        cx="40"
+        cy="40"
+        r="23"
+        stroke="rgba(255,255,255,0.45)"
+        strokeWidth="2"
+      />
+      <path
+        d="M48 18v28.8c0 4.2-2.8 7.6-7.2 8.8l-8 2.1c-1 .3-2 .4-2.9.4-4.7 0-8.1-2.6-8.1-6.3 0-3.9 3.5-6.9 8.8-8.2l9-2.2V25.9l16-3.9c1.5-.4 2.4.3 2.4 1.9v18.8c0 4.3-2.7 7.6-7.1 8.8l-4.8 1.3c-.9.2-1.8.4-2.6.4-4.4 0-7.6-2.4-7.6-5.9 0-3.6 3.2-6.5 8.1-7.7l6.1-1.5V18.9Z"
+        fill="white"
+      />
+      <circle cx="54.5" cy="24.5" r="4" fill="rgba(255,255,255,0.18)" />
+    </svg>
+  );
+}
+
 // Books — warm bookshelf card with stacked spines
 function BooksArt({ s }: { s: number }) {
   const p = s * 0.64;
@@ -926,6 +948,11 @@ const ICON_MAP: Record<
     g1: "#66CBFF",
     g2: "#1278FD",
     art: (s) => <ProjectsArt s={s} />,
+  },
+  itunes: {
+    g1: "#FB7185",
+    g2: "#C026D3",
+    art: (s) => <ItunesArt s={s} />,
   },
   terminal: {
     g1: "#3A3A3A",

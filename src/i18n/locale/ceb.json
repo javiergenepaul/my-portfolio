@@ -906,6 +906,7 @@
       "books": "Mga Libro nga Naghulma Kanako",
       "testimonials": "Mga Testimonial",
       "projects": "Mga Proyekto",
+      "itunes": "iTunes",
       "terminal": "Terminal",
       "skills": "Mga Kahanas & Stack",
       "contact": "Makig-ugnon",
@@ -918,6 +919,22 @@
       "tetris": "Tetris",
       "jump": "Walay Katapusang Paglukso",
       "bomber": "Bomber GPM"
+    },
+    "itunes": {
+      "title": "iTunes",
+      "subtitle": "Lokal nga library",
+      "allSongs": "Tanang Kanta",
+      "collections": "Mga Koleksyon",
+      "libraryTitle": "Music Library",
+      "libraryMeta": "{tracks} ka kanta sa {collections} ka koleksyon",
+      "refresh": "I-refresh",
+      "loading": "Gikarga ang music library...",
+      "error": "Dili ma-load ang music library.",
+      "tryAgain": "Sulayi Usab",
+      "emptyTitle": "Wala pay mga kanta",
+      "emptyBody": "Ang playlist kay walay sulod. Balik-balik lang!",
+      "nothingPlaying": "Walay nagtugtog",
+      "pickTrack": "Pilia ang usa ka kanta sa imong library aron magsugod ang playback"
     },
     "about": {
       "tabs": {

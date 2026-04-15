@@ -906,6 +906,7 @@
       "books": "Mga Aklat na Humubog sa Akin",
       "testimonials": "Mga Testimonial",
       "projects": "Mga Proyekto",
+      "itunes": "iTunes",
       "terminal": "Terminal",
       "skills": "Mga Kasanayan & Stack",
       "contact": "Makipag-ugnayan",
@@ -918,6 +919,22 @@
       "tetris": "Tetris",
       "jump": "Walang Katapusang Pagtaas",
       "bomber": "Bomber GPM"
+    },
+    "itunes": {
+      "title": "iTunes",
+      "subtitle": "Lokal na library",
+      "allSongs": "Lahat ng Kanta",
+      "collections": "Mga Koleksyon",
+      "libraryTitle": "Music Library",
+      "libraryMeta": "{tracks} kanta sa {collections} koleksyon",
+      "refresh": "I-refresh",
+      "loading": "Ikinakarga ang music library...",
+      "error": "Hindi ma-load ang music library.",
+      "tryAgain": "Subukan Muli",
+      "emptyTitle": "Wala pang mga kanta",
+      "emptyBody": "Ang playlist ay walang laman. Bumalik muli sa susunod!",
+      "nothingPlaying": "Walang tumutugtog",
+      "pickTrack": "Pumili ng kanta sa iyong library para magsimulang tumugtog"
     },
     "about": {
       "tabs": {

@@ -907,6 +907,7 @@
       "books": "自分を形作った本",
       "testimonials": "推薦の声",
       "projects": "プロジェクト",
+      "itunes": "iTunes",
       "terminal": "ターミナル",
       "skills": "スキル & スタック",
       "contact": "連絡先",
@@ -919,6 +920,22 @@
       "tetris": "テトリス",
       "jump": "エンドレスジャンプ",
       "bomber": "Bomber GPM"
+    },
+    "itunes": {
+      "title": "iTunes",
+      "subtitle": "ローカルライブラリ",
+      "allSongs": "すべての曲",
+      "collections": "コレクション",
+      "libraryTitle": "ミュージックライブラリ",
+      "libraryMeta": "{collections}件のコレクションに {tracks} 曲",
+      "refresh": "更新",
+      "loading": "ミュージックライブラリを読み込み中...",
+      "error": "ミュージックライブラリを読み込めませんでした。",
+      "tryAgain": "再試行",
+      "emptyTitle": "まだトラックがありません",
+      "emptyBody": "プレイリストは空です。またご確認ください！",
+      "nothingPlaying": "再生中の曲はありません",
+      "pickTrack": "ライブラリから曲を選んで再生を始めてください"
     },
     "about": {
       "tabs": {

@@ -6,6 +6,7 @@ import {
   BookOpen,
   Quote,
   TerminalSquare,
+  Headphones,
   Mail,
   Settings2,
   User,
@@ -145,6 +146,7 @@ export type WinId =
   | "books"
   | "testimonials"
   | "projects"
+  | "itunes"
   | "terminal"
   | "skills"
   | "contact"
@@ -203,6 +205,14 @@ export const WIN_DEFS: WinDef[] = [
     icon: <FolderOpen size={14} />,
     defaultPos: { x: 110, y: 70 },
     defaultSize: { w: 760, h: 500 },
+  },
+  {
+    id: "itunes",
+    title: "iTunes",
+    color: "#EC4899",
+    icon: <Headphones size={14} />,
+    defaultPos: { x: 190, y: 86 },
+    defaultSize: { w: 980, h: 620 },
   },
   {
     id: "terminal",

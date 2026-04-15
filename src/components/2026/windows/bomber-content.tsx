@@ -165,6 +165,7 @@ export function BomberContent() {
   const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
   const [cellSize, setCellSize] = useState(34);
+  const [containerWidth, setContainerWidth] = useState(0);
   const [runToken, setRunToken] = useState(0);
   const [game, setGame] = useState<GameState>(() => createGame());
   const bomberBest = useGameHighScoresStore(
@@ -181,6 +182,7 @@ export function BomberContent() {
       const reservedH = isMobile ? 260 : 84;
       const extraBoardW = (COLS - 1) * CELL_GAP + BOARD_PAD * 2;
       const extraBoardH = (ROWS - 1) * CELL_GAP + BOARD_PAD * 2;
+      setContainerWidth(el.clientWidth);
       const byW = Math.floor(
         (el.clientWidth - (isMobile ? 8 : 20) - extraBoardW) / COLS,
       );
@@ -426,6 +428,10 @@ export function BomberContent() {
     }),
     [cellSize],
   );
+  const mobileBoardScale =
+    isMobile && containerWidth > 0
+      ? Math.min(1, (containerWidth - 4) / boardPx.width)
+      : 1;
   const activeBombCount = game.bombs.length;
   const nextBombMs =
     activeBombCount > 0
@@ -705,11 +711,11 @@ export function BomberContent() {
       className="font-mac flex flex-col flex-1 min-h-0 overflow-hidden"
       style={{
         background: "#0B0B0F",
-        padding: isMobile ? "8px 8px 12px" : "14px 14px 20px",
-        gap: isMobile ? 6 : 10,
+        padding: isMobile ? "6px 6px 10px" : "14px 14px 20px",
+        gap: isMobile ? 4 : 10,
       }}
     >
-      <div className="flex items-center gap-3 w-full" style={{ maxWidth: boardPx.width }}>
+      <div className="flex items-center gap-2 w-full" style={{ maxWidth: isMobile ? "100%" : boardPx.width }}>
         <span className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.30)" }}>
           {translate("win26.gameUi.score" as any)}
         </span>
@@ -725,7 +731,7 @@ export function BomberContent() {
       {/* Compact HUD row: bomb status + fuse + power pills — single row on mobile */}
       <div
         className="flex items-center gap-2 w-full flex-wrap"
-        style={{ maxWidth: boardPx.width, minHeight: 0 }}
+        style={{ maxWidth: isMobile ? "100%" : boardPx.width, minHeight: 0 }}
       >
         <div
           className="flex items-center gap-1.5 rounded-full"
@@ -829,7 +835,13 @@ export function BomberContent() {
           justifyContent: "center",
         }}
       >
-        <div className="relative shrink-0" style={{ ...boardPx }}>
+        <div
+          className="relative shrink-0"
+          style={{
+            width: boardPx.width * mobileBoardScale,
+            height: boardPx.height * mobileBoardScale,
+          }}
+        >
           <div
             style={{
               width: boardPx.width,
@@ -841,6 +853,8 @@ export function BomberContent() {
               padding: BOARD_PAD,
               borderRadius: 12,
               background: "rgba(255,255,255,0.05)",
+              transform: `scale(${mobileBoardScale})`,
+              transformOrigin: "top center",
             }}
           >
             {Array.from({ length: ROWS }, (_, y) =>
@@ -895,16 +909,16 @@ export function BomberContent() {
       </div>
 
       {isMobile ? (
-        <div className="flex items-center justify-center gap-2 shrink-0" style={{ touchAction: "none", paddingTop: 2 }}>
-          <div className="grid grid-cols-3 gap-1" style={{ width: 132 }}>
+        <div className="flex items-center justify-center gap-2 shrink-0" style={{ touchAction: "none", paddingTop: 0 }}>
+          <div className="grid grid-cols-3 gap-1" style={{ width: 126 }}>
             <div />
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(0, -1); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 42, height: 42, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▲</button>
+            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(0, -1); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▲</button>
             <div />
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(-1, 0); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 42, height: 42, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>◀</button>
-            <button onPointerDown={(e) => { e.preventDefault(); placeBomb(); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer font-semibold" style={{ width: 42, height: 42, background: activeBombCount > 0 ? "rgba(249,115,22,0.34)" : "rgba(249,115,22,0.24)", color: "#FDBA74", fontSize: 16, boxShadow: activeBombCount > 0 ? "0 0 0 1px rgba(249,115,22,0.32) inset, 0 0 18px rgba(249,115,22,0.22)" : "none" }}>💣</button>
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(1, 0); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 42, height: 42, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▶</button>
+            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(-1, 0); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>◀</button>
+            <button onPointerDown={(e) => { e.preventDefault(); placeBomb(); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer font-semibold" style={{ width: 40, height: 40, background: activeBombCount > 0 ? "rgba(249,115,22,0.34)" : "rgba(249,115,22,0.24)", color: "#FDBA74", fontSize: 15, boxShadow: activeBombCount > 0 ? "0 0 0 1px rgba(249,115,22,0.32) inset, 0 0 18px rgba(249,115,22,0.22)" : "none" }}>💣</button>
+            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(1, 0); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▶</button>
             <div />
-            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(0, 1); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 42, height: 42, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▼</button>
+            <button onPointerDown={(e) => { e.preventDefault(); movePlayer(0, 1); }} className="font-mac flex items-center justify-center rounded-xl border-none cursor-pointer" style={{ width: 40, height: 40, background: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.72)", fontSize: 16 }}>▼</button>
             <div />
           </div>
         </div>

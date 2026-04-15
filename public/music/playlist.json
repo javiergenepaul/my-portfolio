@@ -1,0 +1,44 @@
+{
+  "tracks": [
+    {
+      "title": "Viva la Vida (Lyrics)",
+      "artist": "Coldplay",
+      "album": "My Playlist",
+      "collection": "My Playlist",
+      "src": "/music/My Playlist/Coldplay - Viva la Vida (Lyrics).mp3"
+    },
+    {
+      "title": "Pasilyo (Official Lyric Video)",
+      "artist": "SunKissed Lola",
+      "album": "My Playlist",
+      "collection": "My Playlist",
+      "src": "/music/My Playlist/SunKissed Lola - Pasilyo (Official Lyric Video).mp3"
+    },
+    {
+      "title": "The Show Goes On (Lyrics)",
+      "artist": "Lupe Fiasco",
+      "album": "My Playlist",
+      "collection": "My Playlist",
+      "src": "/music/My Playlist/Lupe Fiasco - The Show Goes On (Lyrics).mp3"
+    },
+    {
+      "title": "Six Days (Lyrics) Tokyo Drift Version",
+      "artist": "DJ Shadow",
+      "album": "My Playlist",
+      "collection": "My Playlist",
+      "src": "/music/My Playlist/DJ Shadow - Six Days (Lyrics) Tokyo Drift Version.mp3"
+    },
+    {
+      "title": "679",
+      "artist": "Fetty Wap, Monty",
+      "album": "My Playlist",
+      "collection": "My Playlist",
+      "src": "/music/My Playlist/679 - Fetty Wap, Monty  Lyric Video.mp3"
+    }
+  ],
+  "itunes": [
+    { "term": "lofi hip hop chill", "limit": 8, "collection": "Lofi Chill" },
+    { "term": "synthwave retrowave", "limit": 6, "collection": "Synthwave" },
+    { "term": "ambient electronic", "limit": 6, "collection": "Ambient" }
+  ]
+}

@@ -907,6 +907,7 @@
       "books": "Books That Built Me",
       "testimonials": "Testimonials",
       "projects": "Projects",
+      "itunes": "iTunes",
       "terminal": "Terminal",
       "skills": "Skills & Stack",
       "contact": "Contact",
@@ -919,6 +920,22 @@
       "tetris": "Tetris",
       "jump": "Endless Jump",
       "bomber": "Bomber GPM"
+    },
+    "itunes": {
+      "title": "iTunes",
+      "subtitle": "Local library",
+      "allSongs": "All Songs",
+      "collections": "Collections",
+      "libraryTitle": "Music Library",
+      "libraryMeta": "{tracks} tracks across {collections} collections",
+      "refresh": "Refresh",
+      "loading": "Loading music library...",
+      "error": "Could not load the music library.",
+      "tryAgain": "Try Again",
+      "emptyTitle": "No tracks yet",
+      "emptyBody": "The playlist is empty. Check back soon!",
+      "nothingPlaying": "Nothing playing",
+      "pickTrack": "Pick a track from your library to start playback"
     },
     "about": {
       "tabs": {
