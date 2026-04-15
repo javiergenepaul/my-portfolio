@@ -209,7 +209,7 @@ export const WIN_DEFS: WinDef[] = [
     title: "Terminal",
     color: A.green,
     icon: <TerminalSquare size={14} />,
-    defaultPos: (vw: number) => ({ x: vw - 660 - 120, y: 90 }),
+    defaultPos: (vw: number) => ({ x: Math.max(360, vw - 660 - 230), y: 42 }),
     defaultSize: { w: 660, h: 400 },
   },
   {
@@ -249,7 +249,7 @@ export const WIN_DEFS: WinDef[] = [
     title: "Chat GPM",
     color: "#A855F7",
     icon: <Sparkles size={14} />,
-    defaultPos: (vw: number) => ({ x: vw - 620, y: 510 }),
+    defaultPos: (vw: number) => ({ x: Math.max(520, vw - 520 - 250), y: 270 }),
     defaultSize: { w: 520, h: 500 },
   },
   {

@@ -61,6 +61,13 @@ const INIT_WINS: Record<WinId, WinState> = {
   bomber: { open: false, minimized: false, maximized: false, zIndex: 10 },
 };
 
+const SSR_WINS: Record<WinId, WinState> = Object.fromEntries(
+  (Object.entries(INIT_WINS) as [WinId, WinState][]).map(([id, state]) => [
+    id,
+    { ...state, open: false, minimized: false },
+  ]),
+) as Record<WinId, WinState>;
+
 // Only defs that get a desktop icon (excludes hideIcon: true entries)
 const VISIBLE_DEFS = WIN_DEFS.filter((d) => !d.hideIcon);
 
@@ -69,6 +76,7 @@ export function Portfolio2026() {
   const isDark = useIsDark();
   const isMobile = useIsMobile();
   const { setLanguage } = useLanguageStore();
+  const [isHydrated, setIsHydrated] = useState(false);
   const [showIntroSplash, setShowIntroSplash] = useState(false);
 
   // Reset to English each time the 2026 portfolio loads
@@ -76,7 +84,7 @@ export function Portfolio2026() {
     setLanguage("en");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const [wins, setWins] = useState<Record<WinId, WinState>>(INIT_WINS);
+  const [wins, setWins] = useState<Record<WinId, WinState>>(SSR_WINS);
   const [topZ, setTopZ] = useState(30);
   const [cmdOpen, setCmdOpen] = useState(false);
   const desktopRef = useRef<HTMLElement>(null);
@@ -109,6 +117,14 @@ export function Portfolio2026() {
 
   useEffect(() => {
     setIconPositions(calcIconGrid(window.innerWidth));
+  }, []);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    setWins(INIT_WINS);
   }, []);
 
   useEffect(() => {
@@ -402,6 +418,10 @@ export function Portfolio2026() {
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
   }, [wins, focusWin]);
+
+  if (!isHydrated) {
+    return <div className="font-mac relative z-1 w-screen h-dvh bg-black" />;
+  }
 
   if (isMobile) return <MobilePortfolio />;
 

@@ -90,6 +90,7 @@ export function AppWindow({
   const initPos = resolvePos(1440);
   const x = useMotionValue(initPos.x);
   const y = useMotionValue(initPos.y);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const vw = window.innerWidth;
@@ -110,6 +111,7 @@ export function AppWindow({
     const curY = y.get();
     if (curX + clampedW > vw - 10) x.set(Math.max(0, vw - clampedW - 10));
     if (curY + clampedH > vh - 80) y.set(Math.max(28, vh - clampedH - 90));
+    setIsReady(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -127,7 +129,7 @@ export function AppWindow({
     startPY: number;
   } | null>(null);
 
-  if (!state.open) return null;
+  if (!state.open || !isReady) return null;
 
   const handlePan = (_: unknown, info: PanInfo) => {
     if (!state.maximized) {

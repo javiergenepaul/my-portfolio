@@ -85,12 +85,16 @@ function buildBoard() {
   };
   board[exit.y][exit.x] = "crate";
 
-  let enemy = candidates[Math.floor(Math.random() * candidates.length)] ?? {
+  const enemyCandidates = candidates.filter(
+    (candidate) => candidate.x !== exit.x || candidate.y !== exit.y,
+  );
+
+  let enemy = enemyCandidates[Math.floor(Math.random() * enemyCandidates.length)] ?? {
     x: COLS - 2,
     y: 1,
   };
   while (Math.abs(enemy.x - 1) + Math.abs(enemy.y - 1) < 6) {
-    enemy = candidates[Math.floor(Math.random() * candidates.length)] ?? enemy;
+    enemy = enemyCandidates[Math.floor(Math.random() * enemyCandidates.length)] ?? enemy;
   }
   if (board[enemy.y][enemy.x] === "crate") board[enemy.y][enemy.x] = "floor";
 
@@ -122,6 +126,15 @@ function isOpenCell(board: Cell[][], pos: Pos) {
 function inBlast(pos: Pos | null, blasts: Blast[]) {
   if (!pos) return false;
   return blasts.some((blast) => blast.x === pos.x && blast.y === pos.y);
+}
+
+function hasClearedStage(state: GameState) {
+  return (
+    state.exitRevealed &&
+    state.enemy === null &&
+    state.player.x === state.exit.x &&
+    state.player.y === state.exit.y
+  );
 }
 
 export function BomberContent() {
@@ -169,12 +182,7 @@ export function BomberContent() {
   }, []);
 
   const triggerWinIfReady = useCallback((state: GameState) => {
-    if (
-      state.exitRevealed &&
-      state.enemy === null &&
-      state.player.x === state.exit.x &&
-      state.player.y === state.exit.y
-    ) {
+    if (hasClearedStage(state)) {
       return {
         ...state,
         phase: "won" as const,
