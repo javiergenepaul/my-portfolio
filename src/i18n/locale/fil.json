@@ -906,7 +906,7 @@
       "books": "Mga Aklat na Humubog sa Akin",
       "testimonials": "Mga Testimonial",
       "projects": "Mga Proyekto",
-      "itunes": "gpmTunes",
+      "itunes": "GPM Tunes",
       "terminal": "Terminal",
       "skills": "Mga Kasanayan & Stack",
       "contact": "Makipag-ugnayan",
@@ -921,7 +921,7 @@
       "bomber": "Bomber GPM"
     },
     "itunes": {
-      "title": "gpmTunes",
+      "title": "GPM Tunes",
       "subtitle": "Lokal na library",
       "allSongs": "Lahat ng Kanta",
       "collections": "Mga Koleksyon",

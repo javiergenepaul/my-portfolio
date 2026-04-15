@@ -208,7 +208,7 @@ export const WIN_DEFS: WinDef[] = [
   },
   {
     id: "itunes",
-    title: "gpmTunes",
+    title: "GPM Tunes",
     color: "#EC4899",
     icon: <Headphones size={14} />,
     defaultPos: { x: 190, y: 86 },

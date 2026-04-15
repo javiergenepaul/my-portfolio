@@ -294,6 +294,8 @@ export function ItunesContent() {
   };
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const mobileHeaderPadding = isMobile ? "14px 14px 12px" : "16px 16px 14px";
+  const listPadding = "12px";
 
   return (
     <div className="font-mac flex flex-1 min-h-0 overflow-hidden">
@@ -313,124 +315,319 @@ export function ItunesContent() {
               : "none",
           }}
         >
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-a26-glass-border">
-            <div
-              className="flex items-center justify-center w-8 h-8 rounded-[10px]"
-              style={{
-                background: "color-mix(in srgb, #EC4899 16%, transparent)",
-                border:
-                  "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
-              }}
-            >
-              <Headphones size={16} color="#EC4899" />
-            </div>
-            <div className="min-w-0">
-              <div className="text-a26-text text-[13px] font-semibold">
-                {translate("win26.itunes.title")}
+          <div
+            className="border-b border-a26-glass-border"
+            style={{ padding: mobileHeaderPadding }}
+          >
+            <div className="flex items-center gap-2.5">
+              <div
+                className="flex items-center justify-center rounded-xl"
+                style={{
+                  width: isMobile ? 36 : 32,
+                  height: isMobile ? 36 : 32,
+                  background: "color-mix(in srgb, #EC4899 16%, transparent)",
+                  border:
+                    "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
+                }}
+              >
+                <Headphones size={isMobile ? 18 : 16} color="#EC4899" />
               </div>
-              <div className="text-a26-mid text-[11px]">
-                {translate("win26.itunes.subtitle")}
+              <div className="min-w-0 flex-1">
+                <div className="text-a26-text text-[13px] font-semibold">
+                  {translate("win26.itunes.title")}
+                </div>
+                <div className="text-a26-mid text-[11px]">
+                  {translate("win26.itunes.subtitle")}
+                </div>
               </div>
+              {!isMobile && (
+                <button
+                  onClick={() => void loadTracks()}
+                  className="font-mac flex items-center gap-1.5 bg-a26-glass border border-a26-glass-border rounded-[9px] cursor-pointer px-3 py-1.75 text-[11px] text-a26-text"
+                >
+                  <RefreshCw size={12} />
+                  {translate("win26.itunes.refresh")}
+                </button>
+              )}
             </div>
+
+            {isMobile && (
+              <div
+                className="mt-3 rounded-2xl border border-a26-glass-border bg-a26-card"
+                style={{ padding: "12px 12px 10px" }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <div className="text-a26-text text-[13px] font-semibold truncate">
+                      {currentTrack?.title ??
+                        translate("win26.itunes.nothingPlaying")}
+                    </div>
+                    <div className="text-a26-mid text-[11px] mt-1 truncate">
+                      {currentTrack
+                        ? `${currentTrack.artist} • ${currentTrack.album}`
+                        : translate("win26.itunes.pickTrack")}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => void loadTracks()}
+                    className="font-mac flex h-8 w-8 items-center justify-center bg-a26-glass border border-a26-glass-border rounded-full cursor-pointer text-a26-text shrink-0"
+                    aria-label={translate("win26.itunes.refresh")}
+                  >
+                    <RefreshCw size={12} />
+                  </button>
+                </div>
+
+                <div className="mt-3 flex items-center gap-2.5">
+                  <button
+                    onClick={() => skipTrack(-1)}
+                    disabled={!tracks.length}
+                    className="font-mac bg-a26-glass border border-a26-glass-border flex h-9 w-9 items-center justify-center rounded-full cursor-pointer disabled:opacity-50 shrink-0"
+                  >
+                    <SkipBack size={14} />
+                  </button>
+                  <button
+                    onClick={() => void togglePlayback()}
+                    disabled={!currentTrack}
+                    className="font-mac border-none flex h-11 w-11 items-center justify-center rounded-full cursor-pointer disabled:opacity-50 shrink-0"
+                    style={{
+                      background:
+                        "linear-gradient(160deg, #FB7185 0%, #C026D3 100%)",
+                      color: "white",
+                    }}
+                  >
+                    {isPlaying ? <Pause size={17} /> : <Play size={17} />}
+                  </button>
+                  <button
+                    onClick={() => skipTrack(1)}
+                    disabled={!tracks.length}
+                    className="font-mac bg-a26-glass border border-a26-glass-border flex h-9 w-9 items-center justify-center rounded-full cursor-pointer disabled:opacity-50 shrink-0"
+                  >
+                    <SkipForward size={14} />
+                  </button>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-a26-muted text-[10px] tabular-nums shrink-0">
+                        {formatTime(currentTime)}
+                      </span>
+                      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-a26-glass">
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            width: `${Math.min(progress, 100)}%`,
+                            background:
+                              "linear-gradient(90deg, #FB7185 0%, #C026D3 100%)",
+                          }}
+                        />
+                      </div>
+                      <span className="text-a26-muted text-[10px] tabular-nums shrink-0">
+                        {formatTime(duration)}
+                      </span>
+                    </div>
+                    <div className="mt-2 flex items-center gap-2">
+                      <Volume2 size={13} className="text-a26-mid shrink-0" />
+                      <input
+                        type="range"
+                        min={0}
+                        max={1}
+                        step={0.01}
+                        value={volume}
+                        onChange={(event) => setVolume(Number(event.target.value))}
+                        className="w-full accent-pink-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div
-            className="win26-scroll overflow-auto p-2 [scrollbar-width:thin]"
-            style={{ maxHeight: isMobile ? 176 : "calc(100% - 61px)" }}
+            className="win26-scroll overflow-auto [scrollbar-width:thin]"
+            style={{
+              maxHeight: isMobile ? 122 : "calc(100% - 84px)",
+              padding: isMobile ? "10px 12px 12px" : "8px",
+            }}
           >
-            <button
-              onClick={() => setActiveCollection("all")}
-              className="font-mac flex items-center w-full gap-2 rounded-[10px] border-none cursor-pointer px-3 py-2 text-left"
-              style={{
-                background:
-                  activeCollection === "all"
-                    ? "color-mix(in srgb, #EC4899 12%, transparent)"
-                    : "transparent",
-                color:
-                  activeCollection === "all"
-                    ? "var(--a26-text)"
-                    : "var(--a26-text-mid)",
-              }}
-            >
-              <ListMusic size={14} />
-              <span className="flex-1 text-[12px] font-medium">
-                {translate("win26.itunes.allSongs")}
-              </span>
-              <span className="text-[10px] opacity-70">{tracks.length}</span>
-            </button>
+            {isMobile ? (
+              <div className="inline-flex items-center gap-2 whitespace-nowrap">
+                <button
+                  onClick={() => setActiveCollection("all")}
+                  className="font-mac inline-flex items-center gap-2 border-none cursor-pointer text-left"
+                  style={{
+                    padding: "9px 12px",
+                    borderRadius: 999,
+                    background:
+                      activeCollection === "all"
+                        ? "color-mix(in srgb, #EC4899 12%, transparent)"
+                        : "transparent",
+                    color:
+                      activeCollection === "all"
+                        ? "var(--a26-text)"
+                        : "var(--a26-text-mid)",
+                  }}
+                >
+                  <ListMusic size={14} />
+                  <span className="text-[12px] font-medium">
+                    {translate("win26.itunes.allSongs")}
+                  </span>
+                  <span className="text-[10px] opacity-70">{tracks.length}</span>
+                </button>
 
-            <div className="px-3 pt-3 pb-1 text-[10px] font-semibold tracking-[0.14em] uppercase text-a26-muted">
-              {translate("win26.itunes.collections")}
-            </div>
+                {collections.map((collection) => {
+                  const collectionCount = tracks.filter(
+                    (track) => track.collection === collection,
+                  ).length;
 
-            <div className="flex flex-col gap-1">
-              {collections.map((collection) => {
-                const collectionCount = tracks.filter(
-                  (track) => track.collection === collection,
-                ).length;
+                  return (
+                    <button
+                      key={collection}
+                      onClick={() => setActiveCollection(collection)}
+                      className="font-mac inline-flex items-center gap-2 border-none cursor-pointer text-left"
+                      style={{
+                        padding: "9px 12px",
+                        borderRadius: 999,
+                        background:
+                          activeCollection === collection
+                            ? "color-mix(in srgb, #EC4899 12%, transparent)"
+                            : "transparent",
+                        color:
+                          activeCollection === collection
+                            ? "var(--a26-text)"
+                            : "var(--a26-text-mid)",
+                      }}
+                    >
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ background: "#EC4899", opacity: 0.9 }}
+                      />
+                      <span className="text-[12px] truncate max-w-36">
+                        {collection}
+                      </span>
+                      <span className="text-[10px] opacity-70">
+                        {collectionCount}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <>
+                <button
+                  onClick={() => setActiveCollection("all")}
+                  className="font-mac flex items-center w-full gap-2 rounded-[10px] border-none cursor-pointer px-3 py-2 text-left"
+                  style={{
+                    background:
+                      activeCollection === "all"
+                        ? "color-mix(in srgb, #EC4899 12%, transparent)"
+                        : "transparent",
+                    color:
+                      activeCollection === "all"
+                        ? "var(--a26-text)"
+                        : "var(--a26-text-mid)",
+                  }}
+                >
+                  <ListMusic size={14} />
+                  <span className="flex-1 text-[12px] font-medium">
+                    {translate("win26.itunes.allSongs")}
+                  </span>
+                  <span className="text-[10px] opacity-70">{tracks.length}</span>
+                </button>
 
-                return (
-                  <button
-                    key={collection}
-                    onClick={() => setActiveCollection(collection)}
-                    className="font-mac flex items-center w-full gap-2 rounded-[10px] border-none cursor-pointer px-3 py-2 text-left"
-                    style={{
-                      background:
-                        activeCollection === collection
-                          ? "color-mix(in srgb, #EC4899 12%, transparent)"
-                          : "transparent",
-                      color:
-                        activeCollection === collection
-                          ? "var(--a26-text)"
-                          : "var(--a26-text-mid)",
-                    }}
-                  >
-                    <span
-                      className="w-2 h-2 rounded-full"
-                      style={{ background: "#EC4899", opacity: 0.9 }}
-                    />
-                    <span className="flex-1 text-[12px] truncate">
-                      {collection}
-                    </span>
-                    <span className="text-[10px] opacity-70">
-                      {collectionCount}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+                <div className="px-3 pt-3 pb-1 text-[10px] font-semibold tracking-[0.14em] uppercase text-a26-muted">
+                  {translate("win26.itunes.collections")}
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  {collections.map((collection) => {
+                    const collectionCount = tracks.filter(
+                      (track) => track.collection === collection,
+                    ).length;
+
+                    return (
+                      <button
+                        key={collection}
+                        onClick={() => setActiveCollection(collection)}
+                        className="font-mac flex items-center w-full gap-2 rounded-[10px] border-none cursor-pointer px-3 py-2 text-left"
+                        style={{
+                          background:
+                            activeCollection === collection
+                              ? "color-mix(in srgb, #EC4899 12%, transparent)"
+                              : "transparent",
+                          color:
+                            activeCollection === collection
+                              ? "var(--a26-text)"
+                              : "var(--a26-text-mid)",
+                        }}
+                      >
+                        <span
+                          className="w-2 h-2 rounded-full"
+                          style={{ background: "#EC4899", opacity: 0.9 }}
+                        />
+                        <span className="flex-1 text-[12px] truncate">
+                          {collection}
+                        </span>
+                        <span className="text-[10px] opacity-70">
+                          {collectionCount}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
         </aside>
 
         <section className="flex flex-1 min-h-0 flex-col overflow-hidden">
-          <div className="shrink-0 border-b border-a26-glass-border bg-a26-title-bar px-4 py-3">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <div className="text-a26-text text-[14px] font-semibold">
-                  {activeCollection === "all"
-                    ? translate("win26.itunes.libraryTitle")
-                    : activeCollection}
+          {!isMobile && (
+            <div className="shrink-0 border-b border-a26-glass-border bg-a26-title-bar px-4 py-3">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-a26-text text-[14px] font-semibold">
+                    {activeCollection === "all"
+                      ? translate("win26.itunes.libraryTitle")
+                      : activeCollection}
+                  </div>
+                  <div className="text-a26-mid text-[11px] mt-1">
+                    {translate("win26.itunes.libraryMeta", {
+                      tracks: visibleTracks.length,
+                      collections: collections.length,
+                    })}
+                  </div>
                 </div>
-                <div className="text-a26-mid text-[11px] mt-1">
-                  {translate("win26.itunes.libraryMeta", {
-                    tracks: visibleTracks.length,
-                    collections: collections.length,
-                  })}
-                </div>
+                <button
+                  onClick={() => void loadTracks()}
+                  className="font-mac flex items-center gap-1.5 bg-a26-glass border border-a26-glass-border rounded-[9px] cursor-pointer px-3 py-1.75 text-[11px] text-a26-text"
+                >
+                  <RefreshCw size={12} />
+                  {translate("win26.itunes.refresh")}
+                </button>
               </div>
-              <button
-                onClick={() => void loadTracks()}
-                className="font-mac flex items-center gap-1.5 bg-a26-glass border border-a26-glass-border rounded-[9px] cursor-pointer px-3 py-1.75 text-[11px] text-a26-text"
-              >
-                <RefreshCw size={12} />
-                {translate("win26.itunes.refresh")}
-              </button>
             </div>
-          </div>
+          )}
+
+          {isMobile && (
+            <div className="shrink-0 border-b border-a26-glass-border bg-a26-title-bar px-3 py-2.5">
+              <div className="text-a26-text text-[13px] font-semibold truncate">
+                {activeCollection === "all"
+                  ? translate("win26.itunes.libraryTitle")
+                  : activeCollection}
+              </div>
+              <div className="text-a26-mid text-[10px] mt-1">
+                {translate("win26.itunes.libraryMeta", {
+                  tracks: visibleTracks.length,
+                  collections: collections.length,
+                })}
+              </div>
+            </div>
+          )}
 
           <div
-            className="win26-scroll flex-1 overflow-auto px-3 py-3 [scrollbar-width:thin]"
-            style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
+            className="win26-scroll flex-1 overflow-auto [scrollbar-width:thin]"
+            style={{
+              scrollbarColor: "rgba(255,255,255,0.18) transparent",
+              padding: listPadding,
+            }}
           >
             {loading ? (
               <div className="flex h-full min-h-52 items-center justify-center text-a26-mid text-[12px]">
@@ -469,26 +666,33 @@ export function ItunesContent() {
                 </p>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2.5">
                 {visibleTracks.map((track, index) => {
                   const active = track.id === currentTrackId;
+
                   return (
                     <button
                       key={track.id}
                       onClick={() => playTrack(track.id)}
-                      className="font-mac bg-a26-card border border-a26-card-border flex items-center gap-3 rounded-xl cursor-pointer px-3 py-3 text-left"
+                      className="font-mac bg-a26-card border border-a26-card-border flex items-center text-left cursor-pointer"
                       style={{
+                        gap: isMobile ? 10 : 12,
+                        padding: isMobile ? "11px 12px" : "12px",
+                        borderRadius: isMobile ? 14 : 12,
                         background: active
                           ? "color-mix(in srgb, #EC4899 8%, var(--a26-card))"
                           : undefined,
                         borderColor: active
                           ? "color-mix(in srgb, #EC4899 28%, transparent)"
                           : undefined,
+                        alignItems: isMobile ? "flex-start" : "center",
                       }}
                     >
                       <div
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px]"
+                        className="flex shrink-0 items-center justify-center rounded-[10px]"
                         style={{
+                          width: isMobile ? 42 : 36,
+                          height: isMobile ? 42 : 36,
                           background:
                             active && isPlaying
                               ? "linear-gradient(160deg, #FB7185 0%, #C026D3 100%)"
@@ -496,43 +700,54 @@ export function ItunesContent() {
                         }}
                       >
                         {active && isPlaying ? (
-                          <Pause size={15} color="white" />
+                          <Pause size={isMobile ? 16 : 15} color="white" />
                         ) : (
                           <Play
-                            size={15}
+                            size={isMobile ? 16 : 15}
                             color={active ? "white" : "#EC4899"}
                           />
                         )}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2">
-                          <span className="text-a26-text text-[13px] font-semibold truncate">
+                        <div
+                          className="flex items-start gap-2"
+                          style={{
+                            flexDirection: isMobile ? "column" : "row",
+                          }}
+                        >
+                          <span className="text-a26-text text-[13px] font-semibold leading-[1.35] wrap-break-word">
                             {track.title}
                           </span>
-                          <span className="text-a26-muted text-[10px] shrink-0">
-                            #{index + 1}
-                          </span>
-                          {track.preview && (
-                            <span
-                              className="shrink-0 rounded-[5px] px-1.5 py-0.5 text-[9px] font-semibold tracking-wide"
-                              style={{
-                                background:
-                                  "color-mix(in srgb, #EC4899 14%, transparent)",
-                                color: "#EC4899",
-                                border:
-                                  "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
-                              }}
-                            >
-                              30s
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <span className="text-a26-muted text-[10px]">
+                              #{index + 1}
                             </span>
-                          )}
+                            {track.preview && (
+                              <span
+                                className="shrink-0 rounded-[5px] px-1.5 py-0.5 text-[9px] font-semibold tracking-wide"
+                                style={{
+                                  background:
+                                    "color-mix(in srgb, #EC4899 14%, transparent)",
+                                  color: "#EC4899",
+                                  border:
+                                    "1px solid color-mix(in srgb, #EC4899 28%, transparent)",
+                                }}
+                              >
+                                30s
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-a26-mid text-[11px]">
+                        <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-a26-mid text-[11px] leading-[1.45]">
                           <span>{track.artist}</span>
                           <span>•</span>
                           <span>{track.album}</span>
-                          <span>•</span>
-                          <span>{track.collection}</span>
+                          {!isMobile && (
+                            <>
+                              <span>•</span>
+                              <span>{track.collection}</span>
+                            </>
+                          )}
                         </div>
                       </div>
                     </button>
@@ -542,82 +757,84 @@ export function ItunesContent() {
             )}
           </div>
 
-          <div className="shrink-0 border-t border-a26-glass-border bg-a26-title-bar px-4 py-3">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <div className="min-w-0 flex-1">
-                <div className="text-a26-text text-[13px] font-semibold truncate">
-                  {currentTrack?.title ??
-                    translate("win26.itunes.nothingPlaying")}
+          {!isMobile && (
+            <div className="shrink-0 border-t border-a26-glass-border bg-a26-title-bar px-4 py-3">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center">
+                <div className="min-w-0 flex-1">
+                  <div className="text-a26-text text-[13px] font-semibold truncate">
+                    {currentTrack?.title ??
+                      translate("win26.itunes.nothingPlaying")}
+                  </div>
+                  <div className="text-a26-mid text-[11px] mt-1 truncate">
+                    {currentTrack
+                      ? `${currentTrack.artist} • ${currentTrack.album}`
+                      : translate("win26.itunes.pickTrack")}
+                  </div>
                 </div>
-                <div className="text-a26-mid text-[11px] mt-1 truncate">
-                  {currentTrack
-                    ? `${currentTrack.artist} • ${currentTrack.album}`
-                    : translate("win26.itunes.pickTrack")}
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => skipTrack(-1)}
+                    disabled={!tracks.length}
+                    className="font-mac bg-a26-glass border border-a26-glass-border flex h-9 w-9 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
+                  >
+                    <SkipBack size={14} />
+                  </button>
+                  <button
+                    onClick={() => void togglePlayback()}
+                    disabled={!currentTrack}
+                    className="font-mac border-none flex h-10 w-10 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
+                    style={{
+                      background:
+                        "linear-gradient(160deg, #FB7185 0%, #C026D3 100%)",
+                      color: "white",
+                    }}
+                  >
+                    {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                  </button>
+                  <button
+                    onClick={() => skipTrack(1)}
+                    disabled={!tracks.length}
+                    className="font-mac bg-a26-glass border border-a26-glass-border flex h-9 w-9 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
+                  >
+                    <SkipForward size={14} />
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2 md:w-56">
+                  <Volume2 size={14} className="text-a26-mid shrink-0" />
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={volume}
+                    onChange={(event) => setVolume(Number(event.target.value))}
+                    className="w-full accent-pink-500"
+                  />
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => skipTrack(-1)}
-                  disabled={!tracks.length}
-                  className="font-mac bg-a26-glass border border-a26-glass-border flex h-9 w-9 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
-                >
-                  <SkipBack size={14} />
-                </button>
-                <button
-                  onClick={() => void togglePlayback()}
-                  disabled={!currentTrack}
-                  className="font-mac border-none flex h-10 w-10 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
-                  style={{
-                    background:
-                      "linear-gradient(160deg, #FB7185 0%, #C026D3 100%)",
-                    color: "white",
-                  }}
-                >
-                  {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-                </button>
-                <button
-                  onClick={() => skipTrack(1)}
-                  disabled={!tracks.length}
-                  className="font-mac bg-a26-glass border border-a26-glass-border flex h-9 w-9 items-center justify-center rounded-full cursor-pointer disabled:opacity-50"
-                >
-                  <SkipForward size={14} />
-                </button>
-              </div>
-
-              <div className="flex items-center gap-2 md:w-56">
-                <Volume2 size={14} className="text-a26-mid shrink-0" />
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  value={volume}
-                  onChange={(event) => setVolume(Number(event.target.value))}
-                  className="w-full accent-pink-500"
-                />
+              <div className="mt-3 flex items-center gap-3">
+                <span className="text-a26-muted text-[10px] tabular-nums">
+                  {formatTime(currentTime)}
+                </span>
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-a26-glass">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${Math.min(progress, 100)}%`,
+                      background:
+                        "linear-gradient(90deg, #FB7185 0%, #C026D3 100%)",
+                    }}
+                  />
+                </div>
+                <span className="text-a26-muted text-[10px] tabular-nums">
+                  {formatTime(duration)}
+                </span>
               </div>
             </div>
-
-            <div className="mt-3 flex items-center gap-3">
-              <span className="text-a26-muted text-[10px] tabular-nums">
-                {formatTime(currentTime)}
-              </span>
-              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-a26-glass">
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${Math.min(progress, 100)}%`,
-                    background:
-                      "linear-gradient(90deg, #FB7185 0%, #C026D3 100%)",
-                  }}
-                />
-              </div>
-              <span className="text-a26-muted text-[10px] tabular-nums">
-                {formatTime(duration)}
-              </span>
-            </div>
-          </div>
+          )}
         </section>
       </div>
     </div>

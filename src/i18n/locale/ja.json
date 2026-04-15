@@ -907,7 +907,7 @@
       "books": "自分を形作った本",
       "testimonials": "推薦の声",
       "projects": "プロジェクト",
-      "itunes": "gpmTunes",
+      "itunes": "GPM Tunes",
       "terminal": "ターミナル",
       "skills": "スキル & スタック",
       "contact": "連絡先",
@@ -922,7 +922,7 @@
       "bomber": "Bomber GPM"
     },
     "itunes": {
-      "title": "gpmTunes",
+      "title": "GPM Tunes",
       "subtitle": "ローカルライブラリ",
       "allSongs": "すべての曲",
       "collections": "コレクション",
