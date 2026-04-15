@@ -916,6 +916,7 @@
       "aboutThemeDesc": "Auto follows your system setting. This preference applies across all portfolio years including 2024, 2025, and 2026."
     },
     "present": "Present",
+    "englishOnly": "This window is only available in English.",
     "employment": {
       "fullTime": "Full-time",
       "partTime": "Part-time"

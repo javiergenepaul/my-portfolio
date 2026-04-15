@@ -9,6 +9,8 @@ import {
   getProjects,
 } from "@/config";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores";
+import { TriangleAlert } from "lucide-react";
 import type { WinId } from "../constants";
 
 interface TermEntry {
@@ -238,12 +240,28 @@ export function TerminalContent({
     ]);
   }, [input]);
 
+  const language = useLanguageStore((s) => s.language);
+
   return (
     <div
       onClick={() => inputRef.current?.focus()}
       className="font-mac flex flex-col flex-1 min-h-0 overflow-hidden cursor-text text-[12.5px]"
       style={{ background: "#0D0D0D" }}
     >
+      {/* English-only warning */}
+      {language !== "en" && (
+        <div
+          className="shrink-0 flex items-center gap-2 px-4 py-2 text-[11px]"
+          style={{
+            background: "color-mix(in srgb, #F59E0B 12%, transparent)",
+            borderBottom: "1px solid color-mix(in srgb, #F59E0B 30%, transparent)",
+            color: "#FCD34D",
+          }}
+        >
+          <TriangleAlert size={12} className="shrink-0" />
+          {translate("win26.englishOnly")}
+        </div>
+      )}
       {/* Status bar */}
       <div
         className="shrink-0 flex items-center justify-between border-b py-1.25 px-4"

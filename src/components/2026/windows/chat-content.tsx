@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Send, Sparkles, Square } from "lucide-react";
+import { Send, Sparkles, Square, TriangleAlert } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config/data/personal";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -504,6 +506,8 @@ const PLACEHOLDER_CYCLE = [
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export function ChatContent() {
+  useLocaleRefresh();
+  const language = useLanguageStore((s) => s.language);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -648,6 +652,21 @@ export function ChatContent() {
           2026 AI
         </span>
       </div>
+
+      {/* English-only warning */}
+      {language !== "en" && (
+        <div
+          className="shrink-0 flex items-center gap-2 px-4 py-2 text-[11px]"
+          style={{
+            background: "color-mix(in srgb, #F59E0B 12%, transparent)",
+            borderBottom: "1px solid color-mix(in srgb, #F59E0B 30%, transparent)",
+            color: "#FCD34D",
+          }}
+        >
+          <TriangleAlert size={12} className="shrink-0" />
+          {translate("win26.englishOnly")}
+        </div>
+      )}
 
       {/* Messages */}
       <div
