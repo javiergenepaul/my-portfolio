@@ -108,10 +108,12 @@ export const StackContent = (stack: TechStackInterface) => {
 
   return (
     <HoverCard>
-      <HoverCardTrigger>
-        <Badge className="cursor-pointer" onClick={onClickBadgeHandler}>
-          {getStackName()}
-        </Badge>
+      <HoverCardTrigger asChild>
+        <button type="button" className="bg-transparent border-0 p-0 text-left">
+          <Badge className="cursor-pointer" onClick={onClickBadgeHandler}>
+            {getStackName()}
+          </Badge>
+        </button>
       </HoverCardTrigger>
       <HoverCardContent className="p-0 m-0 overflow-hidden border-0" side="top">
         <StackDetails {...stack} />

@@ -7,7 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
-import { GITHUB_URL, LINKED_IN_URL, PATH, UPWORK_URL } from "@/config";
+import { GITHUB_URL, LINKED_IN_URL, PATH } from "@/config";
 import { translate } from "@/i18n";
 import React from "react";
 import {
@@ -32,7 +32,6 @@ import { triggerNavigationStart } from "@/components/common/navigation/Navigatio
 const SOCIAL_MEDIA_LINK_DATA = [
   { key: "github", icon: "github", url: GITHUB_URL },
   { key: "linkedIn", icon: "linkedin", url: LINKED_IN_URL },
-  { key: "upwork", icon: "upwork", url: UPWORK_URL },
 ] as const;
 
 export const HeaderSection = () => {
@@ -71,14 +70,14 @@ export const HeaderSection = () => {
       <section className="flex flex-col justify-between h-full">
         <div>
           <Link className="focus:outline-none" href={PATH.ABOUT.path}>
-            <h1 className="block text-5xl font-bold tracking-tight lg:hidden selec-none">
-              {translate("header.name")}
-            </h1>
-            <h1 className="hidden font-bold tracking-tight select-none md:text-5xl lg:block">
-              <BounceText
-                className="font-bold outline-none ring-0 focus:outline-none"
-                text={translate("header.name")}
-              />
+            <h1 className="font-bold tracking-tight select-none text-5xl md:text-5xl">
+              <span className="block lg:hidden">{translate("header.name")}</span>
+              <span className="hidden lg:block">
+                <BounceText
+                  className="font-bold outline-none ring-0 focus:outline-none"
+                  text={translate("header.name")}
+                />
+              </span>
             </h1>
           </Link>
           <SubTitleAnimation />

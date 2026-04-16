@@ -16,16 +16,18 @@ export const KeyContributionIndicator = (
     contributions && (
       <div className="hidden lg:block">
         <HoverCard>
-          <HoverCardTrigger>
-            <IndicatorContainer>
-              <Layers className="group-hover:text-primary" />
-              <p className="hidden md:block group-hover:text-primary">
-                {translate("projects.indicator.contribution")}
-              </p>
-            </IndicatorContainer>
+          <HoverCardTrigger asChild>
+            <button type="button" className="bg-transparent border-0 p-0 text-left">
+              <IndicatorContainer>
+                <Layers className="group-hover:text-primary" />
+                <p className="hidden md:block group-hover:text-primary">
+                  {translate("projects.indicator.contribution")}
+                </p>
+              </IndicatorContainer>
+            </button>
           </HoverCardTrigger>
           <HoverCardContent
-            className="w-[37.5rem] max-h-[25rem] overflow-y-auto"
+            className="w-150 max-h-100 overflow-y-auto"
             side="right"
           >
             <h3 className="text-xl font-bold">
