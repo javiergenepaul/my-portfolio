@@ -108,7 +108,7 @@ function SeoLandmarks2026() {
           GitHub profile
         </a>
         <a
-          href="https://linkedin.com/in/gene-paul-mar-javier"
+          href="https://www.linkedin.com/in/gene-paul-mar-javier-500b93245/"
           target="_blank"
           rel="noreferrer"
         >

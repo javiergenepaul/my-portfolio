@@ -169,7 +169,7 @@ const jsonLdPerson = {
     },
     sameAs: [
       "https://github.com/javiergenepaul",
-      "https://linkedin.com/in/gene-paul-mar-javier",
+      "https://www.linkedin.com/in/gene-paul-mar-javier-500b93245/",
       BASE_URL,
     ],
     knowsAbout: [

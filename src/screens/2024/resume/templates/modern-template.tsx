@@ -128,7 +128,7 @@ export function ModernTemplate({
             <Github size={11} /> github.com/javiergenepaul
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <Linkedin size={11} /> linkedin.com/in/gene-paul-mar-javier
+            <Linkedin size={11} /> linkedin.com/in/gene-paul-mar-javier-500b93245
           </span>
         </div>
       </div>
