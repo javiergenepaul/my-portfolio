@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { useLanguageStore } from "@/stores";
@@ -72,6 +73,28 @@ const SSR_WINS: Record<WinId, WinState> = Object.fromEntries(
 
 // Only defs that get a desktop icon (excludes hideIcon: true entries)
 const VISIBLE_DEFS = WIN_DEFS.filter((d) => !d.hideIcon);
+
+function SeoLandmarks2026() {
+  return (
+    <div className="sr-only">
+      <header>
+        <h1>Gene Paul Mar Javier 2026 Portfolio</h1>
+        <p>
+          Explore Gene Paul Mar Javier&apos;s 2026 macOS-inspired portfolio,
+          featuring projects, skills, resume, contact details, music, and
+          interactive desktop windows.
+        </p>
+      </header>
+      <nav aria-label="2026 portfolio links">
+        <Link href="/">Portfolio home</Link>
+        <Link href="/2024">2024 portfolio</Link>
+        <Link href="/2025">2025 portfolio</Link>
+        <Link href="/2027">2027 portfolio</Link>
+        <Link href="/2026#desktop">2026 desktop</Link>
+      </nav>
+    </div>
+  );
+}
 
 export function Portfolio2026() {
   useLocaleRefresh();
@@ -423,13 +446,27 @@ export function Portfolio2026() {
   }, [wins, focusWin]);
 
   if (!isHydrated) {
-    return <div className="font-mac relative z-1 w-screen h-dvh bg-black" />;
+    return (
+      <>
+        <SeoLandmarks2026 />
+        <div className="font-mac relative z-1 w-screen h-dvh bg-black" />
+      </>
+    );
   }
 
-  if (isMobile) return <MobilePortfolio />;
+  if (isMobile) {
+    return (
+      <>
+        <SeoLandmarks2026 />
+        <MobilePortfolio />
+      </>
+    );
+  }
 
   return (
     <>
+      <SeoLandmarks2026 />
+
       <a
         href="#desktop"
         className="font-mac text-[#05090E] font-semibold no-underline bg-a26-teal fixed left-4 z-99999 rounded-md py-1.25 px-3 text-[13px] transition-[top] duration-150"
@@ -446,6 +483,24 @@ export function Portfolio2026() {
       )}
 
       <div className="font-mac relative overflow-hidden z-1 w-screen h-dvh">
+        <nav
+          aria-label="Portfolio pages"
+          className="pointer-events-auto fixed right-4 top-10 z-60 flex flex-wrap items-center gap-2 rounded-2xl border border-white/12 bg-black/28 px-3 py-2 text-[11px] text-white/78 backdrop-blur-xl"
+        >
+          <Link href="/" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+            Home
+          </Link>
+          <Link href="/2024" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+            2024
+          </Link>
+          <Link href="/2025" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+            2025
+          </Link>
+          <Link href="/2027" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+            2027
+          </Link>
+        </nav>
+
         <MenuBar
           onCmdK={() => setCmdOpen(true)}
           onOpenWin={openWin}
