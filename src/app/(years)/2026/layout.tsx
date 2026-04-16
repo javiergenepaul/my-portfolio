@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 const BASE_URL = "https://gene-paul-mar-javier.dev";
 const TITLE = "Gene Paul Mar Javier — 2026 Portfolio";
 const DESCRIPTION =
-  "Gene Paul Mar Javier's 2026 portfolio — an interactive macOS-inspired desktop with Aurora theme. Full-Stack Engineer from Cebu, Philippines. React, Next.js, Spring Boot, TypeScript & Java.";
+  "Gene Paul Mar Javier's 2026 portfolio features a macOS-inspired desktop experience built with React, Next.js, Spring Boot, TypeScript, and Java.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
