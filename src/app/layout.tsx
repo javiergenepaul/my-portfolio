@@ -27,8 +27,6 @@ const workSans = Work_Sans({
 
 const BASE_URL = "https://gene-paul-mar-javier.dev";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
