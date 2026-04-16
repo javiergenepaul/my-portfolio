@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { translate, useLocaleRefresh } from "@/i18n";
@@ -84,6 +85,12 @@ function SeoLandmarks2026() {
           featuring projects, skills, resume, contact details, music, and
           interactive desktop windows.
         </p>
+        <Image
+          src="/ghibli-avatar.png"
+          alt="Portrait of Gene Paul Mar Javier"
+          width={96}
+          height={96}
+        />
       </header>
       <nav aria-label="2026 portfolio links">
         <Link href="/">Portfolio home</Link>
@@ -91,6 +98,18 @@ function SeoLandmarks2026() {
         <Link href="/2025">2025 portfolio</Link>
         <Link href="/2027">2027 portfolio</Link>
         <Link href="/2026#desktop">2026 desktop</Link>
+      </nav>
+      <nav aria-label="External profiles">
+        <a href="https://github.com/javiergenepaul" target="_blank" rel="noreferrer">
+          GitHub profile
+        </a>
+        <a
+          href="https://linkedin.com/in/gene-paul-mar-javier"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn profile
+        </a>
       </nav>
     </div>
   );
