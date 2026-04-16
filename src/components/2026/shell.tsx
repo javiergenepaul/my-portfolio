@@ -100,7 +100,11 @@ function SeoLandmarks2026() {
         <Link href="/2026#desktop">2026 desktop</Link>
       </nav>
       <nav aria-label="External profiles">
-        <a href="https://github.com/javiergenepaul" target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/javiergenepaul"
+          target="_blank"
+          rel="noreferrer"
+        >
           GitHub profile
         </a>
         <a
@@ -506,16 +510,28 @@ export function Portfolio2026() {
           aria-label="Portfolio pages"
           className="pointer-events-auto fixed right-4 top-10 z-60 flex flex-wrap items-center gap-2 rounded-2xl border border-white/12 bg-black/28 px-3 py-2 text-[11px] text-white/78 backdrop-blur-xl"
         >
-          <Link href="/" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+          <Link
+            href="/"
+            className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white"
+          >
             Home
           </Link>
-          <Link href="/2024" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+          <Link
+            href="/2024"
+            className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white"
+          >
             2024
           </Link>
-          <Link href="/2025" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+          <Link
+            href="/2025"
+            className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white"
+          >
             2025
           </Link>
-          <Link href="/2027" className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white">
+          <Link
+            href="/2027"
+            className="rounded-md px-2 py-1 text-inherit no-underline hover:bg-white/10 hover:text-white"
+          >
             2027
           </Link>
         </nav>

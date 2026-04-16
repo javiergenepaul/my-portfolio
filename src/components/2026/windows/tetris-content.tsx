@@ -302,7 +302,13 @@ export function TetrisContent() {
       );
     }
 
-    const accentByTier = ["#D500F9", "#FF4FD8", "#FF7A18", "#FFD600", "#00E5FF"];
+    const accentByTier = [
+      "#D500F9",
+      "#FF4FD8",
+      "#FF7A18",
+      "#FFD600",
+      "#00E5FF",
+    ];
     setComboBanner({
       title,
       detail: detailParts.join(" • "),

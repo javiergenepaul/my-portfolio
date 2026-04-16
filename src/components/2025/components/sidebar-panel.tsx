@@ -200,7 +200,11 @@ export function SidebarPanel({
             key={label}
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer"
+            rel={
+              href === GITHUB_URL || href === LINKED_IN_URL
+                ? "nofollow noopener noreferrer"
+                : "noopener noreferrer"
+            }
             aria-label={label}
             whileHover={{ scale: 1.12, backgroundColor: C.indigoDark }}
             whileTap={{ scale: 0.95 }}

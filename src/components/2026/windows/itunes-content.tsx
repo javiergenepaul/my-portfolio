@@ -431,7 +431,9 @@ export function ItunesContent() {
                         max={1}
                         step={0.01}
                         value={volume}
-                        onChange={(event) => setVolume(Number(event.target.value))}
+                        onChange={(event) =>
+                          setVolume(Number(event.target.value))
+                        }
                         className="w-full accent-pink-500"
                       />
                     </div>
@@ -470,7 +472,9 @@ export function ItunesContent() {
                   <span className="text-[12px] font-medium">
                     {translate("win26.itunes.allSongs")}
                   </span>
-                  <span className="text-[10px] opacity-70">{tracks.length}</span>
+                  <span className="text-[10px] opacity-70">
+                    {tracks.length}
+                  </span>
                 </button>
 
                 {collections.map((collection) => {
@@ -530,7 +534,9 @@ export function ItunesContent() {
                   <span className="flex-1 text-[12px] font-medium">
                     {translate("win26.itunes.allSongs")}
                   </span>
-                  <span className="text-[10px] opacity-70">{tracks.length}</span>
+                  <span className="text-[10px] opacity-70">
+                    {tracks.length}
+                  </span>
                 </button>
 
                 <div className="px-3 pt-3 pb-1 text-[10px] font-semibold tracking-[0.14em] uppercase text-a26-muted">

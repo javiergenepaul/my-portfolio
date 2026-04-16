@@ -120,7 +120,11 @@ export function ContactSection() {
                 <a
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
+                  rel={
+                    href === GITHUB_URL || href === LINKED_IN_URL
+                      ? "nofollow noopener noreferrer"
+                      : "noopener noreferrer"
+                  }
                   style={{
                     fontSize: "12px",
                     fontWeight: 600,

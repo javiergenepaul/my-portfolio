@@ -152,10 +152,7 @@ function YearCard({
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: index * 0.12, ease: "easeOut" }}
-      className={cn(
-        "w-72",
-        navigating && "pointer-events-none",
-      )}
+      className={cn("w-72", navigating && "pointer-events-none")}
     >
       <Link
         href={year.path}

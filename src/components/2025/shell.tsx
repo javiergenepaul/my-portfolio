@@ -122,6 +122,21 @@ export function Portfolio2025() {
               style={{ backgroundColor: C.main }}
               aria-label="Portfolio content"
             >
+              <h1
+                style={{
+                  position: "absolute",
+                  width: "1px",
+                  height: "1px",
+                  padding: 0,
+                  margin: "-1px",
+                  overflow: "hidden",
+                  clip: "rect(0, 0, 0, 0)",
+                  whiteSpace: "nowrap",
+                  border: 0,
+                }}
+              >
+                Gene Paul Mar Javier 2025 Portfolio
+              </h1>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}

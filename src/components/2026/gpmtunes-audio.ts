@@ -16,9 +16,13 @@ function ensureAudioGraph(audio: HTMLAudioElement) {
   if (typeof window === "undefined") return;
   if (analyser && sourceNode && freqData) return;
 
-  const Ctx = window.AudioContext || (window as typeof window & {
-    webkitAudioContext?: typeof AudioContext;
-  }).webkitAudioContext;
+  const Ctx =
+    window.AudioContext ||
+    (
+      window as typeof window & {
+        webkitAudioContext?: typeof AudioContext;
+      }
+    ).webkitAudioContext;
 
   if (!Ctx) return;
 
@@ -96,7 +100,9 @@ export function getGpmTunesVisualizerState(): VisualizerState {
   const isPlaying = !audio.paused && !audio.ended && audio.currentTime > 0;
   const targetLevel = isPlaying ? avg : 0;
   smoothedLevel += (targetLevel - smoothedLevel) * 0.22;
-  binsCache = nextBins.map((value, index) => binsCache[index] * 0.62 + value * 0.38);
+  binsCache = nextBins.map(
+    (value, index) => binsCache[index] * 0.62 + value * 0.38,
+  );
 
   return {
     isPlaying,
