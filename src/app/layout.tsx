@@ -26,6 +26,8 @@ const workSans = Work_Sans({
 });
 
 const BASE_URL = "https://gene-paul-mar-javier.dev";
+const ROOT_DESCRIPTION =
+  "Gene Paul Mar Javier is a full-stack software engineer from Cebu, Philippines, building web apps with React, Next.js, Spring Boot, TypeScript, and Java.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -33,8 +35,7 @@ export const metadata: Metadata = {
     default: "Gene Paul Mar Javier — Full-Stack Software Engineer",
     template: "%s | Gene Paul Mar Javier",
   },
-  description:
-    "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java. Explore my interactive portfolio.",
+  description: ROOT_DESCRIPTION,
   applicationName: "Gene Paul Mar Javier Portfolio",
   authors: [{ name: "Gene Paul Mar Javier", url: BASE_URL }],
   creator: "Gene Paul Mar Javier",
@@ -81,8 +82,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
     siteName: "Gene Paul Mar Javier — Portfolio",
     title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
-    description:
-      "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
+    description: ROOT_DESCRIPTION,
     images: [
       {
         url: `${BASE_URL}/meta-bg.png`,
@@ -95,8 +95,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
-    description:
-      "Gene Paul Mar Javier — React, Next.js, Spring Boot, TypeScript, Java. Full-Stack Engineer from Cebu, Philippines.",
+    description: ROOT_DESCRIPTION,
     creator: "@genepaulmar",
     site: "@genepaulmar",
     images: [`${BASE_URL}/meta-bg.png`],
@@ -161,8 +160,7 @@ const jsonLdPerson = {
     url: BASE_URL,
     image: `${BASE_URL}/ghibli-avatar.png`,
     jobTitle: "Full-Stack Software Engineer",
-    description:
-      "Gene Paul Mar Javier — Full-Stack Software Engineer from Cebu, Philippines. Building web apps with React, Next.js, Spring Boot, TypeScript & Java.",
+    description: ROOT_DESCRIPTION,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Cebu City",
