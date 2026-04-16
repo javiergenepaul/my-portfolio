@@ -508,7 +508,7 @@ export function Portfolio2026() {
       <div className="font-mac relative overflow-hidden z-1 w-screen h-dvh">
         <nav
           aria-label="Portfolio pages"
-          className="pointer-events-auto fixed right-4 top-10 z-60 flex flex-wrap items-center gap-2 rounded-2xl border border-white/12 bg-black/28 px-3 py-2 text-[11px] text-white/78 backdrop-blur-xl"
+          className="pointer-events-auto fixed left-1/2 -translate-x-1/2 top-10 z-60 flex flex-wrap items-center gap-2 rounded-2xl border border-white/12 bg-black/28 px-3 py-2 text-[11px] text-white/78 backdrop-blur-xl"
         >
           <Link
             href="/"
