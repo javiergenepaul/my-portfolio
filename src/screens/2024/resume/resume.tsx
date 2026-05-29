@@ -177,7 +177,7 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
   return (
     <div className="flex flex-col lg:flex-row min-h-full">
       {/* ── Controls panel — sticky ───────────────────────────────────── */}
-      <div className="w-full lg:w-96 shrink-0 border-b lg:border-b-0 lg:border-r border-border sticky top-0 self-start flex flex-col gap-5 p-6">
+      <div className="w-full lg:w-96 shrink-0 border-b lg:border-b-0 lg:border-r border-border lg:sticky lg:top-0 lg:self-start flex flex-col gap-5 p-6">
         {/* Mode */}
         <ControlCard title="Template">
           <div className="flex gap-3">
@@ -277,7 +277,7 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
         className="flex-1 min-w-0 w-full p-6 pb-10 flex flex-col gap-3 items-center"
       >
         {/* Zoom toolbar */}
-        <div className="flex items-center gap-1 sticky top-4 z-10 bg-background/80 backdrop-blur-sm rounded-lg px-2 py-1 border border-border/50 shadow-sm">
+        <div className="flex items-center gap-1 lg:sticky lg:top-4 z-10 bg-background/80 backdrop-blur-sm rounded-lg px-2 py-1 border border-border/50 shadow-sm">
           <button
             onClick={() => stepZoom(-0.1)}
             disabled={zoom <= 0.4}
