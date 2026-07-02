@@ -1,25 +1,41 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   Download,
-  LayoutTemplate,
   Sparkles,
+  ShieldCheck,
   Check,
   ZoomIn,
   ZoomOut,
   Sun,
   Moon,
+  TriangleAlert,
+  Loader2,
 } from "lucide-react";
 import { useSettingsStore, type Color } from "@/stores";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components";
-import { SimpleTemplate } from "./templates/simple-template";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components";
 import { ModernTemplate } from "./templates/modern-template";
+import { AtsTemplate } from "./templates/ats-template";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type ResumeMode = "simple" | "modern";
+export type ResumeMode = "simple" | "modern" | "ats";
 
 export interface ResumeColorConfig {
   primary: string;
@@ -95,7 +111,7 @@ interface ResumeBuilderProps {
 
 export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
   const { color: storeColor, theme } = useSettingsStore();
-  const [mode, setMode] = useState<ResumeMode>("modern");
+  const [mode, setMode] = useState<ResumeMode>("ats");
   const [color, setColor] = useState<Color>(defaultColor ?? storeColor);
   const [isDark, setIsDark] = useState(() => {
     if (theme === "dark") return true;
@@ -107,6 +123,8 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
   });
   const [zoom, setZoom] = useState(0.85);
   const [autoZoom, setAutoZoom] = useState(0.85);
+  const [isExporting, setIsExporting] = useState(false);
+  const [atsWarningOpen, setAtsWarningOpen] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -124,6 +142,24 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
     }
   }, []);
 
+  // Warn once per session that the Modern template favours visual polish over
+  // ATS-parsing accuracy — the builder also opens on Modern by default.
+  const hasWarnedRef = useRef(false);
+  useEffect(() => {
+    if (mode === "modern" && !hasWarnedRef.current) {
+      setAtsWarningOpen(true);
+      hasWarnedRef.current = true;
+    }
+  }, [mode]);
+
+  const handleModeSelect = useCallback((next: ResumeMode) => {
+    setMode(next);
+    if (next === "modern" && !hasWarnedRef.current) {
+      setAtsWarningOpen(true);
+      hasWarnedRef.current = true;
+    }
+  }, []);
+
   const stepZoom = (delta: number) =>
     setZoom((z) =>
       Math.min(1.5, Math.max(0.4, Math.round((z + delta) * 10) / 10)),
@@ -131,48 +167,33 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
 
   const colors = COLOR_CONFIG[color];
 
-  const handleExport = useCallback(() => {
-    const el = document.getElementById("resume-preview");
-    if (!el) return;
+  const handleExport = useCallback(async () => {
+    setIsExporting(true);
+    try {
+      // Both chunks stay out of the main bundle until the first export.
+      const [{ pdf }, { ResumeDocument }] = await Promise.all([
+        import("@react-pdf/renderer"),
+        import("./pdf/resume-document"),
+      ]);
 
-    // Copy every <style> tag and <link rel="stylesheet"> from the current page
-    // so Tailwind utility classes resolve correctly in the new window.
-    const styleMarkup = [
-      ...Array.from(document.querySelectorAll("style")).map((s) => s.outerHTML),
-      ...Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(
-        (l) => l.outerHTML,
-      ),
-    ].join("\n");
+      const blob = await pdf(
+        <ResumeDocument mode={mode} colors={colors} isDark={isDark} />,
+      ).toBlob();
 
-    const html = `<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <base href="${window.location.origin}/">
-    ${styleMarkup}
-    <style>
-      *, *::before, *::after {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        color-adjust: exact !important;
-      }
-      @page { size: A4 portrait; margin: 0; }
-      html, body { margin: 0; padding: 0; background: white; }
-    </style>
-  </head>
-  <body>${el.outerHTML}</body>
-  <script>
-    window.onload = function () {
-      setTimeout(function () { window.print(); window.close(); }, 300);
-    };
-  <\/script>
-</html>`;
-
-    const blob = new Blob([html], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    window.open(url, "_blank");
-    setTimeout(() => URL.revokeObjectURL(url), 10_000);
-  }, []);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `gene-paul-mar-javier-resume-${mode}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("PDF export failed:", err);
+    } finally {
+      setIsExporting(false);
+    }
+  }, [mode, colors, isDark]);
 
   return (
     <div className="flex flex-col lg:flex-row min-h-full">
@@ -182,15 +203,15 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
         <ControlCard title="Template">
           <div className="flex gap-3">
             <ModeButton
-              active={mode === "simple"}
-              onClick={() => setMode("simple")}
-              icon={<LayoutTemplate size={15} />}
-              label="Simple"
-              description="Classic, clean"
+              active={mode === "ats"}
+              onClick={() => handleModeSelect("ats")}
+              icon={<ShieldCheck size={15} />}
+              label="ATS"
+              description="ATS-optimized"
             />
             <ModeButton
               active={mode === "modern"}
-              onClick={() => setMode("modern")}
+              onClick={() => handleModeSelect("modern")}
               icon={<Sparkles size={15} />}
               label="Modern"
               description="Styled sidebar"
@@ -247,11 +268,16 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
         {/* Export */}
         <Button
           onClick={handleExport}
+          disabled={isExporting}
           className="w-full gap-2 h-11 text-sm font-semibold"
           style={{ backgroundColor: colors.primary, color: colors.text }}
         >
-          <Download size={16} />
-          Export PDF
+          {isExporting ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : (
+            <Download size={16} />
+          )}
+          {isExporting ? "Generating PDF…" : "Export PDF"}
         </Button>
 
         {/* Tips */}
@@ -259,13 +285,13 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
           <p className="font-semibold text-foreground text-sm">Export tips</p>
           <ul className="space-y-1.5 list-disc list-inside">
             <li>
-              Select <b>Save as PDF</b> in the print dialog.
+              Downloads a real <b>PDF file</b> — no print dialog needed.
             </li>
             <li>
-              Set margins to <b>None</b> for best fit.
+              Text stays <b>selectable</b> and ATS-parseable.
             </li>
             <li>
-              Enable <b>Background graphics</b> in More settings.
+              Use the <b>ATS</b> template for automated screeners.
             </li>
           </ul>
         </div>
@@ -310,15 +336,55 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
               className="shadow-2xl rounded ring-1 ring-border/20 origin-top-left"
               style={{ width: "794px", zoom }}
             >
-              {mode === "simple" ? (
-                <SimpleTemplate colors={colors} isDark={isDark} />
-              ) : (
+              {mode === "modern" ? (
                 <ModernTemplate colors={colors} isDark={isDark} />
+              ) : (
+                <AtsTemplate colors={colors} isDark={isDark} />
               )}
             </div>
           </div>
         </div>
       </div>
+
+      {/* ── Modern-theme ATS warning ──────────────────────────────────── */}
+      <Dialog open={atsWarningOpen} onOpenChange={setAtsWarningOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <div className="flex items-start gap-3">
+              <div className="shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-amber-500/15 text-amber-500">
+                <TriangleAlert size={18} />
+              </div>
+              <div className="flex-1 text-left">
+                <DialogTitle>Modern isn&apos;t fully ATS-ready</DialogTitle>
+                <DialogDescription className="mt-1.5 leading-relaxed">
+                  The Modern template is built for looks — its two-column,
+                  styled layout can confuse some Applicant Tracking Systems. If
+                  this resume is going through an automated screener, use the{" "}
+                  <strong className="text-foreground">ATS</strong> template
+                  instead — it&apos;s designed to be as close to 100%
+                  ATS-friendly as possible.
+                </DialogDescription>
+              </div>
+            </div>
+          </DialogHeader>
+          <DialogFooter className="gap-2 sm:gap-2">
+            <Button
+              variant="outline"
+              onClick={() => setAtsWarningOpen(false)}
+            >
+              Keep Modern
+            </Button>
+            <Button
+              onClick={() => {
+                setMode("ats");
+                setAtsWarningOpen(false);
+              }}
+            >
+              Switch to ATS
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

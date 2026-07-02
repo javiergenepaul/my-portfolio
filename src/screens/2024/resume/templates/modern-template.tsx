@@ -1,54 +1,23 @@
 "use client";
 
-import moment from "moment";
-import "moment/locale/ja";
 import { Mail, Phone, Github, Linkedin, MapPin } from "lucide-react";
 import { translate, useLocaleRefresh } from "@/i18n";
-import { useLanguageStore } from "@/stores";
-import {
-  FULL_NAME,
-  JOB_TITLE,
-  EMAIL_ADDRESS,
-  MOBILE_NUMBER,
-  getExperience,
-  getEducation,
-  SKILL_CATEGORIES,
-  getProjects,
-} from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { SKILL_CATEGORIES } from "@/config";
 import type { ResumeColorConfig } from "../resume";
+import {
+  RESUME_NAME,
+  RESUME_TITLE,
+  RESUME_CONTACT,
+  RESUME_SUMMARY,
+  RESUME_EXPERIENCE,
+  RESUME_PROJECTS,
+  RESUME_EDUCATION,
+  RESUME_CERTIFICATIONS,
+} from "../resume-content";
 
 interface ModernTemplateProps {
   colors: ResumeColorConfig;
   isDark?: boolean;
-}
-
-const MOMENT_LOCALE: Record<string, string> = {
-  en: "en",
-  ja: "ja",
-  fil: "en",
-  ceb: "en",
-};
-const DATE_FMT: Record<string, string> = {
-  en: "MMM YYYY",
-  ja: "YYYY年M月",
-  fil: "MMM YYYY",
-  ceb: "MMM YYYY",
-};
-
-function formatDateRange(
-  start: moment.Moment,
-  end: moment.Moment | "present",
-): string {
-  const lang = useLanguageStore.getState().language ?? "en";
-  const locale = MOMENT_LOCALE[lang] ?? "en";
-  const fmt = DATE_FMT[lang] ?? "MMM YYYY";
-  const s = start.clone().locale(locale).format(fmt);
-  const e =
-    end === "present"
-      ? translate("win26.present")
-      : (end as moment.Moment).clone().locale(locale).format(fmt);
-  return `${s} – ${e}`;
 }
 
 export function ModernTemplate({
@@ -57,18 +26,11 @@ export function ModernTemplate({
 }: ModernTemplateProps) {
   useLocaleRefresh();
 
-  const experience = getExperience().filter((e) => e.isWork);
-  const education = getEducation().filter(
-    (e) => e.level === "tertiary" || e.level === "vocational",
-  );
+  // Skill dots keep Modern's design, so they stay sourced from the rated
+  // stack data (the flat ATS skill list has no proficiency values).
   const topSkills = SKILL_CATEGORIES.filter((c) =>
     ["backend", "frontend", "devops", "testing"].includes(c.key),
   );
-  const projects = getProjects()
-    .filter(
-      (p) => !p.hidden && p.status === "completed" && p.type !== "tutorial",
-    )
-    .slice(0, 3);
 
   const { primary, light, dark, text } = colors;
 
@@ -103,32 +65,32 @@ export function ModernTemplate({
           className="text-3xl font-bold tracking-tight"
           style={{ color: text }}
         >
-          {FULL_NAME}
+          {RESUME_NAME}
         </h1>
         <p
           className="text-sm mt-1 font-medium opacity-90"
           style={{ color: text }}
         >
-          {JOB_TITLE}
+          {RESUME_TITLE}
         </p>
         <div
           className="flex flex-wrap gap-x-5 gap-y-1 mt-4 text-xs"
           style={{ color: text }}
         >
           <span className="flex items-center gap-1.5 opacity-90">
-            <Mail size={11} /> {EMAIL_ADDRESS}
+            <Mail size={11} /> {RESUME_CONTACT.email}
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <Phone size={11} /> {MOBILE_NUMBER}
+            <Phone size={11} /> {RESUME_CONTACT.phone}
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <MapPin size={11} /> Cebu, Philippines
+            <MapPin size={11} /> {RESUME_CONTACT.location}
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <Github size={11} /> github.com/javiergenepaul
+            <Github size={11} /> {RESUME_CONTACT.github.label}
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <Linkedin size={11} /> linkedin.com/in/gene-paul-mar-javier-500b93245
+            <Linkedin size={11} /> {RESUME_CONTACT.linkedin.label}
           </span>
         </div>
       </div>
@@ -144,24 +106,15 @@ export function ModernTemplate({
           <SideSection
             title={translate("win26.resume.sectionAbout")}
             primary={primary}
-            dark={dark}
           >
-            <p
-              className="text-[10px] leading-relaxed"
-              style={{ color: textMed }}
-            >
-              {translate("about.intro.intruduction")}
+            <p className="text-[10px] leading-relaxed" style={{ color: textMed }}>
+              {RESUME_SUMMARY}
             </p>
           </SideSection>
 
           {/* Skills */}
           {topSkills.map((cat) => (
-            <SideSection
-              key={cat.key}
-              title={cat.label}
-              primary={primary}
-              dark={dark}
-            >
+            <SideSection key={cat.key} title={cat.label} primary={primary}>
               <div className="flex flex-col gap-0.5">
                 {cat.stacks.slice(0, 7).map((s) => (
                   <div
@@ -195,25 +148,48 @@ export function ModernTemplate({
           <SideSection
             title={translate("win26.resume.sectionEducation")}
             primary={primary}
-            dark={dark}
           >
             <div className="flex flex-col gap-3">
-              {education.map((edu, i) => (
+              {RESUME_EDUCATION.map((edu, i) => (
                 <div key={i}>
                   <p
                     className="text-[10px] font-semibold"
                     style={{ color: textDark }}
                   >
-                    {edu.subtitle}
+                    {edu.school}
                   </p>
                   <p
                     className="text-[10px] leading-tight"
                     style={{ color: textMed }}
                   >
-                    {edu.title}
+                    {edu.degree}
                   </p>
                   <p className="text-[9px] mt-0.5" style={{ color: textMuted }}>
-                    {formatDateRange(edu.startYear, edu.endYear)}
+                    {edu.period}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </SideSection>
+
+          {/* Certifications */}
+          <SideSection title="Certifications" primary={primary}>
+            <div className="flex flex-col gap-2">
+              {RESUME_CERTIFICATIONS.map((group, i) => (
+                <div key={i}>
+                  <div className="flex flex-col gap-0.5">
+                    {group.titles.map((t) => (
+                      <p
+                        key={t}
+                        className="text-[10px] leading-tight"
+                        style={{ color: textMed }}
+                      >
+                        {t}
+                      </p>
+                    ))}
+                  </div>
+                  <p className="text-[9px] mt-0.5" style={{ color: textMuted }}>
+                    {group.issuer} ({group.year})
                   </p>
                 </div>
               ))}
@@ -229,7 +205,7 @@ export function ModernTemplate({
             primary={primary}
           >
             <div className="flex flex-col gap-4">
-              {experience.map((exp, i) => (
+              {RESUME_EXPERIENCE.map((exp, i) => (
                 <div key={i}>
                   <div className="flex justify-between items-start">
                     <div>
@@ -237,60 +213,51 @@ export function ModernTemplate({
                         className="text-sm font-semibold"
                         style={{ color: textDark }}
                       >
-                        {exp.title}
+                        {exp.role}
                       </p>
                       <p
                         className="text-xs font-medium"
                         style={{ color: primary }}
                       >
-                        {exp.subtitle}
-                        {exp.employmentType && (
-                          <span style={{ color: textMuted }}>
-                            {" "}
-                            ·{" "}
-                            {exp.employmentType === "Full-time"
-                              ? translate("win26.employment.fullTime")
-                              : translate("win26.employment.partTime")}
-                          </span>
-                        )}
+                        {exp.company}
+                        <span style={{ color: textMuted }}>
+                          {" · "}
+                          {exp.employmentType}
+                        </span>
                       </p>
                     </div>
                     <span
                       className="text-[10px] px-2 py-0.5 rounded-full shrink-0 ml-2 font-medium"
                       style={{ backgroundColor: badgeBg, color: dark }}
                     >
-                      {formatDateRange(exp.startYear, exp.endYear)}
+                      {exp.period}
                     </span>
                   </div>
-                  {exp.promotion && exp.promotion.length > 0 && (
+                  {exp.promotion && (
                     <div
-                      className="mt-1.5 pl-3 border-l-2 flex flex-col gap-1"
+                      className="mt-1.5 pl-3 border-l-2"
                       style={{ borderColor: primary }}
                     >
-                      {exp.promotion.map((p, j) => (
-                        <div key={j} className="flex justify-between">
-                          <p
-                            className="text-[10px] font-medium"
-                            style={{ color: textMed }}
-                          >
-                            {p.title}
-                          </p>
-                          <p
-                            className="text-[10px]"
-                            style={{ color: textMuted }}
-                          >
-                            {formatDateRange(p.startYear, p.endYear)}
-                          </p>
-                        </div>
-                      ))}
+                      <p
+                        className="text-[10px] font-medium"
+                        style={{ color: textMed }}
+                      >
+                        {exp.promotion}
+                      </p>
                     </div>
                   )}
-                  <p
-                    className="text-xs mt-1 leading-relaxed line-clamp-3"
-                    style={{ color: textMed }}
-                  >
-                    {exp.description}
-                  </p>
+                  <ul className="mt-1.5 flex flex-col gap-0.5">
+                    {exp.bullets.map((b, k) => (
+                      <li
+                        key={k}
+                        className="text-xs leading-relaxed flex gap-1.5"
+                        style={{ color: textMed }}
+                      >
+                        <span style={{ color: primary }}>•</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -302,50 +269,47 @@ export function ModernTemplate({
             primary={primary}
           >
             <div className="flex flex-col gap-3">
-              {projects.map((p) => (
+              {RESUME_PROJECTS.map((p) => (
                 <div
-                  key={p.projectId}
+                  key={p.name}
                   className="rounded-md p-3"
                   style={{ backgroundColor: cardBg }}
                 >
-                  <div className="flex justify-between items-center mb-1">
+                  <div className="flex justify-between items-center mb-0.5">
                     <p
                       className="text-sm font-semibold"
                       style={{ color: textDark }}
                     >
-                      {p.title}
+                      {p.name}
                     </p>
-                    {p.company && (
-                      <span
-                        className="text-[10px]"
-                        style={{ color: textMuted }}
-                      >
-                        {p.company}
+                    {p.context && (
+                      <span className="text-[10px]" style={{ color: textMuted }}>
+                        {p.context}
                       </span>
                     )}
                   </div>
+                  {p.url && (
+                    <p className="text-[10px] mb-1" style={{ color: primary }}>
+                      {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                    </p>
+                  )}
                   <p
-                    className="text-xs leading-relaxed line-clamp-2"
+                    className="text-xs leading-relaxed"
                     style={{ color: textMed }}
                   >
-                    {p.description}
+                    {p.bullets.join(" ")}
                   </p>
-                  {p.stack && (
-                    <div className="flex flex-wrap gap-1 mt-1.5">
-                      {p.stack.slice(0, 7).map((s) => (
-                        <span
-                          key={s.name}
-                          className="text-[9px] px-1.5 py-0.5 rounded font-medium"
-                          style={{
-                            backgroundColor: primary + "20",
-                            color: dark,
-                          }}
-                        >
-                          {translate(`services.stack.${s.name}` as any)}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <div className="flex flex-wrap gap-1 mt-1.5">
+                    {p.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="text-[9px] px-1.5 py-0.5 rounded font-medium"
+                        style={{ backgroundColor: primary + "20", color: dark }}
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -359,12 +323,10 @@ export function ModernTemplate({
 function SideSection({
   title,
   primary,
-  dark,
   children,
 }: {
   title: string;
   primary: string;
-  dark: string;
   children: React.ReactNode;
 }) {
   return (

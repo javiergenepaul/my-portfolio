@@ -9,27 +9,17 @@ import {
   ZoomIn,
   ZoomOut,
   Download,
+  Loader2,
   Sparkles,
-  LayoutTemplate,
+  ShieldCheck,
 } from "lucide-react";
 import type { Color } from "@/stores";
 import { RESUME_COLORS, RESUME_SWATCHES } from "../constants";
 import { useIsDark } from "../use-aurora";
 import { useIsMobile } from "../hooks";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { ResumeSkeleton } from "@/screens/2024/resume/templates/resume-skeleton";
 
-const ResumeSimple = dynamic(
-  () =>
-    import("@/screens/2024/resume/templates/simple-template").then((m) => ({
-      default: m.SimpleTemplate,
-    })),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ width: 794, height: 600, background: "#f5f5f5" }} />
-    ),
-  },
-);
 const ResumeModern = dynamic(
   () =>
     import("@/screens/2024/resume/templates/modern-template").then((m) => ({
@@ -37,9 +27,17 @@ const ResumeModern = dynamic(
     })),
   {
     ssr: false,
-    loading: () => (
-      <div style={{ width: 794, height: 600, background: "#1a1a1a" }} />
-    ),
+    loading: () => <ResumeSkeleton isDark />,
+  },
+);
+const ResumeAts = dynamic(
+  () =>
+    import("@/screens/2024/resume/templates/ats-template").then((m) => ({
+      default: m.AtsTemplate,
+    })),
+  {
+    ssr: false,
+    loading: () => <ResumeSkeleton isDark />,
   },
 );
 
@@ -47,11 +45,12 @@ export function ResumeContent() {
   useLocaleRefresh();
   const isSystemDark = useIsDark();
   const isMobile = useIsMobile();
-  type ResumeMode = "simple" | "modern";
-  const [mode, setMode] = useState<ResumeMode>("modern");
+  type ResumeMode = "modern" | "ats";
+  const [mode, setMode] = useState<ResumeMode>("ats");
   const [isDark, setIsDark] = useState(true);
   const [color, setColor] = useState<Color>("azure");
   const [zoom, setZoom] = useState(0.55);
+  const [isExporting, setIsExporting] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,25 +81,31 @@ export function ResumeContent() {
     setZoom(Math.min(0.85, Math.max(0.3, Math.floor((w / 794) * 100) / 100)));
   };
 
-  const handleExport = useCallback(() => {
-    const el = document.getElementById("resume-preview-2026");
-    if (!el) return;
-    const clone = el.cloneNode(true) as HTMLElement;
-    clone.style.transform = "none";
-    clone.style.marginBottom = "0";
-    clone.style.boxShadow = "none";
-    clone.style.width = "794px";
-    const styles = [
-      ...Array.from(document.querySelectorAll("style")).map((s) => s.outerHTML),
-      ...Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(
-        (l) => l.outerHTML,
-      ),
-    ].join("\n");
-    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><base href="${window.location.origin}/">${styles}<style>*,*::before,*::after{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}@page{size:A4 portrait;margin:0}html,body{margin:0;padding:0}</style></head><body>${clone.outerHTML}</body><script>window.onload=function(){setTimeout(function(){window.print();window.close()},300)}<\/script></html>`;
-    const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
-    window.open(url, "_blank");
-    setTimeout(() => URL.revokeObjectURL(url), 10_000);
-  }, []);
+  const handleExport = useCallback(async () => {
+    setIsExporting(true);
+    try {
+      // Both chunks stay out of the main bundle until the first export.
+      const [{ pdf }, { ResumeDocument }] = await Promise.all([
+        import("@react-pdf/renderer"),
+        import("@/screens/2024/resume/pdf/resume-document"),
+      ]);
+      const blob = await pdf(
+        <ResumeDocument mode={mode} colors={colors} isDark={isDark} />,
+      ).toBlob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `gene-paul-mar-javier-resume-${mode}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("PDF export failed:", err);
+    } finally {
+      setIsExporting(false);
+    }
+  }, [mode, colors, isDark]);
 
   const sectionLabelCls =
     "text-a26-muted font-mac block mb-2 text-[9px] font-bold tracking-[0.10em] uppercase";
@@ -132,8 +137,8 @@ export function ResumeContent() {
       </div>
       <div className="shrink-0 bg-a26-glass-border w-px h-4.5" />
       {[
+        { v: "ats" as const, label: translate("win26.resume.ats") },
         { v: "modern" as const, label: translate("win26.resume.modern") },
-        { v: "simple" as const, label: translate("win26.resume.simple") },
       ].map((opt) => (
         <button
           key={opt.v}
@@ -202,10 +207,18 @@ export function ResumeContent() {
       <div className="shrink-0 bg-a26-glass-border w-px h-4.5" />
       <button
         onClick={handleExport}
-        className="font-mac flex items-center shrink-0 gap-1.25 py-1.25 px-3 rounded-[20px] border-none text-xs font-semibold cursor-pointer whitespace-nowrap"
+        disabled={isExporting}
+        className="font-mac flex items-center shrink-0 gap-1.25 py-1.25 px-3 rounded-[20px] border-none text-xs font-semibold cursor-pointer whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
         style={{ background: colors.primary, color: colors.text }}
       >
-        <Download size={11} /> {translate("win26.resume.exportShort")}
+        {isExporting ? (
+          <Loader2 size={11} className="animate-spin" />
+        ) : (
+          <Download size={11} />
+        )}{" "}
+        {isExporting
+          ? translate("win26.resume.exporting")
+          : translate("win26.resume.exportShort")}
       </button>
     </div>
   );
@@ -219,7 +232,7 @@ export function ResumeContent() {
       {/* ── Controls sidebar (desktop only) ── */}
       {!isMobile && (
         <div
-          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col overflow-y-auto w-[218px] py-4 px-3.5 gap-5 [scrollbar-width:thin]"
+          className="win26-scroll shrink-0 bg-a26-sidebar border-r border-a26-glass-border flex flex-col overflow-y-auto w-54.5 py-4 px-3.5 gap-5 [scrollbar-width:thin]"
           style={{ scrollbarColor: "rgba(255,255,255,0.18) transparent" }}
         >
           {/* Template */}
@@ -230,22 +243,22 @@ export function ResumeContent() {
             <div className="flex flex-col gap-1.25">
               {[
                 {
+                  v: "ats" as ResumeMode,
+                  icon: <ShieldCheck size={12} />,
+                  label: translate("win26.resume.ats"),
+                  desc: translate("win26.resume.atsDesc"),
+                },
+                {
                   v: "modern" as ResumeMode,
                   icon: <Sparkles size={12} />,
                   label: translate("win26.resume.modern"),
                   desc: translate("win26.resume.modernDesc"),
                 },
-                {
-                  v: "simple" as ResumeMode,
-                  icon: <LayoutTemplate size={12} />,
-                  label: translate("win26.resume.simple"),
-                  desc: translate("win26.resume.simpleDesc"),
-                },
               ].map((opt) => (
                 <button
                   key={opt.v}
                   onClick={() => setMode(opt.v)}
-                  className="font-mac flex items-center gap-2.25 py-2 px-2.5 rounded-lg cursor-pointer transition-all duration-[140ms] text-left"
+                  className="font-mac flex items-center gap-2.25 py-2 px-2.5 rounded-lg cursor-pointer transition-all duration-140 text-left"
                   style={{
                     border: `1px solid ${mode === opt.v ? "color-mix(in srgb, var(--a26-teal) 40%, transparent)" : "var(--a26-glass-border)"}`,
                     background:
@@ -304,7 +317,7 @@ export function ResumeContent() {
                 <button
                   key={String(opt.v)}
                   onClick={() => setIsDark(opt.v)}
-                  className="font-mac flex-1 flex flex-col items-center gap-1.25 py-2.25 px-1.5 rounded-lg cursor-pointer transition-all duration-[140ms]"
+                  className="font-mac flex-1 flex flex-col items-center gap-1.25 py-2.25 px-1.5 rounded-lg cursor-pointer transition-all duration-140"
                   style={{
                     border: `1px solid ${isDark === opt.v ? "color-mix(in srgb, var(--a26-blue) 40%, transparent)" : "var(--a26-glass-border)"}`,
                     background:
@@ -376,10 +389,18 @@ export function ResumeContent() {
           <div className="flex flex-col mt-auto gap-2.5">
             <button
               onClick={handleExport}
-              className="font-mac flex items-center justify-center w-full gap-1.75 py-2.25 rounded-[9px] border-none text-[13px] font-semibold cursor-pointer"
+              disabled={isExporting}
+              className="font-mac flex items-center justify-center w-full gap-1.75 py-2.25 rounded-[9px] border-none text-[13px] font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               style={{ background: colors.primary, color: colors.text }}
             >
-              <Download size={14} /> {translate("win26.resume.export")}
+              {isExporting ? (
+                <Loader2 size={14} className="animate-spin" />
+              ) : (
+                <Download size={14} />
+              )}{" "}
+              {isExporting
+                ? translate("win26.resume.exporting")
+                : translate("win26.resume.export")}
             </button>
             <div
               className="bg-a26-glass border border-a26-glass-border text-[10px] leading-[1.65] py-2 px-2.5 rounded-[7px]"
@@ -391,19 +412,7 @@ export function ResumeContent() {
               >
                 {translate("win26.resume.tips")}
               </div>
-              {translate("win26.resume.tipsC1" as any)}
-              <b style={{ color: "var(--a26-text)" }}>
-                {translate("win26.resume.tipsSave")}
-              </b>
-              {translate("win26.resume.tipsC2" as any)}
-              <b style={{ color: "var(--a26-text)" }}>
-                {translate("win26.resume.tipsMargins")}
-              </b>
-              {translate("win26.resume.tipsC3" as any)}
-              <b style={{ color: "var(--a26-text)" }}>
-                {translate("win26.resume.tipsBg")}
-              </b>
-              {translate("win26.resume.tipsC4" as any)}
+              {translate("win26.resume.tipsDownload")}
             </div>
           </div>
         </div>
@@ -461,8 +470,8 @@ export function ResumeContent() {
                 overflow: "hidden",
               }}
             >
-              {mode === "simple" ? (
-                <ResumeSimple colors={colors} isDark={isDark} />
+              {mode === "ats" ? (
+                <ResumeAts colors={colors} isDark={isDark} />
               ) : (
                 <ResumeModern colors={colors} isDark={isDark} />
               )}
