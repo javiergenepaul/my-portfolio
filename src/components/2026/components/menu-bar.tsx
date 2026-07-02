@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { Search, Command, Monitor } from "lucide-react";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { WIN_DEFS } from "../constants";
@@ -306,6 +307,26 @@ export function MenuBar({
 
       {/* Right side */}
       <div className="flex items-center gap-1.5">
+        <nav
+          aria-label="Portfolio pages"
+          className="flex items-center gap-0.5"
+        >
+          {[
+            { href: "/", label: "Home" },
+            { href: "/2024", label: "2024" },
+            { href: "/2025", label: "2025" },
+            { href: "/2027", label: "2027" },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="font-mac text-a26-mid h-5 px-1.75 flex items-center rounded-[5px] text-[11px] no-underline hover:bg-a26-glass hover:text-a26-text"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <div className="w-px h-4 bg-a26-glass-border mx-1" />
         <button
           onClick={onCmdK}
           className="font-mac flex items-center bg-a26-glass border border-a26-glass-border text-a26-mid h-5 px-1.75 gap-1 rounded-[5px] text-[11px] cursor-pointer"
