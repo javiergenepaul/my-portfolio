@@ -38,10 +38,16 @@ import { AppWindow } from "./components/app-window";
 import { Dock } from "./components/dock";
 import { CommandPalette } from "./components/command-palette";
 import { ContextMenu, type ContextMenuEntry } from "./components/context-menu";
-import { MobilePortfolio } from "./mobile/mobile-portfolio";
 
 const LiveWallpaper = dynamic(
   () => import("./live-wallpaper").then((m) => ({ default: m.LiveWallpaper })),
+  { ssr: false },
+);
+const MobilePortfolio = dynamic(
+  () =>
+    import("./mobile/mobile-portfolio").then((m) => ({
+      default: m.MobilePortfolio,
+    })),
   { ssr: false },
 );
 

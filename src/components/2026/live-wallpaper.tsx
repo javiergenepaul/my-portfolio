@@ -273,9 +273,14 @@ function CanvasOverlay() {
     const BASE_ANGLE = 0.1;
 
     const init = (W: number, H: number) => {
-      bg.current = Array.from({ length: 120 }, () => makeDrop(W, H, 0));
-      mid.current = Array.from({ length: 100 }, () => makeDrop(W, H, 1));
-      fg.current = Array.from({ length: 65 }, () => makeDrop(W, H, 2));
+      // Scale particle counts to viewport area so small / low-power screens
+      // do less work (floored at 40% so it never looks bare).
+      const scale = Math.min(1, (W * H) / (1600 * 900));
+      const n = (base: number) =>
+        Math.max(Math.round(base * scale), Math.round(base * 0.4));
+      bg.current = Array.from({ length: n(120) }, () => makeDrop(W, H, 0));
+      mid.current = Array.from({ length: n(100) }, () => makeDrop(W, H, 1));
+      fg.current = Array.from({ length: n(65) }, () => makeDrop(W, H, 2));
       splashes.current = [];
 
       const WARM = [
@@ -287,7 +292,7 @@ function CanvasOverlay() {
         [200, 225, 255],
         [220, 200, 255],
       ] as const;
-      bokehs.current = Array.from({ length: 22 }, () => {
+      bokehs.current = Array.from({ length: n(22) }, () => {
         const big = Math.random() > 0.55;
         return {
           x: Math.random() * W,
@@ -301,7 +306,9 @@ function CanvasOverlay() {
     };
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
+      // Cap DPR — retina phones/laptops otherwise render a 2–3× canvas for
+      // little visual gain and a large per-frame cost.
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const W = window.innerWidth,
         H = window.innerHeight;
       canvas.width = W * dpr;
@@ -494,18 +501,51 @@ function CanvasOverlay() {
         getGpmTunesVisualizerState(),
       );
 
-      raf = requestAnimationFrame(draw);
     };
 
-    raf = requestAnimationFrame((n) => {
-      prev = n;
-      draw(n);
-    });
+    // Honor reduced-motion: render one static frame, skip the animation loop.
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // Cap the animation to ~30fps — the scene reads the same as 60fps but
+    // halves per-second draw work, which matters most on weak GPUs.
+    const FRAME_MS = 1000 / 30;
+    let lastDraw = 0;
+
+    const loop = (now: number) => {
+      raf = requestAnimationFrame(loop);
+      if (now - lastDraw < FRAME_MS) return;
+      lastDraw = now;
+      draw(now);
+    };
+
+    const start = () => {
+      prev = performance.now();
+      lastDraw = 0;
+      raf = requestAnimationFrame(loop);
+    };
+
+    if (reduceMotion) {
+      prev = performance.now();
+      draw(prev);
+    } else {
+      start();
+    }
+
+    // Pause the loop entirely while the tab is hidden — no wasted frames.
+    const onVisibility = () => {
+      if (reduceMotion) return;
+      if (document.hidden) cancelAnimationFrame(raf);
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       cancelAnimationFrame(raf);
       clearInterval(clockId);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 

@@ -20,23 +20,25 @@ import type { WinId } from "../constants";
 import { useMobileTime } from "../hooks";
 import { LiveWallpaper } from "../live-wallpaper";
 import { MacAppIcon } from "../components/mac-app-icons";
-import { AboutContent } from "../windows/about-content";
-import { BooksContent } from "../windows/books-content";
-import { TestimonialsContent } from "../windows/testimonials-content";
-import { ProjectsContent } from "../windows/projects-content";
-import { ItunesContent } from "../windows/itunes-content";
-import { TerminalContent } from "../windows/terminal-content";
-import { SkillsContent } from "../windows/skills-content";
-import { ContactContent } from "../windows/contact-content";
-import { ResumeContent } from "../windows/resume-content";
-import { SettingsContent } from "../windows/settings-content";
-import { ChatContent } from "../windows/chat-content";
-import { GamesContent } from "../windows/games-content";
-import { SnakeContent } from "../windows/snake-content";
-import { HanoiContent } from "../windows/hanoi-content";
-import { TetrisContent } from "../windows/tetris-content";
-import { JumpContent } from "../windows/jump-content";
-import { BomberContent } from "../windows/bomber-content";
+import {
+  AboutContent,
+  BooksContent,
+  TestimonialsContent,
+  ProjectsContent,
+  ItunesContent,
+  TerminalContent,
+  SkillsContent,
+  ContactContent,
+  ResumeContent,
+  SettingsContent,
+  ChatContent,
+  GamesContent,
+  SnakeContent,
+  HanoiContent,
+  TetrisContent,
+  JumpContent,
+  BomberContent,
+} from "../windows/lazy";
 
 export function MobilePortfolio() {
   useLocaleRefresh();
