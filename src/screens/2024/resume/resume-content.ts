@@ -193,7 +193,6 @@ export const RESUME_SKILLS: ResumeSkillGroup[] = [
       "REST API design",
       "JWT (JSON Web Token)",
       "Microservices",
-      "Laravel",
     ],
   },
   {
@@ -202,6 +201,7 @@ export const RESUME_SKILLS: ResumeSkillGroup[] = [
       "React",
       "Next.js",
       "Vue.js",
+      "Nuxt.js",
       "Tailwind CSS",
       "HTML",
       "CSS",
@@ -226,11 +226,13 @@ export const RESUME_SKILLS: ResumeSkillGroup[] = [
     label: "DevOps & Tools",
     items: [
       "Git",
-      "CI/CD (Azure Pipelines)",
       "Linux",
       "Nginx",
       "AWS",
       "Agile / Scrum",
+      "Jira",
+      "Asana",
+      "TFS"
     ],
   },
 ];
