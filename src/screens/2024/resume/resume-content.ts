@@ -1,8 +1,4 @@
-import {
-  FULL_NAME,
-  JOB_TITLE,
-  EMAIL_ADDRESS,
-} from "@/config";
+import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 
 /**
@@ -80,18 +76,6 @@ export const RESUME_SUMMARY =
 
 export const RESUME_EXPERIENCE: ResumeExperience[] = [
   {
-    role: "Full-Stack Software Developer",
-    company: "Magic",
-    employmentType: "Part-time · Remote",
-    location: "Remote",
-    period: "Aug 2025 – Present",
-    bullets: [
-      "Optimized backend performance by eliminating N+1 queries and adding caching, and reworked reports-page calculations to cut load times.",
-      "Built transactional email templates and integrated AWS SES for reliable delivery.",
-      "Revamped existing pages and shipped new responsive features, deployed automatically via Vercel.",
-    ],
-  },
-  {
     role: "Software Engineer",
     company: "Kryterion by Drake International",
     employmentType: "Full-time",
@@ -101,6 +85,18 @@ export const RESUME_EXPERIENCE: ResumeExperience[] = [
       "Migrated 20+ complex legacy JSP / Apache Struts screens to a modern Vue.js frontend with Pinia state management as part of a monolith-to-microservices modernization.",
       "Develop scalable web applications using Spring Boot (Java) and Vue.js.",
       "Configured Nginx as a reverse proxy routing frontend requests to backend microservices, and monitored AWS production logs to diagnose and resolve issues.",
+    ],
+  },
+  {
+    role: "Full-Stack Software Developer",
+    company: "Magic",
+    employmentType: "Part-time · Remote",
+    location: "Remote",
+    period: "Aug 2025 – July 2026",
+    bullets: [
+      "Optimized backend performance by eliminating N+1 queries and adding caching, and reworked reports-page calculations to cut load times.",
+      "Built transactional email templates and integrated AWS SES for reliable delivery.",
+      "Revamped existing pages and shipped new responsive features, deployed automatically via Vercel.",
     ],
   },
   {

@@ -21,20 +21,6 @@ import {
  */
 export const getExperience = (): ContentBodyInterface[] => [
   {
-    title: translate("about.experience.experience.magic.title"),
-    subtitle: translate("about.experience.experience.magic.subtitle"),
-    description: translate("about.experience.experience.magic.description"),
-    startYear: moment("2025-08-01"),
-    endYear: "present",
-    watermark:
-      "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
-    watermarkAlt: translate("about.experience.experience.magic.alt"),
-    subtitleUrl: MAGIC_COMPANY_URL,
-    waterMarkWidth: 120,
-    isWork: true,
-    employmentType: "Part-time",
-  },
-  {
     title: translate("about.experience.experience.kryterion.title"),
     description: translate("about.experience.experience.kryterion.description"),
     subtitle: translate("about.experience.experience.kryterion.subtitle"),
@@ -46,6 +32,20 @@ export const getExperience = (): ContentBodyInterface[] => [
     waterMarkWidth: 105,
     isWork: true,
     employmentType: "Full-time",
+  },
+  {
+    title: translate("about.experience.experience.magic.title"),
+    subtitle: translate("about.experience.experience.magic.subtitle"),
+    description: translate("about.experience.experience.magic.description"),
+    startYear: moment("2025-08-01"),
+    endYear: moment("2026-07-01"),
+    watermark:
+      "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
+    watermarkAlt: translate("about.experience.experience.magic.alt"),
+    subtitleUrl: MAGIC_COMPANY_URL,
+    waterMarkWidth: 120,
+    isWork: true,
+    employmentType: "Part-time",
   },
   {
     title: translate("about.experience.experience.alliance.title"),
