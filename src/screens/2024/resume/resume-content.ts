@@ -84,7 +84,10 @@ export const RESUME_EXPERIENCE: ResumeExperience[] = [
     bullets: [
       "Migrated 20+ complex legacy JSP / Apache Struts screens to a modern Vue.js frontend with Pinia state management as part of a monolith-to-microservices modernization.",
       "Develop scalable web applications using Spring Boot (Java) and Vue.js.",
-      "Configured Nginx as a reverse proxy routing frontend requests to backend microservices, and monitored AWS production logs to diagnose and resolve issues.",
+      "Perform code reviews, unit testing, and integration testing to ensure high-quality software delivery.",
+      "Collaborate with cross-functional teams to gather requirements and deliver solutions that meet business needs.",
+      "Resolve Tech Debts by Upgrading Dependencies, Refactoring Code, and Improving Test Coverage.",
+      "Volunteer on a high paced team to deliver new features and enhancements to the Kryterion platform, improving user experience and functionality.",
     ],
   },
   {
@@ -97,6 +100,7 @@ export const RESUME_EXPERIENCE: ResumeExperience[] = [
       "Optimized backend performance by eliminating N+1 queries and adding caching, and reworked reports-page calculations to cut load times.",
       "Built transactional email templates and integrated AWS SES for reliable delivery.",
       "Revamped existing pages and shipped new responsive features, deployed automatically via Vercel.",
+      "Implemented Amazon SES for transactional email delivery, ensuring reliable communication with users.",
     ],
   },
   {
@@ -111,6 +115,7 @@ export const RESUME_EXPERIENCE: ResumeExperience[] = [
       "Implemented JWT-based authentication and authorization with Spring Security.",
       "Introduced Jest and Cypress test suites that cut UI regression bugs in QA and raised release confidence.",
       "Deployed and maintained services on Linux / CentOS with Azure Pipelines CI/CD.",
+      "Mentored junior developers and conducted code reviews to ensure code quality and best practices.",
     ],
   },
   {
@@ -133,6 +138,7 @@ export const RESUME_EXPERIENCE: ResumeExperience[] = [
     period: "Jul 2019 – Jul 2021",
     bullets: [
       "Built interactive VR/AR experiences and 3D environments in Unreal Engine 4 and Unity.",
+      "Created 3D models and assets for games and applications using Blender.",
     ],
   },
 ];
@@ -150,11 +156,22 @@ export const RESUME_PROJECTS: ResumeProject[] = [
     stack: ["React", "TypeScript", "Tailwind CSS", "Zustand", "Vitest"],
   },
   {
-    name: "Personal Portfolio",
+    name: "Rochenette Portfolio",
     context: "Open source",
-    url: "https://github.com/javiergenepaul/my-portfolio",
+    url: "https://rochenette-legaspina-portfolio.vercel.app/2026/en",
     bullets: [
-      "Timeline-based portfolio with year-by-year navigation, featuring 3D scenes (Three.js), motion, and full i18n across four locales.",
+      "Built a reusable, timeline-based portfolio template with year-by-year navigation, 3D scenes (Three.js), motion, and full i18n across four locales.",
+      "Adapted the shared template into a bespoke, branded portfolio delivered for an individual client.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Three.js"],
+  },
+  {
+    name: "Yong Portfolio",
+    context: "Open source",
+    url: "https://yongbenitez.netlify.app/",
+    bullets: [
+      "Reskinned and shipped the same portfolio template for a second client, tailoring content, branding, and layout while reusing the shared component architecture.",
+      "Maintained responsive design and multi-locale support across the client build.",
     ],
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Three.js"],
   },
