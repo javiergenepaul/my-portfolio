@@ -940,7 +940,8 @@
       "tabs": {
         "overview": "Pagsabot",
         "experience": "Kasinatian",
-        "education": "Edukasyon"
+        "education": "Edukasyon",
+        "certificates": "Mga sertipiko"
       },
       "bio": "Full-stack software engineer nga nagbuhat og mga production-ready nga aplikasyon gamit ang React & Next.js sa frontend ug Spring Boot & Java sa backend. Madasigon sa limpyo nga arkitektura, kasinatian sa developer, ug pagpadala sa mga butang nga importante.",
       "location": "Sugbo, Pilipinas"

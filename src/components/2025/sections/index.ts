@@ -5,4 +5,5 @@ export * from "./projects-section";
 export * from "./testimonials-section";
 export * from "./languages-section";
 export * from "./books-section";
+export * from "./certificates-section";
 export * from "./contact-section";

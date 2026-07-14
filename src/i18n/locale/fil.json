@@ -940,7 +940,8 @@
       "tabs": {
         "overview": "Pangkalahatang-ideya",
         "experience": "Karanasan",
-        "education": "Edukasyon"
+        "education": "Edukasyon",
+        "certificates": "Mga sertipiko"
       },
       "bio": "Full-stack software engineer na gumagawa ng mga production-ready na aplikasyon gamit ang React & Next.js sa frontend at Spring Boot & Java sa backend. Masigasig sa malinis na arkitektura, karanasan ng developer, at pagpapadala ng mga bagay na mahalaga.",
       "location": "Cebu, Pilipinas"

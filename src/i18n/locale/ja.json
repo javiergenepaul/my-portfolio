@@ -941,7 +941,8 @@
       "tabs": {
         "overview": "概要",
         "experience": "経験",
-        "education": "学歴"
+        "education": "学歴",
+        "certificates": "証明書"
       },
       "bio": "React & Next.jsでフロントエンド、Spring Boot & Javaでバックエンドの本番対応アプリケーションを構築するフルスタックエンジニアです。クリーンなアーキテクチャ、開発者体験、そして価値あるものを届けることに情熱を注いでいます。",
       "location": "フィリピン・セブ"

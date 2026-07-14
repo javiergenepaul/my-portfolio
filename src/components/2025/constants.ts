@@ -12,7 +12,8 @@ export const NAV_ITEMS = [
   { id: "testimonials", label: "Testimonials", num: "05" },
   { id: "languages", label: "Languages", num: "06" },
   { id: "books", label: "Books", num: "07" },
-  { id: "contact", label: "Contact", num: "08" },
+  { id: "certificates", label: "Certificates", num: "08" },
+  { id: "contact", label: "Contact", num: "09" },
 ];
 
 export const SIDEBAR_STATS = [

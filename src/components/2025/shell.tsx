@@ -23,6 +23,7 @@ import {
   TestimonialsSection,
   LanguagesSection,
   BooksSection,
+  CertificatesSection,
   ContactSection,
 } from "./sections";
 
@@ -165,6 +166,7 @@ export function Portfolio2025() {
                   {active === "testimonials" && <TestimonialsSection />}
                   {active === "languages" && <LanguagesSection />}
                   {active === "books" && <BooksSection />}
+                  {active === "certificates" && <CertificatesSection />}
                   {active === "contact" && <ContactSection />}
                 </motion.div>
               </AnimatePresence>

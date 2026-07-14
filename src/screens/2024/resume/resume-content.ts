@@ -247,10 +247,10 @@ export const RESUME_EDUCATION: ResumeEducation[] = [
   },
 ];
 
-// ── Certifications — senior-relevant only ────────────────────────────────────
-// Beginner "Learning React / TypeScript / Next.js / Vue.js" courses are
-// intentionally omitted: listing an intro course next to years of that same
-// skill signals junior. Kept the ones that reinforce differentiators.
+// ── Certifications ───────────────────────────────────────────────────────────
+// Mirrors the full Certificates section on the About page
+// (src/config/data/certificates.ts). Grouped by issuer + year; the
+// senior / architecture-level courses are listed first within each group.
 
 export const RESUME_CERTIFICATIONS: ResumeCertGroup[] = [
   {
@@ -260,6 +260,27 @@ export const RESUME_CERTIFICATIONS: ResumeCertGroup[] = [
       "Spring Boot 3 Essential Training",
       "Microservices Foundations",
       "Agile Software Development: Code Quality",
+      "Building Modern Projects with React",
+      "Learning Next.js",
+      "Learning Nuxt.js",
+      "Learning Vue.js",
+      "Learning TypeScript",
+      "Tailwind CSS 4 Essential Training",
     ],
+  },
+  {
+    issuer: "Udemy",
+    year: "2024",
+    titles: ["The Complete Guide 2024 (incl. React Router & Redux)"],
+  },
+  {
+    issuer: "Udemy",
+    year: "2022",
+    titles: ["FullStack: React and Java Spring Boot - The Developer Guide"],
+  },
+  {
+    issuer: "Lilolele Incorporated",
+    year: "2024",
+    titles: ["Effective Business Communication Skills"],
   },
 ];

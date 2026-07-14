@@ -13,6 +13,7 @@ import {
   GithubIcon,
   LinkedinIcon,
   Mail,
+  ExternalLink,
 } from "lucide-react";
 import {
   FULL_NAME,
@@ -20,6 +21,7 @@ import {
   EMAIL_ADDRESS,
   getExperience,
   getEducation,
+  getCertificates,
   CAREER_START_DATE,
 } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
@@ -30,11 +32,15 @@ import { translate, useLocaleRefresh } from "@/i18n";
 
 export function AboutContent() {
   useLocaleRefresh();
-  const [tab, setTab] = useState<"overview" | "experience" | "education">(
-    "overview",
-  );
+  const [tab, setTab] = useState<
+    "overview" | "experience" | "education" | "certificates"
+  >("overview");
   const exps = getExperience().filter((e) => e.isWork);
   const edus = getEducation();
+  // Newest certificates first.
+  const certs = [...getCertificates()].sort(
+    (a, b) => b.issuedDate.valueOf() - a.issuedDate.valueOf(),
+  );
 
   return (
     <div className="font-mac flex flex-col flex-1 min-h-0 overflow-hidden">
@@ -51,7 +57,9 @@ export function AboutContent() {
 
       {/* Tabs */}
       <div className="flex shrink-0 border-b border-a26-glass-border gap-0.5 px-3.5 pt-1.5 pb-0">
-        {(["overview", "experience", "education"] as const).map((t) => (
+        {(
+          ["overview", "experience", "education", "certificates"] as const
+        ).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -296,6 +304,61 @@ export function AboutContent() {
                     </div>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {tab === "certificates" && (
+              <div className="flex flex-col gap-2.5">
+                <h2 className="text-a26-text mb-1 text-base font-bold">
+                  {translate("about.certificate.header")}
+                </h2>
+                {certs.map((cert, i) => {
+                  const logo =
+                    typeof cert.organizationImg === "string"
+                      ? cert.organizationImg
+                      : cert.organizationImg.src;
+                  const href =
+                    typeof cert.credentialUrl === "string"
+                      ? cert.credentialUrl
+                      : cert.credentialUrl.src;
+                  return (
+                    <a
+                      key={i}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex bg-a26-card border border-a26-card-border gap-3 rounded-[9px] py-3 px-3.5 no-underline transition-colors hover:border-a26-teal"
+                    >
+                      <div className="flex items-center justify-center shrink-0 w-8.5 h-8.5 rounded-lg bg-white overflow-hidden p-1">
+                        <Image
+                          src={logo}
+                          alt={cert.organizationAlt}
+                          width={28}
+                          height={28}
+                          className="object-contain w-full h-full"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-a26-text text-[13.5px] font-semibold">
+                          {cert.title}
+                        </div>
+                        <div className="text-a26-teal text-xs mt-px">
+                          {cert.organization}
+                        </div>
+                        <div className="text-a26-muted text-[11px] mt-0.75">
+                          {translate("about.certificate.issued", {
+                            date: cert.issuedDate.format("MMM YYYY"),
+                          })}
+                        </div>
+                      </div>
+                      <ExternalLink
+                        size={13}
+                        color="var(--a26-text-muted)"
+                        className="shrink-0 mt-0.5 opacity-0 transition-opacity group-hover:opacity-100"
+                      />
+                    </a>
+                  );
+                })}
               </div>
             )}
           </motion.div>

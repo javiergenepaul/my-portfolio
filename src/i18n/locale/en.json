@@ -941,7 +941,8 @@
       "tabs": {
         "overview": "Overview",
         "experience": "Experience",
-        "education": "Education"
+        "education": "Education",
+        "certificates": "Certificates"
       },
       "bio": "Full-stack software engineer crafting production-ready applications with React & Next.js on the frontend and Spring Boot & Java on the backend. Passionate about clean architecture, developer experience, and shipping things that matter.",
       "location": "Cebu, Philippines"
