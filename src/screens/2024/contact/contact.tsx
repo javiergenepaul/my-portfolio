@@ -1,3 +1,6 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import {
   Card,
   CardContent,
@@ -7,10 +10,22 @@ import {
   Separator,
 } from "@/components";
 import { translate } from "@/i18n";
-import { CopyToClipBoard, LogoCanvas } from "./components";
+import { CopyToClipBoard } from "./components/copy-to-clipboard";
 import { ContactForm } from "../hero";
 import { Mail, Phone } from "lucide-react";
 import { EMAIL_ADDRESS, MOBILE_NUMBER } from "@/config";
+
+// The 3D logo pulls in the entire Three.js runtime (@react-three/fiber + drei +
+// three ≈ 200 kB). It only renders on lg screens, so defer it into its own
+// chunk that loads client-side after the page is interactive — keeping it out
+// of the route's First Load JS and off mobile entirely.
+const LogoCanvas = dynamic(
+  () => import("./components/canvas/logo-canvas").then((m) => m.LogoCanvas),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-70" aria-hidden />,
+  },
+);
 
 export const Contact = () => {
   const formatPhoneNumber = (number: string): string => {

@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import { translate } from "@/i18n";
 import type { ContentBodyInterface } from "@/config/types";
 import {
@@ -24,7 +24,7 @@ export const getExperience = (): ContentBodyInterface[] => [
     title: translate("about.experience.experience.kryterion.title"),
     description: translate("about.experience.experience.kryterion.description"),
     subtitle: translate("about.experience.experience.kryterion.subtitle"),
-    startYear: moment("2024-09-09"),
+    startYear: dayjs("2024-09-09"),
     endYear: "present",
     watermark: KryterionWatermark,
     watermarkAlt: translate("about.experience.experience.kryterion.alt"),
@@ -37,8 +37,8 @@ export const getExperience = (): ContentBodyInterface[] => [
     title: translate("about.experience.experience.magic.title"),
     subtitle: translate("about.experience.experience.magic.subtitle"),
     description: translate("about.experience.experience.magic.description"),
-    startYear: moment("2025-08-01"),
-    endYear: moment("2026-07-01"),
+    startYear: dayjs("2025-08-01"),
+    endYear: dayjs("2026-07-01"),
     watermark:
       "https://static.wixstatic.com/media/453c21_24648caf199d4c05a20534679985789c~mv2.png/v1/fill/w_73,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/m%20(2).png",
     watermarkAlt: translate("about.experience.experience.magic.alt"),
@@ -49,8 +49,8 @@ export const getExperience = (): ContentBodyInterface[] => [
   },
   {
     title: translate("about.experience.experience.alliance.title"),
-    startYear: moment("2022-12-01"),
-    endYear: moment("2024-09-05"),
+    startYear: dayjs("2022-12-01"),
+    endYear: dayjs("2024-09-05"),
     description: translate("about.experience.experience.alliance.description"),
     watermark: AllianceWatermark,
     watermarkAlt: translate(
@@ -74,8 +74,8 @@ export const getExperience = (): ContentBodyInterface[] => [
         abbreviation: translate(
           "about.experience.experience.alliance.promotion.ats1.abb",
         ),
-        startYear: moment("2024-01-01"),
-        endYear: moment("2024-09-05"),
+        startYear: dayjs("2024-01-01"),
+        endYear: dayjs("2024-09-05"),
       },
       {
         title: translate(
@@ -90,8 +90,8 @@ export const getExperience = (): ContentBodyInterface[] => [
         abbreviation: translate(
           "about.experience.experience.alliance.promotion.ts1.abb",
         ),
-        startYear: moment("2022-12-01"),
-        endYear: moment("2024-01-01"),
+        startYear: dayjs("2022-12-01"),
+        endYear: dayjs("2024-01-01"),
       },
     ],
   },
@@ -99,8 +99,8 @@ export const getExperience = (): ContentBodyInterface[] => [
     title: translate("about.experience.experience.mach95.title"),
     description: translate("about.experience.experience.mach95.description"),
     subtitle: translate("about.experience.experience.mach95.subtitle"),
-    startYear: moment("2021-07-01"),
-    endYear: moment("2022-12-01"),
+    startYear: dayjs("2021-07-01"),
+    endYear: dayjs("2022-12-01"),
     watermark: Mach95Watermark,
     watermarkAlt: translate("about.experience.experience.mach95.alt"),
     subtitleUrl: MACH95_COMPANY_URL,
@@ -112,8 +112,8 @@ export const getExperience = (): ContentBodyInterface[] => [
     description: translate("about.experience.experience.exodia.description"),
     subtitle: translate("about.experience.experience.exodia.subtitle"),
     abbreviation: translate("about.experience.experience.exodia.abb"),
-    startYear: moment("2019-07-01"),
-    endYear: moment("2021-07-01"),
+    startYear: dayjs("2019-07-01"),
+    endYear: dayjs("2021-07-01"),
     watermark: ExodiaWatermark,
     watermarkAlt: translate("about.experience.experience.exodia.alt"),
     subtitleUrl: EXODIA_COMPANY_URL,

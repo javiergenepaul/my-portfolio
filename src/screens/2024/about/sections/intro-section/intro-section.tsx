@@ -6,7 +6,7 @@ import { CAREER_START_DATE, getProjects } from "@/config/data";
 import { useSettingsStore } from "@/stores";
 import { FileText } from "lucide-react";
 import { useState } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import "../css/intro-section.css";
 import { Banner } from "../../components";
 import { twMerge } from "tailwind-merge";
@@ -48,7 +48,7 @@ export const IntroSection = () => {
       botTitle: translate("about.intro.project"),
     },
     {
-      count: moment().diff(moment(CAREER_START_DATE), "years"),
+      count: dayjs().diff(dayjs(CAREER_START_DATE), "years"),
       topTitle: translate("about.intro.years"),
       botTitle: translate("about.intro.experience"),
     },

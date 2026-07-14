@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import { translate } from "@/i18n";
 import type { ContentBodyInterface } from "@/config/types";
 import {
@@ -21,8 +21,8 @@ import {
 export const getEducation = (): ContentBodyInterface[] => [
   {
     title: translate("about.experience.education.tertiary.title"),
-    startYear: moment("2016"),
-    endYear: moment("2021"),
+    startYear: dayjs("2016"),
+    endYear: dayjs("2021"),
     description: translate("about.experience.education.tertiary.description"),
     level: "tertiary",
     abbreviation: translate("about.experience.education.tertiary.abb"),
@@ -37,8 +37,8 @@ export const getEducation = (): ContentBodyInterface[] => [
     description: translate("about.experience.education.vocational.description"),
     abbreviation: translate("about.experience.education.vocational.abb"),
     subtitle: translate("about.experience.education.vocational.subtitle"),
-    startYear: moment("2015"),
-    endYear: moment("2016"),
+    startYear: dayjs("2015"),
+    endYear: dayjs("2016"),
     watermark: CTUWatermark,
     watermarkAlt: translate("about.experience.education.vocational.alt"),
     subtitleUrl: CTU_SCHOOL_URL,
@@ -49,8 +49,8 @@ export const getEducation = (): ContentBodyInterface[] => [
     description: translate("about.experience.education.secondary.description"),
     subtitle: translate("about.experience.education.secondary.subtitle"),
     abbreviation: translate("about.experience.education.secondary.abb"),
-    startYear: moment("2011"),
-    endYear: moment("2015"),
+    startYear: dayjs("2011"),
+    endYear: dayjs("2015"),
     watermark: BNHSWatermark,
     watermarkAlt: translate("about.experience.education.secondary.alt"),
     subtitleUrl: BNHS_SCHOOL_URL,
@@ -61,8 +61,8 @@ export const getEducation = (): ContentBodyInterface[] => [
     description: translate("about.experience.education.primary.description"),
     subtitle: translate("about.experience.education.primary.subtitle"),
     abbreviation: translate("about.experience.education.primary.abb"),
-    startYear: moment("2011"),
-    endYear: moment("2015"),
+    startYear: dayjs("2011"),
+    endYear: dayjs("2015"),
     watermark: PilotWatermark,
     watermarkAlt: translate("about.experience.education.primary.alt"),
     subtitleUrl: ICEPS_SCHOOL_URL,

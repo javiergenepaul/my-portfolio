@@ -1,5 +1,5 @@
 import { ServiceOfferInterface } from "@/config";
-import { getServices } from "@/config/data";
+import { getServices } from "@/config/data/services";
 import { translate } from "@/i18n";
 import { Suspense, lazy } from "react";
 import { ServiceCardSkeleton } from "../components";

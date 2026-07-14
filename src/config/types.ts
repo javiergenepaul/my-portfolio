@@ -1,5 +1,5 @@
 import { StackName } from "@/screens";
-import { Moment } from "moment";
+import type { Dayjs } from "dayjs";
 import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
 
@@ -12,8 +12,11 @@ export interface TechStackInterface {
   url: string | undefined;
   isFavorite: boolean;
   rate: NumberBetweenOneAndTen;
-  dateStarted: Moment;
-  dateEnded: Moment | "present";
+  // Plain ISO date strings (or the "present" sentinel). Kept as strings so
+  // config/stack.ts has no date-library calls at module scope; parsed with
+  // dayjs() only where an experience diff is actually computed.
+  dateStarted: string;
+  dateEnded: string;
   isStudying: boolean;
   alt: string;
 }
@@ -68,8 +71,8 @@ export type ProjectType = "confidential" | "client" | "personal" | "tutorial";
 export interface PromotionInterface {
   title: string;
   subtitle: string;
-  startYear: Moment;
-  endYear: Moment | "present";
+  startYear: Dayjs;
+  endYear: Dayjs | "present";
   abbreviation?: string;
   description: string;
 }
@@ -77,8 +80,8 @@ export interface PromotionInterface {
 export interface ContentBodyInterface {
   title: string;
   subtitle?: string;
-  startYear: Moment;
-  endYear: Moment | "present";
+  startYear: Dayjs;
+  endYear: Dayjs | "present";
   level?: "tertiary" | "secondary" | "primary" | "vocational";
   abbreviation?: string;
   isWork?: boolean;
@@ -101,7 +104,7 @@ export interface CertificateCardInterface {
     | string
     | { src: string; height: number; width: number; blurDataURL?: string };
   organizationAlt: string;
-  issuedDate: Moment;
+  issuedDate: Dayjs;
   credentialId?: string;
   credentialUrl: string | StaticImageData;
 }

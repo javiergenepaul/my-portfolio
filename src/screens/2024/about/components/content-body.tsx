@@ -8,8 +8,8 @@ import {
 } from "@/components";
 import { logEvent } from "@/lib";
 import { Dot } from "lucide-react";
-import moment from "moment";
-import { Moment } from "moment";
+import dayjs from "dayjs";
+import type { Dayjs } from "dayjs";
 import { twMerge } from "tailwind-merge";
 import type { ContentBodyInterface, PromotionInterface } from "@/config/types";
 
@@ -33,15 +33,15 @@ export const ContentBody = (props: ContentBodyInterface) => {
   } = props;
 
   const getYearSpent = (
-    startDate: Moment,
-    endDate: Moment | "present",
+    startDate: Dayjs,
+    endDate: Dayjs | "present",
   ): string => {
     let years;
     let months;
 
     if (endDate === "present") {
-      years = moment().diff(startDate, "years");
-      months = moment().diff(startDate, "months");
+      years = dayjs().diff(startDate, "years");
+      months = dayjs().diff(startDate, "months");
     } else {
       years = endDate.diff(startDate, "years");
       months = endDate.diff(startDate, "months");

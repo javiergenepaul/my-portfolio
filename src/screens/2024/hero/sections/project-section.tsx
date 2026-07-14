@@ -1,7 +1,7 @@
 "use client";
 
 import { PATH, ProjectInterface } from "@/config";
-import { getProjects } from "@/config/data";
+import { getProjects } from "@/config/data/projects";
 import { Button } from "@/components";
 import { useRouter } from "next/navigation";
 import { translate } from "@/i18n";

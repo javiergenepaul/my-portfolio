@@ -24,7 +24,7 @@ import {
 } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
-import moment from "moment";
+import dayjs from "dayjs";
 import { formatDate } from "../utils";
 import { translate, useLocaleRefresh } from "@/i18n";
 
@@ -133,7 +133,7 @@ export function AboutContent() {
                 <div className="grid grid-cols-4 gap-2.5">
                   {[
                     {
-                      v: `${moment().diff(moment(CAREER_START_DATE), "years")}+`,
+                      v: `${dayjs().diff(dayjs(CAREER_START_DATE), "years")}+`,
                       l: translate("about.intro.years"),
                       c: "var(--a26-teal)",
                     },

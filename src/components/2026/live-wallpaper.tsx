@@ -568,6 +568,9 @@ export function LiveWallpaper() {
           position: "fixed",
           inset: 0,
           zIndex: 0,
+          // Downscaled from the original 8K / 9.4 MB source to 2560px / ~310 KB.
+          // This background is the 2026 LCP element, so its weight directly
+          // drives the score.
           backgroundImage: "url('/wallpapers/kawasaki-ninja-500.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center 72%",

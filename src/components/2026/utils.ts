@@ -2,7 +2,7 @@
 
 import { translate } from "@/i18n";
 import { useLanguageStore } from "@/stores/language-store";
-import "moment/locale/ja";
+import "dayjs/locale/ja";
 
 const MOMENT_LOCALE: Record<string, string> = {
   en: "en",
@@ -22,10 +22,10 @@ export function hexRgb(hex: string) {
   return `${parseInt(hex.slice(1, 3), 16)},${parseInt(hex.slice(3, 5), 16)},${parseInt(hex.slice(5, 7), 16)}`;
 }
 
-export function formatDate(m: import("moment").Moment | "present") {
+export function formatDate(m: import("dayjs").Dayjs | "present") {
   if (m === "present") return translate("win26.present");
   const lang = useLanguageStore.getState().language ?? "en";
   const locale = MOMENT_LOCALE[lang] ?? "en";
   const fmt = DATE_FORMAT[lang] ?? "MMM YYYY";
-  return m.clone().locale(locale).format(fmt);
+  return m.locale(locale).format(fmt);
 }

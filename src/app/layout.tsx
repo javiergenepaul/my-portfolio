@@ -6,6 +6,11 @@ import "./globals.css";
 import { Providers } from "@/providers";
 
 // ─── Font definitions ─────────────────────────────────────────────────────────
+// Inter is the default font family, so it's preloaded. Poppins and Work Sans
+// are opt-in (only applied when the user selects them in Settings), so we skip
+// preloading them — otherwise every visitor downloads ~7 extra font files
+// (Poppins alone has 6 weights) that 99% of them never see. They still load
+// on demand the moment a user switches to them.
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter-variable",
@@ -17,12 +22,14 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-poppins-variable",
   display: "swap",
+  preload: false,
 });
 
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans-variable",
   display: "swap",
+  preload: false,
 });
 
 const BASE_URL = "https://gene-paul-mar-javier.dev";
@@ -217,9 +224,21 @@ export default function RootLayout({
             background: #08080c;
             color: #f0f0f0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            transition: opacity 0.5s ease;
+            /* Fade out via CSS on first paint — independent of React hydration.
+               Theme classes are applied pre-paint (script below), so the
+               server-rendered content revealed underneath is already correct
+               and LCP fires on it instead of waiting for the JS bundle. No JS
+               mutates this node before hydration, so React hydrates it cleanly;
+               SplashRemover removes it from the DOM after hydration. */
+            animation: __splash-out 0.45s ease 0.15s forwards;
           }
-          #__splash[data-light] {
+          @keyframes __splash-out {
+            to { opacity: 0; visibility: hidden; }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            #__splash { animation-duration: 0.01ms; animation-delay: 0.2s; }
+          }
+          :root.light #__splash {
             background: #ffffff;
             color: #08080c;
           }
@@ -339,11 +358,19 @@ export default function RootLayout({
               var raw = localStorage.getItem('portfolio-settings');
               var state = raw ? JSON.parse(raw).state : {};
               var theme = state && state.theme ? state.theme : 'system';
+              var color = state && state.color ? state.color : 'emerald';
               var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
               var isDark = theme === 'dark' || (theme === 'system' && prefersDark);
-              if (!isDark) {
-                document.getElementById('__splash').setAttribute('data-light', '');
-              }
+              // Apply theme + color classes to <html> BEFORE first paint so the
+              // server-rendered content is already correctly themed. This removes
+              // the flash-of-unthemed-content the splash used to hide, letting us
+              // reveal real content immediately instead of waiting for hydration.
+              // Only <html> (which has suppressHydrationWarning) is mutated here —
+              // never a body child React owns — so hydration stays clean. The
+              // splash's light styling keys off :root.light in CSS.
+              var root = document.documentElement;
+              root.classList.add(isDark ? 'dark' : 'light');
+              root.classList.add(color);
             } catch(e) {}
           })();
         `,

@@ -1,5 +1,5 @@
 import { CAREER_START_DATE } from "@/config";
-import moment from "moment";
+import dayjs from "dayjs";
 import type { Palette } from "./context";
 
 export type SkillTab = "backend" | "frontend" | "others";
@@ -18,7 +18,7 @@ export const NAV_ITEMS = [
 export const SIDEBAR_STATS = [
   {
     label: "Yrs Exp",
-    value: `${moment().diff(moment(CAREER_START_DATE), "years")}+`,
+    value: `${dayjs().diff(dayjs(CAREER_START_DATE), "years")}+`,
   },
   { label: "Projects", value: "15+" },
   { label: "Stacks", value: "30+" },
@@ -131,6 +131,6 @@ export const SKILL_TABS: {
   },
 ];
 
-export function fmt(s: moment.Moment, e: moment.Moment | "present") {
-  return `${s.format("MMM YYYY")} — ${e === "present" ? "Present" : (e as moment.Moment).format("MMM YYYY")}`;
+export function fmt(s: dayjs.Dayjs, e: dayjs.Dayjs | "present") {
+  return `${s.format("MMM YYYY")} — ${e === "present" ? "Present" : (e as dayjs.Dayjs).format("MMM YYYY")}`;
 }

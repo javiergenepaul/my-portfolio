@@ -12,18 +12,12 @@ export function SplashRemover() {
     const el = document.getElementById("__splash");
     if (!el) return;
 
-    // Short delay so the first painted frame is fully composited before fade.
-    const fadeTimer = setTimeout(() => {
-      el.style.opacity = "0";
-      el.style.pointerEvents = "none";
-    }, 120);
-
-    const removeTimer = setTimeout(() => el.remove(), 650);
-
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-    };
+    // The splash is faded out by a CSS animation on first paint (see the
+    // #__splash rule in layout.tsx), independent of hydration — so it never
+    // gates LCP. Nothing mutates this React-owned node before hydration; we
+    // only remove it from the DOM here, after the tree has hydrated.
+    const removeTimer = setTimeout(() => el.remove(), 700);
+    return () => clearTimeout(removeTimer);
   }, []);
 
   return null;

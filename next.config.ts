@@ -33,9 +33,21 @@ const nextConfig: NextConfig = {
   transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
 
   // Webpack tweaks needed for three.js server-side suppression
-  webpack(config, { isServer }) {
+  webpack(config, { isServer, webpack }) {
     // Suppress "Can't resolve 'fs'" warnings from three.js in SSR
     config.resolve.fallback = { fs: false, path: false };
+
+    // ─── Strip moment.js locales ────────────────────────────────────────────
+    // moment bundles ~160 kB of locale data by default. The app only ever
+    // formats dates in English, so drop every locale file — leaves just the
+    // built-in 'en' locale and shaves the moment payload from ~230 kB to ~70 kB
+    // on every route that touches the experience/date data.
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/,
+      }),
+    );
 
     // ─── Deduplicate Three.js ───────────────────────────────────────────────
     // @react-three/fiber, @react-three/drei, maath, and any direct `three`

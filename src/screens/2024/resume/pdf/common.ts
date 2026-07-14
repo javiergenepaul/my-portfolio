@@ -1,5 +1,5 @@
-import moment from "moment";
-import "moment/locale/ja";
+import dayjs from "dayjs";
+import "dayjs/locale/ja";
 import { translate } from "@/i18n";
 import { useLanguageStore } from "@/stores";
 import { getExperience, getEducation, getProjects } from "@/config";
@@ -18,17 +18,17 @@ const DATE_FMT: Record<string, string> = {
 };
 
 export function formatDateRange(
-  start: moment.Moment,
-  end: moment.Moment | "present",
+  start: dayjs.Dayjs,
+  end: dayjs.Dayjs | "present",
 ): string {
   const lang = useLanguageStore.getState().language ?? "en";
   const locale = MOMENT_LOCALE[lang] ?? "en";
   const fmt = DATE_FMT[lang] ?? "MMM YYYY";
-  const s = start.clone().locale(locale).format(fmt);
+  const s = start.locale(locale).format(fmt);
   const e =
     end === "present"
       ? translate("win26.present")
-      : (end as moment.Moment).clone().locale(locale).format(fmt);
+      : (end as dayjs.Dayjs).locale(locale).format(fmt);
   return `${s} – ${e}`;
 }
 

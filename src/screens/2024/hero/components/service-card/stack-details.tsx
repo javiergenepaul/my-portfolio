@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import { Separator } from "@/components";
 import { getProjects } from "@/config/data";
 import { TxKeyPath, translate } from "@/i18n";
@@ -37,9 +37,9 @@ export const StackDetails = (props: StackDetailsProps) => {
     }
 
     if (dateEnded === "present") {
-      monthsDiff = moment().diff(dateStarted, "months");
+      monthsDiff = dayjs().diff(dayjs(dateStarted), "months");
     } else {
-      monthsDiff = dateEnded.diff(dateStarted, "months");
+      monthsDiff = dayjs(dateEnded).diff(dayjs(dateStarted), "months");
     }
 
     // checking if month diff is 0 for catching error
