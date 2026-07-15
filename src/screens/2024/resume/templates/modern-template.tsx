@@ -1,30 +1,37 @@
 "use client";
 
-import { Mail, Phone, Github, Linkedin, MapPin } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, MapPin, Link2 } from "lucide-react";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { SKILL_CATEGORIES } from "@/config";
 import type { ResumeColorConfig } from "../resume";
-import {
-  RESUME_NAME,
-  RESUME_TITLE,
-  RESUME_CONTACT,
-  RESUME_SUMMARY,
-  RESUME_EXPERIENCE,
-  RESUME_PROJECTS,
-  RESUME_EDUCATION,
-  RESUME_CERTIFICATIONS,
-} from "../resume-content";
+import { RESUME_DEFAULT, type ResumeData } from "../resume-content";
 
 interface ModernTemplateProps {
   colors: ResumeColorConfig;
   isDark?: boolean;
+  /** Render from this data instead of the built-in résumé content. */
+  content?: ResumeData;
 }
 
 export function ModernTemplate({
   colors,
   isDark = false,
+  content,
 }: ModernTemplateProps) {
   useLocaleRefresh();
+
+  const usingContent = !!content;
+  const {
+    name,
+    title,
+    contact,
+    summary,
+    experience,
+    projects,
+    skills,
+    education,
+    certifications,
+  } = content ?? RESUME_DEFAULT;
 
   // Skill dots keep Modern's design, so they stay sourced from the rated
   // stack data (the flat ATS skill list has no proficiency values).
@@ -65,33 +72,66 @@ export function ModernTemplate({
           className="text-3xl font-bold tracking-tight"
           style={{ color: text }}
         >
-          {RESUME_NAME}
+          {name}
         </h1>
         <p
           className="text-sm mt-1 font-medium opacity-90"
           style={{ color: text }}
         >
-          {RESUME_TITLE}
+          {title}
         </p>
         <div
           className="flex flex-wrap gap-x-5 gap-y-1 mt-4 text-xs"
           style={{ color: text }}
         >
           <span className="flex items-center gap-1.5 opacity-90">
-            <Mail size={11} /> {RESUME_CONTACT.email}
+            <Mail size={11} /> {contact.email}
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <Phone size={11} /> {RESUME_CONTACT.phone}
+            <Phone size={11} /> {contact.phone}
           </span>
           <span className="flex items-center gap-1.5 opacity-90">
-            <MapPin size={11} /> {RESUME_CONTACT.location}
+            <MapPin size={11} /> {contact.location}
           </span>
-          <span className="flex items-center gap-1.5 opacity-90">
-            <Github size={11} /> {RESUME_CONTACT.github.label}
-          </span>
-          <span className="flex items-center gap-1.5 opacity-90">
-            <Linkedin size={11} /> {RESUME_CONTACT.linkedin.label}
-          </span>
+          {contact.links ? (
+            contact.links.map((l, i) => (
+              <a
+                key={i}
+                href={l.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 opacity-90"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                <Link2 size={11} /> {l.label}
+              </a>
+            ))
+          ) : (
+            <>
+              {contact.github && (
+                <a
+                  href={contact.github.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 opacity-90"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <Github size={11} /> {contact.github.label}
+                </a>
+              )}
+              {contact.linkedin && (
+                <a
+                  href={contact.linkedin.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 opacity-90"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <Linkedin size={11} /> {contact.linkedin.label}
+                </a>
+              )}
+            </>
+          )}
         </div>
       </div>
 
@@ -108,41 +148,61 @@ export function ModernTemplate({
             primary={primary}
           >
             <p className="text-[10px] leading-relaxed" style={{ color: textMed }}>
-              {RESUME_SUMMARY}
+              {summary}
             </p>
           </SideSection>
 
-          {/* Skills */}
-          {topSkills.map((cat) => (
-            <SideSection key={cat.key} title={cat.label} primary={primary}>
-              <div className="flex flex-col gap-0.5">
-                {cat.stacks.slice(0, 7).map((s) => (
-                  <div
-                    key={s.name}
-                    className="flex items-center justify-between"
-                  >
-                    <span className="text-[10px]" style={{ color: textMed }}>
-                      {translate(`services.stack.${s.name}` as any)}
-                    </span>
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: 5 }).map((_, idx) => (
-                        <div
-                          key={idx}
-                          className="w-1.5 h-1.5 rounded-full"
-                          style={{
-                            backgroundColor:
-                              idx < Math.ceil((s.rate / 10) * 5)
-                                ? primary
-                                : dotEmpty,
-                          }}
-                        />
-                      ))}
-                    </div>
+          {/* Skills — draft résumé skills (flat) when driven by content,
+              otherwise the rated-stack dots the default builder uses. */}
+          {usingContent
+            ? skills.map((group, i) => (
+                <SideSection key={i} title={group.label} primary={primary}>
+                  <div className="flex flex-col gap-0.5">
+                    {group.items.map((item) => (
+                      <p
+                        key={item}
+                        className="text-[10px]"
+                        style={{ color: textMed }}
+                      >
+                        {item}
+                      </p>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </SideSection>
-          ))}
+                </SideSection>
+              ))
+            : topSkills.map((cat) => (
+                <SideSection key={cat.key} title={cat.label} primary={primary}>
+                  <div className="flex flex-col gap-0.5">
+                    {cat.stacks.slice(0, 7).map((s) => (
+                      <div
+                        key={s.name}
+                        className="flex items-center justify-between"
+                      >
+                        <span
+                          className="text-[10px]"
+                          style={{ color: textMed }}
+                        >
+                          {translate(`services.stack.${s.name}` as any)}
+                        </span>
+                        <div className="flex gap-0.5">
+                          {Array.from({ length: 5 }).map((_, idx) => (
+                            <div
+                              key={idx}
+                              className="w-1.5 h-1.5 rounded-full"
+                              style={{
+                                backgroundColor:
+                                  idx < Math.ceil((s.rate / 10) * 5)
+                                    ? primary
+                                    : dotEmpty,
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </SideSection>
+              ))}
 
           {/* Education */}
           <SideSection
@@ -150,7 +210,7 @@ export function ModernTemplate({
             primary={primary}
           >
             <div className="flex flex-col gap-3">
-              {RESUME_EDUCATION.map((edu, i) => (
+              {education.map((edu, i) => (
                 <div key={i}>
                   <p
                     className="text-[10px] font-semibold"
@@ -175,7 +235,7 @@ export function ModernTemplate({
           {/* Certifications */}
           <SideSection title="Certifications" primary={primary}>
             <div className="flex flex-col gap-2">
-              {RESUME_CERTIFICATIONS.map((group, i) => (
+              {certifications.map((group, i) => (
                 <div key={i}>
                   <div className="flex flex-col gap-0.5">
                     {group.titles.map((t) => (
@@ -205,7 +265,7 @@ export function ModernTemplate({
             primary={primary}
           >
             <div className="flex flex-col gap-4">
-              {RESUME_EXPERIENCE.map((exp, i) => (
+              {experience.map((exp, i) => (
                 <div key={i}>
                   <div className="flex justify-between items-start">
                     <div>
@@ -269,7 +329,7 @@ export function ModernTemplate({
             primary={primary}
           >
             <div className="flex flex-col gap-3">
-              {RESUME_PROJECTS.map((p) => (
+              {projects.map((p) => (
                 <div
                   key={p.name}
                   className="rounded-md p-3"
@@ -289,9 +349,15 @@ export function ModernTemplate({
                     )}
                   </div>
                   {p.url && (
-                    <p className="text-[10px] mb-1" style={{ color: primary }}>
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[10px] mb-1 block"
+                      style={{ color: primary, textDecoration: "none" }}
+                    >
                       {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                    </p>
+                    </a>
                   )}
                   <p
                     className="text-xs leading-relaxed"

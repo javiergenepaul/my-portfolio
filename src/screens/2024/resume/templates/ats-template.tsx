@@ -1,25 +1,37 @@
 "use client";
 
 import type { ResumeColorConfig } from "../resume";
-import {
-  RESUME_NAME,
-  RESUME_TITLE,
-  RESUME_CONTACT,
-  RESUME_SUMMARY,
-  RESUME_EXPERIENCE,
-  RESUME_PROJECTS,
-  RESUME_SKILLS,
-  RESUME_EDUCATION,
-  RESUME_CERTIFICATIONS,
-} from "../resume-content";
+import { RESUME_DEFAULT, type ResumeData } from "../resume-content";
 
 interface AtsTemplateProps {
   colors: ResumeColorConfig;
   isDark?: boolean;
+  /** Render from this data instead of the built-in résumé content. */
+  content?: ResumeData;
 }
 
-export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
+export function AtsTemplate({
+  colors,
+  isDark = false,
+  content,
+}: AtsTemplateProps) {
   const { primary } = colors;
+  const {
+    name,
+    title,
+    contact,
+    summary,
+    experience,
+    projects,
+    skills,
+    education,
+    certifications,
+  } = content ?? RESUME_DEFAULT;
+  const contactLinks =
+    contact.links ??
+    [contact.github, contact.linkedin].filter(
+      (l): l is { label: string; url: string } => !!l,
+    );
 
   // Plain, high-contrast tones. ATS parsers read text, not colour, so the
   // accent is used only for section-heading rules — body stays near-black.
@@ -50,43 +62,54 @@ export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
       {/* ── HEADER ─────────────────────────────────── */}
       <header>
         <h1 className="text-3xl font-bold" style={{ color: textDark }}>
-          {RESUME_NAME}
+          {name}
         </h1>
         <p className="text-sm font-semibold mt-0.5" style={{ color: textMed }}>
-          {RESUME_TITLE}
+          {title}
         </p>
         {/* Contact line — plain selectable text + real links */}
         <p className="text-[11px] mt-2 leading-relaxed" style={{ color: textMuted }}>
-          {RESUME_CONTACT.phone}
+          {contact.phone}
           {" | "}
-          <a href={`mailto:${RESUME_CONTACT.email}`} style={{ color: linkColor }}>
-            {RESUME_CONTACT.email}
+          <a href={`mailto:${contact.email}`} style={{ color: linkColor }}>
+            {contact.email}
           </a>
           {" | "}
-          {RESUME_CONTACT.location}
+          {contact.location}
         </p>
-        <p className="text-[11px] leading-relaxed" style={{ color: textMuted }}>
-          <a href={RESUME_CONTACT.github.url} style={{ color: linkColor }}>
-            {RESUME_CONTACT.github.label}
-          </a>
-          {" | "}
-          <a href={RESUME_CONTACT.linkedin.url} style={{ color: linkColor }}>
-            {RESUME_CONTACT.linkedin.label}
-          </a>
-        </p>
+        {contactLinks.length > 0 && (
+          <p
+            className="text-[11px] leading-relaxed"
+            style={{ color: textMuted }}
+          >
+            {contactLinks.map((l, i) => (
+              <span key={i}>
+                {i > 0 && " | "}
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: linkColor }}
+                >
+                  {l.label}
+                </a>
+              </span>
+            ))}
+          </p>
+        )}
       </header>
 
       {/* ── SUMMARY ────────────────────────────────── */}
       <Section title="Summary" accent={primary} rule={ruleColor}>
         <p className="text-[11px] leading-relaxed" style={{ color: textMed }}>
-          {RESUME_SUMMARY}
+          {summary}
         </p>
       </Section>
 
       {/* ── EXPERIENCE ─────────────────────────────── */}
       <Section title="Experience" accent={primary} rule={ruleColor}>
         <div className="flex flex-col gap-3">
-          {RESUME_EXPERIENCE.map((exp, i) => (
+          {experience.map((exp, i) => (
             <div key={i}>
               <div className="flex justify-between items-baseline">
                 <p className="text-[12px] font-bold" style={{ color: textDark }}>
@@ -133,7 +156,7 @@ export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
       {/* ── SKILLS ─────────────────────────────────── */}
       <Section title="Skills" accent={primary} rule={ruleColor}>
         <div className="flex flex-col gap-1">
-          {RESUME_SKILLS.map((cat) => (
+          {skills.map((cat) => (
             <p
               key={cat.label}
               className="text-[11px] leading-relaxed"
@@ -151,7 +174,7 @@ export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
       {/* ── PROJECTS ───────────────────────────────── */}
       <Section title="Projects" accent={primary} rule={ruleColor}>
         <div className="flex flex-col gap-3">
-          {RESUME_PROJECTS.map((p) => (
+          {projects.map((p) => (
             <div key={p.name}>
               <p className="text-[12px] font-bold" style={{ color: textDark }}>
                 {p.name}
@@ -161,7 +184,14 @@ export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
                 {p.url && (
                   <span style={{ color: textMuted }}>
                     {" · "}
-                    {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: linkColor }}
+                    >
+                      {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                    </a>
                   </span>
                 )}
               </p>
@@ -191,7 +221,7 @@ export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
       {/* ── EDUCATION ──────────────────────────────── */}
       <Section title="Education" accent={primary} rule={ruleColor}>
         <div className="flex flex-col gap-2">
-          {RESUME_EDUCATION.map((edu, i) => (
+          {education.map((edu, i) => (
             <div key={i} className="flex justify-between items-baseline">
               <p className="text-[11px]" style={{ color: textMed }}>
                 <span className="font-bold" style={{ color: textDark }}>
@@ -214,7 +244,7 @@ export function AtsTemplate({ colors, isDark = false }: AtsTemplateProps) {
       {/* ── CERTIFICATIONS ─────────────────────────── */}
       <Section title="Certifications" accent={primary} rule={ruleColor}>
         <div className="flex flex-col gap-1">
-          {RESUME_CERTIFICATIONS.map((group, i) => (
+          {certifications.map((group, i) => (
             <p
               key={i}
               className="text-[11px] leading-relaxed"

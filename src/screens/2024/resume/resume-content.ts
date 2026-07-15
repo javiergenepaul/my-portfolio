@@ -51,6 +51,28 @@ export interface ResumeCertGroup {
   titles: string[];
 }
 
+/** The full résumé content bundle — lets templates render from any source. */
+export interface ResumeData {
+  name: string;
+  title: string;
+  contact: {
+    phone: string;
+    email: string;
+    location: string;
+    github?: { label: string; url: string };
+    linkedin?: { label: string; url: string };
+    /** Flexible link list; when present, templates render these instead of
+     *  github/linkedin. */
+    links?: { label: string; url: string }[];
+  };
+  summary: string;
+  experience: ResumeExperience[];
+  projects: ResumeProject[];
+  skills: ResumeSkillGroup[];
+  education: ResumeEducation[];
+  certifications: ResumeCertGroup[];
+}
+
 // ── Header / contact ────────────────────────────────────────────────────────
 
 export const RESUME_NAME = FULL_NAME;
@@ -284,3 +306,16 @@ export const RESUME_CERTIFICATIONS: ResumeCertGroup[] = [
     titles: ["Effective Business Communication Skills"],
   },
 ];
+
+/** Default bundle — what the templates render when no `content` is supplied. */
+export const RESUME_DEFAULT: ResumeData = {
+  name: RESUME_NAME,
+  title: RESUME_TITLE,
+  contact: RESUME_CONTACT,
+  summary: RESUME_SUMMARY,
+  experience: RESUME_EXPERIENCE,
+  projects: RESUME_PROJECTS,
+  skills: RESUME_SKILLS,
+  education: RESUME_EDUCATION,
+  certifications: RESUME_CERTIFICATIONS,
+};
