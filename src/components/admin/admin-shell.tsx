@@ -65,6 +65,16 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             label="Dashboard"
           />
           <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            Resume
+          </p>
+          <NavItem
+            href="/admin/resume"
+            active={pathname.startsWith("/admin/resume")}
+            icon={<FileText size={16} />}
+            label="Resume"
+          />
+
+          <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
             Content
           </p>
           {CONTENT_TYPES.filter((t) => (t.group ?? "Content") === "Content").map(
@@ -78,16 +88,6 @@ function AdminShell({ children }: { children: React.ReactNode }) {
               />
             ),
           )}
-
-          <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Resume
-          </p>
-          <NavItem
-            href="/admin/resume"
-            active={pathname.startsWith("/admin/resume")}
-            icon={<FileText size={16} />}
-            label="Resume"
-          />
 
           <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
             Tools
@@ -129,6 +129,17 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             >
               Home
             </Link>
+            <Link
+              href="/admin/resume"
+              className={cn(
+                "shrink-0 text-xs px-2.5 py-1.5 rounded-md whitespace-nowrap",
+                pathname.startsWith("/admin/resume")
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground",
+              )}
+            >
+              Resume
+            </Link>
             {CONTENT_TYPES.filter(
               (t) => (t.group ?? "Content") === "Content",
             ).map((t) => (
@@ -145,17 +156,6 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                 {t.label}
               </Link>
             ))}
-            <Link
-              href="/admin/resume"
-              className={cn(
-                "shrink-0 text-xs px-2.5 py-1.5 rounded-md whitespace-nowrap",
-                pathname.startsWith("/admin/resume")
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground",
-              )}
-            >
-              Resume
-            </Link>
             <Link
               href="/admin/requests"
               className={cn(

@@ -6,7 +6,8 @@ import { CONTENT_TYPES, type ContentTypeDef } from "./admin-config";
 import { getMockRows } from "./mock-data";
 import { useAdminAuth } from "./admin-auth";
 
-const GROUPS = ["Content", "Resume"];
+// Resume leads, then the rest of the content — matches the admin nav order.
+const GROUPS = ["Resume", "Content"];
 
 export function Dashboard() {
   const { user } = useAdminAuth();

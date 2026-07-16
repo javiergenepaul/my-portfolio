@@ -111,6 +111,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "avatar", label: "Avatar", type: "image" },
     ],
   },
+
   {
     key: "experience",
     label: "Experience",
@@ -139,6 +140,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "watermark", label: "Company logo", type: "image" },
     ],
   },
+
   {
     key: "education",
     label: "Education",
@@ -160,28 +162,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "endDate", label: "End date", type: "date-present" },
     ],
   },
-  {
-    key: "certificates",
-    label: "Certificates",
-    singular: "Certificate",
-    icon: Award,
-    description: "Courses and credentials.",
-    primaryField: "title",
-    secondaryField: "organization",
-    fields: [
-      { name: "title", label: "Title", type: "text", localized: true },
-      {
-        name: "organization",
-        label: "Issuer",
-        type: "text",
-        localized: true,
-      },
-      { name: "issuedDate", label: "Issued date", type: "date" },
-      { name: "credentialId", label: "Credential ID", type: "text" },
-      { name: "credentialUrl", label: "Credential URL", type: "url" },
-      { name: "logo", label: "Issuer logo", type: "image" },
-    ],
-  },
+
   {
     key: "projects",
     label: "Projects",
@@ -215,6 +196,30 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "codeUrl", label: "Code URL", type: "url" },
     ],
   },
+
+  {
+    key: "certificates",
+    label: "Certificates",
+    singular: "Certificate",
+    icon: Award,
+    description: "Courses and credentials.",
+    primaryField: "title",
+    secondaryField: "organization",
+    fields: [
+      { name: "title", label: "Title", type: "text", localized: true },
+      {
+        name: "organization",
+        label: "Issuer",
+        type: "text",
+        localized: true,
+      },
+      { name: "issuedDate", label: "Issued date", type: "date" },
+      { name: "credentialId", label: "Credential ID", type: "text" },
+      { name: "credentialUrl", label: "Credential URL", type: "url" },
+      { name: "logo", label: "Issuer logo", type: "image" },
+    ],
+  },
+
   {
     key: "skills",
     label: "Skills",
@@ -236,23 +241,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "icon", label: "Icon", type: "image" },
     ],
   },
-  {
-    key: "testimonials",
-    label: "Testimonials",
-    singular: "Testimonial",
-    icon: Quote,
-    description: "Recommendations from colleagues and clients.",
-    primaryField: "name",
-    secondaryField: "company",
-    fields: [
-      { name: "name", label: "Name", type: "text" },
-      { name: "role", label: "Role", type: "text", localized: true },
-      { name: "company", label: "Company", type: "text" },
-      { name: "text", label: "Quote", type: "textarea", localized: true },
-      { name: "rating", label: "Rating (1-5)", type: "number" },
-      { name: "avatar", label: "Avatar", type: "image" },
-    ],
-  },
+
   {
     key: "books",
     label: "Books",
@@ -274,6 +263,25 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "theme", label: "Theme", type: "text" },
     ],
   },
+
+  {
+    key: "services",
+    label: "Services",
+    singular: "Service",
+    icon: Sparkles,
+    description: "What you offer.",
+    primaryField: "title",
+    fields: [
+      { name: "title", label: "Title", type: "text", localized: true },
+      {
+        name: "description",
+        label: "Description",
+        type: "textarea",
+        localized: true,
+      },
+    ],
+  },
+
   {
     key: "languages",
     label: "Languages",
@@ -295,23 +303,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "flagIcon", label: "Flag", type: "image" },
     ],
   },
-  {
-    key: "services",
-    label: "Services",
-    singular: "Service",
-    icon: Sparkles,
-    description: "What you offer.",
-    primaryField: "title",
-    fields: [
-      { name: "title", label: "Title", type: "text", localized: true },
-      {
-        name: "description",
-        label: "Description",
-        type: "textarea",
-        localized: true,
-      },
-    ],
-  },
+
   {
     key: "socials",
     label: "Social links",
@@ -326,7 +318,24 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     ],
   },
 
-  // ── Résumé builder content (ATS-oriented, English only) ─────────────────────
+  {
+    key: "testimonials",
+    label: "Testimonials",
+    singular: "Testimonial",
+    icon: Quote,
+    description: "Recommendations from colleagues and clients.",
+    primaryField: "name",
+    secondaryField: "company",
+    fields: [
+      { name: "name", label: "Name", type: "text" },
+      { name: "role", label: "Role", type: "text", localized: true },
+      { name: "company", label: "Company", type: "text" },
+      { name: "text", label: "Quote", type: "textarea", localized: true },
+      { name: "rating", label: "Rating (1-5)", type: "number" },
+      { name: "avatar", label: "Avatar", type: "image" },
+    ],
+  },
+
   {
     key: "resume-overview",
     label: "Resume overview",
@@ -344,6 +353,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "links", label: "Links", type: "link-list" },
     ],
   },
+
   {
     key: "resume-experience",
     label: "Resume experience",
@@ -374,6 +384,28 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       },
     ],
   },
+
+  {
+    key: "resume-education",
+    label: "Resume education",
+    singular: "Resume education",
+    icon: GraduationCap,
+    description: "Education entries on the résumé.",
+    group: "Resume",
+    primaryField: "degree",
+    secondaryField: "school",
+    fields: [
+      { name: "degree", label: "Degree", type: "text" },
+      { name: "school", label: "School", type: "text" },
+      {
+        name: "period",
+        label: "Period",
+        type: "text",
+        placeholder: "2016 – 2021",
+      },
+    ],
+  },
+
   {
     key: "resume-projects",
     label: "Resume projects",
@@ -407,49 +439,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       },
     ],
   },
-  {
-    key: "resume-skills",
-    label: "Resume skills",
-    singular: "Resume skill group",
-    icon: Layers,
-    description: "Skill groups for the résumé (e.g. Backend, Frontend).",
-    group: "Resume",
-    primaryField: "label",
-    fields: [
-      {
-        name: "label",
-        label: "Group label",
-        type: "text",
-        placeholder: "Backend",
-      },
-      {
-        name: "items",
-        label: "Skills",
-        type: "string-list",
-        placeholder: "Spring Boot",
-      },
-    ],
-  },
-  {
-    key: "resume-education",
-    label: "Resume education",
-    singular: "Resume education",
-    icon: GraduationCap,
-    description: "Education entries on the résumé.",
-    group: "Resume",
-    primaryField: "degree",
-    secondaryField: "school",
-    fields: [
-      { name: "degree", label: "Degree", type: "text" },
-      { name: "school", label: "School", type: "text" },
-      {
-        name: "period",
-        label: "Period",
-        type: "text",
-        placeholder: "2016 – 2021",
-      },
-    ],
-  },
+
   {
     key: "resume-certifications",
     label: "Resume certifications",
@@ -472,6 +462,30 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         label: "Certificate titles",
         type: "string-list",
         placeholder: "Spring Boot 3 Essential Training",
+      },
+    ],
+  },
+
+  {
+    key: "resume-skills",
+    label: "Resume skills",
+    singular: "Resume skill group",
+    icon: Layers,
+    description: "Skill groups for the résumé (e.g. Backend, Frontend).",
+    group: "Resume",
+    primaryField: "label",
+    fields: [
+      {
+        name: "label",
+        label: "Group label",
+        type: "text",
+        placeholder: "Backend",
+      },
+      {
+        name: "items",
+        label: "Skills",
+        type: "string-list",
+        placeholder: "Spring Boot",
       },
     ],
   },
