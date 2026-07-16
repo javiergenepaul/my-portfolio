@@ -32,6 +32,8 @@ import {
 } from "@/components";
 import { ModernTemplate } from "./templates/modern-template";
 import { AtsTemplate } from "./templates/ats-template";
+import type { ResumeData } from "./resume-content";
+import { useResumeContent } from "./use-resume-content";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -107,9 +109,18 @@ const COLOR_SWATCHES: { value: Color; hex: string }[] = [
 interface ResumeBuilderProps {
   /** Seed the color picker with a specific colour instead of the store value */
   defaultColor?: Color;
+  /** Résumé content from the DB; falls back to the built-in default when absent. */
+  content?: ResumeData;
 }
 
-export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
+export const ResumeBuilder = ({
+  defaultColor,
+  content,
+}: ResumeBuilderProps = {}) => {
+  // The page passes `content` (server-fetched); other mounts (the résumé modal)
+  // don't, so fall back to a client fetch of the same DB data.
+  const dbContent = useResumeContent(!!content);
+  const resumeContent = content ?? dbContent;
   const { color: storeColor, theme } = useSettingsStore();
   const [mode, setMode] = useState<ResumeMode>("ats");
   const [color, setColor] = useState<Color>(defaultColor ?? storeColor);
@@ -177,7 +188,12 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
       ]);
 
       const blob = await pdf(
-        <ResumeDocument mode={mode} colors={colors} isDark={isDark} />,
+        <ResumeDocument
+          mode={mode}
+          colors={colors}
+          isDark={isDark}
+          content={resumeContent}
+        />,
       ).toBlob();
 
       const url = URL.createObjectURL(blob);
@@ -193,7 +209,7 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
     } finally {
       setIsExporting(false);
     }
-  }, [mode, colors, isDark]);
+  }, [mode, colors, isDark, resumeContent]);
 
   return (
     <div className="flex flex-col lg:flex-row min-h-full">
@@ -337,9 +353,17 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
               style={{ width: "794px", zoom }}
             >
               {mode === "modern" ? (
-                <ModernTemplate colors={colors} isDark={isDark} />
+                <ModernTemplate
+                  colors={colors}
+                  isDark={isDark}
+                  content={resumeContent}
+                />
               ) : (
-                <AtsTemplate colors={colors} isDark={isDark} />
+                <AtsTemplate
+                  colors={colors}
+                  isDark={isDark}
+                  content={resumeContent}
+                />
               )}
             </div>
           </div>
@@ -368,10 +392,7 @@ export const ResumeBuilder = ({ defaultColor }: ResumeBuilderProps = {}) => {
             </div>
           </DialogHeader>
           <DialogFooter className="gap-2 sm:gap-2">
-            <Button
-              variant="outline"
-              onClick={() => setAtsWarningOpen(false)}
-            >
+            <Button variant="outline" onClick={() => setAtsWarningOpen(false)}>
               Keep Modern
             </Button>
             <Button

@@ -57,29 +57,29 @@ export function AboutContent() {
 
       {/* Tabs */}
       <div className="flex shrink-0 border-b border-a26-glass-border gap-0.5 px-3.5 pt-1.5 pb-0">
-        {(
-          ["overview", "experience", "education", "certificates"] as const
-        ).map((t) => (
-          <button
-            key={t}
-            onClick={() => setTab(t)}
-            className="font-mac cursor-pointer text-xs"
-            style={{
-              padding: "4px 12px",
-              borderRadius: "7px 7px 0 0",
-              border: "none",
-              background: tab === t ? "var(--a26-window)" : "transparent",
-              color: tab === t ? "var(--a26-text)" : "var(--a26-text-mid)",
-              fontWeight: tab === t ? 600 : 400,
-              borderBottom:
-                tab === t
-                  ? "2px solid var(--a26-teal)"
-                  : "2px solid transparent",
-            }}
-          >
-            {translate(`win26.about.tabs.${t}`)}
-          </button>
-        ))}
+        {(["overview", "experience", "education", "certificates"] as const).map(
+          (t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className="font-mac cursor-pointer text-xs"
+              style={{
+                padding: "4px 12px",
+                borderRadius: "7px 7px 0 0",
+                border: "none",
+                background: tab === t ? "var(--a26-window)" : "transparent",
+                color: tab === t ? "var(--a26-text)" : "var(--a26-text-mid)",
+                fontWeight: tab === t ? 600 : 400,
+                borderBottom:
+                  tab === t
+                    ? "2px solid var(--a26-teal)"
+                    : "2px solid transparent",
+              }}
+            >
+              {translate(`win26.about.tabs.${t}`)}
+            </button>
+          ),
+        )}
       </div>
 
       <div

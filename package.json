@@ -11,7 +11,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:check": "node --env-file=.env.local scripts/check-tables.mjs",
-    "seed:resume": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-resume.ts"
+    "db:resume": "node --env-file=.env.local scripts/show-resume.mjs",
+    "seed:resume": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-resume.ts",
+    "seed:content": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-content.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

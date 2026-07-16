@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Star, ImagePlus, Check, CircleCheck, Send, Plus, X } from "lucide-react";
+import {
+  Star,
+  ImagePlus,
+  Check,
+  CircleCheck,
+  Send,
+  Plus,
+  X,
+} from "lucide-react";
 import {
   Button,
   Input,

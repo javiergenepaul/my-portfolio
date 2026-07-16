@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Resume2024 } from "@/components/2024/resume";
+import { getPublishedResumeSections } from "@/lib/content/repository";
+import { rowsToResumeData } from "@/screens/2024/resume/resume-data";
 
 export const metadata: Metadata = {
   title: "Resume Builder",
@@ -14,6 +16,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ResumePage() {
-  return <Resume2024 />;
+export default async function ResumePage() {
+  const sections = await getPublishedResumeSections();
+  const content = rowsToResumeData(sections);
+  return <Resume2024 content={content} />;
 }

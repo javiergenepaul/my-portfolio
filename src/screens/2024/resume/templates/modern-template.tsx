@@ -147,7 +147,10 @@ export function ModernTemplate({
             title={translate("win26.resume.sectionAbout")}
             primary={primary}
           >
-            <p className="text-[10px] leading-relaxed" style={{ color: textMed }}>
+            <p
+              className="text-[10px] leading-relaxed"
+              style={{ color: textMed }}
+            >
               {summary}
             </p>
           </SideSection>
@@ -343,7 +346,10 @@ export function ModernTemplate({
                       {p.name}
                     </p>
                     {p.context && (
-                      <span className="text-[10px]" style={{ color: textMuted }}>
+                      <span
+                        className="text-[10px]"
+                        style={{ color: textMuted }}
+                      >
                         {p.context}
                       </span>
                     )}

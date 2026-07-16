@@ -27,7 +27,6 @@ import {
   LOCALES,
   displayValue,
 } from "./admin-config";
-import { getMockRows } from "./mock-data";
 import { Sheet, SheetContent, SheetClose, SheetTitle } from "./sheet";
 import { ContentEditForm } from "./content-edit-form";
 
@@ -51,7 +50,7 @@ export function ContentList({
   rows?: ContentRow[];
   onRowsChange?: (rows: ContentRow[]) => void;
 }) {
-  const rows = controlledRows ?? getMockRows(type.key);
+  const rows = controlledRows ?? [];
   const primaryLocalized = type.fields.find(
     (f) => f.name === type.primaryField,
   )?.localized;
@@ -286,7 +285,11 @@ export function ContentList({
                   <p className="text-xs text-muted-foreground">{type.label}</p>
                 </div>
                 <SheetClose asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 shrink-0"
+                  >
                     <X size={16} />
                   </Button>
                 </SheetClose>

@@ -101,7 +101,8 @@ export function mixColor(fg: string, bg: string, opacity: number): string {
   };
   const [fr, fg_, fb] = parse(fg);
   const [br, bg_, bb] = parse(bg);
-  const mix = (a: number, b: number) => Math.round(a * opacity + b * (1 - opacity));
+  const mix = (a: number, b: number) =>
+    Math.round(a * opacity + b * (1 - opacity));
   const toHex = (n: number) => n.toString(16).padStart(2, "0");
   return `#${toHex(mix(fr, br))}${toHex(mix(fg_, bg_))}${toHex(mix(fb, bb))}`;
 }

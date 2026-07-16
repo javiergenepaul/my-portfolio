@@ -4,20 +4,13 @@ import { SKILL_CATEGORIES } from "@/config";
 import type { ResumeColorConfig } from "../resume";
 import { px } from "./px";
 import { getPdfFonts, mixColor, type PdfFonts } from "./common";
-import {
-  RESUME_NAME,
-  RESUME_TITLE,
-  RESUME_CONTACT,
-  RESUME_SUMMARY,
-  RESUME_EXPERIENCE,
-  RESUME_PROJECTS,
-  RESUME_EDUCATION,
-  RESUME_CERTIFICATIONS,
-} from "../resume-content";
+import { RESUME_DEFAULT, type ResumeData } from "../resume-content";
 
 interface ModernTemplatePdfProps {
   colors: ResumeColorConfig;
   isDark?: boolean;
+  /** Render from this data instead of the built-in résumé content. */
+  content?: ResumeData;
 }
 
 const SIDEBAR_WIDTH = px(224); // w-56 in the HTML template
@@ -25,9 +18,28 @@ const SIDEBAR_WIDTH = px(224); // w-56 in the HTML template
 export function ModernTemplatePdf({
   colors,
   isDark = false,
+  content,
 }: ModernTemplatePdfProps) {
   const f = getPdfFonts();
   const { primary, light, dark, text } = colors;
+
+  const usingContent = !!content;
+  const {
+    name,
+    title,
+    contact,
+    summary,
+    experience,
+    projects,
+    skills,
+    education,
+    certifications,
+  } = content ?? RESUME_DEFAULT;
+  const contactLinks =
+    contact.links ??
+    [contact.github, contact.linkedin].filter(
+      (l): l is { label: string; url: string } => !!l,
+    );
 
   // Neutral tones that flip with isDark
   const pageBg = isDark ? "#1E293B" : "#FFFFFF";
@@ -49,7 +61,10 @@ export function ModernTemplatePdf({
   );
 
   return (
-    <Page size="A4" style={{ ...f.base, backgroundColor: pageBg, color: textDark }}>
+    <Page
+      size="A4"
+      style={{ ...f.base, backgroundColor: pageBg, color: textDark }}
+    >
       {/*
         Fixed, full-page-height colour panel for the sidebar — repeats on
         every page so the tint continues even where the sidebar's own
@@ -74,11 +89,16 @@ export function ModernTemplatePdf({
           padding: `${px(28)} ${px(40)}`,
         }}
       >
-        <Text style={{ ...f.bold, fontSize: px(30), color: text }}>
-          {RESUME_NAME}
-        </Text>
-        <Text style={{ fontSize: px(14), color: text, marginTop: px(4), opacity: 0.9 }}>
-          {RESUME_TITLE}
+        <Text style={{ ...f.bold, fontSize: px(30), color: text }}>{name}</Text>
+        <Text
+          style={{
+            fontSize: px(14),
+            color: text,
+            marginTop: px(4),
+            opacity: 0.9,
+          }}
+        >
+          {title}
         </Text>
         <View
           style={{
@@ -90,11 +110,10 @@ export function ModernTemplatePdf({
           }}
         >
           {[
-            RESUME_CONTACT.email,
-            RESUME_CONTACT.phone,
-            RESUME_CONTACT.location,
-            RESUME_CONTACT.github.label,
-            RESUME_CONTACT.linkedin.label,
+            contact.email,
+            contact.phone,
+            contact.location,
+            ...contactLinks.map((l) => l.label),
           ].map((item, i) => (
             <Text
               key={i}
@@ -123,46 +142,74 @@ export function ModernTemplatePdf({
             first
           >
             <Text style={{ fontSize: px(10), color: textMed, lineHeight: 1.6 }}>
-              {RESUME_SUMMARY}
+              {summary}
             </Text>
           </SideSection>
 
-          {/* Skills */}
-          {topSkills.map((cat) => (
-            <SideSection key={cat.key} title={cat.label} primary={primary} f={f}>
-              {cat.stacks.slice(0, 7).map((s, i) => (
-                <View
-                  key={s.name}
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginTop: i === 0 ? 0 : px(3),
-                  }}
+          {/* Skills — flat résumé skill groups when driven by content, else the
+              rated-stack dots the default builder uses. */}
+          {usingContent
+            ? skills.map((group, i) => (
+                <SideSection
+                  key={i}
+                  title={group.label}
+                  primary={primary}
+                  f={f}
                 >
-                  <Text style={{ fontSize: px(10), color: textMed }}>
-                    {translate(`services.stack.${s.name}` as any)}
-                  </Text>
-                  <View style={{ flexDirection: "row", columnGap: px(2) }}>
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                      <View
-                        key={idx}
-                        style={{
-                          width: px(6),
-                          height: px(6),
-                          borderRadius: px(3),
-                          backgroundColor:
-                            idx < Math.ceil((s.rate / 10) * 5)
-                              ? primary
-                              : dotEmpty,
-                        }}
-                      />
-                    ))}
-                  </View>
-                </View>
+                  {group.items.map((item, k) => (
+                    <Text
+                      key={item}
+                      style={{
+                        fontSize: px(10),
+                        color: textMed,
+                        marginTop: k === 0 ? 0 : px(2),
+                      }}
+                    >
+                      {item}
+                    </Text>
+                  ))}
+                </SideSection>
+              ))
+            : topSkills.map((cat) => (
+                <SideSection
+                  key={cat.key}
+                  title={cat.label}
+                  primary={primary}
+                  f={f}
+                >
+                  {cat.stacks.slice(0, 7).map((s, i) => (
+                    <View
+                      key={s.name}
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        marginTop: i === 0 ? 0 : px(3),
+                      }}
+                    >
+                      <Text style={{ fontSize: px(10), color: textMed }}>
+                        {translate(`services.stack.${s.name}` as any)}
+                      </Text>
+                      <View style={{ flexDirection: "row", columnGap: px(2) }}>
+                        {Array.from({ length: 5 }).map((_, idx) => (
+                          <View
+                            key={idx}
+                            style={{
+                              width: px(6),
+                              height: px(6),
+                              borderRadius: px(3),
+                              backgroundColor:
+                                idx < Math.ceil((s.rate / 10) * 5)
+                                  ? primary
+                                  : dotEmpty,
+                            }}
+                          />
+                        ))}
+                      </View>
+                    </View>
+                  ))}
+                </SideSection>
               ))}
-            </SideSection>
-          ))}
 
           {/* Education */}
           <SideSection
@@ -170,15 +217,23 @@ export function ModernTemplatePdf({
             primary={primary}
             f={f}
           >
-            {RESUME_EDUCATION.map((edu, i) => (
+            {education.map((edu, i) => (
               <View key={i} style={{ marginTop: i === 0 ? 0 : px(12) }}>
                 <Text style={{ ...f.bold, fontSize: px(10), color: textDark }}>
                   {edu.school}
                 </Text>
-                <Text style={{ fontSize: px(10), color: textMed, lineHeight: 1.3 }}>
+                <Text
+                  style={{ fontSize: px(10), color: textMed, lineHeight: 1.3 }}
+                >
                   {edu.degree}
                 </Text>
-                <Text style={{ fontSize: px(9), color: textMuted, marginTop: px(2) }}>
+                <Text
+                  style={{
+                    fontSize: px(9),
+                    color: textMuted,
+                    marginTop: px(2),
+                  }}
+                >
                   {edu.period}
                 </Text>
               </View>
@@ -187,17 +242,27 @@ export function ModernTemplatePdf({
 
           {/* Certifications */}
           <SideSection title="Certifications" primary={primary} f={f}>
-            {RESUME_CERTIFICATIONS.map((group, i) => (
+            {certifications.map((group, i) => (
               <View key={i} style={{ marginTop: i === 0 ? 0 : px(10) }}>
                 {group.titles.map((t) => (
                   <Text
                     key={t}
-                    style={{ fontSize: px(10), color: textMed, lineHeight: 1.3 }}
+                    style={{
+                      fontSize: px(10),
+                      color: textMed,
+                      lineHeight: 1.3,
+                    }}
                   >
                     {t}
                   </Text>
                 ))}
-                <Text style={{ fontSize: px(9), color: textMuted, marginTop: px(2) }}>
+                <Text
+                  style={{
+                    fontSize: px(9),
+                    color: textMuted,
+                    marginTop: px(2),
+                  }}
+                >
                   {group.issuer} ({group.year})
                 </Text>
               </View>
@@ -206,7 +271,9 @@ export function ModernTemplatePdf({
         </View>
 
         {/* Main content */}
-        <View style={{ flexGrow: 1, flexBasis: 0, padding: `${px(24)} ${px(28)}` }}>
+        <View
+          style={{ flexGrow: 1, flexBasis: 0, padding: `${px(24)} ${px(28)}` }}
+        >
           {/* Experience */}
           <MainSection
             title={translate("win26.resume.sectionWorkExp")}
@@ -214,8 +281,12 @@ export function ModernTemplatePdf({
             f={f}
             first
           >
-            {RESUME_EXPERIENCE.map((exp, i) => (
-              <View key={i} style={{ marginTop: i === 0 ? 0 : px(16) }} wrap={false}>
+            {experience.map((exp, i) => (
+              <View
+                key={i}
+                style={{ marginTop: i === 0 ? 0 : px(16) }}
+                wrap={false}
+              >
                 <View
                   style={{
                     flexDirection: "row",
@@ -224,7 +295,9 @@ export function ModernTemplatePdf({
                   }}
                 >
                   <View style={{ flexGrow: 1, flexBasis: 0 }}>
-                    <Text style={{ ...f.bold, fontSize: px(14), color: textDark }}>
+                    <Text
+                      style={{ ...f.bold, fontSize: px(14), color: textDark }}
+                    >
                       {exp.role}
                     </Text>
                     <Text style={{ fontSize: px(12), color: primary }}>
@@ -268,9 +341,18 @@ export function ModernTemplatePdf({
                   {exp.bullets.map((b, k) => (
                     <View
                       key={k}
-                      style={{ flexDirection: "row", marginTop: k === 0 ? 0 : px(3) }}
+                      style={{
+                        flexDirection: "row",
+                        marginTop: k === 0 ? 0 : px(3),
+                      }}
                     >
-                      <Text style={{ fontSize: px(11), color: primary, marginRight: px(6) }}>
+                      <Text
+                        style={{
+                          fontSize: px(11),
+                          color: primary,
+                          marginRight: px(6),
+                        }}
+                      >
                         •
                       </Text>
                       <Text
@@ -297,7 +379,7 @@ export function ModernTemplatePdf({
             primary={primary}
             f={f}
           >
-            {RESUME_PROJECTS.map((p, i) => (
+            {projects.map((p, i) => (
               <View
                 key={p.name}
                 style={{
@@ -316,7 +398,9 @@ export function ModernTemplatePdf({
                     marginBottom: px(2),
                   }}
                 >
-                  <Text style={{ ...f.bold, fontSize: px(14), color: textDark }}>
+                  <Text
+                    style={{ ...f.bold, fontSize: px(14), color: textDark }}
+                  >
                     {p.name}
                   </Text>
                   {p.context && (
@@ -326,11 +410,19 @@ export function ModernTemplatePdf({
                   )}
                 </View>
                 {p.url && (
-                  <Text style={{ fontSize: px(10), color: primary, marginBottom: px(4) }}>
+                  <Text
+                    style={{
+                      fontSize: px(10),
+                      color: primary,
+                      marginBottom: px(4),
+                    }}
+                  >
                     {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
                   </Text>
                 )}
-                <Text style={{ fontSize: px(12), color: textMed, lineHeight: 1.6 }}>
+                <Text
+                  style={{ fontSize: px(12), color: textMed, lineHeight: 1.6 }}
+                >
                   {p.bullets.join(" ")}
                 </Text>
                 <View

@@ -1,14 +1,14 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { getContentType } from "@/components/admin/admin-config";
-import { ContentList } from "@/components/admin/content-list";
-import { ContentEditForm } from "@/components/admin/content-edit-form";
-import { getMockRow } from "@/components/admin/mock-data";
+import { ContentManager } from "@/components/admin/content-manager";
+import { getAdminRows, getAdminSingleton } from "@/lib/content/repository";
 
-export default function AdminTypePage() {
-  const { type: typeKey } = useParams<{ type: string }>();
+export default async function AdminTypePage({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}) {
+  const { type: typeKey } = await params;
   const type = getContentType(typeKey);
 
   if (!type) {
@@ -26,10 +26,9 @@ export default function AdminTypePage() {
     );
   }
 
-  // Singletons (Profile) edit their single record directly — no list view.
-  if (type.singleton) {
-    return <ContentEditForm type={type} row={getMockRow(type.key, type.key)} />;
-  }
+  const initialRows = type.singleton
+    ? [await getAdminSingleton(type)].filter((r) => r != null)
+    : await getAdminRows(type);
 
-  return <ContentList type={type} />;
+  return <ContentManager typeKey={type.key} initialRows={initialRows} />;
 }

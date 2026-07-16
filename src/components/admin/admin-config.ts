@@ -15,12 +15,22 @@ import {
 } from "lucide-react";
 
 /**
- * Admin content model — the single source of truth for the prototype UI.
+ * Admin content model — the single source of truth for the admin UI *and* the
+ * database mapping. One row per entity; localized fields are per-locale maps
+ * ({ en, ja, fil, ceb }); the admin forms and list views are generated from
+ * these definitions.
  *
- * This mirrors the shape we'll store in Supabase later: one row per entity,
- * localized text fields held as a per-locale map ({ en, ja, fil, ceb }). The
- * admin forms and list views are generated from these definitions, so wiring
- * the real DB later is a matter of swapping the mock data source — the UI stays.
+ * IMPORTANT — these field defs drive the DB round-trip in lib/content/
+ * repository.ts: every field's name is snake_cased to a column (columnFor), and
+ * ONLY listed fields are selected and written. So each field name here MUST map
+ * to a real column, or the SELECT fails.
+ *
+ * Some tables carry richly-nested columns (experience.promotion,
+ * projects.carousel / key_contribution, profile.stats, services.sub_details)
+ * that don't have a flat widget yet. They're intentionally omitted below. That
+ * is safe: an UPDATE only writes the columns listed here, so those columns keep
+ * their seeded values when a row is edited. A brand-new row leaves them at their
+ * table default until a dedicated repeater UI is built.
  */
 
 export const LOCALES = [
@@ -105,9 +115,13 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     primaryField: "fullName",
     fields: [
       { name: "fullName", label: "Full name", type: "text" },
-      { name: "jobTitle", label: "Job title", type: "text", localized: true },
+      // job_title is plain text in the source (a constant, not translated).
+      { name: "jobTitle", label: "Job title", type: "text" },
       { name: "bio", label: "Bio", type: "textarea", localized: true },
       { name: "location", label: "Location", type: "text", localized: true },
+      { name: "email", label: "Email", type: "text" },
+      { name: "phone", label: "Phone", type: "text" },
+      { name: "careerStartDate", label: "Career start date", type: "date" },
       { name: "avatar", label: "Avatar", type: "image" },
     ],
   },
@@ -137,6 +151,9 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       },
       { name: "startDate", label: "Start date", type: "date" },
       { name: "endDate", label: "End date", type: "date-present" },
+      { name: "isWork", label: "Work (vs. volunteer/other)", type: "boolean" },
+      { name: "abbreviation", label: "Abbreviation", type: "text" },
+      { name: "subtitleUrl", label: "Company URL", type: "url" },
       { name: "watermark", label: "Company logo", type: "image" },
     ],
   },
@@ -153,6 +170,12 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "title", label: "Degree", type: "text", localized: true },
       { name: "subtitle", label: "School", type: "text", localized: true },
       {
+        name: "description",
+        label: "Description",
+        type: "textarea",
+        localized: true,
+      },
+      {
         name: "level",
         label: "Level",
         type: "select",
@@ -160,6 +183,8 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       },
       { name: "startDate", label: "Start date", type: "date" },
       { name: "endDate", label: "End date", type: "date-present" },
+      { name: "abbreviation", label: "Abbreviation", type: "text" },
+      { name: "subtitleUrl", label: "School URL", type: "url" },
     ],
   },
 
@@ -179,7 +204,13 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "textarea",
         localized: true,
       },
-      { name: "category", label: "Category", type: "text" },
+      // category is a text[] in the DB (a project has several tags).
+      {
+        name: "category",
+        label: "Categories",
+        type: "string-list",
+        placeholder: "Web Development",
+      },
       {
         name: "type",
         label: "Type",
@@ -192,8 +223,17 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "select",
         options: ["completed", "ongoing", "unfinished"],
       },
+      { name: "company", label: "Company", type: "text" },
+      { name: "date", label: "Date", type: "date" },
       { name: "previewUrl", label: "Live URL", type: "url" },
       { name: "codeUrl", label: "Code URL", type: "url" },
+      {
+        name: "stack",
+        label: "Tech stack",
+        type: "string-list",
+        placeholder: "React",
+      },
+      { name: "hidden", label: "Hidden", type: "boolean" },
     ],
   },
 
@@ -213,10 +253,16 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "text",
         localized: true,
       },
+      {
+        name: "organizationAlt",
+        label: "Issuer logo alt text",
+        type: "text",
+        localized: true,
+      },
       { name: "issuedDate", label: "Issued date", type: "date" },
       { name: "credentialId", label: "Credential ID", type: "text" },
       { name: "credentialUrl", label: "Credential URL", type: "url" },
-      { name: "logo", label: "Issuer logo", type: "image" },
+      { name: "organizationImg", label: "Issuer logo", type: "image" },
     ],
   },
 
@@ -234,11 +280,23 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         name: "category",
         label: "Category",
         type: "select",
-        options: ["backend", "frontend", "others"],
+        options: [
+          "backend",
+          "frontend",
+          "design",
+          "devops",
+          "testing",
+          "tools",
+        ],
       },
-      { name: "rating", label: "Rating (1-10)", type: "number" },
-      { name: "dateStarted", label: "Started", type: "date" },
+      { name: "rate", label: "Rating (1-10)", type: "number" },
+      { name: "url", label: "URL", type: "url" },
       { name: "icon", label: "Icon", type: "image" },
+      { name: "alt", label: "Icon alt text", type: "text" },
+      { name: "isFavorite", label: "Favorite", type: "boolean" },
+      { name: "isStudying", label: "Currently learning", type: "boolean" },
+      { name: "dateStarted", label: "Started", type: "date" },
+      { name: "dateEnded", label: "Ended", type: "date-present" },
     ],
   },
 
@@ -279,6 +337,12 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "textarea",
         localized: true,
       },
+      {
+        name: "stack",
+        label: "Tech stack",
+        type: "string-list",
+        placeholder: "Spring Boot",
+      },
     ],
   },
 
@@ -293,6 +357,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     fields: [
       { name: "name", label: "Name", type: "text" },
       { name: "nativeName", label: "Native name", type: "text" },
+      { name: "locale", label: "Locale code", type: "text" },
       {
         name: "level",
         label: "Proficiency",
@@ -310,10 +375,12 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     singular: "Social link",
     icon: Share2,
     description: "GitHub, LinkedIn, email, etc.",
-    primaryField: "platform",
+    primaryField: "key",
     secondaryField: "url",
     fields: [
-      { name: "platform", label: "Platform", type: "text" },
+      // Source distinguishes key (e.g. "linkedIn") from icon (e.g. "linkedin").
+      { name: "key", label: "Key", type: "text" },
+      { name: "icon", label: "Icon", type: "text" },
       { name: "url", label: "URL", type: "url" },
     ],
   },
@@ -332,6 +399,14 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "company", label: "Company", type: "text" },
       { name: "text", label: "Quote", type: "textarea", localized: true },
       { name: "rating", label: "Rating (1-5)", type: "number" },
+      { name: "service", label: "Service", type: "text" },
+      {
+        name: "relationship",
+        label: "Relationship",
+        type: "select",
+        options: ["Colleague", "Manager", "Peer", "Mentor", "Client"],
+      },
+      { name: "links", label: "Social links", type: "link-list" },
       { name: "avatar", label: "Avatar", type: "image" },
     ],
   },

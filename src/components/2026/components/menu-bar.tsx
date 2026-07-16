@@ -307,10 +307,7 @@ export function MenuBar({
 
       {/* Right side */}
       <div className="flex items-center gap-1.5">
-        <nav
-          aria-label="Portfolio pages"
-          className="flex items-center gap-0.5"
-        >
+        <nav aria-label="Portfolio pages" className="flex items-center gap-0.5">
           {[
             { href: "/", label: "Home" },
             { href: "/2024", label: "2024" },

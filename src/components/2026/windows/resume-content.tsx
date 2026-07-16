@@ -19,6 +19,7 @@ import { useIsDark } from "../use-aurora";
 import { useIsMobile } from "../hooks";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { ResumeSkeleton } from "@/screens/2024/resume/templates/resume-skeleton";
+import { useResumeContent } from "@/screens/2024/resume/use-resume-content";
 
 const ResumeModern = dynamic(
   () =>
@@ -43,6 +44,7 @@ const ResumeAts = dynamic(
 
 export function ResumeContent() {
   useLocaleRefresh();
+  const content = useResumeContent();
   const isSystemDark = useIsDark();
   const isMobile = useIsMobile();
   type ResumeMode = "modern" | "ats";
@@ -90,7 +92,12 @@ export function ResumeContent() {
         import("@/screens/2024/resume/pdf/resume-document"),
       ]);
       const blob = await pdf(
-        <ResumeDocument mode={mode} colors={colors} isDark={isDark} />,
+        <ResumeDocument
+          mode={mode}
+          colors={colors}
+          isDark={isDark}
+          content={content}
+        />,
       ).toBlob();
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -105,7 +112,7 @@ export function ResumeContent() {
     } finally {
       setIsExporting(false);
     }
-  }, [mode, colors, isDark]);
+  }, [mode, colors, isDark, content]);
 
   const sectionLabelCls =
     "text-a26-muted font-mac block mb-2 text-[9px] font-bold tracking-[0.10em] uppercase";
@@ -471,9 +478,13 @@ export function ResumeContent() {
               }}
             >
               {mode === "ats" ? (
-                <ResumeAts colors={colors} isDark={isDark} />
+                <ResumeAts colors={colors} isDark={isDark} content={content} />
               ) : (
-                <ResumeModern colors={colors} isDark={isDark} />
+                <ResumeModern
+                  colors={colors}
+                  isDark={isDark}
+                  content={content}
+                />
               )}
             </div>
           </div>

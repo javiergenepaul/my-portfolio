@@ -68,7 +68,10 @@ export function AtsTemplate({
           {title}
         </p>
         {/* Contact line — plain selectable text + real links */}
-        <p className="text-[11px] mt-2 leading-relaxed" style={{ color: textMuted }}>
+        <p
+          className="text-[11px] mt-2 leading-relaxed"
+          style={{ color: textMuted }}
+        >
           {contact.phone}
           {" | "}
           <a href={`mailto:${contact.email}`} style={{ color: linkColor }}>
@@ -112,7 +115,10 @@ export function AtsTemplate({
           {experience.map((exp, i) => (
             <div key={i}>
               <div className="flex justify-between items-baseline">
-                <p className="text-[12px] font-bold" style={{ color: textDark }}>
+                <p
+                  className="text-[12px] font-bold"
+                  style={{ color: textDark }}
+                >
                   {exp.role}
                   <span style={{ color: textMed }}> — {exp.company}</span>
                   <span style={{ color: textMuted }}>
@@ -137,7 +143,10 @@ export function AtsTemplate({
                 </p>
               )}
 
-              <ul className="mt-1 ml-4 space-y-0.5" style={{ listStyleType: "disc" }}>
+              <ul
+                className="mt-1 ml-4 space-y-0.5"
+                style={{ listStyleType: "disc" }}
+              >
                 {exp.bullets.map((b, k) => (
                   <li
                     key={k}
@@ -195,7 +204,10 @@ export function AtsTemplate({
                   </span>
                 )}
               </p>
-              <ul className="mt-1 ml-4 space-y-0.5" style={{ listStyleType: "disc" }}>
+              <ul
+                className="mt-1 ml-4 space-y-0.5"
+                style={{ listStyleType: "disc" }}
+              >
                 {p.bullets.map((b, k) => (
                   <li
                     key={k}

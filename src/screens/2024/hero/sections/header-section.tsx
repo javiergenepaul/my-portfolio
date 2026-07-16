@@ -71,7 +71,9 @@ export const HeaderSection = () => {
         <div>
           <Link className="focus:outline-none" href={PATH.ABOUT.path}>
             <h1 className="font-bold tracking-tight select-none text-5xl md:text-5xl">
-              <span className="block lg:hidden">{translate("header.name")}</span>
+              <span className="block lg:hidden">
+                {translate("header.name")}
+              </span>
               <span className="hidden lg:block">
                 <BounceText
                   className="font-bold outline-none ring-0 focus:outline-none"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   FileText,
   ShieldCheck,
@@ -10,6 +11,7 @@ import {
   Pencil,
   Save,
   RotateCcw,
+  Loader2,
 } from "lucide-react";
 import {
   Button,
@@ -23,78 +25,14 @@ import {
   CONTENT_TYPES,
   type ContentTypeDef,
   type ContentRow,
-  type FieldValue,
-  type LinkItem,
 } from "./admin-config";
-import { getMockRows } from "./mock-data";
+import { saveResume } from "@/lib/content/actions";
 import { ContentList } from "./content-list";
 import { ContentEditForm } from "./content-edit-form";
 import { AtsTemplate } from "@/screens/2024/resume/templates/ats-template";
 import { ModernTemplate } from "@/screens/2024/resume/templates/modern-template";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
-import {
-  RESUME_DEFAULT,
-  type ResumeData,
-} from "@/screens/2024/resume/resume-content";
-
-// ── Draft → résumé content (drives the live preview) ────────────────────────
-const str = (v: FieldValue | undefined) => (typeof v === "string" ? v : "");
-const arr = (v: FieldValue | undefined) =>
-  Array.isArray(v)
-    ? v.filter((x): x is string => typeof x === "string" && x.length > 0)
-    : [];
-const linkArr = (v: FieldValue | undefined): LinkItem[] =>
-  Array.isArray(v) ? (v.filter((x) => typeof x === "object") as LinkItem[]) : [];
-const linkLabel = (url: string) =>
-  url.replace(/^https?:\/\//, "").replace(/\/$/, "");
-
-function draftToResumeContent(draft: Record<string, ContentRow[]>): ResumeData {
-  const ov = draft["resume-overview"]?.[0]?.values ?? {};
-  const pub = (key: string) => (draft[key] ?? []).filter((r) => r.published);
-  return {
-    name: RESUME_DEFAULT.name,
-    title: RESUME_DEFAULT.title,
-    contact: {
-      phone: str(ov.phone),
-      email: str(ov.email),
-      location: str(ov.location),
-      links: linkArr(ov.links)
-        .filter((l) => l.url.trim().length > 0)
-        .map((l) => ({ url: l.url, label: linkLabel(l.url) })),
-    },
-    summary: str(ov.summary),
-    experience: pub("resume-experience").map((r) => ({
-      role: str(r.values.role),
-      company: str(r.values.company),
-      employmentType: str(r.values.employmentType),
-      location: str(r.values.location),
-      period: str(r.values.period),
-      promotion: str(r.values.promotion) || undefined,
-      bullets: arr(r.values.bullets),
-    })),
-    projects: pub("resume-projects").map((r) => ({
-      name: str(r.values.name),
-      context: str(r.values.context) || undefined,
-      url: str(r.values.url) || undefined,
-      bullets: arr(r.values.bullets),
-      stack: arr(r.values.stack),
-    })),
-    skills: pub("resume-skills").map((r) => ({
-      label: str(r.values.label),
-      items: arr(r.values.items),
-    })),
-    education: pub("resume-education").map((r) => ({
-      degree: str(r.values.degree),
-      school: str(r.values.school),
-      period: str(r.values.period),
-    })),
-    certifications: pub("resume-certifications").map((r) => ({
-      issuer: str(r.values.issuer),
-      year: str(r.values.year),
-      titles: arr(r.values.titles),
-    })),
-  };
-}
+import { rowsToResumeData } from "@/screens/2024/resume/resume-data";
 
 const RESUME_SECTIONS = CONTENT_TYPES.filter((t) => t.group === "Resume");
 
@@ -105,23 +43,26 @@ const PREVIEW_COLORS: ResumeColorConfig = {
   text: "#FFFFFF",
 };
 
-function makeInitialDraft(): Record<string, ContentRow[]> {
-  return Object.fromEntries(
-    RESUME_SECTIONS.map((t) => [t.key, structuredClone(getMockRows(t.key))]),
-  );
-}
-
-export function ResumeManager() {
+export function ResumeManager({
+  /** Rows for every résumé section, fetched server-side from Supabase. */
+  initialSections,
+}: {
+  initialSections: Record<string, ContentRow[]>;
+}) {
   const { toast } = useToast();
+  const router = useRouter();
   const [mode, setMode] = useState<"ats" | "modern">("ats");
   const [isDark, setIsDark] = useState(false);
   const [section, setSection] = useState<ContentTypeDef | null>(null);
+  const [saving, setSaving] = useState(false);
 
   // Working draft (edited in the modals) + the last-saved snapshot to revert to.
-  const [savedDraft, setSavedDraft] =
-    useState<Record<string, ContentRow[]>>(makeInitialDraft);
-  const [draft, setDraft] =
-    useState<Record<string, ContentRow[]>>(makeInitialDraft);
+  const [savedDraft, setSavedDraft] = useState<Record<string, ContentRow[]>>(
+    () => structuredClone(initialSections),
+  );
+  const [draft, setDraft] = useState<Record<string, ContentRow[]>>(() =>
+    structuredClone(initialSections),
+  );
   const [dirty, setDirty] = useState(false);
 
   const updateSection = (key: string, rows: ContentRow[]) => {
@@ -134,15 +75,42 @@ export function ResumeManager() {
     });
   };
 
-  const saveAll = () => {
-    setSavedDraft(structuredClone(draft));
-    setDirty(false);
-    toast({
-      title: "Résumé saved (simulated)",
-      description:
-        "In the prototype nothing persists yet — Supabase wiring comes next.",
-      duration: 3500,
-    });
+  const saveAll = async () => {
+    setSaving(true);
+    try {
+      const payload = Object.fromEntries(
+        RESUME_SECTIONS.map((t) => [
+          t.key,
+          (draft[t.key] ?? []).map((r) => ({
+            // Rows added in the admin carry a temporary client id — drop it so
+            // they're inserted rather than treated as an existing row.
+            id: r.id.startsWith("tmp-") ? undefined : r.id,
+            published: r.published,
+            values: r.values,
+          })),
+        ]),
+      );
+
+      await saveResume(payload);
+
+      setSavedDraft(structuredClone(draft));
+      setDirty(false);
+      toast({
+        title: "Résumé saved",
+        description: "Your changes are live in the database.",
+        duration: 3000,
+      });
+      router.refresh();
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Save failed",
+        description: e instanceof Error ? e.message : "Unknown error",
+        duration: 8000,
+      });
+    } finally {
+      setSaving(false);
+    }
   };
 
   const resetAll = () => {
@@ -156,7 +124,7 @@ export function ResumeManager() {
   };
 
   // Live preview content, recomputed from the draft on every edit.
-  const previewContent = draftToResumeContent(draft);
+  const previewContent = rowsToResumeData(draft);
 
   const previewRef = useRef<HTMLDivElement>(null);
   const [zoom, setZoom] = useState(0.5);
@@ -192,12 +160,26 @@ export function ResumeManager() {
             </span>
           )}
           {dirty && (
-            <Button variant="outline" onClick={resetAll} className="gap-1.5">
+            <Button
+              variant="outline"
+              onClick={resetAll}
+              disabled={saving}
+              className="gap-1.5"
+            >
               <RotateCcw size={15} /> Reset
             </Button>
           )}
-          <Button onClick={saveAll} disabled={!dirty} className="gap-1.5">
-            <Save size={15} /> Save changes
+          <Button
+            onClick={() => void saveAll()}
+            disabled={!dirty || saving}
+            className="gap-1.5"
+          >
+            {saving ? (
+              <Loader2 size={15} className="animate-spin" />
+            ) : (
+              <Save size={15} />
+            )}
+            {saving ? "Saving…" : "Save changes"}
           </Button>
         </div>
       </div>

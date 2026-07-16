@@ -69,7 +69,10 @@ export function SimpleTemplatePdf({
   };
 
   return (
-    <Page size="A4" style={{ ...f.base, backgroundColor: pageBg, color: textDark }}>
+    <Page
+      size="A4"
+      style={{ ...f.base, backgroundColor: pageBg, color: textDark }}
+    >
       {/*
         Fixed, full-page-height colour panel for the left column — repeats on
         every page at a constant size so the tint continues even where the
@@ -217,7 +220,9 @@ export function SimpleTemplatePdf({
         </View>
 
         {/* RIGHT COLUMN */}
-        <View style={{ flexGrow: 1, flexBasis: 0, padding: `${px(16)} ${px(24)}` }}>
+        <View
+          style={{ flexGrow: 1, flexBasis: 0, padding: `${px(16)} ${px(24)}` }}
+        >
           {/* Qualifications Summary */}
           <SectionDivider
             title={translate("win26.resume.sectionQualSummary")}
@@ -249,7 +254,11 @@ export function SimpleTemplatePdf({
                     .slice(0, 3)
                     .map((s) => s.trim().replace(/\.$/, "") + ".");
             return (
-              <View key={i} style={{ marginTop: i === 0 ? 0 : px(12) }} wrap={false}>
+              <View
+                key={i}
+                style={{ marginTop: i === 0 ? 0 : px(12) }}
+                wrap={false}
+              >
                 <EntryHeader
                   title={exp.title}
                   subtitle={subtitle}
@@ -282,7 +291,9 @@ export function SimpleTemplatePdf({
                   p.stack
                     ? p.stack
                         .slice(0, 5)
-                        .map((s) => translate(`services.stack.${s.name}` as any))
+                        .map((s) =>
+                          translate(`services.stack.${s.name}` as any),
+                        )
                         .join(" · ")
                     : undefined
                 }
@@ -375,12 +386,16 @@ function EntryHeader({
   return (
     <View style={{ marginBottom: px(2) }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ ...f.bold, fontSize: px(11), color: textDark, flexGrow: 1 }}>
+        <Text
+          style={{ ...f.bold, fontSize: px(11), color: textDark, flexGrow: 1 }}
+        >
           <Text style={{ color: accent }}>//</Text>
           {title}
         </Text>
         {date && (
-          <Text style={{ fontSize: px(9), color: textMuted, marginLeft: px(8) }}>
+          <Text
+            style={{ fontSize: px(9), color: textMuted, marginLeft: px(8) }}
+          >
             {date}
           </Text>
         )}
@@ -403,7 +418,9 @@ function BulletList({ items, color }: { items: string[]; color: string }) {
           key={i}
           style={{ flexDirection: "row", marginTop: i === 0 ? 0 : px(2) }}
         >
-          <Text style={{ fontSize: px(9.5), color, marginRight: px(5) }}>•</Text>
+          <Text style={{ fontSize: px(9.5), color, marginRight: px(5) }}>
+            •
+          </Text>
           <Text
             style={{
               fontSize: px(9.5),

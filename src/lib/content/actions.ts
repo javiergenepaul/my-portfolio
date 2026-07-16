@@ -71,23 +71,32 @@ export async function deleteContentRow(
   revalidatePath("/admin", "layout");
 }
 
+export type ReplaceRow = {
+  /** Omit for new rows. */
+  id?: string;
+  published: boolean;
+  values: Record<string, FieldValue>;
+};
+
+type AdminClient = Awaited<ReturnType<typeof requireAdmin>>;
+
 /**
- * Replace every row of a type in one shot — backs the résumé's single "Save
- * changes". Rows without an id are inserted, rows missing from the payload are
- * deleted, and sort_order follows the array order.
+ * Make a type's table match `rows` exactly: rows without an id are inserted,
+ * rows missing from the payload are deleted, and sort_order follows the array
+ * order. Caller is responsible for auth + revalidation.
  */
-export async function replaceContentRows(
-  type: string,
-  rows: { id?: string; published: boolean; values: Record<string, FieldValue> }[],
+async function replaceRows(
+  supabase: AdminClient,
+  typeKey: string,
+  rows: ReplaceRow[],
 ): Promise<void> {
-  const supabase = await requireAdmin();
-  const def = defFor(type);
+  const def = defFor(typeKey);
   const table = tableFor(def);
 
   const { data: existing, error: readErr } = await supabase
     .from(table)
     .select("id");
-  if (readErr) throw new Error(readErr.message);
+  if (readErr) throw new Error(`${table}: ${readErr.message}`);
 
   const keptIds = rows.map((r) => r.id).filter(Boolean) as string[];
   const removed = (existing ?? [])
@@ -96,7 +105,7 @@ export async function replaceContentRows(
 
   if (removed.length) {
     const { error } = await supabase.from(table).delete().in("id", removed);
-    if (error) throw new Error(error.message);
+    if (error) throw new Error(`${table}: ${error.message}`);
   }
 
   for (const [i, row] of rows.entries()) {
@@ -108,8 +117,31 @@ export async function replaceContentRows(
     const { error } = row.id
       ? await supabase.from(table).update(payload).eq("id", row.id)
       : await supabase.from(table).insert(payload);
-    if (error) throw new Error(error.message);
+    if (error) throw new Error(`${table}: ${error.message}`);
   }
+}
 
+/** Replace every row of a single type. */
+export async function replaceContentRows(
+  type: string,
+  rows: ReplaceRow[],
+): Promise<void> {
+  const supabase = await requireAdmin();
+  await replaceRows(supabase, type, rows);
   revalidatePath("/admin", "layout");
+}
+
+/**
+ * Save every résumé section at once — backs the résumé's single "Save changes"
+ * (edit freely across sections, commit in one go).
+ */
+export async function saveResume(
+  sections: Record<string, ReplaceRow[]>,
+): Promise<void> {
+  const supabase = await requireAdmin();
+  for (const [type, rows] of Object.entries(sections)) {
+    await replaceRows(supabase, type, rows);
+  }
+  revalidatePath("/admin", "layout");
+  revalidatePath("/2024/resume"); // public résumé reads these tables
 }

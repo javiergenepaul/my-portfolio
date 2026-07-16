@@ -76,7 +76,11 @@ export function TestimonialRequests() {
       await navigator.clipboard.writeText(linkFor(token));
       toast({ title: "Link copied", duration: 2500 });
     } catch {
-      toast({ variant: "destructive", title: "Couldn't copy", description: linkFor(token) });
+      toast({
+        variant: "destructive",
+        title: "Couldn't copy",
+        description: linkFor(token),
+      });
     }
   };
 
@@ -157,7 +161,9 @@ export function TestimonialRequests() {
             <TableRow className="hover:bg-transparent">
               <TableHead>Recipient</TableHead>
               <TableHead className="w-28">Status</TableHead>
-              <TableHead className="hidden sm:table-cell w-32">Created</TableHead>
+              <TableHead className="hidden sm:table-cell w-32">
+                Created
+              </TableHead>
               <TableHead className="w-56 text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -271,7 +277,11 @@ export function TestimonialRequests() {
                 </DialogDescription>
               </DialogHeader>
               <div className="flex gap-2">
-                <Input readOnly value={linkFor(generated.token)} className="text-xs" />
+                <Input
+                  readOnly
+                  value={linkFor(generated.token)}
+                  className="text-xs"
+                />
                 <Button
                   variant="outline"
                   className="gap-1.5 shrink-0"
@@ -335,7 +345,11 @@ export function TestimonialRequests() {
                 <Button variant="outline" onClick={() => setCreateOpen(false)}>
                   Cancel
                 </Button>
-                <Button onClick={onGenerate} disabled={!name.trim()} className="gap-1.5">
+                <Button
+                  onClick={onGenerate}
+                  disabled={!name.trim()}
+                  className="gap-1.5"
+                >
                   <Send size={15} /> Generate link
                 </Button>
               </DialogFooter>

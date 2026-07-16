@@ -32,10 +32,7 @@ if (!url || !key) {
 const db = createClient(url, key, { auth: { persistSession: false } });
 
 async function replace(table: string, rows: Record<string, unknown>[]) {
-  const { error: delErr } = await db
-    .from(table)
-    .delete()
-    .not("id", "is", null); // delete-all needs a filter
+  const { error: delErr } = await db.from(table).delete().not("id", "is", null); // delete-all needs a filter
   if (delErr) throw new Error(`${table} clear failed: ${delErr.message}`);
 
   if (rows.length) {

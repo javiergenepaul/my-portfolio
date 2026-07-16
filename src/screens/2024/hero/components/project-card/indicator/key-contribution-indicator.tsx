@@ -17,7 +17,10 @@ export const KeyContributionIndicator = (
       <div className="hidden lg:block">
         <HoverCard>
           <HoverCardTrigger asChild>
-            <button type="button" className="bg-transparent border-0 p-0 text-left">
+            <button
+              type="button"
+              className="bg-transparent border-0 p-0 text-left"
+            >
               <IndicatorContainer>
                 <Layers className="group-hover:text-primary" />
                 <p className="hidden md:block group-hover:text-primary">

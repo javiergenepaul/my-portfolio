@@ -48,7 +48,12 @@ export function ResumeSkeleton({ isDark = false }: ResumeSkeletonProps) {
         <div
           key={i}
           className="animate-pulse"
-          style={{ width: 6, height: 6, borderRadius: 999, backgroundColor: bar }}
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: 999,
+            backgroundColor: bar,
+          }}
         />
       ))}
     </div>
@@ -119,7 +124,10 @@ export function ResumeSkeleton({ isDark = false }: ResumeSkeletonProps) {
 
           {/* Skill groups: label + rows of (name • dots) */}
           {Array.from({ length: 2 }).map((_, g) => (
-            <div key={g} style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+            <div
+              key={g}
+              style={{ display: "flex", flexDirection: "column", gap: 9 }}
+            >
               <Bar w="55%" h={9} />
               {Array.from({ length: 4 }).map((_, r) => (
                 <div
@@ -156,7 +164,10 @@ export function ResumeSkeleton({ isDark = false }: ResumeSkeletonProps) {
           }}
         >
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div
+              key={i}
+              style={{ display: "flex", flexDirection: "column", gap: 10 }}
+            >
               {/* entry title + date */}
               <div
                 style={{
@@ -170,7 +181,14 @@ export function ResumeSkeleton({ isDark = false }: ResumeSkeletonProps) {
               </div>
               <Bar w="34%" h={9} soft />
               {/* bullet lines */}
-              <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 6,
+                  marginTop: 2,
+                }}
+              >
                 <Bar w="100%" soft />
                 <Bar w="97%" soft />
                 <Bar w="90%" soft />

@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { createPublicClient } from "@/lib/supabase/public";
 import {
+  CONTENT_TYPES,
   type ContentRow,
   type ContentTypeDef,
   type FieldDef,
@@ -123,4 +124,34 @@ export async function getAdminSingleton(
   def: ContentTypeDef,
 ): Promise<ContentRow | undefined> {
   return (await getAdminRows(def))[0];
+}
+
+/** Published rows for every résumé section, keyed by content-type key. */
+export async function getPublishedResumeSections(): Promise<
+  Record<string, ContentRow[]>
+> {
+  const sections = CONTENT_TYPES.filter((t) => t.group === "Resume");
+  const entries = await Promise.all(
+    sections.map(async (t) => [t.key, await getPublishedRows(t)] as const),
+  );
+  return Object.fromEntries(entries);
+}
+
+export type TypeCount = { total: number; published: number };
+
+/** Per-type row counts for the dashboard cards (one small query per table). */
+export async function getAdminCounts(): Promise<Record<string, TypeCount>> {
+  const supabase = await createClient();
+  const entries = await Promise.all(
+    CONTENT_TYPES.map(async (def) => {
+      const { data, error } = await supabase
+        .from(tableFor(def))
+        .select("published");
+      if (error) throw new Error(`count "${def.key}": ${error.message}`);
+      const rows = (data ?? []) as { published: boolean }[];
+      const published = rows.filter((r) => r.published).length;
+      return [def.key, { total: rows.length, published }] as const;
+    }),
+  );
+  return Object.fromEntries(entries);
 }

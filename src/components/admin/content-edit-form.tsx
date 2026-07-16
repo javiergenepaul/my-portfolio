@@ -12,6 +12,7 @@ import {
   Check,
   Plus,
   X,
+  Loader2,
 } from "lucide-react";
 import {
   Button,
@@ -41,6 +42,7 @@ import {
   SOCIAL_PLATFORMS,
   getPlatform,
 } from "@/components/testimonial/social-platforms";
+import { saveContentRow, deleteContentRow } from "@/lib/content/actions";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
   const v: Record<string, FieldValue> = {};
@@ -83,6 +85,7 @@ export function ContentEditForm({
   );
   const [published, setPublished] = useState(row?.published ?? false);
   const [locale, setLocale] = useState<LocaleCode>("en");
+  const [busy, setBusy] = useState(false);
 
   const hasLocalized = type.fields.some((f) => f.localized);
 
@@ -99,28 +102,57 @@ export function ContentEditForm({
     else if (!type.singleton) router.push(`/admin/${type.key}`);
   };
 
-  const onSave = () => {
+  const onSave = async () => {
     if (onSubmit) {
       // Draft mode — hand the data up; the parent persists on its own Save.
       onSubmit({ id: row?.id, published, values });
-    } else {
-      toast({
-        title: isNew ? "Created (simulated)" : "Saved (simulated)",
-        description:
-          "This prototype doesn't persist yet — Supabase wiring is the next step.",
-        duration: 3500,
-      });
+      finish();
+      return;
     }
-    finish();
+    // Standalone mode (singleton / deep-link edit) — persist directly.
+    setBusy(true);
+    try {
+      await saveContentRow({ type: type.key, id: row?.id, published, values });
+      toast({
+        title: isNew ? "Created" : "Saved",
+        description: "Your changes are live in the database.",
+        duration: 3000,
+      });
+      router.refresh();
+      finish();
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Save failed",
+        description: e instanceof Error ? e.message : "Unknown error",
+        duration: 8000,
+      });
+    } finally {
+      setBusy(false);
+    }
   };
-  const onDelete = () => {
-    toast({
-      variant: "destructive",
-      title: "Deleted (simulated)",
-      description: "No data was actually removed.",
-      duration: 3000,
-    });
-    finish();
+  const onDelete = async () => {
+    if (!row) return;
+    setBusy(true);
+    try {
+      await deleteContentRow(type.key, row.id);
+      toast({
+        variant: "destructive",
+        title: "Deleted",
+        description: `${type.singular} removed from the database.`,
+        duration: 3000,
+      });
+      router.refresh();
+      finish();
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Delete failed",
+        description: e instanceof Error ? e.message : "Unknown error",
+        duration: 8000,
+      });
+      setBusy(false);
+    }
   };
 
   const title = type.singleton
@@ -201,19 +233,28 @@ export function ContentEditForm({
           {!isNew && !type.singleton && !onSubmit && (
             <Button
               variant="ghost"
-              onClick={onDelete}
+              onClick={() => void onDelete()}
+              disabled={busy}
               className="gap-1.5 text-muted-foreground hover:text-destructive"
             >
               <Trash2 size={15} /> Delete
             </Button>
           )}
           <div className="ml-auto flex gap-2">
-            <Button variant="outline" onClick={finish}>
+            <Button variant="outline" onClick={finish} disabled={busy}>
               Cancel
             </Button>
-            <Button onClick={onSave} className="gap-1.5">
+            <Button
+              onClick={() => void onSave()}
+              disabled={busy}
+              className="gap-1.5"
+            >
               {onSubmit ? (
                 "Done"
+              ) : busy ? (
+                <>
+                  <Loader2 size={15} className="animate-spin" /> Saving…
+                </>
               ) : (
                 <>
                   <Save size={15} /> Save
@@ -232,14 +273,21 @@ export function ContentEditForm({
       <div className="flex items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-3 min-w-0">
           {!type.singleton && (
-            <Button asChild variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 shrink-0"
+            >
               <Link href={`/admin/${type.key}`}>
                 <ArrowLeft size={16} />
               </Link>
             </Button>
           )}
           <div className="min-w-0">
-            <h1 className="text-xl font-semibold capitalize truncate">{title}</h1>
+            <h1 className="text-xl font-semibold capitalize truncate">
+              {title}
+            </h1>
             <p className="text-xs text-muted-foreground">{type.label}</p>
           </div>
         </div>
@@ -249,14 +297,24 @@ export function ContentEditForm({
               variant="ghost"
               size="icon"
               className="h-9 w-9 text-muted-foreground hover:text-destructive"
-              onClick={onDelete}
+              onClick={() => void onDelete()}
+              disabled={busy}
               title="Delete"
             >
               <Trash2 size={16} />
             </Button>
           )}
-          <Button onClick={onSave} className="gap-1.5">
-            <Save size={15} /> Save
+          <Button
+            onClick={() => void onSave()}
+            disabled={busy}
+            className="gap-1.5"
+          >
+            {busy ? (
+              <Loader2 size={15} className="animate-spin" />
+            ) : (
+              <Save size={15} />
+            )}
+            {busy ? "Saving…" : "Save"}
           </Button>
         </div>
       </div>
@@ -348,10 +406,7 @@ function FieldRow({
       )}
 
       {field.type === "date-present" && (
-        <DatePresentField
-          value={plainVal}
-          onChange={(v) => onPlain(v)}
-        />
+        <DatePresentField value={plainVal} onChange={(v) => onPlain(v)} />
       )}
 
       {field.type === "string-list" && (
@@ -382,7 +437,10 @@ function FieldRow({
 
       {field.type === "boolean" && (
         <div className="pt-1">
-          <Switch checked={value === true} onCheckedChange={(c) => onPlain(c)} />
+          <Switch
+            checked={value === true}
+            onCheckedChange={(c) => onPlain(c)}
+          />
         </div>
       )}
 

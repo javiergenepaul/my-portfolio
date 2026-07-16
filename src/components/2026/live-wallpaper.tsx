@@ -500,7 +500,6 @@ function CanvasOverlay() {
         clockRef.current,
         getGpmTunesVisualizerState(),
       );
-
     };
 
     // Honor reduced-motion: render one static frame, skip the animation loop.

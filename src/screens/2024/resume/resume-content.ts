@@ -254,7 +254,7 @@ export const RESUME_SKILLS: ResumeSkillGroup[] = [
       "Agile / Scrum",
       "Jira",
       "Asana",
-      "TFS"
+      "TFS",
     ],
   },
 ];

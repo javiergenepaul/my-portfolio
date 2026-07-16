@@ -49,7 +49,7 @@ const DrawerContent = React.forwardRef<
       <div className="mx-auto mt-4 h-2 w-25 rounded-full bg-muted" />
       {children}
     </DrawerPrimitive.Content>
-  </DrawerPortal> 
+  </DrawerPortal>
 ));
 DrawerContent.displayName = "DrawerContent";
 

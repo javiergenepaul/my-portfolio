@@ -77,17 +77,17 @@ function AdminShell({ children }: { children: React.ReactNode }) {
           <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
             Content
           </p>
-          {CONTENT_TYPES.filter((t) => (t.group ?? "Content") === "Content").map(
-            (t) => (
-              <NavItem
-                key={t.key}
-                href={`/admin/${t.key}`}
-                active={pathname.startsWith(`/admin/${t.key}`)}
-                icon={<t.icon size={16} />}
-                label={t.label}
-              />
-            ),
-          )}
+          {CONTENT_TYPES.filter(
+            (t) => (t.group ?? "Content") === "Content",
+          ).map((t) => (
+            <NavItem
+              key={t.key}
+              href={`/admin/${t.key}`}
+              active={pathname.startsWith(`/admin/${t.key}`)}
+              icon={<t.icon size={16} />}
+              label={t.label}
+            />
+          ))}
 
           <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
             Tools

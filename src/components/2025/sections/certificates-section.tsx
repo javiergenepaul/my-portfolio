@@ -67,7 +67,10 @@ export function CertificatesSection() {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemAnim}
-              whileHover={{ y: -4, boxShadow: "0 10px 30px rgba(225,29,72,0.18)" }}
+              whileHover={{
+                y: -4,
+                boxShadow: "0 10px 30px rgba(225,29,72,0.18)",
+              }}
               style={{
                 padding: "16px",
                 borderRadius: "14px",
@@ -98,7 +101,11 @@ export function CertificatesSection() {
                 <img
                   src={logo}
                   alt={cert.organizationAlt}
-                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
                 />
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>

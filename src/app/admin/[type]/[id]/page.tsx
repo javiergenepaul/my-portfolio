@@ -1,13 +1,14 @@
-"use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { getContentType } from "@/components/admin/admin-config";
-import { ContentEditForm } from "@/components/admin/content-edit-form";
-import { getMockRow } from "@/components/admin/mock-data";
+import { ContentEditClient } from "@/components/admin/content-edit-client";
+import { getAdminRows } from "@/lib/content/repository";
 
-export default function AdminEditPage() {
-  const { type: typeKey, id } = useParams<{ type: string; id: string }>();
+export default async function AdminEditPage({
+  params,
+}: {
+  params: Promise<{ type: string; id: string }>;
+}) {
+  const { type: typeKey, id } = await params;
   const type = getContentType(typeKey);
 
   if (!type) {
@@ -22,7 +23,9 @@ export default function AdminEditPage() {
   }
 
   const isNew = id === "new";
-  const row = isNew ? undefined : getMockRow(type.key, id);
+  const row = isNew
+    ? undefined
+    : (await getAdminRows(type)).find((r) => r.id === id);
 
   if (!isNew && !row) {
     return (
@@ -42,5 +45,5 @@ export default function AdminEditPage() {
     );
   }
 
-  return <ContentEditForm type={type} row={row} />;
+  return <ContentEditClient typeKey={type.key} row={row} />;
 }

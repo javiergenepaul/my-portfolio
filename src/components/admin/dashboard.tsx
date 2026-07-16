@@ -3,18 +3,25 @@
 import Link from "next/link";
 import { ArrowRight, Pencil, FileText } from "lucide-react";
 import { CONTENT_TYPES, type ContentTypeDef } from "./admin-config";
-import { getMockRows } from "./mock-data";
 import { useAdminAuth } from "./admin-auth";
+import type { TypeCount } from "@/lib/content/repository";
 
 // Resume leads, then the rest of the content — matches the admin nav order.
 const GROUPS = ["Resume", "Content"];
 
-export function Dashboard() {
+const EMPTY: TypeCount = { total: 0, published: 0 };
+
+export function Dashboard({
+  /** Per-type row counts fetched server-side, keyed by content-type key. */
+  counts,
+}: {
+  counts: Record<string, TypeCount>;
+}) {
   const { user } = useAdminAuth();
   const firstName = user?.name?.split(" ")[0] ?? "there";
 
   const totalItems = CONTENT_TYPES.reduce(
-    (n, t) => n + getMockRows(t.key).length,
+    (n, t) => n + (counts[t.key]?.total ?? 0),
     0,
   );
 
@@ -42,7 +49,13 @@ export function Dashboard() {
               {group === "Resume" ? (
                 <ResumeCard count={items.length} />
               ) : (
-                items.map((t) => <TypeCard key={t.key} type={t} />)
+                items.map((t) => (
+                  <TypeCard
+                    key={t.key}
+                    type={t}
+                    count={counts[t.key] ?? EMPTY}
+                  />
+                ))
               )}
             </div>
           </section>
@@ -80,10 +93,15 @@ function ResumeCard({ count }: { count: number }) {
   );
 }
 
-function TypeCard({ type: t }: { type: ContentTypeDef }) {
-  const rows = getMockRows(t.key);
-  const published = rows.filter((r) => r.published).length;
-  const drafts = rows.length - published;
+function TypeCard({
+  type: t,
+  count,
+}: {
+  type: ContentTypeDef;
+  count: TypeCount;
+}) {
+  const { total, published } = count;
+  const drafts = total - published;
 
   return (
     <Link
