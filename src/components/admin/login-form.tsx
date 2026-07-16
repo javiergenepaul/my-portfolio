@@ -1,27 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Lock, ShieldCheck, LogIn } from "lucide-react";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ShieldCheck, LogIn, Loader2, TriangleAlert } from "lucide-react";
 import { Button, Input, Label } from "@/components";
-import { useAdminAuth } from "./admin-auth";
+import { createClient } from "@/lib/supabase/client";
 
 export function LoginForm() {
   const router = useRouter();
-  const { login, isAuthenticated, ready } = useAdminAuth();
-  const [email, setEmail] = useState("gene@admin.dev");
-  const [password, setPassword] = useState("password");
+  const searchParams = useSearchParams();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  // Already signed in → go straight to the dashboard.
-  useEffect(() => {
-    if (ready && isAuthenticated) router.replace("/admin");
-  }, [ready, isAuthenticated, router]);
-
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    login(email.trim());
-    router.replace("/admin");
+    setError(null);
+    setLoading(true);
+
+    const supabase = createClient();
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
+
+    if (signInError) {
+      // Supabase returns a deliberately vague message for bad credentials —
+      // keep it that way rather than revealing whether the email exists.
+      setError(signInError.message);
+      setLoading(false);
+      return;
+    }
+
+    // Send them where they were headed, or the dashboard.
+    const next = searchParams.get("next");
+    router.replace(next && next.startsWith("/admin") ? next : "/admin");
+    router.refresh();
   };
 
   return (
@@ -52,6 +67,8 @@ export function LoginForm() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               autoComplete="email"
+              required
+              disabled={loading}
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -63,24 +80,31 @@ export function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               autoComplete="current-password"
+              required
+              disabled={loading}
             />
           </div>
 
-          <Button type="submit" className="w-full gap-2 mt-1">
-            <LogIn size={16} />
-            Sign in
+          {error && (
+            <div className="flex items-start gap-2 rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2.5 text-xs text-destructive">
+              <TriangleAlert size={13} className="mt-0.5 shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            disabled={loading || !email.trim() || !password}
+            className="w-full gap-2 mt-1"
+          >
+            {loading ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <LogIn size={16} />
+            )}
+            {loading ? "Signing in…" : "Sign in"}
           </Button>
         </form>
-
-        {/* Prototype banner — makes the fake auth unmistakable. */}
-        <div className="mt-4 flex items-start gap-2 rounded-lg border border-dashed border-amber-500/40 bg-amber-500/5 px-3 py-2.5 text-xs text-muted-foreground">
-          <Lock size={13} className="mt-0.5 shrink-0 text-amber-500" />
-          <span>
-            <b className="text-foreground">Simulated login.</b> Any email/password
-            works — this is a UI prototype. Real Supabase Auth (gated by
-            middleware + RLS) gets wired in later.
-          </span>
-        </div>
       </div>
     </div>
   );

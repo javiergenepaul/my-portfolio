@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   LogOut,
@@ -22,19 +21,13 @@ import { useAdminAuth } from "./admin-auth";
  */
 export function AdminGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
-  const { ready, isAuthenticated } = useAdminAuth();
-  const isLoginRoute = pathname === "/admin/login";
+  const { user } = useAdminAuth();
 
-  useEffect(() => {
-    if (!isLoginRoute && ready && !isAuthenticated) {
-      router.replace("/admin/login");
-    }
-  }, [isLoginRoute, ready, isAuthenticated, router]);
+  if (pathname === "/admin/login") return <>{children}</>;
 
-  if (isLoginRoute) return <>{children}</>;
-
-  if (!ready || !isAuthenticated) {
+  // middleware.ts already blocks unauthenticated requests to /admin/** — this
+  // is just a defensive fallback so we never render the shell without a user.
+  if (!user) {
     return (
       <div className="min-h-dvh flex items-center justify-center bg-background text-muted-foreground">
         <Loader2 className="animate-spin" size={22} />
@@ -47,12 +40,10 @@ export function AdminGate({ children }: { children: React.ReactNode }) {
 
 function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { user, logout } = useAdminAuth();
-  const router = useRouter();
+  const { user, signOut } = useAdminAuth();
 
   const onSignOut = () => {
-    logout();
-    router.replace("/admin/login");
+    void signOut();
   };
 
   return (

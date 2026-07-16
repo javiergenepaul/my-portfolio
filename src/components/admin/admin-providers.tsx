@@ -1,11 +1,17 @@
 "use client";
 
-import { AdminAuthProvider } from "./admin-auth";
+import { AdminAuthProvider, type AdminUser } from "./admin-auth";
 import { AdminGate } from "./admin-shell";
 
-export function AdminProviders({ children }: { children: React.ReactNode }) {
+export function AdminProviders({
+  user,
+  children,
+}: {
+  user: AdminUser | null;
+  children: React.ReactNode;
+}) {
   return (
-    <AdminAuthProvider>
+    <AdminAuthProvider user={user}>
       <AdminGate>{children}</AdminGate>
     </AdminAuthProvider>
   );
