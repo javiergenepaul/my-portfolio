@@ -54,6 +54,10 @@ export function ContentList({
   const primaryLocalized = type.fields.find(
     (f) => f.name === type.primaryField,
   )?.localized;
+  // Header for the secondary column = that field's label (e.g. "Category"),
+  // falling back to a generic label.
+  const secondaryLabel =
+    type.fields.find((f) => f.name === type.secondaryField)?.label ?? "Detail";
 
   // Drawer state: `target` holds the row being edited ("new" for create); it's
   // kept while closing so the slide-out animation still has content to show.
@@ -147,7 +151,9 @@ export function ContentList({
               <TableHead className="w-8" />
               <TableHead>{type.singular}</TableHead>
               {type.secondaryField && (
-                <TableHead className="hidden sm:table-cell">Detail</TableHead>
+                <TableHead className="hidden sm:table-cell">
+                  {secondaryLabel}
+                </TableHead>
               )}
               {primaryLocalized && (
                 <TableHead className="hidden md:table-cell w-40">

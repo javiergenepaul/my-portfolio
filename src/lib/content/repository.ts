@@ -31,7 +31,12 @@ export function columnFor(fieldName: string): string {
 /** What an empty value looks like for each field type (DB null → admin shape). */
 function emptyFor(f: FieldDef): FieldValue {
   if (f.localized) return {};
-  if (f.type === "string-list" || f.type === "link-list") return [];
+  if (
+    f.type === "string-list" ||
+    f.type === "stack-list" ||
+    f.type === "link-list"
+  )
+    return [];
   if (f.type === "boolean") return false;
   return "";
 }
@@ -52,11 +57,11 @@ function toContentRow(
   const values: Record<string, FieldValue> = {};
   for (const f of def.fields) {
     const raw = r[columnFor(f.name)];
-    // number columns come back as numbers; the admin's inputs are strings.
+    // number/rating columns come back as numbers; the admin's inputs are strings.
     values[f.name] =
       raw === null || raw === undefined
         ? emptyFor(f)
-        : f.type === "number"
+        : f.type === "number" || f.type === "rating"
           ? String(raw)
           : (raw as FieldValue);
   }
@@ -76,7 +81,7 @@ export function toDbValues(
   const out: Record<string, unknown> = {};
   for (const f of def.fields) {
     const v = values[f.name];
-    if (f.type === "number") {
+    if (f.type === "number" || f.type === "rating") {
       const n = typeof v === "string" ? v.trim() : v;
       out[columnFor(f.name)] = n === "" || n === undefined ? null : Number(n);
     } else if (f.type === "date" && (v === "" || v === undefined)) {

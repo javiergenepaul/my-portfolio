@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
-import { SKILL_CATEGORIES } from "@/config";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToSkillCategories } from "@/lib/content/portfolio";
 import { useIsMobile } from "../hooks";
 
 const ACCENT_VARS = [
@@ -19,9 +21,13 @@ const ACCENT_VARS = [
 export function SkillsContent() {
   useLocaleRefresh();
   const isMobile = useIsMobile();
-  const [active, setActive] = useState(SKILL_CATEGORIES[0]?.key ?? "");
-  const cat = SKILL_CATEGORIES.find((c) => c.key === active);
-  const catIdx = SKILL_CATEGORIES.findIndex((c) => c.key === active);
+  const locale = useLanguageStore((s) => s.language);
+  const SKILL_CATEGORIES = rowsToSkillCategories(useContent("skills"), locale);
+  // Store starts empty; fall back to the first category until a tab is picked.
+  const [active, setActive] = useState("");
+  const activeKey = active || SKILL_CATEGORIES[0]?.key || "";
+  const cat = SKILL_CATEGORIES.find((c) => c.key === activeKey);
+  const catIdx = SKILL_CATEGORIES.findIndex((c) => c.key === activeKey);
   const col = ACCENT_VARS[catIdx % ACCENT_VARS.length];
 
   const skillLevel = (s: { isFavorite?: boolean; isStudying?: boolean }) =>
@@ -31,7 +37,7 @@ export function SkillsContent() {
     <>
       {SKILL_CATEGORIES.map((c, i) => {
         const color = ACCENT_VARS[i % ACCENT_VARS.length];
-        const isActive = active === c.key;
+        const isActive = activeKey === c.key;
         return (
           <button
             key={c.key}
@@ -119,7 +125,7 @@ export function SkillsContent() {
         {cat && (
           <AnimatePresence mode="wait">
             <motion.div
-              key={active}
+              key={activeKey}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -165,7 +171,7 @@ export function SkillsContent() {
                 {cat.stacks.map((s) => {
                   const level = skillLevel(s);
                   const name =
-                    translate(`services.stack.${s.name}` as any) || s.name;
+                    s.label || translate(`services.stack.${s.name}` as any) || s.name;
                   return (
                     <div key={s.name}>
                       {/* Name row */}

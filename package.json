@@ -13,7 +13,8 @@
     "db:check": "node --env-file=.env.local scripts/check-tables.mjs",
     "db:resume": "node --env-file=.env.local scripts/show-resume.mjs",
     "seed:resume": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-resume.ts",
-    "seed:content": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-content.ts"
+    "seed:content": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-content.ts",
+    "seed:stack-labels": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-stack-labels.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

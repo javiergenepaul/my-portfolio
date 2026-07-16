@@ -124,9 +124,9 @@ export function SkillsSection({
                 }}
               >
                 {cat.stacks.map((s) => {
-                  const displayName = translate(
-                    `services.stack.${s.name}` as TxKeyPath,
-                  );
+                  const displayName =
+                    s.label ||
+                    translate(`services.stack.${s.name}` as TxKeyPath);
                   return (
                     <motion.div
                       key={s.name}

@@ -7,12 +7,13 @@ import {
   ArrowLeft,
   Save,
   Trash2,
-  ImagePlus,
   Globe,
   Check,
   Plus,
   X,
   Loader2,
+  Star,
+  StarHalf,
 } from "lucide-react";
 import {
   Button,
@@ -43,13 +44,17 @@ import {
   getPlatform,
 } from "@/components/testimonial/social-platforms";
 import { saveContentRow, deleteContentRow } from "@/lib/content/actions";
+import { ImageUploadField } from "./image-upload-field";
+import { StackListField } from "./stack-list-field";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
   const v: Record<string, FieldValue> = {};
   for (const f of type.fields) {
     v[f.name] = f.localized
       ? {}
-      : f.type === "string-list" || f.type === "link-list"
+      : f.type === "string-list" ||
+          f.type === "stack-list" ||
+          f.type === "link-list"
         ? []
         : "";
   }
@@ -405,6 +410,15 @@ function FieldRow({
         />
       )}
 
+      {field.type === "rating" && (
+        <RatingField
+          value={plainVal}
+          onChange={(v) => onPlain(v)}
+          max={field.max ?? 5}
+          half={field.half}
+        />
+      )}
+
       {field.type === "date-present" && (
         <DatePresentField value={plainVal} onChange={(v) => onPlain(v)} />
       )}
@@ -419,6 +433,17 @@ function FieldRow({
           onChange={(v) => onPlain(v)}
           placeholder={field.placeholder}
           multiline={field.multiline}
+        />
+      )}
+
+      {field.type === "stack-list" && (
+        <StackListField
+          value={
+            Array.isArray(value)
+              ? value.filter((x): x is string => typeof x === "string")
+              : []
+          }
+          onChange={(v) => onPlain(v)}
         />
       )}
 
@@ -460,26 +485,103 @@ function FieldRow({
       )}
 
       {field.type === "image" && (
-        <div className="flex items-center gap-3 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
-          <div className="flex items-center justify-center h-11 w-11 rounded-md bg-background border border-border text-muted-foreground shrink-0">
-            <ImagePlus size={18} />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted-foreground truncate">
-              {plainVal || "No file selected"}
-            </p>
-            <p className="text-[10px] text-muted-foreground/70">
-              Upload to Supabase Storage — wired later.
-            </p>
-          </div>
-          <Button type="button" variant="outline" size="sm" disabled>
-            Upload
-          </Button>
-        </div>
+        <ImageUploadField
+          value={plainVal}
+          onChange={(v) => onPlain(v)}
+          pathPrefix={field.name}
+        />
       )}
 
       {field.help && (
         <p className="text-[11px] text-muted-foreground">{field.help}</p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Star rating constrained to `max` stars, so the value can never exceed it.
+ * With `half`, each star has left/right halves for 0.5 steps (e.g. 4.5).
+ * Stores the number as a string (empty when cleared).
+ */
+function RatingField({
+  value,
+  onChange,
+  max = 5,
+  half = false,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  max?: number;
+  half?: boolean;
+}) {
+  const current = value === "" ? 0 : Number(value);
+  const [hover, setHover] = useState<number | null>(null);
+  const shown = hover ?? current;
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex items-center" onMouseLeave={() => setHover(null)}>
+        {Array.from({ length: max }, (_, i) => i + 1).map((star) => {
+          const level =
+            shown >= star ? "full" : half && shown >= star - 0.5 ? "half" : "empty";
+          return (
+            <span
+              key={star}
+              className="relative inline-flex h-7 w-7 items-center justify-center"
+            >
+              <span
+                className={cn(
+                  "pointer-events-none",
+                  level === "empty"
+                    ? "text-muted-foreground/35"
+                    : "text-amber-400",
+                )}
+              >
+                {level === "half" ? (
+                  <StarHalf size={22} className="fill-current" />
+                ) : (
+                  <Star
+                    size={22}
+                    className={level === "full" ? "fill-current" : ""}
+                  />
+                )}
+              </span>
+              {half && (
+                <button
+                  type="button"
+                  aria-label={`${star - 0.5} of ${max}`}
+                  className="absolute inset-y-0 left-0 w-1/2 cursor-pointer"
+                  onMouseEnter={() => setHover(star - 0.5)}
+                  onClick={() => onChange(String(star - 0.5))}
+                />
+              )}
+              <button
+                type="button"
+                aria-label={`${star} of ${max}`}
+                className={cn(
+                  "absolute inset-y-0 cursor-pointer",
+                  half ? "right-0 w-1/2" : "inset-x-0",
+                )}
+                onMouseEnter={() => setHover(star)}
+                onClick={() => onChange(String(star))}
+              />
+            </span>
+          );
+        })}
+      </div>
+      <span className="text-sm tabular-nums text-muted-foreground">
+        {current ? current : "—"}
+        <span className="text-muted-foreground/50">/{max}</span>
+      </span>
+      {current > 0 && (
+        <button
+          type="button"
+          onClick={() => onChange("")}
+          className="text-xs text-muted-foreground hover:text-destructive"
+        >
+          Clear
+        </button>
       )}
     </div>
   );

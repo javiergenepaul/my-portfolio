@@ -3,14 +3,12 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  SKILL_CATEGORIES,
-  getExperience,
-  getEducation,
-  getProjects,
-} from "@/config";
+import { getExperience, getEducation, getProjects } from "@/config";
 import { useLocaleRefresh } from "@/i18n";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToSkillCategories } from "@/lib/content/portfolio";
 import { useSettingsStore } from "@/stores/settings-store";
+import { useLanguageStore } from "@/stores/language-store";
 import { CContext, makePalette } from "./context";
 import { ease, pageAnim } from "./animation";
 import { useIsMobile, useIsCompact } from "./hooks";
@@ -48,6 +46,10 @@ export function Portfolio2025() {
     (e) => e.level === "tertiary" || e.level === "vocational",
   );
   const projects = getProjects().filter((p) => !p.hidden);
+  const skillCategories = rowsToSkillCategories(
+    useContent("skills"),
+    useLanguageStore((s) => s.language),
+  );
 
   // Reset scroll on tab switch
   useEffect(() => {
@@ -158,7 +160,7 @@ export function Portfolio2025() {
                     />
                   )}
                   {active === "skills" && (
-                    <SkillsSection skillGroups={SKILL_CATEGORIES} />
+                    <SkillsSection skillGroups={skillCategories} />
                   )}
                   {active === "projects" && (
                     <ProjectsSection projects={projects} />

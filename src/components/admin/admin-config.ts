@@ -52,7 +52,9 @@ export type FieldType =
   | "boolean"
   | "select"
   | "number"
+  | "rating" // star picker constrained to `max` (see FieldDef.max/half)
   | "string-list" // add-any-number list of plain strings (résumé bullets/tags)
+  | "stack-list" // list of stack names, each picked from a dropdown of stacks
   | "link-list"; // add-any-number list of { platform, url } links
 
 export interface FieldDef {
@@ -66,6 +68,10 @@ export interface FieldDef {
   help?: string;
   /** For string-list fields: render each row as a textarea (long text). */
   multiline?: boolean;
+  /** For rating fields: number of stars (max value). Defaults to 5. */
+  max?: number;
+  /** For rating fields: allow half-star (0.5) steps. */
+  half?: boolean;
 }
 
 export interface ContentTypeDef {
@@ -155,6 +161,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "abbreviation", label: "Abbreviation", type: "text" },
       { name: "subtitleUrl", label: "Company URL", type: "url" },
       { name: "watermark", label: "Company logo", type: "image" },
+      { name: "stack", label: "Tech stack", type: "stack-list" },
     ],
   },
 
@@ -185,6 +192,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "endDate", label: "End date", type: "date-present" },
       { name: "abbreviation", label: "Abbreviation", type: "text" },
       { name: "subtitleUrl", label: "School URL", type: "url" },
+      { name: "stack", label: "Tech stack", type: "stack-list" },
     ],
   },
 
@@ -227,12 +235,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "date", label: "Date", type: "date" },
       { name: "previewUrl", label: "Live URL", type: "url" },
       { name: "codeUrl", label: "Code URL", type: "url" },
-      {
-        name: "stack",
-        label: "Tech stack",
-        type: "string-list",
-        placeholder: "React",
-      },
+      { name: "stack", label: "Tech stack", type: "stack-list" },
       { name: "hidden", label: "Hidden", type: "boolean" },
     ],
   },
@@ -263,6 +266,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "credentialId", label: "Credential ID", type: "text" },
       { name: "credentialUrl", label: "Credential URL", type: "url" },
       { name: "organizationImg", label: "Issuer logo", type: "image" },
+      { name: "stack", label: "Tech stack", type: "stack-list" },
     ],
   },
 
@@ -275,7 +279,13 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     primaryField: "name",
     secondaryField: "category",
     fields: [
-      { name: "name", label: "Name", type: "text" },
+      {
+        name: "name",
+        label: "Name (key)",
+        type: "text",
+        help: "Stable identifier (e.g. springBoot) — referenced across the site. Avoid changing.",
+      },
+      { name: "label", label: "Display name", type: "text", localized: true },
       {
         name: "category",
         label: "Category",
@@ -289,7 +299,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
           "tools",
         ],
       },
-      { name: "rate", label: "Rating (1-10)", type: "number" },
+      { name: "rate", label: "Rating", type: "rating", max: 10 },
       { name: "url", label: "URL", type: "url" },
       { name: "icon", label: "Icon", type: "image" },
       { name: "alt", label: "Icon alt text", type: "text" },
@@ -337,12 +347,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "textarea",
         localized: true,
       },
-      {
-        name: "stack",
-        label: "Tech stack",
-        type: "string-list",
-        placeholder: "Spring Boot",
-      },
+      { name: "stack", label: "Tech stack", type: "stack-list" },
     ],
   },
 
@@ -398,7 +403,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "role", label: "Role", type: "text", localized: true },
       { name: "company", label: "Company", type: "text" },
       { name: "text", label: "Quote", type: "textarea", localized: true },
-      { name: "rating", label: "Rating (1-5)", type: "number" },
+      { name: "rating", label: "Rating", type: "rating", max: 5, half: true },
       { name: "service", label: "Service", type: "text" },
       {
         name: "relationship",
