@@ -28,10 +28,7 @@ import { formatDate } from "../utils";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { useLanguageStore } from "@/stores/language-store";
 import { useContent } from "@/lib/content/use-content";
-import {
-  rowsToContentBody,
-  rowsToCertificates,
-} from "@/lib/content/portfolio";
+import { rowsToContentBody, rowsToCertificates } from "@/lib/content/portfolio";
 
 export function AboutContent() {
   useLocaleRefresh();

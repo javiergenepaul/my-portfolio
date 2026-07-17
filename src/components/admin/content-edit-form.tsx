@@ -524,7 +524,11 @@ function RatingField({
       <div className="flex items-center" onMouseLeave={() => setHover(null)}>
         {Array.from({ length: max }, (_, i) => i + 1).map((star) => {
           const level =
-            shown >= star ? "full" : half && shown >= star - 0.5 ? "half" : "empty";
+            shown >= star
+              ? "full"
+              : half && shown >= star - 0.5
+                ? "half"
+                : "empty";
           return (
             <span
               key={star}

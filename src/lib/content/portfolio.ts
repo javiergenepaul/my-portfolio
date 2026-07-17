@@ -109,7 +109,9 @@ function pickList(v: FieldValue | undefined, locale: LanguageType): string[] {
   if (Array.isArray(v))
     return v.filter((x): x is string => typeof x === "string");
   if (v && typeof v === "object") {
-    const a = (v as Record<string, unknown>)[locale] ?? (v as Record<string, unknown>).en;
+    const a =
+      (v as Record<string, unknown>)[locale] ??
+      (v as Record<string, unknown>).en;
     return Array.isArray(a)
       ? a.filter((x): x is string => typeof x === "string")
       : [];
@@ -266,9 +268,8 @@ export function rowsToContentBody(
       level: (str(v.level) || undefined) as ContentBodyInterface["level"],
       abbreviation: str(v.abbreviation) || undefined,
       isWork: v.isWork === true,
-      employmentType:
-        (str(v.employmentType) ||
-          undefined) as ContentBodyInterface["employmentType"],
+      employmentType: (str(v.employmentType) ||
+        undefined) as ContentBodyInterface["employmentType"],
       watermark: resolveAsset(v.watermark),
       watermarkAlt: pick(v.watermarkAlt, locale) || undefined,
       subtitleUrl: str(v.subtitleUrl) || undefined,

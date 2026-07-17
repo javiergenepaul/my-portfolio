@@ -29,7 +29,13 @@ const snakeToCamel = (s: string) =>
   s.replace(/_([a-z])/g, (_, c: string) => c.toUpperCase());
 
 // Row bookkeeping columns that live on ContentRow itself, not in `values`.
-const META = new Set(["id", "published", "sort_order", "created_at", "updated_at"]);
+const META = new Set([
+  "id",
+  "published",
+  "sort_order",
+  "created_at",
+  "updated_at",
+]);
 
 /**
  * Map full DB rows (select *) into ContentRow. Unlike the admin path, this
@@ -98,7 +104,10 @@ export const useContentStore = create<ContentState>((set, get) => ({
         const data = await fetchAll();
         set({ data, status: "ready", error: undefined });
       } catch (e) {
-        set({ status: "idle", error: e instanceof Error ? e.message : String(e) });
+        set({
+          status: "idle",
+          error: e instanceof Error ? e.message : String(e),
+        });
       } finally {
         set({ inflight: undefined });
       }

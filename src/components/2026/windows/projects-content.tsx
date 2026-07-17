@@ -38,7 +38,11 @@ export function ProjectsContent() {
       icon: <Lock size={13} />,
     },
   ];
-  const all = rowsToProjects(useContent("projects"), useContent("skills"), locale)
+  const all = rowsToProjects(
+    useContent("projects"),
+    useContent("skills"),
+    locale,
+  )
     .filter((p) => !p.hidden)
     .slice(0, 20);
 

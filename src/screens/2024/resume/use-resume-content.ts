@@ -2,7 +2,10 @@
 
 import { useEffect, useMemo } from "react";
 import { useContentStore } from "@/stores/content-store";
-import { CONTENT_TYPES, type ContentRow } from "@/components/admin/admin-config";
+import {
+  CONTENT_TYPES,
+  type ContentRow,
+} from "@/components/admin/admin-config";
 import { rowsToResumeData } from "./resume-data";
 import type { ResumeData } from "./resume-content";
 

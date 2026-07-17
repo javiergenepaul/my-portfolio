@@ -51,7 +51,9 @@ export function StackListField({
         name: string;
         label?: { en?: string } | null;
       }[];
-      setOptions(rows.map((r) => ({ name: r.name, label: r.label?.en || r.name })));
+      setOptions(
+        rows.map((r) => ({ name: r.name, label: r.label?.en || r.name })),
+      );
     })().catch(() => {});
     return () => {
       cancelled = true;

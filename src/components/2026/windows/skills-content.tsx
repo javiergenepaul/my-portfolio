@@ -171,7 +171,9 @@ export function SkillsContent() {
                 {cat.stacks.map((s) => {
                   const level = skillLevel(s);
                   const name =
-                    s.label || translate(`services.stack.${s.name}` as any) || s.name;
+                    s.label ||
+                    translate(`services.stack.${s.name}` as any) ||
+                    s.name;
                   return (
                     <div key={s.name}>
                       {/* Name row */}
