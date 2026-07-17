@@ -149,7 +149,7 @@ export function ContentList({
           <TableHeader>
             <TableRow className="hover:bg-transparent">
               <TableHead className="w-8" />
-              <TableHead>{type.singular}</TableHead>
+              <TableHead>{type.primaryLabel ?? type.singular}</TableHead>
               {type.secondaryField && (
                 <TableHead className="hidden sm:table-cell">
                   {secondaryLabel}

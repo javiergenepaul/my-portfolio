@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import { getCertificates } from "@/config";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToCertificates } from "@/lib/content/portfolio";
 import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim } from "../animation";
@@ -11,10 +13,11 @@ import { Label } from "../components/helpers";
 export function CertificatesSection() {
   const C = useC();
   const isMobile = useIsMobile();
+  const locale = useLanguageStore((s) => s.language);
   // Newest certificates first.
-  const certs = [...getCertificates()].sort(
-    (a, b) => b.issuedDate.valueOf() - a.issuedDate.valueOf(),
-  );
+  const certs = [
+    ...rowsToCertificates(useContent("certificates"), locale),
+  ].sort((a, b) => b.issuedDate.valueOf() - a.issuedDate.valueOf());
 
   return (
     <>

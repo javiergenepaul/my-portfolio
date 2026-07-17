@@ -7,18 +7,28 @@ import { useContentStore } from "@/stores/content-store";
 const REFETCH_THROTTLE_MS = 15_000;
 
 /**
- * Kicks off the one-time content fetch for the whole app and keeps it fresh.
+ * Kicks off the content fetch for the whole app and keeps it fresh.
  *
- * On mount it triggers `ensureLoaded()` (deduped by the store). When the tab
- * becomes visible again — e.g. after editing in the admin tab and switching
- * back — it silently refetches, throttled so rapid tab-switching doesn't spam
- * the DB. Refetches never re-show the splash; the UI just swaps in fresh data.
+ * This provider mounts whenever you enter the year routes — including coming
+ * back from the admin, since /admin is a separate layout subtree. So on mount:
+ *   - first ever visit → `ensureLoaded()` (blocking; the splash covers it),
+ *   - a later re-entry (store already loaded) → silent `refetch()`, so edits
+ *     made in the admin show up on navigation without a hard refresh.
+ * It also refetches when the tab regains focus (edit in the admin tab, switch
+ * back), throttled so rapid tab-switching doesn't spam the DB. Refetches never
+ * re-show the splash; the UI just swaps in fresh data.
  */
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const lastRefetch = useRef(0);
 
   useEffect(() => {
-    void useContentStore.getState().ensureLoaded();
+    const store = useContentStore.getState();
+    if (store.status === "ready") {
+      lastRefetch.current = Date.now();
+      void store.refetch();
+    } else {
+      void store.ensureLoaded();
+    }
 
     const onVisible = () => {
       if (document.visibilityState !== "visible") return;

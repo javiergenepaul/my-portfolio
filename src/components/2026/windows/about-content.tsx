@@ -19,9 +19,6 @@ import {
   FULL_NAME,
   JOB_TITLE,
   EMAIL_ADDRESS,
-  getExperience,
-  getEducation,
-  getCertificates,
   CAREER_START_DATE,
 } from "@/config";
 import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
@@ -29,18 +26,27 @@ import AvatarProfile from "@/assets/avatar-profile.jpg";
 import dayjs from "dayjs";
 import { formatDate } from "../utils";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import {
+  rowsToContentBody,
+  rowsToCertificates,
+} from "@/lib/content/portfolio";
 
 export function AboutContent() {
   useLocaleRefresh();
+  const locale = useLanguageStore((s) => s.language);
   const [tab, setTab] = useState<
     "overview" | "experience" | "education" | "certificates"
   >("overview");
-  const exps = getExperience().filter((e) => e.isWork);
-  const edus = getEducation();
-  // Newest certificates first.
-  const certs = [...getCertificates()].sort(
-    (a, b) => b.issuedDate.valueOf() - a.issuedDate.valueOf(),
+  const exps = rowsToContentBody(useContent("experience"), locale).filter(
+    (e) => e.isWork,
   );
+  const edus = rowsToContentBody(useContent("education"), locale);
+  // Newest certificates first.
+  const certs = [
+    ...rowsToCertificates(useContent("certificates"), locale),
+  ].sort((a, b) => b.issuedDate.valueOf() - a.issuedDate.valueOf());
 
   return (
     <div className="font-mac flex flex-col flex-1 min-h-0 overflow-hidden">

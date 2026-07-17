@@ -86,6 +86,8 @@ export interface ContentTypeDef {
   singleton?: boolean;
   /** Field shown as the row's title in the list (localized-aware). */
   primaryField: string;
+  /** Header for the primary column. Defaults to the singular name. */
+  primaryLabel?: string;
   /** Optional secondary/subtitle column in the list. */
   secondaryField?: string;
   fields: FieldDef[];
@@ -276,12 +278,13 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     singular: "Skill",
     icon: Layers,
     description: "Tech stack and proficiency.",
-    primaryField: "name",
-    secondaryField: "category",
+    primaryField: "label",
+    primaryLabel: "Name",
+    secondaryField: "name",
     fields: [
       {
         name: "name",
-        label: "Name (key)",
+        label: "Key",
         type: "text",
         help: "Stable identifier (e.g. springBoot) — referenced across the site. Avoid changing.",
       },

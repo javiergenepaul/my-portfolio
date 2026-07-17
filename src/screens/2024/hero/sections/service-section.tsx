@@ -1,6 +1,10 @@
+"use client";
+
 import { ServiceOfferInterface } from "@/config";
-import { getServices } from "@/config/data/services";
-import { translate } from "@/i18n";
+import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToServices } from "@/lib/content/portfolio";
 import { Suspense, lazy } from "react";
 import { ServiceCardSkeleton } from "../components";
 
@@ -9,7 +13,13 @@ const LazyServiceCard = lazy(
 );
 
 export const ServiceSection = () => {
-  const SERVICE_OFFER: ServiceOfferInterface[] = getServices();
+  useLocaleRefresh();
+  const locale = useLanguageStore((s) => s.language);
+  const SERVICE_OFFER = rowsToServices(
+    useContent("services"),
+    useContent("skills"),
+    locale,
+  );
 
   return (
     <section

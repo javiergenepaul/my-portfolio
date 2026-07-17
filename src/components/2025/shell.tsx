@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { getExperience, getEducation, getProjects } from "@/config";
+import { getProjects } from "@/config";
 import { useLocaleRefresh } from "@/i18n";
 import { useContent } from "@/lib/content/use-content";
-import { rowsToSkillCategories } from "@/lib/content/portfolio";
+import {
+  rowsToContentBody,
+  rowsToSkillCategories,
+} from "@/lib/content/portfolio";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useLanguageStore } from "@/stores/language-store";
 import { CContext, makePalette } from "./context";
@@ -41,15 +44,15 @@ export function Portfolio2025() {
   const isMobile = useIsMobile();
   const isCompact = useIsCompact();
 
-  const experience = getExperience().filter((e) => e.isWork);
-  const education = getEducation().filter(
+  const lang = useLanguageStore((s) => s.language);
+  const experience = rowsToContentBody(useContent("experience"), lang).filter(
+    (e) => e.isWork,
+  );
+  const education = rowsToContentBody(useContent("education"), lang).filter(
     (e) => e.level === "tertiary" || e.level === "vocational",
   );
   const projects = getProjects().filter((p) => !p.hidden);
-  const skillCategories = rowsToSkillCategories(
-    useContent("skills"),
-    useLanguageStore((s) => s.language),
-  );
+  const skillCategories = rowsToSkillCategories(useContent("skills"), lang);
 
   // Reset scroll on tab switch
   useEffect(() => {

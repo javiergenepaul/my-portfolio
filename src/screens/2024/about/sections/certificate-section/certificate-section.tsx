@@ -1,12 +1,18 @@
-import { getCertificates } from "@/config/data";
+"use client";
+
+import React from "react";
 import type { CertificateCardInterface } from "@/config/types";
+import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToCertificates } from "@/lib/content/portfolio";
 import { Banner } from "../../components";
 import { CertificateCard } from "./components/certificate-card";
-import React from "react";
-import { translate } from "@/i18n";
 
 export const CertificateSection = () => {
-  const CERTIFICATES: CertificateCardInterface[] = getCertificates();
+  useLocaleRefresh();
+  const locale = useLanguageStore((s) => s.language);
+  const CERTIFICATES = rowsToCertificates(useContent("certificates"), locale);
 
   return (
     <section className="relative pb-16">

@@ -1,7 +1,9 @@
 import dayjs, { type Dayjs } from "dayjs";
 import type {
+  CertificateCardInterface,
   ContentBodyInterface,
   PromotionInterface,
+  ServiceOfferInterface,
   SkillCategory,
   TechStackInterface,
 } from "@/config/types";
@@ -64,6 +66,92 @@ const SKILL_CATEGORY_META: { key: string; label: string }[] = [
   { key: "tools", label: "Others" },
 ];
 
+/** name → resolved stack (from the skills master rows). */
+function stacksByName(
+  skillRows: ContentRow[],
+  locale: LanguageType,
+): Map<string, TechStackInterface> {
+  const map = new Map<string, TechStackInterface>();
+  for (const cat of rowsToSkillCategories(skillRows, locale))
+    for (const s of cat.stacks) map.set(s.name, s);
+  return map;
+}
+
+// A stack referenced by a service/project but not (yet) in the Skills table
+// still renders its chip — the card resolves the display name via i18n.
+const stackFallback = (name: string): TechStackInterface => ({
+  name: name as TechStackInterface["name"],
+  icon: "",
+  url: undefined,
+  isFavorite: false,
+  rate: 5 as TechStackInterface["rate"],
+  dateStarted: "",
+  dateEnded: "",
+  isStudying: false,
+  alt: "",
+});
+
+/** Resolve an array of stack-name keys → full stack objects. */
+function resolveStacks(
+  names: FieldValue | undefined,
+  byName: Map<string, TechStackInterface>,
+): TechStackInterface[] {
+  const list = Array.isArray(names)
+    ? (names as unknown[]).filter((x): x is string => typeof x === "string")
+    : [];
+  return list.map((n) => byName.get(n) ?? stackFallback(n));
+}
+
+/** Pull a locale's list out of a per-locale jsonb map ({ en: [...], ja: [...] }). */
+function pickList(v: FieldValue | undefined, locale: LanguageType): string[] {
+  if (Array.isArray(v))
+    return v.filter((x): x is string => typeof x === "string");
+  if (v && typeof v === "object") {
+    const a = (v as Record<string, unknown>)[locale] ?? (v as Record<string, unknown>).en;
+    return Array.isArray(a)
+      ? a.filter((x): x is string => typeof x === "string")
+      : [];
+  }
+  return [];
+}
+
+/** service rows → the service-offer shape; stacks resolved from the skills rows. */
+export function rowsToServices(
+  rows: ContentRow[],
+  skillRows: ContentRow[],
+  locale: LanguageType,
+): ServiceOfferInterface[] {
+  const byName = stacksByName(skillRows, locale);
+  return rows.map((r) => {
+    const v = r.values;
+    return {
+      title: pick(v.title, locale),
+      description: pick(v.description, locale),
+      subDetails: pickList(v.subDetails, locale),
+      stack: resolveStacks(v.stack, byName),
+    };
+  });
+}
+
+/** certificate rows → the certificate card shape. */
+export function rowsToCertificates(
+  rows: ContentRow[],
+  locale: LanguageType,
+): CertificateCardInterface[] {
+  return rows.map((r) => {
+    const v = r.values;
+    return {
+      title: pick(v.title, locale),
+      organization: pick(v.organization, locale),
+      organizationImg: resolveAsset(v.organizationImg) ?? "",
+      organizationAlt: pick(v.organizationAlt, locale),
+      issuedDate: dayjs(str(v.issuedDate)),
+      credentialId: str(v.credentialId) || undefined,
+      credentialUrl: str(v.credentialUrl),
+    };
+  });
+}
+
 /** Flat skill/stack rows → categories grouped for the skills sections. */
 export function rowsToSkillCategories(
   rows: ContentRow[],
@@ -96,8 +184,12 @@ export function rowsToSkillCategories(
   }));
 }
 
-/** experience rows → the ContentBody shape the 2024 experience list renders. */
-export function rowsToExperience(
+/**
+ * experience/education rows → the shared ContentBody shape. Both sections use
+ * the same card; unset columns (level on experience, promotion/isWork on
+ * education) simply come back undefined.
+ */
+export function rowsToContentBody(
   rows: ContentRow[],
   locale: LanguageType,
 ): ContentBodyInterface[] {
@@ -109,6 +201,7 @@ export function rowsToExperience(
       description: pick(v.description, locale),
       startYear: dayjs(str(v.startDate)),
       endYear: dateOrPresent(v.endDate),
+      level: (str(v.level) || undefined) as ContentBodyInterface["level"],
       abbreviation: str(v.abbreviation) || undefined,
       isWork: v.isWork === true,
       employmentType:

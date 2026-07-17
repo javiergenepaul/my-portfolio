@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Plus, X } from "lucide-react";
-import {
-  Button,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components";
+import { Button } from "@/components";
 import { createClient } from "@/lib/supabase/client";
 
 /**
@@ -17,6 +10,11 @@ import { createClient } from "@/lib/supabase/client";
  * in the Skills table — so services/projects can't drift from a typo, and new
  * stacks you add show up here automatically. Stores an array of stack `name`
  * keys (the same shape as the old free-text list).
+ *
+ * Uses a native <select> on purpose: the Radix Select's portal reconciles badly
+ * against a dynamic list under React 19 (a "removeChild" crash on select). A
+ * native control has no portal, so it's structurally immune. Already-picked
+ * stacks are shown disabled, so you can't add a duplicate.
  */
 
 type StackOption = { name: string; label: string };
@@ -60,9 +58,6 @@ export function StackListField({
     };
   }, []);
 
-  const labelFor = (name: string) =>
-    options.find((o) => o.name === name)?.label ?? name;
-
   const add = () => onChange([...value, ""]);
   const update = (i: number, v: string) =>
     onChange(value.map((x, idx) => (idx === i ? v : x)));
@@ -70,45 +65,51 @@ export function StackListField({
 
   return (
     <div className="flex flex-col gap-2">
-      {value.map((item, i) => (
-        <div key={i} className="flex items-center gap-2">
-          <span className="w-4 shrink-0 text-right text-xs text-muted-foreground/60">
-            {i + 1}
-          </span>
-          <Select value={item || undefined} onValueChange={(v) => update(i, v)}>
-            <SelectTrigger className="flex-1">
-              <SelectValue placeholder="Select a stack">
-                {item ? labelFor(item) : undefined}
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
+      {value.map((item, i) => {
+        // Already chosen in another row → disabled here, so no duplicates.
+        const takenElsewhere = new Set(value.filter((_, idx) => idx !== i));
+        return (
+          <div key={i} className="flex items-center gap-2">
+            <span className="w-4 shrink-0 text-right text-xs text-muted-foreground/60">
+              {i + 1}
+            </span>
+            <select
+              value={item}
+              onChange={(e) => update(i, e.target.value)}
+              className="flex h-9 flex-1 rounded-md border border-input bg-background px-3 text-sm outline-none transition-colors focus:ring-1 focus:ring-ring"
+            >
+              <option value="" disabled>
+                Select a stack…
+              </option>
               {options.map((o) => (
-                <SelectItem key={o.name} value={o.name}>
+                <option
+                  key={o.name}
+                  value={o.name}
+                  disabled={takenElsewhere.has(o.name)}
+                >
                   {o.label}
-                  {o.label !== o.name && (
-                    <span className="text-muted-foreground"> ({o.name})</span>
-                  )}
-                </SelectItem>
+                </option>
               ))}
-            </SelectContent>
-          </Select>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive"
-            onClick={() => remove(i)}
-            aria-label="Remove"
-          >
-            <X size={15} />
-          </Button>
-        </div>
-      ))}
+            </select>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive"
+              onClick={() => remove(i)}
+              aria-label="Remove"
+            >
+              <X size={15} />
+            </Button>
+          </div>
+        );
+      })}
       <Button
         type="button"
         variant="outline"
         size="sm"
         className="w-fit gap-1.5"
+        disabled={value.filter(Boolean).length >= options.length}
         onClick={add}
       >
         <Plus size={14} /> Add stack
