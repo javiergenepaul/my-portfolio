@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
-import { getProjects } from "@/config";
 import { useLocaleRefresh } from "@/i18n";
 import { useContent } from "@/lib/content/use-content";
 import {
   rowsToContentBody,
+  rowsToProjects,
   rowsToSkillCategories,
 } from "@/lib/content/portfolio";
 import { useSettingsStore } from "@/stores/settings-store";
@@ -51,7 +51,11 @@ export function Portfolio2025() {
   const education = rowsToContentBody(useContent("education"), lang).filter(
     (e) => e.level === "tertiary" || e.level === "vocational",
   );
-  const projects = getProjects().filter((p) => !p.hidden);
+  const projects = rowsToProjects(
+    useContent("projects"),
+    useContent("skills"),
+    lang,
+  ).filter((p) => !p.hidden);
   const skillCategories = rowsToSkillCategories(useContent("skills"), lang);
 
   // Reset scroll on tab switch

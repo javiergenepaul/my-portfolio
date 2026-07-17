@@ -13,12 +13,21 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
-import { translate } from "@/i18n";
+import { translate, useLocaleRefresh } from "@/i18n";
 import { IndicatorContainer } from "@/screens";
-import { getProjects } from "@/config/data";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToProjects } from "@/lib/content/portfolio";
 import { Code, Eye } from "lucide-react";
 
 export const ProjectTable = () => {
+  useLocaleRefresh();
+  const locale = useLanguageStore((s) => s.language);
+  const projects = rowsToProjects(
+    useContent("projects"),
+    useContent("skills"),
+    locale,
+  );
   return (
     <Table>
       <TableCaption>{translate("projects.table.tableHeader")}</TableCaption>
@@ -33,7 +42,7 @@ export const ProjectTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {getProjects()
+        {projects
           .filter((project) => !project.hidden)
           .map((project) => (
             <TableRow

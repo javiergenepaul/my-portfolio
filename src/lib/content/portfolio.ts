@@ -1,7 +1,9 @@
 import dayjs, { type Dayjs } from "dayjs";
 import type {
+  BookInterface,
   CertificateCardInterface,
   ContentBodyInterface,
+  ProjectInterface,
   PromotionInterface,
   ServiceOfferInterface,
   SkillCategory,
@@ -115,6 +117,49 @@ function pickList(v: FieldValue | undefined, locale: LanguageType): string[] {
   return [];
 }
 
+/** project rows → the project shape; stacks resolved from the skills rows. */
+export function rowsToProjects(
+  rows: ContentRow[],
+  skillRows: ContentRow[],
+  locale: LanguageType,
+): ProjectInterface[] {
+  const byName = stacksByName(skillRows, locale);
+  return rows.map((r) => {
+    const v = r.values;
+    const carousel = Array.isArray(v.carousel)
+      ? (v.carousel as unknown as Record<string, unknown>[]).map((c) => ({
+          value: String(c.value ?? ""),
+          name: String(c.name ?? ""),
+          image: resolveAsset(c.image) ?? String(c.image ?? ""),
+        }))
+      : [];
+    const keyContribution = Array.isArray(v.keyContribution)
+      ? (v.keyContribution as unknown as Record<string, FieldValue>[]).map(
+          (kc) => ({
+            name: pick(kc.name, locale),
+            description: pick(kc.description, locale),
+          }),
+        )
+      : [];
+    return {
+      title: pick(v.title, locale),
+      description: pick(v.description, locale),
+      date: new Date(str(v.date) || 0),
+      keyContribution,
+      carousel,
+      company: str(v.company) || undefined,
+      category: pickList(v.category, locale),
+      previewUrl: str(v.previewUrl) || undefined,
+      codeUrl: str(v.codeUrl) || undefined,
+      type: str(v.type) as ProjectInterface["type"],
+      stack: resolveStacks(v.stack, byName),
+      projectId: str(v.projectId),
+      status: str(v.status) as ProjectInterface["status"],
+      hidden: v.hidden === true,
+    };
+  });
+}
+
 /** service rows → the service-offer shape; stacks resolved from the skills rows. */
 export function rowsToServices(
   rows: ContentRow[],
@@ -129,6 +174,23 @@ export function rowsToServices(
       description: pick(v.description, locale),
       subDetails: pickList(v.subDetails, locale),
       stack: resolveStacks(v.stack, byName),
+    };
+  });
+}
+
+/** book rows → the book card shape (title/author/theme plain; quote/reflection localized). */
+export function rowsToBooks(
+  rows: ContentRow[],
+  locale: LanguageType,
+): BookInterface[] {
+  return rows.map((r) => {
+    const v = r.values;
+    return {
+      title: str(v.title),
+      author: str(v.author),
+      quote: pick(v.quote, locale),
+      reflection: pick(v.reflection, locale),
+      theme: str(v.theme),
     };
   });
 }

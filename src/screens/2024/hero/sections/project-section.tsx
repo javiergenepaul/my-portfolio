@@ -1,10 +1,12 @@
 "use client";
 
 import { PATH, ProjectInterface } from "@/config";
-import { getProjects } from "@/config/data/projects";
 import { Button } from "@/components";
 import { useRouter } from "next/navigation";
-import { translate } from "@/i18n";
+import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToProjects } from "@/lib/content/portfolio";
 import { triggerNavigationStart } from "@/components/common/navigation/NavigationProgress";
 import { Suspense, lazy } from "react";
 import { ProjectCardSkeleton } from "..";
@@ -14,7 +16,9 @@ const LazyProjectCard = lazy(
 );
 
 export const ProjectSection = () => {
+  useLocaleRefresh();
   const router = useRouter();
+  const locale = useLanguageStore((s) => s.language);
 
   const priorityOrder: { [key: string]: number } = {
     client: 1,
@@ -23,8 +27,13 @@ export const ProjectSection = () => {
     tutorial: 4,
   };
 
+  const projects = rowsToProjects(
+    useContent("projects"),
+    useContent("skills"),
+    locale,
+  );
   const sortedProjects = (): ProjectInterface[] =>
-    getProjects().sort((a, b) => priorityOrder[a.type] - priorityOrder[b.type]);
+    [...projects].sort((a, b) => priorityOrder[a.type] - priorityOrder[b.type]);
 
   return (
     <section

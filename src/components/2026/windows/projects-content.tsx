@@ -2,15 +2,18 @@
 
 import { useState } from "react";
 import { ExternalLink, FolderGit2, Lock, Code2, Globe } from "lucide-react";
-import { getProjects } from "@/config";
 import { useIsMobile } from "../hooks";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToProjects } from "@/lib/content/portfolio";
 
 type ProjFilter = "all" | "web" | "open" | "confidential";
 
 export function ProjectsContent() {
   useLocaleRefresh();
   const isMobile = useIsMobile();
+  const locale = useLanguageStore((s) => s.language);
   const [filter, setFilter] = useState<ProjFilter>("all");
 
   const FILTERS: { id: ProjFilter; label: string; icon: React.ReactNode }[] = [
@@ -35,7 +38,7 @@ export function ProjectsContent() {
       icon: <Lock size={13} />,
     },
   ];
-  const all = getProjects()
+  const all = rowsToProjects(useContent("projects"), useContent("skills"), locale)
     .filter((p) => !p.hidden)
     .slice(0, 20);
 
