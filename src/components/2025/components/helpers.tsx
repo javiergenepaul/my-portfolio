@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { translate } from "@/i18n";
 import { useC } from "../context";
 
 export function Separator() {
@@ -49,5 +50,53 @@ export function SectionLabel({ children }: { children: React.ReactNode }) {
     >
       {children}
     </p>
+  );
+}
+
+/**
+ * Tech-stack chips for a DB-driven `stack` (list of stack name keys). Labels
+ * resolve through the shared `services.stack.*` i18n namespace, matching the
+ * 2024 experience/certificate cards. Caps at 6 with a "+N" overflow.
+ */
+export function StackChips({ stack }: { stack?: string[] }) {
+  const C = useC();
+  if (!stack || stack.length === 0) return null;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "6px",
+        marginTop: "10px",
+      }}
+    >
+      {stack.slice(0, 6).map((name) => (
+        <span
+          key={name}
+          style={{
+            fontSize: "11px",
+            padding: "3px 10px",
+            borderRadius: "99px",
+            backgroundColor: `${C.border}66`,
+            color: C.textMuted,
+            border: `1px solid ${C.border}`,
+          }}
+        >
+          {translate(`services.stack.${name}` as never) || name}
+        </span>
+      ))}
+      {stack.length > 6 && (
+        <span
+          style={{
+            fontSize: "11px",
+            padding: "3px 10px",
+            borderRadius: "99px",
+            color: C.textMuted,
+          }}
+        >
+          +{stack.length - 6}
+        </span>
+      )}
+    </div>
   );
 }

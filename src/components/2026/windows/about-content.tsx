@@ -30,6 +30,37 @@ import { useLanguageStore } from "@/stores/language-store";
 import { useContent } from "@/lib/content/use-content";
 import { rowsToContentBody, rowsToCertificates } from "@/lib/content/portfolio";
 
+/**
+ * Tech-stack chips for a DB-driven `stack` (list of stack name keys). Labels
+ * resolve through the shared `services.stack.*` i18n namespace, matching the
+ * 2024/2025 experience and certificate cards. Caps at 6 with a "+N" overflow.
+ */
+function StackChips({ stack }: { stack?: string[] }) {
+  if (!stack || stack.length === 0) return null;
+  return (
+    <div className="flex flex-wrap items-center gap-1 mt-2">
+      {stack.slice(0, 6).map((name) => (
+        <span
+          key={name}
+          className="text-a26-muted text-[10px] font-medium rounded-full py-px px-2"
+          style={{
+            background:
+              "color-mix(in srgb, var(--a26-text-muted) 10%, transparent)",
+            border: "1px solid var(--a26-card-border)",
+          }}
+        >
+          {translate(`services.stack.${name}` as never) || name}
+        </span>
+      ))}
+      {stack.length > 6 && (
+        <span className="text-a26-muted text-[10px] py-px px-1">
+          +{stack.length - 6}
+        </span>
+      )}
+    </div>
+  );
+}
+
 export function AboutContent() {
   useLocaleRefresh();
   const locale = useLanguageStore((s) => s.language);
@@ -267,6 +298,7 @@ export function AboutContent() {
                       <p className="text-a26-mid mt-1.75 text-xs leading-[1.65] line-clamp-3">
                         {exp.description}
                       </p>
+                      <StackChips stack={exp.stack} />
                     </div>
                   </div>
                 ))}
@@ -304,6 +336,7 @@ export function AboutContent() {
                       <div className="text-a26-muted text-[11px] mt-0.75">
                         {formatDate(edu.startYear)} — {formatDate(edu.endYear)}
                       </div>
+                      <StackChips stack={edu.stack} />
                     </div>
                   </div>
                 ))}
@@ -353,6 +386,7 @@ export function AboutContent() {
                             date: cert.issuedDate.format("MMM YYYY"),
                           })}
                         </div>
+                        <StackChips stack={cert.stack} />
                       </div>
                       <ExternalLink
                         size={13}

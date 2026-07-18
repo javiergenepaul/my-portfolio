@@ -8,7 +8,7 @@ import { rowsToCertificates } from "@/lib/content/portfolio";
 import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim } from "../animation";
-import { Label } from "../components/helpers";
+import { Label, StackChips } from "../components/helpers";
 
 export function CertificatesSection() {
   const C = useC();
@@ -142,6 +142,7 @@ export function CertificatesSection() {
                 >
                   {cert.issuedDate.format("MMM YYYY")}
                 </p>
+                <StackChips stack={cert.stack} />
               </div>
               <ExternalLink
                 size={13}

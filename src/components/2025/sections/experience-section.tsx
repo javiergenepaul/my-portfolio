@@ -7,7 +7,7 @@ import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim, ease } from "../animation";
 import { fmt } from "../constants";
-import { Label, SectionLabel } from "../components/helpers";
+import { Label, SectionLabel, StackChips } from "../components/helpers";
 
 export function ExperienceSection({
   experience,
@@ -159,6 +159,7 @@ export function ExperienceSection({
                 {fmt(edu.startYear, edu.endYear)}
               </span>
             </div>
+            <StackChips stack={edu.stack} />
           </motion.div>
         ))}
       </motion.div>
@@ -377,6 +378,7 @@ export function ExperienceSection({
                 {exp.description}
               </p>
             )}
+            <StackChips stack={exp.stack} />
           </motion.div>
         ))}
       </motion.div>
