@@ -45,6 +45,7 @@ import {
 } from "@/components/testimonial/social-platforms";
 import { saveContentRow, deleteContentRow } from "@/lib/content/actions";
 import { ImageUploadField } from "./image-upload-field";
+import { MockupTemplateField } from "./mockup-template-field";
 import { StackListField } from "./stack-list-field";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
@@ -215,16 +216,19 @@ export function ContentEditForm({
       )}
 
       <div className="flex flex-col gap-5 rounded-xl border border-border bg-card p-5 sm:p-6">
-        {type.fields.map((field) => (
-          <FieldRow
-            key={field.name}
-            field={field}
-            locale={locale}
-            value={values[field.name]}
-            onPlain={(v) => setPlain(field.name, v)}
-            onLocalized={(v) => setLocalized(field.name, locale, v)}
-          />
-        ))}
+        {type.fields.map((field) =>
+          field.showIf && !field.showIf(values) ? null : (
+            <FieldRow
+              key={field.name}
+              field={field}
+              locale={locale}
+              value={values[field.name]}
+              record={values}
+              onPlain={(v) => setPlain(field.name, v)}
+              onLocalized={(v) => setLocalized(field.name, locale, v)}
+            />
+          ),
+        )}
       </div>
     </div>
   );
@@ -345,12 +349,14 @@ function FieldRow({
   field,
   locale,
   value,
+  record,
   onPlain,
   onLocalized,
 }: {
   field: FieldDef;
   locale: LocaleCode;
   value: FieldValue | undefined;
+  record?: Record<string, FieldValue>;
   onPlain: (v: FieldValue) => void;
   onLocalized: (v: string) => void;
 }) {
@@ -489,6 +495,16 @@ function FieldRow({
           value={plainVal}
           onChange={(v) => onPlain(v)}
           pathPrefix={field.name}
+        />
+      )}
+
+      {field.type === "mockup-template" && (
+        <MockupTemplateField
+          value={plainVal}
+          onChange={(v) => onPlain(v)}
+          screenshot={
+            typeof record?.mockPhoto === "string" ? record.mockPhoto : undefined
+          }
         />
       )}
 

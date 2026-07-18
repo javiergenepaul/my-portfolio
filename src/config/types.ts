@@ -41,6 +41,11 @@ export interface ProjectInterface {
   category: string[];
   previewUrl?: string | undefined;
   codeUrl?: string | undefined;
+  /** Admin-uploaded page screenshot (Storage URL); shown on the card when no
+   *  screenshot `carousel` is set, framed by `mockupTemplate` if one is chosen. */
+  mockPhoto?: string;
+  /** Mockup frame id the screenshot is dropped into (see MOCKUP_TEMPLATES). */
+  mockupTemplate?: string;
   type: ProjectType;
   stack?: TechStackInterface[];
   projectId: string;

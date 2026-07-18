@@ -13,6 +13,7 @@ import {
   FileText,
   type LucideIcon,
 } from "lucide-react";
+import { MOCKUP_SIZE_HINT } from "@/lib/mockups/templates";
 
 /**
  * Admin content model — the single source of truth for the admin UI *and* the
@@ -55,7 +56,8 @@ export type FieldType =
   | "rating" // star picker constrained to `max` (see FieldDef.max/half)
   | "string-list" // add-any-number list of plain strings (résumé bullets/tags)
   | "stack-list" // list of stack names, each picked from a dropdown of stacks
-  | "link-list"; // add-any-number list of { platform, url } links
+  | "link-list" // add-any-number list of { platform, url } links
+  | "mockup-template"; // device group + template gallery picker (stores template id)
 
 export interface FieldDef {
   name: string;
@@ -72,6 +74,9 @@ export interface FieldDef {
   max?: number;
   /** For rating fields: allow half-star (0.5) steps. */
   half?: boolean;
+  /** Show this field only when the predicate passes (reads the whole record).
+   *  Purely a UI concern — the column is still written on save. */
+  showIf?: (record: Record<string, FieldValue>) => boolean;
 }
 
 export interface ContentTypeDef {
@@ -237,6 +242,21 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "date", label: "Date", type: "date" },
       { name: "previewUrl", label: "Live URL", type: "url" },
       { name: "codeUrl", label: "Code URL", type: "url" },
+      {
+        name: "mockupTemplate",
+        label: "Mockup frame",
+        type: "mockup-template",
+        help: "Pick Desktop or Mobile, then a frame. A screenshot upload appears once a frame is chosen.",
+      },
+      {
+        name: "mockPhoto",
+        label: "Screenshot",
+        type: "image",
+        // Hidden until a frame is picked (or a screenshot already exists, so
+        // legacy rows stay editable).
+        showIf: (r) => Boolean(r.mockupTemplate) || Boolean(r.mockPhoto),
+        help: `Flat page screenshot dropped into the frame. Suggested sizes — ${MOCKUP_SIZE_HINT}.`,
+      },
       { name: "stack", label: "Tech stack", type: "stack-list" },
       { name: "hidden", label: "Hidden", type: "boolean" },
     ],

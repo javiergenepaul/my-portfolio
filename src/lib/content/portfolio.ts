@@ -155,6 +155,8 @@ export function rowsToProjects(
       category: pickList(v.category, locale),
       previewUrl: str(v.previewUrl) || undefined,
       codeUrl: str(v.codeUrl) || undefined,
+      mockPhoto: str(v.mockPhoto) || undefined,
+      mockupTemplate: str(v.mockupTemplate) || undefined,
       type: str(v.type) as ProjectInterface["type"],
       stack: resolveStacks(v.stack, byName),
       projectId: str(v.projectId),
