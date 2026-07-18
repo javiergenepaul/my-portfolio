@@ -19,10 +19,13 @@ import {
   TooltipTrigger,
 } from "@/components";
 import {
-  TESTIMONIALS,
   type TestimonialRelationship,
   type TestimonialInterface,
 } from "@/config";
+import { useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToTestimonials } from "@/lib/content/portfolio";
 
 const RELATIONSHIP_STYLES: Record<TestimonialRelationship, string> = {
   Colleague: "bg-blue-500/10 text-blue-500",
@@ -31,9 +34,6 @@ const RELATIONSHIP_STYLES: Record<TestimonialRelationship, string> = {
   Mentor: "bg-emerald-500/10 text-emerald-500",
   Peer: "bg-rose-500/10 text-rose-500",
 };
-
-const ROW_A = TESTIMONIALS.slice(0, 3);
-const ROW_B = TESTIMONIALS.slice(3);
 
 function StarRating({
   rating,
@@ -278,9 +278,14 @@ function MarqueeRow({
 }
 
 export const TestimonialSection = () => {
+  useLocaleRefresh();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [paused, setPaused] = useState(false);
+  const locale = useLanguageStore((s) => s.language);
+  const testimonials = rowsToTestimonials(useContent("testimonials"), locale);
+  const ROW_A = testimonials.slice(0, 3);
+  const ROW_B = testimonials.slice(3);
 
   return (
     <div className="relative pb-16">

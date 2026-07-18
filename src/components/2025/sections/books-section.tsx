@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
-import { BOOKS } from "@/config";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToBooks } from "@/lib/content/portfolio";
 import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim } from "../animation";
@@ -12,6 +14,8 @@ import { Label } from "../components/helpers";
 export function BooksSection() {
   const C = useC();
   const isMobile = useIsMobile();
+  const locale = useLanguageStore((s) => s.language);
+  const BOOKS = rowsToBooks(useContent("books"), locale);
   const THEME_COLORS = makeThemeColors(C);
   return (
     <>

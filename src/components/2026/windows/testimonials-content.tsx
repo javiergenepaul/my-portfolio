@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 import { Github, Linkedin, Palette, Quote, Star } from "lucide-react";
-import { TESTIMONIALS } from "@/config";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToTestimonials } from "@/lib/content/portfolio";
 
 export function TestimonialsContent() {
   useLocaleRefresh();
+  const locale = useLanguageStore((s) => s.language);
+  const TESTIMONIALS = rowsToTestimonials(useContent("testimonials"), locale);
 
   const testimonialIds = [
     "sarah",
@@ -58,9 +62,7 @@ export function TestimonialsContent() {
       serviceLabel: serviceKey
         ? translate(`win26.testimonials.services.${serviceKey}` as any)
         : testimonial.service,
-      text:
-        translate(`win26.testimonials.items.${testimonialId}.text` as any) ||
-        testimonial.text,
+      text: testimonial.text,
     };
   }).filter((testimonial) => {
     const relationshipMatch =

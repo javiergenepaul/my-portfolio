@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import { TESTIMONIALS } from "@/config";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToTestimonials } from "@/lib/content/portfolio";
 import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim } from "../animation";
@@ -11,6 +13,8 @@ import { Label } from "../components/helpers";
 export function TestimonialsSection() {
   const C = useC();
   const isMobile = useIsMobile();
+  const locale = useLanguageStore((s) => s.language);
+  const TESTIMONIALS = rowsToTestimonials(useContent("testimonials"), locale);
   return (
     <>
       <Label text="05 — Testimonials" />

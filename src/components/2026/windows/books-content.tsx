@@ -1,11 +1,15 @@
 "use client";
 
 import { BookOpen, Quote } from "lucide-react";
-import { BOOKS } from "@/config";
 import { translate, useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToBooks } from "@/lib/content/portfolio";
 
 export function BooksContent() {
   useLocaleRefresh();
+  const locale = useLanguageStore((s) => s.language);
+  const BOOKS = rowsToBooks(useContent("books"), locale);
 
   const bookIds = [
     "startWithWhy",
@@ -46,21 +50,8 @@ export function BooksContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {BOOKS.map((book, index) => {
             const bookId = bookIds[index];
-            const title =
-              translate(`win26.books.items.${bookId}.title` as any) ||
-              book.title;
-            const author =
-              translate(`win26.books.items.${bookId}.author` as any) ||
-              book.author;
-            const theme =
-              translate(`win26.books.items.${bookId}.theme` as any) ||
-              book.theme;
-            const quote =
-              translate(`win26.books.items.${bookId}.quote` as any) ||
-              book.quote;
-            const reflection =
-              translate(`win26.books.items.${bookId}.reflection` as any) ||
-              book.reflection;
+            // Localized copy now lives in the DB (rowsToBooks picks the locale).
+            const { title, author, theme, quote, reflection } = book;
 
             return (
               <article

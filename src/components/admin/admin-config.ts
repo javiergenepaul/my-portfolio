@@ -322,7 +322,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     primaryField: "title",
     secondaryField: "author",
     fields: [
-      { name: "title", label: "Title", type: "text" },
+      { name: "title", label: "Title", type: "text", localized: true },
       { name: "author", label: "Author", type: "text" },
       { name: "quote", label: "Quote", type: "textarea", localized: true },
       {
@@ -331,7 +331,7 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "textarea",
         localized: true,
       },
-      { name: "theme", label: "Theme", type: "text" },
+      { name: "theme", label: "Theme", type: "text", localized: true },
     ],
   },
 

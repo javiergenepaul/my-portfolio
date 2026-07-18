@@ -7,7 +7,11 @@ import { Banner } from "../../components";
 import { getColor } from "@/lib";
 import { useSettingsStore } from "@/stores";
 import { cn } from "@/lib/utils";
-import { BOOKS, type BookInterface } from "@/config";
+import { type BookInterface } from "@/config";
+import { useLocaleRefresh } from "@/i18n";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToBooks } from "@/lib/content/portfolio";
 
 const THEME_STYLES: Record<string, string> = {
   Purpose: "bg-blue-500/10 text-blue-500",
@@ -102,10 +106,13 @@ function BookCard({
 }
 
 export const BooksSection = () => {
+  useLocaleRefresh();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { color } = useSettingsStore();
   const accent = getColor(color);
+  const locale = useLanguageStore((s) => s.language);
+  const BOOKS = rowsToBooks(useContent("books"), locale);
 
   return (
     <div className="relative pb-16">

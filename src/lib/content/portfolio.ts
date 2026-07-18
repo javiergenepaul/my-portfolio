@@ -3,11 +3,13 @@ import type {
   BookInterface,
   CertificateCardInterface,
   ContentBodyInterface,
+  LanguageInterface,
   ProjectInterface,
   PromotionInterface,
   ServiceOfferInterface,
   SkillCategory,
   TechStackInterface,
+  TestimonialInterface,
 } from "@/config/types";
 import type { ContentRow, FieldValue } from "@/components/admin/admin-config";
 import type { LanguageType } from "@/stores/language-store";
@@ -180,6 +182,52 @@ export function rowsToServices(
   });
 }
 
+/** testimonial rows → the testimonial card shape. `links` jsonb → github/linkedin/behance. */
+export function rowsToTestimonials(
+  rows: ContentRow[],
+  locale: LanguageType,
+): TestimonialInterface[] {
+  return rows.map((r) => {
+    const v = r.values;
+    const links = Array.isArray(v.links)
+      ? (v.links as unknown as { platform?: string; url?: string }[])
+      : [];
+    const linkFor = (p: string) =>
+      links.find((l) => l.platform === p)?.url || undefined;
+    return {
+      name: str(v.name),
+      role: pick(v.role, locale),
+      company: str(v.company),
+      avatar: str(v.avatar),
+      text: pick(v.text, locale),
+      rating: num(v.rating) ?? 5,
+      service: str(v.service),
+      relationship: str(v.relationship) as TestimonialInterface["relationship"],
+      github: linkFor("github"),
+      linkedin: linkFor("linkedin"),
+      behance: linkFor("behance"),
+    };
+  });
+}
+
+/** language rows → the spoken-language card shape. */
+export function rowsToLanguages(
+  rows: ContentRow[],
+  locale: LanguageType,
+): LanguageInterface[] {
+  return rows.map((r) => {
+    const v = r.values;
+    return {
+      name: str(v.name),
+      nativeName: str(v.nativeName),
+      flagIcon: str(v.flagIcon),
+      locale: str(v.locale) as LanguageInterface["locale"],
+      level: str(v.level) as LanguageInterface["level"],
+      note: pick(v.note, locale),
+    };
+  });
+}
+
 /** book rows → the book card shape (title/author/theme plain; quote/reflection localized). */
 export function rowsToBooks(
   rows: ContentRow[],
@@ -188,11 +236,11 @@ export function rowsToBooks(
   return rows.map((r) => {
     const v = r.values;
     return {
-      title: str(v.title),
+      title: pick(v.title, locale),
       author: str(v.author),
       quote: pick(v.quote, locale),
       reflection: pick(v.reflection, locale),
-      theme: str(v.theme),
+      theme: pick(v.theme, locale),
     };
   });
 }

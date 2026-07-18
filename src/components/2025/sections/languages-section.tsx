@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LANGUAGES } from "@/config";
+import { useLanguageStore } from "@/stores/language-store";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToLanguages } from "@/lib/content/portfolio";
 import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim } from "../animation";
@@ -40,6 +42,8 @@ function AnimatedBar({
 export function LanguagesSection() {
   const C = useC();
   const isMobile = useIsMobile();
+  const locale = useLanguageStore((s) => s.language);
+  const LANGUAGES = rowsToLanguages(useContent("languages"), locale);
   return (
     <>
       <Label text="06 — Languages" />

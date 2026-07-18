@@ -11,11 +11,9 @@ import {
   type LanguageType,
 } from "@/stores";
 import { cn } from "@/lib/utils";
-import {
-  LANGUAGES,
-  type ProficiencyLevel,
-  type LanguageInterface,
-} from "@/config";
+import { type ProficiencyLevel, type LanguageInterface } from "@/config";
+import { useContent } from "@/lib/content/use-content";
+import { rowsToLanguages } from "@/lib/content/portfolio";
 
 const PROFICIENCY: Record<ProficiencyLevel, { pct: number; style: string }> = {
   Native: { pct: 100, style: "bg-emerald-500/15 text-emerald-500" },
@@ -120,6 +118,7 @@ export const LanguageSection = () => {
   const { color } = useSettingsStore();
   const accent = getColor(color);
   const { language, setLanguage } = useLanguageStore();
+  const LANGUAGES = rowsToLanguages(useContent("languages"), language);
   const pinnedRef = useRef<LanguageType>(language);
 
   return (
