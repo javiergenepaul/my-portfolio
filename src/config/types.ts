@@ -41,11 +41,9 @@ export interface ProjectInterface {
   category: string[];
   previewUrl?: string | undefined;
   codeUrl?: string | undefined;
-  /** Admin-uploaded page screenshot (Storage URL); shown on the card when no
-   *  screenshot `carousel` is set, framed by `mockupTemplate` if one is chosen. */
-  mockPhoto?: string;
-  /** Mockup frame id the screenshot is dropped into (see MOCKUP_TEMPLATES). */
-  mockupTemplate?: string;
+  /** Reorderable framed mockups (screenshot + frame), shown as the card's
+   *  image carousel. Supersedes the single mockup and legacy `carousel`. */
+  mockups?: MockupItemInterface[];
   type: ProjectType;
   stack?: TechStackInterface[];
   projectId: string;
@@ -62,6 +60,14 @@ export interface ProjectCarouselInterface {
   value: string;
   image: string | StaticImageData;
   name: string;
+}
+
+/** One framed mockup: a page screenshot dropped into a mockup frame/template. */
+export interface MockupItemInterface {
+  /** Frame/template id (see MOCKUP_TEMPLATES); empty renders the raw screenshot. */
+  template: string;
+  /** Uploaded screenshot URL. */
+  screenshot: string;
 }
 
 export interface SideMenuInterface {

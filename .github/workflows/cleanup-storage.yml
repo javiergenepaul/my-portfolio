@@ -1,0 +1,39 @@
+# Sweeps orphaned Supabase Storage objects (uploads no saved row references).
+#
+# Requires two repo secrets (Settings → Secrets and variables → Actions):
+#   NEXT_PUBLIC_SUPABASE_URL
+#   SUPABASE_SERVICE_ROLE_KEY
+#
+# Scheduled runs delete; manual runs default to a dry run (tick "force" to delete).
+name: Cleanup orphaned storage
+
+on:
+  schedule:
+    - cron: "0 3 * * 0" # Sundays 03:00 UTC
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Delete orphans (unchecked = dry run)"
+        type: boolean
+        default: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Sweep storage
+        run: >-
+          node ./node_modules/tsx/dist/cli.mjs
+          --require ./scripts/stub-assets.cjs
+          scripts/cleanup-storage.ts
+          ${{ (github.event_name == 'schedule' || inputs.force) && '--force' || '' }}
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}

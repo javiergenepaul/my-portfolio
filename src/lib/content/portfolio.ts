@@ -4,6 +4,7 @@ import type {
   CertificateCardInterface,
   ContentBodyInterface,
   LanguageInterface,
+  MockupItemInterface,
   ProjectInterface,
   PromotionInterface,
   ServiceOfferInterface,
@@ -121,6 +122,17 @@ function pickList(v: FieldValue | undefined, locale: LanguageType): string[] {
   return [];
 }
 
+/** jsonb mockup list → typed items; screenshots resolve through the asset registry. */
+function mapMockups(v: FieldValue | undefined): MockupItemInterface[] {
+  if (!Array.isArray(v)) return [];
+  return (v as unknown as Record<string, unknown>[])
+    .map((m) => ({
+      template: String(m.template ?? ""),
+      screenshot: resolveAsset(m.screenshot) ?? String(m.screenshot ?? ""),
+    }))
+    .filter((m) => m.screenshot.length > 0);
+}
+
 /** project rows → the project shape; stacks resolved from the skills rows. */
 export function rowsToProjects(
   rows: ContentRow[],
@@ -155,8 +167,7 @@ export function rowsToProjects(
       category: pickList(v.category, locale),
       previewUrl: str(v.previewUrl) || undefined,
       codeUrl: str(v.codeUrl) || undefined,
-      mockPhoto: str(v.mockPhoto) || undefined,
-      mockupTemplate: str(v.mockupTemplate) || undefined,
+      mockups: mapMockups(v.mockups),
       type: str(v.type) as ProjectInterface["type"],
       stack: resolveStacks(v.stack, byName),
       projectId: str(v.projectId),

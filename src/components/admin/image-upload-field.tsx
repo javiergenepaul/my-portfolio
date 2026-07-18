@@ -62,7 +62,7 @@ export function ImageUploadField({
   };
 
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
+    <div className="flex min-w-0 items-center gap-3 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3">
       <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-background">
         {preview ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -73,8 +73,10 @@ export function ImageUploadField({
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-xs text-muted-foreground">
-          {value || "No image selected"}
+        {/* Show just the filename (full value on hover) — Storage URLs are long
+            and would otherwise overflow narrow containers like modals. */}
+        <p className="truncate text-xs text-muted-foreground" title={value}>
+          {value ? (value.split("/").pop() || value) : "No image selected"}
         </p>
         <p className="text-[10px] text-muted-foreground/70">
           PNG, JPG, or SVG — stored in Supabase Storage

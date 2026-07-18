@@ -16,7 +16,7 @@ import { ShowTag } from "./show-tag";
 import { translate } from "@/i18n";
 import { KeyContributionModal, StackContent } from "@/screens";
 import { ProjectCarousel } from "./project-carousel";
-import { MockupFrame } from "@/components/mockup/mockup-frame";
+import { MockupCarousel } from "./mockup-carousel";
 
 interface ProjectCardInterface extends ProjectInterface {}
 
@@ -29,8 +29,7 @@ const ProjectCard = (props: ProjectCardInterface) => {
     carousel,
     projectId,
     previewUrl,
-    mockPhoto,
-    mockupTemplate,
+    mockups,
     description,
     keyContribution,
     hidden,
@@ -46,23 +45,8 @@ const ProjectCard = (props: ProjectCardInterface) => {
               "items-center relative justify-center overflow-hidden rounded-lg select-none md:basis-2/5",
             )}
           >
-            {carousel.length === 0 && mockPhoto ? (
-              mockupTemplate ? (
-                <MockupFrame
-                  templateId={mockupTemplate}
-                  screenshot={mockPhoto}
-                  alt={title}
-                />
-              ) : (
-                <img
-                  className="rounded-lg aspect-square object-cover w-full"
-                  src={mockPhoto}
-                  alt={title}
-                  loading="lazy"
-                  width={600}
-                  height={600}
-                />
-              )
+            {mockups && mockups.length > 0 ? (
+              <MockupCarousel mockups={mockups} previewUrl={previewUrl} />
             ) : (
               <ProjectCarousel
                 projectId={projectId}

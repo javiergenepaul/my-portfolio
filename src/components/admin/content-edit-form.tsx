@@ -37,6 +37,7 @@ import {
   type LocalizedValue,
   type LocaleCode,
   type LinkItem,
+  type MockupItem,
   LOCALES,
 } from "./admin-config";
 import {
@@ -45,7 +46,7 @@ import {
 } from "@/components/testimonial/social-platforms";
 import { saveContentRow, deleteContentRow } from "@/lib/content/actions";
 import { ImageUploadField } from "./image-upload-field";
-import { MockupTemplateField } from "./mockup-template-field";
+import { MockupListField } from "./mockup-list-field";
 import { StackListField } from "./stack-list-field";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
@@ -223,7 +224,6 @@ export function ContentEditForm({
               field={field}
               locale={locale}
               value={values[field.name]}
-              record={values}
               onPlain={(v) => setPlain(field.name, v)}
               onLocalized={(v) => setLocalized(field.name, locale, v)}
             />
@@ -349,14 +349,12 @@ function FieldRow({
   field,
   locale,
   value,
-  record,
   onPlain,
   onLocalized,
 }: {
   field: FieldDef;
   locale: LocaleCode;
   value: FieldValue | undefined;
-  record?: Record<string, FieldValue>;
   onPlain: (v: FieldValue) => void;
   onLocalized: (v: string) => void;
 }) {
@@ -498,13 +496,10 @@ function FieldRow({
         />
       )}
 
-      {field.type === "mockup-template" && (
-        <MockupTemplateField
-          value={plainVal}
+      {field.type === "mockup-list" && (
+        <MockupListField
+          value={Array.isArray(value) ? (value as MockupItem[]) : []}
           onChange={(v) => onPlain(v)}
-          screenshot={
-            typeof record?.mockPhoto === "string" ? record.mockPhoto : undefined
-          }
         />
       )}
 

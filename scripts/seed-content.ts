@@ -14,6 +14,7 @@
  * Idempotent — every table is cleared and re-inserted.
  * Uses the service-role key (bypasses RLS): CLI only, never shipped.
  */
+import { randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 import { messageStore } from "@/i18n/store";
 import { en, ja, fil, ceb } from "@/i18n/locale";
@@ -189,6 +190,17 @@ async function main() {
         name: c.name,
         image: typeof c.image === "string" ? c.image : (c.image?.src ?? null),
       })),
+      // The new mockup list mirrors the existing carousel images as raw,
+      // un-framed entries (these assets are already composed mockups). Order
+      // matches the carousel; frames can be assigned later in the admin.
+      mockups: (p.carousel ?? [])
+        .map((c) => ({
+          id: randomUUID(),
+          template: "",
+          screenshot:
+            typeof c.image === "string" ? c.image : (c.image?.src ?? ""),
+        }))
+        .filter((m) => m.screenshot),
       key_contribution: (p.keyContribution ?? []).map((_, j) => ({
         name: pick(proj, i, (r) => r.keyContribution?.[j]?.name),
         description: pick(proj, i, (r) => r.keyContribution?.[j]?.description),

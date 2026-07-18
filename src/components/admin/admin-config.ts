@@ -57,7 +57,7 @@ export type FieldType =
   | "string-list" // add-any-number list of plain strings (résumé bullets/tags)
   | "stack-list" // list of stack names, each picked from a dropdown of stacks
   | "link-list" // add-any-number list of { platform, url } links
-  | "mockup-template"; // device group + template gallery picker (stores template id)
+  | "mockup-list"; // draggable list of framed mockups (screenshot + template)
 
 export interface FieldDef {
   name: string;
@@ -104,11 +104,18 @@ export interface LinkItem {
   platform: string;
   url: string;
 }
+/** One entry in a project's mockup list — a screenshot dropped into a frame. */
+export interface MockupItem {
+  id: string;
+  template: string;
+  screenshot: string;
+}
 export type FieldValue =
   | string
   | boolean
   | string[]
   | LinkItem[]
+  | MockupItem[]
   | LocalizedValue;
 export interface ContentRow {
   id: string;
@@ -243,19 +250,10 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "previewUrl", label: "Live URL", type: "url" },
       { name: "codeUrl", label: "Code URL", type: "url" },
       {
-        name: "mockupTemplate",
-        label: "Mockup frame",
-        type: "mockup-template",
-        help: "Pick Desktop or Mobile, then a frame. A screenshot upload appears once a frame is chosen.",
-      },
-      {
-        name: "mockPhoto",
-        label: "Screenshot",
-        type: "image",
-        // Hidden until a frame is picked (or a screenshot already exists, so
-        // legacy rows stay editable).
-        showIf: (r) => Boolean(r.mockupTemplate) || Boolean(r.mockPhoto),
-        help: `Flat page screenshot dropped into the frame. Suggested sizes — ${MOCKUP_SIZE_HINT}.`,
+        name: "mockups",
+        label: "Mockups",
+        type: "mockup-list",
+        help: `Screenshots shown as a carousel on the card, each dropped into a device frame. Drag to reorder. Suggested sizes — ${MOCKUP_SIZE_HINT}.`,
       },
       { name: "stack", label: "Tech stack", type: "stack-list" },
       { name: "hidden", label: "Hidden", type: "boolean" },

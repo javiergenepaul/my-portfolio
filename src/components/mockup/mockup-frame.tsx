@@ -141,11 +141,11 @@ export function MockupFrame({
     return (
       <div
         className={twMerge(
-          "mx-auto w-full max-w-[220px] overflow-hidden rounded-[2rem] border-[6px] border-neutral-800 bg-neutral-800 shadow-xl",
+          "mx-auto w-full max-w-55 overflow-hidden rounded-4xl border-[6px] border-neutral-800 bg-neutral-800 shadow-xl",
           className,
         )}
       >
-        <div className="relative aspect-[9/18] w-full overflow-hidden rounded-[1.4rem] bg-white">
+        <div className="relative aspect-9/18 w-full overflow-hidden rounded-[1.4rem] bg-white">
           <div className="absolute left-1/2 top-0 z-10 h-4 w-24 -translate-x-1/2 rounded-b-xl bg-neutral-800" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -178,7 +178,7 @@ export function MockupFrame({
         src={screenshot}
         alt={alt}
         loading="lazy"
-        className="aspect-[16/10] w-full object-cover object-top"
+        className="aspect-16/10 w-full object-cover object-top"
       />
     </div>
   );

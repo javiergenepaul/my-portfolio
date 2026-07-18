@@ -16,7 +16,8 @@
     "seed:content": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-content.ts",
     "seed:stack-labels": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-stack-labels.ts",
     "seed:testimonial-i18n": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-testimonial-i18n.ts",
-    "seed:book-i18n": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-book-i18n.ts"
+    "seed:book-i18n": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/seed-book-i18n.ts",
+    "cleanup:storage": "node --env-file=.env.local ./node_modules/tsx/dist/cli.mjs --require ./scripts/stub-assets.cjs scripts/cleanup-storage.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
