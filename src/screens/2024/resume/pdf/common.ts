@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import "dayjs/locale/ja";
 import { translate } from "@/i18n";
 import { useLanguageStore } from "@/stores";
-import { getExperience, getEducation, getProjects } from "@/config";
 
 const MOMENT_LOCALE: Record<string, string> = {
   en: "en",
@@ -69,21 +68,6 @@ export function getPdfFonts() {
 }
 
 export type PdfFonts = ReturnType<typeof getPdfFonts>;
-
-/** Same data selection as the on-screen templates. */
-export function getResumeData() {
-  return {
-    experience: getExperience().filter((e) => e.isWork),
-    education: getEducation().filter(
-      (e) => e.level === "tertiary" || e.level === "vocational",
-    ),
-    projects: getProjects()
-      .filter(
-        (p) => !p.hidden && p.status === "completed" && p.type !== "tutorial",
-      )
-      .slice(0, 3),
-  };
-}
 
 /**
  * Solid-color stand-in for the templates' alpha-hex tints (e.g. `accent +

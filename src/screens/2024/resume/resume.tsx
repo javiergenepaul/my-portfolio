@@ -37,7 +37,7 @@ import { useResumeContent } from "./use-resume-content";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type ResumeMode = "simple" | "modern" | "ats";
+export type ResumeMode = "modern" | "ats";
 
 export interface ResumeColorConfig {
   primary: string;

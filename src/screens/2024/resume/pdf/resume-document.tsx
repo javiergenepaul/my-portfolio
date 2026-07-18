@@ -3,7 +3,6 @@ import { FULL_NAME } from "@/config";
 import type { ResumeColorConfig, ResumeMode } from "../resume";
 import type { ResumeData } from "../resume-content";
 import { registerResumeFonts } from "./fonts";
-import { SimpleTemplatePdf } from "./simple-template-pdf";
 import { ModernTemplatePdf } from "./modern-template-pdf";
 import { AtsTemplatePdf } from "./ats-template-pdf";
 
@@ -30,12 +29,7 @@ export function ResumeDocument({
 }: ResumeDocumentProps) {
   return (
     <Document title={`${FULL_NAME} — Resume`} author={FULL_NAME}>
-      {mode === "simple" ? (
-        // Simple renders from the portfolio config (getResumeData/SKILL_CATEGORIES),
-        // not the résumé content model, so it takes no `content`. It isn't
-        // selectable in the résumé UI today — only ATS and Modern are.
-        <SimpleTemplatePdf colors={colors} isDark={isDark} />
-      ) : mode === "modern" ? (
+      {mode === "modern" ? (
         <ModernTemplatePdf colors={colors} isDark={isDark} content={content} />
       ) : (
         <AtsTemplatePdf colors={colors} isDark={isDark} content={content} />
