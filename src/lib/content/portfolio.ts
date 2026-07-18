@@ -260,6 +260,7 @@ export function rowsToCertificates(
       issuedDate: dayjs(str(v.issuedDate)),
       credentialId: str(v.credentialId) || undefined,
       credentialUrl: str(v.credentialUrl),
+      stack: pickList(v.stack, locale),
     };
   });
 }
@@ -323,6 +324,7 @@ export function rowsToContentBody(
       subtitleUrl: str(v.subtitleUrl) || undefined,
       waterMarkWidth: num(v.watermarkWidth),
       promotion: mapPromotions(v.promotion, locale),
+      stack: pickList(v.stack, locale),
     };
   });
 }

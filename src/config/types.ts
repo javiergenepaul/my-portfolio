@@ -95,6 +95,8 @@ export interface ContentBodyInterface {
   subtitleUrl?: string;
   waterMarkWidth?: number;
   promotion?: PromotionInterface[];
+  /** Stack name keys (DB-driven); rendered as chips via the i18n stack label. */
+  stack?: string[];
 }
 
 // ── Certificates ─────────────────────────────────────────────────────────────
@@ -110,6 +112,8 @@ export interface CertificateCardInterface {
   issuedDate: Dayjs;
   credentialId?: string;
   credentialUrl: string | StaticImageData;
+  /** Stack name keys (DB-driven); rendered as chips via the i18n stack label. */
+  stack?: string[];
 }
 
 // ── Books ─────────────────────────────────────────────────────────────────────

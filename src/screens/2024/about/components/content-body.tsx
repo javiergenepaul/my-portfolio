@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components";
 import { logEvent } from "@/lib";
+import { translate } from "@/i18n";
 import { Dot } from "lucide-react";
 import dayjs from "dayjs";
 import type { Dayjs } from "dayjs";
@@ -30,6 +31,7 @@ export const ContentBody = (props: ContentBodyInterface) => {
     subtitleUrl,
     waterMarkWidth,
     promotion,
+    stack,
   } = props;
 
   const getYearSpent = (
@@ -99,6 +101,19 @@ export const ContentBody = (props: ContentBodyInterface) => {
         {description && (
           <div className="text-muted-foreground text-sm mb-4">
             {description}
+          </div>
+        )}
+
+        {stack && stack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {stack.map((name) => (
+              <span
+                key={name}
+                className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
+              >
+                {translate(`services.stack.${name}` as never) || name}
+              </span>
+            ))}
           </div>
         )}
 

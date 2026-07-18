@@ -19,6 +19,7 @@ export const CertificateCard = (props: CertificateCardInterface) => {
     issuedDate,
     organizationImg,
     organizationAlt,
+    stack,
   } = props;
   return (
     <Card
@@ -58,6 +59,18 @@ export const CertificateCard = (props: CertificateCardInterface) => {
                 })}
               </p>
               {/* <p className="hidden md:block">{credentialId}</p> */}
+              {stack && stack.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {stack.map((name) => (
+                    <span
+                      key={name}
+                      className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
+                    >
+                      {translate(`services.stack.${name}` as never) || name}
+                    </span>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </div>
           <img
