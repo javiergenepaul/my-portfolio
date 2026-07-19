@@ -34,7 +34,9 @@ function emptyFor(f: FieldDef): FieldValue {
   if (
     f.type === "string-list" ||
     f.type === "stack-list" ||
-    f.type === "link-list"
+    f.type === "link-list" ||
+    f.type === "mockup-list" ||
+    f.type === "contribution-list"
   )
     return [];
   if (f.type === "boolean") return false;

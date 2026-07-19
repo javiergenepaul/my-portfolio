@@ -64,9 +64,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             icon={<LayoutDashboard size={16} />}
             label="Dashboard"
           />
-          <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Resume
-          </p>
+          <SectionLabel>Resume</SectionLabel>
           <NavItem
             href="/admin/resume"
             active={pathname.startsWith("/admin/resume")}
@@ -74,9 +72,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             label="Resume"
           />
 
-          <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Content
-          </p>
+          <SectionLabel>Content</SectionLabel>
           {CONTENT_TYPES.filter(
             (t) => (t.group ?? "Content") === "Content",
           ).map((t) => (
@@ -89,9 +85,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             />
           ))}
 
-          <p className="px-3 pt-4 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Tools
-          </p>
+          <SectionLabel>Tools</SectionLabel>
           <NavItem
             href="/admin/requests"
             active={pathname.startsWith("/admin/requests")}
@@ -200,6 +194,18 @@ function AdminShell({ children }: { children: React.ReactNode }) {
         <main className="flex-1 min-w-0 p-4 lg:p-8">{children}</main>
       </div>
     </div>
+  );
+}
+
+/** Section heading with a divider above it, grouping the sidebar nav. */
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <div className="mx-3 mt-3 mb-1 border-t border-border/70" />
+      <p className="px-3 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        {children}
+      </p>
+    </>
   );
 }
 

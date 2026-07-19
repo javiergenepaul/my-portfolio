@@ -38,6 +38,7 @@ import {
   type LocaleCode,
   type LinkItem,
   type MockupItem,
+  type ContributionItem,
   LOCALES,
 } from "./admin-config";
 import {
@@ -47,6 +48,7 @@ import {
 import { saveContentRow, deleteContentRow } from "@/lib/content/actions";
 import { ImageUploadField } from "./image-upload-field";
 import { MockupListField } from "./mockup-list-field";
+import { ContributionListField } from "./contribution-list-field";
 import { StackListField } from "./stack-list-field";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
@@ -216,19 +218,23 @@ export function ContentEditForm({
         </div>
       )}
 
-      <div className="flex flex-col gap-5 rounded-xl border border-border bg-card p-5 sm:p-6">
-        {type.fields.map((field) =>
-          field.showIf && !field.showIf(values) ? null : (
-            <FieldRow
+      <div className="flex flex-col rounded-xl border border-border bg-card p-5 sm:p-6">
+        {type.fields
+          .filter((field) => !(field.showIf && !field.showIf(values)))
+          .map((field, i) => (
+            <div
               key={field.name}
-              field={field}
-              locale={locale}
-              value={values[field.name]}
-              onPlain={(v) => setPlain(field.name, v)}
-              onLocalized={(v) => setLocalized(field.name, locale, v)}
-            />
-          ),
-        )}
+              className={cn(i > 0 && "mt-5 border-t border-border/60 pt-5")}
+            >
+              <FieldRow
+                field={field}
+                locale={locale}
+                value={values[field.name]}
+                onPlain={(v) => setPlain(field.name, v)}
+                onLocalized={(v) => setLocalized(field.name, locale, v)}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );
@@ -500,6 +506,14 @@ function FieldRow({
         <MockupListField
           value={Array.isArray(value) ? (value as MockupItem[]) : []}
           onChange={(v) => onPlain(v)}
+        />
+      )}
+
+      {field.type === "contribution-list" && (
+        <ContributionListField
+          value={Array.isArray(value) ? (value as ContributionItem[]) : []}
+          onChange={(v) => onPlain(v)}
+          locale={locale}
         />
       )}
 

@@ -57,7 +57,8 @@ export type FieldType =
   | "string-list" // add-any-number list of plain strings (résumé bullets/tags)
   | "stack-list" // list of stack names, each picked from a dropdown of stacks
   | "link-list" // add-any-number list of { platform, url } links
-  | "mockup-list"; // draggable list of framed mockups (screenshot + template)
+  | "mockup-list" // draggable list of framed mockups (screenshot + template)
+  | "contribution-list"; // list of localized { name, description } key contributions
 
 export interface FieldDef {
   name: string;
@@ -110,12 +111,18 @@ export interface MockupItem {
   template: string;
   screenshot: string;
 }
+/** One project key-contribution — a localized title + detail. */
+export interface ContributionItem {
+  name: LocalizedValue;
+  description: LocalizedValue;
+}
 export type FieldValue =
   | string
   | boolean
   | string[]
   | LinkItem[]
   | MockupItem[]
+  | ContributionItem[]
   | LocalizedValue;
 export interface ContentRow {
   id: string;
@@ -225,6 +232,12 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         label: "Description",
         type: "textarea",
         localized: true,
+      },
+      {
+        name: "keyContribution",
+        label: "Key contributions",
+        type: "contribution-list",
+        help: "Highlights shown in the project's contributions modal — each a title + detail. Localized to the tab above.",
       },
       // category is a text[] in the DB (a project has several tags).
       {
