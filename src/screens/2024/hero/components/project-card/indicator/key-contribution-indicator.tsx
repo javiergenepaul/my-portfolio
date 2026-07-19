@@ -1,4 +1,9 @@
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+  ScrollArea,
+} from "@/components";
 import { IndicatorContainer } from "./indicator-container";
 import { CheckCircle, Layers } from "lucide-react";
 import { translate } from "@/i18n";
@@ -30,34 +35,36 @@ export const KeyContributionIndicator = (
             </button>
           </HoverCardTrigger>
           <HoverCardContent
-            className="w-150 max-h-100 overflow-y-auto"
+            className="w-150 overflow-hidden p-0"
             side="right"
           >
-            <h3 className="text-xl font-bold">
+            <h3 className="px-4 pt-4 pb-2 text-xl font-bold">
               {translate("projects.keyContributions")}
             </h3>
-            <div className="flex flex-col mt-4 gap-2">
-              {contributions.map(
-                (contribute: KeyContributionInterface, idx: number) => {
-                  return (
-                    <div
-                      key={contribute.name || idx}
-                      className="flex gap-2 text-sm text-accent-foreground items-start"
-                    >
-                      <CheckCircle />
-                      <div>
-                        <strong className="font-bold text-nowrap">
-                          {contribute.name}:
-                        </strong>
-                        <p className="text-muted-foreground">
-                          {contribute.description}
-                        </p>
+            <ScrollArea className="max-h-100 *:data-radix-scroll-area-viewport:max-h-100">
+              <div className="flex flex-col gap-2 px-4 pb-4">
+                {contributions.map(
+                  (contribute: KeyContributionInterface, idx: number) => {
+                    return (
+                      <div
+                        key={contribute.name || idx}
+                        className="flex gap-2 text-sm text-accent-foreground items-start"
+                      >
+                        <CheckCircle className="shrink-0" />
+                        <div>
+                          <strong className="font-bold text-nowrap">
+                            {contribute.name}:
+                          </strong>
+                          <p className="text-muted-foreground">
+                            {contribute.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                },
-              )}
-            </div>
+                    );
+                  },
+                )}
+              </div>
+            </ScrollArea>
           </HoverCardContent>
         </HoverCard>
       </div>

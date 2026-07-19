@@ -78,6 +78,9 @@ export interface FieldDef {
   /** Show this field only when the predicate passes (reads the whole record).
    *  Purely a UI concern — the column is still written on save. */
   showIf?: (record: Record<string, FieldValue>) => boolean;
+  /** Groups the field under a section tab in the edit form. Only used when the
+   *  content type defines `tabs`; fields with no `tab` fall in the first one. */
+  tab?: string;
 }
 
 export interface ContentTypeDef {
@@ -96,6 +99,10 @@ export interface ContentTypeDef {
   primaryLabel?: string;
   /** Optional secondary/subtitle column in the list. */
   secondaryField?: string;
+  /** Ordered section tabs for the edit form. When set, the form groups fields
+   *  by their `tab` and shows one section at a time (less scrolling). Empty
+   *  sections (all fields hidden) are dropped automatically. */
+  tabs?: string[];
   fields: FieldDef[];
 }
 
@@ -225,19 +232,21 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
     description: "Portfolio projects and case studies.",
     primaryField: "title",
     secondaryField: "category",
+    tabs: ["Details", "Contributions", "Media", "Links & stack"],
     fields: [
-      { name: "title", label: "Title", type: "text", localized: true },
+      {
+        name: "title",
+        label: "Title",
+        type: "text",
+        localized: true,
+        tab: "Details",
+      },
       {
         name: "description",
         label: "Description",
         type: "textarea",
         localized: true,
-      },
-      {
-        name: "keyContribution",
-        label: "Key contributions",
-        type: "contribution-list",
-        help: "Highlights shown in the project's contributions modal — each a title + detail. Localized to the tab above.",
+        tab: "Details",
       },
       // category is a text[] in the DB (a project has several tags).
       {
@@ -245,31 +254,52 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         label: "Categories",
         type: "string-list",
         placeholder: "Web Development",
+        tab: "Details",
       },
       {
         name: "type",
         label: "Type",
         type: "select",
         options: ["personal", "client", "confidential", "tutorial"],
+        tab: "Details",
       },
       {
         name: "status",
         label: "Status",
         type: "select",
         options: ["completed", "ongoing", "unfinished"],
+        tab: "Details",
       },
-      { name: "company", label: "Company", type: "text" },
-      { name: "date", label: "Date", type: "date" },
-      { name: "previewUrl", label: "Live URL", type: "url" },
-      { name: "codeUrl", label: "Code URL", type: "url" },
+      { name: "company", label: "Company", type: "text", tab: "Details" },
+      { name: "date", label: "Date", type: "date", tab: "Details" },
+      { name: "hidden", label: "Hidden", type: "boolean", tab: "Details" },
+      {
+        name: "keyContribution",
+        label: "Key contributions",
+        type: "contribution-list",
+        help: "Highlights shown in the project's contributions modal — each a title + detail. Localized to the tab above.",
+        tab: "Contributions",
+      },
       {
         name: "mockups",
         label: "Mockups",
         type: "mockup-list",
         help: `Screenshots shown as a carousel on the card, each dropped into a device frame. Drag to reorder. Suggested sizes — ${MOCKUP_SIZE_HINT}.`,
+        tab: "Media",
       },
-      { name: "stack", label: "Tech stack", type: "stack-list" },
-      { name: "hidden", label: "Hidden", type: "boolean" },
+      {
+        name: "previewUrl",
+        label: "Live URL",
+        type: "url",
+        tab: "Links & stack",
+      },
+      {
+        name: "codeUrl",
+        label: "Code URL",
+        type: "url",
+        tab: "Links & stack",
+      },
+      { name: "stack", label: "Tech stack", type: "stack-list", tab: "Links & stack" },
     ],
   },
 

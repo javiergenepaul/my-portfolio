@@ -94,9 +94,8 @@ export function ContentEditForm({
   );
   const [published, setPublished] = useState(row?.published ?? false);
   const [locale, setLocale] = useState<LocaleCode>("en");
+  const [section, setSection] = useState<string>(type.tabs?.[0] ?? "");
   const [busy, setBusy] = useState(false);
-
-  const hasLocalized = type.fields.some((f) => f.localized);
 
   const setPlain = (name: string, val: FieldValue) =>
     setValues((p) => ({ ...p, [name]: val }));
@@ -170,6 +169,27 @@ export function ContentEditForm({
       ? `New ${type.singular.toLowerCase()}`
       : `Edit ${type.singular.toLowerCase()}`;
 
+  // Fields currently visible (showIf may hide some), then grouped into the
+  // active section tab. Types without `tabs` render every field in one card.
+  const visibleFields = type.fields.filter(
+    (f) => !(f.showIf && !f.showIf(values)),
+  );
+  const firstTab = type.tabs?.[0];
+  const tabOf = (f: FieldDef) => f.tab ?? firstTab;
+  const activeTabs =
+    type.tabs?.filter((t) => visibleFields.some((f) => tabOf(f) === t)) ?? [];
+  const currentSection = activeTabs.includes(section)
+    ? section
+    : activeTabs[0];
+  const shownFields =
+    activeTabs.length > 0
+      ? visibleFields.filter((f) => tabOf(f) === currentSection)
+      : visibleFields;
+  // Keep the language selector in a stable spot across every tab whenever the
+  // type has any localized field — hiding it per-section made it look like it
+  // vanished when switching to a Media/Links tab.
+  const hasLocalized = type.fields.some((f) => f.localized);
+
   // Shared body: published toggle + locale tabs + fields.
   const formBody = (
     <div className="flex flex-col gap-5">
@@ -218,23 +238,44 @@ export function ContentEditForm({
         </div>
       )}
 
+      {activeTabs.length > 1 && (
+        <div className="flex flex-wrap gap-x-1 border-b border-border">
+          {activeTabs.map((t) => {
+            const on = t === currentSection;
+            return (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setSection(t)}
+                className={cn(
+                  "-mb-px px-3 py-2 text-sm font-medium border-b-2 transition-colors",
+                  on
+                    ? "border-primary text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {t}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div className="flex flex-col rounded-xl border border-border bg-card p-5 sm:p-6">
-        {type.fields
-          .filter((field) => !(field.showIf && !field.showIf(values)))
-          .map((field, i) => (
-            <div
-              key={field.name}
-              className={cn(i > 0 && "mt-5 border-t border-border/60 pt-5")}
-            >
-              <FieldRow
-                field={field}
-                locale={locale}
-                value={values[field.name]}
-                onPlain={(v) => setPlain(field.name, v)}
-                onLocalized={(v) => setLocalized(field.name, locale, v)}
-              />
-            </div>
-          ))}
+        {shownFields.map((field, i) => (
+          <div
+            key={field.name}
+            className={cn(i > 0 && "mt-5 border-t border-border/60 pt-5")}
+          >
+            <FieldRow
+              field={field}
+              locale={locale}
+              value={values[field.name]}
+              onPlain={(v) => setPlain(field.name, v)}
+              onLocalized={(v) => setLocalized(field.name, locale, v)}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
