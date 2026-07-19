@@ -15,10 +15,14 @@ interface MockupFrameProps {
 }
 
 /**
- * Photographic-scene frame: the backdrop photo with the screenshot warped into
- * its blank screen quad. Corners are fractions of the photo, converted to px
- * against the live container size (tracked via ResizeObserver) so the composite
- * stays aligned at any width.
+ * Renders a project screenshot warped into a mockup photo's blank screen quad.
+ * Corners are fractions of the photo, converted to px against the live
+ * container width (height derived from the fixed base aspect, so the warp is
+ * ready on first paint). Shared by the public project card and the admin
+ * preview, so what the admin sees matches the site exactly.
+ *
+ * Returns null when there's no template or no screenshot, so callers can fall
+ * back to a raw image.
  */
 function PhotoFrame({
   tpl,
@@ -33,15 +37,13 @@ function PhotoFrame({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [cw, setCw] = useState(0);
-  const base = tpl.baseImage!;
+  const base = tpl.baseImage;
   // Image imports are plain URL strings in this project (see next.config
   // webpack rule), though typed as StaticImageData — handle both defensively.
   const baseSrc = typeof base === "string" ? base : base.src;
-  const scr = tpl.screen!;
-  const bs = tpl.baseSize ?? { w: 16, h: 10 };
+  const scr = tpl.screen;
+  const bs = tpl.baseSize;
 
-  // Track container width only; height is derived from the fixed base aspect so
-  // the warp is ready on first paint (no dependency on the large photo loading).
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -53,12 +55,12 @@ function PhotoFrame({
   }, []);
 
   const ch = (cw * bs.h) / bs.w;
-  // Overscan the screen quad outward from its centre so the fill bleeds a hair
-  // over the bezel — no sliver of the original blank screen shows at the edges.
+  // Map the detected screen quad to px. A tiny overscan hides sub-pixel edge
+  // slivers; the rounded corners now handle the corner fit, so it stays small.
   const corners = [scr.tl, scr.tr, scr.br, scr.bl];
   const mx = corners.reduce((s, c) => s + c[0], 0) / 4;
   const my = corners.reduce((s, c) => s + c[1], 0) / 4;
-  const OVER = 0.02;
+  const OVER = 0.004;
   const dst = corners.map(
     ([fx, fy]) =>
       [(fx + (fx - mx) * OVER) * cw, (fy + (fy - my) * OVER) * ch] as [
@@ -69,6 +71,15 @@ function PhotoFrame({
   const transform = cw
     ? matrix3dForQuad(tpl.suggested.w, tpl.suggested.h, dst)
     : undefined;
+
+  // Round the screenshot to match the device screen's corner radius (applied in
+  // the source box, before the warp, so it follows the perspective). Default is
+  // derived from the intended aspect: phones round most, monitors least.
+  const sa = tpl.suggested.w / tpl.suggested.h;
+  const radiusFrac =
+    tpl.radius ??
+    (sa < 0.6 ? 0.06 : sa < 0.95 ? 0.032 : sa <= 1.5 ? 0.022 : 0.013);
+  const radiusPx = radiusFrac * tpl.suggested.w;
 
   return (
     <div
@@ -98,6 +109,7 @@ function PhotoFrame({
             // this to the container and break the matrix (built for the full
             // suggested-px box). Opt out so the source box is its true size.
             maxWidth: "none",
+            borderRadius: `${radiusPx}px`,
             transformOrigin: "0 0",
             transform,
             objectFit: "cover",
@@ -109,14 +121,6 @@ function PhotoFrame({
   );
 }
 
-/**
- * Renders a project screenshot inside a chosen mockup frame. Shared by the
- * public project card and the admin preview so what the admin sees matches the
- * site exactly.
- *
- * Returns null when there's no template or no screenshot, so callers can fall
- * back to a raw image.
- */
 export function MockupFrame({
   templateId,
   screenshot,
@@ -125,61 +129,12 @@ export function MockupFrame({
 }: MockupFrameProps) {
   const tpl = getMockupTemplate(templateId);
   if (!tpl || !screenshot) return null;
-
-  if (tpl.kind === "photo") {
-    return (
-      <PhotoFrame
-        tpl={tpl}
-        screenshot={screenshot}
-        alt={alt}
-        className={className}
-      />
-    );
-  }
-
-  if (tpl.kind === "phone") {
-    return (
-      <div
-        className={twMerge(
-          "mx-auto w-full max-w-55 overflow-hidden rounded-4xl border-[6px] border-neutral-800 bg-neutral-800 shadow-xl",
-          className,
-        )}
-      >
-        <div className="relative aspect-9/18 w-full overflow-hidden rounded-[1.4rem] bg-white">
-          <div className="absolute left-1/2 top-0 z-10 h-4 w-24 -translate-x-1/2 rounded-b-xl bg-neutral-800" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={screenshot}
-            alt={alt}
-            loading="lazy"
-            className="h-full w-full object-cover object-top"
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // Browser window
   return (
-    <div
-      className={twMerge(
-        "w-full overflow-hidden rounded-xl border border-border bg-card shadow-md",
-        className,
-      )}
-    >
-      <div className="flex items-center gap-1.5 border-b border-border bg-muted/60 px-3 py-2">
-        <span className="h-3 w-3 rounded-full bg-red-400/80" />
-        <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
-        <span className="h-3 w-3 rounded-full bg-green-400/80" />
-        <span className="ml-3 hidden h-4 flex-1 rounded-full bg-background/70 sm:block" />
-      </div>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={screenshot}
-        alt={alt}
-        loading="lazy"
-        className="aspect-16/10 w-full object-cover object-top"
-      />
-    </div>
+    <PhotoFrame
+      tpl={tpl}
+      screenshot={screenshot}
+      alt={alt}
+      className={className}
+    />
   );
 }

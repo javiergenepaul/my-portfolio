@@ -21,25 +21,25 @@ import {
  * Neutral page stand-in shown inside the frame previews (so the gallery shows
  * the frame style when no real screenshot is supplied). Inline SVG data URI.
  */
+// Full-bleed sample UI — content fills edge-to-edge and top-to-bottom (soft
+// tones, no stark white gaps) so it looks filled cropped into ANY device
+// screen, portrait or landscape. It's just a stand-in; real uploads replace it.
 export const PLACEHOLDER_SHOT = `data:image/svg+xml,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250">
-     <rect width="400" height="250" fill="#ffffff"/>
-     <rect width="400" height="34" fill="#4f46e5"/>
-     <circle cx="20" cy="17" r="7" fill="#ffffff" opacity="0.9"/>
-     <rect x="36" y="12" width="70" height="10" rx="3" fill="#ffffff" opacity="0.85"/>
-     <rect x="320" y="11" width="60" height="12" rx="6" fill="#ffffff" opacity="0.3"/>
-     <rect x="0" y="34" width="86" height="216" fill="#0f172a"/>
-     <rect x="14" y="52" width="58" height="8" rx="3" fill="#64748b"/>
-     <rect x="14" y="74" width="48" height="8" rx="3" fill="#475569"/>
-     <rect x="14" y="96" width="58" height="8" rx="3" fill="#475569"/>
-     <rect x="14" y="118" width="42" height="8" rx="3" fill="#475569"/>
-     <rect x="110" y="54" width="120" height="14" rx="3" fill="#1e293b"/>
-     <rect x="110" y="84" width="130" height="52" rx="8" fill="#eef2ff"/>
-     <rect x="252" y="84" width="130" height="52" rx="8" fill="#ecfeff"/>
-     <rect x="110" y="150" width="272" height="10" rx="3" fill="#e2e8f0"/>
-     <rect x="110" y="168" width="240" height="10" rx="3" fill="#e2e8f0"/>
-     <rect x="110" y="186" width="256" height="10" rx="3" fill="#e2e8f0"/>
-     <rect x="110" y="210" width="180" height="10" rx="3" fill="#eef2f6"/>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="260">
+     <rect width="400" height="260" fill="#eef2f8"/>
+     <rect width="400" height="30" fill="#4f46e5"/>
+     <circle cx="17" cy="15" r="7" fill="#ffffff" opacity="0.9"/>
+     <rect x="32" y="10" width="78" height="10" rx="3" fill="#ffffff" opacity="0.85"/>
+     <rect x="312" y="9" width="72" height="12" rx="6" fill="#ffffff" opacity="0.28"/>
+     <rect x="12" y="42" width="185" height="60" rx="9" fill="#dbe4ff"/>
+     <rect x="203" y="42" width="185" height="60" rx="9" fill="#cdeee4"/>
+     <rect x="12" y="114" width="150" height="12" rx="3" fill="#c3cddd"/>
+     <rect x="12" y="136" width="376" height="16" rx="4" fill="#dfe6f1"/>
+     <rect x="12" y="158" width="376" height="16" rx="4" fill="#e7edf6"/>
+     <rect x="12" y="180" width="376" height="16" rx="4" fill="#dfe6f1"/>
+     <rect x="12" y="210" width="120" height="40" rx="9" fill="#e3e9fb"/>
+     <rect x="140" y="210" width="120" height="40" rx="9" fill="#d9f0ea"/>
+     <rect x="268" y="210" width="120" height="40" rx="9" fill="#fdf3cf"/>
    </svg>`,
 )}`;
 
