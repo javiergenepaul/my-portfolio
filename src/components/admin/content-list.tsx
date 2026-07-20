@@ -33,9 +33,12 @@ import { ContentEditForm } from "./content-edit-form";
 /** Which locales have a non-empty value for a localized field. */
 function filledLocales(value: FieldValue | undefined): string[] {
   if (!value || typeof value !== "object" || Array.isArray(value)) return [];
-  return LOCALES.filter((l) => (value[l.code] ?? "").trim().length > 0).map(
-    (l) => l.code,
-  );
+  return LOCALES.filter((l) => {
+    const cell = value[l.code];
+    return Array.isArray(cell)
+      ? cell.length > 0
+      : (cell ?? "").trim().length > 0;
+  }).map((l) => l.code);
 }
 
 export function ContentList({

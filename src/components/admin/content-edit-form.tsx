@@ -35,10 +35,12 @@ import {
   type FieldDef,
   type FieldValue,
   type LocalizedValue,
+  type LocalizedList,
   type LocaleCode,
   type LinkItem,
   type MockupItem,
   type ContributionItem,
+  type PromotionEntry,
   LOCALES,
 } from "./admin-config";
 import {
@@ -49,6 +51,7 @@ import { saveContentRow, deleteContentRow } from "@/lib/content/actions";
 import { ImageUploadField } from "./image-upload-field";
 import { MockupListField } from "./mockup-list-field";
 import { ContributionListField } from "./contribution-list-field";
+import { PromotionListField } from "./promotion-list-field";
 import { StackListField } from "./stack-list-field";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
@@ -58,7 +61,10 @@ function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
       ? {}
       : f.type === "string-list" ||
           f.type === "stack-list" ||
-          f.type === "link-list"
+          f.type === "link-list" ||
+          f.type === "mockup-list" ||
+          f.type === "contribution-list" ||
+          f.type === "promotion-list"
         ? []
         : "";
   }
@@ -103,6 +109,11 @@ export function ContentEditForm({
     setValues((p) => ({
       ...p,
       [name]: { ...((p[name] as LocalizedValue) ?? {}), [code]: val },
+    }));
+  const setLocalizedList = (name: string, code: LocaleCode, val: string[]) =>
+    setValues((p) => ({
+      ...p,
+      [name]: { ...((p[name] as LocalizedList) ?? {}), [code]: val },
     }));
 
   const finish = () => {
@@ -273,6 +284,7 @@ export function ContentEditForm({
               value={values[field.name]}
               onPlain={(v) => setPlain(field.name, v)}
               onLocalized={(v) => setLocalized(field.name, locale, v)}
+              onLocalizedList={(v) => setLocalizedList(field.name, locale, v)}
             />
           </div>
         ))}
@@ -387,8 +399,11 @@ function coverageForLocale(
   const localizedFields = type.fields.filter((f) => f.localized);
   if (localizedFields.length === 0) return false;
   return localizedFields.every((f) => {
-    const v = values[f.name] as LocalizedValue | undefined;
-    return (v?.[code] ?? "").trim().length > 0;
+    const v = values[f.name] as Record<string, unknown> | undefined;
+    const cell = v?.[code];
+    // Localized lists count as covered when non-empty; strings when non-blank.
+    if (Array.isArray(cell)) return cell.length > 0;
+    return (typeof cell === "string" ? cell : "").trim().length > 0;
   });
 }
 
@@ -398,12 +413,14 @@ function FieldRow({
   value,
   onPlain,
   onLocalized,
+  onLocalizedList,
 }: {
   field: FieldDef;
   locale: LocaleCode;
   value: FieldValue | undefined;
   onPlain: (v: FieldValue) => void;
   onLocalized: (v: string) => void;
+  onLocalizedList: (v: string[]) => void;
 }) {
   const localizedVal =
     field.localized && value && typeof value === "object"
@@ -487,6 +504,23 @@ function FieldRow({
         />
       )}
 
+      {field.type === "localized-string-list" && (
+        <StringListField
+          value={
+            value && typeof value === "object" && !Array.isArray(value)
+              ? (
+                  ((value as Record<string, unknown>)[locale] as
+                    | string[]
+                    | undefined) ?? []
+                ).filter((x): x is string => typeof x === "string")
+              : []
+          }
+          onChange={(v) => onLocalizedList(v)}
+          placeholder={field.placeholder}
+          multiline={field.multiline}
+        />
+      )}
+
       {field.type === "stack-list" && (
         <StackListField
           value={
@@ -553,6 +587,14 @@ function FieldRow({
       {field.type === "contribution-list" && (
         <ContributionListField
           value={Array.isArray(value) ? (value as ContributionItem[]) : []}
+          onChange={(v) => onPlain(v)}
+          locale={locale}
+        />
+      )}
+
+      {field.type === "promotion-list" && (
+        <PromotionListField
+          value={Array.isArray(value) ? (value as PromotionEntry[]) : []}
           onChange={(v) => onPlain(v)}
           locale={locale}
         />

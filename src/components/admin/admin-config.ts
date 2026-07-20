@@ -26,12 +26,15 @@ import { MOCKUP_SIZE_HINT } from "@/lib/mockups/templates";
  * ONLY listed fields are selected and written. So each field name here MUST map
  * to a real column, or the SELECT fails.
  *
- * Some tables carry richly-nested columns (experience.promotion,
- * projects.carousel / key_contribution, profile.stats, services.sub_details)
- * that don't have a flat widget yet. They're intentionally omitted below. That
- * is safe: an UPDATE only writes the columns listed here, so those columns keep
- * their seeded values when a row is edited. A brand-new row leaves them at their
- * table default until a dedicated repeater UI is built.
+ * Nested jsonb columns now have dedicated widgets: projects.key_contribution
+ * (contribution-list), projects.mockups (mockup-list), experience.promotion
+ * (promotion-list), services.sub_details (localized-string-list).
+ *
+ * Two columns are still intentionally omitted: projects.carousel (superseded by
+ * the mockups list) and profile.stats (the hero stats are computed live in
+ * intro-section.tsx, not read from the DB). Omitting is safe: an UPDATE only
+ * writes the columns listed here, so an unlisted column keeps its seeded value
+ * on edit and its table default on insert.
  */
 
 export const LOCALES = [
@@ -58,7 +61,9 @@ export type FieldType =
   | "stack-list" // list of stack names, each picked from a dropdown of stacks
   | "link-list" // add-any-number list of { platform, url } links
   | "mockup-list" // draggable list of framed mockups (screenshot + template)
-  | "contribution-list"; // list of localized { name, description } key contributions
+  | "contribution-list" // list of localized { name, description } key contributions
+  | "localized-string-list" // a string[] per locale ({ en: [...], ja: [...] })
+  | "promotion-list"; // list of localized role changes within one experience
 
 export interface FieldDef {
   name: string;
@@ -108,6 +113,8 @@ export interface ContentTypeDef {
 
 // A localized value is a per-locale string map; plain values are string/bool.
 export type LocalizedValue = Partial<Record<LocaleCode, string>>;
+/** A localized list — a string[] per locale (e.g. services.sub_details). */
+export type LocalizedList = Partial<Record<LocaleCode, string[]>>;
 export interface LinkItem {
   platform: string;
   url: string;
@@ -123,6 +130,16 @@ export interface ContributionItem {
   name: LocalizedValue;
   description: LocalizedValue;
 }
+/** One experience promotion — a localized role change plus its own dates. */
+export interface PromotionEntry {
+  title: LocalizedValue;
+  subtitle: LocalizedValue;
+  description: LocalizedValue;
+  abbreviation?: string;
+  /** ISO date string; endYear may also be the literal "present". */
+  startYear?: string;
+  endYear?: string;
+}
 export type FieldValue =
   | string
   | boolean
@@ -130,7 +147,9 @@ export type FieldValue =
   | LinkItem[]
   | MockupItem[]
   | ContributionItem[]
-  | LocalizedValue;
+  | PromotionEntry[]
+  | LocalizedValue
+  | LocalizedList;
 export interface ContentRow {
   id: string;
   published: boolean;
@@ -190,6 +209,12 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
       { name: "subtitleUrl", label: "Company URL", type: "url" },
       { name: "watermark", label: "Company logo", type: "image" },
       { name: "stack", label: "Tech stack", type: "stack-list" },
+      {
+        name: "promotion",
+        label: "Promotions",
+        type: "promotion-list",
+        help: "Role changes within this job — each a title/team/description (localized to the tab above) plus its own dates.",
+      },
     ],
   },
 
@@ -410,6 +435,14 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         label: "Description",
         type: "textarea",
         localized: true,
+      },
+      {
+        name: "subDetails",
+        label: "Sub-details",
+        type: "localized-string-list",
+        localized: true,
+        placeholder: "A capability or deliverable",
+        help: "Bulleted specifics shown under the service. Localized to the tab above.",
       },
       { name: "stack", label: "Tech stack", type: "stack-list" },
     ],
@@ -654,5 +687,7 @@ export function displayValue(
     }
     return `${value.length} link${value.length > 1 ? "s" : ""}`;
   }
-  return value[locale] ?? value.en ?? "";
+  const cell = value[locale] ?? value.en;
+  if (Array.isArray(cell)) return cell.filter(Boolean).join(", ");
+  return cell ?? "";
 }
