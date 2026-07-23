@@ -83,6 +83,15 @@ function newToken(): string {
   return crypto.randomUUID().replace(/-/g, "").slice(0, 24);
 }
 
+/** "Rochenette Legaspina" → "RL". Mirrors initialsFor() in content/portfolio. */
+function initialsOf(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  const first = parts[0][0] ?? "";
+  const last = parts.length > 1 ? (parts[parts.length - 1][0] ?? "") : "";
+  return (first + last).toUpperCase();
+}
+
 type Row = Record<string, unknown>;
 const s = (v: unknown) => (typeof v === "string" ? v : undefined);
 
@@ -174,11 +183,12 @@ export async function submitTestimonial(
   if (error) return false;
   if ((data?.length ?? 0) === 0) return false;
 
-  // Notify the site owner. Deliberately after the write and never awaited into
-  // the result — a mail failure must not tell the recipient their testimonial
-  // didn't go through, because it did.
+  // Notify the site owner. Awaited on purpose: on serverless the function is
+  // frozen once the action returns, so a fire-and-forget promise gets killed
+  // before the request to EmailJS completes — no send, no log, no trace.
+  // Safe to await because sendEmail never throws; it reports via its result.
   const { profile } = await getServerProfile();
-  void sendTestimonialEmail({
+  await sendTestimonialEmail({
     to_email: profile.email,
     to_name: profile.fullName,
     // Reply goes straight to the author when they left an address.
@@ -301,7 +311,11 @@ export async function approveInvite(token: string): Promise<void> {
       company: s(r.company) ?? null,
       text: { en: s(r.message) ?? "" },
       rating: r.rating ?? null,
-      avatar: s(r.photo) ?? null,
+      // `avatar` is rendered as TEXT in a coloured circle, so it holds initials.
+      // The photo is a Storage URL and lives in its own column; cards show the
+      // image when set and fall back to these initials when not.
+      avatar: initialsOf(s(r.name) ?? ""),
+      avatar_url: s(r.photo) ?? null,
       relationship: s(r.relationship) ?? null,
       links: Array.isArray(r.links) ? r.links : [],
       published: true,
@@ -322,7 +336,8 @@ export async function approveInvite(token: string): Promise<void> {
   const authorEmail = s(r.email)?.trim();
   if (authorEmail) {
     const { profile } = await getServerProfile();
-    void sendTestimonialEmail({
+    // Awaited for the same reason as the submission alert — see above.
+    await sendTestimonialEmail({
       to_email: authorEmail,
       to_name: s(r.name) || "there",
       reply_to: profile.email,

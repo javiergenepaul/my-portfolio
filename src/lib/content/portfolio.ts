@@ -234,6 +234,27 @@ export function rowsToServices(
   });
 }
 
+/**
+ * Every year renders `testimonial.avatar` as *text* inside a coloured circle,
+ * so it must be initials — not a URL or a data URI.
+ *
+ * Anything longer than a couple of characters is treated as bad data and
+ * replaced with initials derived from the name. That defends against
+ * `data:image/...` blobs written by the submission flow, which would otherwise
+ * dump thousands of base64 characters across the page.
+ */
+function initialsFor(avatar: string, name: string): string {
+  const clean = avatar.trim();
+  if (clean.length > 0 && clean.length <= 3 && !clean.includes(":")) {
+    return clean;
+  }
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  const first = parts[0][0] ?? "";
+  const last = parts.length > 1 ? (parts[parts.length - 1][0] ?? "") : "";
+  return (first + last).toUpperCase();
+}
+
 /** testimonial rows → the testimonial card shape. `links` jsonb → github/linkedin/behance. */
 export function rowsToTestimonials(
   rows: ContentRow[],
@@ -250,7 +271,8 @@ export function rowsToTestimonials(
       name: str(v.name),
       role: pick(v.role, locale),
       company: str(v.company),
-      avatar: str(v.avatar),
+      avatar: initialsFor(str(v.avatar), str(v.name)),
+      avatarUrl: str(v.avatarUrl) || undefined,
       text: pick(v.text, locale),
       rating: num(v.rating) ?? 5,
       service: str(v.service),

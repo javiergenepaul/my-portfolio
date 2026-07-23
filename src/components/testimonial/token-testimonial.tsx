@@ -6,6 +6,7 @@ import {
   submitTestimonial,
   type PublicInvite,
 } from "@/lib/testimonials/invites";
+import { uploadTestimonialPhoto } from "@/lib/testimonials/upload";
 import { TestimonialSubmissionForm } from "./submission-form";
 
 /**
@@ -62,6 +63,7 @@ export function TokenTestimonial({
         role: invite.recipientRole,
         company: invite.recipientCompany,
       }}
+      onUploadPhoto={(dataUrl) => uploadTestimonialPhoto(token, dataUrl)}
       onSubmitted={async (data) => {
         const ok = await submitTestimonial(token, {
           name: data.name,

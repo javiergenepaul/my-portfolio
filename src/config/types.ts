@@ -173,7 +173,10 @@ export interface TestimonialInterface {
   name: string;
   role: string;
   company: string;
+  /** Initials shown in the coloured circle when there is no photo. */
   avatar: string;
+  /** Storage URL of an uploaded photo. Falls back to initials when absent. */
+  avatarUrl?: string;
   text: string;
   rating: number;
   service: string;

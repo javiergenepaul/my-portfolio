@@ -66,6 +66,10 @@ export async function sendEmail({
       console.error(`[email] send failed ${res.status}: ${body}`);
       return { ok: false, error: `${res.status} ${body}` };
     }
+    // Logged on success too, not just failure. Silence is ambiguous in a
+    // production log — it reads the same as "the code never ran", which makes
+    // "no email arrived" impossible to diagnose from the logs alone.
+    console.log(`[email] sent template=${templateId} to=${params.to_email}`);
     return { ok: true };
   } catch (e) {
     console.error("[email] send threw:", e);

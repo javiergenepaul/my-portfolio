@@ -229,17 +229,26 @@ export function TestimonialsContent() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.92))",
-                      }}
-                    >
-                      <span className="text-white text-[11px] font-bold">
-                        {testimonial.avatar}
-                      </span>
-                    </div>
+                    {testimonial.avatarUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={testimonial.avatarUrl}
+                        alt=""
+                        className="w-10 h-10 rounded-full object-cover shrink-0"
+                      />
+                    ) : (
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(236,72,153,0.95), rgba(168,85,247,0.92))",
+                        }}
+                      >
+                        <span className="text-white text-[11px] font-bold">
+                          {testimonial.avatar}
+                        </span>
+                      </div>
+                    )}
                     <div className="min-w-0">
                       <div className="text-a26-text text-[13px] font-semibold truncate">
                         {testimonial.name}

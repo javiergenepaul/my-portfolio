@@ -514,7 +514,13 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         options: ["Colleague", "Manager", "Peer", "Mentor", "Client"],
       },
       { name: "links", label: "Social links", type: "link-list" },
-      { name: "avatar", label: "Avatar", type: "image" },
+      {
+        name: "avatar",
+        label: "Initials",
+        type: "text",
+        help: "Shown in the coloured circle when there is no photo (e.g. RL).",
+      },
+      { name: "avatarUrl", label: "Photo", type: "image" },
     ],
   },
 

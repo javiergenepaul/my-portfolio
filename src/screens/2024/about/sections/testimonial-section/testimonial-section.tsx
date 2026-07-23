@@ -211,13 +211,23 @@ function TestimonialCard({
 
       {/* Author */}
       <div className="flex items-center gap-3 mt-auto pt-2 border-t border-border">
-        <div
-          className="h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0 text-primary-foreground"
-          style={{ backgroundColor: accent }}
-          aria-hidden
-        >
-          {testimonial.avatar}
-        </div>
+        {testimonial.avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={testimonial.avatarUrl}
+            alt=""
+            className="h-9 w-9 rounded-full object-cover shrink-0"
+            aria-hidden
+          />
+        ) : (
+          <div
+            className="h-9 w-9 rounded-full flex items-center justify-center text-xs font-bold shrink-0 text-primary-foreground"
+            style={{ backgroundColor: accent }}
+            aria-hidden
+          >
+            {testimonial.avatar}
+          </div>
+        )}
         <div className="min-w-0">
           <p className="text-sm font-semibold truncate">{testimonial.name}</p>
           <p className="text-xs text-muted-foreground truncate">

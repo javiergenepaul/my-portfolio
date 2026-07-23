@@ -159,24 +159,43 @@ export function TestimonialsSection() {
                   borderTop: `1px solid ${C.border}`,
                 }}
               >
-                <div
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "50%",
-                    background: `linear-gradient(135deg, ${C.indigoDark}, ${C.indigo})`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <span
-                    style={{ fontSize: "10px", fontWeight: 700, color: "#fff" }}
+                {t.avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={t.avatarUrl}
+                    alt=""
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      flexShrink: 0,
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      borderRadius: "50%",
+                      background: `linear-gradient(135deg, ${C.indigoDark}, ${C.indigo})`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
                   >
-                    {t.avatar}
-                  </span>
-                </div>
+                    <span
+                      style={{
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        color: "#fff",
+                      }}
+                    >
+                      {t.avatar}
+                    </span>
+                  </div>
+                )}
                 <div>
                   <p
                     style={{

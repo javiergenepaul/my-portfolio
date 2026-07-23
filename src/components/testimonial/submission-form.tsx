@@ -47,12 +47,17 @@ export interface TestimonialSubmission {
 export function TestimonialSubmissionForm({
   defaults,
   onSubmitted,
+  onUploadPhoto,
 }: {
   defaults?: { name?: string; role?: string; company?: string };
   /** Return false to signal the submission was rejected (used/revoked link). */
   onSubmitted?: (
     data: TestimonialSubmission,
   ) => void | boolean | Promise<boolean | void>;
+  /** Uploads a data URL and returns the stored public URL. */
+  onUploadPhoto?: (
+    dataUrl: string,
+  ) => Promise<{ url?: string; error?: string }>;
 } = {}) {
   const profile = useProfile();
   const [name, setName] = useState(defaults?.name ?? "");
@@ -72,6 +77,8 @@ export function TestimonialSubmissionForm({
   const [submitted, setSubmitted] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [photoError, setPhotoError] = useState<string | null>(null);
 
   const addSocial = () =>
     setSocials((s) => [...s, { platform: "linkedin", url: "" }]);
@@ -93,17 +100,34 @@ export function TestimonialSubmissionForm({
     validSocials.length >= 1 &&
     consent;
 
+  /**
+   * Uploads on select rather than on submit, so `photo` always holds a Storage
+   * URL — never a base64 blob. Keeping base64 in state would put megabytes into
+   * the submit payload and, previously, into the database.
+   */
   const onPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file) return;
+    if (!file || !onUploadPhoto) return;
+    setPhotoError(null);
     const reader = new FileReader();
-    reader.onload = () => setPhoto(reader.result as string);
+    reader.onload = async () => {
+      setUploading(true);
+      try {
+        const res = await onUploadPhoto(reader.result as string);
+        if (res.url) setPhoto(res.url);
+        else setPhotoError(res.error ?? "Upload failed.");
+      } finally {
+        setUploading(false);
+      }
+    };
     reader.readAsDataURL(file);
+    // Let the same file be re-picked after a failure.
+    e.target.value = "";
   };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSubmit || busy) return;
+    if (!canSubmit || busy || uploading) return;
     setBusy(true);
     setError(null);
     try {
@@ -345,20 +369,35 @@ export function TestimonialSubmissionForm({
               </Button>
             </div>
           ) : (
-            <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3 hover:border-primary/40 transition-colors">
+            <label
+              className={cn(
+                "flex items-center gap-3 rounded-lg border border-dashed border-border bg-muted/30 px-4 py-3 transition-colors",
+                uploading
+                  ? "cursor-wait opacity-70"
+                  : "cursor-pointer hover:border-primary/40",
+              )}
+            >
               <input
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png,image/webp"
                 className="hidden"
+                disabled={uploading}
                 onChange={onPhoto}
               />
               <div className="flex items-center justify-center h-10 w-10 rounded-md bg-background border border-border text-muted-foreground">
-                <ImagePlus size={18} />
+                {uploading ? (
+                  <Loader2 size={18} className="animate-spin" />
+                ) : (
+                  <ImagePlus size={18} />
+                )}
               </div>
               <span className="text-sm text-muted-foreground">
-                Add a photo of yourself
+                {uploading ? "Uploading…" : "Add a photo of yourself"}
               </span>
             </label>
+          )}
+          {photoError && (
+            <p className="text-[12px] text-destructive">{photoError}</p>
           )}
         </div>
 
@@ -387,7 +426,7 @@ export function TestimonialSubmissionForm({
 
         <Button
           type="submit"
-          disabled={!canSubmit || busy}
+          disabled={!canSubmit || busy || uploading}
           className="gap-2 mt-1"
         >
           {busy ? (
