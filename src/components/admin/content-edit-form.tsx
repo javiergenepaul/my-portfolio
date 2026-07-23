@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
@@ -53,6 +52,7 @@ import { MockupListField } from "./mockup-list-field";
 import { ContributionListField } from "./contribution-list-field";
 import { PromotionListField } from "./promotion-list-field";
 import { StackListField } from "./stack-list-field";
+import { GuardedLink, useUnsavedChangesGuard } from "./unsaved-changes";
 
 function blankValues(type: ContentTypeDef): Record<string, FieldValue> {
   const v: Record<string, FieldValue> = {};
@@ -80,6 +80,8 @@ export function ContentEditForm({
   embedded = false,
   /** Draft mode: report edited data to the parent instead of a "saved" toast. */
   onSubmit,
+  /** Lets the drawer know there are edits worth prompting about before closing. */
+  onDirtyChange,
 }: {
   type: ContentTypeDef;
   row?: ContentRow;
@@ -90,6 +92,7 @@ export function ContentEditForm({
     published: boolean;
     values: Record<string, FieldValue>;
   }) => void;
+  onDirtyChange?: (dirty: boolean) => void;
 }) {
   const router = useRouter();
   const { toast } = useToast();
@@ -98,23 +101,50 @@ export function ContentEditForm({
   const [values, setValues] = useState<Record<string, FieldValue>>(
     row ? structuredClone(row.values) : blankValues(type),
   );
-  const [published, setPublished] = useState(row?.published ?? false);
+  const [published, setPublishedState] = useState(row?.published ?? false);
   const [locale, setLocale] = useState<LocaleCode>("en");
   const [section, setSection] = useState<string>(type.tabs?.[0] ?? "");
   const [busy, setBusy] = useState(false);
+  const [dirty, setDirty] = useState(false);
 
-  const setPlain = (name: string, val: FieldValue) =>
+  // Dirty is reported to the parent synchronously rather than through an
+  // effect: the drawer reads it during the same click that closes it, and a
+  // state update wouldn't have landed yet.
+  const markDirty = () => {
+    setDirty(true);
+    onDirtyChange?.(true);
+  };
+  const markClean = () => {
+    setDirty(false);
+    onDirtyChange?.(false);
+  };
+
+  // Standalone mode only — in the drawer the parent owns the close prompt, but
+  // sidebar navigation should still be guarded either way.
+  useUnsavedChangesGuard(dirty);
+
+  const setPublished = (val: boolean) => {
+    markDirty();
+    setPublishedState(val);
+  };
+  const setPlain = (name: string, val: FieldValue) => {
+    markDirty();
     setValues((p) => ({ ...p, [name]: val }));
-  const setLocalized = (name: string, code: LocaleCode, val: string) =>
+  };
+  const setLocalized = (name: string, code: LocaleCode, val: string) => {
+    markDirty();
     setValues((p) => ({
       ...p,
       [name]: { ...((p[name] as LocalizedValue) ?? {}), [code]: val },
     }));
-  const setLocalizedList = (name: string, code: LocaleCode, val: string[]) =>
+  };
+  const setLocalizedList = (name: string, code: LocaleCode, val: string[]) => {
+    markDirty();
     setValues((p) => ({
       ...p,
       [name]: { ...((p[name] as LocalizedList) ?? {}), [code]: val },
     }));
+  };
 
   const finish = () => {
     if (onDone) onDone();
@@ -125,6 +155,7 @@ export function ContentEditForm({
     if (onSubmit) {
       // Draft mode — hand the data up; the parent persists on its own Save.
       onSubmit({ id: row?.id, published, values });
+      markClean(); // the edits now live in the parent's draft, not just here
       finish();
       return;
     }
@@ -137,6 +168,7 @@ export function ContentEditForm({
         description: "Your changes are live in the database.",
         duration: 3000,
       });
+      markClean();
       router.refresh();
       finish();
     } catch (e) {
@@ -161,6 +193,7 @@ export function ContentEditForm({
         description: `${type.singular} removed from the database.`,
         duration: 3000,
       });
+      markClean(); // the row is gone — nothing left to warn about
       router.refresh();
       finish();
     } catch (e) {
@@ -189,9 +222,7 @@ export function ContentEditForm({
   const tabOf = (f: FieldDef) => f.tab ?? firstTab;
   const activeTabs =
     type.tabs?.filter((t) => visibleFields.some((f) => tabOf(f) === t)) ?? [];
-  const currentSection = activeTabs.includes(section)
-    ? section
-    : activeTabs[0];
+  const currentSection = activeTabs.includes(section) ? section : activeTabs[0];
   const shownFields =
     activeTabs.length > 0
       ? visibleFields.filter((f) => tabOf(f) === currentSection)
@@ -347,9 +378,9 @@ export function ContentEditForm({
               size="icon"
               className="h-8 w-8 shrink-0"
             >
-              <Link href={`/admin/${type.key}`}>
+              <GuardedLink href={`/admin/${type.key}`}>
                 <ArrowLeft size={16} />
-              </Link>
+              </GuardedLink>
             </Button>
           )}
           <div className="min-w-0">

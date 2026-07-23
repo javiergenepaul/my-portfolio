@@ -8,6 +8,7 @@ import { getContentType, type ContentRow } from "./admin-config";
 import { replaceContentRows } from "@/lib/content/actions";
 import { ContentList } from "./content-list";
 import { ContentEditForm } from "./content-edit-form";
+import { useUnsavedChangesGuard } from "./unsaved-changes";
 
 /**
  * DB-backed manager for a single content type (the non-résumé types).
@@ -42,6 +43,9 @@ export function ContentManager({
   );
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
+
+  // Must run before the early returns below — hooks can't be conditional.
+  useUnsavedChangesGuard(dirty);
 
   if (!type) {
     return (

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -14,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components";
 import { CONTENT_TYPES } from "./admin-config";
 import { useAdminAuth } from "./admin-auth";
+import { GuardedLink, useGuardedAction } from "./unsaved-changes";
 
 /**
  * Gates every /admin route except the login page. Renders the shell (sidebar +
@@ -41,9 +41,12 @@ export function AdminGate({ children }: { children: React.ReactNode }) {
 function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { user, signOut } = useAdminAuth();
+  const guard = useGuardedAction();
 
+  // Signing out navigates away just like a link click, so it gets the same
+  // prompt rather than dropping the draft on the floor.
   const onSignOut = () => {
-    void signOut();
+    guard(() => void signOut());
   };
 
   return (
@@ -112,7 +115,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
         <header className="h-14 shrink-0 border-b border-border bg-card/60 backdrop-blur flex items-center justify-between px-4 lg:px-6 sticky top-0 z-20">
           {/* Mobile nav (horizontal scroll) */}
           <div className="lg:hidden flex items-center gap-1 overflow-x-auto -mx-1 px-1">
-            <Link
+            <GuardedLink
               href="/admin"
               className={cn(
                 "shrink-0 text-xs px-2.5 py-1.5 rounded-md",
@@ -122,8 +125,8 @@ function AdminShell({ children }: { children: React.ReactNode }) {
               )}
             >
               Home
-            </Link>
-            <Link
+            </GuardedLink>
+            <GuardedLink
               href="/admin/resume"
               className={cn(
                 "shrink-0 text-xs px-2.5 py-1.5 rounded-md whitespace-nowrap",
@@ -133,11 +136,11 @@ function AdminShell({ children }: { children: React.ReactNode }) {
               )}
             >
               Resume
-            </Link>
+            </GuardedLink>
             {CONTENT_TYPES.filter(
               (t) => (t.group ?? "Content") === "Content",
             ).map((t) => (
-              <Link
+              <GuardedLink
                 key={t.key}
                 href={`/admin/${t.key}`}
                 className={cn(
@@ -148,9 +151,9 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                 )}
               >
                 {t.label}
-              </Link>
+              </GuardedLink>
             ))}
-            <Link
+            <GuardedLink
               href="/admin/requests"
               className={cn(
                 "shrink-0 text-xs px-2.5 py-1.5 rounded-md whitespace-nowrap",
@@ -160,7 +163,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
               )}
             >
               Requests
-            </Link>
+            </GuardedLink>
           </div>
 
           <div className="hidden lg:block" />
@@ -184,12 +187,6 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             </Button>
           </div>
         </header>
-
-        {/* Prototype banner */}
-        <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 lg:px-6 py-1.5 text-[11px] text-amber-700 dark:text-amber-400">
-          Prototype — content is mocked and edits aren&apos;t saved yet. Backing
-          this with Supabase is the next step.
-        </div>
 
         <main className="flex-1 min-w-0 p-4 lg:p-8">{children}</main>
       </div>
@@ -221,7 +218,7 @@ function NavItem({
   label: string;
 }) {
   return (
-    <Link
+    <GuardedLink
       href={href}
       className={cn(
         "flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors",
@@ -232,6 +229,6 @@ function NavItem({
     >
       {icon}
       {label}
-    </Link>
+    </GuardedLink>
   );
 }

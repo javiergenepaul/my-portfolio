@@ -29,6 +29,7 @@ import {
 import { saveResume } from "@/lib/content/actions";
 import { ContentList } from "./content-list";
 import { ContentEditForm } from "./content-edit-form";
+import { useUnsavedChangesGuard } from "./unsaved-changes";
 import { AtsTemplate } from "@/screens/2024/resume/templates/ats-template";
 import { ModernTemplate } from "@/screens/2024/resume/templates/modern-template";
 import type { ResumeColorConfig } from "@/screens/2024/resume/resume";
@@ -64,6 +65,8 @@ export function ResumeManager({
     structuredClone(initialSections),
   );
   const [dirty, setDirty] = useState(false);
+
+  useUnsavedChangesGuard(dirty);
 
   const updateSection = (key: string, rows: ContentRow[]) => {
     setDraft((d) => ({ ...d, [key]: rows }));
