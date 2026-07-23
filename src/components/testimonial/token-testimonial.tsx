@@ -65,6 +65,7 @@ export function TokenTestimonial({
       onSubmitted={async (data) => {
         const ok = await submitTestimonial(token, {
           name: data.name,
+          email: data.email,
           role: data.role,
           company: data.company,
           relationship: data.relationship,

@@ -34,6 +34,7 @@ const RELATIONSHIPS = ["Colleague", "Client", "Manager", "Mentor", "Peer"];
 
 export interface TestimonialSubmission {
   name: string;
+  email: string;
   role: string;
   company: string;
   relationship: string;
@@ -55,6 +56,7 @@ export function TestimonialSubmissionForm({
 } = {}) {
   const profile = useProfile();
   const [name, setName] = useState(defaults?.name ?? "");
+  const [email, setEmail] = useState("");
   const [role, setRole] = useState(defaults?.role ?? "");
   const [company, setCompany] = useState(defaults?.company ?? "");
   const [relationship, setRelationship] = useState("");
@@ -79,8 +81,15 @@ export function TestimonialSubmissionForm({
     setSocials((s) => s.filter((_, idx) => idx !== i));
 
   const validSocials = socials.filter((s) => s.url.trim().length > 0);
+  // Loose on purpose — enough to catch typos, not to police valid addresses.
+  // Optional field: blank is fine, but a typo shouldn't pass silently. Loose on
+  // purpose — enough to catch mistakes, not to police valid addresses.
+  const emailOk =
+    email.trim().length === 0 ||
+    /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
   const canSubmit =
     name.trim().length > 0 &&
+    emailOk &&
     message.trim().length > 0 &&
     validSocials.length >= 1 &&
     consent;
@@ -103,6 +112,7 @@ export function TestimonialSubmissionForm({
       // or revoked link) — keep the form up rather than faking success.
       const ok = await onSubmitted?.({
         name: name.trim(),
+        email: email.trim(),
         role: role.trim(),
         company: company.trim(),
         relationship,
@@ -196,6 +206,18 @@ export function TestimonialSubmissionForm({
               onChange={(e) => setName(e.target.value)}
               placeholder="Jane Doe"
             />
+          </Field>
+          <Field label="Your email">
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="jane@company.com"
+            />
+            <p className="text-[11px] text-muted-foreground">
+              Optional — only so I can reach you about this. Never shown
+              publicly.
+            </p>
           </Field>
           <Field label="Relationship">
             <Select value={relationship} onValueChange={setRelationship}>
@@ -381,9 +403,11 @@ export function TestimonialSubmissionForm({
           <p className="text-[11px] text-muted-foreground -mt-2">
             {!name.trim() || !message.trim()
               ? "Fill in your name and testimonial to submit."
-              : validSocials.length < 1
-                ? "Add at least one social link to submit."
-                : "The permission checkbox is required to submit."}
+              : !emailOk
+                ? "That email address doesn't look right."
+                : validSocials.length < 1
+                  ? "Add at least one social link to submit."
+                  : "The permission checkbox is required to submit."}
           </p>
         )}
       </form>

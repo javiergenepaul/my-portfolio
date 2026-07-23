@@ -413,6 +413,14 @@ export function TestimonialRequests() {
                     ? ` — ${viewing.submission.relationship}`
                     : ""}
                 </DialogDescription>
+                {viewing.submission.email && (
+                  <a
+                    href={`mailto:${viewing.submission.email}`}
+                    className="text-xs text-primary hover:underline w-fit"
+                  >
+                    {viewing.submission.email}
+                  </a>
+                )}
               </DialogHeader>
               <div className="flex flex-col gap-3">
                 <div className="flex gap-0.5">
@@ -466,7 +474,7 @@ export function TestimonialRequests() {
                 </Button>
                 {viewing?.status === "approved" ? (
                   <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                    <CircleCheck size={15} /> Already added to Testimonials
+                    <CircleCheck size={15} /> Already published
                   </span>
                 ) : (
                   <Button
@@ -474,7 +482,7 @@ export function TestimonialRequests() {
                     disabled={busy}
                     className="gap-1.5"
                   >
-                    <CircleCheck size={15} /> Approve
+                    <CircleCheck size={15} /> Approve &amp; publish
                   </Button>
                 )}
               </DialogFooter>

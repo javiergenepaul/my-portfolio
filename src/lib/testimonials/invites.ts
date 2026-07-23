@@ -3,7 +3,14 @@
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createPublicClient } from "@/lib/supabase/public";
+import { getServerProfile } from "@/lib/content/server-profile";
+import { sendEmail, EMAIL_TEMPLATES } from "@/lib/email/send";
 import type { SocialLink } from "@/components/testimonial/social-platforms";
+
+/** Absolute base for links inside emails. */
+function siteUrl(): string {
+  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://gene-paul-mar-javier.dev";
+}
 
 /**
  * Testimonial invite flow, backed by `public.testimonial_invites`.
@@ -36,6 +43,7 @@ export interface Invite extends PublicInvite {
   createdAt: string;
   submission?: {
     name: string;
+    email?: string;
     role?: string;
     company?: string;
     relationship?: string;
@@ -50,6 +58,8 @@ export interface Invite extends PublicInvite {
 
 export interface SubmissionInput {
   name: string;
+  /** Optional — captured so the admin can reply by hand. Not auto-emailed. */
+  email?: string;
   role?: string;
   company?: string;
   relationship?: string;
@@ -90,6 +100,7 @@ function toInvite(r: Row): Invite {
     submission: submitted
       ? {
           name: s(r.name) ?? "",
+          email: s(r.email),
           role: s(r.role),
           company: s(r.company),
           relationship: s(r.relationship),
@@ -146,6 +157,7 @@ export async function submitTestimonial(
     .update({
       status: "submitted",
       name: input.name,
+      email: input.email?.trim() || null,
       role: input.role ?? null,
       company: input.company ?? null,
       relationship: input.relationship ?? null,
@@ -160,7 +172,29 @@ export async function submitTestimonial(
     .select("token");
 
   if (error) return false;
-  return (data?.length ?? 0) > 0;
+  if ((data?.length ?? 0) === 0) return false;
+
+  // Notify the site owner. Deliberately after the write and never awaited into
+  // the result — a mail failure must not tell the recipient their testimonial
+  // didn't go through, because it did.
+  const { profile } = await getServerProfile();
+  void sendEmail({
+    templateId: EMAIL_TEMPLATES.testimonialSubmitted,
+    params: {
+      to_email: profile.email,
+      to_name: profile.fullName,
+      from_name: input.name,
+      from_email: input.email || "—",
+      role: input.role ?? "—",
+      company: input.company ?? "—",
+      relationship: input.relationship ?? "—",
+      rating: input.rating || 0,
+      message: input.message,
+      review_url: `${siteUrl()}/admin/requests`,
+    },
+  });
+
+  return true;
 }
 
 // ── Admin ───────────────────────────────────────────────────────────────────
@@ -227,12 +261,15 @@ export async function deleteInvite(token: string): Promise<void> {
 }
 
 /**
- * Approve a submission: copy it into `testimonials` as an UNPUBLISHED row, then
- * mark the invite approved and link the two.
+ * Approve a submission: copy it into `testimonials` and publish it in one step,
+ * then mark the invite approved and link the two.
  *
- * Unpublished on purpose — approving means "this is real", not "put it live".
- * The admin still edits localized copy and flips Published in the normal
- * Testimonials editor, so nothing reaches the public site unreviewed.
+ * Published immediately — the admin has already read the submission in the
+ * review dialog, so a separate draft step is just extra work. Editing and
+ * unpublishing stay available in the normal Testimonials editor.
+ *
+ * The copy is English-only; `pick()` falls back to `en`, so the other three
+ * locales render the original text rather than going blank until translated.
  */
 export async function approveInvite(token: string): Promise<void> {
   const supabase = await requireAdmin();
@@ -262,7 +299,7 @@ export async function approveInvite(token: string): Promise<void> {
       avatar: s(r.photo) ?? null,
       relationship: s(r.relationship) ?? null,
       links: Array.isArray(r.links) ? r.links : [],
-      published: false,
+      published: true,
     })
     .select("id")
     .single();
@@ -273,6 +310,11 @@ export async function approveInvite(token: string): Promise<void> {
     .update({ status: "approved", testimonial_id: (created as Row).id })
     .eq("token", token);
   if (updateErr) throw new Error(updateErr.message);
+
+  // No "your testimonial is live" email: the free EmailJS tier allows only two
+  // templates, both already in use (contact form + new-submission alert). The
+  // author's address is still captured and shown in the admin review dialog, so
+  // it can be sent by hand.
 
   revalidatePath("/admin/requests");
   revalidatePath("/admin/testimonials");
