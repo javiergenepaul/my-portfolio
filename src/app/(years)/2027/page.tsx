@@ -4,6 +4,7 @@ import dynamicImport from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { useProfile } from "@/lib/content/use-content";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +17,7 @@ const DeskScene = dynamicImport(
 );
 
 export default function Page2027() {
+  const profile = useProfile();
   return (
     <div
       style={{
@@ -122,7 +124,7 @@ export default function Page2027() {
             color: "rgba(255,255,255,0.55)",
           }}
         >
-          Gene Paul Mar Javier
+          {profile.fullName}
         </motion.p>
 
         <motion.h1

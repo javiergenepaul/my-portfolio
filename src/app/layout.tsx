@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import type { ProfileInterface, SocialLinkInterface } from "@/config/types";
+import {
+  getServerProfile,
+  toPostalAddress,
+} from "@/lib/content/server-profile";
 import { Inter, Poppins, Work_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -33,100 +38,111 @@ const workSans = Work_Sans({
 });
 
 const BASE_URL = "https://gene-paul-mar-javier.dev";
-const ROOT_DESCRIPTION =
-  "Gene Paul Mar Javier is a full-stack software engineer from Cebu, Philippines, building web apps with React, Next.js, Spring Boot, TypeScript, and Java.";
+const describe = (name: string, location: string) =>
+  `${name} is a full-stack software engineer from ${location}, building web apps with React, Next.js, Spring Boot, TypeScript, and Java.`;
 
-export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
-  title: {
-    default: "Gene Paul Mar Javier — Full-Stack Software Engineer",
-    template: "%s | Gene Paul Mar Javier",
-  },
-  description: ROOT_DESCRIPTION,
-  applicationName: "Gene Paul Mar Javier Portfolio",
-  authors: [{ name: "Gene Paul Mar Javier", url: BASE_URL }],
-  creator: "Gene Paul Mar Javier",
-  publisher: "Gene Paul Mar Javier",
-  keywords: [
-    "Gene Paul Mar Javier",
-    "Gene Paul Javier",
-    "Paul Javier",
-    "Mar Javier",
-    "GPM Javier",
-    "Gene Javier",
-    "Gene Paul Mar Javier portfolio",
-    "Gene Paul Javier developer",
-    "full-stack developer",
-    "software engineer",
-    "React developer",
-    "Next.js developer",
-    "Spring Boot developer",
-    "TypeScript developer",
-    "Java developer",
-    "web developer Philippines",
-    "Cebu developer",
-    "frontend developer",
-    "backend developer",
-    "portfolio",
-    "Vue.js",
-    "Zustand",
-    "REST API",
-    "microservices",
-  ],
-  icons: {
-    icon: [
-      { url: "/favicon.ico", type: "image/x-icon" },
-      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    shortcut: ["/favicon.ico"],
-    apple: "/ghibli-avatar.png",
-  },
-  manifest: "/manifest.webmanifest",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: BASE_URL,
-    siteName: "Gene Paul Mar Javier — Portfolio",
-    title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
+/**
+ * Site-wide metadata. Identity comes from the `profile` CMS row; the keyword
+ * list and JSON-LD `alternateName` stay hardcoded because they are hand-tuned
+ * SEO spellings, not canonical identity.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const { profile } = await getServerProfile();
+  const TITLE = `${profile.fullName} — ${profile.jobTitle}`;
+  const ROOT_DESCRIPTION = describe(profile.fullName, profile.location);
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: TITLE,
+      template: `%s | ${profile.fullName}`,
+    },
     description: ROOT_DESCRIPTION,
-    images: [
-      {
-        url: `${BASE_URL}/meta-bg.png`,
-        width: 1200,
-        height: 630,
-        alt: "Gene Paul Mar Javier — Full-Stack Software Engineer",
-      },
+    applicationName: `${profile.fullName} Portfolio`,
+    authors: [{ name: profile.fullName, url: BASE_URL }],
+    creator: profile.fullName,
+    publisher: profile.fullName,
+    keywords: [
+      "Gene Paul Mar Javier",
+      "Gene Paul Javier",
+      "Paul Javier",
+      "Mar Javier",
+      "GPM Javier",
+      "Gene Javier",
+      "Gene Paul Mar Javier portfolio",
+      "Gene Paul Javier developer",
+      "full-stack developer",
+      "software engineer",
+      "React developer",
+      "Next.js developer",
+      "Spring Boot developer",
+      "TypeScript developer",
+      "Java developer",
+      "web developer Philippines",
+      "Cebu developer",
+      "frontend developer",
+      "backend developer",
+      "portfolio",
+      "Vue.js",
+      "Zustand",
+      "REST API",
+      "microservices",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Gene Paul Mar Javier — Full-Stack Software Engineer",
-    description: ROOT_DESCRIPTION,
-    creator: "@genepaulmar",
-    site: "@genepaulmar",
-    images: [`${BASE_URL}/meta-bg.png`],
-  },
-  alternates: {
-    canonical: BASE_URL,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    icons: {
+      icon: [
+        { url: "/favicon.ico", type: "image/x-icon" },
+        { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+      ],
+      shortcut: ["/favicon.ico"],
+      apple: "/ghibli-avatar.png",
+    },
+    manifest: "/manifest.webmanifest",
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: BASE_URL,
+      siteName: `${profile.fullName} — Portfolio`,
+      title: TITLE,
+      description: ROOT_DESCRIPTION,
+      images: [
+        {
+          url: `${BASE_URL}/meta-bg.png`,
+          width: 1200,
+          height: 630,
+          alt: TITLE,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: TITLE,
+      description: ROOT_DESCRIPTION,
+      creator: "@genepaulmar",
+      site: "@genepaulmar",
+      images: [`${BASE_URL}/meta-bg.png`],
+    },
+    alternates: {
+      canonical: BASE_URL,
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  category: "technology",
-};
+    category: "technology",
+  };
+}
 
-const jsonLdWebSite = {
+const makeJsonLdWebSite = (profile: ProfileInterface) => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Gene Paul Mar Javier — Portfolio",
+  name: `${profile.fullName} — Portfolio`,
   alternateName: [
     "Gene Paul Javier Portfolio",
     "GPM Javier Portfolio",
@@ -135,7 +151,7 @@ const jsonLdWebSite = {
   url: BASE_URL,
   author: {
     "@type": "Person",
-    name: "Gene Paul Mar Javier",
+    name: profile.fullName,
   },
   potentialAction: {
     "@type": "SearchAction",
@@ -145,17 +161,20 @@ const jsonLdWebSite = {
     },
     "query-input": "required name=search_term_string",
   },
-};
+});
 
-const jsonLdPerson = {
+const makeJsonLdPerson = (
+  profile: ProfileInterface,
+  socials: SocialLinkInterface[],
+) => ({
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  name: "Gene Paul Mar Javier — Portfolio",
+  name: `${profile.fullName} — Portfolio`,
   url: BASE_URL,
   mainEntity: {
     "@id": `${BASE_URL}#person`,
     "@type": "Person",
-    name: "Gene Paul Mar Javier",
+    name: profile.fullName,
     alternateName: [
       "Gene Paul Javier",
       "Paul Javier",
@@ -166,19 +185,11 @@ const jsonLdPerson = {
     ],
     url: BASE_URL,
     image: `${BASE_URL}/ghibli-avatar.png`,
-    jobTitle: "Full-Stack Software Engineer",
-    description: ROOT_DESCRIPTION,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Cebu City",
-      addressRegion: "Cebu",
-      addressCountry: "PH",
-    },
-    sameAs: [
-      "https://github.com/javiergenepaul",
-      "https://www.linkedin.com/in/gene-paul-mar-javier-500b93245/",
-      BASE_URL,
-    ],
+    jobTitle: profile.jobTitle,
+    email: profile.email,
+    description: describe(profile.fullName, profile.location),
+    address: toPostalAddress(profile.location),
+    sameAs: [...socials.map((s) => s.url), BASE_URL],
     knowsAbout: [
       "React",
       "Next.js",
@@ -192,13 +203,17 @@ const jsonLdPerson = {
       "Microservices",
     ],
   },
-};
+});
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { profile, socials } = await getServerProfile();
+  const jsonLdWebSite = makeJsonLdWebSite(profile);
+  const jsonLdPerson = makeJsonLdPerson(profile, socials);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
