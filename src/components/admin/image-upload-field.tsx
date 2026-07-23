@@ -76,7 +76,7 @@ export function ImageUploadField({
         {/* Show just the filename (full value on hover) — Storage URLs are long
             and would otherwise overflow narrow containers like modals. */}
         <p className="truncate text-xs text-muted-foreground" title={value}>
-          {value ? (value.split("/").pop() || value) : "No image selected"}
+          {value ? value.split("/").pop() || value : "No image selected"}
         </p>
         <p className="text-[10px] text-muted-foreground/70">
           PNG, JPG, or SVG — stored in Supabase Storage

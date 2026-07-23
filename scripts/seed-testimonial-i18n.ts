@@ -18,7 +18,8 @@ const LOCALES: Record<string, Dict> = { en, ja, fil, ceb };
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!url || !key) throw new Error("Missing Supabase env — run via pnpm seed:testimonial-i18n");
+if (!url || !key)
+  throw new Error("Missing Supabase env — run via pnpm seed:testimonial-i18n");
 const db = createClient(url, key, { auth: { persistSession: false } });
 
 (async () => {

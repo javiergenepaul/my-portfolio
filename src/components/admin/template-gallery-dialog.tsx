@@ -127,7 +127,11 @@ export function TemplateGalleryDialog({
                     <Check size={12} />
                   </span>
                 )}
-                <MockupFrame templateId={t.id} screenshot={shot} alt={t.label} />
+                <MockupFrame
+                  templateId={t.id}
+                  screenshot={shot}
+                  alt={t.label}
+                />
                 <div>
                   <div className="text-sm font-medium">{t.label}</div>
                   <div className="text-xs text-muted-foreground">

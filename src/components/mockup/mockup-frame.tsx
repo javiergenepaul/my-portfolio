@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { getMockupTemplate, type MockupTemplate } from "@/lib/mockups/templates";
+import {
+  getMockupTemplate,
+  type MockupTemplate,
+} from "@/lib/mockups/templates";
 import { matrix3dForQuad } from "@/lib/mockups/perspective";
 
 interface MockupFrameProps {

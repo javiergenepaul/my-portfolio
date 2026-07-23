@@ -27,7 +27,9 @@ export function PromotionListField({
     ]);
   const remove = (i: number) => onChange(value.filter((_, idx) => idx !== i));
   const patch = (i: number, patch: Partial<PromotionEntry>) =>
-    onChange(value.map((item, idx) => (idx === i ? { ...item, ...patch } : item)));
+    onChange(
+      value.map((item, idx) => (idx === i ? { ...item, ...patch } : item)),
+    );
   const patchLocalized = (
     i: number,
     key: "title" | "subtitle" | "description",
@@ -100,9 +102,7 @@ export function PromotionListField({
               </label>
               <button
                 type="button"
-                onClick={() =>
-                  patch(i, { endYear: present ? "" : "present" })
-                }
+                onClick={() => patch(i, { endYear: present ? "" : "present" })}
                 className="mt-4 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 <span

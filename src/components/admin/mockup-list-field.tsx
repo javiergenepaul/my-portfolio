@@ -117,7 +117,9 @@ export function MockupListField({
   onChange: (v: MockupItem[]) => void;
 }) {
   // Guarantee a stable id on every item (back-filled/legacy rows may lack one).
-  const items = value.map((it, i) => (it.id ? it : { ...it, id: `mockup-${i}` }));
+  const items = value.map((it, i) =>
+    it.id ? it : { ...it, id: `mockup-${i}` },
+  );
   const [editingId, setEditingId] = useState<string | null>(null);
   // null = closed; ADD = adding a new mockup; otherwise the item id whose frame
   // is being changed.

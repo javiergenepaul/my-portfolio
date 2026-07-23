@@ -324,7 +324,12 @@ export const CONTENT_TYPES: ContentTypeDef[] = [
         type: "url",
         tab: "Links & stack",
       },
-      { name: "stack", label: "Tech stack", type: "stack-list", tab: "Links & stack" },
+      {
+        name: "stack",
+        label: "Tech stack",
+        type: "stack-list",
+        tab: "Links & stack",
+      },
     ],
   },
 

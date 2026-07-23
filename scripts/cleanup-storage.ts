@@ -63,7 +63,8 @@ async function listObjects(): Promise<string[]> {
       if (!data || data.length === 0) break;
       for (const entry of data) {
         const full = prefix ? `${prefix}/${entry.name}` : entry.name;
-        if (entry.id === null) await walk(full); // folder placeholder
+        if (entry.id === null)
+          await walk(full); // folder placeholder
         else out.push(full);
       }
       if (data.length < 1000) break;
@@ -75,7 +76,9 @@ async function listObjects(): Promise<string[]> {
 }
 
 async function main() {
-  console.log(DRY ? "Dry run — nothing will be deleted.\n" : "Deleting orphans.\n");
+  console.log(
+    DRY ? "Dry run — nothing will be deleted.\n" : "Deleting orphans.\n",
+  );
   const refs = await referencedPaths();
   const objects = await listObjects();
   const orphans = objects.filter((p) => !refs.has(p));

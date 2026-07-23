@@ -19,8 +19,7 @@ export function ContributionListField({
   locale: LocaleCode;
 }) {
   const add = () => onChange([...value, { name: {}, description: {} }]);
-  const remove = (i: number) =>
-    onChange(value.filter((_, idx) => idx !== i));
+  const remove = (i: number) => onChange(value.filter((_, idx) => idx !== i));
   const patch = (i: number, key: "name" | "description", v: string) =>
     onChange(
       value.map((item, idx) =>

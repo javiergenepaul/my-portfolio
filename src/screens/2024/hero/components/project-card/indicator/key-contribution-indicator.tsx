@@ -34,10 +34,7 @@ export const KeyContributionIndicator = (
               </IndicatorContainer>
             </button>
           </HoverCardTrigger>
-          <HoverCardContent
-            className="w-150 overflow-hidden p-0"
-            side="right"
-          >
+          <HoverCardContent className="w-150 overflow-hidden p-0" side="right">
             <h3 className="px-4 pt-4 pb-2 text-xl font-bold">
               {translate("projects.keyContributions")}
             </h3>

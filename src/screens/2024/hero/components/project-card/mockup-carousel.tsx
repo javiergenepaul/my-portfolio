@@ -35,7 +35,11 @@ export const MockupCarousel = ({ mockups, previewUrl }: IMockupCarousel) => {
 
   const onClickPreviewUrl = () => {
     if (!previewUrl) return;
-    logEvent({ category: "Link", action: "Click", label: `${previewUrl} - link` });
+    logEvent({
+      category: "Link",
+      action: "Click",
+      label: `${previewUrl} - link`,
+    });
     window.open(previewUrl, "_blank");
   };
 
@@ -96,7 +100,9 @@ export const MockupCarousel = ({ mockups, previewUrl }: IMockupCarousel) => {
               aria-label={`Go to mockup ${index + 1}`}
               className={twMerge(
                 "h-2 w-2 rounded-full transition-colors",
-                current === index ? "bg-primary" : "bg-muted hover:bg-primary/40",
+                current === index
+                  ? "bg-primary"
+                  : "bg-muted hover:bg-primary/40",
               )}
             />
           ))}

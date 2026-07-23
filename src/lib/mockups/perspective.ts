@@ -70,10 +70,22 @@ export function matrix3dForQuad(
   const t = multmm(dest, adj(src));
   for (let i = 0; i < 9; i++) t[i] = t[i] / t[8];
   const m = [
-    t[0], t[3], 0, t[6],
-    t[1], t[4], 0, t[7],
-    0, 0, 1, 0,
-    t[2], t[5], 0, t[8],
+    t[0],
+    t[3],
+    0,
+    t[6],
+    t[1],
+    t[4],
+    0,
+    t[7],
+    0,
+    0,
+    1,
+    0,
+    t[2],
+    t[5],
+    0,
+    t[8],
   ];
   return `matrix3d(${m.join(",")})`;
 }
