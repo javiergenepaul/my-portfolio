@@ -150,10 +150,22 @@ export function useUnsavedChangesGuard(dirty: boolean) {
   }, [dirty]);
 }
 
-/** Runs `action` (sign-out, etc.) only once any unsaved edits are resolved. */
+/**
+ * Runs `action` (sign-out, etc.) once any unsaved edits are resolved.
+ *
+ * Unlike `GuardedLink` — where a clean state means "let the <Link> navigate
+ * itself" — an action has no default behaviour to fall through to, so this
+ * invokes it directly. `requestNavigation` only runs the callback when it has
+ * to defer behind the dialog.
+ */
 export function useGuardedAction() {
   const { requestNavigation } = useUnsavedChanges();
-  return requestNavigation;
+  return useCallback(
+    (action: () => void) => {
+      if (requestNavigation(action)) action();
+    },
+    [requestNavigation],
+  );
 }
 
 /**

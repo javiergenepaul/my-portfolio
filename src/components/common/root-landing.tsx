@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, Lock } from "lucide-react";
 import { YEARS, type YearConfig } from "@/config/years";
 import { cn } from "@/lib/utils";
 
@@ -80,6 +80,25 @@ export function RootLanding() {
           <div className="stars-sm" />
           <div className="stars-md" />
         </div>
+
+        {/* Admin entry. Points at /admin rather than /admin/login so an existing
+            session lands on the dashboard and middleware handles the redirect
+            when there isn't one. */}
+        <motion.div
+          className="absolute right-4 top-4 z-20 sm:right-6 sm:top-6"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+        >
+          <Link
+            href="/admin"
+            aria-label="Admin sign in"
+            title="Admin"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/50 backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          >
+            <Lock size={14} />
+          </Link>
+        </motion.div>
 
         <header className="px-6 pb-6 pt-16 text-center">
           <motion.p
