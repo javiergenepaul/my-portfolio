@@ -30,12 +30,14 @@ const linkLabel = (url: string) =>
 
 export function rowsToResumeData(
   sections: Record<string, ContentRow[]>,
+  /** Owner identity from the `profile` CMS row. Falls back to RESUME_DEFAULT. */
+  profile?: { fullName: string; jobTitle: string },
 ): ResumeData {
   const ov = sections["resume-overview"]?.[0]?.values ?? {};
   const pub = (key: string) => (sections[key] ?? []).filter((r) => r.published);
   return {
-    name: RESUME_DEFAULT.name,
-    title: RESUME_DEFAULT.title,
+    name: profile?.fullName || RESUME_DEFAULT.name,
+    title: profile?.jobTitle || RESUME_DEFAULT.title,
     contact: {
       phone: str(ov.phone),
       email: str(ov.email),

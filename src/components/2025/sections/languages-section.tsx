@@ -46,7 +46,7 @@ export function LanguagesSection() {
   const LANGUAGES = rowsToLanguages(useContent("languages"), locale);
   return (
     <>
-      <Label text="06 — Languages" />
+      <Label text="07 — Languages" />
       <h2
         style={{
           fontSize: isMobile ? "24px" : "34px",

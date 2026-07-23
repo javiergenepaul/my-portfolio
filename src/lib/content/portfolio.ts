@@ -5,9 +5,11 @@ import type {
   ContentBodyInterface,
   LanguageInterface,
   MockupItemInterface,
+  ProfileInterface,
   ProjectInterface,
   PromotionInterface,
   ServiceOfferInterface,
+  SocialLinkInterface,
   SkillCategory,
   TechStackInterface,
   TestimonialInterface,
@@ -178,6 +180,43 @@ export function rowsToProjects(
 }
 
 /** service rows → the service-offer shape; stacks resolved from the skills rows. */
+/**
+ * profile singleton row → the site owner's identity.
+ *
+ * `fallback` covers the window before the store resolves (the splash is
+ * timer-based and doesn't gate on the fetch) and any field left blank in the
+ * CMS, so the hero never renders a nameless heading.
+ */
+export function rowsToProfile(
+  rows: ContentRow[],
+  locale: LanguageType,
+  fallback: ProfileInterface,
+): ProfileInterface {
+  const v = rows[0]?.values;
+  if (!v) return fallback;
+  return {
+    fullName: str(v.fullName) || fallback.fullName,
+    jobTitle: str(v.jobTitle) || fallback.jobTitle,
+    bio: pick(v.bio, locale) || fallback.bio,
+    location: pick(v.location, locale) || fallback.location,
+    email: str(v.email) || fallback.email,
+    phone: str(v.phone) || fallback.phone,
+    careerStartDate: str(v.careerStartDate) || fallback.careerStartDate,
+    avatar: resolveAsset(v.avatar) ?? fallback.avatar,
+  };
+}
+
+/** socials rows → { key, icon, url }, preserving admin sort order. */
+export function rowsToSocials(rows: ContentRow[]): SocialLinkInterface[] {
+  return rows
+    .map((r) => ({
+      key: str(r.values.key),
+      icon: str(r.values.icon),
+      url: str(r.values.url),
+    }))
+    .filter((s) => s.key && s.url);
+}
+
 export function rowsToServices(
   rows: ContentRow[],
   skillRows: ContentRow[],

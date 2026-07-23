@@ -33,6 +33,7 @@ import {
 import { ModernTemplate } from "./templates/modern-template";
 import { AtsTemplate } from "./templates/ats-template";
 import type { ResumeData } from "./resume-content";
+import { useProfile } from "@/lib/content/use-content";
 import { useResumeContent } from "./use-resume-content";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -120,6 +121,7 @@ export const ResumeBuilder = ({
   // The page passes `content` (server-fetched); other mounts (the résumé modal)
   // don't, so fall back to a client fetch of the same DB data.
   const dbContent = useResumeContent(!!content);
+  const profile = useProfile();
   const resumeContent = content ?? dbContent;
   const { color: storeColor, theme } = useSettingsStore();
   const [mode, setMode] = useState<ResumeMode>("ats");
@@ -193,6 +195,7 @@ export const ResumeBuilder = ({
           colors={colors}
           isDark={isDark}
           content={resumeContent}
+          ownerName={profile.fullName}
         />,
       ).toBlob();
 

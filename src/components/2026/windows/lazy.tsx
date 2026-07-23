@@ -41,6 +41,14 @@ export const SkillsContent = dynamic(
   () => import("./skills-content").then((m) => m.SkillsContent),
   { ssr: false, loading: WinLoading },
 );
+export const ServicesContent = dynamic(
+  () => import("./services-content").then((m) => m.ServicesContent),
+  { ssr: false, loading: WinLoading },
+);
+export const LanguagesContent = dynamic(
+  () => import("./languages-content").then((m) => m.LanguagesContent),
+  { ssr: false, loading: WinLoading },
+);
 export const ContactContent = dynamic(
   () => import("./contact-content").then((m) => m.ContactContent),
   { ssr: false, loading: WinLoading },

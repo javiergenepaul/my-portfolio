@@ -1,13 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { SKILL_CATEGORIES, getProjects } from "@/config";
 import {
-  FULL_NAME,
-  JOB_TITLE,
-  EMAIL_ADDRESS,
-  SKILL_CATEGORIES,
-  getProjects,
-} from "@/config";
+  getProfileSnapshot,
+  getSocialUrlSnapshot,
+} from "@/lib/content/use-content";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { useLanguageStore } from "@/stores";
 import { TriangleAlert } from "lucide-react";
@@ -37,15 +35,19 @@ const CMDS: Record<string, () => string[]> = {
     "└─────────────────────────────────────────────────────┘",
     "",
   ],
-  gpm: () => [
-    `  Name     ${FULL_NAME}`,
-    `  Role     ${JOB_TITLE}`,
-    "  Location Cebu, Philippines",
-    `  Email    ${EMAIL_ADDRESS}`,
-    "  GitHub   github.com/javiergenepaul",
-    "  Status   ● Building cool stuff, one commit at a time",
-    "",
-  ],
+  gpm: () => {
+    const p = getProfileSnapshot();
+    const gh = getSocialUrlSnapshot("github").replace(/^https?:\/\//, "");
+    return [
+      `  Name     ${p.fullName}`,
+      `  Role     ${p.jobTitle}`,
+      `  Location ${p.location}`,
+      `  Email    ${p.email}`,
+      `  GitHub   ${gh}`,
+      "  Status   ● Building cool stuff, one commit at a time",
+      "",
+    ];
+  },
   ls: () => {
     const p = getProjects()
       .filter((x) => !x.hidden)
@@ -131,7 +133,7 @@ export function TerminalContent({
         `   ╚═════╝ ╚═╝     ╚═╝     ╚═╝`,
         "",
         `  Portfolio Terminal  v2026.0.0`,
-        `  Connected as gpm  ·  ${FULL_NAME}`,
+        `  Connected as gpm  ·  ${getProfileSnapshot().fullName}`,
         `  Type 'help' for available commands`,
         "",
       ],

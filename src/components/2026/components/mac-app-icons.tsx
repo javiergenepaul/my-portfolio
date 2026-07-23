@@ -374,6 +374,64 @@ function TerminalArt({ s }: { s: number }) {
 }
 
 // Skills — App Store icon: two crossing diagonal strokes with tails + crossbar
+/** Services — a briefcase, matching the dock/menu icon for the same window. */
+function ServicesArt({ s }: { s: number }) {
+  const p = s * 0.62;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      <rect
+        x="10"
+        y="26"
+        width="60"
+        height="42"
+        rx="8"
+        stroke="white"
+        strokeWidth="7"
+        opacity="0.94"
+      />
+      <path
+        d="M30 26V19a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v7"
+        stroke="white"
+        strokeWidth="7"
+        strokeLinecap="round"
+        opacity="0.94"
+      />
+      <line
+        x1="10"
+        y1="45"
+        x2="70"
+        y2="45"
+        stroke="white"
+        strokeWidth="6"
+        opacity="0.75"
+      />
+    </svg>
+  );
+}
+
+/** Languages — a speech bubble with a script glyph. */
+function LanguagesArt({ s }: { s: number }) {
+  const p = s * 0.62;
+  return (
+    <svg width={p} height={p} viewBox="0 0 80 80" fill="none">
+      <path
+        d="M14 20h52a6 6 0 0 1 6 6v26a6 6 0 0 1-6 6H36L20 70V58h-6a6 6 0 0 1-6-6V26a6 6 0 0 1 6-6Z"
+        stroke="white"
+        strokeWidth="7"
+        strokeLinejoin="round"
+        opacity="0.94"
+      />
+      <path
+        d="M26 34h20M36 34v14M46 48c-6-3-10-8-10-14"
+        stroke="white"
+        strokeWidth="5.5"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
+    </svg>
+  );
+}
+
 function SkillsArt({ s }: { s: number }) {
   const p = s * 0.66;
   return (
@@ -1013,6 +1071,16 @@ const ICON_MAP: Record<
     g1: "#42A5F5",
     g2: "#1565C0",
     art: (s) => <SkillsArt s={s} />,
+  },
+  services: {
+    g1: "#7DD3FC",
+    g2: "#0284C7",
+    art: (s) => <ServicesArt s={s} />,
+  },
+  languages: {
+    g1: "#6EE7B7",
+    g2: "#059669",
+    art: (s) => <LanguagesArt s={s} />,
   },
   contact: {
     g1: "#5FD75F",

@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, MapPin, Github, Linkedin } from "lucide-react";
-import { EMAIL_ADDRESS } from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { useProfile, useSocialUrl } from "@/lib/content/use-content";
 import { useC } from "../context";
 import { useIsMobile } from "../hooks";
 import { listAnim, itemAnim } from "../animation";
@@ -12,9 +11,12 @@ import { Label } from "../components/helpers";
 export function ContactSection() {
   const C = useC();
   const isMobile = useIsMobile();
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
   return (
     <>
-      <Label text="08 — Contact" />
+      <Label text="10 — Contact" />
       <h2
         style={{
           fontSize: isMobile ? "24px" : "34px",
@@ -52,26 +54,26 @@ export function ContactSection() {
           {
             Icon: Mail,
             label: "Email",
-            value: EMAIL_ADDRESS,
-            href: `mailto:${EMAIL_ADDRESS}`,
+            value: profile.email,
+            href: `mailto:${profile.email}`,
           },
           {
             Icon: MapPin,
             label: "Location",
-            value: "Cebu, Philippines",
+            value: profile.location,
             href: undefined,
           },
           {
             Icon: Github,
             label: "GitHub",
             value: "github.com/javiergenepaul",
-            href: GITHUB_URL,
+            href: githubUrl,
           },
           {
             Icon: Linkedin,
             label: "LinkedIn",
             value: "linkedin/gene-paul-mar-javier",
-            href: LINKED_IN_URL,
+            href: linkedInUrl,
           },
         ].map(({ Icon, label, value, href }) => (
           <motion.div
@@ -121,7 +123,7 @@ export function ContactSection() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={
-                    href === GITHUB_URL || href === LINKED_IN_URL
+                    href === githubUrl || href === linkedInUrl
                       ? "nofollow noopener noreferrer"
                       : "noopener noreferrer"
                   }
@@ -156,7 +158,7 @@ export function ContactSection() {
       </motion.div>
 
       <motion.a
-        href={`mailto:${EMAIL_ADDRESS}`}
+        href={`mailto:${profile.email}`}
         whileHover={{
           scale: 1.02,
           boxShadow: `0 12px 32px rgba(225,29,72,0.5)`,

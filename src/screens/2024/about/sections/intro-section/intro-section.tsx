@@ -2,7 +2,8 @@ import { AboutMe } from "@/assets";
 import { Button, LazyImage } from "@/components";
 import { ProjectInterface, ProjectStatus } from "@/config";
 import { translate } from "@/i18n";
-import { CAREER_START_DATE, getProjects } from "@/config/data";
+import { getProjects } from "@/config/data";
+import { useProfile } from "@/lib/content/use-content";
 import { useSettingsStore } from "@/stores";
 import { FileText } from "lucide-react";
 import { useState } from "react";
@@ -19,6 +20,7 @@ interface PersonalStatisticInterface {
 }
 
 export const IntroSection = () => {
+  const profile = useProfile();
   const { color } = useSettingsStore();
   const [resumeOpen, setResumeOpen] = useState(false);
 
@@ -48,7 +50,7 @@ export const IntroSection = () => {
       botTitle: translate("about.intro.project"),
     },
     {
-      count: dayjs().diff(dayjs(CAREER_START_DATE), "years"),
+      count: dayjs().diff(dayjs(profile.careerStartDate), "years"),
       topTitle: translate("about.intro.years"),
       botTitle: translate("about.intro.experience"),
     },

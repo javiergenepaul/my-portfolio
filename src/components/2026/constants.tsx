@@ -13,6 +13,8 @@ import {
   FileText,
   SlidersHorizontal,
   Sparkles,
+  Briefcase,
+  Languages as LanguagesIcon,
   Gamepad2,
   Zap,
   Layers3,
@@ -149,6 +151,8 @@ export type WinId =
   | "itunes"
   | "terminal"
   | "skills"
+  | "services"
+  | "languages"
   | "contact"
   | "resume"
   | "settings"
@@ -229,6 +233,22 @@ export const WIN_DEFS: WinDef[] = [
     icon: <Settings2 size={14} />,
     defaultPos: { x: 100, y: 60 },
     defaultSize: { w: 700, h: 460 },
+  },
+  {
+    id: "services",
+    title: "Services",
+    color: "#38BDF8",
+    icon: <Briefcase size={14} />,
+    defaultPos: { x: 130, y: 72 },
+    defaultSize: { w: 780, h: 540 },
+  },
+  {
+    id: "languages",
+    title: "Languages",
+    color: "#34D399",
+    icon: <LanguagesIcon size={14} />,
+    defaultPos: { x: 160, y: 88 },
+    defaultSize: { w: 720, h: 480 },
   },
   {
     id: "contact",

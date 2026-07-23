@@ -19,7 +19,7 @@ export function BooksSection() {
   const THEME_COLORS = makeThemeColors(C);
   return (
     <>
-      <Label text="07 — Books" />
+      <Label text="08 — Books" />
       <h2
         style={{
           fontSize: isMobile ? "24px" : "34px",

@@ -10,8 +10,7 @@ import {
   Mail,
   ChevronLeft,
 } from "lucide-react";
-import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { useProfile, useSocialUrl } from "@/lib/content/use-content";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import { useMobileAppStore } from "@/stores";
 import { translate, useLocaleRefresh } from "@/i18n";
@@ -28,6 +27,8 @@ import {
   ItunesContent,
   TerminalContent,
   SkillsContent,
+  ServicesContent,
+  LanguagesContent,
   ContactContent,
   ResumeContent,
   SettingsContent,
@@ -41,6 +42,9 @@ import {
 } from "../windows/lazy";
 
 export function MobilePortfolio() {
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
   useLocaleRefresh();
   const [activeApp, setActiveApp] = useState<WinId | null>(null);
   const setIsAppOpen = useMobileAppStore((s) => s.setIsAppOpen);
@@ -173,21 +177,21 @@ export function MobilePortfolio() {
             >
               <Image
                 src={AvatarProfile}
-                alt={FULL_NAME}
+                alt={profile.fullName}
                 width={72}
                 height={72}
                 className="object-cover w-full h-full"
               />
             </div>
             <h1 className="text-a26-text m-0 text-[20px] font-bold tracking-[-0.01em]">
-              {FULL_NAME}
+              {profile.fullName}
             </h1>
             <p className="text-a26-teal m-0 mt-1 text-[13px] font-medium">
-              {JOB_TITLE}
+              {profile.jobTitle}
             </p>
             <p className="text-a26-muted flex items-center justify-center m-0 mt-1 text-xs gap-1">
-              <MapPin size={11} color="var(--a26-text-muted)" /> Cebu,
-              Philippines
+              <MapPin size={11} color="var(--a26-text-muted)" />{" "}
+              {profile.location}
             </p>
           </div>
 
@@ -223,19 +227,19 @@ export function MobilePortfolio() {
           <div className="flex justify-center gap-3">
             {[
               {
-                href: GITHUB_URL,
+                href: githubUrl,
                 icon: <GithubIcon size={17} />,
                 color: "var(--a26-text)",
                 label: "GitHub",
               },
               {
-                href: LINKED_IN_URL,
+                href: linkedInUrl,
                 icon: <LinkedinIcon size={17} />,
                 color: "#60A5FA",
                 label: "LinkedIn",
               },
               {
-                href: `mailto:${EMAIL_ADDRESS}`,
+                href: `mailto:${profile.email}`,
                 icon: <Mail size={17} />,
                 color: "var(--a26-teal)",
                 label: "Email",
@@ -342,6 +346,8 @@ export function MobilePortfolio() {
                 />
               )}
               {activeApp === "skills" && <SkillsContent />}
+              {activeApp === "services" && <ServicesContent />}
+              {activeApp === "languages" && <LanguagesContent />}
               {activeApp === "contact" && <ContactContent />}
               {activeApp === "resume" && <ResumeContent />}
               {activeApp === "settings" && <SettingsContent />}

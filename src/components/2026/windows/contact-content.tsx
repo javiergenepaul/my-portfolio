@@ -1,17 +1,19 @@
 "use client";
 
 import { Mail, GithubIcon, LinkedinIcon, ExternalLink } from "lucide-react";
-import { EMAIL_ADDRESS } from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { useProfile, useSocialUrl } from "@/lib/content/use-content";
 import { translate, useLocaleRefresh } from "@/i18n";
 
 export function ContactContent() {
   useLocaleRefresh();
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
   const links = [
     {
       label: "Email",
-      value: EMAIL_ADDRESS,
-      href: `mailto:${EMAIL_ADDRESS}`,
+      value: profile.email,
+      href: `mailto:${profile.email}`,
       icon: <Mail size={18} />,
       color: "var(--a26-teal)",
       desc: translate("win26.contact.emailDesc"),
@@ -19,7 +21,7 @@ export function ContactContent() {
     {
       label: "GitHub",
       value: "javiergenepaul",
-      href: GITHUB_URL,
+      href: githubUrl,
       icon: <GithubIcon size={18} />,
       color: "var(--a26-text)",
       desc: translate("win26.contact.githubDesc"),
@@ -27,7 +29,7 @@ export function ContactContent() {
     {
       label: "LinkedIn",
       value: "gene-paul-mar-javier",
-      href: LINKED_IN_URL,
+      href: linkedInUrl,
       icon: <LinkedinIcon size={18} />,
       color: "#60A5FA",
       desc: translate("win26.contact.linkedinDesc"),

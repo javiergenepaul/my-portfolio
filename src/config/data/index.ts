@@ -1,5 +1,4 @@
 export * from "./personal";
-export * from "./social";
 export * from "./skills";
 export * from "./projects";
 export * from "./services";

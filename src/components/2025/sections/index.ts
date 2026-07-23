@@ -1,6 +1,7 @@
 export * from "./about-section";
 export * from "./experience-section";
 export * from "./skills-section";
+export * from "./services-section";
 export * from "./projects-section";
 export * from "./testimonials-section";
 export * from "./languages-section";

@@ -7,6 +7,7 @@ import {
   type ContentRow,
 } from "@/components/admin/admin-config";
 import { rowsToResumeData } from "./resume-data";
+import { useProfile } from "@/lib/content/use-content";
 import type { ResumeData } from "./resume-content";
 
 /**
@@ -27,6 +28,7 @@ const RESUME_KEYS = CONTENT_TYPES.filter((t) => t.group === "Resume").map(
 export function useResumeContent(skip = false): ResumeData | undefined {
   const data = useContentStore((s) => s.data);
   const status = useContentStore((s) => s.status);
+  const profile = useProfile();
 
   useEffect(() => {
     if (!skip) void useContentStore.getState().ensureLoaded();
@@ -36,6 +38,6 @@ export function useResumeContent(skip = false): ResumeData | undefined {
     if (skip || status !== "ready") return undefined;
     const sections: Record<string, ContentRow[]> = {};
     for (const key of RESUME_KEYS) sections[key] = data[key] ?? [];
-    return rowsToResumeData(sections);
-  }, [skip, status, data]);
+    return rowsToResumeData(sections, profile);
+  }, [skip, status, data, profile]);
 }

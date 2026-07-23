@@ -7,7 +7,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components";
-import { GITHUB_URL, LINKED_IN_URL, PATH } from "@/config";
+import { PATH } from "@/config";
+import { useSocials } from "@/lib/content/use-content";
 import { translate } from "@/i18n";
 import React from "react";
 import {
@@ -27,24 +28,28 @@ import { useState } from "react";
 
 import { triggerNavigationStart } from "@/components/common/navigation/NavigationProgress";
 
-// Static parts only — translate() must NOT be called at module scope because
-// messageStore is empty during SSR. Titles are resolved inside the component.
-const SOCIAL_MEDIA_LINK_DATA = [
-  { key: "github", icon: "github", url: GITHUB_URL },
-  { key: "linkedIn", icon: "linkedin", url: LINKED_IN_URL },
-] as const;
-
 export const HeaderSection = () => {
   const router = useRouter();
   useLocaleRefresh();
   const { isSettingsNew, setIsSettingsNew } = useSettingsStore();
+  // Socials come from the CMS; only github/linkedIn render in the header.
+  const SOCIAL_MEDIA_LINK_DATA = useSocials().filter((s) =>
+    ["github", "linkedIn"].includes(s.key),
+  );
   const [navigating, setNavigating] = useState(false);
 
   // Resolved here so translate() runs after messageStore is initialised
   const SOCIAL_MEDIA_LINKS: SocialMediaLinksInterface[] =
     SOCIAL_MEDIA_LINK_DATA.map((item) => ({
       ...item,
-      title: translate(`header.socialMediaLinks.${item.key}`),
+      // The CMS stores `icon` as free text; the header only renders the keys
+      // filtered above, whose icons are valid SocialIcon values.
+      icon: item.icon as SocialMediaLinksInterface["icon"],
+      title: translate(
+        `header.socialMediaLinks.${item.key}` as Parameters<
+          typeof translate
+        >[0],
+      ),
     }));
 
   const NAV_LINKS: NavLinkInterface[] = [

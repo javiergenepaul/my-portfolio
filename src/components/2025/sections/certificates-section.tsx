@@ -21,7 +21,7 @@ export function CertificatesSection() {
 
   return (
     <>
-      <Label text="08 — Certificates" />
+      <Label text="09 — Certificates" />
       <h2
         style={{
           fontSize: isMobile ? "24px" : "34px",

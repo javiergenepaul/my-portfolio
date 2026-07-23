@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Resume2024 } from "@/components/2024/resume";
-import { getPublishedResumeSections } from "@/lib/content/repository";
+import {
+  getPublishedResumeSections,
+  getPublishedRows,
+} from "@/lib/content/repository";
+import { getContentType } from "@/components/admin/admin-config";
+import { rowsToProfile } from "@/lib/content/portfolio";
+import { PROFILE_FALLBACK } from "@/config/data/personal";
 import { rowsToResumeData } from "@/screens/2024/resume/resume-data";
 
 export const metadata: Metadata = {
@@ -17,7 +23,14 @@ export const metadata: Metadata = {
 };
 
 export default async function ResumePage() {
-  const sections = await getPublishedResumeSections();
-  const content = rowsToResumeData(sections);
+  const profileDef = getContentType("profile")!;
+  const [sections, profileRows] = await Promise.all([
+    getPublishedResumeSections(),
+    getPublishedRows(profileDef),
+  ]);
+  // Server-side render, so the name comes straight from the DB rather than
+  // waiting on the client content store.
+  const profile = rowsToProfile(profileRows, "en", PROFILE_FALLBACK);
+  const content = rowsToResumeData(sections, profile);
   return <Resume2024 content={content} />;
 }

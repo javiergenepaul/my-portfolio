@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, Mail, MapPin, Github, Linkedin } from "lucide-react";
-import { FULL_NAME, EMAIL_ADDRESS } from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { useProfile, useSocialUrl } from "@/lib/content/use-content";
 import AboutMeImg from "@/assets/about-me.png";
 import { ResumeModal } from "@/components/common/resume-modal";
 import { translate } from "@/i18n";
@@ -16,6 +15,9 @@ import { Label } from "../components/helpers";
 export function AboutSection() {
   const C = useC();
   const isMobile = useIsMobile();
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
   const [resumeOpen, setResumeOpen] = useState(false);
 
   const HIGHLIGHTS = [
@@ -107,7 +109,7 @@ export function AboutSection() {
           >
             <img
               src={AboutMeImg as unknown as string}
-              alt={FULL_NAME}
+              alt={profile.fullName}
               style={{
                 width: "100%",
                 height: "100%",
@@ -198,19 +200,19 @@ export function AboutSection() {
           {[
             {
               Icon: Mail,
-              text: EMAIL_ADDRESS,
-              href: `mailto:${EMAIL_ADDRESS}`,
+              text: profile.email,
+              href: `mailto:${profile.email}`,
             },
-            { Icon: MapPin, text: "Cebu, Philippines", href: undefined },
+            { Icon: MapPin, text: profile.location, href: undefined },
             {
               Icon: Github,
               text: "github.com/javiergenepaul",
-              href: GITHUB_URL,
+              href: githubUrl,
             },
             {
               Icon: Linkedin,
               text: "linkedin/gene-paul-mar-javier",
-              href: LINKED_IN_URL,
+              href: linkedInUrl,
             },
           ].map(({ Icon, text, href }) =>
             href ? (
@@ -219,7 +221,7 @@ export function AboutSection() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={
-                  href === GITHUB_URL || href === LINKED_IN_URL
+                  href === githubUrl || href === linkedInUrl
                     ? "nofollow noopener noreferrer"
                     : "noopener noreferrer"
                 }

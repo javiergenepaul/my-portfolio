@@ -24,6 +24,29 @@ export interface TechStackInterface {
   alt: string;
 }
 
+/**
+ * The site owner's identity, sourced from the `profile` CMS singleton.
+ * `bio` and `location` are localized; everything else is plain.
+ */
+export interface ProfileInterface {
+  fullName: string;
+  jobTitle: string;
+  bio: string;
+  location: string;
+  email: string;
+  phone: string;
+  /** ISO date — drives the "years of experience" stat. */
+  careerStartDate: string;
+  avatar: string;
+}
+
+/** Social links from the `socials` CMS type, keyed by the row's `key`. */
+export interface SocialLinkInterface {
+  key: string;
+  icon: string;
+  url: string;
+}
+
 export interface ServiceOfferInterface {
   title: string;
   description: string;

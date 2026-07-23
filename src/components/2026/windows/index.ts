@@ -4,6 +4,8 @@ export * from "./testimonials-content";
 export * from "./projects-content";
 export * from "./terminal-content";
 export * from "./skills-content";
+export * from "./services-content";
+export * from "./languages-content";
 export * from "./contact-content";
 export * from "./resume-content";
 export * from "./settings-content";

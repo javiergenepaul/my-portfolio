@@ -34,8 +34,8 @@ import {
   LANGUAGES,
   TESTIMONIALS,
   SKILL_CATEGORIES,
-  SOCIAL_MEDIA_LINK_DATA,
 } from "@/config";
+import { SOCIALS_FALLBACK } from "@/config/data/personal";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -281,7 +281,7 @@ async function main() {
 
   await replace(
     "socials",
-    SOCIAL_MEDIA_LINK_DATA.map((s, i) => ({
+    SOCIALS_FALLBACK.map((s, i) => ({
       key: s.key,
       icon: s.icon,
       url: s.url,

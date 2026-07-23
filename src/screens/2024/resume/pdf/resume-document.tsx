@@ -1,5 +1,4 @@
 import { Document } from "@react-pdf/renderer";
-import { FULL_NAME } from "@/config";
 import type { ResumeColorConfig, ResumeMode } from "../resume";
 import type { ResumeData } from "../resume-content";
 import { registerResumeFonts } from "./fonts";
@@ -14,6 +13,9 @@ interface ResumeDocumentProps {
   isDark: boolean;
   /** Résumé content from the DB; templates fall back to the default when absent. */
   content?: ResumeData;
+  /** Owner name for the PDF metadata. Passed in because react-pdf renders this
+   *  tree outside React, so hooks can't read the content store here. */
+  ownerName: string;
 }
 
 /**
@@ -26,9 +28,10 @@ export function ResumeDocument({
   colors,
   isDark,
   content,
+  ownerName,
 }: ResumeDocumentProps) {
   return (
-    <Document title={`${FULL_NAME} — Resume`} author={FULL_NAME}>
+    <Document title={`${ownerName} — Resume`} author={ownerName}>
       {mode === "modern" ? (
         <ModernTemplatePdf colors={colors} isDark={isDark} content={content} />
       ) : (

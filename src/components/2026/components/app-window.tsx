@@ -14,6 +14,8 @@ import {
   ItunesContent,
   TerminalContent,
   SkillsContent,
+  ServicesContent,
+  LanguagesContent,
   ContactContent,
   ResumeContent,
   SettingsContent,
@@ -285,6 +287,8 @@ export function AppWindow({
           <TerminalContent onOpen={onOpen} onClose={onClose} />
         )}
         {def.id === "skills" && <SkillsContent />}
+        {def.id === "services" && <ServicesContent />}
+        {def.id === "languages" && <LanguagesContent />}
         {def.id === "contact" && <ContactContent />}
         {def.id === "resume" && <ResumeContent />}
         {def.id === "settings" && <SettingsContent />}

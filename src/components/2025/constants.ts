@@ -1,4 +1,3 @@
-import { CAREER_START_DATE } from "@/config";
 import dayjs from "dayjs";
 import type { Palette } from "./context";
 
@@ -8,22 +7,29 @@ export const NAV_ITEMS = [
   { id: "about", label: "About", num: "01" },
   { id: "experience", label: "Edu & Exp", num: "02" },
   { id: "skills", label: "Tech Stack", num: "03" },
-  { id: "projects", label: "Projects", num: "04" },
-  { id: "testimonials", label: "Testimonials", num: "05" },
-  { id: "languages", label: "Languages", num: "06" },
-  { id: "books", label: "Books", num: "07" },
-  { id: "certificates", label: "Certificates", num: "08" },
-  { id: "contact", label: "Contact", num: "09" },
+  { id: "services", label: "Services", num: "04" },
+  { id: "projects", label: "Projects", num: "05" },
+  { id: "testimonials", label: "Testimonials", num: "06" },
+  { id: "languages", label: "Languages", num: "07" },
+  { id: "books", label: "Books", num: "08" },
+  { id: "certificates", label: "Certificates", num: "09" },
+  { id: "contact", label: "Contact", num: "10" },
 ];
 
-export const SIDEBAR_STATS = [
-  {
-    label: "Yrs Exp",
-    value: `${dayjs().diff(dayjs(CAREER_START_DATE), "years")}+`,
-  },
-  { label: "Projects", value: "15+" },
-  { label: "Stacks", value: "30+" },
-];
+/**
+ * Sidebar stats. Takes the career start date rather than reading a constant,
+ * because it comes from the `profile` CMS row and isn't known at module scope.
+ */
+export function makeSidebarStats(careerStartDate: string) {
+  return [
+    {
+      label: "Yrs Exp",
+      value: `${dayjs().diff(dayjs(careerStartDate), "years")}+`,
+    },
+    { label: "Projects", value: "15+" },
+    { label: "Stacks", value: "30+" },
+  ];
+}
 
 export const LEVEL_PCT: Record<string, number> = {
   Native: 100,

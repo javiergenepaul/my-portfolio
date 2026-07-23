@@ -918,7 +918,9 @@
       "hanoi": "Torre sa Hanoi",
       "tetris": "Tetris",
       "jump": "Walay Katapusang Paglukso",
-      "bomber": "Bomber GPM"
+      "bomber": "Bomber GPM",
+      "services": "Mga Serbisyo",
+      "languages": "Mga Pinulongan"
     },
     "itunes": {
       "title": "GPM Tunes",
@@ -1124,7 +1126,10 @@
       "apps": "{count} apps",
       "moreComing": "Daghang moabot pa",
       "soon": "sa wala madugay...",
-      "snake": { "name": "GPM Snake", "desc": "Klasikong retro snake game" },
+      "snake": {
+        "name": "GPM Snake",
+        "desc": "Klasikong retro snake game"
+      },
       "hanoi": {
         "name": "Tower of GPM",
         "desc": "Ibalhin ang tanan nga disc gikan A ngadto C"
@@ -1189,10 +1194,22 @@
     "hanoiUi": {
       "objective": "Ibalhin ang tanan nga disc gikan sa peg A ngadto sa C",
       "difficulties": {
-        "easy": { "label": "Sayon", "sublabel": "{{count}} lihok min" },
-        "medium": { "label": "Tunga-tunga", "sublabel": "{{count}} lihok min" },
-        "hard": { "label": "Lisod", "sublabel": "{{count}} lihok min" },
-        "expert": { "label": "Eksperto", "sublabel": "{{count}} lihok min" }
+        "easy": {
+          "label": "Sayon",
+          "sublabel": "{{count}} lihok min"
+        },
+        "medium": {
+          "label": "Tunga-tunga",
+          "sublabel": "{{count}} lihok min"
+        },
+        "hard": {
+          "label": "Lisod",
+          "sublabel": "{{count}} lihok min"
+        },
+        "expert": {
+          "label": "Eksperto",
+          "sublabel": "{{count}} lihok min"
+        }
       },
       "idleHelpMobile": "I-drag ang disc ngadto sa lain nga peg · o tap aron mopili ug ibutang",
       "idleHelpDesktop": "I-drag ang disc · o i-click / pislita ang 1 2 3 aron molihok",
@@ -1245,6 +1262,14 @@
       "winBody": "Patay na ang kaaway, bukas na ang exit, ug imo na ang maze.",
       "loseBody": "Duol ra kaayo sa pagbuto. Sulayi pag-usab nga mas limpyo ang ruta ug timing.",
       "saveNote": "Ang mga nahuman nga run nga naay score puwedeng ma-save sa Bomber GPM leaderboard."
+    },
+    "services": {
+      "title": "Mga Serbisyo",
+      "subtitle": "Ang akong gibuhat, ug unsaon nako pagtabang"
+    },
+    "languages": {
+      "title": "Mga Pinulongan",
+      "subtitle": "Mga pinulongan nga akong gigamit sa trabaho ug panag-uban"
     }
   }
 }

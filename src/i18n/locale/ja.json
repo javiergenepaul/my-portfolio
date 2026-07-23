@@ -919,7 +919,9 @@
       "hanoi": "ハノイの塔",
       "tetris": "テトリス",
       "jump": "エンドレスジャンプ",
-      "bomber": "Bomber GPM"
+      "bomber": "Bomber GPM",
+      "services": "サービス",
+      "languages": "言語"
     },
     "itunes": {
       "title": "GPM Tunes",
@@ -1129,7 +1131,10 @@
         "name": "GPMスネーク",
         "desc": "クラシックなレトロスネークゲーム"
       },
-      "hanoi": { "name": "Tower of GPM", "desc": "全ての円盤をAからCへ移動" },
+      "hanoi": {
+        "name": "Tower of GPM",
+        "desc": "全ての円盤をAからCへ移動"
+      },
       "tetris": {
         "name": "GPMテトリス",
         "desc": "落ちるブロックを積み上げてクリア"
@@ -1190,10 +1195,22 @@
     "hanoiUi": {
       "objective": "すべての円盤を A から C に移動する",
       "difficulties": {
-        "easy": { "label": "かんたん", "sublabel": "最短 {{count}} 手" },
-        "medium": { "label": "ふつう", "sublabel": "最短 {{count}} 手" },
-        "hard": { "label": "むずかしい", "sublabel": "最短 {{count}} 手" },
-        "expert": { "label": "エキスパート", "sublabel": "最短 {{count}} 手" }
+        "easy": {
+          "label": "かんたん",
+          "sublabel": "最短 {{count}} 手"
+        },
+        "medium": {
+          "label": "ふつう",
+          "sublabel": "最短 {{count}} 手"
+        },
+        "hard": {
+          "label": "むずかしい",
+          "sublabel": "最短 {{count}} 手"
+        },
+        "expert": {
+          "label": "エキスパート",
+          "sublabel": "最短 {{count}} 手"
+        }
       },
       "idleHelpMobile": "円盤を別の棒へドラッグ · またはタップで持ち上げて置く",
       "idleHelpDesktop": "円盤をドラッグ · またはクリック / 1 2 3 キーで移動",
@@ -1246,6 +1263,14 @@
       "winBody": "敵を倒し、出口を開き、迷路を突破した。",
       "loseBody": "爆風に近づきすぎた。動線と起爆タイミングを見直そう。",
       "saveNote": "スコア付きで終了したプレイは Bomber GPM のリーダーボードに保存できます。"
+    },
+    "services": {
+      "title": "サービス",
+      "subtitle": "私が作るもの、お手伝いできること"
+    },
+    "languages": {
+      "title": "言語",
+      "subtitle": "仕事やコラボレーションで使う言語"
     }
   }
 }

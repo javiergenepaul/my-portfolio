@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { GITHUB_URL } from "@/config/url";
+import { useSocialUrl } from "@/lib/content/use-content";
 import { WIN_DEFS } from "../constants";
 import type { WinId, WinState } from "../constants";
 import { MacAppIcon } from "./mac-app-icons";
@@ -18,6 +18,7 @@ export function Dock({
   onRestore: (id: WinId) => void;
 }) {
   useLocaleRefresh();
+  const githubUrl = useSocialUrl("github");
   const [hov, setHov] = useState<string | null>(null);
 
   const dockApps = WIN_DEFS.filter((d) => !d.hideIcon).map((d) => ({
@@ -144,7 +145,7 @@ export function Dock({
         </AnimatePresence>
         <motion.a
           animate={{ width: 46, height: 46 }}
-          href={GITHUB_URL}
+          href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={() => setHov("gh")}

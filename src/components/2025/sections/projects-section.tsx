@@ -19,7 +19,7 @@ export function ProjectsSection({
   const TYPE_COLORS = makeTypeColors(C);
   return (
     <>
-      <Label text="04 — Projects" />
+      <Label text="05 — Projects" />
       <h2
         style={{
           fontSize: isMobile ? "24px" : "34px",

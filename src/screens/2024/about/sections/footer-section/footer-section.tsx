@@ -1,9 +1,11 @@
 import { Separator } from "@/components";
-import { PATH, SOCIAL_MEDIA_LINK_DATA } from "@/config";
+import { PATH } from "@/config";
+import { useSocials } from "@/lib/content/use-content";
 import { translate, TxKeyPath } from "@/i18n";
 import { SocialButton } from "@/screens/2024/hero";
 
 export const FooterSection = () => {
+  const SOCIAL_MEDIA_LINK_DATA = useSocials();
   const FOOTER_NAV_LINKS = [
     {
       label: "Home",
@@ -37,7 +39,11 @@ export const FooterSection = () => {
                 `header.socialMediaLinks.${socialMedia.key}` as TxKeyPath,
               )}
               url={socialMedia.url}
-              icon={socialMedia.icon}
+              icon={
+                socialMedia.icon as React.ComponentProps<
+                  typeof SocialButton
+                >["icon"]
+              }
             />
           );
         })}

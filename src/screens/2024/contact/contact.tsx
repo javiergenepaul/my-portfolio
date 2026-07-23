@@ -13,7 +13,7 @@ import { translate } from "@/i18n";
 import { CopyToClipBoard } from "./components/copy-to-clipboard";
 import { ContactForm } from "../hero";
 import { Mail, Phone } from "lucide-react";
-import { EMAIL_ADDRESS, MOBILE_NUMBER } from "@/config";
+import { useProfile } from "@/lib/content/use-content";
 
 // The 3D logo pulls in the entire Three.js runtime (@react-three/fiber + drei +
 // three ≈ 200 kB). It only renders on lg screens, so defer it into its own
@@ -28,6 +28,7 @@ const LogoCanvas = dynamic(
 );
 
 export const Contact = () => {
+  const profile = useProfile();
   const formatPhoneNumber = (number: string): string => {
     const formattedNumber =
       "+63-" +
@@ -61,7 +62,7 @@ export const Contact = () => {
               <CopyToClipBoard
                 clipboardContent={translate("contact.copyToClipboard.copied")}
                 icon={<Phone />}
-                content={formatPhoneNumber(MOBILE_NUMBER)}
+                content={formatPhoneNumber(profile.phone)}
               />
               {/* Separator */}
               <Separator className="mx-2" orientation="vertical" />
@@ -69,7 +70,7 @@ export const Contact = () => {
               <CopyToClipBoard
                 clipboardContent={translate("contact.copyToClipboard.copied")}
                 icon={<Mail />}
-                content={EMAIL_ADDRESS}
+                content={profile.email}
               />
             </div>
           </div>

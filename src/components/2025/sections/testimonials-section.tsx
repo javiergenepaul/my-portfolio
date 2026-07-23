@@ -17,7 +17,7 @@ export function TestimonialsSection() {
   const TESTIMONIALS = rowsToTestimonials(useContent("testimonials"), locale);
   return (
     <>
-      <Label text="05 — Testimonials" />
+      <Label text="06 — Testimonials" />
       <h2
         style={{
           fontSize: isMobile ? "24px" : "34px",

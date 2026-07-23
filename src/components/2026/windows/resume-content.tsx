@@ -19,6 +19,7 @@ import { useIsDark } from "../use-aurora";
 import { useIsMobile } from "../hooks";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { ResumeSkeleton } from "@/screens/2024/resume/templates/resume-skeleton";
+import { useProfile } from "@/lib/content/use-content";
 import { useResumeContent } from "@/screens/2024/resume/use-resume-content";
 
 const ResumeModern = dynamic(
@@ -45,6 +46,7 @@ const ResumeAts = dynamic(
 export function ResumeContent() {
   useLocaleRefresh();
   const content = useResumeContent();
+  const profile = useProfile();
   const isSystemDark = useIsDark();
   const isMobile = useIsMobile();
   type ResumeMode = "modern" | "ats";
@@ -97,6 +99,7 @@ export function ResumeContent() {
           colors={colors}
           isDark={isDark}
           content={content}
+          ownerName={profile.fullName}
         />,
       ).toBlob();
       const url = URL.createObjectURL(blob);

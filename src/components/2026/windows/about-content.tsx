@@ -15,19 +15,17 @@ import {
   Mail,
   ExternalLink,
 } from "lucide-react";
-import {
-  FULL_NAME,
-  JOB_TITLE,
-  EMAIL_ADDRESS,
-  CAREER_START_DATE,
-} from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import dayjs from "dayjs";
 import { formatDate } from "../utils";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { useLanguageStore } from "@/stores/language-store";
-import { useContent } from "@/lib/content/use-content";
+import {
+  useContent,
+  useProfile,
+  useSocialUrl,
+} from "@/lib/content/use-content";
 import { rowsToContentBody, rowsToCertificates } from "@/lib/content/portfolio";
 
 /**
@@ -64,6 +62,9 @@ function StackChips({ stack }: { stack?: string[] }) {
 export function AboutContent() {
   useLocaleRefresh();
   const locale = useLanguageStore((s) => s.language);
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
   const [tab, setTab] = useState<
     "overview" | "experience" | "education" | "certificates"
   >("overview");
@@ -141,7 +142,7 @@ export function AboutContent() {
                     >
                       <Image
                         src={AvatarProfile}
-                        alt={FULL_NAME}
+                        alt={profile.fullName}
                         width={88}
                         height={88}
                         className="object-cover w-full h-full"
@@ -154,10 +155,10 @@ export function AboutContent() {
                   </div>
                   <div>
                     <h1 className="text-a26-text m-0 text-2xl font-bold">
-                      {FULL_NAME}
+                      {profile.fullName}
                     </h1>
                     <p className="text-a26-teal mt-0.75 mb-2 text-sm font-medium">
-                      {JOB_TITLE}
+                      {profile.jobTitle}
                     </p>
                     <div className="flex items-center text-a26-mid gap-1.25 text-xs">
                       <MapPin size={12} color="var(--a26-text-muted)" />{" "}
@@ -175,7 +176,7 @@ export function AboutContent() {
                 <div className="grid grid-cols-4 gap-2.5">
                   {[
                     {
-                      v: `${dayjs().diff(dayjs(CAREER_START_DATE), "years")}+`,
+                      v: `${dayjs().diff(dayjs(profile.careerStartDate), "years")}+`,
                       l: translate("about.intro.years"),
                       c: "var(--a26-teal)",
                     },
@@ -212,21 +213,21 @@ export function AboutContent() {
                 <div className="flex flex-wrap gap-2">
                   {[
                     {
-                      href: GITHUB_URL,
+                      href: githubUrl,
                       icon: <GithubIcon size={13} />,
                       label: "GitHub",
                       c: "var(--a26-text)",
                     },
                     {
-                      href: LINKED_IN_URL,
+                      href: linkedInUrl,
                       icon: <LinkedinIcon size={13} />,
                       label: "LinkedIn",
                       c: "#60A5FA",
                     },
                     {
-                      href: `mailto:${EMAIL_ADDRESS}`,
+                      href: `mailto:${profile.email}`,
                       icon: <Mail size={13} />,
-                      label: EMAIL_ADDRESS,
+                      label: profile.email,
                       c: "var(--a26-teal)",
                     },
                   ].map((l) => (

@@ -918,7 +918,9 @@
       "hanoi": "Torre ng Hanoi",
       "tetris": "Tetris",
       "jump": "Walang Katapusang Pagtaas",
-      "bomber": "Bomber GPM"
+      "bomber": "Bomber GPM",
+      "services": "Mga Serbisyo",
+      "languages": "Mga Wika"
     },
     "itunes": {
       "title": "GPM Tunes",
@@ -1124,7 +1126,10 @@
       "apps": "{count} apps",
       "moreComing": "Higit pang darating",
       "soon": "sa lalong madaling panahon...",
-      "snake": { "name": "GPM Snake", "desc": "Klasikong retro snake game" },
+      "snake": {
+        "name": "GPM Snake",
+        "desc": "Klasikong retro snake game"
+      },
       "hanoi": {
         "name": "Tower of GPM",
         "desc": "Ilipat ang lahat ng disc mula A patungong C"
@@ -1189,10 +1194,22 @@
     "hanoiUi": {
       "objective": "Ilipat ang lahat ng disc mula peg A papuntang C",
       "difficulties": {
-        "easy": { "label": "Madali", "sublabel": "{{count}} galaw min" },
-        "medium": { "label": "Katamtaman", "sublabel": "{{count}} galaw min" },
-        "hard": { "label": "Mahirap", "sublabel": "{{count}} galaw min" },
-        "expert": { "label": "Eksperto", "sublabel": "{{count}} galaw min" }
+        "easy": {
+          "label": "Madali",
+          "sublabel": "{{count}} galaw min"
+        },
+        "medium": {
+          "label": "Katamtaman",
+          "sublabel": "{{count}} galaw min"
+        },
+        "hard": {
+          "label": "Mahirap",
+          "sublabel": "{{count}} galaw min"
+        },
+        "expert": {
+          "label": "Eksperto",
+          "sublabel": "{{count}} galaw min"
+        }
       },
       "idleHelpMobile": "I-drag ang disc sa ibang peg · o tap para pumili at ilagay",
       "idleHelpDesktop": "I-drag ang disc · o i-click / pindutin ang 1 2 3 para gumalaw",
@@ -1245,6 +1262,14 @@
       "winBody": "Talo na ang kalaban, bukas na ang exit, at hawak mo na ang maze.",
       "loseBody": "Masyadong malapit sa pagsabog. Subukan muli nang mas maingat ang ruta at timing.",
       "saveNote": "Ang mga natapos na run na may score ay puwedeng i-save sa Bomber GPM leaderboard."
+    },
+    "services": {
+      "title": "Mga Serbisyo",
+      "subtitle": "Ang ginagawa ko, at kung paano ako makakatulong"
+    },
+    "languages": {
+      "title": "Mga Wika",
+      "subtitle": "Mga wikang ginagamit ko sa trabaho at pakikipagtulungan"
     }
   }
 }

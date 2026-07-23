@@ -3,8 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, GithubIcon, LinkedinIcon, Mail } from "lucide-react";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
-import { EMAIL_ADDRESS } from "@/config";
+import { useProfile, useSocialUrl } from "@/lib/content/use-content";
 import { translate, useLocaleRefresh } from "@/i18n";
 import { WIN_DEFS } from "../constants";
 import type { WinId } from "../constants";
@@ -19,6 +18,9 @@ export function CommandPalette({
   onOpen: (id: WinId) => void;
 }) {
   useLocaleRefresh();
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
   const [q, setQ] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -41,19 +43,19 @@ export function CommandPalette({
       label: "View GitHub",
       icon: <GithubIcon size={13} />,
       color: "var(--a26-text)",
-      action: () => window.open(GITHUB_URL, "_blank"),
+      action: () => window.open(githubUrl, "_blank"),
     },
     {
       label: "View LinkedIn",
       icon: <LinkedinIcon size={13} />,
       color: "#60A5FA",
-      action: () => window.open(LINKED_IN_URL, "_blank"),
+      action: () => window.open(linkedInUrl, "_blank"),
     },
     {
       label: "Send Email",
       icon: <Mail size={13} />,
       color: "var(--a26-teal)",
-      action: () => window.open(`mailto:${EMAIL_ADDRESS}`, "_blank"),
+      action: () => window.open(`mailto:${profile.email}`, "_blank"),
     },
   ];
   const filtered = q

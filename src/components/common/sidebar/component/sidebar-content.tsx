@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { PATH, SOCIAL_MEDIA_LINK_DATA, SideMenuInterface } from "@/config";
+import { PATH, SideMenuInterface } from "@/config";
+import { useSocials } from "@/lib/content/use-content";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { HomeIcon, PieChart, Contact, Settings, FileText } from "lucide-react";
 import { Drawer } from "vaul";
@@ -20,6 +21,7 @@ const SIDE_ICON_SIZE: string = "24px";
 export const SidebarContent = (props: SidebarContentInterface) => {
   const { title } = props;
   const [resumeOpen, setResumeOpen] = useState(false);
+  const SOCIAL_MEDIA_LINK_DATA = useSocials();
 
   const SIDE_MENU: SideMenuInterface[] = [
     {
@@ -79,7 +81,13 @@ export const SidebarContent = (props: SidebarContentInterface) => {
               <div className="flex justify-end gap-4 px-2">
                 {SOCIAL_MEDIA_LINK_DATA.map((socialMedia, index: React.Key) => (
                   <a className="flex gap-2" key={index} href={socialMedia.url}>
-                    <SocialIcon icon={socialMedia.icon} />
+                    <SocialIcon
+                      icon={
+                        socialMedia.icon as React.ComponentProps<
+                          typeof SocialIcon
+                        >["icon"]
+                      }
+                    />
                   </a>
                 ))}
               </div>

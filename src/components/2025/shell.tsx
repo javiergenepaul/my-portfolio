@@ -20,6 +20,7 @@ import {
   AboutSection,
   ExperienceSection,
   SkillsSection,
+  ServicesSection,
   ProjectsSection,
   TestimonialsSection,
   LanguagesSection,
@@ -169,6 +170,7 @@ export function Portfolio2025() {
                   {active === "skills" && (
                     <SkillsSection skillGroups={skillCategories} />
                   )}
+                  {active === "services" && <ServicesSection />}
                   {active === "projects" && (
                     <ProjectsSection projects={projects} />
                   )}

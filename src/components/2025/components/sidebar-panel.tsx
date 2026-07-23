@@ -2,12 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
-import { FULL_NAME, JOB_TITLE, EMAIL_ADDRESS } from "@/config";
-import { GITHUB_URL, LINKED_IN_URL } from "@/config/url";
+import { useProfile, useSocialUrl } from "@/lib/content/use-content";
 import AvatarProfile from "@/assets/avatar-profile.jpg";
 import { useC } from "../context";
 import { useIsMobile, useIsCompact } from "../hooks";
-import { NAV_ITEMS, SIDEBAR_STATS } from "../constants";
+import { NAV_ITEMS, makeSidebarStats } from "../constants";
 import { Separator } from "./helpers";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -21,6 +20,10 @@ export function SidebarPanel({
   const C = useC();
   const isMobile = useIsMobile();
   const isCompact = useIsCompact();
+  const profile = useProfile();
+  const githubUrl = useSocialUrl("github");
+  const linkedInUrl = useSocialUrl("linkedIn");
+  const sidebarStats = makeSidebarStats(profile.careerStartDate);
   return (
     <div
       style={{
@@ -86,8 +89,8 @@ export function SidebarPanel({
               }}
             >
               <img
-                src={AvatarProfile as unknown as string}
-                alt={FULL_NAME}
+                src={profile.avatar || (AvatarProfile as unknown as string)}
+                alt={profile.fullName}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -111,7 +114,7 @@ export function SidebarPanel({
             margin: 0,
           }}
         >
-          {FULL_NAME}
+          {profile.fullName}
         </motion.h2>
 
         <motion.p
@@ -125,7 +128,7 @@ export function SidebarPanel({
             color: C.indigo,
           }}
         >
-          {JOB_TITLE}
+          {profile.jobTitle}
         </motion.p>
 
         {/* Stats row */}
@@ -142,7 +145,7 @@ export function SidebarPanel({
             border: `1px solid ${C.borderSidebar}`,
           }}
         >
-          {SIDEBAR_STATS.map(({ label, value }) => (
+          {sidebarStats.map(({ label, value }) => (
             <div
               key={label}
               style={{
@@ -192,16 +195,16 @@ export function SidebarPanel({
         }}
       >
         {[
-          { href: GITHUB_URL, Icon: Github, label: "GitHub" },
-          { href: LINKED_IN_URL, Icon: Linkedin, label: "LinkedIn" },
-          { href: `mailto:${EMAIL_ADDRESS}`, Icon: Mail, label: "Email" },
+          { href: githubUrl, Icon: Github, label: "GitHub" },
+          { href: linkedInUrl, Icon: Linkedin, label: "LinkedIn" },
+          { href: `mailto:${profile.email}`, Icon: Mail, label: "Email" },
         ].map(({ href, Icon, label }) => (
           <motion.a
             key={label}
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={
-              href === GITHUB_URL || href === LINKED_IN_URL
+              href === githubUrl || href === linkedInUrl
                 ? "nofollow noopener noreferrer"
                 : "noopener noreferrer"
             }
@@ -359,7 +362,7 @@ export function SidebarPanel({
             color: C.textSidebarDim,
           }}
         >
-          <MapPin size={9} /> Cebu, Philippines
+          <MapPin size={9} /> {profile.location}
         </span>
       </div>
     </div>

@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components";
-import { FULL_NAME } from "@/config";
+import { useProfile } from "@/lib/content/use-content";
 import { cn } from "@/lib/utils";
 import {
   SOCIAL_PLATFORMS,
@@ -49,6 +49,7 @@ export function TestimonialSubmissionForm({
   defaults?: { name?: string; role?: string; company?: string };
   onSubmitted?: (data: TestimonialSubmission) => void;
 } = {}) {
+  const profile = useProfile();
   const [name, setName] = useState(defaults?.name ?? "");
   const [role, setRole] = useState(defaults?.role ?? "");
   const [company, setCompany] = useState(defaults?.company ?? "");
@@ -111,8 +112,9 @@ export function TestimonialSubmissionForm({
           </div>
           <h1 className="text-xl font-semibold">Thank you, {name.trim()}!</h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-sm">
-            Your testimonial has been submitted. {FULL_NAME.split(" ")[0]} will
-            review it before it appears on the portfolio.
+            Your testimonial has been submitted.{" "}
+            {profile.fullName.split(" ")[0]} will review it before it appears on
+            the portfolio.
           </p>
           <p className="mt-6 text-xs text-muted-foreground/70">
             (Prototype — nothing was actually sent yet.)
@@ -129,7 +131,7 @@ export function TestimonialSubmissionForm({
           Testimonial
         </p>
         <h1 className="text-xl font-semibold mt-1">
-          Share your experience working with {FULL_NAME}
+          Share your experience working with {profile.fullName}
         </h1>
         <p className="text-sm text-muted-foreground mt-1.5">
           Your words help others understand what it&apos;s like to work with me.
@@ -336,8 +338,8 @@ export function TestimonialSubmissionForm({
           </span>
           <span className="text-sm text-muted-foreground leading-relaxed">
             I give permission to publish this testimonial — including my name
-            {photo ? ", photo," : ""} and role — publicly on {FULL_NAME}&apos;s
-            portfolio.
+            {photo ? ", photo," : ""} and role — publicly on {profile.fullName}
+            &apos;s portfolio.
           </span>
         </button>
 
