@@ -1,35 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { Loader2, Link2Off, CircleCheck, ShieldX } from "lucide-react";
+import { useState } from "react";
+import { Link2Off, CircleCheck, ShieldX } from "lucide-react";
 import {
-  getInvite,
-  submitInvite,
-  type TestimonialInvite,
-} from "./invite-store";
+  submitTestimonial,
+  type PublicInvite,
+} from "@/lib/testimonials/invites";
 import { TestimonialSubmissionForm } from "./submission-form";
 
-export function TokenTestimonial() {
-  const { token } = useParams<{ token: string }>();
-  const [invite, setInvite] = useState<TestimonialInvite | null | undefined>(
-    undefined,
-  );
+/**
+ * Recipient-facing invite page. The invite is resolved server-side and passed
+ * in — `null` means the token is unknown, revoked, or already approved.
+ */
+export function TokenTestimonial({
+  invite,
+  token,
+}: {
+  invite: PublicInvite | null;
+  token: string;
+}) {
+  // Flipped locally after a successful submit so the thank-you state shows
+  // without a round trip; a reload reaches the same state from the DB.
+  const [justSubmitted, setJustSubmitted] = useState(false);
 
-  // undefined = still reading; null = not found.
-  useEffect(() => {
-    setInvite(getInvite(token) ?? null);
-  }, [token]);
-
-  if (invite === undefined) {
-    return (
-      <Center>
-        <Loader2 className="animate-spin text-muted-foreground" size={22} />
-      </Center>
-    );
-  }
-
-  if (invite === null) {
+  if (!invite) {
     return (
       <Blocked
         icon={<Link2Off size={28} />}
@@ -49,7 +43,7 @@ export function TokenTestimonial() {
     );
   }
 
-  if (invite.status === "submitted") {
+  if (invite.status === "submitted" || justSubmitted) {
     return (
       <Blocked
         variant="success"
@@ -68,7 +62,20 @@ export function TokenTestimonial() {
         role: invite.recipientRole,
         company: invite.recipientCompany,
       }}
-      onSubmitted={(data) => submitInvite(invite.token, data)}
+      onSubmitted={async (data) => {
+        const ok = await submitTestimonial(token, {
+          name: data.name,
+          role: data.role,
+          company: data.company,
+          relationship: data.relationship,
+          rating: data.rating,
+          message: data.message,
+          photo: data.photo,
+          socials: data.socials,
+        });
+        if (ok) setJustSubmitted(true);
+        return ok;
+      }}
     />
   );
 }

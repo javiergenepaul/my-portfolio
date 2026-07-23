@@ -287,6 +287,11 @@ export const TestimonialSection = () => {
   const ROW_A = testimonials.slice(0, 3);
   const ROW_B = testimonials.slice(3);
 
+  // Nothing published (or the content store hasn't resolved yet) — drop the
+  // whole block, banner included, rather than leaving a heading over dead
+  // space. Every hook above still runs, so the order stays stable.
+  if (testimonials.length === 0) return null;
+
   return (
     <div className="relative pb-16">
       <Banner />
@@ -312,7 +317,11 @@ export const TestimonialSection = () => {
           onMouseLeave={() => setPaused(false)}
         >
           <MarqueeRow items={ROW_A} paused={paused} rowId="0" />
-          <MarqueeRow items={ROW_B} reverse paused={paused} rowId="1" />
+          {/* Fewer than four testimonials leaves row B empty — skip it instead
+              of animating a blank strip. */}
+          {ROW_B.length > 0 && (
+            <MarqueeRow items={ROW_B} reverse paused={paused} rowId="1" />
+          )}
         </motion.div>
       </section>
     </div>

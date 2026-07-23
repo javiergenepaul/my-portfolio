@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Plus,
   Copy,
@@ -37,34 +37,47 @@ import { cn } from "@/lib/utils";
 import {
   listInvites,
   createInvite,
-  revokeInvite,
-  reactivateInvite,
+  setInviteStatus,
   deleteInvite,
-  seedInvitesIfEmpty,
-  type TestimonialInvite,
-} from "@/components/testimonial/invite-store";
+  approveInvite,
+  type Invite,
+} from "@/lib/testimonials/invites";
 
 export function TestimonialRequests() {
   const { toast } = useToast();
-  const [invites, setInvites] = useState<TestimonialInvite[]>([]);
-  const refresh = () => setInvites(listInvites());
+  const [invites, setInvites] = useState<Invite[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+
+  const refresh = useCallback(async () => {
+    try {
+      setInvites(await listInvites());
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Couldn't load requests",
+        description: e instanceof Error ? e.message : "Unknown error",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [toast]);
 
   useEffect(() => {
-    seedInvitesIfEmpty();
-    refresh();
-  }, []);
+    void refresh();
+  }, [refresh]);
 
   // Create dialog
   const [createOpen, setCreateOpen] = useState(false);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
-  const [generated, setGenerated] = useState<TestimonialInvite | null>(null);
+  const [generated, setGenerated] = useState<Invite | null>(null);
 
   // View-submission dialog
-  const [viewing, setViewing] = useState<TestimonialInvite | null>(null);
+  const [viewing, setViewing] = useState<Invite | null>(null);
   // Delete confirm
-  const [deleting, setDeleting] = useState<TestimonialInvite | null>(null);
+  const [deleting, setDeleting] = useState<Invite | null>(null);
 
   const linkFor = (token: string) =>
     typeof window !== "undefined"
@@ -91,42 +104,69 @@ export function TestimonialRequests() {
     setGenerated(null);
   };
 
-  const onGenerate = () => {
-    if (!name.trim()) return;
-    const inv = createInvite({
-      recipientName: name,
-      recipientRole: role,
-      recipientCompany: company,
-    });
-    refresh();
-    setGenerated(inv);
+  const run = async (fn: () => Promise<void>, ok: string, danger = false) => {
+    setBusy(true);
+    try {
+      await fn();
+      await refresh();
+      toast({
+        ...(danger ? { variant: "destructive" as const } : {}),
+        title: ok,
+        duration: 2500,
+      });
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Action failed",
+        description: e instanceof Error ? e.message : "Unknown error",
+        duration: 6000,
+      });
+    } finally {
+      setBusy(false);
+    }
   };
 
-  const onRevoke = (token: string) => {
-    revokeInvite(token);
-    refresh();
-    toast({ title: "Link deactivated", duration: 2500 });
+  const onGenerate = async () => {
+    if (!name.trim() || busy) return;
+    setBusy(true);
+    try {
+      const inv = await createInvite({
+        recipientName: name,
+        recipientRole: role,
+        recipientCompany: company,
+      });
+      await refresh();
+      setGenerated(inv);
+    } catch (e) {
+      toast({
+        variant: "destructive",
+        title: "Couldn't create the request",
+        description: e instanceof Error ? e.message : "Unknown error",
+        duration: 6000,
+      });
+    } finally {
+      setBusy(false);
+    }
   };
-  const onReactivate = (token: string) => {
-    reactivateInvite(token);
-    refresh();
-    toast({ title: "Link reactivated", duration: 2500 });
-  };
+
+  const onRevoke = (token: string) =>
+    void run(() => setInviteStatus(token, "revoked"), "Link deactivated");
+  const onReactivate = (token: string) =>
+    void run(() => setInviteStatus(token, "active"), "Link reactivated");
+
   const onDelete = () => {
     if (!deleting) return;
-    deleteInvite(deleting.token);
-    refresh();
+    const token = deleting.token;
     setDeleting(null);
-    toast({ variant: "destructive", title: "Request deleted", duration: 2500 });
+    void run(() => deleteInvite(token), "Request deleted", true);
   };
+
+  /** Copies the submission into Testimonials as an unpublished draft. */
   const onApprove = () => {
-    toast({
-      title: "Approved (simulated)",
-      description:
-        "This would publish the testimonial to your Testimonials list.",
-      duration: 3500,
-    });
+    if (!viewing) return;
+    const token = viewing.token;
     setViewing(null);
+    void run(() => approveInvite(token), "Added to Testimonials as a draft");
   };
 
   return (
@@ -186,7 +226,7 @@ export function TestimonialRequests() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center justify-end gap-0.5">
-                    {inv.status === "submitted" ? (
+                    {inv.status === "submitted" || inv.status === "approved" ? (
                       <Button
                         variant="outline"
                         size="sm"
@@ -247,7 +287,7 @@ export function TestimonialRequests() {
                   colSpan={4}
                   className="text-center text-sm text-muted-foreground py-10"
                 >
-                  No requests yet.
+                  {loading ? "Loading requests…" : "No requests yet."}
                 </TableCell>
               </TableRow>
             )}
@@ -346,8 +386,8 @@ export function TestimonialRequests() {
                   Cancel
                 </Button>
                 <Button
-                  onClick={onGenerate}
-                  disabled={!name.trim()}
+                  onClick={() => void onGenerate()}
+                  disabled={!name.trim() || busy}
                   className="gap-1.5"
                 >
                   <Send size={15} /> Generate link
@@ -361,16 +401,16 @@ export function TestimonialRequests() {
       {/* View submission dialog */}
       <Dialog open={!!viewing} onOpenChange={(o) => !o && setViewing(null)}>
         <DialogContent className="max-w-md">
-          {viewing?.testimonial && (
+          {viewing?.submission && (
             <>
               <DialogHeader>
-                <DialogTitle>{viewing.testimonial.name}</DialogTitle>
+                <DialogTitle>{viewing.submission.name}</DialogTitle>
                 <DialogDescription>
-                  {[viewing.testimonial.role, viewing.testimonial.company]
+                  {[viewing.submission.role, viewing.submission.company]
                     .filter(Boolean)
                     .join(" · ")}
-                  {viewing.testimonial.relationship
-                    ? ` — ${viewing.testimonial.relationship}`
+                  {viewing.submission.relationship
+                    ? ` — ${viewing.submission.relationship}`
                     : ""}
                 </DialogDescription>
               </DialogHeader>
@@ -381,7 +421,7 @@ export function TestimonialRequests() {
                       key={n}
                       size={16}
                       className={cn(
-                        n <= viewing.testimonial!.rating
+                        n <= viewing.submission!.rating
                           ? "fill-amber-400 text-amber-400"
                           : "text-muted-foreground/30",
                       )}
@@ -389,20 +429,20 @@ export function TestimonialRequests() {
                   ))}
                 </div>
                 <p className="text-sm leading-relaxed text-foreground">
-                  “{viewing.testimonial.message}”
+                  “{viewing.submission.message}”
                 </p>
-                {viewing.testimonial.photo && (
+                {viewing.submission.photo && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={viewing.testimonial.photo}
-                    alt={viewing.testimonial.name}
+                    src={viewing.submission.photo}
+                    alt={viewing.submission.name}
                     className="h-14 w-14 rounded-full object-cover border border-border"
                   />
                 )}
-                {viewing.testimonial.socials &&
-                  viewing.testimonial.socials.length > 0 && (
+                {viewing.submission.socials &&
+                  viewing.submission.socials.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-1">
-                      {viewing.testimonial.socials.map((s, i) => {
+                      {viewing.submission.socials.map((s, i) => {
                         const plat = getPlatform(s.platform);
                         const Icon = plat?.icon ?? Globe;
                         return (
@@ -424,9 +464,19 @@ export function TestimonialRequests() {
                 <Button variant="outline" onClick={() => setViewing(null)}>
                   Close
                 </Button>
-                <Button onClick={onApprove} className="gap-1.5">
-                  <CircleCheck size={15} /> Approve &amp; publish
-                </Button>
+                {viewing?.status === "approved" ? (
+                  <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <CircleCheck size={15} /> Already added to Testimonials
+                  </span>
+                ) : (
+                  <Button
+                    onClick={onApprove}
+                    disabled={busy}
+                    className="gap-1.5"
+                  >
+                    <CircleCheck size={15} /> Approve
+                  </Button>
+                )}
               </DialogFooter>
             </>
           )}
@@ -458,11 +508,17 @@ export function TestimonialRequests() {
   );
 }
 
-function StatusBadge({ status }: { status: TestimonialInvite["status"] }) {
+function StatusBadge({ status }: { status: Invite["status"] }) {
   if (status === "submitted")
     return (
       <Badge className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/15 border-transparent">
         Submitted
+      </Badge>
+    );
+  if (status === "approved")
+    return (
+      <Badge className="bg-sky-500/15 text-sky-600 dark:text-sky-400 hover:bg-sky-500/15 border-transparent">
+        Approved
       </Badge>
     );
   if (status === "revoked") return <Badge variant="secondary">Revoked</Badge>;

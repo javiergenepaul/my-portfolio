@@ -9,6 +9,7 @@ import {
   Send,
   Plus,
   X,
+  Loader2,
 } from "lucide-react";
 import {
   Button,
@@ -47,7 +48,10 @@ export function TestimonialSubmissionForm({
   onSubmitted,
 }: {
   defaults?: { name?: string; role?: string; company?: string };
-  onSubmitted?: (data: TestimonialSubmission) => void;
+  /** Return false to signal the submission was rejected (used/revoked link). */
+  onSubmitted?: (
+    data: TestimonialSubmission,
+  ) => void | boolean | Promise<boolean | void>;
 } = {}) {
   const profile = useProfile();
   const [name, setName] = useState(defaults?.name ?? "");
@@ -64,6 +68,8 @@ export function TestimonialSubmissionForm({
   ]);
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const addSocial = () =>
     setSocials((s) => [...s, { platform: "linkedin", url: "" }]);
@@ -87,20 +93,38 @@ export function TestimonialSubmissionForm({
     reader.readAsDataURL(file);
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSubmit) return;
-    onSubmitted?.({
-      name: name.trim(),
-      role: role.trim(),
-      company: company.trim(),
-      relationship,
-      rating,
-      message: message.trim(),
-      photo,
-      socials: socials.filter((s) => s.url.trim().length > 0),
-    });
-    setSubmitted(true);
+    if (!canSubmit || busy) return;
+    setBusy(true);
+    setError(null);
+    try {
+      // A handler returning false means the write was rejected (already used
+      // or revoked link) — keep the form up rather than faking success.
+      const ok = await onSubmitted?.({
+        name: name.trim(),
+        role: role.trim(),
+        company: company.trim(),
+        relationship,
+        rating,
+        message: message.trim(),
+        photo,
+        socials: socials.filter((s) => s.url.trim().length > 0),
+      });
+      if (ok === false) {
+        setError(
+          "This link has already been used or is no longer active. Ask for a fresh one.",
+        );
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError(
+        "Something went wrong sending your testimonial. Please try again.",
+      );
+    } finally {
+      setBusy(false);
+    }
   };
 
   if (submitted) {
@@ -115,9 +139,6 @@ export function TestimonialSubmissionForm({
             Your testimonial has been submitted.{" "}
             {profile.fullName.split(" ")[0]} will review it before it appears on
             the portfolio.
-          </p>
-          <p className="mt-6 text-xs text-muted-foreground/70">
-            (Prototype — nothing was actually sent yet.)
           </p>
         </div>
       </Shell>
@@ -343,10 +364,19 @@ export function TestimonialSubmissionForm({
           </span>
         </button>
 
-        <Button type="submit" disabled={!canSubmit} className="gap-2 mt-1">
-          <Send size={15} />
-          Submit testimonial
+        <Button
+          type="submit"
+          disabled={!canSubmit || busy}
+          className="gap-2 mt-1"
+        >
+          {busy ? (
+            <Loader2 size={15} className="animate-spin" />
+          ) : (
+            <Send size={15} />
+          )}
+          {busy ? "Sending…" : "Submit testimonial"}
         </Button>
+        {error && <p className="text-[12px] text-destructive -mt-2">{error}</p>}
         {!canSubmit && (
           <p className="text-[11px] text-muted-foreground -mt-2">
             {!name.trim() || !message.trim()
