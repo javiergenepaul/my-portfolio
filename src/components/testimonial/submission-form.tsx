@@ -81,7 +81,6 @@ export function TestimonialSubmissionForm({
     setSocials((s) => s.filter((_, idx) => idx !== i));
 
   const validSocials = socials.filter((s) => s.url.trim().length > 0);
-  // Loose on purpose — enough to catch typos, not to police valid addresses.
   // Optional field: blank is fine, but a typo shouldn't pass silently. Loose on
   // purpose — enough to catch mistakes, not to police valid addresses.
   const emailOk =
@@ -215,7 +214,7 @@ export function TestimonialSubmissionForm({
               placeholder="jane@company.com"
             />
             <p className="text-[11px] text-muted-foreground">
-              Optional — only so I can reach you about this. Never shown
+              Optional — so I can let you know when it goes live. Never shown
               publicly.
             </p>
           </Field>

@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createPublicClient } from "@/lib/supabase/public";
 import { getServerProfile } from "@/lib/content/server-profile";
-import { sendEmail, EMAIL_TEMPLATES } from "@/lib/email/send";
+import { sendTestimonialEmail } from "@/lib/email/send";
 import type { SocialLink } from "@/components/testimonial/social-platforms";
 
 /** Absolute base for links inside emails. */
@@ -58,7 +58,7 @@ export interface Invite extends PublicInvite {
 
 export interface SubmissionInput {
   name: string;
-  /** Optional — captured so the admin can reply by hand. Not auto-emailed. */
+  /** Optional — used to notify them when the testimonial is published. */
   email?: string;
   role?: string;
   company?: string;
@@ -178,20 +178,25 @@ export async function submitTestimonial(
   // the result — a mail failure must not tell the recipient their testimonial
   // didn't go through, because it did.
   const { profile } = await getServerProfile();
-  void sendEmail({
-    templateId: EMAIL_TEMPLATES.testimonialSubmitted,
-    params: {
-      to_email: profile.email,
-      to_name: profile.fullName,
-      from_name: input.name,
-      from_email: input.email || "—",
-      role: input.role ?? "—",
-      company: input.company ?? "—",
-      relationship: input.relationship ?? "—",
-      rating: input.rating || 0,
-      message: input.message,
-      review_url: `${siteUrl()}/admin/requests`,
-    },
+  void sendTestimonialEmail({
+    to_email: profile.email,
+    to_name: profile.fullName,
+    // Reply goes straight to the author when they left an address.
+    reply_to: input.email?.trim() || profile.email,
+    subject: `New testimonial from ${input.name}`,
+    banner: "New Testimonial",
+    intro: `${input.name} submitted a testimonial.`,
+    quote: input.message,
+    details: [
+      `Role: ${input.role || "—"}`,
+      `Company: ${input.company || "—"}`,
+      `Relationship: ${input.relationship || "—"}`,
+      `Rating: ${input.rating || 0} / 5`,
+      `Email: ${input.email?.trim() || "not provided"}`,
+    ].join("\n"),
+    cta_label: "Review & publish",
+    cta_url: `${siteUrl()}/admin/requests`,
+    footer: "Sent automatically from your portfolio.",
   });
 
   return true;
@@ -311,10 +316,26 @@ export async function approveInvite(token: string): Promise<void> {
     .eq("token", token);
   if (updateErr) throw new Error(updateErr.message);
 
-  // No "your testimonial is live" email: the free EmailJS tier allows only two
-  // templates, both already in use (contact form + new-submission alert). The
-  // author's address is still captured and shown in the admin review dialog, so
-  // it can be sent by hand.
+  // Tell the author they're live, through the same shared template. Skipped
+  // when they left no address, and never allowed to fail the approval — the
+  // testimonial is already published either way.
+  const authorEmail = s(r.email)?.trim();
+  if (authorEmail) {
+    const { profile } = await getServerProfile();
+    void sendTestimonialEmail({
+      to_email: authorEmail,
+      to_name: s(r.name) || "there",
+      reply_to: profile.email,
+      subject: "Your testimonial is now live",
+      banner: "Your Testimonial Is Live",
+      intro: `Hi ${s(r.name) || "there"}, thank you for taking the time to write this — it's now published on my portfolio.`,
+      quote: s(r.message) ?? "",
+      details: "",
+      cta_label: "View the portfolio",
+      cta_url: siteUrl(),
+      footer: `Replying to this email reaches ${profile.email} directly.`,
+    });
+  }
 
   revalidatePath("/admin/requests");
   revalidatePath("/admin/testimonials");

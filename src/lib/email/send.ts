@@ -74,12 +74,41 @@ export async function sendEmail({
 }
 
 /**
- * Template ids. Only the new-submission alert exists: the free EmailJS tier
- * allows two templates and both are spoken for (contact form + this one), so
- * there is no "testimonial published" notification. Add one here if the plan
- * ever allows a third.
+ * One template serves both testimonial notifications.
+ *
+ * The free EmailJS tier allows two templates and the contact form owns one, so
+ * "new submission" and "now published" share a single generic layout: banner,
+ * intro line, quote block, optional detail list, and a call-to-action. Every
+ * differing piece is passed in as a variable.
+ *
+ * The layout has to be fixed because EmailJS renders variables as *text* — HTML
+ * passed in a variable is escaped, not interpreted. `details` is the one
+ * multi-line slot; its container uses `white-space:pre-line` so newlines show.
  */
 export const EMAIL_TEMPLATES = {
-  testimonialSubmitted:
-    process.env.EMAILJS_TEMPLATE_TESTIMONIAL_SUBMITTED ?? "",
+  testimonial: process.env.EMAILJS_TEMPLATE_TESTIMONIAL ?? "",
 };
+
+/** The variable contract the shared template expects. */
+export interface TestimonialEmailParams extends Record<string, string> {
+  to_email: string;
+  to_name: string;
+  reply_to: string;
+  subject: string;
+  /** Small uppercase label in the coloured header bar. */
+  banner: string;
+  /** Lead sentence under the header. */
+  intro: string;
+  /** The testimonial itself, rendered in the quote block. */
+  quote: string;
+  /** Optional newline-separated "Label: value" lines. Empty string hides it. */
+  details: string;
+  cta_label: string;
+  cta_url: string;
+  footer: string;
+}
+
+/** Sends one of the two testimonial notifications through the shared template. */
+export function sendTestimonialEmail(params: TestimonialEmailParams) {
+  return sendEmail({ templateId: EMAIL_TEMPLATES.testimonial, params });
+}
