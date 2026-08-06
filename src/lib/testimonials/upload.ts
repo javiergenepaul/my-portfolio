@@ -23,24 +23,15 @@ const ALLOWED = new Map([
   ["image/webp", "webp"],
 ]);
 
-export async function uploadTestimonialPhoto(
-  token: string,
+/**
+ * Validates a data-URL image and stores it in the content bucket with the
+ * service-role client. Shared by both submission flows — each does its own
+ * authorization gate BEFORE calling this. The path is keyed by a fresh uuid,
+ * never by user input, so a crafted filename can't escape the folder.
+ */
+export async function storeTestimonialImage(
   dataUrl: string,
 ): Promise<{ url?: string; error?: string }> {
-  // 1. The token must belong to an invite that can still be submitted. Uses the
-  //    anon client deliberately: RLS decides, not this code.
-  const publicClient = createPublicClient();
-  const { data: invite } = await publicClient
-    .from("testimonial_invites")
-    .select("status")
-    .eq("token", token)
-    .maybeSingle();
-
-  if (!invite || invite.status !== "active") {
-    return { error: "This link is no longer accepting submissions." };
-  }
-
-  // 2. Parse and validate before touching storage.
   const match = /^data:([^;]+);base64,(.+)$/.exec(dataUrl);
   if (!match) return { error: "That file could not be read." };
 
@@ -53,8 +44,6 @@ export async function uploadTestimonialPhoto(
     return { error: "That image is over 3 MB. Please choose a smaller one." };
   }
 
-  // 3. Upload. The path is keyed by a fresh uuid, never by user input, so a
-  //    crafted filename can't escape the folder or overwrite anything.
   try {
     const admin = createAdminClient();
     const path = `testimonials/${crypto.randomUUID()}.${ext}`;
@@ -68,4 +57,25 @@ export async function uploadTestimonialPhoto(
   } catch (e) {
     return { error: e instanceof Error ? e.message : "Upload failed." };
   }
+}
+
+/**
+ * Photo upload for a PRIVATE invite. Gate: the token must resolve to an invite
+ * still `active`. RLS decides via the anon client — this code doesn't.
+ */
+export async function uploadTestimonialPhoto(
+  token: string,
+  dataUrl: string,
+): Promise<{ url?: string; error?: string }> {
+  const publicClient = createPublicClient();
+  const { data: invite } = await publicClient
+    .from("testimonial_invites")
+    .select("status")
+    .eq("token", token)
+    .maybeSingle();
+
+  if (!invite || invite.status !== "active") {
+    return { error: "This link is no longer accepting submissions." };
+  }
+  return storeTestimonialImage(dataUrl);
 }

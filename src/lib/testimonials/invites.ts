@@ -40,6 +40,8 @@ export interface PublicInvite {
 /** Full row, admin-only. */
 export interface Invite extends PublicInvite {
   id: string;
+  /** "invite" = admin-created private link · "public" = open-link submission. */
+  source: "invite" | "public";
   createdAt: string;
   submission?: {
     name: string;
@@ -104,6 +106,7 @@ function toInvite(r: Row): Invite {
     recipientRole: s(r.recipient_role),
     recipientCompany: s(r.recipient_company),
     status: String(r.status) as InviteStatus,
+    source: s(r.source) === "public" ? "public" : "invite",
     createdAt: String(r.created_at),
     testimonialId: s(r.testimonial_id),
     submission: submitted

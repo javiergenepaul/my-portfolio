@@ -79,6 +79,7 @@ export function TestimonialSubmissionForm({
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [photoError, setPhotoError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
 
   const addSocial = () =>
     setSocials((s) => [...s, { platform: "linkedin", url: "" }]);
@@ -128,6 +129,12 @@ export function TestimonialSubmissionForm({
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit || busy || uploading) return;
+    // Honeypot: humans never see this field, so a filled one is a bot. Show the
+    // success screen without submitting, so the bot gets no signal it was caught.
+    if (honeypot.trim().length > 0) {
+      setSubmitted(true);
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
@@ -194,6 +201,31 @@ export function TestimonialSubmissionForm({
       </div>
 
       <form onSubmit={onSubmit} className="flex flex-col gap-5">
+        {/* Honeypot — off-screen, hidden from people and assistive tech. Only a
+            bot fills it; onSubmit then drops silently. Not display:none, which
+            some bots skip. */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: 1,
+            height: 1,
+            overflow: "hidden",
+          }}
+        >
+          <label>
+            Website
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </label>
+        </div>
+
         {/* Rating */}
         <div className="flex flex-col gap-2">
           <Label>Overall, how was it working together?</Label>

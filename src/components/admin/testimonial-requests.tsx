@@ -19,6 +19,7 @@ import {
   Input,
   Label,
   Badge,
+  Switch,
   Table,
   TableBody,
   TableCell,
@@ -42,16 +43,24 @@ import {
   approveInvite,
   type Invite,
 } from "@/lib/testimonials/invites";
+import { getPublicEnabled, setPublicEnabled } from "@/lib/testimonials/public";
 
 export function TestimonialRequests() {
   const { toast } = useToast();
   const [invites, setInvites] = useState<Invite[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [publicOn, setPublicOn] = useState(false);
+  const [togglingPublic, setTogglingPublic] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
-      setInvites(await listInvites());
+      const [rows, enabled] = await Promise.all([
+        listInvites(),
+        getPublicEnabled(),
+      ]);
+      setInvites(rows);
+      setPublicOn(enabled);
     } catch (e) {
       toast({
         variant: "destructive",
@@ -66,6 +75,45 @@ export function TestimonialRequests() {
   useEffect(() => {
     void refresh();
   }, [refresh]);
+
+  const publicUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/testimonial/share`
+      : "/testimonial/share";
+
+  const togglePublic = async (next: boolean) => {
+    setTogglingPublic(true);
+    setPublicOn(next); // optimistic
+    try {
+      await setPublicEnabled(next);
+      toast({
+        title: next ? "Public link is live" : "Public link turned off",
+        duration: 2500,
+      });
+    } catch (e) {
+      setPublicOn(!next); // revert
+      toast({
+        variant: "destructive",
+        title: "Couldn't update the public link",
+        description: e instanceof Error ? e.message : "Unknown error",
+      });
+    } finally {
+      setTogglingPublic(false);
+    }
+  };
+
+  const copyPublicLink = async () => {
+    try {
+      await navigator.clipboard.writeText(publicUrl);
+      toast({ title: "Public link copied", duration: 2500 });
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Couldn't copy",
+        description: publicUrl,
+      });
+    }
+  };
 
   // Create dialog
   const [createOpen, setCreateOpen] = useState(false);
@@ -194,6 +242,52 @@ export function TestimonialRequests() {
         </Button>
       </div>
 
+      {/* Public link — one shared, always-on-when-toggled URL for groups */}
+      <div className="mb-6 rounded-xl border border-border bg-card p-4 sm:p-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <Globe size={16} className="text-primary shrink-0" />
+              <h2 className="text-sm font-semibold">Public link</h2>
+              <Badge
+                variant={publicOn ? "default" : "secondary"}
+                className={cn(
+                  "text-[10px]",
+                  publicOn &&
+                    "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/15 border-transparent",
+                )}
+              >
+                {publicOn ? "Live" : "Off"}
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              One shared link anyone can submit through — for a group or a
+              broadcast. Submissions land here for review, same as private ones.
+            </p>
+          </div>
+          <Switch
+            checked={publicOn}
+            disabled={togglingPublic || loading}
+            onCheckedChange={togglePublic}
+          />
+        </div>
+        {publicOn && (
+          <div className="mt-3 flex items-center gap-2">
+            <code className="flex-1 min-w-0 truncate rounded-md border border-border bg-muted/40 px-2.5 py-1.5 text-xs text-muted-foreground">
+              {publicUrl}
+            </code>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5 shrink-0"
+              onClick={() => void copyPublicLink()}
+            >
+              <Copy size={13} /> Copy
+            </Button>
+          </div>
+        )}
+      </div>
+
       {/* Table */}
       <div className="rounded-xl border border-border bg-card overflow-hidden">
         <Table>
@@ -211,9 +305,26 @@ export function TestimonialRequests() {
             {invites.map((inv) => (
               <TableRow key={inv.token}>
                 <TableCell>
-                  <div className="font-medium">{inv.recipientName}</div>
+                  <div className="font-medium flex items-center gap-1.5">
+                    {/* Public rows have no admin-set recipient — show the
+                        submitter's own name, and tag where it came from. */}
+                    {inv.source === "public"
+                      ? inv.submission?.name || "Public submission"
+                      : inv.recipientName || "—"}
+                    {inv.source === "public" && (
+                      <Badge
+                        variant="secondary"
+                        className="text-[9px] px-1.5 py-0 gap-1"
+                      >
+                        <Globe size={9} /> Public
+                      </Badge>
+                    )}
+                  </div>
                   <div className="text-xs text-muted-foreground line-clamp-1">
-                    {[inv.recipientRole, inv.recipientCompany]
+                    {(inv.source === "public"
+                      ? [inv.submission?.role, inv.submission?.company]
+                      : [inv.recipientRole, inv.recipientCompany]
+                    )
                       .filter(Boolean)
                       .join(" · ") || "—"}
                   </div>

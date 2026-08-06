@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { Link2Off } from "lucide-react";
+import { getPublicEnabled } from "@/lib/testimonials/public";
 
 export const metadata: Metadata = {
   title: "Share a testimonial",
   robots: { index: false, follow: false },
 };
 
-// The open form is invite-only now — you reach it via /testimonial/<token>.
-export default function TestimonialIndexPage() {
+export const dynamic = "force-dynamic";
+
+/**
+ * Bare entry point. Private submissions come in via /testimonial/<token>. If the
+ * public link is open, send a bare visitor to it; otherwise explain they need a
+ * link.
+ */
+export default async function TestimonialIndexPage() {
+  if (await getPublicEnabled()) redirect("/testimonial/share");
+
   return (
     <div className="min-h-dvh w-full flex items-center justify-center bg-background p-6">
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 text-center shadow-sm">
