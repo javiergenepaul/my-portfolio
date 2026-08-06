@@ -191,19 +191,23 @@ function TestimonialCard({
           accent={accent}
           idPrefix={`star-${cardIndex}`}
         />
-        <span
-          className={cn(
-            "text-[10px] font-semibold px-2 py-0.5 rounded-full",
-            RELATIONSHIP_STYLES[testimonial.relationship],
-          )}
-        >
-          {testimonial.relationship}
-        </span>
+        {testimonial.relationship && (
+          <span
+            className={cn(
+              "text-[10px] font-semibold px-2 py-0.5 rounded-full",
+              RELATIONSHIP_STYLES[testimonial.relationship],
+            )}
+          >
+            {testimonial.relationship}
+          </span>
+        )}
       </div>
 
-      <p className="text-[10px] font-medium text-muted-foreground/70 uppercase tracking-wider">
-        {testimonial.service}
-      </p>
+      {testimonial.service && (
+        <p className="text-[10px] font-medium text-muted-foreground/70 uppercase tracking-wider">
+          {testimonial.service}
+        </p>
+      )}
 
       <p className="text-sm leading-relaxed text-muted-foreground line-clamp-4">
         {testimonial.text}

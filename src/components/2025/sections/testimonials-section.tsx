@@ -217,19 +217,21 @@ export function TestimonialsSection() {
                     {t.role} · {t.company}
                   </p>
                 </div>
-                <span
-                  style={{
-                    marginLeft: "auto",
-                    fontSize: "9px",
-                    padding: "2px 8px",
-                    borderRadius: "99px",
-                    fontWeight: 600,
-                    backgroundColor: C.mintLight,
-                    color: C.mintDark,
-                  }}
-                >
-                  {t.relationship}
-                </span>
+                {t.relationship && (
+                  <span
+                    style={{
+                      marginLeft: "auto",
+                      fontSize: "9px",
+                      padding: "2px 8px",
+                      borderRadius: "99px",
+                      fontWeight: 600,
+                      backgroundColor: C.mintLight,
+                      color: C.mintDark,
+                    }}
+                  >
+                    {t.relationship}
+                  </span>
+                )}
               </div>
             </motion.div>
           ))}

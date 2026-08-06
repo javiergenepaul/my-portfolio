@@ -39,11 +39,14 @@ export function TestimonialsContent() {
   const [relationshipFilter, setRelationshipFilter] = useState<string>("all");
   const [serviceFilter, setServiceFilter] = useState<string>("all");
 
+  // Drop blanks — a testimonial with no relationship/service would otherwise
+  // add an empty filter chip (e.g. approved public submissions, which don't
+  // collect a service).
   const relationshipOptions = Array.from(
-    new Set(TESTIMONIALS.map((t) => t.relationship)),
+    new Set(TESTIMONIALS.map((t) => t.relationship).filter(Boolean)),
   );
   const serviceOptions = Array.from(
-    new Set(TESTIMONIALS.map((t) => t.service)),
+    new Set(TESTIMONIALS.map((t) => t.service).filter(Boolean)),
   );
 
   const cards = TESTIMONIALS.map((testimonial, index) => {
@@ -258,18 +261,20 @@ export function TestimonialsContent() {
                       </div>
                     </div>
                   </div>
-                  <span
-                    className="shrink-0 text-[10px] font-semibold rounded-full px-2.5 py-1"
-                    style={{
-                      background:
-                        "color-mix(in srgb, #EC4899 12%, transparent)",
-                      border:
-                        "1px solid color-mix(in srgb, #EC4899 20%, transparent)",
-                      color: "#F9A8D4",
-                    }}
-                  >
-                    {testimonial.relationshipLabel}
-                  </span>
+                  {testimonial.relationshipLabel && (
+                    <span
+                      className="shrink-0 text-[10px] font-semibold rounded-full px-2.5 py-1"
+                      style={{
+                        background:
+                          "color-mix(in srgb, #EC4899 12%, transparent)",
+                        border:
+                          "1px solid color-mix(in srgb, #EC4899 20%, transparent)",
+                        color: "#F9A8D4",
+                      }}
+                    >
+                      {testimonial.relationshipLabel}
+                    </span>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-between gap-3">
@@ -295,9 +300,11 @@ export function TestimonialsContent() {
                       );
                     })}
                   </div>
-                  <div className="text-a26-muted text-[10px] font-medium">
-                    {testimonial.serviceLabel}
-                  </div>
+                  {testimonial.serviceLabel && (
+                    <div className="text-a26-muted text-[10px] font-medium">
+                      {testimonial.serviceLabel}
+                    </div>
+                  )}
                 </div>
 
                 <div
